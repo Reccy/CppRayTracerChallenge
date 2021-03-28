@@ -25,11 +25,11 @@ set(CORE_LIBRARY_DIR "src/core")
 set(CORE_LIBRARY_NAME "${PROJECT_NAME}Core")
 
 set(LIBRARY_HEADERS
-	"${CORE_LIBRARY_DIR}/foo.h"
+	"${CORE_LIBRARY_DIR}/math/tuple.h"
 )
 
 set(LIBRARY_SOURCES
-	"${CORE_LIBRARY_DIR}/foo.cpp"
+	"${CORE_LIBRARY_DIR}/math/tuple.cpp"
 )
 
 add_library("${CORE_LIBRARY_NAME}" "${LIBRARY_SOURCES}" "${LIBRARY_HEADERS}")
@@ -43,7 +43,8 @@ include("cmake/SetupGoogleTest.cmake")
 set(TEST_SUITE_DIR "src/test")
 set(TEST_RUNNER_EXECUTABLE_NAME "${PROJECT_NAME}TestRunner")
 set(TEST_RUNNER_EXECUTABLE_SOURCES
-	"${TEST_SUITE_DIR}/core/foo_test.cpp")
+	"${TEST_SUITE_DIR}/core/math/tuple_test.cpp"
+)
 list(APPEND TEST_INCLUDED_DIRS "${CORE_LIBRARY_NAME}")
 add_executable("${TEST_RUNNER_EXECUTABLE_NAME}" "${TEST_RUNNER_EXECUTABLE_SOURCES}")
 target_include_directories("${TEST_RUNNER_EXECUTABLE_NAME}" PRIVATE "${CORE_LIBRARY_DIR}")
