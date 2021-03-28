@@ -67,6 +67,15 @@ TEST(CppRayTracerChallenge_Core_Math_Tuple, inequality_false)
 	EXPECT_FALSE(tupleA != tupleB);
 }
 
+TEST(CppRayTracerChallange_Core_Math_Tuple, addition)
+{
+	Tuple tupleA(3, -2, 5, 1);
+	Tuple tupleB(-2, 3, 1, 0);
+	Tuple expectedResult(1, 1, 6, 1);
+
+	EXPECT_TRUE((tupleA + tupleB) == expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Tuple, ostream_will_show_x_y_z_w_components)
 {
 	Tuple tuple(4.3f, -4.2f, 3.1f, 1.0f);

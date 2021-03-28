@@ -56,6 +56,11 @@ bool Tuple::operator!=(const Tuple& other) const
 	return !(*this == other);
 }
 
+Tuple Tuple::operator+(const Tuple& other)
+{
+	return Tuple(this->m_x + other.m_x, this->m_y + other.m_y, this->m_z + other.m_z, this->m_w + other.m_w);
+}
+
 std::ostream& CppRayTracerChallenge::Core::Math::operator<<(std::ostream& os, const Tuple& tuple)
 {
 	os << tuple.getX() << ", " << tuple.getY() << ", " << tuple.getZ() << ", " << tuple.getW();

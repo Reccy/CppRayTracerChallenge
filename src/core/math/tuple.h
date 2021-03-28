@@ -70,6 +70,7 @@ namespace CppRayTracerChallenge::Core::Math {
 
 		bool operator==(const Tuple& other) const;
 		bool operator!=(const Tuple& other) const;
+		Tuple operator+(const Tuple& other);
 		friend std::ostream& operator<<(std::ostream& os, const Tuple& tuple);
 	private:
 		float m_x, m_y, m_z, m_w;
