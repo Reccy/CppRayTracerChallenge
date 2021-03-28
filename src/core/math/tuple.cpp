@@ -13,6 +13,11 @@ Tuple Tuple::buildVector(const float x, const float y, const float z)
 	return Tuple(x, y, z, 0.0f);
 };
 
+Tuple Tuple::zeroVector()
+{
+	return Tuple(0, 0, 0, 0);
+}
+
 float Tuple::getX() const
 {
 	return this->m_x;
@@ -59,6 +64,16 @@ bool Tuple::operator!=(const Tuple& other) const
 Tuple Tuple::operator+(const Tuple& other)
 {
 	return Tuple(this->m_x + other.m_x, this->m_y + other.m_y, this->m_z + other.m_z, this->m_w + other.m_w);
+}
+
+Tuple Tuple::operator-(const Tuple& other)
+{
+	return Tuple(this->m_x - other.m_x, this->m_y - other.m_y, this->m_z - other.m_z, this->m_w - other.m_w);
+}
+
+Tuple Tuple::operator-() const
+{
+	return Tuple::zeroVector() - *this;
 }
 
 std::ostream& CppRayTracerChallenge::Core::Math::operator<<(std::ostream& os, const Tuple& tuple)

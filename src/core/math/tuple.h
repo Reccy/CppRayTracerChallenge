@@ -9,6 +9,8 @@ namespace CppRayTracerChallenge::Core::Math {
 	/// </summary>
 	class Tuple {
 	public:
+		Tuple() = delete;
+
 		/// <summary>
 		/// Creates a tuple with x, y, z and w components
 		/// </summary>
@@ -35,6 +37,12 @@ namespace CppRayTracerChallenge::Core::Math {
 		/// <param name="z">Z component</param>
 		/// <returns>Tuple that is a vector</returns>
 		static Tuple buildVector(const float x, const float y, const float z);
+
+		/// <summary>
+		/// Creates a zero vector
+		/// </summary>
+		/// <returns>Tuple that is a vector</returns>
+		static Tuple zeroVector();
 
 		/// <summary>
 		/// Returns a readonly X component
@@ -71,6 +79,8 @@ namespace CppRayTracerChallenge::Core::Math {
 		bool operator==(const Tuple& other) const;
 		bool operator!=(const Tuple& other) const;
 		Tuple operator+(const Tuple& other);
+		Tuple operator-(const Tuple& other);
+		Tuple operator-() const;
 		friend std::ostream& operator<<(std::ostream& os, const Tuple& tuple);
 	private:
 		float m_x, m_y, m_z, m_w;
