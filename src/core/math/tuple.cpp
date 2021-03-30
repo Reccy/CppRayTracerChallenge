@@ -76,6 +76,11 @@ Tuple Tuple::operator-() const
 	return Tuple::zeroVector() - *this;
 }
 
+Tuple Tuple::operator*(const float scalar)
+{
+	return Tuple(this->m_x * scalar, this->m_y * scalar, this->m_z * scalar, this->m_w * scalar);
+}
+
 std::ostream& CppRayTracerChallenge::Core::Math::operator<<(std::ostream& os, const Tuple& tuple)
 {
 	os << tuple.getX() << ", " << tuple.getY() << ", " << tuple.getZ() << ", " << tuple.getW();

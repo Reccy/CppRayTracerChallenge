@@ -81,6 +81,7 @@ namespace CppRayTracerChallenge::Core::Math {
 		Tuple operator+(const Tuple& other);
 		Tuple operator-(const Tuple& other);
 		Tuple operator-() const;
+		Tuple operator*(const float scalar);
 		friend std::ostream& operator<<(std::ostream& os, const Tuple& tuple);
 	private:
 		float m_x, m_y, m_z, m_w;
