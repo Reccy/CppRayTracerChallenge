@@ -121,34 +121,74 @@ TEST(CppRayTracerChallenge_Core_Math_Tuple, subtracting_a_vector_from_zero_vecto
 
 TEST(CppRayTracerChallenge_Core_Math_Tuple, unary_negation_will_negate_tuple)
 {
-	Tuple vector = Tuple(1, -2, 3, -4);
+	Tuple tuple = Tuple(1, -2, 3, -4);
 	Tuple expectedResult = Tuple(-1, 2, -3, 4);
 
-	EXPECT_EQ(-vector, expectedResult);
+	EXPECT_EQ(-tuple, expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Tuple, multiplication_by_scalar)
 {
-	Tuple vector = Tuple(1, -2, 3, -4);
+	Tuple tuple = Tuple(1, -2, 3, -4);
 	Tuple expectedResult = Tuple(3.5, -7, 10.5, -14);
 
-	EXPECT_EQ(vector * 3.5, expectedResult);
+	EXPECT_EQ(tuple * 3.5, expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Tuple, multiplication_by_fraction)
 {
-	Tuple vector = Tuple(1, -2, 3, -4);
+	Tuple tuple = Tuple(1, -2, 3, -4);
 	Tuple expectedResult = Tuple(0.5, -1, 1.5, -2);
 
-	EXPECT_EQ(vector * 0.5, expectedResult);
+	EXPECT_EQ(tuple * 0.5, expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Tuple, dividing_by_scalar)
 {
-	Tuple vector = Tuple(1, -2, 3, -4);
+	Tuple tuple = Tuple(1, -2, 3, -4);
 	Tuple expectedResult = Tuple(0.5, -1, 1.5, -2);
 
-	EXPECT_EQ(vector / 2, expectedResult);
+	EXPECT_EQ(tuple / 2, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Tuple, magnitude_of_vector_1_0_0)
+{
+	Tuple vector = Tuple::buildVector(1, 0, 0);
+	float expectedResult = 1;
+
+	EXPECT_EQ(vector.magnitude(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Tuple, magnitude_of_vector_0_1_0)
+{
+	Tuple vector = Tuple::buildVector(0, 1, 0);
+	float expectedResult = 1;
+
+	EXPECT_EQ(vector.magnitude(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Tuple, magnitude_of_vector_0_0_1)
+{
+	Tuple vector = Tuple::buildVector(0, 0, 1);
+	float expectedResult = 1;
+
+	EXPECT_EQ(vector.magnitude(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Tuple, magnitude_of_vector_1_2_3)
+{
+	Tuple vector = Tuple::buildVector(1, 2, 3);
+	float expectedResult = 3.74165738677f; // sqrt(14)
+
+	EXPECT_EQ(vector.magnitude(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Tuple, magnitude_of_vector_neg1_neg2_neg3)
+{
+	Tuple vector = Tuple::buildVector(-1, -2, -3);
+	float expectedResult = 3.74165738677f; // sqrt(14)
+
+	EXPECT_EQ(vector.magnitude(), expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Tuple, ostream_will_show_x_y_z_w_components)

@@ -23,3 +23,24 @@ TEST(CppRayTracerChallenge_Core_Math_Float, compare_values_outside_epsilon)
 	float floatB = 1.00001f;
 	EXPECT_FALSE(Float::compare(floatA, floatB));
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Float, sqrt)
+{
+	float floatA = 14.0f;
+	
+	float result = Float::sqrt(floatA);
+	float expectedResult = 3.74165738677f;
+
+	EXPECT_EQ(result, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Float, pow)
+{
+	float base = 10.0f;
+	float power = 2.0f;
+
+	float result = Float::pow(base, power);
+	float expectedResult = 100.0f;
+
+	EXPECT_EQ(result, expectedResult);
+}

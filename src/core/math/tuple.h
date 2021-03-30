@@ -76,6 +76,12 @@ namespace CppRayTracerChallenge::Core::Math {
 		/// <returns>True if vector, False otherwise</returns>
 		bool isVector() const;
 
+		/// <summary>
+		/// Calculates and returns the magnitude of the tuple
+		/// </summary>
+		/// <returns>Magnitude of the tuple</returns>
+		float magnitude() const;
+
 		bool operator==(const Tuple& other) const;
 		bool operator!=(const Tuple& other) const;
 		Tuple operator+(const Tuple& other);

@@ -48,6 +48,16 @@ bool Tuple::isVector() const
 	return this->m_w == 0.0f;
 }
 
+float Tuple::magnitude() const
+{
+	return Float::sqrt(
+		Float::pow(this->m_x, 2) +
+		Float::pow(this->m_y, 2) +
+		Float::pow(this->m_z, 2) +
+		Float::pow(this->m_w, 2)
+	);
+}
+
 bool Tuple::operator==(const Tuple& other) const
 {
 	return	Float::compare(this->m_x, other.m_x) &&
