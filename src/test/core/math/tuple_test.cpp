@@ -143,6 +143,14 @@ TEST(CppRayTracerChallenge_Core_Math_Tuple, multiplication_by_fraction)
 	EXPECT_EQ(vector * 0.5, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Tuple, dividing_by_scalar)
+{
+	Tuple vector = Tuple(1, -2, 3, -4);
+	Tuple expectedResult = Tuple(0.5, -1, 1.5, -2);
+
+	EXPECT_EQ(vector / 2, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Tuple, ostream_will_show_x_y_z_w_components)
 {
 	Tuple tuple(4.3f, -4.2f, 3.1f, 1.0f);
