@@ -98,12 +98,12 @@ bool Tuple::operator!=(const Tuple& other) const
 	return !(*this == other);
 }
 
-Tuple Tuple::operator+(const Tuple& other)
+Tuple Tuple::operator+(const Tuple& other) const
 {
 	return Tuple(this->m_x + other.m_x, this->m_y + other.m_y, this->m_z + other.m_z, this->m_w + other.m_w);
 }
 
-Tuple Tuple::operator-(const Tuple& other)
+Tuple Tuple::operator-(const Tuple& other) const
 {
 	return Tuple(this->m_x - other.m_x, this->m_y - other.m_y, this->m_z - other.m_z, this->m_w - other.m_w);
 }

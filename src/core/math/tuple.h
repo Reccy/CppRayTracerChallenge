@@ -106,8 +106,8 @@ namespace CppRayTracerChallenge::Core::Math {
 
 		bool operator==(const Tuple& other) const;
 		bool operator!=(const Tuple& other) const;
-		Tuple operator+(const Tuple& other);
-		Tuple operator-(const Tuple& other);
+		Tuple operator+(const Tuple& other) const;
+		Tuple operator-(const Tuple& other) const;
 		Tuple operator-() const;
 		Tuple operator*(const double scalar);
 		Tuple operator/(const double scalar);
