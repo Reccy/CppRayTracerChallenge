@@ -82,6 +82,12 @@ namespace CppRayTracerChallenge::Core::Math {
 		/// <returns>Magnitude of the tuple</returns>
 		float magnitude() const;
 
+		/// <summary>
+		/// Calculates and returns a normalized version of the tuple
+		/// </summary>
+		/// <returns>Normalized tuple</returns>
+		Tuple normalize() const;
+
 		bool operator==(const Tuple& other) const;
 		bool operator!=(const Tuple& other) const;
 		Tuple operator+(const Tuple& other);

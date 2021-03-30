@@ -58,6 +58,16 @@ float Tuple::magnitude() const
 	);
 }
 
+Tuple Tuple::normalize() const
+{
+	return Tuple(
+		this->m_x / this->magnitude(),
+		this->m_y / this->magnitude(),
+		this->m_z / this->magnitude(),
+		this->m_w / this->magnitude()
+	);
+}
+
 bool Tuple::operator==(const Tuple& other) const
 {
 	return	Float::compare(this->m_x, other.m_x) &&

@@ -191,6 +191,32 @@ TEST(CppRayTracerChallenge_Core_Math_Tuple, magnitude_of_vector_neg1_neg2_neg3)
 	EXPECT_EQ(vector.magnitude(), expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Tuple, normalization_of_vector_4_0_0)
+{
+	Tuple vector = Tuple::buildVector(4, 0, 0);
+	Tuple expectedResult = Tuple::buildVector(1, 0, 0);
+
+	EXPECT_EQ(vector.normalize(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Tuple, normalization_of_vector_1_2_3)
+{
+	Tuple vector = Tuple::buildVector(1, 2, 3);
+	Tuple expectedResult = Tuple::buildVector(0.267261f, 0.534522f, 0.801784f);
+
+	EXPECT_EQ(vector.normalize(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Tuple, magnitude_of_normalized_vector)
+{
+	Tuple vector = Tuple::buildVector(1, 2, 3);
+	float expectedResult = 1.0f;
+
+	vector = vector.normalize();
+
+	EXPECT_EQ(vector.magnitude(), expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Tuple, ostream_will_show_x_y_z_w_components)
 {
 	Tuple tuple(4.3f, -4.2f, 3.1f, 1.0f);
