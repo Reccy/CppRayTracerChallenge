@@ -1,14 +1,14 @@
 #include "tuple.h"
-#include "float.h"
+#include "double.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
 
-Tuple Tuple::buildPoint(const float x, const float y, const float z)
+Tuple Tuple::buildPoint(const double x, const double y, const double z)
 {
 	return Tuple(x, y, z, 1.0f);
 };
 
-Tuple Tuple::buildVector(const float x, const float y, const float z)
+Tuple Tuple::buildVector(const double x, const double y, const double z)
 {
 	return Tuple(x, y, z, 0.0f);
 };
@@ -18,22 +18,22 @@ Tuple Tuple::zeroVector()
 	return Tuple(0, 0, 0, 0);
 }
 
-float Tuple::getX() const
+double Tuple::getX() const
 {
 	return this->m_x;
 }
 
-float Tuple::getY() const
+double Tuple::getY() const
 {
 	return this->m_y;
 }
 
-float Tuple::getZ() const
+double Tuple::getZ() const
 {
 	return this->m_z;
 }
 
-float Tuple::getW() const
+double Tuple::getW() const
 {
 	return this->m_w;
 }
@@ -48,13 +48,13 @@ bool Tuple::isVector() const
 	return this->m_w == 0.0f;
 }
 
-float Tuple::magnitude() const
+double Tuple::magnitude() const
 {
-	return Float::sqrt(
-		Float::pow(this->m_x, 2) +
-		Float::pow(this->m_y, 2) +
-		Float::pow(this->m_z, 2) +
-		Float::pow(this->m_w, 2)
+	return sqrt(
+		pow(this->m_x, 2) +
+		pow(this->m_y, 2) +
+		pow(this->m_z, 2) +
+		pow(this->m_w, 2)
 	);
 }
 
@@ -70,10 +70,10 @@ Tuple Tuple::normalize() const
 
 bool Tuple::operator==(const Tuple& other) const
 {
-	return	Float::compare(this->m_x, other.m_x) &&
-		Float::compare(this->m_y, other.m_y) &&
-		Float::compare(this->m_z, other.m_z) &&
-		Float::compare(this->m_w, other.m_w);
+	return	Double::compare(this->m_x, other.m_x) &&
+		Double::compare(this->m_y, other.m_y) &&
+		Double::compare(this->m_z, other.m_z) &&
+		Double::compare(this->m_w, other.m_w);
 }
 
 bool Tuple::operator!=(const Tuple& other) const
@@ -96,12 +96,12 @@ Tuple Tuple::operator-() const
 	return Tuple::zeroVector() - *this;
 }
 
-Tuple Tuple::operator*(const float scalar)
+Tuple Tuple::operator*(const double scalar)
 {
 	return Tuple(this->m_x * scalar, this->m_y * scalar, this->m_z * scalar, this->m_w * scalar);
 }
 
-Tuple Tuple::operator/(const float scalar)
+Tuple Tuple::operator/(const double scalar)
 {
 	return Tuple(this->m_x / scalar, this->m_y / scalar, this->m_z / scalar, this->m_w / scalar);
 }

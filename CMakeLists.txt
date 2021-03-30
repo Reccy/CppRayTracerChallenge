@@ -26,12 +26,12 @@ set(CORE_LIBRARY_NAME "${PROJECT_NAME}Core")
 
 set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/math/tuple.h"
-	"${CORE_LIBRARY_DIR}/math/float.h"
+	"${CORE_LIBRARY_DIR}/math/double.h"
 )
 
 set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/math/tuple.cpp"
-	"${CORE_LIBRARY_DIR}/math/float.cpp"
+	"${CORE_LIBRARY_DIR}/math/double.cpp"
 )
 
 add_library("${CORE_LIBRARY_NAME}" "${LIBRARY_SOURCES}" "${LIBRARY_HEADERS}")
@@ -46,7 +46,7 @@ set(TEST_SUITE_DIR "src/test")
 set(TEST_RUNNER_EXECUTABLE_NAME "${PROJECT_NAME}TestRunner")
 set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/math/tuple_test.cpp"
-	"${TEST_SUITE_DIR}/core/math/float_test.cpp"
+	"${TEST_SUITE_DIR}/core/math/double_test.cpp"
 )
 list(APPEND TEST_INCLUDED_DIRS "${CORE_LIBRARY_NAME}")
 add_executable("${TEST_RUNNER_EXECUTABLE_NAME}" "${TEST_RUNNER_EXECUTABLE_SOURCES}")

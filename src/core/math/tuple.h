@@ -18,7 +18,7 @@ namespace CppRayTracerChallenge::Core::Math {
 		/// <param name="y">Y component</param>
 		/// <param name="z">Z component</param>
 		/// <param name="w">W component. 1 is a point, 2 is a tuple</param>
-		Tuple(const float x, const float y, const float z, const float w) : m_x(x), m_y(y), m_z(z), m_w(w) {}
+		Tuple(const double x, const double y, const double z, const double w) : m_x(x), m_y(y), m_z(z), m_w(w) {}
 
 		/// <summary>
 		/// Creates a new point
@@ -27,7 +27,7 @@ namespace CppRayTracerChallenge::Core::Math {
 		/// <param name="y">Y component</param>
 		/// <param name="z">Z component</param>
 		/// <returns>Tuple that is a point</returns>
-		static Tuple buildPoint(const float x, const float y, const float z);
+		static Tuple buildPoint(const double x, const double y, const double z);
 
 		/// <summary>
 		/// Creates a new vector
@@ -36,7 +36,7 @@ namespace CppRayTracerChallenge::Core::Math {
 		/// <param name="y">Y component</param>
 		/// <param name="z">Z component</param>
 		/// <returns>Tuple that is a vector</returns>
-		static Tuple buildVector(const float x, const float y, const float z);
+		static Tuple buildVector(const double x, const double y, const double z);
 
 		/// <summary>
 		/// Creates a zero vector
@@ -47,22 +47,22 @@ namespace CppRayTracerChallenge::Core::Math {
 		/// <summary>
 		/// Returns a readonly X component
 		/// </summary>
-		float getX() const;
+		double getX() const;
 
 		/// <summary>
 		/// Returns a readonly Y component
 		/// </summary>
-		float getY() const;
+		double getY() const;
 
 		/// <summary>
 		/// Returns a readonly Z component
 		/// </summary>
-		float getZ() const;
+		double getZ() const;
 
 		/// <summary>
 		/// Returns a readonly W component
 		/// </summary>
-		float getW() const;
+		double getW() const;
 
 		/// <summary>
 		/// Returns if a tuple is a point
@@ -80,7 +80,7 @@ namespace CppRayTracerChallenge::Core::Math {
 		/// Calculates and returns the magnitude of the tuple
 		/// </summary>
 		/// <returns>Magnitude of the tuple</returns>
-		float magnitude() const;
+		double magnitude() const;
 
 		/// <summary>
 		/// Calculates and returns a normalized version of the tuple
@@ -93,11 +93,11 @@ namespace CppRayTracerChallenge::Core::Math {
 		Tuple operator+(const Tuple& other);
 		Tuple operator-(const Tuple& other);
 		Tuple operator-() const;
-		Tuple operator*(const float scalar);
-		Tuple operator/(const float scalar);
+		Tuple operator*(const double scalar);
+		Tuple operator/(const double scalar);
 		friend std::ostream& operator<<(std::ostream& os, const Tuple& tuple);
 	private:
-		float m_x, m_y, m_z, m_w;
+		double m_x, m_y, m_z, m_w;
 	};
 }
 
