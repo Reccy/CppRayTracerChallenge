@@ -18,6 +18,14 @@ Tuple Tuple::zeroVector()
 	return Tuple(0, 0, 0, 0);
 }
 
+double Tuple::dot(const Tuple a, const Tuple b)
+{
+	return a.m_x * b.m_x +
+		a.m_y * b.m_y +
+		a.m_z * b.m_z +
+		a.m_w * b.m_w;
+}
+
 double Tuple::getX() const
 {
 	return this->m_x;

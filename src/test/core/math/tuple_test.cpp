@@ -217,6 +217,16 @@ TEST(CppRayTracerChallenge_Core_Math_Tuple, magnitude_of_normalized_vector)
 	EXPECT_EQ(vector.magnitude(), expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Tuple, dot_product)
+{
+	Tuple vectorA = Tuple::buildVector(1, 2, 3);
+	Tuple vectorB = Tuple::buildVector(2, 3, 4);
+
+	double expectedResult = 20;
+
+	EXPECT_EQ(Tuple::dot(vectorA, vectorB), expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Tuple, ostream_will_show_x_y_z_w_components)
 {
 	Tuple tuple(4.3, -4.2, 3.1, 1.0);

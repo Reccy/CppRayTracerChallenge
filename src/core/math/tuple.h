@@ -45,6 +45,14 @@ namespace CppRayTracerChallenge::Core::Math {
 		static Tuple zeroVector();
 
 		/// <summary>
+		/// Performs a dot product operation and returns the result
+		/// </summary>
+		/// <param name="a">The first tuple</param>
+		/// <param name="b">The second tuple</param>
+		/// <returns></returns>
+		static double dot(const Tuple a, const Tuple b);
+
+		/// <summary>
 		/// Returns a readonly X component
 		/// </summary>
 		double getX() const;
