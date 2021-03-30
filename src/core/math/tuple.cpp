@@ -26,6 +26,15 @@ double Tuple::dot(const Tuple a, const Tuple b)
 		a.m_w * b.m_w;
 }
 
+Tuple Tuple::cross(const Tuple a, const Tuple b)
+{
+	return Tuple::buildVector(
+		a.m_y * b.m_z - a.m_z * b.m_y,
+		a.m_z * b.m_x - a.m_x * b.m_z,
+		a.m_x * b.m_y - a.m_y * b.m_x
+	);
+}
+
 double Tuple::getX() const
 {
 	return this->m_x;

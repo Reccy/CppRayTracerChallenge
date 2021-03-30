@@ -49,8 +49,16 @@ namespace CppRayTracerChallenge::Core::Math {
 		/// </summary>
 		/// <param name="a">The first tuple</param>
 		/// <param name="b">The second tuple</param>
-		/// <returns></returns>
+		/// <returns>A scalar dot product</returns>
 		static double dot(const Tuple a, const Tuple b);
+
+		/// <summary>
+		/// Performs a cross product operation and returns the result
+		/// </summary>
+		/// <param name="a">The first tuple</param>
+		/// <param name="b">The second tuple</param>
+		/// <returns>A vector cross product</returns>
+		static Tuple cross(const Tuple a, const Tuple b);
 
 		/// <summary>
 		/// Returns a readonly X component

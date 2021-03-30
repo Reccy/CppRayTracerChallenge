@@ -227,6 +227,26 @@ TEST(CppRayTracerChallenge_Core_Math_Tuple, dot_product)
 	EXPECT_EQ(Tuple::dot(vectorA, vectorB), expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Tuple, cross_product_a_b)
+{
+	Tuple vectorA = Tuple::buildVector(1, 2, 3);
+	Tuple vectorB = Tuple::buildVector(2, 3, 4);
+
+	Tuple expectedResult = Tuple::buildVector(-1, 2, -1);
+
+	EXPECT_EQ(Tuple::cross(vectorA, vectorB), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Tuple, cross_product_b_a)
+{
+	Tuple vectorA = Tuple::buildVector(1, 2, 3);
+	Tuple vectorB = Tuple::buildVector(2, 3, 4);
+
+	Tuple expectedResult = Tuple::buildVector(1, -2, 1);
+
+	EXPECT_EQ(Tuple::cross(vectorB, vectorA), expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Tuple, ostream_will_show_x_y_z_w_components)
 {
 	Tuple tuple(4.3, -4.2, 3.1, 1.0);
