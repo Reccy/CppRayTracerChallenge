@@ -6,10 +6,10 @@ using namespace CppRayTracerChallenge::Core::Math;
 TEST(CppRayTracerChallenge_Core_Math_Tuple, tuple_with_w1_is_a_point)
 {
 	Tuple tuple(4.3, -4.2, 3.1, 1.0);
-	EXPECT_EQ(tuple.getX(), 4.3);
-	EXPECT_EQ(tuple.getY(), -4.2);
-	EXPECT_EQ(tuple.getZ(), 3.1);
-	EXPECT_EQ(tuple.getW(), 1.0);
+	EXPECT_EQ(tuple.x(), 4.3);
+	EXPECT_EQ(tuple.y(), -4.2);
+	EXPECT_EQ(tuple.z(), 3.1);
+	EXPECT_EQ(tuple.w(), 1.0);
 	EXPECT_EQ(tuple.isPoint(), true);
 	EXPECT_EQ(tuple.isVector(), false);
 }
@@ -17,10 +17,10 @@ TEST(CppRayTracerChallenge_Core_Math_Tuple, tuple_with_w1_is_a_point)
 TEST(CppRayTracerChallenge_Core_Math_Tuple, tuple_with_w0_is_a_vector)
 {
 	Tuple tuple(4.3, -4.2, 3.1, 0.0);
-	EXPECT_EQ(tuple.getX(), 4.3);
-	EXPECT_EQ(tuple.getY(), -4.2);
-	EXPECT_EQ(tuple.getZ(), 3.1);
-	EXPECT_EQ(tuple.getW(), 0.0);
+	EXPECT_EQ(tuple.x(), 4.3);
+	EXPECT_EQ(tuple.y(), -4.2);
+	EXPECT_EQ(tuple.z(), 3.1);
+	EXPECT_EQ(tuple.w(), 0.0);
 	EXPECT_EQ(tuple.isPoint(), false);
 	EXPECT_EQ(tuple.isVector(), true);
 }

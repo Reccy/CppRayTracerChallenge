@@ -2,12 +2,13 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_TUPLE
 
 #include <iostream>
+#include "i_cartesian.h"
 
 namespace CppRayTracerChallenge::Core::Math {
 	/// <summary>
 	/// A Tuple with x, y, z and w components
 	/// </summary>
-	class Tuple {
+	class Tuple : public ICartesian<double> {
 	public:
 		Tuple() = delete;
 
@@ -59,26 +60,26 @@ namespace CppRayTracerChallenge::Core::Math {
 		/// <param name="b">The second tuple</param>
 		/// <returns>A vector cross product</returns>
 		static Tuple cross(const Tuple a, const Tuple b);
+		
+		/// <summary>
+		/// Returns a const X component
+		/// </summary>
+		double x() const override;
 
 		/// <summary>
-		/// Returns a readonly X component
+		/// Returns a const Y component
 		/// </summary>
-		double getX() const;
+		double y() const override;
 
 		/// <summary>
-		/// Returns a readonly Y component
+		/// Returns a const Z component
 		/// </summary>
-		double getY() const;
-
+		double z() const override;
+		
 		/// <summary>
-		/// Returns a readonly Z component
+		/// Returns a const W component
 		/// </summary>
-		double getZ() const;
-
-		/// <summary>
-		/// Returns a readonly W component
-		/// </summary>
-		double getW() const;
+		double w() const override;
 
 		/// <summary>
 		/// Returns if a tuple is a point

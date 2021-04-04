@@ -27,6 +27,7 @@ set(CORE_LIBRARY_NAME "${PROJECT_NAME}Core")
 set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/math/tuple.h"
 	"${CORE_LIBRARY_DIR}/math/double.h"
+	"${CORE_LIBRARY_DIR}/math/i_cartesian.h"
 )
 
 set(LIBRARY_SOURCES

@@ -78,7 +78,7 @@ int main()
 	int currentTicks = 0;
 	int maxTicks = 1000;
 
-	while ((projectile.position.getY() > 0) && currentTicks < maxTicks)
+	while ((projectile.position.y() > 0) && currentTicks < maxTicks)
 	{
 		projectile = tick(projectile, environment);
 		currentTicks++;

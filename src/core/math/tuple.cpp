@@ -35,22 +35,22 @@ Tuple Tuple::cross(const Tuple a, const Tuple b)
 	);
 }
 
-double Tuple::getX() const
+double Tuple::x() const
 {
 	return this->m_x;
 }
 
-double Tuple::getY() const
+double Tuple::y() const
 {
 	return this->m_y;
 }
 
-double Tuple::getZ() const
+double Tuple::z() const
 {
 	return this->m_z;
 }
 
-double Tuple::getW() const
+double Tuple::w() const
 {
 	return this->m_w;
 }
@@ -125,6 +125,6 @@ Tuple Tuple::operator/(const double scalar)
 
 std::ostream& CppRayTracerChallenge::Core::Math::operator<<(std::ostream& os, const Tuple& tuple)
 {
-	os << tuple.getX() << ", " << tuple.getY() << ", " << tuple.getZ() << ", " << tuple.getW();
+	os << tuple.x() << ", " << tuple.y() << ", " << tuple.z() << ", " << tuple.w();
 	return os;
 }
