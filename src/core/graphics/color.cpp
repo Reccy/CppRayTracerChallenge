@@ -35,3 +35,12 @@ Color Color::operator+(const Color& other) const
 		this->blue() + other.blue()
 	);
 }
+
+Color Color::operator-(const Color& other) const
+{
+	return Color(
+		this->red() - other.red(),
+		this->green() - other.green(),
+		this->blue() - other.blue()
+	);
+}
