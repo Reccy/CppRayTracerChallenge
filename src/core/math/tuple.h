@@ -31,36 +31,11 @@ namespace CppRayTracerChallenge::Core::Math {
 		static Tuple buildPoint(const double x, const double y, const double z);
 
 		/// <summary>
-		/// Creates a new vector
-		/// </summary>
-		/// <param name="x">X component</param>
-		/// <param name="y">Y component</param>
-		/// <param name="z">Z component</param>
-		/// <returns>Tuple that is a vector</returns>
-		static Tuple buildVector(const double x, const double y, const double z);
-
-		/// <summary>
 		/// Creates a zero vector
 		/// </summary>
 		/// <returns>Tuple that is a vector</returns>
 		static Tuple zeroVector();
 
-		/// <summary>
-		/// Performs a dot product operation and returns the result
-		/// </summary>
-		/// <param name="a">The first tuple</param>
-		/// <param name="b">The second tuple</param>
-		/// <returns>A scalar dot product</returns>
-		static double dot(const Tuple a, const Tuple b);
-
-		/// <summary>
-		/// Performs a cross product operation and returns the result
-		/// </summary>
-		/// <param name="a">The first tuple</param>
-		/// <param name="b">The second tuple</param>
-		/// <returns>A vector cross product</returns>
-		static Tuple cross(const Tuple a, const Tuple b);
-		
 		/// <summary>
 		/// Returns a const X component
 		/// </summary>
@@ -81,37 +56,13 @@ namespace CppRayTracerChallenge::Core::Math {
 		/// </summary>
 		double w() const override;
 
-		/// <summary>
-		/// Returns if a tuple is a point
-		/// </summary>
-		/// <returns>True if point, False otherwise</returns>
-		bool isPoint() const;
-
-		/// <summary>
-		/// Returns if a tuple is a vector
-		/// </summary>
-		/// <returns>True if vector, False otherwise</returns>
-		bool isVector() const;
-
-		/// <summary>
-		/// Calculates and returns the magnitude of the tuple
-		/// </summary>
-		/// <returns>Magnitude of the tuple</returns>
-		double magnitude() const;
-
-		/// <summary>
-		/// Calculates and returns a normalized version of the tuple
-		/// </summary>
-		/// <returns>Normalized tuple</returns>
-		Tuple normalize() const;
-
 		bool operator==(const Tuple& other) const;
 		bool operator!=(const Tuple& other) const;
 		Tuple operator+(const Tuple& other) const;
 		Tuple operator-(const Tuple& other) const;
 		Tuple operator-() const;
-		Tuple operator*(const double scalar);
-		Tuple operator/(const double scalar);
+		Tuple operator*(const double scalar) const;
+		Tuple operator/(const double scalar) const;
 		friend std::ostream& operator<<(std::ostream& os, const Tuple& tuple);
 	private:
 		double m_x, m_y, m_z, m_w;

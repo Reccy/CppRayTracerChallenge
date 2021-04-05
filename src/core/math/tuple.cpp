@@ -8,31 +8,9 @@ Tuple Tuple::buildPoint(const double x, const double y, const double z)
 	return Tuple(x, y, z, 1.0f);
 };
 
-Tuple Tuple::buildVector(const double x, const double y, const double z)
-{
-	return Tuple(x, y, z, 0.0f);
-};
-
 Tuple Tuple::zeroVector()
 {
 	return Tuple(0, 0, 0, 0);
-}
-
-double Tuple::dot(const Tuple a, const Tuple b)
-{
-	return a.m_x * b.m_x +
-		a.m_y * b.m_y +
-		a.m_z * b.m_z +
-		a.m_w * b.m_w;
-}
-
-Tuple Tuple::cross(const Tuple a, const Tuple b)
-{
-	return Tuple::buildVector(
-		a.m_y * b.m_z - a.m_z * b.m_y,
-		a.m_z * b.m_x - a.m_x * b.m_z,
-		a.m_x * b.m_y - a.m_y * b.m_x
-	);
 }
 
 double Tuple::x() const
@@ -53,36 +31,6 @@ double Tuple::z() const
 double Tuple::w() const
 {
 	return this->m_w;
-}
-
-bool Tuple::isPoint() const
-{
-	return this->m_w == 1.0f;
-}
-
-bool Tuple::isVector() const
-{
-	return this->m_w == 0.0f;
-}
-
-double Tuple::magnitude() const
-{
-	return sqrt(
-		pow(this->m_x, 2) +
-		pow(this->m_y, 2) +
-		pow(this->m_z, 2) +
-		pow(this->m_w, 2)
-	);
-}
-
-Tuple Tuple::normalize() const
-{
-	return Tuple(
-		this->m_x / this->magnitude(),
-		this->m_y / this->magnitude(),
-		this->m_z / this->magnitude(),
-		this->m_w / this->magnitude()
-	);
 }
 
 bool Tuple::operator==(const Tuple& other) const
@@ -113,12 +61,12 @@ Tuple Tuple::operator-() const
 	return Tuple::zeroVector() - *this;
 }
 
-Tuple Tuple::operator*(const double scalar)
+Tuple Tuple::operator*(const double scalar) const
 {
 	return Tuple(this->m_x * scalar, this->m_y * scalar, this->m_z * scalar, this->m_w * scalar);
 }
 
-Tuple Tuple::operator/(const double scalar)
+Tuple Tuple::operator/(const double scalar) const
 {
 	return Tuple(this->m_x / scalar, this->m_y / scalar, this->m_z / scalar, this->m_w / scalar);
 }
