@@ -4,4 +4,4 @@ This is my repo for implementing the Ray Tracer Challenge from: http://raytracer
 
 # Documentation
 
-Todo!
+![Class Diagram](/docs/class_diagram.png)
