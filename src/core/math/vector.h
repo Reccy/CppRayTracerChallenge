@@ -8,7 +8,7 @@ namespace CppRayTracerChallenge::Core::Math
 	/// <summary>
 	/// A Vector in Euclidean Space
 	/// </summary>
-	class Vector {
+	class Vector : public Tuple {
 	public:
 		Vector() = delete;
 
@@ -17,7 +17,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// W component is set to 0.
 		/// </summary>
 		/// <param name="tuple">The tuple to convert to a Vector</param>
-		Vector(const Tuple tuple) : m_tuple(Tuple(tuple.x(), tuple.y(), tuple.z(), 0)) {};
+		Vector(const Tuple tuple) : Tuple(tuple.x(), tuple.y(), tuple.z(), 0) {};
 
 		/// <summary>
 		/// Constructs a Vector with x, y and z components
@@ -25,33 +25,13 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="x">X component</param>
 		/// <param name="y">Y component</param>
 		/// <param name="z">Z component</param>
-		Vector(const double x, const double y, const double z) : m_tuple(Tuple(x, y, z, 0)) {};
+		Vector(const double x, const double y, const double z) : Tuple(x, y, z, 0) {};
 
 		/// <summary>
 		/// Creates a vector where all components are 0
 		/// </summary>
 		/// <returns>Zero Vector</returns>
 		static Vector zero();
-
-		/// <summary>
-		/// Returns a const x component
-		/// </summary>
-		double x() const;
-
-		/// <summary>
-		/// Returns a const y component
-		/// </summary>
-		double y() const;
-
-		/// <summary>
-		/// Returns a const z component
-		/// </summary>
-		double z() const;
-
-		/// <summary>
-		/// Returns a const w component
-		/// </summary>
-		double w() const;
 
 		/// <summary>
 		/// Performs a cross product operation and returns the result
@@ -80,17 +60,6 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <returns>Normalized vector</returns>
 		Vector normalize() const;
-
-		bool operator==(const Vector& other) const;
-		bool operator!=(const Vector& other) const;
-		Vector operator+(const Vector& other) const;
-		Vector operator-(const Vector& other) const;
-		Vector operator-() const;
-		Vector operator*(const double scalar) const;
-		Vector operator/(const double scalar) const;
-		friend std::ostream& operator<<(std::ostream& os, const Vector& vector);
-	public:
-		Tuple m_tuple;
 	};
 }
 

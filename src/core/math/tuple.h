@@ -48,7 +48,7 @@ namespace CppRayTracerChallenge::Core::Math {
 		Tuple operator*(const double scalar) const;
 		Tuple operator/(const double scalar) const;
 		friend std::ostream& operator<<(std::ostream& os, const Tuple& tuple);
-	private:
+	protected:
 		double m_x, m_y, m_z, m_w;
 	};
 }

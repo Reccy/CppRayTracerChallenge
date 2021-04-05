@@ -29,13 +29,11 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/math/double.h"
 	"${CORE_LIBRARY_DIR}/math/vector.h"
 	"${CORE_LIBRARY_DIR}/math/point.h"
-	"${CORE_LIBRARY_DIR}/math/i_cartesian.h"
 )
 
 set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/math/tuple.cpp"
 	"${CORE_LIBRARY_DIR}/math/double.cpp"
-	"${CORE_LIBRARY_DIR}/math/point.cpp"
 	"${CORE_LIBRARY_DIR}/math/vector.cpp"
 )
 
