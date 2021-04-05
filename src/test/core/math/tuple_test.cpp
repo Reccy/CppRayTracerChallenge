@@ -3,6 +3,42 @@
 
 using namespace CppRayTracerChallenge::Core::Math;
 
+TEST(CppRayTracerChallenge_Core_Math_Tuple, x)
+{
+	Tuple<double> tuple(1.0, 2.0, 3.0, 4.0);
+
+	double expectedResult = 1.0;
+
+	EXPECT_EQ(tuple.x(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Tuple, y)
+{
+	Tuple<double> tuple(1.0, 2.0, 3.0, 4.0);
+
+	double expectedResult = 2.0;
+
+	EXPECT_EQ(tuple.y(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Tuple, z)
+{
+	Tuple tuple(1.0, 2.0, 3.0, 4.0);
+
+	double expectedResult = 3.0;
+
+	EXPECT_EQ(tuple.z(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Tuple, w)
+{
+	Tuple tuple(1.0, 2.0, 3.0, 4.0);
+
+	double expectedResult = 4.0;
+
+	EXPECT_EQ(tuple.w(), expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Tuple, equality_true_double)
 {
 	Tuple<double> tuple(4.3, -4.2, 3.1, 1.0);
