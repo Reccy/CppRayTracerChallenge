@@ -29,6 +29,8 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/math/comparison.h"
 	"${CORE_LIBRARY_DIR}/math/vector.h"
 	"${CORE_LIBRARY_DIR}/math/point.h"
+	"${CORE_LIBRARY_DIR}/graphics/color.h"
+	"${CORE_LIBRARY_DIR}/graphics/color.cpp"
 )
 
 set(LIBRARY_SOURCES
@@ -50,6 +52,7 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/math/comparison_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/vector_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/point_test.cpp"
+	"${TEST_SUITE_DIR}/core/graphics/color_test.cpp"
 )
 list(APPEND TEST_INCLUDED_DIRS "${CORE_LIBRARY_NAME}")
 add_executable("${TEST_RUNNER_EXECUTABLE_NAME}" "${TEST_RUNNER_EXECUTABLE_SOURCES}")
