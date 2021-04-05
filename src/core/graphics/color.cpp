@@ -44,3 +44,12 @@ Color Color::operator-(const Color& other) const
 		this->blue() - other.blue()
 	);
 }
+
+Color Color::operator*(const float scalar) const
+{
+	return Color(
+		this->red() * scalar,
+		this->green() * scalar,
+		this->blue() * scalar
+	);
+}

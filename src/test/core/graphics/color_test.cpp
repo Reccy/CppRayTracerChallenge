@@ -49,3 +49,13 @@ TEST(CppRayTracerChallenge_Core_Graphics_Color, subtracting_colors)
 
 	EXPECT_EQ(colorA - colorB, expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Graphics_Color, multiply_color_by_scalar)
+{
+	Color colorA(0.2f, 0.3f, 0.4f);
+	float scalar = 2.0f;
+
+	Color expectedResult(0.4f, 0.6f, 0.8f);
+
+	EXPECT_EQ(colorA * scalar, expectedResult);
+}
