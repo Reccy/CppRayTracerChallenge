@@ -41,6 +41,7 @@ namespace CppRayTracerChallenge::Core::Graphics
 		Color operator+(const Color& other) const;
 		Color operator-(const Color& other) const;
 		Color operator*(const float scalar) const;
+		Color operator*(const Color& other) const;
 	private:
 		Math::Tuple<float> m_tuple;
 	};

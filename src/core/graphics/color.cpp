@@ -53,3 +53,12 @@ Color Color::operator*(const float scalar) const
 		this->blue() * scalar
 	);
 }
+
+Color Color::operator*(const Color& other) const
+{
+	return Color(
+		this->red() * other.red(),
+		this->green() * other.green(),
+		this->blue() * other.blue()
+	);
+}
