@@ -26,14 +26,12 @@ set(CORE_LIBRARY_NAME "${PROJECT_NAME}Core")
 
 set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/math/tuple.h"
-	"${CORE_LIBRARY_DIR}/math/double.h"
+	"${CORE_LIBRARY_DIR}/math/comparison.h"
 	"${CORE_LIBRARY_DIR}/math/vector.h"
 	"${CORE_LIBRARY_DIR}/math/point.h"
 )
 
 set(LIBRARY_SOURCES
-	"${CORE_LIBRARY_DIR}/math/tuple.cpp"
-	"${CORE_LIBRARY_DIR}/math/double.cpp"
 	"${CORE_LIBRARY_DIR}/math/vector.cpp"
 )
 
@@ -49,7 +47,7 @@ set(TEST_SUITE_DIR "src/test")
 set(TEST_RUNNER_EXECUTABLE_NAME "${PROJECT_NAME}TestRunner")
 set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/math/tuple_test.cpp"
-	"${TEST_SUITE_DIR}/core/math/double_test.cpp"
+	"${TEST_SUITE_DIR}/core/math/comparison_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/vector_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/point_test.cpp"
 )

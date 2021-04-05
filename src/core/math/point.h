@@ -9,7 +9,7 @@ namespace CppRayTracerChallenge::Core::Math
 	/// <summary>
 	/// Point in Euclidean Space
 	/// </summary>
-	class Point : public Tuple
+	class Point : public Tuple<double>
 	{
 	public:
 		Point() = delete;

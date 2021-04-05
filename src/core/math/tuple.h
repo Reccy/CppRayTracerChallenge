@@ -2,11 +2,14 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_TUPLE
 
 #include <iostream>
+#include <type_traits>
+#include "comparison.h"
 
 namespace CppRayTracerChallenge::Core::Math {
 	/// <summary>
 	/// A Tuple with x, y, z and w components
 	/// </summary>
+	template<typename T>
 	class Tuple {
 	public:
 		Tuple() = delete;
@@ -18,38 +21,85 @@ namespace CppRayTracerChallenge::Core::Math {
 		/// <param name="y">Y component</param>
 		/// <param name="z">Z component</param>
 		/// <param name="w">W component. 1 is a point, 2 is a tuple</param>
-		Tuple(const double x, const double y, const double z, const double w) : m_x(x), m_y(y), m_z(z), m_w(w) {}
+		Tuple(const T x, const T y, const T z, const T w) : m_x(x), m_y(y), m_z(z), m_w(w) {}
 
 		/// <summary>
 		/// Returns a const X component
 		/// </summary>
-		double x() const;
+		T x() const
+		{
+			return this->m_x;
+		};
 
 		/// <summary>
 		/// Returns a const Y component
 		/// </summary>
-		double y() const;
+		T y() const
+		{
+			return this->m_y;
+		};
 
 		/// <summary>
 		/// Returns a const Z component
 		/// </summary>
-		double z() const;
+		T z() const
+		{
+			return this->m_z;
+		};
 		
 		/// <summary>
 		/// Returns a const W component
 		/// </summary>
-		double w() const;
+		T w() const
+		{
+			return this->m_w;
+		};
 
-		bool operator==(const Tuple& other) const;
-		bool operator!=(const Tuple& other) const;
-		Tuple operator+(const Tuple& other) const;
-		Tuple operator-(const Tuple& other) const;
-		Tuple operator-() const;
-		Tuple operator*(const double scalar) const;
-		Tuple operator/(const double scalar) const;
-		friend std::ostream& operator<<(std::ostream& os, const Tuple& tuple);
+		bool operator==(const Tuple& other) const
+		{
+			return	Comparison::equal(this->m_x, other.m_x) &&
+				Comparison::equal(this->m_y, other.m_y) &&
+				Comparison::equal(this->m_z, other.m_z) &&
+				Comparison::equal(this->m_w, other.m_w);
+		};
+
+		bool operator!=(const Tuple& other) const
+		{
+			return !(*this == other);
+		};
+
+		Tuple operator+(const Tuple& other) const
+		{
+			return Tuple(this->m_x + other.m_x, this->m_y + other.m_y, this->m_z + other.m_z, this->m_w + other.m_w);
+		};
+
+		Tuple operator-(const Tuple& other) const
+		{
+			return Tuple(this->m_x - other.m_x, this->m_y - other.m_y, this->m_z - other.m_z, this->m_w - other.m_w);
+		};
+
+		Tuple operator-() const
+		{
+			return Tuple(0, 0, 0, 0) - *this;
+		};
+
+		Tuple operator*(const T scalar) const
+		{
+			return Tuple(this->m_x * scalar, this->m_y * scalar, this->m_z * scalar, this->m_w * scalar);
+		};
+
+		Tuple operator/(const T scalar) const
+		{
+			return Tuple(this->m_x / scalar, this->m_y / scalar, this->m_z / scalar, this->m_w / scalar);
+		};
+
+		friend std::ostream& operator<<(std::ostream& os, const Tuple& tuple)
+		{
+			os << tuple.x() << ", " << tuple.y() << ", " << tuple.z() << ", " << tuple.w();
+			return os;
+		};
 	protected:
-		double m_x, m_y, m_z, m_w;
+		T m_x, m_y, m_z, m_w;
 	};
 }
 

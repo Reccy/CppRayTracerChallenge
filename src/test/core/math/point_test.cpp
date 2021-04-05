@@ -7,7 +7,7 @@ using namespace CppRayTracerChallenge::Core::Math;
 
 TEST(CppRayTracerChallenge_Core_Math_Point, construct_from_tuple)
 {
-	Tuple tuple(1, 2, 3, 4);
+	Tuple<double> tuple(1, 2, 3, 4);
 	Point point(tuple);
 
 	Point expectedResult(1, 2, 3);
@@ -83,7 +83,7 @@ TEST(CppRayTracerChallenge_Core_Math_Point, adding_two_points_returns_a_tuple)
 {
 	Point pointA(3, -2, 5);
 	Point pointB(-2, 3, 1);
-	Tuple expectedResult(1, 1, 6, 2);
+	Tuple<double> expectedResult(1, 1, 6, 2);
 
 	EXPECT_EQ((pointA + pointB), expectedResult);
 }
@@ -109,7 +109,7 @@ TEST(CppRayTracerChallenge_Core_Math_Point, subtracting_vector_from_point_is_a_p
 TEST(CppRayTracerChallenge_Core_Math_Point, unary_negation_will_negate_and_transform_into_tuple)
 {
 	Point point(1, -2, 3);
-	Tuple expectedResult(-1, 2, -3, -1);
+	Tuple<double> expectedResult(-1, 2, -3, -1);
 
 	EXPECT_EQ(-point, expectedResult);
 }
@@ -117,7 +117,7 @@ TEST(CppRayTracerChallenge_Core_Math_Point, unary_negation_will_negate_and_trans
 TEST(CppRayTracerChallenge_Core_Math_Point, multiplication_by_scalar_and_transform_into_tuple)
 {
 	Point point(1, -2, 3);
-	Tuple expectedResult(3.5, -7, 10.5, 3.5);
+	Tuple<double> expectedResult(3.5, -7, 10.5, 3.5);
 
 	EXPECT_EQ(point * 3.5, expectedResult);
 }
@@ -125,7 +125,7 @@ TEST(CppRayTracerChallenge_Core_Math_Point, multiplication_by_scalar_and_transfo
 TEST(CppRayTracerChallenge_Core_Math_Point, multiplication_by_fraction_and_transform_into_tuple)
 {
 	Point point(1, -2, 3);
-	Tuple expectedResult(0.5, -1, 1.5, 0.5);
+	Tuple<double> expectedResult(0.5, -1, 1.5, 0.5);
 
 	EXPECT_EQ(point * 0.5, expectedResult);
 }
@@ -133,7 +133,7 @@ TEST(CppRayTracerChallenge_Core_Math_Point, multiplication_by_fraction_and_trans
 TEST(CppRayTracerChallenge_Core_Math_Point, dividing_by_scalar_and_transform_into_tuple)
 {
 	Point point(1, -2, 3);
-	Tuple expectedResult(0.5, -1, 1.5, 0.5);
+	Tuple<double> expectedResult(0.5, -1, 1.5, 0.5);
 
 	EXPECT_EQ(point / 2, expectedResult);
 }

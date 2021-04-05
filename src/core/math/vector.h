@@ -8,7 +8,7 @@ namespace CppRayTracerChallenge::Core::Math
 	/// <summary>
 	/// A Vector in Euclidean Space
 	/// </summary>
-	class Vector : public Tuple {
+	class Vector : public Tuple<double> {
 	public:
 		Vector() = delete;
 
