@@ -2,14 +2,13 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_VECTOR
 
 #include "tuple.h"
-#include "i_cartesian.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
 	/// <summary>
 	/// A Vector in Euclidean Space
 	/// </summary>
-	class Vector : public ICartesian<double> {
+	class Vector {
 	public:
 		Vector() = delete;
 
@@ -37,22 +36,22 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <summary>
 		/// Returns a const x component
 		/// </summary>
-		double x() const override;
+		double x() const;
 
 		/// <summary>
 		/// Returns a const y component
 		/// </summary>
-		double y() const override;
+		double y() const;
 
 		/// <summary>
 		/// Returns a const z component
 		/// </summary>
-		double z() const override;
+		double z() const;
 
 		/// <summary>
 		/// Returns a const w component
 		/// </summary>
-		double w() const override;
+		double w() const;
 
 		/// <summary>
 		/// Performs a cross product operation and returns the result

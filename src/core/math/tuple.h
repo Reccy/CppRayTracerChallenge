@@ -2,13 +2,12 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_TUPLE
 
 #include <iostream>
-#include "i_cartesian.h"
 
 namespace CppRayTracerChallenge::Core::Math {
 	/// <summary>
 	/// A Tuple with x, y, z and w components
 	/// </summary>
-	class Tuple : public ICartesian<double> {
+	class Tuple {
 	public:
 		Tuple() = delete;
 
@@ -24,22 +23,22 @@ namespace CppRayTracerChallenge::Core::Math {
 		/// <summary>
 		/// Returns a const X component
 		/// </summary>
-		double x() const override;
+		double x() const;
 
 		/// <summary>
 		/// Returns a const Y component
 		/// </summary>
-		double y() const override;
+		double y() const;
 
 		/// <summary>
 		/// Returns a const Z component
 		/// </summary>
-		double z() const override;
+		double z() const;
 		
 		/// <summary>
 		/// Returns a const W component
 		/// </summary>
-		double w() const override;
+		double w() const;
 
 		bool operator==(const Tuple& other) const;
 		bool operator!=(const Tuple& other) const;

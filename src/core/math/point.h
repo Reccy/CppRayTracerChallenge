@@ -3,14 +3,13 @@
 
 #include "vector.h"
 #include "tuple.h"
-#include "i_cartesian.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
 	/// <summary>
 	/// Point in Euclidean Space
 	/// </summary>
-	class Point : public ICartesian<double>
+	class Point
 	{
 	public:
 		Point() = delete;
@@ -33,22 +32,22 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <summary>
 		/// Returns a const x component
 		/// </summary>
-		double x() const override;
+		double x() const;
 
 		/// <summary>
 		/// Returns a const y component
 		/// </summary>
-		double y() const override;
+		double y() const;
 
 		/// <summary>
 		/// Returns a const z component
 		/// </summary>
-		double z() const override;
+		double z() const;
 
 		/// <summary>
 		/// Returns a const w component
 		/// </summary>
-		double w() const override;
+		double w() const;
 
 		bool operator==(const Point& other) const;
 		bool operator!=(const Point& other) const;
