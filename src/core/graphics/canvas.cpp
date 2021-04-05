@@ -12,8 +12,18 @@ int Canvas::height() const
 	return this->m_height;
 }
 
-std::vector<Color> Canvas::toBuffer() const
+void Canvas::writePixel(int x, int y, const Color color)
 {
-	std::vector newVector = m_colors;
+	m_colors[x][y] = color;
+}
+
+Color Canvas::readPixel(int x, int y)
+{
+	return m_colors[x][y];
+}
+
+std::vector<std::vector<Color>> Canvas::toBuffer() const
+{
+	std::vector<std::vector<Color>> newVector = this->m_colors;
 	return newVector;
 }

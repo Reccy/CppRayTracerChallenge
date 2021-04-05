@@ -2,6 +2,16 @@
 
 using namespace CppRayTracerChallenge::Core::Graphics;
 
+Color Color::black()
+{
+	return Color(0, 0, 0);
+}
+
+Color Color::white()
+{
+	return Color(1, 1, 1);
+}
+
 float Color::red() const
 {
 	return this->m_tuple.x();
