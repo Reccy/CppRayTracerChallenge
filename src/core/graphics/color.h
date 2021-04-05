@@ -34,6 +34,11 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// Returns the value of the blue channel
 		/// </summary>
 		float blue() const;
+
+
+		bool operator==(const Color& other) const;
+		bool operator!=(const Color& other) const;
+		Color operator+(const Color& other) const;
 	private:
 		Math::Tuple<float> m_tuple;
 	};
