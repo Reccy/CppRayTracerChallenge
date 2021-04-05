@@ -1,7 +1,6 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_POINT
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_POINT
 
-#include "vector.h"
 #include "tuple.h"
 
 namespace CppRayTracerChallenge::Core::Math
