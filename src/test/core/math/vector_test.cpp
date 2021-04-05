@@ -80,8 +80,8 @@ TEST(CppRayTracerChallenge_Core_Math_Vector, cross_product_b_a)
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, dot_product)
 {
-	Vector vectorA = Vector(1, 2, 3);
-	Vector vectorB = Vector(2, 3, 4);
+	Vector vectorA(1, 2, 3);
+	Vector vectorB(2, 3, 4);
 
 	double actual = Vector::dot(vectorA, vectorB);
 	double expectedResult = 20;
@@ -91,7 +91,7 @@ TEST(CppRayTracerChallenge_Core_Math_Vector, dot_product)
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, magnitude_of_vector_1_0_0)
 {
-	Vector vector = Vector(1, 0, 0);
+	Vector vector(1, 0, 0);
 	double expectedResult = 1;
 
 	EXPECT_EQ(vector.magnitude(), expectedResult);
@@ -99,7 +99,7 @@ TEST(CppRayTracerChallenge_Core_Math_Vector, magnitude_of_vector_1_0_0)
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, magnitude_of_vector_0_1_0)
 {
-	Vector vector = Vector(0, 1, 0);
+	Vector vector(0, 1, 0);
 	double expectedResult = 1;
 
 	EXPECT_EQ(vector.magnitude(), expectedResult);
@@ -107,7 +107,7 @@ TEST(CppRayTracerChallenge_Core_Math_Vector, magnitude_of_vector_0_1_0)
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, magnitude_of_vector_0_0_1)
 {
-	Vector vector = Vector(0, 0, 1);
+	Vector vector(0, 0, 1);
 	double expectedResult = 1;
 
 	EXPECT_EQ(vector.magnitude(), expectedResult);
@@ -115,7 +115,7 @@ TEST(CppRayTracerChallenge_Core_Math_Vector, magnitude_of_vector_0_0_1)
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, magnitude_of_vector_1_2_3)
 {
-	Vector vector = Vector(1, 2, 3);
+	Vector vector(1, 2, 3);
 	double expectedResult = 3.7416573867739413; // sqrt(14)
 
 	EXPECT_EQ(vector.magnitude(), expectedResult);
@@ -123,7 +123,7 @@ TEST(CppRayTracerChallenge_Core_Math_Vector, magnitude_of_vector_1_2_3)
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, magnitude_of_vector_neg1_neg2_neg3)
 {
-	Vector vector = Vector(-1, -2, -3);
+	Vector vector(-1, -2, -3);
 	double expectedResult = 3.7416573867739413; // sqrt(14)
 
 	EXPECT_EQ(vector.magnitude(), expectedResult);
@@ -131,23 +131,23 @@ TEST(CppRayTracerChallenge_Core_Math_Vector, magnitude_of_vector_neg1_neg2_neg3)
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, normalization_of_vector_4_0_0)
 {
-	Vector vector = Vector(4, 0, 0);
-	Vector expectedResult = Vector(1, 0, 0);
+	Vector vector(4, 0, 0);
+	Vector expectedResult(1, 0, 0);
 
 	EXPECT_EQ(vector.normalize(), expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, normalization_of_vector_1_2_3)
 {
-	Vector vector = Vector(1, 2, 3);
-	Vector expectedResult = Vector(0.267261f, 0.534522f, 0.801784f);
+	Vector vector(1, 2, 3);
+	Vector expectedResult(0.267261f, 0.534522f, 0.801784f);
 
 	EXPECT_EQ(vector.normalize(), expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, magnitude_of_normalized_vector)
 {
-	Vector vector = Vector(1, 2, 3);
+	Vector vector(1, 2, 3);
 	double expectedResult = 1.0;
 
 	vector = vector.normalize();
@@ -194,9 +194,9 @@ TEST(CppRayTracerChallenge_Core_Math_Vector, addition_with_vectors)
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, subtracting_two_vectors_is_a_vector)
 {
-	Vector vectorA = Vector(3, 2, 1);
-	Vector vectorB = Vector(5, 6, 7);
-	Vector expectedResult = Vector(-2, -4, -6);
+	Vector vectorA(3, 2, 1);
+	Vector vectorB(5, 6, 7);
+	Vector expectedResult(-2, -4, -6);
 
 	EXPECT_EQ((vectorA - vectorB), expectedResult);
 }
@@ -204,40 +204,40 @@ TEST(CppRayTracerChallenge_Core_Math_Vector, subtracting_two_vectors_is_a_vector
 TEST(CppRayTracerChallenge_Core_Math_Vector, subtracting_a_vector_from_zero_vector_results_in_negation)
 {
 	Vector zero = Vector::zero();
-	Vector vector = Vector(1, -2, 3);
-	Vector expectedResult = Vector(-1, 2, -3);
+	Vector vector(1, -2, 3);
+	Vector expectedResult(-1, 2, -3);
 
 	EXPECT_EQ((zero - vector), expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, unary_negation_will_negate_vector)
 {
-	Vector vector = Vector(1, -2, 3);
-	Vector expectedResult = Vector(-1, 2, -3);
+	Vector vector(1, -2, 3);
+	Vector expectedResult(-1, 2, -3);
 
 	EXPECT_EQ(-vector, expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, multiplication_by_scalar)
 {
-	Vector tuple = Vector(1, -2, 3);
-	Vector expectedResult = Vector(3.5, -7, 10.5);
+	Vector tuple(1, -2, 3);
+	Vector expectedResult(3.5, -7, 10.5);
 
 	EXPECT_EQ(tuple * 3.5, expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, multiplication_by_fraction)
 {
-	Vector tuple = Vector(1, -2, 3);
-	Vector expectedResult = Vector(0.5, -1, 1.5);
+	Vector tuple(1, -2, 3);
+	Vector expectedResult(0.5, -1, 1.5);
 
 	EXPECT_EQ(tuple * 0.5, expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Vector, dividing_by_scalar)
 {
-	Vector tuple = Vector(1, -2, 3);
-	Vector expectedResult = Vector(0.5, -1, 1.5);
+	Vector tuple(1, -2, 3);
+	Vector expectedResult(0.5, -1, 1.5);
 
 	EXPECT_EQ(tuple / 2, expectedResult);
 }

@@ -1,18 +1,19 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
-#include "math/tuple.h"
+#include "math/vector.h"
+#include "math/point.h"
 
 using namespace CppRayTracerChallenge::Core;
 
 struct Projectile {
-	Math::Tuple position = Math::Tuple::buildPoint(0, 1, 0);
-	Math::Tuple velocity = Math::Tuple::buildVector(1, 1, 0).normalize();
+	Math::Point position = Math::Point(0, 1, 0);
+	Math::Vector velocity = Math::Vector(1, 1, 0).normalize();
 };
 
 struct Environment {
-	Math::Tuple gravity = Math::Tuple::buildVector(0, -0.1, 0);
-	Math::Tuple wind = Math::Tuple::buildVector(-0.01, 0, 0);
+	Math::Vector gravity = Math::Vector(0, -0.1, 0);
+	Math::Vector wind = Math::Vector(-0.01, 0, 0);
 };
 
 Projectile tick(const Projectile projectile, const Environment environment)

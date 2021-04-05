@@ -22,21 +22,6 @@ namespace CppRayTracerChallenge::Core::Math {
 		Tuple(const double x, const double y, const double z, const double w) : m_x(x), m_y(y), m_z(z), m_w(w) {}
 
 		/// <summary>
-		/// Creates a new point
-		/// </summary>
-		/// <param name="x">X component</param>
-		/// <param name="y">Y component</param>
-		/// <param name="z">Z component</param>
-		/// <returns>Tuple that is a point</returns>
-		static Tuple buildPoint(const double x, const double y, const double z);
-
-		/// <summary>
-		/// Creates a zero vector
-		/// </summary>
-		/// <returns>Tuple that is a vector</returns>
-		static Tuple zeroVector();
-
-		/// <summary>
 		/// Returns a const X component
 		/// </summary>
 		double x() const override;

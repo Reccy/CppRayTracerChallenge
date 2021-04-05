@@ -3,13 +3,6 @@
 
 using namespace CppRayTracerChallenge::Core::Math;
 
-TEST(CppRayTracerChallenge_Core_Math_Tuple, buildPoint_will_build_tuple_with_w1)
-{
-	Tuple point = Tuple::buildPoint(4.3, -4.2, 3.1);
-	Tuple expectedResult(4.3, -4.2, 3.1, 1.0);
-	EXPECT_EQ(point, expectedResult);
-}
-
 TEST(CppRayTracerChallenge_Core_Math_Tuple, equality_true)
 {
 	Tuple tuple(4.3, -4.2, 3.1, 1.0);
@@ -47,34 +40,43 @@ TEST(CppRayTracerChallenge_Core_Math_Tuple, addition)
 	EXPECT_EQ((tupleA + tupleB), expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Tuple, subtraction)
+{
+	Tuple tupleA(3, -2, 5, 1);
+	Tuple tupleB(-2, 3, 1, 0);
+	Tuple expectedResult(5, -5, 4, 1);
+
+	EXPECT_EQ((tupleA - tupleB), expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Tuple, unary_negation_will_negate_tuple)
 {
-	Tuple tuple = Tuple(1, -2, 3, -4);
-	Tuple expectedResult = Tuple(-1, 2, -3, 4);
+	Tuple tuple(1, -2, 3, -4);
+	Tuple expectedResult(-1, 2, -3, 4);
 
 	EXPECT_EQ(-tuple, expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Tuple, multiplication_by_scalar)
 {
-	Tuple tuple = Tuple(1, -2, 3, -4);
-	Tuple expectedResult = Tuple(3.5, -7, 10.5, -14);
+	Tuple tuple(1, -2, 3, -4);
+	Tuple expectedResult(3.5, -7, 10.5, -14);
 
 	EXPECT_EQ(tuple * 3.5, expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Tuple, multiplication_by_fraction)
 {
-	Tuple tuple = Tuple(1, -2, 3, -4);
-	Tuple expectedResult = Tuple(0.5, -1, 1.5, -2);
+	Tuple tuple(1, -2, 3, -4);
+	Tuple expectedResult(0.5, -1, 1.5, -2);
 
 	EXPECT_EQ(tuple * 0.5, expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Tuple, dividing_by_scalar)
 {
-	Tuple tuple = Tuple(1, -2, 3, -4);
-	Tuple expectedResult = Tuple(0.5, -1, 1.5, -2);
+	Tuple tuple(1, -2, 3, -4);
+	Tuple expectedResult(0.5, -1, 1.5, -2);
 
 	EXPECT_EQ(tuple / 2, expectedResult);
 }

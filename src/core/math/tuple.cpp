@@ -3,16 +3,6 @@
 
 using namespace CppRayTracerChallenge::Core::Math;
 
-Tuple Tuple::buildPoint(const double x, const double y, const double z)
-{
-	return Tuple(x, y, z, 1.0f);
-};
-
-Tuple Tuple::zeroVector()
-{
-	return Tuple(0, 0, 0, 0);
-}
-
 double Tuple::x() const
 {
 	return this->m_x;
@@ -58,7 +48,7 @@ Tuple Tuple::operator-(const Tuple& other) const
 
 Tuple Tuple::operator-() const
 {
-	return Tuple::zeroVector() - *this;
+	return Tuple(0,0,0,0) - *this;
 }
 
 Tuple Tuple::operator*(const double scalar) const

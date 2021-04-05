@@ -90,7 +90,7 @@ namespace CppRayTracerChallenge::Core::Math
 		Vector operator*(const double scalar) const;
 		Vector operator/(const double scalar) const;
 		friend std::ostream& operator<<(std::ostream& os, const Vector& vector);
-	private:
+	public:
 		Tuple m_tuple;
 	};
 }

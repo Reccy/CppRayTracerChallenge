@@ -28,12 +28,14 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/math/tuple.h"
 	"${CORE_LIBRARY_DIR}/math/double.h"
 	"${CORE_LIBRARY_DIR}/math/vector.h"
+	"${CORE_LIBRARY_DIR}/math/point.h"
 	"${CORE_LIBRARY_DIR}/math/i_cartesian.h"
 )
 
 set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/math/tuple.cpp"
 	"${CORE_LIBRARY_DIR}/math/double.cpp"
+	"${CORE_LIBRARY_DIR}/math/point.cpp"
 	"${CORE_LIBRARY_DIR}/math/vector.cpp"
 )
 
@@ -51,6 +53,7 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/math/tuple_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/double_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/vector_test.cpp"
+	"${TEST_SUITE_DIR}/core/math/point_test.cpp"
 )
 list(APPEND TEST_INCLUDED_DIRS "${CORE_LIBRARY_NAME}")
 add_executable("${TEST_RUNNER_EXECUTABLE_NAME}" "${TEST_RUNNER_EXECUTABLE_SOURCES}")
