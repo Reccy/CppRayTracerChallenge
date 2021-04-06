@@ -35,6 +35,7 @@ set(LIBRARY_HEADERS
 
 set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/math/vector.cpp"
+	"${CORE_LIBRARY_DIR}/math/point.cpp"
 	"${CORE_LIBRARY_DIR}/graphics/color.cpp"
 	"${CORE_LIBRARY_DIR}/graphics/canvas.cpp"
 )

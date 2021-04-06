@@ -1,6 +1,7 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_POINT
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_POINT
 
+#include "vector.h"
 #include "tuple.h"
 
 namespace CppRayTracerChallenge::Core::Math
@@ -27,6 +28,10 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="y">Y component</param>
 		/// <param name="z">Z component</param>
 		Point(const double x, const double y, const double z) : Tuple(x, y, z, 1) {};
+
+		Vector operator-(const Point& other) const;
+		Point operator-(const Vector& other) const;
+		Tuple<double> operator-() const;
 	};
 }
 

@@ -94,6 +94,7 @@ TEST(CppRayTracerChallenge_Core_Math_Point, subtracting_two_points_is_a_vector)
 	Point pointB(-2, 3, 1);
 	Vector expectedResult(5, -5, 4);
 
+	EXPECT_EQ((pointA - pointB).magnitude(), expectedResult.magnitude());
 	EXPECT_EQ((pointA - pointB), expectedResult);
 }
 
