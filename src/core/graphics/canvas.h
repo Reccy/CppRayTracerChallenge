@@ -56,7 +56,7 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// <param name="x">The x coordinate to read from</param>
 		/// <param name="y">The y coordinate to read from</param>
 		/// <returns></returns>
-		Color readPixel(int x, int y);
+		Color readPixel(int x, int y) const;
 
 		/// <summary>
 		/// Returns a buffer with all of the Colors in left-right, top-down order

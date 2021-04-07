@@ -17,7 +17,7 @@ void Canvas::writePixel(int x, int y, const Color color)
 	m_colors[x][y] = color;
 }
 
-Color Canvas::readPixel(int x, int y)
+Color Canvas::readPixel(int x, int y) const
 {
 	return m_colors[x][y];
 }
