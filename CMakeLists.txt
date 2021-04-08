@@ -31,6 +31,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/math/point.h"
 	"${CORE_LIBRARY_DIR}/graphics/color.h"
 	"${CORE_LIBRARY_DIR}/graphics/canvas.h"
+	"${CORE_LIBRARY_DIR}/io/portable_pixmap.h"
 )
 
 set(LIBRARY_SOURCES
@@ -38,6 +39,7 @@ set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/math/point.cpp"
 	"${CORE_LIBRARY_DIR}/graphics/color.cpp"
 	"${CORE_LIBRARY_DIR}/graphics/canvas.cpp"
+	"${CORE_LIBRARY_DIR}/io/portable_pixmap.cpp"
 )
 
 add_library("${CORE_LIBRARY_NAME}" "${LIBRARY_SOURCES}" "${LIBRARY_HEADERS}")
@@ -57,6 +59,7 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/math/point_test.cpp"
 	"${TEST_SUITE_DIR}/core/graphics/color_test.cpp"
 	"${TEST_SUITE_DIR}/core/graphics/canvas_test.cpp"
+	"${TEST_SUITE_DIR}/core/io/portable_pixmap_test.cpp"
 )
 list(APPEND TEST_INCLUDED_DIRS "${CORE_LIBRARY_NAME}")
 add_executable("${TEST_RUNNER_EXECUTABLE_NAME}" "${TEST_RUNNER_EXECUTABLE_SOURCES}")
