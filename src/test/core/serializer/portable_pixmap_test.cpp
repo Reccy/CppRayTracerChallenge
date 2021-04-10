@@ -1,11 +1,11 @@
 #include "gtest/gtest.h"
-#include "io/portable_pixmap.h"
+#include "serializer/portable_pixmap.h"
 
 #include <vector>
 
-using namespace CppRayTracerChallenge::Core::Io;
+using namespace CppRayTracerChallenge::Core::Serializer;
 
-TEST(CppRayTracerChallenge_Core_Io_PortablePixmap, sets_correct_header)
+TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmap, sets_correct_header)
 {
 	std::vector<char> payload;
 	PortablePixmap ppm(5, 3, payload);

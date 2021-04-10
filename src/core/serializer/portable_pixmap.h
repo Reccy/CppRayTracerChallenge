@@ -5,7 +5,7 @@
 #include <sstream>
 #include <vector>
 
-namespace CppRayTracerChallenge::Core::Io
+namespace CppRayTracerChallenge::Core::Serializer
 {
 	/// <summary>
 	/// A PortablePixmap file (.ppm) used for storing bitmap image data
