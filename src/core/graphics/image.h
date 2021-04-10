@@ -22,7 +22,19 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// <param name="height">The height of the image</param>
 		explicit Image(int width, int height) : m_width(width), m_height(height)
 		{
-			initImage();
+			initBlankImage();
+		}
+
+		/// <summary>
+		/// Constructs an image of set width, height.
+		/// Initializes color data to that of the passed in colors
+		/// </summary>
+		/// <param name="width">The width of the image</param>
+		/// <param name="height">The height of the image</param>
+		/// <param name="colors">The color data of the image</param>
+		explicit Image(int width, int height, std::vector<Color> colors) : m_width(width), m_height(height)
+		{
+			initColorImage(colors);
 		}
 
 		~Image()
@@ -57,7 +69,7 @@ namespace CppRayTracerChallenge::Core::Graphics
 		int m_width, m_height;
 		std::vector<std::vector<Color>> m_colors;
 	private:
-		void initImage()
+		void initBlankImage()
 		{
 			m_colors.reserve(m_width);
 
@@ -69,6 +81,27 @@ namespace CppRayTracerChallenge::Core::Graphics
 				for (int y = 0; y < m_height; y++)
 				{
 					colorColumn.push_back(Color(0, 0, 0));
+				}
+
+				m_colors.push_back(colorColumn);
+			}
+		}
+
+		void initColorImage(std::vector<Color> colors)
+		{
+			m_colors.reserve(m_width);
+
+			int i = 0;
+
+			for (int x = 0; x < m_width; x++)
+			{
+				std::vector<Color> colorColumn;
+				colorColumn.reserve(m_height);
+
+				for (int y = 0; y < m_height; y++)
+				{
+					colorColumn.push_back(colors[i]);
+					i++;
 				}
 
 				m_colors.push_back(colorColumn);
