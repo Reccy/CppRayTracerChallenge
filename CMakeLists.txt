@@ -61,6 +61,7 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/math/vector_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/point_test.cpp"
 	"${TEST_SUITE_DIR}/core/graphics/color_test.cpp"
+	"${TEST_SUITE_DIR}/core/graphics/image_test.cpp"
 	"${TEST_SUITE_DIR}/core/graphics/canvas_test.cpp"
 	"${TEST_SUITE_DIR}/core/serializer/portable_pixmap_image_file_test.cpp"
 )
