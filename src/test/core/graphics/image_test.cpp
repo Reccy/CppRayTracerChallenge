@@ -39,7 +39,6 @@ TEST(CppRayTracerChallange_Core_Graphics_Image, construct_with_set_colors)
 		Color::white(), Color::black(), Color::black()
 	};
 
-
 	std::vector<Color> expectedResult {
 		Color::black(), Color::black(), Color::white(),
 		Color::black(), Color::white(), Color::black(),
