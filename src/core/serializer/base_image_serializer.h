@@ -13,12 +13,12 @@ namespace CppRayTracerChallenge::Core::Serializer {
 		BaseImageSerializer() : m_image(CppRayTracerChallenge::Core::Graphics::Image(0, 0)) {};
 
 		/// <summary>
-		/// Serializes an Image, making it available to access via ofstream
+		/// Serializes an Image, making it available to access via the buffer
 		/// </summary>
 		virtual void serialize(Graphics::Image image) = 0;
 
 		/// <summary>
-		/// Deserializes an ifstream, converting it into an Image
+		/// Deserializes a buffer, converting it into an Image
 		/// </summary>
 		virtual void deserialize(std::vector<char> buffer) = 0;
 
