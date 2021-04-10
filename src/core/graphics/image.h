@@ -20,7 +20,7 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// </summary>
 		/// <param name="width">The width of the image</param>
 		/// <param name="height">The height of the image</param>
-		explicit Image(int width, int height) : m_width(width), m_height(height)
+		explicit Image(int width, int height) : m_width(width), m_height(height), m_size { width * height }
 		{
 			initBlankImage();
 		}
@@ -32,10 +32,7 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// <param name="width">The width of the image</param>
 		/// <param name="height">The height of the image</param>
 		/// <param name="colors">The color data of the image</param>
-		explicit Image(int width, int height, std::vector<Color> colors) : m_width(width), m_height(height)
-		{
-			initColorImage(colors);
-		}
+		explicit Image(int width, int height, std::vector<Color> colors) : m_width(width), m_height(height), m_size{ width * height }, m_colors{ colors } {}
 
 		~Image()
 		{
@@ -64,57 +61,32 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// <summary>
 		/// Returns a buffer with all of the Colors in left-right, top-down order
 		/// </summary>
-		std::vector<std::vector<Color>> toBuffer() const;
+		std::vector<Color> toBuffer() const;
 	protected:
-		int m_width, m_height;
-		std::vector<std::vector<Color>> m_colors;
+		int m_width, m_height, m_size;
+		std::vector<Color> m_colors;
+
+		/// <summary>
+		/// Returns the index of the pixel at the x and y coordinates
+		/// </summary>
+		/// <returns>The index of the Color in m_colors</returns>
+		int pixelIndexAt(int x, int y) const
+		{
+			return x + y * m_width;
+		}
 	private:
 		void initBlankImage()
 		{
-			m_colors.reserve(m_width);
+			m_colors.reserve(m_size);
 
-			for (int x = 0; x < m_width; x++)
+			for (int i = 0; i < m_size; i++)
 			{
-				std::vector<Color> colorColumn;
-				colorColumn.reserve(m_height);
-
-				for (int y = 0; y < m_height; y++)
-				{
-					colorColumn.push_back(Color(0, 0, 0));
-				}
-
-				m_colors.push_back(colorColumn);
-			}
-		}
-
-		void initColorImage(std::vector<Color> colors)
-		{
-			m_colors.reserve(m_width);
-
-			int i = 0;
-
-			for (int x = 0; x < m_width; x++)
-			{
-				std::vector<Color> colorColumn;
-				colorColumn.reserve(m_height);
-
-				for (int y = 0; y < m_height; y++)
-				{
-					colorColumn.push_back(colors[i]);
-					i++;
-				}
-
-				m_colors.push_back(colorColumn);
+				m_colors.push_back(Color::black());
 			}
 		}
 
 		void destroyImage()
 		{
-			for (int x = 0; x < m_width; x++)
-			{
-				m_colors.at(x).clear();
-			}
-
 			m_colors.clear();
 		}
 	};

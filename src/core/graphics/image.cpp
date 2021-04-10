@@ -14,12 +14,11 @@ int Image::height() const
 
 Color Image::readPixel(int x, int y) const
 {
-	return m_colors[x][y];
+	return m_colors[this->pixelIndexAt(x, y)];
 }
 
-std::vector<std::vector<Color>> Image::toBuffer() const
+std::vector<Color> Image::toBuffer() const
 {
-	std::vector<std::vector<Color>> newVector = this->m_colors;
+	std::vector<Color> newVector = this->m_colors;
 	return newVector;
 }
-
