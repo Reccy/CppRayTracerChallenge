@@ -31,7 +31,8 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/math/point.h"
 	"${CORE_LIBRARY_DIR}/graphics/color.h"
 	"${CORE_LIBRARY_DIR}/graphics/canvas.h"
-	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap.h"
+	"${CORE_LIBRARY_DIR}/serializer/i_image_file.h"
+	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_file.h"
 )
 
 set(LIBRARY_SOURCES
@@ -39,7 +40,7 @@ set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/math/point.cpp"
 	"${CORE_LIBRARY_DIR}/graphics/color.cpp"
 	"${CORE_LIBRARY_DIR}/graphics/canvas.cpp"
-	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap.cpp"
+	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_file.cpp"
 )
 
 add_library("${CORE_LIBRARY_NAME}" "${LIBRARY_SOURCES}" "${LIBRARY_HEADERS}")

@@ -1,14 +1,14 @@
 #include "gtest/gtest.h"
-#include "serializer/portable_pixmap.h"
+#include "serializer/portable_pixmap_image_file.h"
 
 #include <vector>
 
 using namespace CppRayTracerChallenge::Core::Serializer;
 
-TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmap, sets_correct_header)
+TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageFile, sets_correct_header)
 {
 	std::vector<char> payload;
-	PortablePixmap ppm(5, 3, payload);
+	PortablePixmapImageFile ppm(5, 3, payload);
 
 	std::string expectedResult = "";
 	expectedResult += "P3\n";
