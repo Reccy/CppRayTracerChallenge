@@ -144,3 +144,16 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, split_
 
 	EXPECT_EQ(result, expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, file_is_terminated_with_a_newline)
+{
+	Graphics::Image image(10, 10);
+
+	PortablePixmapImageSerializer ppm;
+	ppm.serialize(image);
+
+	char result = ppm.buffer().back();
+	char expectedResult = '\n';
+
+	EXPECT_EQ(result, expectedResult);
+}
