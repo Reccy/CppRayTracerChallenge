@@ -49,3 +49,16 @@ TEST(CppRayTracerChallange_Core_Graphics_Image, construct_with_set_colors)
 
 	EXPECT_EQ(image.toBuffer(), expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Graphics_Image, construct_with_single_color)
+{
+	Image image(3, 3, Color::white());
+
+	std::vector<Color> expectedResult{
+		Color::white(), Color::white(), Color::white(),
+		Color::white(), Color::white(), Color::white(),
+		Color::white(), Color::white(), Color::white()
+	};
+
+	EXPECT_EQ(image.toBuffer(), expectedResult);
+}

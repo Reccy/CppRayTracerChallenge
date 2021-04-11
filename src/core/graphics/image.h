@@ -22,7 +22,7 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// <param name="height">The height of the image</param>
 		explicit Image(int width, int height) : m_width(width), m_height(height), m_size { width * height }
 		{
-			initBlankImage();
+			initImage(Color::black());
 		}
 
 		/// <summary>
@@ -33,6 +33,18 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// <param name="height">The height of the image</param>
 		/// <param name="colors">The color data of the image</param>
 		explicit Image(int width, int height, std::vector<Color> colors) : m_width(width), m_height(height), m_size{ width * height }, m_colors{ colors } {}
+
+		/// <summary>
+		/// Constructs an image os set width, height.
+		/// Initializes all color data to the passed in color
+		/// </summary>
+		/// <param name="width">The width of the image</param>
+		/// <param name="height">The height of the image</param>
+		/// <param name="color">The color to set the image to</param>
+		explicit Image(int width, int height, Color color) : m_width(width), m_height(height), m_size{ width * height }
+		{
+			initImage(color);
+		}
 
 		~Image()
 		{
@@ -75,13 +87,13 @@ namespace CppRayTracerChallenge::Core::Graphics
 			return x + y * m_width;
 		}
 	private:
-		void initBlankImage()
+		void initImage(Color color)
 		{
 			m_colors.reserve(m_size);
 
 			for (int i = 0; i < m_size; i++)
 			{
-				m_colors.push_back(Color::black());
+				m_colors.push_back(color);
 			}
 		}
 
