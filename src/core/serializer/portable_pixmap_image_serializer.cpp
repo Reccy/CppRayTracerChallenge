@@ -8,6 +8,7 @@ void PortablePixmapImageSerializer::serialize(Graphics::Image image)
 
 	std::stringstream data;
 	data << buildHeader();
+	data << buildBody();
 
 	std::string datastr = data.str();
 	this->m_buffer = std::vector<char>(datastr.begin(), datastr.end());
