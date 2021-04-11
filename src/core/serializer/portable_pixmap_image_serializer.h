@@ -7,6 +7,7 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
+#include <string>
 
 namespace CppRayTracerChallenge::Core::Serializer
 {
@@ -46,34 +47,55 @@ namespace CppRayTracerChallenge::Core::Serializer
 
 		std::string buildBody()
 		{
-			std::stringstream ss;
+			std::stringstream body;
 
 			std::vector<Graphics::Color> buffer = this->m_image.toBuffer();
 
 			for (int y = 0; y < m_image.height(); y++)
 			{
+				std::stringstream row;
 				for (int x = 0; x < m_image.width(); x++)
 				{
-					Graphics::Color color = buffer[x + (m_image.width() * y)];
-					ss << convertColorValue(color.red());
-					ss << " ";
-					ss << convertColorValue(color.green());
-					ss << " ";
-					ss << convertColorValue(color.blue());
+					int bufferIndex = x + (m_image.width() * y);
+					Graphics::Color color = buffer[bufferIndex];
+					std::vector<std::string> values{
+						convertColorValue(color.red()),
+						convertColorValue(color.green()),
+						convertColorValue(color.blue())
+					};
 
-					if (x != m_image.width() - 1)
+					for (int i = 0; i < values.size(); i++)
 					{
-						ss << " ";
+						if (i == 2 && x == m_image.width() - 1)
+						{
+							// if we are at the end of a raster line
+							row << values[i];
+							row << "\n";
+							body << row.str();
+							row.str("");
+							row.clear();
+						}
+						else if (row.str().size() + values[i].size() > 70)
+						{
+							// if we are about to overflow the 70 char limit
+							row.seekp(-1, std::ios_base::end);
+							row << "\n";
+							body << row.str();
+							row.str("");
+							row.clear();
+							row << values[i];
+							row << " ";
+						}
+						else
+						{
+							row << values[i];
+							row << " ";
+						}
 					}
-				}
-
-				if (y != m_image.height() - 1)
-				{
-					ss << "\n";
 				}
 			}
 
-			return ss.str();
+			return body.str();
 		}
 	};
 }

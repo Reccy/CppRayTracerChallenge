@@ -95,3 +95,52 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_c
 
 	EXPECT_EQ(result, expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, split_long_lines_over_70_chars)
+{
+	// Setup color palette
+	Graphics::Color c = Graphics::Color(1.0f, 0.8f, 0.6f);
+
+	// Setup image
+	Graphics::Image image = Graphics::Image(10, 2, c);
+
+	// Setup expected result
+	std::stringstream ss;
+	ss << "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n";
+	ss << "153 255 204 153 255 204 153 255 204 153 255 204 153\n";
+	ss << "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n";
+	ss << "153 255 204 153 255 204 153 255 204 153 255 204 153";
+
+	std::string expectedResult = ss.str();
+
+	// Get actual result
+	PortablePixmapImageSerializer ppm;
+	ppm.serialize(image);
+
+	std::vector<char> chars = ppm.buffer();
+	std::stringstream data(std::string(chars.begin(), chars.end()));
+	std::stringstream body;
+
+	std::string str;
+	int count = 0;
+	while (getline(data, str) && count < 7)
+	{
+		if (count < 3) {
+			count++;
+			continue;
+		}
+
+		body << str;
+
+		if (data.peek() != EOF)
+		{
+			body << "\n";
+		}
+
+		count++;
+	}
+
+	std::string result = body.str();
+
+	EXPECT_EQ(result, expectedResult);
+}
