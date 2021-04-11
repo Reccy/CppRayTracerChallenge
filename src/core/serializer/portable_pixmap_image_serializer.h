@@ -12,6 +12,7 @@ namespace CppRayTracerChallenge::Core::Serializer
 {
 	/// <summary>
 	/// A PortablePixmap serializer responsible for serializing an image to a buffer and vice versa
+	/// http://netpbm.sourceforge.net/doc/ppm.html
 	/// </summary>
 	class PortablePixmapImageSerializer : public BaseImageSerializer
 	{
