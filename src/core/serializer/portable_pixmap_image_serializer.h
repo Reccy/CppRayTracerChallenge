@@ -30,6 +30,19 @@ namespace CppRayTracerChallenge::Core::Serializer
 			return ss.str();
 		};
 
+		std::string convertColorValue(float colorValue)
+		{
+			float scaledColor = colorValue * 255;
+			scaledColor = std::ceil(scaledColor);
+			scaledColor = std::clamp(scaledColor, 0.0f, 255.0f);
+
+			int scaledColorInt = (int)scaledColor;
+
+			std::stringstream ss;
+			ss << scaledColorInt;
+			return ss.str();
+		}
+
 		std::string buildBody()
 		{
 			std::stringstream ss;
@@ -41,11 +54,11 @@ namespace CppRayTracerChallenge::Core::Serializer
 				for (int x = 0; x < m_image.width(); x++)
 				{
 					Graphics::Color color = buffer[x + (m_image.width() * y)];
-					ss << std::clamp(static_cast<int>(color.red() * 256), 0, 255);
+					ss << convertColorValue(color.red());
 					ss << " ";
-					ss << std::clamp(static_cast<int>(color.green() * 256), 0, 255);
+					ss << convertColorValue(color.green());
 					ss << " ";
-					ss << std::clamp(static_cast<int>(color.blue() * 256), 0, 255);
+					ss << convertColorValue(color.blue());
 
 					if (x != m_image.width() - 1)
 					{
