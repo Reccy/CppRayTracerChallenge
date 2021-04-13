@@ -21,11 +21,7 @@ TEST(CppRayTracerChallenge_Core_Graphics_Canvas, construct_will_set_all_colors_t
 {
 	Canvas canvas(3, 3);
 
-	std::vector<Color> expectedResult {
-		Color::black(), Color::black(), Color::black(),
-		Color::black(), Color::black(), Color::black(),
-		Color::black(), Color::black(), Color::black()
-	};
+	std::vector<Color> expectedResult(9, Color::black());
 
 	EXPECT_EQ(canvas.toBuffer(), expectedResult);
 }
@@ -54,6 +50,19 @@ TEST(CppRayTracerChallenge_Core_Graphics_Canvas, write_pixel_will_update_color_i
 		Color::white(), Color::black(), Color::black(),
 		Color::white(), Color::black(), Color::black()
 	};
+
+	EXPECT_EQ(canvas.toBuffer(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Graphics_Canvas, write_pixel_out_of_bounds_will_not_update_color)
+{
+	Canvas canvas(3, 3);
+
+	canvas.writePixel(-1, -1, Color::white());
+
+	canvas.writePixel(4, 4, Color::white());
+
+	std::vector<Color> expectedResult(9, Color::black());
 
 	EXPECT_EQ(canvas.toBuffer(), expectedResult);
 }
