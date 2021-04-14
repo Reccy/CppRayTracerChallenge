@@ -10,7 +10,7 @@ namespace CppRayTracerChallenge::Core::Serializer {
 	/// </summary>
 	class BaseImageSerializer {
 	public:
-		BaseImageSerializer() : m_image(CppRayTracerChallenge::Core::Graphics::Image(0, 0)) {};
+		BaseImageSerializer();
 
 		/// <summary>
 		/// Serializes an Image, making it available to access via the buffer
