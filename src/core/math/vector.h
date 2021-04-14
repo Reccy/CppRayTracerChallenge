@@ -17,7 +17,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// W component is set to 0.
 		/// </summary>
 		/// <param name="tuple">The tuple to convert to a Vector</param>
-		Vector(const Tuple tuple) : Tuple(tuple.x(), tuple.y(), tuple.z(), 0) {};
+		Vector(const Tuple tuple);
 
 		/// <summary>
 		/// Constructs a Vector with x, y and z components
@@ -25,7 +25,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="x">X component</param>
 		/// <param name="y">Y component</param>
 		/// <param name="z">Z component</param>
-		Vector(const double x, const double y, const double z) : Tuple(x, y, z, 0) {};
+		Vector(const double x, const double y, const double z);
 
 		/// <summary>
 		/// Creates a vector where all components are 0
