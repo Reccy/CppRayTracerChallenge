@@ -96,8 +96,8 @@ int main()
 	Graphics::Color foregroundColor = Graphics::Color::black();
 	Graphics::Canvas canvas(900, 550, backgroundColor);
 
-	Math::Point oldPos(0, 0, 0);
-	Math::Point newPos(0, 0, 0);
+	Math::Point oldPos = projectile.position;
+	Math::Point newPos = projectile.position;
 
 	while ((projectile.position.y() > 0) && currentTicks < maxTicks)
 	{
