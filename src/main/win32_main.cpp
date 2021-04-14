@@ -92,8 +92,9 @@ int main()
 	int currentTicks = 0;
 	int maxTicks = 1000;
 
-	Graphics::Color c(0.8f, 0.2f, 0.2f);
-	Graphics::Canvas canvas(900, 550, Graphics::Color(0.5f, 0.1f, 0.6f));
+	Graphics::Color backgroundColor = Graphics::Color::white();
+	Graphics::Color foregroundColor = Graphics::Color::black();
+	Graphics::Canvas canvas(900, 550, backgroundColor);
 
 	Math::Point oldPos(0, 0, 0);
 	Math::Point newPos(0, 0, 0);
@@ -111,7 +112,7 @@ int main()
 			int xPos = (int)lerp((float)oldPos.x(), (float)newPos.x(), i / 100.0f);
 			int yPos = (int)lerp((float)oldPos.y(), (float)newPos.y(), i / 100.0f);
 
-			canvas.writePixel(xPos, canvas.height() - yPos, c);
+			canvas.writePixel(xPos, canvas.height() - yPos, foregroundColor);
 		}
 
 		currentTicks++;
