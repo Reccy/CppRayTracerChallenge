@@ -38,64 +38,65 @@ namespace CppRayTracerChallenge::Core::Serializer
 			scaledColor = std::ceil(scaledColor);
 			scaledColor = std::clamp(scaledColor, 0.0f, 255.0f);
 
-			int scaledColorInt = (int)scaledColor;
-
-			std::stringstream ss;
-			ss << scaledColorInt;
-			return ss.str();
+			return std::to_string((int)scaledColor);
 		}
 
 		std::string buildBody()
 		{
-			std::stringstream body;
+			std::stringstream ss;
 
-			std::vector<Graphics::Color> buffer = this->m_image.toBuffer();
+			std::vector<Graphics::Color> buffer = m_image.toBuffer();
+
+			int extendedWidth = m_image.width() * 3;
+
+			std::vector<std::string> values;
+			values.reserve(extendedWidth * m_image.height());
+
+			for (int i = 0; i < buffer.size(); i++)
+			{
+				Graphics::Color color = buffer[i];
+
+				values.push_back(convertColorValue(color.red()));
+				values.push_back(convertColorValue(color.green()));
+				values.push_back(convertColorValue(color.blue()));
+			}
 
 			for (int y = 0; y < m_image.height(); y++)
 			{
-				std::stringstream row;
-				for (int x = 0; x < m_image.width(); x++)
-				{
-					int bufferIndex = x + (m_image.width() * y);
-					Graphics::Color color = buffer[bufferIndex];
-					std::vector<std::string> values{
-						convertColorValue(color.red()),
-						convertColorValue(color.green()),
-						convertColorValue(color.blue())
-					};
+				size_t charsWritten = 0;
 
-					for (int i = 0; i < values.size(); i++)
+				for (int x = 0; x < extendedWidth; x++)
+				{
+					int valuesIndex = x + extendedWidth * y;
+
+					std::string value = values[valuesIndex];
+					size_t valueSize = value.size();
+
+					ss << value;
+					charsWritten += valueSize;
+
+					if (x != extendedWidth - 1)
 					{
-						if (i == 2 && x == m_image.width() - 1)
+						std::string nextValue = values[valuesIndex + 1];
+
+						if (charsWritten + nextValue.size() < 70)
 						{
-							// if we are at the end of a raster line
-							row << values[i];
-							row << "\n";
-							body << row.str();
-							row.str("");
-							row.clear();
-						}
-						else if (row.str().size() + values[i].size() > 70)
-						{
-							// if we are about to overflow the 70 char limit
-							row.seekp(-1, std::ios_base::end);
-							row << "\n";
-							body << row.str();
-							row.str("");
-							row.clear();
-							row << values[i];
-							row << " ";
+							ss << " ";
+							++charsWritten;
 						}
 						else
 						{
-							row << values[i];
-							row << " ";
+							ss << "\n";
+							charsWritten = 0;
 						}
 					}
 				}
+
+				ss << "\n";
+				charsWritten = 0;
 			}
 
-			return body.str();
+			return ss.str();
 		}
 	};
 }
