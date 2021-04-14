@@ -20,10 +20,7 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// </summary>
 		/// <param name="width">The width of the image</param>
 		/// <param name="height">The height of the image</param>
-		explicit Image(int width, int height) : m_width(width), m_height(height), m_size { width * height }
-		{
-			initImage(Color::black());
-		}
+		explicit Image(int width, int height);
 
 		/// <summary>
 		/// Constructs an image of set width, height.
@@ -32,7 +29,7 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// <param name="width">The width of the image</param>
 		/// <param name="height">The height of the image</param>
 		/// <param name="colors">The color data of the image</param>
-		explicit Image(int width, int height, std::vector<Color> colors) : m_width(width), m_height(height), m_size{ width * height }, m_colors{ colors } {}
+		explicit Image(int width, int height, std::vector<Color> colors);
 
 		/// <summary>
 		/// Constructs an image os set width, height.
@@ -41,15 +38,9 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// <param name="width">The width of the image</param>
 		/// <param name="height">The height of the image</param>
 		/// <param name="color">The color to set the image to</param>
-		explicit Image(int width, int height, Color color) : m_width(width), m_height(height), m_size{ width * height }
-		{
-			initImage(color);
-		}
+		explicit Image(int width, int height, Color color);
 
-		~Image()
-		{
-			destroyImage();
-		}
+		~Image();
 
 		/// <summary>
 		/// Returns the width of the image
@@ -82,25 +73,10 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// Returns the index of the pixel at the x and y coordinates
 		/// </summary>
 		/// <returns>The index of the Color in m_colors</returns>
-		int pixelIndexAt(int x, int y) const
-		{
-			return x + y * m_width;
-		}
+		int pixelIndexAt(int x, int y) const;
 	private:
-		void initImage(Color color)
-		{
-			m_colors.reserve(m_size);
-
-			for (int i = 0; i < m_size; i++)
-			{
-				m_colors.push_back(color);
-			}
-		}
-
-		void destroyImage()
-		{
-			m_colors.clear();
-		}
+		void initImage(Color color);
+		void destroyImage();
 	};
 }
 
