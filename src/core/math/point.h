@@ -19,7 +19,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// W component is set to 1.
 		/// </summary>
 		/// <param name="tuple">The tuple to convert to a Point</param>
-		Point(const Tuple tuple) : Tuple(tuple.x(), tuple.y(), tuple.z(), 1) {};
+		Point(const Tuple tuple);
 
 		/// <summary>
 		/// Constructs a Point with x, y and z components
@@ -27,7 +27,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="x">X component</param>
 		/// <param name="y">Y component</param>
 		/// <param name="z">Z component</param>
-		Point(const double x, const double y, const double z) : Tuple(x, y, z, 1) {};
+		Point(const double x, const double y, const double z);
 
 		Vector operator-(const Point& other) const;
 		Point operator-(const Vector& other) const;
