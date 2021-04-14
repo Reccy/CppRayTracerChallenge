@@ -2,6 +2,8 @@
 
 using namespace CppRayTracerChallenge::Core::Graphics;
 
+Color::Color(const float red, const float green, const float blue) : m_tuple(Math::Tuple(red, green, blue, 1.0f)) {};
+
 Color Color::black()
 {
 	return Color(0, 0, 0);
@@ -71,4 +73,9 @@ Color Color::operator*(const Color& other) const
 		this->green() * other.green(),
 		this->blue() * other.blue()
 	);
+}
+
+std::ostream& CppRayTracerChallenge::Core::Graphics::operator<<(std::ostream& os, const Color& color) {
+	os << "R(" << color.red() << "), G(" << color.green() << "), B(" << color.blue() << ")";
+	return os;
 }

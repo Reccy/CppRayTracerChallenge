@@ -17,7 +17,7 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// <param name="red">Red channel</param>
 		/// <param name="green">Green channel</param>
 		/// <param name="blue">Blue channel</param>
-		Color(const float red, const float green, const float blue) : m_tuple(Math::Tuple(red, green, blue, 1.0f)) {};
+		Color(const float red, const float green, const float blue);
 
 		/// <summary>
 		/// Returns a black color
@@ -51,11 +51,7 @@ namespace CppRayTracerChallenge::Core::Graphics
 		Color operator-(const Color& other) const;
 		Color operator*(const float scalar) const;
 		Color operator*(const Color& other) const;
-		friend std::ostream& operator<<(std::ostream& os, const Color& color)
-		{
-			os << "R(" << color.red() << "), G(" << color.green() << "), B(" << color.blue() << ")";
-			return os;
-		}
+		friend std::ostream& operator<<(std::ostream& os, const Color& color);
 	private:
 		Math::Tuple<float> m_tuple;
 	};
