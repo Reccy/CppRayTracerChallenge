@@ -162,3 +162,41 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_different_matr
 
 	EXPECT_FALSE(a == b);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_identical_matrices_as_floats)
+{
+	Matrix<float> a(4, 4, std::vector<float> {
+		1.5, 2.5, 3.5, 4.5,
+			5.5, 6.5, 7.5, 8.5,
+			9.5, 8.5, 7.5, 6.5,
+			5.5, 4.5, 3.5, 2.5
+	});
+
+	Matrix<float> b(4, 4, std::vector<float> {
+		1.5, 2.5, 3.5, 4.5,
+			5.5, 6.5, 7.5, 8.5,
+			9.5, 8.5, 7.5, 6.5,
+			5.5, 4.5, 3.5, 2.5
+	});
+
+	EXPECT_EQ(a, b);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_different_matrices_as_floats)
+{
+	Matrix<float> a(4, 4, std::vector<float> {
+		1.5, 2.5, 3.5, 4.5,
+		5.5, 6.5, 7.5, 8.5,
+		9.5, 8.5, 7.5, 6.5,
+		5.5, 4.5, 3.5, 2.5
+	});
+
+	Matrix<float> b(4, 4, std::vector<float> {
+		2.5, 3.5, 4.5, 5.5,
+		6.5, 7.5, 8.5, 9.5,
+		8.5, 7.5, 6.5, 5.5,
+		4.5, 3.5, 2.5, 1.5
+	});
+
+	EXPECT_FALSE(a == b);
+}
