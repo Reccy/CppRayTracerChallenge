@@ -83,3 +83,22 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_3x3)
 	EXPECT_EQ(matrix(2, 1), 1);
 	EXPECT_EQ(matrix(2, 2), 1);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_2x5)
+{
+	Matrix<float> matrix(2, 5, std::vector<float> {
+		1, 2, 3, 4, 5,
+		6.5, 7.5, 8.5, 9.5, 10.5
+	});
+
+	EXPECT_EQ(matrix(0, 0), 1);
+	EXPECT_EQ(matrix(0, 1), 2);
+	EXPECT_EQ(matrix(0, 2), 3);
+	EXPECT_EQ(matrix(0, 3), 4);
+	EXPECT_EQ(matrix(0, 4), 5);
+	EXPECT_EQ(matrix(1, 0), 6.5f);
+	EXPECT_EQ(matrix(1, 1), 7.5f);
+	EXPECT_EQ(matrix(1, 2), 8.5f);
+	EXPECT_EQ(matrix(1, 3), 9.5f);
+	EXPECT_EQ(matrix(1, 4), 10.5f);
+}

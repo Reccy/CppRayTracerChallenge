@@ -43,7 +43,7 @@ namespace CppRayTracerChallenge::Core::Math
 
 		int indexAt(const int row, const int column)
 		{
-			return row * m_rows + column;
+			return row * m_columns + column;
 		}
 	};
 }
