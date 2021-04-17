@@ -1,6 +1,8 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_MATRIX
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_MATRIX
 
+#include "comparison.h"
+
 namespace CppRayTracerChallenge::Core::Math
 {
 	/// <summary>
@@ -37,6 +39,38 @@ namespace CppRayTracerChallenge::Core::Math
 		{
 			return m_data[indexAt(row, column)];
 		};
+
+		/// <summary>
+		/// Subscript operator, accesses the value at row, column as readonly
+		/// </summary>
+		/// <param name="row">The row to access</param>
+		/// <param name="column">The column to access</param>
+		T operator() (const int row, const int column) const
+		{
+			return m_data[indexAt(row, column)];
+		};
+
+		bool operator==(const Matrix& other) const
+		{
+			if (other.m_data.size() != this->m_data.size())
+			{
+				return false;
+			}
+
+			for (int i = 0; i < m_data.size(); ++i)
+			{
+				if (!Comparison::equal(this->m_data[i], other.m_data[i])) {
+					return false;
+				}
+			}
+
+			return true;
+		};
+
+		bool operator!=(const Matrix& other) const
+		{
+			return !(*this == other);
+		};
 	private:
 		const int m_rows, m_columns;
 		std::vector<T> m_data;
@@ -44,7 +78,7 @@ namespace CppRayTracerChallenge::Core::Math
 		int indexAt(const int row, const int column)
 		{
 			return row * m_columns + column;
-		}
+		};
 	};
 }
 

@@ -124,3 +124,41 @@ TEST(CppRayTracerChallange_Core_Math_Matrix, construct_matrix_5x2)
 	EXPECT_EQ(matrix(4, 0), 9);
 	EXPECT_EQ(matrix(4, 1), 10);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_identical_matrices_as_ints)
+{
+	Matrix<int> a(4, 4, std::vector<int> {
+		1,2,3,4,
+		5,6,7,8,
+		9,8,7,6,
+		5,4,3,2
+	});
+
+	Matrix<int> b(4, 4, std::vector<int> {
+		1, 2, 3, 4,
+		5, 6, 7, 8,
+		9, 8, 7, 6,
+		5, 4, 3, 2
+	});
+
+	EXPECT_EQ(a, b);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_different_matrices_as_ints)
+{
+	Matrix<int> a(4, 4, std::vector<int> {
+		1, 2, 3, 4,
+		5, 6, 7, 8,
+		9, 8, 7, 6,
+		5, 4, 3, 2
+	});
+
+	Matrix<int> b(4, 4, std::vector<int> {
+		2,3,4,5,
+		6,7,8,9,
+		8,7,6,5,
+		4,3,2,1
+	});
+
+	EXPECT_FALSE(a == b);
+}
