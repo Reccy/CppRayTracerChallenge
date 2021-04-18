@@ -101,6 +101,11 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <returns>The determinant</returns>
 		T determinant() const
 		{
+			if (m_rows != m_columns)
+			{
+				throw MatrixUndefinedDeterminantException(m_rows, m_columns);
+			}
+
 			return m_data[indexAt(0, 0)] * m_data[indexAt(1, 1)] - m_data[indexAt(1, 0)] * m_data[indexAt(0, 1)];
 		}
 
@@ -210,6 +215,23 @@ namespace CppRayTracerChallenge::Core::Math
 		{
 			return row * m_columns + column;
 		};
+	};
+
+	class MatrixUndefinedDeterminantException : public std::exception {
+	public:
+		MatrixUndefinedDeterminantException(const int rows, const int columns) : m_rows(rows), m_columns(columns)
+		{
+			std::stringstream ss;
+			ss << "Cannot calculate determinant for a non-square Matrix. There are " << m_rows << " rows and " << m_columns << " columns.\n";
+			m_what = ss.str();
+		}
+
+		const char* what() const throw() {
+			return m_what.c_str();
+		}
+	private:
+		std::string m_what;
+		int m_rows, m_columns;
 	};
 
 	class MatrixUndefinedProductException : public std::exception {

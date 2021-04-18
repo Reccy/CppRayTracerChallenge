@@ -372,6 +372,21 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_transpose_identity)
 	EXPECT_EQ(identity.transpose(), identity);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_non_square)
+{
+	Matrix<float> matrix(1, 2);
+
+	try
+	{
+		matrix.determinant();
+		FAIL();
+	}
+	catch (const MatrixUndefinedDeterminantException& err)
+	{
+		ASSERT_STREQ("Cannot calculate determinant for a non-square Matrix. There are 1 rows and 2 columns.\n", err.what());
+	}
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_2x2)
 {
 	Matrix<float> matrix(2, 2, std::vector<float> {
