@@ -163,6 +163,18 @@ namespace CppRayTracerChallenge::Core::Math
 			return submatrix(removeRow, removeColumn).determinant();
 		}
 
+		T cofactor(const int removeRow, const int removeColumn) const
+		{
+			T result = minor(removeRow, removeColumn);
+
+			if (removeRow + removeColumn % 2 == 1)
+			{
+				result = -result;
+			}
+
+			return result;
+		}
+
 		Matrix operator*(const Matrix& other) const
 		{
 			if (this->m_columns != other.m_rows)

@@ -541,3 +541,17 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, minor_of_a_3x3_matrix)
 	EXPECT_EQ(submatrix.determinant(), expectedResult);
 	EXPECT_EQ(matrix.minor(1, 0), expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, cofactor_of_a_3x3_matrix)
+{
+	Matrix<float> matrix(3, 3, std::vector<float> {
+		3, 5, 0,
+		2, -1, -7,
+		6, -1, 5
+	});
+
+	EXPECT_EQ(matrix.minor(0, 0), -12);
+	EXPECT_EQ(matrix.cofactor(0, 0), -12);
+	EXPECT_EQ(matrix.minor(1, 0), 25);
+	EXPECT_EQ(matrix.cofactor(1, 0), -25);
+}
