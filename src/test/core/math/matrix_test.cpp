@@ -631,7 +631,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_is_not_invertible)
 	}
 }
 
-TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion)
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion_1)
 {
 	Matrix<float> a(4, 4, std::vector<float> {
 		-5, 2, 6, -8,
@@ -655,4 +655,42 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion)
 	EXPECT_EQ(a.cofactor(3, 2), 105.f);
 	EXPECT_EQ(b(2, 3), 105.f / 532.f);
 	EXPECT_EQ(b, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion_2)
+{
+	Matrix<float> matrix(4, 4, std::vector<float> {
+		8, -5, 9, 2,
+		7, 5, 6, 1,
+		-6, 0, 9, 6,
+		-3, 0, -9, -4
+	});
+
+	Matrix<float> expectedResult(4, 4, std::vector<float> {
+		-0.153846f, -0.153846f, -0.282051f, -0.538462f,
+		-0.0769231f, 0.123077f, 0.025641f, 0.0307692f,
+		0.358974f, 0.358974f, 0.435897f, 0.923077f,
+		-0.692308f, -0.692308f, -0.769231f, -1.92308f
+	});
+
+	EXPECT_EQ(matrix.invert(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion_3)
+{
+	Matrix<float> matrix(4, 4, std::vector<float> {
+		9, 3, 0, 9,
+		-5, -2, -6, -3,
+		-4, 9, 6, 4,
+		-7, 6, 6, 2
+	});
+
+	Matrix<float> expectedResult(4, 4, std::vector<float> {
+		-0.0407407f, -0.0777778f, 0.144444f, -0.222222f,
+		- 0.0777778f, 0.0333333f, 0.366667f, -0.333333f,
+		- 0.0290123f, -0.146296f, -0.109259f, 0.12963f,
+		0.177778f, 0.0666667f, -0.266667f, 0.333333f
+	});
+
+	EXPECT_EQ(matrix.invert(), expectedResult);
 }
