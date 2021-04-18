@@ -152,6 +152,17 @@ namespace CppRayTracerChallenge::Core::Math
 			return m_data[indexAt(0, 0)] * m_data[indexAt(1, 1)] - m_data[indexAt(1, 0)] * m_data[indexAt(0, 1)];
 		}
 
+		/// <summary>
+		/// Calculates the minor / determinant of the submatrix.
+		/// </summary>
+		/// <param name="removeRow">The row to remove</param>
+		/// <param name="removeColumn">The column to remove</param>
+		/// <returns>The determinant of the submatrix</returns>
+		T minor(const int removeRow, const int removeColumn) const
+		{
+			return submatrix(removeRow, removeColumn).determinant();
+		}
+
 		Matrix operator*(const Matrix& other) const
 		{
 			if (this->m_columns != other.m_rows)

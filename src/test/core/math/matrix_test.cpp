@@ -524,4 +524,20 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, submatrix_of_1x1_throws_exception)
 	{
 		EXPECT_STREQ("Cannot create a Matrix with 0 or less rows / columns\n", err.what());
 	}
-	}
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, minor_of_a_3x3_matrix)
+{
+	Matrix<float> matrix(3, 3, std::vector<float>{
+		3, 5, 0,
+		2, -1, -7,
+		6, -1, 5
+	});
+
+	Matrix<float> submatrix = matrix.submatrix(1, 0);
+
+	float expectedResult = 25;
+
+	EXPECT_EQ(submatrix.determinant(), expectedResult);
+	EXPECT_EQ(matrix.minor(1, 0), expectedResult);
+}
