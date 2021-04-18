@@ -192,9 +192,44 @@ namespace CppRayTracerChallenge::Core::Math
 		{
 			T result = minor(removeRow, removeColumn);
 
-			if (removeRow + removeColumn % 2 == 1)
+			if ((removeRow + removeColumn) % 2 == 1)
 			{
 				result = -result;
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Checks if the Matrix can be inverted
+		/// </summary>
+		/// <returns>True if it can be inverted, else false</returns>
+		bool invertible() const
+		{
+			return determinant() != 0;
+		}
+
+		/// <summary>
+		/// Creates a copy of the Matrix that is inverted
+		/// </summary>
+		/// <returns>The inverted Matrix</returns>
+		Matrix invert() const
+		{
+			if (!invertible())
+			{
+				throw MatrixNotInvertibleException();
+			}
+
+			Matrix result(m_rows, m_columns);
+
+			for (int row = 0; row < m_rows; ++row)
+			{
+				for (int col = 0; col < m_columns; ++col)
+				{
+					T c = cofactor(row, col);
+
+					result(col, row) = c / determinant();
+				}
 			}
 
 			return result;
@@ -306,6 +341,22 @@ namespace CppRayTracerChallenge::Core::Math
 		{
 			return row * m_columns + column;
 		};
+	};
+
+	class MatrixNotInvertibleException : public std::exception {
+	public:
+		MatrixNotInvertibleException()
+		{
+			std::stringstream ss;
+			ss << "Cannot invert Matrix as its determinant is 0\n";
+			m_what = ss.str();
+		}
+
+		const char* what() const throw() {
+			return m_what.c_str();
+		}
+	private:
+		std::string m_what;
 	};
 
 	class MatrixTooSmallException : public std::exception {

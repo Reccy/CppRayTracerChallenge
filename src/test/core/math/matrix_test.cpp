@@ -594,3 +594,65 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, cofactor_of_a_3x3_matrix)
 	EXPECT_EQ(matrix.minor(1, 0), 25);
 	EXPECT_EQ(matrix.cofactor(1, 0), -25);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_is_invertible)
+{
+	Matrix<float> matrix(4, 4, std::vector<float> {
+		6, 4, 4, 4,
+		5, 5, 7, 6,
+		4, -9, 3, -7,
+		9, 1, 7, -6
+	});
+
+	EXPECT_EQ(matrix.determinant(), -2120);
+	EXPECT_EQ(matrix.invertible(), true);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_is_not_invertible)
+{
+	Matrix<float> matrix(4, 4, std::vector<float> {
+		-4, 2, -2, -3,
+		9, 6, 2, 6,
+		0, -5, 1, -5,
+		0, 0, 0, 0
+	});
+
+	EXPECT_EQ(matrix.determinant(), 0);
+	EXPECT_EQ(matrix.invertible(), false);
+
+	try
+	{
+		matrix.invert();
+		FAIL();
+	}
+	catch (const MatrixNotInvertibleException& err)
+	{
+		EXPECT_STREQ("Cannot invert Matrix as its determinant is 0\n", err.what());
+	}
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion)
+{
+	Matrix<float> a(4, 4, std::vector<float> {
+		-5, 2, 6, -8,
+		1, -5, 1, 8,
+		7, 7, -6, -7,
+		1, -3, 7, 4
+	});
+
+	Matrix b = a.invert();
+
+	Matrix<float> expectedResult(4, 4, std::vector<float> {
+		0.21805f, 0.45113f, 0.24060f, -0.04511f,
+		-0.80827f, -1.45677f, -0.44361f, 0.52068f,
+		-0.07895f, -0.22368f, -0.05263f, 0.19737f,
+		-0.52256f, -0.81391f, -0.30075f, 0.30639f
+	});
+
+	EXPECT_EQ(a.determinant(), 532);
+	EXPECT_EQ(a.cofactor(2, 3), -160);
+	EXPECT_EQ(b(3, 2), -160.f / 532.f);
+	EXPECT_EQ(a.cofactor(3, 2), 105.f);
+	EXPECT_EQ(b(2, 3), 105.f / 532.f);
+	EXPECT_EQ(b, expectedResult);
+}
