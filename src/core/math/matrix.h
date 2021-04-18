@@ -50,6 +50,36 @@ namespace CppRayTracerChallenge::Core::Math
 			return m_data[indexAt(row, column)];
 		};
 
+		Matrix operator*(const Matrix& other) const
+		{
+			if (this->m_columns != other.m_rows)
+			{
+				throw MatrixUndefinedProductException(this->m_columns, other.m_rows);
+			}
+
+			const int newRows = m_rows;
+			const int newColumns = other.m_columns;
+
+			Matrix<T> result(newRows, newColumns);
+
+			for (int row = 0; row < newRows; ++row)
+			{
+				for (int col = 0; col < newColumns; ++col)
+				{
+					T value = 0;
+
+					for (int i = 0; i < m_columns; ++i)
+					{
+						value += this->m_data[indexAt(row, i)] * other(i, col);
+					}
+
+					result(row, col) = value;
+				}
+			}
+
+			return result;
+		};
+
 		bool operator==(const Matrix& other) const
 		{
 			if (other.m_data.size() != this->m_data.size())
@@ -57,7 +87,12 @@ namespace CppRayTracerChallenge::Core::Math
 				return false;
 			}
 
-			for (int i = 0; i < m_data.size(); ++i)
+			if (this->m_rows != other.m_rows && this->m_columns != other.m_columns)
+			{
+				return false;
+			}
+
+			for (int i = 0; i < this->m_data.size(); ++i)
 			{
 				if (!Comparison::equal(this->m_data[i], other.m_data[i])) {
 					return false;
@@ -71,14 +106,52 @@ namespace CppRayTracerChallenge::Core::Math
 		{
 			return !(*this == other);
 		};
+
+		friend std::ostream& operator<<(std::ostream& os, const Matrix& matrix)
+		{
+			os << matrix.m_rows << " x " << matrix.m_columns << "\n";
+
+			for (int row = 0; row < matrix.m_rows; ++row)
+			{
+				for (int col = 0; col < matrix.m_columns; ++col)
+				{
+					os << matrix(row, col);
+
+					if (col != matrix.m_columns - 1)
+					{
+						os << ", ";
+					}
+				}
+				os << "\n";
+			}
+
+			return os;
+		}
 	private:
 		const int m_rows, m_columns;
 		std::vector<T> m_data;
 
-		int indexAt(const int row, const int column)
+		int indexAt(const int row, const int column) const
 		{
 			return row * m_columns + column;
 		};
+	};
+
+	class MatrixUndefinedProductException : public std::exception {
+	public:
+		MatrixUndefinedProductException(const int a_columns, const int b_rows) : m_aColumns(a_columns), m_bRows(b_rows)
+		{
+			std::stringstream ss;
+			ss << "Cannot multiply Matrix with " << m_aColumns << " columns and Matrix with " << m_bRows << " rows.\n";
+			m_what = ss.str();
+		}
+
+		const char* what() const throw() {
+			return m_what.c_str();
+		}
+	private:
+		std::string m_what;
+		int m_aColumns, m_bRows;
 	};
 }
 

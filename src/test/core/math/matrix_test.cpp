@@ -103,7 +103,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_2x5)
 	EXPECT_EQ(matrix(1, 4), 10.5f);
 }
 
-TEST(CppRayTracerChallange_Core_Math_Matrix, construct_matrix_5x2)
+TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_5x2)
 {
 	Matrix<float> matrix(5, 2, std::vector<float> {
 		1, 2,
@@ -199,4 +199,88 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_different_matr
 	});
 
 	EXPECT_FALSE(a == b);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_4x4)
+{
+	Matrix<float> a(4, 4, std::vector<float> {
+		1, 2, 3, 4,
+		5, 6, 7, 8,
+		9, 8, 7, 6,
+		5, 4, 3, 2
+	});
+
+	Matrix<float> b(4, 4, std::vector<float> {
+		-2, 1, 2, 3,
+		3, 2, 1, -1,
+		4, 3, 6, 5,
+		1, 2, 7, 8
+	});
+
+	Matrix<float> expectedResult(4, 4, std::vector<float> {
+		20, 22, 50, 48,
+		44, 54, 114, 108,
+		40, 58, 110, 102,
+		16, 26, 46, 42
+	});
+
+	EXPECT_EQ(a * b, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_3x2_2x4)
+{
+	Matrix<float> a(3, 2, std::vector<float> {
+		1, 3,
+		2, 4,
+		2, 5
+	});
+
+	Matrix<float> b(2, 4, std::vector<float> {
+		1, 3, 2, 2,
+		2, 4, 5, 1
+	});
+
+	Matrix<float> expectedResult(3, 4, std::vector<float> {
+		7, 15, 17, 5,
+		10, 22, 24, 8,
+		12, 26, 29, 9
+	});
+
+	EXPECT_EQ(a * b, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_is_non_commutative)
+{
+	Matrix<float> a(4, 4, std::vector<float> {
+		1, 2, 3, 4,
+		5, 6, 7, 8,
+		9, 8, 7, 6,
+		5, 4, 3, 2
+	});
+
+	Matrix<float> b(4, 4, std::vector<float> {
+		-2, 1, 2, 3,
+		3, 2, 1, -1,
+		4, 3, 6, 5,
+		1, 2, 7, 8
+	});
+
+	EXPECT_FALSE(a * b == b * a);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_undefined)
+{
+	Matrix<float> a(2, 5);
+
+	Matrix<float> b(2, 5);
+
+	try
+	{
+		a * b;
+		FAIL();
+	}
+	catch (const MatrixUndefinedProductException& err)
+	{
+		ASSERT_STREQ("Cannot multiply Matrix with 5 columns and Matrix with 2 rows.\n", err.what());
+	}
 }
