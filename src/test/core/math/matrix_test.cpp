@@ -465,6 +465,15 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_non_square)
 	}
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_1x1)
+{
+	Matrix<float> matrix(1, 1, std::vector<float> { 5 });
+
+	float expectedResult = 5;
+
+	EXPECT_EQ(matrix.determinant(), expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_2x2)
 {
 	Matrix<float> matrix(2, 2, std::vector<float> {
@@ -475,6 +484,36 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_2x2)
 	float expectedResult = 17;
 
 	EXPECT_EQ(matrix.determinant(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_3x3)
+{
+	Matrix<float> matrix(3, 3, std::vector<float> {
+		1, 2, 6,
+		-5, 8, -4,
+		2, 6, 4
+	});
+
+	EXPECT_EQ(matrix.cofactor(0, 0), 56);
+	EXPECT_EQ(matrix.cofactor(0, 1), 12);
+	EXPECT_EQ(matrix.cofactor(0, 2), -46);
+	EXPECT_EQ(matrix.determinant(), -196);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_4x4)
+{
+	Matrix<float> matrix(4, 4, std::vector<float> {
+		-2, -8, 3, 5,
+		-3, 1, 7, 3,
+		1, 2, -9, 6,
+		-6, 7, 7, -9
+	});
+
+	EXPECT_EQ(matrix.cofactor(0, 0), 690);
+	EXPECT_EQ(matrix.cofactor(0, 1), 447);
+	EXPECT_EQ(matrix.cofactor(0, 2), 210);
+	EXPECT_EQ(matrix.cofactor(0, 3), 51);
+	EXPECT_EQ(matrix.determinant(), -4071);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, submatrix_of_3x3_is_2x2)

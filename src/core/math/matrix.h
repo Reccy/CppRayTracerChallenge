@@ -139,7 +139,7 @@ namespace CppRayTracerChallenge::Core::Math
 		}
 
 		/// <summary>
-		/// Calculates the determinant of the Matrix
+		/// Calculates the determinant of the square Matrix
 		/// </summary>
 		/// <returns>The determinant</returns>
 		T determinant() const
@@ -149,11 +149,30 @@ namespace CppRayTracerChallenge::Core::Math
 				throw MatrixUndefinedDeterminantException(m_rows, m_columns);
 			}
 
-			return m_data[indexAt(0, 0)] * m_data[indexAt(1, 1)] - m_data[indexAt(1, 0)] * m_data[indexAt(0, 1)];
+			int matrixSize = m_rows;
+
+			if (matrixSize == 1)
+			{
+				return m_data[0];
+			}
+
+			if (matrixSize == 2)
+			{
+				return m_data[indexAt(0, 0)] * m_data[indexAt(1, 1)] - m_data[indexAt(1, 0)] * m_data[indexAt(0, 1)];
+			}
+
+			T result = 0;
+
+			for (int col = 0; col < m_columns; ++col)
+			{
+				result += cofactor(0, col) * m_data[indexAt(0, col)];
+			}
+
+			return result;
 		}
 
 		/// <summary>
-		/// Calculates the minor / determinant of the submatrix.
+		/// Calculates the minor / determinant of the square submatrix.
 		/// </summary>
 		/// <param name="removeRow">The row to remove</param>
 		/// <param name="removeColumn">The column to remove</param>
@@ -163,6 +182,12 @@ namespace CppRayTracerChallenge::Core::Math
 			return submatrix(removeRow, removeColumn).determinant();
 		}
 
+		/// <summary>
+		/// Calculates the cofactor of the square Matrix
+		/// </summary>
+		/// <param name="removeRow">The row to remove</param>
+		/// <param name="removeColumn">The column to remove</param>
+		/// <returns>The cofactor of the Matrix</returns>
 		T cofactor(const int removeRow, const int removeColumn) const
 		{
 			T result = minor(removeRow, removeColumn);
