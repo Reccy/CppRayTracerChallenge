@@ -126,6 +126,84 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_5x2)
 	EXPECT_EQ(matrix(4, 1), 10);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_0x1)
+{
+	try
+	{
+		Matrix<float> matrix(0, 1);
+		FAIL();
+	}
+	catch (const MatrixTooSmallException& err)
+	{
+		EXPECT_STREQ("Cannot create a Matrix with 0 or less rows / columns\n", err.what());
+	}
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_1x0)
+{
+	try
+	{
+		Matrix<float> matrix(1, 0);
+		FAIL();
+	}
+	catch (const MatrixTooSmallException& err)
+	{
+		EXPECT_STREQ("Cannot create a Matrix with 0 or less rows / columns\n", err.what());
+	}
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_0x1_with_data)
+{
+	try
+	{
+		Matrix<float> matrix(0, 1, std::vector<float> { 1 });
+		FAIL();
+	}
+	catch (const MatrixTooSmallException& err)
+	{
+		EXPECT_STREQ("Cannot create a Matrix with 0 or less rows / columns\n", err.what());
+	}
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_1x0_with_data)
+{
+	try
+	{
+		Matrix<float> matrix(1, 0, std::vector<float> { 1 });
+		FAIL();
+	}
+	catch (const MatrixTooSmallException& err)
+	{
+		EXPECT_STREQ("Cannot create a Matrix with 0 or less rows / columns\n", err.what());
+	}
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_1x1_with_too_much_data)
+{
+	try
+	{
+		Matrix<float> matrix(1, 1, std::vector<float> {0, 1});
+		FAIL();
+	}
+	catch (const MatrixInitialDataSizeMismatch& err)
+	{
+		EXPECT_STREQ("Failed to construct Matrix. Initial data size is 2. Expected: 1\n", err.what());
+	}
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_1x1_with_too_little_data)
+{
+	try
+	{
+		Matrix<float> matrix(2, 2, std::vector<float> {0, 1, 3});
+		FAIL();
+	}
+	catch (const MatrixInitialDataSizeMismatch& err)
+	{
+		EXPECT_STREQ("Failed to construct Matrix. Initial data size is 3. Expected: 4\n", err.what());
+	}
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_identical_matrices_as_ints)
 {
 	Matrix<int> a(4, 4, std::vector<int> {

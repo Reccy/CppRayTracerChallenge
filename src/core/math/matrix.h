@@ -22,7 +22,12 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="rows">The amount of rows in the Matrix</param>
 		/// <param name="columns">The amount of columns in the Matrix</param>
-		Matrix(const int rows, const int columns) : m_rows(rows), m_columns(columns), m_data(std::vector<T>(rows * columns, 0)) {};
+		Matrix(const int rows, const int columns) : m_rows(rows), m_columns(columns), m_data(std::vector<T>(rows * columns, 0)) {
+			if (m_rows <= 0 || m_columns <= 0)
+			{
+				throw MatrixTooSmallException();
+			}
+		};
 
 		/// <summary>
 		/// Creates a Matrix of size rows x columns.
@@ -31,7 +36,17 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="rows">The amount of rows in the Matrix</param>
 		/// <param name="columns">The amount of columns in the Matrix</param>
 		/// <param name="initialData">List of data used to initialize the Matrix</param>
-		Matrix(const int rows, const int columns, std::vector<T> initialData) : m_rows(rows), m_columns(columns), m_data(initialData) {};
+		Matrix(const int rows, const int columns, std::vector<T> initialData) : m_rows(rows), m_columns(columns), m_data(initialData) {
+			if (m_rows <= 0 || m_columns <= 0)
+			{
+				throw MatrixTooSmallException();
+			}
+
+			if (m_data.size() != m_rows * m_columns)
+			{
+				throw MatrixInitialDataSizeMismatch((int)m_data.size(), m_rows * m_columns);
+			}
+		};
 
 		/// <summary>
 		/// Creates a square Identity Matrix of a specific size
@@ -217,12 +232,12 @@ namespace CppRayTracerChallenge::Core::Math
 		};
 	};
 
-	class MatrixUndefinedDeterminantException : public std::exception {
+	class MatrixTooSmallException : public std::exception {
 	public:
-		MatrixUndefinedDeterminantException(const int rows, const int columns) : m_rows(rows), m_columns(columns)
+		MatrixTooSmallException()
 		{
 			std::stringstream ss;
-			ss << "Cannot calculate determinant for a non-square Matrix. There are " << m_rows << " rows and " << m_columns << " columns.\n";
+			ss << "Cannot create a Matrix with 0 or less rows / columns\n";
 			m_what = ss.str();
 		}
 
@@ -231,15 +246,46 @@ namespace CppRayTracerChallenge::Core::Math
 		}
 	private:
 		std::string m_what;
-		int m_rows, m_columns;
+	};
+
+	class MatrixInitialDataSizeMismatch : public std::exception {
+	public:
+		MatrixInitialDataSizeMismatch(int initialSize, int expectedSize)
+		{
+			std::stringstream ss;
+			ss << "Failed to construct Matrix. Initial data size is " << initialSize << ". Expected: " << expectedSize << "\n";
+			m_what = ss.str();
+		}
+
+		const char* what() const throw() {
+			return m_what.c_str();
+		}
+	private:
+		std::string m_what;
+	};
+
+	class MatrixUndefinedDeterminantException : public std::exception {
+	public:
+		MatrixUndefinedDeterminantException(const int rows, const int columns)
+		{
+			std::stringstream ss;
+			ss << "Cannot calculate determinant for a non-square Matrix. There are " << rows << " rows and " << columns << " columns.\n";
+			m_what = ss.str();
+		}
+
+		const char* what() const throw() {
+			return m_what.c_str();
+		}
+	private:
+		std::string m_what;
 	};
 
 	class MatrixUndefinedProductException : public std::exception {
 	public:
-		MatrixUndefinedProductException(const int a_columns, const int b_rows) : m_aColumns(a_columns), m_bRows(b_rows)
+		MatrixUndefinedProductException(const int aColumns, const int bRows)
 		{
 			std::stringstream ss;
-			ss << "Cannot multiply Matrix with " << m_aColumns << " columns and Matrix with " << m_bRows << " rows.\n";
+			ss << "Cannot multiply Matrix with " << aColumns << " columns and Matrix with " << bRows << " rows.\n";
 			m_what = ss.str();
 		}
 
@@ -248,7 +294,6 @@ namespace CppRayTracerChallenge::Core::Math
 		}
 	private:
 		std::string m_what;
-		int m_aColumns, m_bRows;
 	};
 }
 
