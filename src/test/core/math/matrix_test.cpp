@@ -301,3 +301,30 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_with_tuple)
 
 	EXPECT_EQ(matrix * tuple, expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, identity_matrix_3x3)
+{
+	Matrix<float> matrix(3, 3, std::vector<float> {
+		1, 2, 3,
+		4, 5, 6,
+		7, 8, 9
+	});
+
+	Matrix<float> identity = Matrix<float>::identity(3);
+
+	EXPECT_EQ(matrix * identity, matrix);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, identity_matrix_4x4)
+{
+	Matrix<float> matrix(4, 4, std::vector<float> {
+		1, 2, 3, 4,
+		2, 4, 4, 2,
+		8, 6, 4, 1,
+		0, 0, 0, 1
+	});
+
+	Matrix<float> identity = Matrix<float>::identity(4);
+
+	EXPECT_EQ(matrix * identity, matrix);
+}

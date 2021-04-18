@@ -34,6 +34,26 @@ namespace CppRayTracerChallenge::Core::Math
 		Matrix(const int rows, const int columns, std::vector<T> initialData) : m_rows(rows), m_columns(columns), m_data(initialData) {};
 
 		/// <summary>
+		/// Creates a square Identity Matrix of a specific size
+		/// </summary>
+		/// <param name="size">The size of the matrix</param>
+		/// <returns>A square Identity Matrix of n x n size</returns>
+		static Matrix<T> identity(const int size)
+		{
+			Matrix matrix(size, size);
+
+			for (int col = 0; col < size; ++col)
+			{
+				for (int row = 0; row < size; ++row)
+				{
+					if (row == col) matrix(row, col) = 1;
+				}
+			}
+
+			return matrix;
+		}
+
+		/// <summary>
 		/// Subscript operator, accesses the value at row, column
 		/// </summary>
 		/// <param name="row">The row to access</param>
