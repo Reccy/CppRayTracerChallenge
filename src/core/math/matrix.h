@@ -73,6 +73,28 @@ namespace CppRayTracerChallenge::Core::Math
 			return m_data[indexAt(row, column)];
 		};
 
+		/// <summary>
+		/// Transposes the Matrix, changing its rows into columns, and columns into rows
+		/// </summary>
+		/// <returns>A Matrix with transposed elements</returns>
+		Matrix transpose() const
+		{
+			const int transposedColumns = this->m_rows;
+			const int transposedRows = this->m_columns;
+
+			Matrix result(transposedRows, transposedColumns);
+
+			for (int row = 0; row < transposedRows; ++row)
+			{
+				for (int col = 0; col < transposedColumns; ++col)
+				{
+					result(row, col) = m_data[indexAt(col, row)];
+				}
+			}
+
+			return result;
+		}
+
 		Matrix operator*(const Matrix& other) const
 		{
 			if (this->m_columns != other.m_rows)

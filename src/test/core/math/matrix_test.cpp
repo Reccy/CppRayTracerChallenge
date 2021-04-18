@@ -328,3 +328,46 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, identity_matrix_4x4)
 
 	EXPECT_EQ(matrix * identity, matrix);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_transpose_4x4)
+{
+	Matrix<float> matrix(4, 4, std::vector<float> {
+		0, 9, 3, 0,
+		9, 8, 0, 8,
+		1, 8, 5, 3,
+		0, 0, 5, 8
+	});
+
+	Matrix<float> expectedResult(4, 4, std::vector<float> {
+		0, 9, 1, 0,
+		9, 8, 8, 0,
+		3, 0, 5, 5,
+		0, 8, 3, 8
+	});
+
+	EXPECT_EQ(matrix.transpose(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_transpose_2x4)
+{
+	Matrix<float> matrix(2, 4, std::vector<float> {
+		1, 2, 3, 4,
+		5, 6, 7, 8
+	});
+
+	Matrix<float> expectedResult(4, 2, std::vector<float> {
+		1, 5,
+		2, 6,
+		3, 7,
+		4, 8
+	});
+
+	EXPECT_EQ(matrix.transpose(), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_transpose_identity)
+{
+	Matrix<float> identity = Matrix<float>::identity(4);
+
+	EXPECT_EQ(identity.transpose(), identity);
+}
