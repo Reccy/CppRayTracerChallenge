@@ -111,6 +111,34 @@ namespace CppRayTracerChallenge::Core::Math
 		}
 
 		/// <summary>
+		/// Returns a copy of the Matrix, with the row and column removed.
+		/// </summary>
+		/// <param name="removeRow">The row to remove</param>
+		/// <param name="removeColumn">The column to remove</param>
+		/// <returns>The submatrix</returns>
+		Matrix submatrix(const int removeRow, const int removeColumn) const
+		{
+			int submatrixRows = m_rows - 1;
+			int submatrixColumns = m_columns - 1;
+
+			std::vector<T> data;
+
+			for (int row = 0; row < m_rows; ++row)
+			{
+				for (int col = 0; col < m_columns; ++col)
+				{
+					if (col == removeColumn || row == removeRow) continue;
+
+					data.push_back(m_data[indexAt(row, col)]);
+				}
+			}
+
+			Matrix result(submatrixRows, submatrixColumns, data);
+
+			return result;
+		}
+
+		/// <summary>
 		/// Calculates the determinant of the Matrix
 		/// </summary>
 		/// <returns>The determinant</returns>

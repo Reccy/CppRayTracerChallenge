@@ -476,3 +476,52 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_2x2)
 
 	EXPECT_EQ(matrix.determinant(), expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, submatrix_of_3x3_is_2x2)
+{
+	Matrix<float> matrix(3, 3, std::vector<float> {
+		1, 5, 0,
+		-3, 2, 7,
+		0, 6, -3
+	});
+
+	Matrix<float> expectedResult(2, 2, std::vector<float> {
+		-3, 2,
+		0, 6
+	});
+
+	EXPECT_EQ(matrix.submatrix(0, 2), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, submatrix_of_4x4_is_3x3)
+{
+	Matrix<float> matrix(4, 4, std::vector<float> {
+		-6, 1, 1, 6,
+		-8, 5, 8, 6,
+		-1, 0, 8, 2,
+		-7, 1, -1, 1
+	});
+
+	Matrix<float> expectedResult(3, 3, std::vector<float> {
+		-6, 1, 6,
+		-8, 8, 6,
+		-7, -1, 1
+	});
+
+	EXPECT_EQ(matrix.submatrix(2, 1), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, submatrix_of_1x1_throws_exception)
+{
+	Matrix<float> matrix(1, 1);
+
+	try
+	{
+		matrix.submatrix(0, 0);
+		FAIL();
+	}
+	catch (const MatrixTooSmallException& err)
+	{
+		EXPECT_STREQ("Cannot create a Matrix with 0 or less rows / columns\n", err.what());
+	}
+	}
