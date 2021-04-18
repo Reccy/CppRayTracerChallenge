@@ -371,3 +371,15 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_transpose_identity)
 
 	EXPECT_EQ(identity.transpose(), identity);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_2x2)
+{
+	Matrix<float> matrix(2, 2, std::vector<float> {
+		1, 5,
+		-3, 2
+	});
+
+	float expectedResult = 17;
+
+	EXPECT_EQ(matrix.determinant(), expectedResult);
+}

@@ -95,6 +95,15 @@ namespace CppRayTracerChallenge::Core::Math
 			return result;
 		}
 
+		/// <summary>
+		/// Calculates the determinant of the Matrix
+		/// </summary>
+		/// <returns>The determinant</returns>
+		T determinant() const
+		{
+			return m_data[indexAt(0, 0)] * m_data[indexAt(1, 1)] - m_data[indexAt(1, 0)] * m_data[indexAt(0, 1)];
+		}
+
 		Matrix operator*(const Matrix& other) const
 		{
 			if (this->m_columns != other.m_rows)
