@@ -2,6 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_MATRIX
 
 #include "comparison.h"
+#include "tuple.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
@@ -13,6 +14,8 @@ namespace CppRayTracerChallenge::Core::Math
 	class Matrix
 	{
 	public:
+		Matrix() = delete;
+
 		/// <summary>
 		/// Creates a Matrix of size rows x columns.
 		/// Initializes all data to 0.
@@ -80,6 +83,27 @@ namespace CppRayTracerChallenge::Core::Math
 			return result;
 		};
 
+		Tuple<T> operator*(const Tuple<T>& tuple) const
+		{
+			Matrix matrix(4, 1, std::vector<T> {
+				tuple.x(),
+				tuple.y(),
+				tuple.z(),
+				tuple.w()
+			});
+
+			matrix = *this * matrix;
+
+			Tuple result(
+				matrix(0,0),
+				matrix(0,1),
+				matrix(0,2),
+				matrix(0,3)
+			);
+
+			return result;
+		}
+
 		bool operator==(const Matrix& other) const
 		{
 			if (other.m_data.size() != this->m_data.size())
@@ -128,7 +152,7 @@ namespace CppRayTracerChallenge::Core::Math
 			return os;
 		}
 	private:
-		const int m_rows, m_columns;
+		int m_rows, m_columns;
 		std::vector<T> m_data;
 
 		int indexAt(const int row, const int column) const

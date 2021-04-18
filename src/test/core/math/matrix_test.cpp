@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "math/matrix.h"
+#include "math/tuple.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
 
@@ -283,4 +284,20 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_undefined)
 	{
 		ASSERT_STREQ("Cannot multiply Matrix with 5 columns and Matrix with 2 rows.\n", err.what());
 	}
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_with_tuple)
+{
+	Matrix<float> matrix(4, 4, std::vector<float> {
+		1, 2, 3, 4,
+		2, 4, 4, 2,
+		8, 6, 4, 1,
+		0, 0, 0, 1
+	});
+
+	Tuple<float> tuple(1, 2, 3, 1);
+
+	Tuple<float> expectedResult(18, 24, 33, 1);
+
+	EXPECT_EQ(matrix * tuple, expectedResult);
 }
