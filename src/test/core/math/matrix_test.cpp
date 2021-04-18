@@ -694,3 +694,24 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion_3)
 
 	EXPECT_EQ(matrix.invert(), expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiply_by_inverse)
+{
+	Matrix<float> a(4, 4, std::vector<float> {
+		3, -9, 7, 3,
+		3, -8, 2, -9,
+		-4, 4, 4, 1,
+		-6, 5, -1, 1
+	});
+
+	Matrix<float> b(4, 4, std::vector<float> {
+		8, 2, 2, 2,
+		3, -1, 7, 0,
+		7, 0, 5, 4,
+		6, -2, 0, 5
+	});
+
+	Matrix c = a * b;
+
+	EXPECT_EQ(c * b.invert(), a);
+}
