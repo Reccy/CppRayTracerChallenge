@@ -24,7 +24,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="y">Y translation</param>
 		/// <param name="z">Z translation</param>
 		/// <returns>The Transform after being translated</returns>
-		Transform translate(const float x, const float y, const float z)
+		Transform translate(const double x, const double y, const double z)
 		{
 			m_matrix(0, 3) = m_matrix(0, 3) + x;
 			m_matrix(1, 3) = m_matrix(1, 3) + y;
@@ -32,6 +32,15 @@ namespace CppRayTracerChallenge::Core::Math
 
 			return *this;
 		};
+
+		Transform scale(const double x, const double y, const double z)
+		{
+			m_matrix(0, 0) = m_matrix(0, 0) * x;
+			m_matrix(1, 1) = m_matrix(1, 1) * y;
+			m_matrix(2, 2) = m_matrix(2, 2) * z;
+
+			return *this;
+		}
 
 		/// <summary>
 		/// Inverts the Transform

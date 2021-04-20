@@ -35,3 +35,50 @@ TEST(CppRayTracerChallenge_Core_Math_Transform, translate_vector)
 
 	EXPECT_EQ(transform * vector, vector);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, scale_point)
+{
+	Transform transform = Transform()
+		.scale(2, 3, 4);
+	Point point = Point(-4, 6, 8);
+
+	Point expectedResult = Point(-8, 18, 32);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, scale_vector)
+{
+	Transform transform = Transform()
+		.scale(2, 3, 4);
+	Vector vector = Vector(-4, 6, 8);
+
+	Vector expectedResult = Vector(-8, 18, 32);
+
+	EXPECT_EQ(transform * vector, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, scale_inverse)
+{
+	Transform transform = Transform()
+		.scale(2, 3, 4)
+		.invert();
+
+	Vector vector = Vector(-4, 6, 8);
+
+	Vector expectedResult = Vector(-2, 2, 2);
+
+	EXPECT_EQ(transform * vector, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, scale_is_reflection)
+{
+	Transform transform = Transform()
+		.scale(-1, 1, 1);
+
+	Point point = Point(2, 3, 4);
+
+	Point expectedResult = Point(-2, 3, 4);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
