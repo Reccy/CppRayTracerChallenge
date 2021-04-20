@@ -33,6 +33,13 @@ namespace CppRayTracerChallenge::Core::Math
 			return *this;
 		};
 
+		/// <summary>
+		/// Scales the Transform along x, y, z axes
+		/// </summary>
+		/// <param name="x">Scale along the X axis</param>
+		/// <param name="y">Scale along the Y axis</param>
+		/// <param name="z">Scale along the Z axis</param>
+		/// <returns>The Transform after being scaled</returns>
 		Transform scale(const double x, const double y, const double z)
 		{
 			m_matrix(0, 0) = m_matrix(0, 0) * x;
