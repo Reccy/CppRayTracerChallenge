@@ -57,10 +57,11 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="y">Rotate around the Y axis in degrees</param>
 		/// <param name="z">Rotate around the Z axis in degrees</param>
 		/// <returns>The Transform after being rotated</returns>
-		Transform rotate(const double x, const double y, const double)
+		Transform rotate(const double x, const double y, const double z)
 		{
 			const double xRad = Trig::degrees_to_radians(x);
 			const double yRad = Trig::degrees_to_radians(y);
+			const double zRad = Trig::degrees_to_radians(z);
 
 			Matrix<double> xRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
 				1, 0, 0, 0,
@@ -69,15 +70,23 @@ namespace CppRayTracerChallenge::Core::Math
 				0, 0, 0, 1
 			});
 
-			Matrix <double> yRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
+			Matrix<double> yRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
 				cos(yRad), 0, sin(yRad), 0,
 				0, 1, 0, 0,
 				-sin(yRad), 0, cos(yRad), 0,
 				0, 0, 0, 1
 			});
 
+			Matrix<double> zRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
+				cos(zRad), -sin(zRad), 0, 0,
+				sin(zRad), cos(zRad), 0, 0,
+				0, 0, 1, 0,
+				0, 0, 0, 1
+			});
+
 			m_matrix = m_matrix * xRotationMatrix;
 			m_matrix = m_matrix * yRotationMatrix;
+			m_matrix = m_matrix * zRotationMatrix;
 
 			return *this;
 		}
