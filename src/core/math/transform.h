@@ -3,6 +3,7 @@
 
 #include "math/matrix.h"
 #include "math/point.h"
+#include "math/trig.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
@@ -45,6 +46,29 @@ namespace CppRayTracerChallenge::Core::Math
 			m_matrix(0, 0) = m_matrix(0, 0) * x;
 			m_matrix(1, 1) = m_matrix(1, 1) * y;
 			m_matrix(2, 2) = m_matrix(2, 2) * z;
+
+			return *this;
+		}
+
+		/// <summary>
+		/// Rotates the Transform along the x, y and z axes
+		/// </summary>
+		/// <param name="x">Rotate around the X axis in degrees</param>
+		/// <param name="y">Rotate around the Y axis in degrees</param>
+		/// <param name="z">Rotate around the Z axis in degrees</param>
+		/// <returns>The Transform after being rotated</returns>
+		Transform rotate(const double x, const double, const double)
+		{
+			const double xRad = Trig::degrees_to_radians(x);
+
+			Matrix<double> xRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
+				1, 0, 0, 0,
+				0, cos(xRad), -sin(xRad), 0,
+				0, sin(xRad), cos(xRad), 0,
+				0, 0, 0, 1
+			});
+
+			m_matrix = m_matrix * xRotationMatrix;
 
 			return *this;
 		}

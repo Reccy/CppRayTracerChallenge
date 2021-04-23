@@ -27,6 +27,7 @@ set(CORE_LIBRARY_NAME "${PROJECT_NAME}Core")
 set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/math/tuple.h"
 	"${CORE_LIBRARY_DIR}/math/comparison.h"
+	"${CORE_LIBRARY_DIR}/math/trig.h"
 	"${CORE_LIBRARY_DIR}/math/vector.h"
 	"${CORE_LIBRARY_DIR}/math/point.h"
 	"${CORE_LIBRARY_DIR}/math/matrix.h"
@@ -39,6 +40,7 @@ set(LIBRARY_HEADERS
 )
 
 set(LIBRARY_SOURCES
+	"${CORE_LIBRARY_DIR}/math/trig.cpp"
 	"${CORE_LIBRARY_DIR}/math/vector.cpp"
 	"${CORE_LIBRARY_DIR}/math/point.cpp"
 	"${CORE_LIBRARY_DIR}/graphics/color.cpp"
@@ -61,6 +63,7 @@ set(TEST_RUNNER_EXECUTABLE_NAME "${PROJECT_NAME}TestRunner")
 set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/math/tuple_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/comparison_test.cpp"
+	"${TEST_SUITE_DIR}/core/math/trig_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/vector_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/point_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/matrix_test.cpp"

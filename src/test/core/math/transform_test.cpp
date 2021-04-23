@@ -1,6 +1,9 @@
+#include <math.h>
+
 #include "gtest/gtest.h"
 #include "math/transform.h"
 #include "math/point.h"
+#include "math/trig.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
 
@@ -79,6 +82,49 @@ TEST(CppRayTracerChallenge_Core_Math_Transform, scale_is_reflection)
 	Point point = Point(2, 3, 4);
 
 	Point expectedResult = Point(-2, 3, 4);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, rotate_around_x_full_quarter)
+{
+	double rotationAmount = Trig::radians_to_degrees(Trig::PI / 2);
+
+	Transform transform = Transform()
+		.rotate(rotationAmount, 0, 0);
+
+	Point point = Point(0, 1, 0);
+
+	Point expectedResult = Point(0, 0, 1);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, rotate_around_x_half_quarter)
+{
+	double rotationAmount = Trig::radians_to_degrees(Trig::PI / 4);
+
+	Transform transform = Transform()
+		.rotate(rotationAmount, 0, 0);
+
+	Point point = Point(0, 1, 0);
+
+	Point expectedResult = Point(0, sqrt(2) / 2, (sqrt(2) / 2));
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, rotate_x_inverse)
+{
+	double rotationAmount = Trig::radians_to_degrees(Trig::PI / 4);
+
+	Transform transform = Transform()
+		.rotate(rotationAmount, 0, 0)
+		.invert();
+
+	Point point = Point(0, 1, 0);
+
+	Point expectedResult = Point(0, sqrt(2) / 2, -(sqrt(2) / 2));
 
 	EXPECT_EQ(transform * point, expectedResult);
 }

@@ -27,4 +27,4 @@ namespace CppRayTracerChallenge::Core::Math::Comparison {
 	};
 }
 
-#endif // _CPPRAYTRACERCHALLENGE_CORE_MATH_COMPARISON
+#endif _CPPRAYTRACERCHALLENGE_CORE_MATH_COMPARISON
