@@ -92,6 +92,30 @@ namespace CppRayTracerChallenge::Core::Math
 		}
 
 		/// <summary>
+		/// Shears the Transform by moving a component in relation to another
+		/// </summary>
+		/// <param name="xY">Move X in proportion to Y</param>
+		/// <param name="xZ">Move X in proportion to Z</param>
+		/// <param name="yX">Move Y in proportion to X</param>
+		/// <param name="yz">Move Y in proportion to Z</param>
+		/// <param name="zX">Move Z in proportion to X</param>
+		/// <param name="zY">Move Z in proportion to Y</param>
+		/// <returns>The Transform after being sheared</returns>
+		Transform shear(const double xY, const double xZ, const double yX, const double yZ, const double zX, const double zY)
+		{
+			Matrix<double> shearMatrix = Matrix<double>(4, 4, std::vector<double> {
+				1, xY, xZ, 0,
+				yX, 1, yZ, 0,
+				zX, zY, 1, 0,
+				0, 0, 0, 1
+			});
+
+			m_matrix = m_matrix * shearMatrix;
+
+			return *this;
+		}
+
+		/// <summary>
 		/// Inverts the Transform
 		/// </summary>
 		/// <returns>The Transform after being inverted</returns>

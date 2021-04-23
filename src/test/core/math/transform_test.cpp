@@ -213,3 +213,75 @@ TEST(CppRayTracerChallenge_Core_Math_Transform, rotate_z_inverse)
 
 	EXPECT_EQ(transform * point, expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, shear_moves_x_in_proportion_to_y)
+{
+	Transform transform = Transform()
+		.shear(1, 0, 0, 0, 0, 0);
+
+	Point point = Point(2, 3, 4);
+
+	Point expectedResult = Point(5, 3, 4);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, shear_moves_x_in_proportion_to_z)
+{
+	Transform transform = Transform()
+		.shear(0, 1, 0, 0, 0, 0);
+
+	Point point = Point(2, 3, 4);
+
+	Point expectedResult = Point(6, 3, 4);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, shear_moves_y_in_proportion_to_x)
+{
+	Transform transform = Transform()
+		.shear(0, 0, 1, 0, 0, 0);
+
+	Point point = Point(2, 3, 4);
+
+	Point expectedResult = Point(2, 5, 4);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, shear_moves_y_in_proportion_to_z)
+{
+	Transform transform = Transform()
+		.shear(0, 0, 0, 1, 0, 0);
+
+	Point point = Point(2, 3, 4);
+
+	Point expectedResult = Point(2, 7, 4);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, shear_moves_z_in_proportion_to_x)
+{
+	Transform transform = Transform()
+		.shear(0, 0, 0, 0, 1, 0);
+
+	Point point = Point(2, 3, 4);
+
+	Point expectedResult = Point(2, 3, 6);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, shear_moves_z_in_proportion_to_y)
+{
+	Transform transform = Transform()
+		.shear(0, 0, 0, 0, 0, 1);
+
+	Point point = Point(2, 3, 4);
+
+	Point expectedResult = Point(2, 3, 7);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
