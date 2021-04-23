@@ -128,3 +128,46 @@ TEST(CppRayTracerChallenge_Core_Math_Transform, rotate_x_inverse)
 
 	EXPECT_EQ(transform * point, expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, rotate_around_y_half_quarter)
+{
+	double rotationAmount = Trig::radians_to_degrees(Trig::PI / 4);
+
+	Transform transform = Transform()
+		.rotate(0, rotationAmount, 0);
+
+	Point point = Point(0, 0, 1);
+
+	Point expectedResult = Point(sqrt(2) / 2, 0, (sqrt(2) / 2));
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, rotate_around_y_full_quarter)
+{
+	double rotationAmount = Trig::radians_to_degrees(Trig::PI / 2);
+
+	Transform transform = Transform()
+		.rotate(0, rotationAmount, 0);
+
+	Point point = Point(0, 0, 1);
+
+	Point expectedResult = Point(1, 0, 0);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, rotate_y_inverse)
+{
+	double rotationAmount = Trig::radians_to_degrees(Trig::PI / 4);
+
+	Transform transform = Transform()
+		.rotate(0, rotationAmount, 0)
+		.invert();
+
+	Point point = Point(0, 0, 1);
+
+	Point expectedResult = Point(-(sqrt(2) / 2), 0, sqrt(2) / 2);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
