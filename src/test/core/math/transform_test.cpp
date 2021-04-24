@@ -285,3 +285,40 @@ TEST(CppRayTracerChallenge_Core_Math_Transform, shear_moves_z_in_proportion_to_y
 
 	EXPECT_EQ(transform * point, expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, individual_transformations_are_applied_in_sequence)
+{
+	Point point = Point(1, 0, 1);
+
+	Transform a = Transform()
+		.rotate(Trig::radians_to_degrees(Trig::PI / 2), 0, 0);
+
+	Transform b = Transform()
+		.scale(5, 5, 5);
+
+	Transform c = Transform()
+		.translate(10, 5, 7);
+
+	point = a * point;
+	EXPECT_EQ(point, Point(1, -1, 0));
+
+	point = b * point;
+	EXPECT_EQ(point, Point(5, -5, 0));
+
+	point = c * point;
+	EXPECT_EQ(point, Point(15, 0, 7));
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, chained_transformations_are_applied_in_reverse_order)
+{
+	Point point = Point(1, 0, 1);
+
+	Transform transform = Transform()
+		.rotate(Trig::radians_to_degrees(Trig::PI / 2), 0, 0)
+		.scale(5, 5, 5)
+		.translate(10, 5, 7);
+
+	Point expectedResult = Point(15, 0, 7);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}

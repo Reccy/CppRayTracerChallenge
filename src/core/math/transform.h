@@ -1,6 +1,8 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_TRANSFORM
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_TRANSFORM
 
+#include <stack>
+
 #include "math/matrix.h"
 #include "math/point.h"
 #include "math/trig.h"
@@ -27,9 +29,12 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <returns>The Transform after being translated</returns>
 		Transform translate(const double x, const double y, const double z)
 		{
-			m_matrix(0, 3) = m_matrix(0, 3) + x;
-			m_matrix(1, 3) = m_matrix(1, 3) + y;
-			m_matrix(2, 3) = m_matrix(2, 3) + z;
+			Matrix<double> translationMatrix = Matrix<double>::identity(4);
+			translationMatrix(0, 3) = x;
+			translationMatrix(1, 3) = y;
+			translationMatrix(2, 3) = z;
+
+			m_matrices.push(translationMatrix);
 
 			return *this;
 		};
@@ -43,9 +48,12 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <returns>The Transform after being scaled</returns>
 		Transform scale(const double x, const double y, const double z)
 		{
-			m_matrix(0, 0) = m_matrix(0, 0) * x;
-			m_matrix(1, 1) = m_matrix(1, 1) * y;
-			m_matrix(2, 2) = m_matrix(2, 2) * z;
+			Matrix<double> scaleMatrix = Matrix<double>::identity(4);
+			scaleMatrix(0, 0) = x;
+			scaleMatrix(1, 1) = y;
+			scaleMatrix(2, 2) = z;
+
+			m_matrices.push(scaleMatrix);
 
 			return *this;
 		}
@@ -84,9 +92,13 @@ namespace CppRayTracerChallenge::Core::Math
 				0, 0, 0, 1
 			});
 
-			m_matrix = m_matrix * xRotationMatrix;
-			m_matrix = m_matrix * yRotationMatrix;
-			m_matrix = m_matrix * zRotationMatrix;
+			Matrix<double> rotationMatrix = Matrix<double>::identity(4);
+
+			rotationMatrix = rotationMatrix * xRotationMatrix;
+			rotationMatrix = rotationMatrix * yRotationMatrix;
+			rotationMatrix = rotationMatrix * zRotationMatrix;
+
+			m_matrices.push(rotationMatrix);
 
 			return *this;
 		}
@@ -110,7 +122,7 @@ namespace CppRayTracerChallenge::Core::Math
 				0, 0, 0, 1
 			});
 
-			m_matrix = m_matrix * shearMatrix;
+			m_matrices.push(shearMatrix);
 
 			return *this;
 		}
@@ -121,7 +133,12 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <returns>The Transform after being inverted</returns>
 		Transform invert()
 		{
-			m_matrix = m_matrix.invert();
+			calculateMatrix();
+
+			if (m_matrix.invertible())
+			{
+				m_matrix = m_matrix.invert();
+			}
 
 			return *this;
 		};
@@ -131,12 +148,24 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="tuple">The Tuple to transform</param>
 		/// <returns>The Tuple after being transformed</returns>
-		Tuple<double> operator*(const Tuple<double>& tuple) const
+		Tuple<double> operator*(const Tuple<double>& tuple)
 		{
+			calculateMatrix();
+
 			return m_matrix * tuple;
 		};
 	private:
+		std::stack<Matrix<double>> m_matrices;
 		Matrix<double> m_matrix;
+
+		void calculateMatrix()
+		{
+			while (!m_matrices.empty())
+			{
+				m_matrix = m_matrix * m_matrices.top();
+				m_matrices.pop();
+			}
+		};
 	};
 }
 
