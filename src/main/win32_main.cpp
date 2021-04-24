@@ -8,6 +8,8 @@
 
 #include "math/vector.h"
 #include "math/point.h"
+#include "math/transform.h"
+#include "math/trig.h"
 #include "graphics/canvas.h"
 #include "graphics/color.h"
 #include "serializer/portable_pixmap_image_serializer.h"
@@ -84,7 +86,7 @@ float lerp(float a, float b, float f)
 	return a + f * (b - a);
 }
 
-int main()
+Graphics::Canvas createBallisticImage()
 {
 	Projectile projectile;
 	Environment environment;
@@ -120,13 +122,58 @@ int main()
 		std::cout << log(currentTicks, maxTicks, projectile, environment) << std::endl;
 	}
 
+	return canvas;
+}
+
+Math::Point getPointForHand(int position)
+{
+	Math::Point point = Math::Point(0, 0, 0);
+
+	double zRotate;
+	if (position == 0)
+	{
+		zRotate = 0;
+	}
+	else
+	{
+		zRotate = Math::Trig::radians_to_degrees(2 * Math::Trig::PI) * (position / 12.0);
+	}
+	
+	Math::Transform transform = Math::Transform()
+		.translate(80, 0, 0) // to edge
+		.rotate(0, 0, zRotate) // rotate hand
+		.translate(100, 100, 0); // to origin
+
+	return transform * point;
+}
+
+Graphics::Canvas createClock()
+{
+	Graphics::Color backgroundColor = Graphics::Color::black();
+	Graphics::Color foregroundColor = Graphics::Color::white();
+	Graphics::Canvas canvas(200, 200, backgroundColor);
+
+	for (int i = 0; i < 12; ++i)
+	{
+		Math::Point draw = getPointForHand(i);
+
+		std::cout << "Drawing at " << draw << std::endl;
+
+		canvas.writePixel(static_cast<int>(draw.x()), static_cast<int>(draw.y()), foregroundColor);
+	}
+	
+	return canvas;
+}
+
+void writeCanvas(Graphics::Canvas canvas)
+{
 	Serializer::PortablePixmapImageSerializer ppm;
 	ppm.serialize(canvas);
 
 	std::vector<char> ppmBuffer = ppm.buffer();
 
 	std::string bufferData(ppmBuffer.begin(), ppmBuffer.end());
-	
+
 	TCHAR appData[MAX_PATH];
 	if (SUCCEEDED(SHGetFolderPath(NULL,
 		CSIDL_DESKTOPDIRECTORY | CSIDL_FLAG_CREATE,
@@ -148,6 +195,12 @@ int main()
 	{
 		std::cout << "Failed to write file" << std::endl;
 	}
+}
+
+int main()
+{
+	Graphics::Canvas canvas = createClock();
+	writeCanvas(canvas);
 
 	return 0;
 }
