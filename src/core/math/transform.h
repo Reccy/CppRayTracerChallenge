@@ -2,10 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_TRANSFORM
 
 #include <stack>
-
-#include "math/matrix.h"
-#include "math/point.h"
-#include "math/trig.h"
+#include "matrix.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
@@ -18,7 +15,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <summary>
 		/// Constructs a Transform with the identity matrix
 		/// </summary>
-		Transform() : m_matrix(Matrix<double>::identity(4)) { };
+		Transform();
 
 		/// <summary>
 		/// Translates the Transform along x, y, z co-ordinates
@@ -27,17 +24,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="y">Y translation</param>
 		/// <param name="z">Z translation</param>
 		/// <returns>The Transform after being translated</returns>
-		Transform translate(const double x, const double y, const double z)
-		{
-			Matrix<double> translationMatrix = Matrix<double>::identity(4);
-			translationMatrix(0, 3) = x;
-			translationMatrix(1, 3) = y;
-			translationMatrix(2, 3) = z;
-
-			m_matrices.push(translationMatrix);
-
-			return *this;
-		};
+		Transform translate(const double x, const double y, const double z);
 
 		/// <summary>
 		/// Scales the Transform along x, y, z axes
@@ -46,17 +33,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="y">Scale along the Y axis</param>
 		/// <param name="z">Scale along the Z axis</param>
 		/// <returns>The Transform after being scaled</returns>
-		Transform scale(const double x, const double y, const double z)
-		{
-			Matrix<double> scaleMatrix = Matrix<double>::identity(4);
-			scaleMatrix(0, 0) = x;
-			scaleMatrix(1, 1) = y;
-			scaleMatrix(2, 2) = z;
-
-			m_matrices.push(scaleMatrix);
-
-			return *this;
-		}
+		Transform scale(const double x, const double y, const double z);
 
 		/// <summary>
 		/// Rotates the Transform along the x, y and z axes
@@ -65,43 +42,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="y">Rotate around the Y axis in degrees</param>
 		/// <param name="z">Rotate around the Z axis in degrees</param>
 		/// <returns>The Transform after being rotated</returns>
-		Transform rotate(const double x, const double y, const double z)
-		{
-			const double xRad = Trig::degrees_to_radians(x);
-			const double yRad = Trig::degrees_to_radians(y);
-			const double zRad = Trig::degrees_to_radians(z);
-
-			Matrix<double> xRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
-				1, 0, 0, 0,
-				0, cos(xRad), -sin(xRad), 0,
-				0, sin(xRad), cos(xRad), 0,
-				0, 0, 0, 1
-			});
-
-			Matrix<double> yRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
-				cos(yRad), 0, sin(yRad), 0,
-				0, 1, 0, 0,
-				-sin(yRad), 0, cos(yRad), 0,
-				0, 0, 0, 1
-			});
-
-			Matrix<double> zRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
-				cos(zRad), -sin(zRad), 0, 0,
-				sin(zRad), cos(zRad), 0, 0,
-				0, 0, 1, 0,
-				0, 0, 0, 1
-			});
-
-			Matrix<double> rotationMatrix = Matrix<double>::identity(4);
-
-			rotationMatrix = rotationMatrix * xRotationMatrix;
-			rotationMatrix = rotationMatrix * yRotationMatrix;
-			rotationMatrix = rotationMatrix * zRotationMatrix;
-
-			m_matrices.push(rotationMatrix);
-
-			return *this;
-		}
+		Transform rotate(const double x, const double y, const double z);
 
 		/// <summary>
 		/// Shears the Transform by moving a component in relation to another
@@ -113,47 +54,20 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="zX">Move Z in proportion to X</param>
 		/// <param name="zY">Move Z in proportion to Y</param>
 		/// <returns>The Transform after being sheared</returns>
-		Transform shear(const double xY, const double xZ, const double yX, const double yZ, const double zX, const double zY)
-		{
-			Matrix<double> shearMatrix = Matrix<double>(4, 4, std::vector<double> {
-				1, xY, xZ, 0,
-				yX, 1, yZ, 0,
-				zX, zY, 1, 0,
-				0, 0, 0, 1
-			});
-
-			m_matrices.push(shearMatrix);
-
-			return *this;
-		}
+		Transform shear(const double xY, const double xZ, const double yX, const double yZ, const double zX, const double zY);
 
 		/// <summary>
 		/// Inverts the Transform
 		/// </summary>
 		/// <returns>The Transform after being inverted</returns>
-		Transform invert()
-		{
-			calculateMatrix();
-
-			if (m_matrix.invertible())
-			{
-				m_matrix = m_matrix.invert();
-			}
-
-			return *this;
-		};
+		Transform invert();
 
 		/// <summary>
 		/// Multiplies the Tuple by the Transform, and returns the transformed Tuple
 		/// </summary>
 		/// <param name="tuple">The Tuple to transform</param>
 		/// <returns>The Tuple after being transformed</returns>
-		Tuple<double> operator*(const Tuple<double>& tuple)
-		{
-			calculateMatrix();
-
-			return m_matrix * tuple;
-		};
+		Tuple<double> operator*(const Tuple<double>& tuple);
 	private:
 		std::stack<Matrix<double>> m_matrices;
 		Matrix<double> m_matrix;

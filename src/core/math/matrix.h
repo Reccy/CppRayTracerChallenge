@@ -1,6 +1,8 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_MATRIX
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_MATRIX
 
+#include <vector>
+#include <sstream>
 #include "comparison.h"
 #include "tuple.h"
 

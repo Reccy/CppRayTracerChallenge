@@ -43,6 +43,7 @@ set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/math/trig.cpp"
 	"${CORE_LIBRARY_DIR}/math/vector.cpp"
 	"${CORE_LIBRARY_DIR}/math/point.cpp"
+	"${CORE_LIBRARY_DIR}/math/transform.cpp"
 	"${CORE_LIBRARY_DIR}/graphics/color.cpp"
 	"${CORE_LIBRARY_DIR}/graphics/image.cpp"
 	"${CORE_LIBRARY_DIR}/graphics/canvas.cpp"
