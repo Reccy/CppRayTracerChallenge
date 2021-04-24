@@ -72,14 +72,7 @@ namespace CppRayTracerChallenge::Core::Math
 		std::stack<Matrix<double>> m_matrices;
 		Matrix<double> m_matrix;
 
-		void calculateMatrix()
-		{
-			while (!m_matrices.empty())
-			{
-				m_matrix = m_matrix * m_matrices.top();
-				m_matrices.pop();
-			}
-		};
+		void calculateMatrix();
 	};
 }
 

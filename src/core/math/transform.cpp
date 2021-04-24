@@ -100,3 +100,12 @@ Tuple<double> Transform::operator*(const Tuple<double>& tuple)
 
 	return m_matrix * tuple;
 }
+
+void Transform::calculateMatrix()
+{
+	while (!m_matrices.empty())
+	{
+		m_matrix = m_matrix * m_matrices.top();
+		m_matrices.pop();
+	}
+}
