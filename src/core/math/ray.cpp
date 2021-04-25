@@ -13,3 +13,8 @@ Vector Ray::direction() const
 {
 	return m_direction;
 }
+
+Point Ray::position(const double t) const
+{
+	return m_origin + m_direction * t;
+}

@@ -33,6 +33,13 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <returns>Ray vector</returns>
 		Vector direction() const;
+
+		/// <summary>
+		/// Calculates and returns the position at 't' distance from the origin
+		/// </summary>
+		/// <param name="t">The distance from the origin in which to calculate the new position</param>
+		/// <returns>The position 't' distance from the origin</returns>
+		Point position(const double t) const;
 	private:
 		Point m_origin;
 		Vector m_direction;
