@@ -11,7 +11,7 @@ Vector Vector::zero()
 	return Vector(0, 0, 0);
 }
 
-Vector Vector::cross(const Vector a, const Vector b)
+Vector Vector::cross(const Vector& a, const Vector& b)
 {
 	return Vector (
 		a.m_y * b.m_z - a.m_z * b.m_y,
@@ -20,7 +20,7 @@ Vector Vector::cross(const Vector a, const Vector b)
 	);
 }
 
-double Vector::dot(const Vector a, const Vector b)
+double Vector::dot(const Vector& a, const Vector& b)
 {
 	return a.m_x * b.m_x +
 		a.m_y * b.m_y +

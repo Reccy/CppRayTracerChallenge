@@ -39,7 +39,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="a">The first vector</param>
 		/// <param name="b">The second vector</param>
 		/// <returns>A vector cross product</returns>
-		static Vector cross(const Vector a, const Vector b);
+		static Vector cross(const Vector& a, const Vector& b);
 
 		/// <summary>
 		/// Performs a dot product operation and returns the result
@@ -47,7 +47,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="a">The first vector</param>
 		/// <param name="b">The second vector</param>
 		/// <returns>A scalar dot product</returns>
-		static double dot(const Vector a, const Vector b);
+		static double dot(const Vector& a, const Vector& b);
 
 		/// <summary>
 		/// Calculates and returns the magnitude of the vector

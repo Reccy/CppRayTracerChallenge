@@ -1,8 +1,10 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_RAY
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_RAY
 
+#include <vector>
 #include "point.h"
 #include "vector.h"
+#include "sphere.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
@@ -40,6 +42,13 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="t">The distance from the origin in which to calculate the new position</param>
 		/// <returns>The position 't' distance from the origin</returns>
 		Point position(const double t) const;
+
+		/// <summary>
+		/// Calculates the t values where this ray intersects a sphere
+		/// </summary>
+		/// <param name="sphere">Reference to the Sphere to calculate the intersections on</param>
+		/// <returns>A list of t values where the ray intersects the sphere</returns>
+		std::vector<double> intersect_sphere(const Sphere& sphere) const;
 	private:
 		Point m_origin;
 		Vector m_direction;
