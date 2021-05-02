@@ -322,3 +322,37 @@ TEST(CppRayTracerChallenge_Core_Math_Transform, chained_transformations_are_appl
 
 	EXPECT_EQ(transform * point, expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, equality)
+{
+	Transform a = Transform()
+		.scale(1, 2, 3)
+		.rotate(1, 2, 3)
+		.invert()
+		.shear(1, 2, 3, 1, 2, 3);
+
+	Transform b = Transform()
+		.scale(1, 2, 3)
+		.rotate(1, 2, 3)
+		.invert()
+		.shear(1, 2, 3, 1, 2, 3);
+
+	EXPECT_TRUE(a == b);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, inequality)
+{
+	Transform a = Transform()
+		.scale(1, 2, 3)
+		.rotate(1, 2, 3)
+		.invert()
+		.shear(1, 2, 3, 1, 2, 3);
+
+	Transform b = Transform()
+		.scale(1, 2, 3)
+		.rotate(1, 2, 3)
+		.shear(1, 2, 3, 1, 2, 3)
+		.invert();
+
+	EXPECT_TRUE(a != b);
+}

@@ -109,3 +109,16 @@ void Transform::calculateMatrix()
 		m_matrices.pop();
 	}
 }
+
+bool Transform::operator==(Transform& other)
+{
+	calculateMatrix();
+	other.calculateMatrix();
+
+	return m_matrix == other.m_matrix;
+}
+
+bool Transform::operator!=(Transform& other)
+{
+	return !((*this) == other);
+}

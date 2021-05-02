@@ -68,6 +68,9 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="tuple">The Tuple to transform</param>
 		/// <returns>The Tuple after being transformed</returns>
 		Tuple<double> operator*(const Tuple<double>& tuple);
+
+		bool operator==(Transform& other);
+		bool operator!=(Transform& other);
 	private:
 		std::stack<Matrix<double>> m_matrices;
 		Matrix<double> m_matrix;

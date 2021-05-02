@@ -2,6 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_SPHERE
 
 #include "point.h"
+#include "transform.h"
 #include "i_intersectable.h"
 
 namespace CppRayTracerChallenge::Core::Math
@@ -24,13 +25,19 @@ namespace CppRayTracerChallenge::Core::Math
 		virtual Point position() const;
 
 		/// <summary>
-		/// Returns the radius of the sphere
+		/// Transforms the Sphere
 		/// </summary>
-		/// <returns>Radius of the sphere</returns>
-		double radius() const;
+		/// <param name="transform">The transform to apply to the sphere</param>
+		void transform(Transform transform);
+
+		/// <summary>
+		/// Returns a copy of the Sphere's Transform
+		/// </summary>
+		/// <returns>The Sphere's Transform</returns>
+		Transform transform() const;
 	private:
 		Point m_position;
-		double m_radius;
+		Transform m_transform;
 	};
 }
 
