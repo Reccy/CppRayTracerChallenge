@@ -34,7 +34,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// Returns a copy of the Sphere's Transform
 		/// </summary>
 		/// <returns>The Sphere's Transform</returns>
-		Transform transform() const;
+		const Transform transform() const;
 	private:
 		Point m_position;
 		Transform m_transform;

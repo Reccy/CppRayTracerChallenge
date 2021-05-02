@@ -114,3 +114,27 @@ TEST(CppRayTracerChallenge_Core_Math_Ray, ray_scaling)
 	EXPECT_EQ(transformedRay.origin(), Point(2, 6, 12));
 	EXPECT_EQ(transformedRay.direction(), Vector(0, 3, 0));
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Ray, intersecting_scaled_sphere_with_ray)
+{
+	Ray ray = Ray(Point(0, 0, -5), Vector(0, 0, 1));
+	Sphere sphere = Sphere();
+	sphere.transform(Transform().scale(2, 2, 2));
+
+	Intersections intersections = ray.intersect_sphere(sphere);
+
+	EXPECT_EQ(intersections.count(), 2);
+	EXPECT_EQ(intersections.at(0).t(), 3);
+	EXPECT_EQ(intersections.at(1).t(), 7);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Ray, intersecting_translated_sphere_with_ray)
+{
+	Ray ray = Ray(Point(0, 0, -5), Vector(0, 0, 1));
+	Sphere sphere = Sphere();
+	sphere.transform(Transform().translate(5, 0, 0));
+
+	Intersections intersections = ray.intersect_sphere(sphere);
+
+	EXPECT_EQ(intersections.count(), 0);
+}

@@ -6,32 +6,38 @@ using namespace CppRayTracerChallenge::Core::Math;
 
 Transform::Transform() : m_matrix(Matrix<double>::identity(4)) {};
 
-Transform Transform::translate(const double x, const double y, const double z)
+const Transform Transform::translate(const double x, const double y, const double z) const
 {
+	Transform copy = *this;
+
 	Matrix<double> translationMatrix = Matrix<double>::identity(4);
 	translationMatrix(0, 3) = x;
 	translationMatrix(1, 3) = y;
 	translationMatrix(2, 3) = z;
 
-	m_matrices.push(translationMatrix);
+	copy.m_matrices.push(translationMatrix);
 
-	return *this;
+	return copy;
 }
 
-Transform Transform::scale(const double x, const double y, const double z)
+const Transform Transform::scale(const double x, const double y, const double z) const
 {
+	Transform copy = *this;
+
 	Matrix<double> scaleMatrix = Matrix<double>::identity(4);
 	scaleMatrix(0, 0) = x;
 	scaleMatrix(1, 1) = y;
 	scaleMatrix(2, 2) = z;
 
-	m_matrices.push(scaleMatrix);
+	copy.m_matrices.push(scaleMatrix);
 
-	return *this;
+	return copy;
 }
 
-Transform Transform::rotate(const double x, const double y, const double z)
+const Transform Transform::rotate(const double x, const double y, const double z) const
 {
+	Transform copy = *this;
+
 	const double xRad = Trig::degrees_to_radians(x);
 	const double yRad = Trig::degrees_to_radians(y);
 	const double zRad = Trig::degrees_to_radians(z);
@@ -63,13 +69,15 @@ Transform Transform::rotate(const double x, const double y, const double z)
 	rotationMatrix = rotationMatrix * yRotationMatrix;
 	rotationMatrix = rotationMatrix * zRotationMatrix;
 
-	m_matrices.push(rotationMatrix);
+	copy.m_matrices.push(rotationMatrix);
 
-	return *this;
+	return copy;
 }
 
-Transform Transform::shear(const double xY, const double xZ, const double yX, const double yZ, const double zX, const double zY)
+const Transform Transform::shear(const double xY, const double xZ, const double yX, const double yZ, const double zX, const double zY) const
 {
+	Transform copy = *this;
+
 	Matrix<double> shearMatrix = Matrix<double>(4, 4, std::vector<double> {
 		1, xY, xZ, 0,
 		yX, 1, yZ, 0,
@@ -77,28 +85,32 @@ Transform Transform::shear(const double xY, const double xZ, const double yX, co
 		0, 0, 0, 1
 	});
 
-	m_matrices.push(shearMatrix);
+	copy.m_matrices.push(shearMatrix);
 
-	return *this;
+	return copy;
 }
 
-Transform Transform::invert()
+const Transform Transform::invert() const
 {
-	calculateMatrix();
+	Transform copy = *this;
 
-	if (m_matrix.invertible())
+	copy.calculateMatrix();
+
+	if (copy.m_matrix.invertible())
 	{
-		m_matrix = m_matrix.invert();
+		copy.m_matrix = copy.m_matrix.invert();
 	}
 
-	return *this;
+	return copy;
 }
 
-Tuple<double> Transform::operator*(const Tuple<double>& tuple)
+Tuple<double> Transform::operator*(const Tuple<double>& tuple) const
 {
-	calculateMatrix();
+	Transform copy = *this;
 
-	return m_matrix * tuple;
+	copy.calculateMatrix();
+
+	return copy.m_matrix * tuple;
 }
 
 void Transform::calculateMatrix()
@@ -110,15 +122,18 @@ void Transform::calculateMatrix()
 	}
 }
 
-bool Transform::operator==(Transform& other)
+bool Transform::operator==(const Transform& other) const
 {
-	calculateMatrix();
-	other.calculateMatrix();
+	Transform copy = *this;
+	Transform otherCopy = other;
 
-	return m_matrix == other.m_matrix;
+	copy.calculateMatrix();
+	otherCopy.calculateMatrix();
+
+	return copy.m_matrix == otherCopy.m_matrix;
 }
 
-bool Transform::operator!=(Transform& other)
+bool Transform::operator!=(const Transform& other) const
 {
 	return !((*this) == other);
 }

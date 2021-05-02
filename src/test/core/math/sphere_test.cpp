@@ -8,12 +8,7 @@ TEST(CppRayTracerChallenge_Core_Math_Sphere, creating_a_sphere)
 	Sphere sphere = Sphere();
 
 	EXPECT_EQ(sphere.position(), Point(0, 0, 0));
-
-	// TODO: Add const equality operator for Transforms we can use EXPECT_EQ
-	auto a = sphere.transform();
-	auto b = Transform();
-
-	EXPECT_TRUE(a == b);
+	EXPECT_EQ(sphere.transform(), Transform());
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Sphere, transforming_a_sphere)
@@ -24,5 +19,5 @@ TEST(CppRayTracerChallenge_Core_Math_Sphere, transforming_a_sphere)
 	Sphere sphere = Sphere();
 	sphere.transform(transform);
 
-	EXPECT_TRUE(sphere.transform() == transform);
+	EXPECT_EQ(sphere.transform(), transform);
 }

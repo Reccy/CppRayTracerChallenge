@@ -50,7 +50,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="transform">The transform to apply to the new ray</param>
 		/// <returns>A transformed ray</returns>
-		Ray transform(Transform& transform) const;
+		Ray transform(const Transform& transform) const;
 
 		/// <summary>
 		/// Calculates the t values where this ray intersects a sphere

@@ -14,7 +14,7 @@ void Sphere::transform(Transform transform)
 	m_transform = transform;
 }
 
-Transform Sphere::transform() const
+const Transform Sphere::transform() const
 {
 	return m_transform;
 }

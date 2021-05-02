@@ -323,6 +323,52 @@ TEST(CppRayTracerChallenge_Core_Math_Transform, chained_transformations_are_appl
 	EXPECT_EQ(transform * point, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Transform, translate_does_not_mutate_original)
+{
+	Transform original = Transform();
+
+	Transform mutated = original.translate(1, 2, 3);
+
+	EXPECT_TRUE(original != mutated);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, scale_does_not_mutate_original)
+{
+	Transform original = Transform();
+
+	Transform mutated = original.scale(1, 2, 3);
+
+	EXPECT_TRUE(original != mutated);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, rotate_does_not_mutate_original)
+{
+	Transform original = Transform();
+
+	Transform mutated = original.rotate(1, 2, 3);
+
+	EXPECT_TRUE(original != mutated);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, shear_does_not_mutate_original)
+{
+	Transform original = Transform();
+
+	Transform mutated = original.shear(1, 2, 3, 1, 2, 3);
+
+	EXPECT_TRUE(original != mutated);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Transform, invert_does_not_mutate_original)
+{
+	Transform original = Transform()
+		.translate(1,0,0);
+
+	Transform mutated = original.invert();
+
+	EXPECT_TRUE(original != mutated);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Transform, equality)
 {
 	Transform a = Transform()

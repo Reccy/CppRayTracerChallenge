@@ -24,7 +24,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="y">Y translation</param>
 		/// <param name="z">Z translation</param>
 		/// <returns>The Transform after being translated</returns>
-		Transform translate(const double x, const double y, const double z);
+		const Transform translate(const double x, const double y, const double z) const;
 
 		/// <summary>
 		/// Scales the Transform along x, y, z axes
@@ -33,7 +33,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="y">Scale along the Y axis</param>
 		/// <param name="z">Scale along the Z axis</param>
 		/// <returns>The Transform after being scaled</returns>
-		Transform scale(const double x, const double y, const double z);
+		const Transform scale(const double x, const double y, const double z) const;
 
 		/// <summary>
 		/// Rotates the Transform along the x, y and z axes
@@ -42,7 +42,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="y">Rotate around the Y axis in degrees</param>
 		/// <param name="z">Rotate around the Z axis in degrees</param>
 		/// <returns>The Transform after being rotated</returns>
-		Transform rotate(const double x, const double y, const double z);
+		const Transform rotate(const double x, const double y, const double z) const;
 
 		/// <summary>
 		/// Shears the Transform by moving a component in relation to another
@@ -54,23 +54,23 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="zX">Move Z in proportion to X</param>
 		/// <param name="zY">Move Z in proportion to Y</param>
 		/// <returns>The Transform after being sheared</returns>
-		Transform shear(const double xY, const double xZ, const double yX, const double yZ, const double zX, const double zY);
+		const Transform shear(const double xY, const double xZ, const double yX, const double yZ, const double zX, const double zY) const;
 
 		/// <summary>
 		/// Inverts the Transform
 		/// </summary>
 		/// <returns>The Transform after being inverted</returns>
-		Transform invert();
+		const Transform invert() const;
 
 		/// <summary>
 		/// Multiplies the Tuple by the Transform, and returns the transformed Tuple
 		/// </summary>
 		/// <param name="tuple">The Tuple to transform</param>
 		/// <returns>The Tuple after being transformed</returns>
-		Tuple<double> operator*(const Tuple<double>& tuple);
+		Tuple<double> operator*(const Tuple<double>& tuple) const;
 
-		bool operator==(Transform& other);
-		bool operator!=(Transform& other);
+		bool operator==(const Transform& other) const;
+		bool operator!=(const Transform& other) const;
 	private:
 		std::stack<Matrix<double>> m_matrices;
 		Matrix<double> m_matrix;
