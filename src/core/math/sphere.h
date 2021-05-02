@@ -2,13 +2,14 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_SPHERE
 
 #include "point.h"
+#include "i_intersectable.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
 	/// <summary>
 	/// A 3D Sphere
 	/// </summary>
-	class Sphere
+	class Sphere : public IIntersectable
 	{
 	public:
 		/// <summary>
@@ -20,7 +21,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// Returns the position of the sphere
 		/// </summary>
 		/// <returns>Position of the sphere</returns>
-		Point position() const;
+		virtual Point position() const;
 
 		/// <summary>
 		/// Returns the radius of the sphere
