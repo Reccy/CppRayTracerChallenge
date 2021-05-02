@@ -19,6 +19,14 @@ Point Ray::position(const double t) const
 	return m_origin + m_direction * t;
 }
 
+Ray Ray::transform(Transform& transform) const
+{
+	Vector direction = transform * m_direction;
+	Point origin = transform * m_origin;
+
+	return Ray(origin, direction);
+}
+
 Intersections Ray::intersect_sphere(const Sphere& sphere) const
 {
 	Vector sphereToRay = m_origin - sphere.position();

@@ -6,6 +6,7 @@
 #include "vector.h"
 #include "sphere.h"
 #include "intersections.h"
+#include "transform.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
@@ -43,6 +44,13 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="t">The distance from the origin in which to calculate the new position</param>
 		/// <returns>The position 't' distance from the origin</returns>
 		Point position(const double t) const;
+
+		/// <summary>
+		/// Creates a copy of this ray and transforms it
+		/// </summary>
+		/// <param name="transform">The transform to apply to the new ray</param>
+		/// <returns>A transformed ray</returns>
+		Ray transform(Transform& transform) const;
 
 		/// <summary>
 		/// Calculates the t values where this ray intersects a sphere
