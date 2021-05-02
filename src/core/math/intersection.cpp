@@ -13,3 +13,13 @@ const IIntersectable& Intersection::intersectable() const
 {
 	return m_intersectable;
 }
+
+bool Intersection::operator==(const Intersection& other) const
+{
+	return this->m_t == other.m_t && &this->m_intersectable == &other.m_intersectable;
+}
+
+bool Intersection::operator!=(const Intersection& other) const
+{
+	return !((*this) == other);
+}

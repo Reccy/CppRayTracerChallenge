@@ -19,7 +19,7 @@ Point Ray::position(const double t) const
 	return m_origin + m_direction * t;
 }
 
-std::vector<double> Ray::intersect_sphere(const Sphere& sphere) const
+Intersections Ray::intersect_sphere(const Sphere& sphere) const
 {
 	Vector sphereToRay = m_origin - sphere.position();
 	double a = Vector::dot(m_direction, m_direction);
@@ -30,11 +30,11 @@ std::vector<double> Ray::intersect_sphere(const Sphere& sphere) const
 
 	if (discriminant < 0)
 	{
-		return std::vector<double> {};
+		return Intersections();
 	}
 
 	double t1 = (-b - sqrt(discriminant)) / 2 * a;
 	double t2 = (-b + sqrt(discriminant)) / 2 * a;
 
-	return std::vector<double> { t1, t2 };
+	return Intersections({ Intersection(t1, sphere), Intersection(t2, sphere) });
 }

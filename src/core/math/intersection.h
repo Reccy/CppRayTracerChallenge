@@ -31,6 +31,9 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <returns>Returns the stored intersectable</returns>
 		const IIntersectable& intersectable() const;
+
+		bool operator==(const Intersection& other) const;
+		bool operator!=(const Intersection& other) const;
 	private:
 		const double m_t;
 		const IIntersectable& m_intersectable;
