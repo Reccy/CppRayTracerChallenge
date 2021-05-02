@@ -1,3 +1,5 @@
+#include <limits>
+#include <optional>
 #include "intersections.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
@@ -19,4 +21,29 @@ const int Intersections::size() const
 const int Intersections::count() const
 {
 	return size();
+}
+
+const std::optional<const Intersection> Intersections::hit() const
+{
+	int index = -1;
+	double tSmallest = std::numeric_limits<double>::max();
+
+	for (unsigned int i = 0; i < m_intersections.size(); ++i)
+	{
+		const Intersection& intersection = m_intersections.at(i);
+
+		if (intersection.t() < 0) continue;
+
+		if (intersection.t() >= tSmallest) continue;
+
+		tSmallest = intersection.t();
+		index = i;
+	}
+
+	if (index < 0)
+	{
+		return std::nullopt;
+	}
+
+	return m_intersections.at(index);
 }

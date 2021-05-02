@@ -2,6 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_INTERSECTIONS
 
 #include <vector>
+#include <optional>
 #include "intersection.h"
 
 namespace CppRayTracerChallenge::Core::Math
@@ -42,6 +43,12 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <returns>How many intersections are in the collection</returns>
 		const int count() const;
+
+		/// <summary>
+		/// Finds the intersection that the ray hits, if it exists.
+		/// </summary>
+		/// <returns>The intersection that is the hit. Can return null if no hit occurred.</returns>
+		const std::optional<const Intersection> hit() const;
 	private:
 		const std::vector<Intersection> m_intersections;
 	};
