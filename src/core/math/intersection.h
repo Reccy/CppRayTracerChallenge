@@ -19,6 +19,18 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="t">The distrance from the ray origin in which to calculate the new position</param>
 		/// <param name="intersectable">An object that can be intersected by the ray</param>
 		Intersection(const double t, const IIntersectable& intersectable);
+
+		/// <summary>
+		/// Returns the stored value t
+		/// </summary>
+		/// <returns>Returns the stored value t</returns>
+		const double t() const;
+
+		/// <summary>
+		/// Returns a const reference to the intersectable object
+		/// </summary>
+		/// <returns>Returns the stored intersectable</returns>
+		const IIntersectable& intersectable() const;
 	private:
 		const double m_t;
 		const IIntersectable& m_intersectable;
