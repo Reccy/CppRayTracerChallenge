@@ -57,6 +57,12 @@ namespace CppRayTracerChallenge::Core::Math
 		const Transform shear(const double xY, const double xZ, const double yX, const double yZ, const double zX, const double zY) const;
 
 		/// <summary>
+		/// Transposes the matrix
+		/// </summary>
+		/// <returns>The Transform after being transposed</returns>
+		const Transform transpose() const;
+
+		/// <summary>
 		/// Inverts the Transform
 		/// </summary>
 		/// <returns>The Transform after being inverted</returns>

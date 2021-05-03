@@ -90,6 +90,17 @@ const Transform Transform::shear(const double xY, const double xZ, const double 
 	return copy;
 }
 
+const Transform Transform::transpose() const
+{
+	Transform copy = *this;
+
+	copy.calculateMatrix();
+
+	copy.m_matrix = copy.m_matrix.transpose();
+
+	return copy;
+}
+
 const Transform Transform::invert() const
 {
 	Transform copy = *this;

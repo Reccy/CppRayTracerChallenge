@@ -35,6 +35,13 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <returns>The Sphere's Transform</returns>
 		const Transform transform() const;
+
+		/// <summary>
+		/// Calculates and returns the normal at the passed in position for this sphere
+		/// </summary>
+		/// <param name="position">The position of the normal vector</param>
+		/// <returns>The normal vector at the position</returns>
+		const Vector normal(const Point position) const;
 	private:
 		Point m_position;
 		Transform m_transform;

@@ -18,3 +18,11 @@ const Transform Sphere::transform() const
 {
 	return m_transform;
 }
+
+const Vector Sphere::normal(const Point position) const
+{
+	Point objectPoint = m_transform.invert() * position;
+	Vector objectNormal = objectPoint - m_position;
+	Vector worldNormal = m_transform.invert().transpose() * objectNormal;
+	return worldNormal.normalize();
+}

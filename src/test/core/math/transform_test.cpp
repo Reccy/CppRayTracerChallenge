@@ -30,6 +30,19 @@ TEST(CppRayTracerChallenge_Core_Math_Transform, inverse_point)
 	EXPECT_EQ(transform * point, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Transform, transpose)
+{
+	Transform transform = Transform()
+		.shear(1,0,0,1,2,3)
+		.transpose();
+
+	Point point = Point(0, 1, 0);
+
+	Point expectedResult = Point(0, 1, 1);
+
+	EXPECT_EQ(transform * point, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Transform, translate_vector)
 {
 	Transform transform = Transform()
