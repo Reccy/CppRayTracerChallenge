@@ -27,6 +27,11 @@ double Vector::dot(const Vector& a, const Vector& b)
 		a.m_z * b.m_z;
 }
 
+Vector Vector::reflect(const Vector& vector, const Vector& normal)
+{
+	return vector - normal * 2 * dot(vector, normal);
+}
+
 double Vector::magnitude() const
 {
 	return sqrt(

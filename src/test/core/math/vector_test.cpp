@@ -89,6 +89,28 @@ TEST(CppRayTracerChallenge_Core_Math_Vector, dot_product)
 	EXPECT_EQ(actual, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Vector, vector_reflection_at_45_degrees)
+{
+	Vector vector(1, -1, 0);
+	Vector normal(0, 1, 0);
+
+	Vector reflected = Vector::reflect(vector, normal);
+	Vector expectedResult(1, 1, 0);
+
+	EXPECT_EQ(reflected, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Vector, vector_reflection_off_slanted_surface)
+{
+	Vector vector(0, -1, 0);
+	Vector normal(sqrt(2) / 2, sqrt(2) / 2, 0);
+
+	Vector reflected = Vector::reflect(vector, normal);
+	Vector expectedResult(1, 0, 0);
+
+	EXPECT_EQ(reflected, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Vector, magnitude_of_vector_1_0_0)
 {
 	Vector vector(1, 0, 0);

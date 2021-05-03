@@ -50,6 +50,14 @@ namespace CppRayTracerChallenge::Core::Math
 		static double dot(const Vector& a, const Vector& b);
 
 		/// <summary>
+		/// Reflects the vector off the normal
+		/// </summary>
+		/// <param name="vector">The vector to reflect</param>
+		/// <param name="normal">The normal vector</param>
+		/// <returns>A vector reflecting off the normal</returns>
+		static Vector reflect(const Vector& vector, const Vector& normal);
+
+		/// <summary>
 		/// Calculates and returns the magnitude of the vector
 		/// </summary>
 		/// <returns>Magnitude of the vector</returns>
