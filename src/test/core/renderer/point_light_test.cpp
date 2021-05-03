@@ -5,7 +5,7 @@
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 
-TEST(CppRayTracerChallenge_Core_Renderer_Light, point_light_has_position_and_intensity)
+TEST(CppRayTracerChallenge_Core_Renderer_PointLight, point_light_has_position_and_intensity)
 {
 	Graphics::Color intensity = Graphics::Color::white();
 	Math::Point position = Math::Point(0, 0, 0);

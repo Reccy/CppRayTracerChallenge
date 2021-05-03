@@ -41,6 +41,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/graphics/image.h"
 	"${CORE_LIBRARY_DIR}/graphics/canvas.h"
 	"${CORE_LIBRARY_DIR}/renderer/point_light.h"
+	"${CORE_LIBRARY_DIR}/renderer/material.h"
 	"${CORE_LIBRARY_DIR}/serializer/base_image_serializer.h"
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.h"
 )
@@ -88,6 +89,7 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/graphics/image_test.cpp"
 	"${TEST_SUITE_DIR}/core/graphics/canvas_test.cpp"
 	"${TEST_SUITE_DIR}/core/renderer/point_light_test.cpp"
+	"${TEST_SUITE_DIR}/core/renderer/material_test.cpp"
 	"${TEST_SUITE_DIR}/core/serializer/portable_pixmap_image_serializer_test.cpp"
 )
 list(APPEND TEST_INCLUDED_DIRS "${CORE_LIBRARY_NAME}")
