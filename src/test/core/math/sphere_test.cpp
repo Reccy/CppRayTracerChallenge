@@ -2,6 +2,7 @@
 #include "math/sphere.h"
 #include "math/vector.h"
 #include "math/trig.h"
+#include "renderer/material.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
 
