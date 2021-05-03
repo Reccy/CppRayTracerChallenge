@@ -10,6 +10,10 @@
 #include "math/point.h"
 #include "math/transform.h"
 #include "math/trig.h"
+#include "math/sphere.h"
+#include "math/intersections.h"
+#include "math/ray.h"
+#include "math/transform.h"
 #include "graphics/canvas.h"
 #include "graphics/color.h"
 #include "serializer/portable_pixmap_image_serializer.h"
@@ -165,6 +169,61 @@ Graphics::Canvas createClock()
 	return canvas;
 }
 
+Graphics::Canvas createSphereSilhouette()
+{
+	std::cout << "Rays are being traced..." << std::endl;
+
+	Graphics::Color colorA = Graphics::Color(0.2f, 0.5f, 1.0f);
+	Graphics::Color colorB = Graphics::Color(0.6f, 0.2f, 0.2f);
+	Graphics::Color colorC = Graphics::Color(0.3f, 1.0f, 0.5f);
+
+	Graphics::Color backgroundColor = Graphics::Color::black();
+	Graphics::Canvas canvas(200, 200, backgroundColor);
+
+	std::vector<Math::Sphere> spheres(3, Math::Sphere());
+	spheres[0].transform(Math::Transform().translate(2, 0, 0).scale(1, 0.5, 0.2).rotate(0.2, 0.1, 0.1));
+	spheres[1].transform(Math::Transform().translate(-1, 0, 0).scale(0.8, 1.2, 0.3).rotate(0.2, 0.3, 0.1));
+	spheres[2].transform(Math::Transform().translate(0.2, -0.3, 0).scale(0.8, 1.2, 0.3).rotate(2, 0.2, 20));
+
+	for (int px = 0; px < canvas.width(); ++px)
+	{
+		std::cout << "Rendering row " << std::to_string(px) << std::endl;
+
+		for (int py = 0; py < canvas.height(); ++py)
+		{
+			for (int si = 0; si < spheres.size(); ++si)
+			{
+				Math::Ray raycast = Math::Ray({ static_cast<const double>(px - (canvas.width() / 2)) / 50, static_cast<const double>(py - (canvas.height() / 2)) / 50, 0 }, { 0, 0, 1 });
+				Math::Intersections intersections = raycast.intersect_sphere(spheres[si]);
+
+				Graphics::Color foregroundColor = Graphics::Color::white();
+
+				if (si == 0)
+				{
+					foregroundColor = colorA;
+				}
+
+				if (si == 1)
+				{
+					foregroundColor = colorB;
+				}
+
+				if (si == 2)
+				{
+					foregroundColor = colorC;
+				}
+
+				if (intersections.hit().has_value())
+				{
+					canvas.writePixel(px, py, foregroundColor);
+				}
+			}
+		}
+	}
+
+	return canvas;
+}
+
 void writeCanvas(Graphics::Canvas canvas)
 {
 	Serializer::PortablePixmapImageSerializer ppm;
@@ -199,7 +258,7 @@ void writeCanvas(Graphics::Canvas canvas)
 
 int main()
 {
-	Graphics::Canvas canvas = createClock();
+	Graphics::Canvas canvas = createSphereSilhouette();
 	writeCanvas(canvas);
 
 	return 0;
