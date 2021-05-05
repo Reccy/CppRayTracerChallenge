@@ -41,7 +41,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="position">The position of the normal vector</param>
 		/// <returns>The normal vector at the position</returns>
-		const Vector normal(const Point position) const;
+		virtual const Vector normal(const Point position) const;
 	private:
 		Point m_position;
 		Transform m_transform;

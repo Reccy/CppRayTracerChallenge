@@ -9,6 +9,7 @@ namespace CppRayTracerChallenge::Core::Math
 	{
 	public:
 		virtual Point position() const = 0;
+		virtual const Vector normal(const Point position) const = 0;
 	};
 }
 

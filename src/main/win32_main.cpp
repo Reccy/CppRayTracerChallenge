@@ -16,174 +16,29 @@
 #include "math/transform.h"
 #include "graphics/canvas.h"
 #include "graphics/color.h"
+#include "renderer/sphere.h"
+#include "renderer/material.h"
+#include "renderer/point_light.h"
+#include "renderer/lighting.h"
 #include "serializer/portable_pixmap_image_serializer.h"
 
 using namespace CppRayTracerChallenge::Core;
-
-struct Projectile {
-	Math::Point position = Math::Point(0, 1, 0);
-	Math::Vector velocity = Math::Vector(1, 1.8, 0).normalize() * 11.25;
-};
-
-struct Environment {
-	Math::Vector gravity = Math::Vector(0, -0.1, 0);
-	Math::Vector wind = Math::Vector(-0.01, 0, 0);
-};
-
-Projectile tick(const Projectile projectile, const Environment environment)
-{
-	Projectile result;
-	result.position = projectile.position + projectile.velocity;
-	result.velocity = projectile.velocity + environment.gravity + environment.wind;
-	return result;
-}
-
-std::string formatTicksLog(const int currentTicks, const int maxTicks)
-{
-	std::stringstream ss;
-	ss << "[" << currentTicks << "/" << maxTicks << "]";
-	return ss.str();
-}
-
-std::string formatProjectilePositionLog(const Projectile projectile)
-{
-	std::stringstream ss;
-	ss << "Pos: " << projectile.position;
-	return ss.str();
-}
-
-std::string formatProjectileVelocityLog(const Projectile projectile)
-{
-	std::stringstream ss;
-	ss << "Vel: " << projectile.velocity;
-	return ss.str();
-}
-
-std::string formatEnvironmentGravityLog(const Environment environment)
-{
-	std::stringstream ss;
-	ss << "Grv: " << environment.gravity;
-	return ss.str();
-}
-
-std::string formatEnvironmentWindLog(const Environment environment)
-{
-	std::stringstream ss;
-	ss << "Wnd: " << environment.wind;
-	return ss.str();
-}
-
-std::string log(const int currentTicks, const int maxTicks, const Projectile projectile, const Environment environment)
-{
-	std::stringstream ss;
-	ss << std::left << std::setw(11) << formatTicksLog(currentTicks, maxTicks);
-	ss << std::left << std::setw(30) << formatProjectilePositionLog(projectile);
-	ss << std::left << std::setw(30) << formatProjectileVelocityLog(projectile);
-	ss << std::left << std::setw(25) << formatEnvironmentGravityLog(environment);
-	ss << std::left << std::setw(25) << formatEnvironmentWindLog(environment);
-	
-	return ss.str();
-}
-
-float lerp(float a, float b, float f)
-{
-	return a + f * (b - a);
-}
-
-Graphics::Canvas createBallisticImage()
-{
-	Projectile projectile;
-	Environment environment;
-
-	int currentTicks = 0;
-	int maxTicks = 1000;
-
-	Graphics::Color backgroundColor = Graphics::Color::white();
-	Graphics::Color foregroundColor = Graphics::Color::black();
-	Graphics::Canvas canvas(900, 550, backgroundColor);
-
-	Math::Point oldPos = projectile.position;
-	Math::Point newPos = projectile.position;
-
-	while ((projectile.position.y() > 0) && currentTicks < maxTicks)
-	{
-		oldPos = newPos;
-
-		projectile = tick(projectile, environment);
-
-		newPos = projectile.position;
-
-		for (int i = 0; i < 100; i++)
-		{
-			int xPos = (int)lerp((float)oldPos.x(), (float)newPos.x(), i / 100.0f);
-			int yPos = (int)lerp((float)oldPos.y(), (float)newPos.y(), i / 100.0f);
-
-			canvas.writePixel(xPos, canvas.height() - yPos, foregroundColor);
-		}
-
-		currentTicks++;
-
-		std::cout << log(currentTicks, maxTicks, projectile, environment) << std::endl;
-	}
-
-	return canvas;
-}
-
-Math::Point getPointForHand(int position)
-{
-	Math::Point point = Math::Point(0, 0, 0);
-
-	double zRotate;
-	if (position == 0)
-	{
-		zRotate = 0;
-	}
-	else
-	{
-		zRotate = Math::Trig::radians_to_degrees(2 * Math::Trig::PI) * (position / 12.0);
-	}
-	
-	Math::Transform transform = Math::Transform()
-		.translate(80, 0, 0) // to edge
-		.rotate(0, 0, zRotate) // rotate hand
-		.translate(100, 100, 0); // to origin
-
-	return transform * point;
-}
-
-Graphics::Canvas createClock()
-{
-	Graphics::Color backgroundColor = Graphics::Color::black();
-	Graphics::Color foregroundColor = Graphics::Color::white();
-	Graphics::Canvas canvas(200, 200, backgroundColor);
-
-	for (int i = 0; i < 12; ++i)
-	{
-		Math::Point draw = getPointForHand(i);
-
-		std::cout << "Drawing at " << draw << std::endl;
-
-		canvas.writePixel(static_cast<int>(draw.x()), static_cast<int>(draw.y()), foregroundColor);
-	}
-	
-	return canvas;
-}
 
 Graphics::Canvas createSphereSilhouette()
 {
 	std::cout << "Rays are being traced..." << std::endl;
 
-	Graphics::Color colorA = Graphics::Color(0.2f, 0.5f, 1.0f);
-	Graphics::Color colorB = Graphics::Color(0.6f, 0.2f, 0.2f);
-	Graphics::Color colorC = Graphics::Color(0.3f, 1.0f, 0.5f);
+	Renderer::Material material = Renderer::Material();
+	material.color = Graphics::Color(1.0f, 0.2f, 1.0f);
+
+	Renderer::Sphere sphere = Renderer::Sphere();
+	sphere.material(material);
+	sphere.transform(Math::Transform().scale(2, 2, 2));
+
+	Renderer::PointLight light = Renderer::PointLight({ -10, 10, -10 }, Graphics::Color::white());
 
 	Graphics::Color backgroundColor = Graphics::Color::black();
-	Graphics::Canvas canvas(200, 200, backgroundColor);
-
-	std::vector<Math::Sphere> spheres(3, Math::Sphere());
-	spheres[0].transform(Math::Transform().translate(2, 0, 0).scale(1, 0.5, 0.2).rotate(0.2, 0.1, 0.1));
-	spheres[1].transform(Math::Transform().translate(-1, 0, 0).scale(0.8, 1.2, 0.3).rotate(0.2, 0.3, 0.1));
-	spheres[2].transform(Math::Transform().translate(0.2, -0.3, 0).scale(0.8, 1.2, 0.3).rotate(2, 0.2, 20));
+	Graphics::Canvas canvas(1000, 1000, backgroundColor);
 
 	for (int px = 0; px < canvas.width(); ++px)
 	{
@@ -191,32 +46,27 @@ Graphics::Canvas createSphereSilhouette()
 
 		for (int py = 0; py < canvas.height(); ++py)
 		{
-			for (int si = 0; si < spheres.size(); ++si)
+			double worldX = static_cast<const double>(px - (canvas.width() / 2)) / 50;
+			double worldY = static_cast<const double>((canvas.height() - py) - (canvas.height() / 2)) / 50;
+			double worldZ = -10;
+
+			Math::Point rayPosition = Math::Point(worldX, worldY, worldZ);
+			Math::Vector rayDirection = Math::Vector(0, 0, 1).normalize();
+
+			Math::Ray raycast = Math::Ray(rayPosition, rayDirection);
+			Math::Intersections intersections = raycast.intersect_sphere(sphere);
+
+			if (intersections.hit().has_value())
 			{
-				Math::Ray raycast = Math::Ray({ static_cast<const double>(px - (canvas.width() / 2)) / 50, static_cast<const double>(py - (canvas.height() / 2)) / 50, 0 }, { 0, 0, 1 });
-				Math::Intersections intersections = raycast.intersect_sphere(spheres[si]);
+				const Math::Intersection& hit = intersections.hit().value();
 
-				Graphics::Color foregroundColor = Graphics::Color::white();
+				Math::Point intersectionPoint = raycast.position(hit.t());
+				Math::Vector normal = hit.intersectable().normal(intersectionPoint);
+				Math::Point eye = -raycast.direction();
 
-				if (si == 0)
-				{
-					foregroundColor = colorA;
-				}
+				Graphics::Color color = Renderer::Lighting::lighting(material, light, intersectionPoint, eye, normal);
 
-				if (si == 1)
-				{
-					foregroundColor = colorB;
-				}
-
-				if (si == 2)
-				{
-					foregroundColor = colorC;
-				}
-
-				if (intersections.hit().has_value())
-				{
-					canvas.writePixel(px, py, foregroundColor);
-				}
+				canvas.writePixel(px, py, color);
 			}
 		}
 	}
