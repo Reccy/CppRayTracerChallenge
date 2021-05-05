@@ -43,6 +43,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/renderer/point_light.h"
 	"${CORE_LIBRARY_DIR}/renderer/material.h"
 	"${CORE_LIBRARY_DIR}/renderer/sphere.h"
+	"${CORE_LIBRARY_DIR}/renderer/lighting.h"
 	"${CORE_LIBRARY_DIR}/serializer/base_image_serializer.h"
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.h"
 )
@@ -62,6 +63,7 @@ set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/renderer/point_light.cpp"
 	"${CORE_LIBRARY_DIR}/renderer/material.cpp"
 	"${CORE_LIBRARY_DIR}/renderer/sphere.cpp"
+	"${CORE_LIBRARY_DIR}/renderer/lighting.cpp"
 	"${CORE_LIBRARY_DIR}/serializer/base_image_serializer.cpp"
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.cpp"
 )
@@ -94,6 +96,7 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/renderer/point_light_test.cpp"
 	"${TEST_SUITE_DIR}/core/renderer/material_test.cpp"
 	"${TEST_SUITE_DIR}/core/renderer/sphere_test.cpp"
+	"${TEST_SUITE_DIR}/core/renderer/lighting_test.cpp"
 	"${TEST_SUITE_DIR}/core/serializer/portable_pixmap_image_serializer_test.cpp"
 )
 list(APPEND TEST_INCLUDED_DIRS "${CORE_LIBRARY_NAME}")
