@@ -8,7 +8,7 @@
 namespace CppRayTracerChallenge::Core::Math
 {
 	/// <summary>
-	/// Represents a collection of Intersections
+	/// Represents a sorted collection of Intersections
 	/// </summary>
 	class Intersections
 	{
@@ -21,8 +21,8 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <summary>
 		/// Creates a collection of Intersections
 		/// </summary>
-		/// <param name="intersections">A list of intersections, passed as const references</param>
-		Intersections(const std::vector<Intersection> intersections);
+		/// <param name="intersections">A list of intersections, passed as const references. They will be sorted and added to intersections.</param>
+		const Intersections(const std::vector<Intersection> intersections);
 
 		/// <summary>
 		/// Returns a const reference to the intersection at the index
@@ -49,8 +49,14 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <returns>The intersection that is the hit. Can return null if no hit occurred.</returns>
 		const std::optional<const Intersection> hit() const;
+
+		Intersections operator+(const Intersections& other) const;
+		Intersections operator+=(const Intersections& other);
 	private:
-		const std::vector<Intersection> m_intersections;
+		std::vector<Intersection> m_intersections;
+		int m_hitIndex;
+
+		void calculateHitindex();
 	};
 }
 

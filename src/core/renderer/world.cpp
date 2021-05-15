@@ -2,6 +2,9 @@
 #include "point_light.h"
 #include "sphere.h"
 #include "../math/transform.h"
+#include "../math/ray.h"
+#include "../math/intersection.h"
+#include "../math/intersections.h"
 #include "../graphics/color.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
@@ -54,4 +57,16 @@ int World::objectCount() const
 int World::lightCount() const
 {
 	return static_cast<int>(m_lights.size());
+}
+
+Math::Intersections World::intersect_ray(const Math::Ray ray) const
+{
+	Math::Intersections result = Math::Intersections();
+
+	for (const Sphere& sphere : m_objects)
+	{
+		result += ray.intersect_sphere(sphere);
+	}
+
+	return result;
 }
