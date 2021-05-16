@@ -65,7 +65,7 @@ Math::Intersections World::intersect_ray(const Math::Ray ray) const
 
 	for (const Sphere& sphere : m_objects)
 	{
-		result += ray.intersect_sphere(sphere);
+		result += sphere.intersect(ray);
 	}
 
 	return result;

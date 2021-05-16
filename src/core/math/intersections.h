@@ -7,6 +7,7 @@
 
 namespace CppRayTracerChallenge::Core::Math
 {
+	class Intersection;
 	/// <summary>
 	/// Represents a sorted collection of Intersections
 	/// </summary>

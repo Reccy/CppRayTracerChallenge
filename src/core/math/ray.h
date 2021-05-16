@@ -4,7 +4,6 @@
 #include <vector>
 #include "point.h"
 #include "vector.h"
-#include "sphere.h"
 #include "intersections.h"
 #include "transform.h"
 
@@ -51,13 +50,6 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="transform">The transform to apply to the new ray</param>
 		/// <returns>A transformed ray</returns>
 		Ray transform(const Transform& transform) const;
-
-		/// <summary>
-		/// Calculates the t values where this ray intersects a sphere
-		/// </summary>
-		/// <param name="sphere">Reference to the Sphere to calculate the intersections on</param>
-		/// <returns>A list of intersections where the ray intersects the sphere</returns>
-		Intersections intersect_sphere(const Sphere& sphere) const;
 	private:
 		Point m_origin;
 		Vector m_direction;
