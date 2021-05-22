@@ -4,4 +4,4 @@ This is my repo for implementing the Ray Tracer Challenge from: http://raytracer
 
 # Documentation
 
-Documentation is available under the GitHub pages
+Documentation is available here: https://reccy.github.io/CppRayTracerChallenge/html/index.html
