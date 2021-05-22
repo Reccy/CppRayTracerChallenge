@@ -1,0 +1,5 @@
+<map id="CppRayTracerChallenge::Core::Math::Ray::direction" name="CppRayTracerChallenge::Core::Math::Ray::direction">
+<area shape="rect" id="node1" title="Returns a copy of the Ray vector" alt="" coords="277,50,460,91"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a325609a69321d16a1f99a29a5a0548e8" title="Computes the values of the intersection and the ray" alt="" coords="5,5,229,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="24,86,211,127"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Graphics::Image" name="CppRayTracerChallenge::Core::Graphics::Image">
+<area shape="rect" id="node1" title="A 2D image" alt="" coords="8,5,169,47"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html" title="A 2D canvas to write pixel color data onto" alt="" coords="5,95,172,136"/>
+</map>

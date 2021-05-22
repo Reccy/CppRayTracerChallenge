@@ -1,0 +1,5 @@
+<map id="CppRayTracerChallenge::Core::Math::Matrix::transpose" name="CppRayTracerChallenge::Core::Math::Matrix::transpose">
+<area shape="rect" id="node1" title="Transposes the Matrix, changing its rows into columns, and columns into rows" alt="" coords="424,5,585,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a3f1d33d2eb0d3c951536bc09914274cb" title="Transposes the matrix" alt="" coords="215,5,376,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="5,5,167,61"/>
+</map>

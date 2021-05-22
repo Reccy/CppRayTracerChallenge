@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Renderer::World::addLight" name="CppRayTracerChallenge::Core::Renderer::World::addLight">
+<area shape="rect" id="node1" title="Adds a light to the world" alt="" coords="215,5,376,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="5,5,167,61"/>
+</map>

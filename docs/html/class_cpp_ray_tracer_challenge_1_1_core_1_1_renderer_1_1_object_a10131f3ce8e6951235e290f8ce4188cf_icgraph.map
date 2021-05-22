@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Renderer::Object::material" name="CppRayTracerChallenge::Core::Renderer::Object::material">
+<area shape="rect" id="node1" title="Returns the material assigned to the object" alt="" coords="216,5,379,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_object.html#a1e96da4a13b45a26cb8a431ec6c1f058" title="Assigns a material to the object" alt="" coords="5,5,168,61"/>
+</map>

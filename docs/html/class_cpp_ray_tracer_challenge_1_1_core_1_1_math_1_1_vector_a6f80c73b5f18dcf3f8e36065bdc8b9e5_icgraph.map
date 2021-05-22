@@ -1,0 +1,7 @@
+<map id="CppRayTracerChallenge::Core::Math::Vector::Vector" name="CppRayTracerChallenge::Core::Math::Vector::Vector">
+<area shape="rect" id="node1" title="Constructs a Vector with components 0, 0, 0 Note that this has an undefined direction!" alt="" coords="436,85,597,141"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#af05ee88d1437c9ffa8ea2eba722b1ce4" title="Performs a cross product operation and returns the result" alt="" coords="221,5,382,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a339165be3900e10ed558402d68a1b750" title="Calculates and returns a normalized version of the vector" alt="" coords="221,85,382,141"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a653c0ad7759c9b8a8df4bfa5e97a7d16" title="Creates a vector where all components are 0" alt="" coords="215,166,388,207"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="5,85,167,141"/>
+</map>

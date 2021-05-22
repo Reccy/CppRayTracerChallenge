@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Renderer::Material" name="CppRayTracerChallenge::Core::Renderer::Material">
+<area shape="rect" id="node1" title="Represents a Material struct for use in a Phong Lighting Model" alt="" coords="5,109,176,151"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html" title=" " alt="" coords="10,5,171,47"/>
+</map>

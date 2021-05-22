@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Serializer::BaseImageSerializer" name="CppRayTracerChallenge::Core::Serializer::BaseImageSerializer">
+<area shape="rect" id="node1" title="Base serializer class responsible for serializing an image to a buffer and vice versa" alt="" coords="5,5,197,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html" title="A PortablePixmap serializer responsible for serializing an image to a buffer and vice versa http://ne..." alt="" coords="14,109,189,165"/>
+</map>

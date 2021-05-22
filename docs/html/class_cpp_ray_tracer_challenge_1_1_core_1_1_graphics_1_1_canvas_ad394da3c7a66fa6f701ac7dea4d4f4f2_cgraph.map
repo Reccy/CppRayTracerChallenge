@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Graphics::Canvas::Image" name="CppRayTracerChallenge::Core::Graphics::Canvas::Image">
+<area shape="rect" id="node1" title="Constructs an image of set width, height. Initializes color data to that of the passed in colors" alt="" coords="5,5,172,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a042a834f5a144cc45600dfb1ced54284" title="Returns the index of the pixel at the x and y coordinates" alt="" coords="220,5,381,61"/>
+</map>

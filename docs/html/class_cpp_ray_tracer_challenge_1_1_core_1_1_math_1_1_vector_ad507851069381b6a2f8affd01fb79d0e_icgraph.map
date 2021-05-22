@@ -1,0 +1,5 @@
+<map id="CppRayTracerChallenge::Core::Math::Vector::magnitude" name="CppRayTracerChallenge::Core::Math::Vector::magnitude">
+<area shape="rect" id="node1" title="Calculates and returns the magnitude of the vector" alt="" coords="424,5,585,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a339165be3900e10ed558402d68a1b750" title="Calculates and returns a normalized version of the vector" alt="" coords="215,5,376,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="5,5,167,61"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Math::Ray::origin" name="CppRayTracerChallenge::Core::Math::Ray::origin">
+<area shape="rect" id="node1" title="Returns a copy of the Ray origin" alt="" coords="240,5,404,47"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="5,5,192,47"/>
+</map>
