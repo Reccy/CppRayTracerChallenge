@@ -24,7 +24,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, intersect_ray)
 	World w = World::defaultWorld();
 	Math::Ray r = Math::Ray({ 0, 0, -5 }, { 0,0,1 });
 
-	Math::Intersections intersections = w.intersect_ray(r);
+	Math::Intersections intersections = w.intersectRay(r);
 
 	EXPECT_EQ(intersections.count(), 4);
 	EXPECT_EQ(intersections.at(0).t(), 4);

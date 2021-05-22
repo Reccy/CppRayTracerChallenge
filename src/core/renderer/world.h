@@ -55,7 +55,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// </summary>
 		/// <param name="ray">The ray to cast in the world</param>
 		/// <returns>Intersections</returns>
-		Math::Intersections intersect_ray(const Math::Ray ray) const;
+		Math::Intersections intersectRay(const Math::Ray ray) const;
 	private:
 		std::vector<PointLight> m_lights;
 		std::vector<Object> m_objects;

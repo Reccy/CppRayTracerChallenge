@@ -65,7 +65,7 @@ int World::lightCount() const
 	return static_cast<int>(m_lights.size());
 }
 
-Math::Intersections World::intersect_ray(const Math::Ray ray) const
+Math::Intersections World::intersectRay(const Math::Ray ray) const
 {
 	Math::Intersections result = Math::Intersections();
 
