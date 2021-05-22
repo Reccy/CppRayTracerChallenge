@@ -1,0 +1,11 @@
+<map id="CppRayTracerChallenge::Core::Renderer::Object::intersect" name="CppRayTracerChallenge::Core::Renderer::Object::intersect">
+<area shape="rect" id="node1" title="Intersects a ray on the shape" alt="" coords="5,151,168,207"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6" title=" " alt="" coords="216,151,377,207"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="660,5,843,47"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="435,188,602,229"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="669,136,833,177"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="438,254,599,310"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="438,334,599,390"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="425,71,612,112"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="671,71,832,112"/>
+</map>

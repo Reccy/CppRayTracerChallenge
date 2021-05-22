@@ -1,0 +1,5 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node1" title=" " alt="" coords="5,60,60,87"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a79ef1531e3e3df40268dc7e06444e6f5" title="Returns how many lights are in the world" alt="" coords="108,5,269,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#aa7aaea63faa42d0dd8338ad3b117c399" title="Returns how many objects are in the world" alt="" coords="108,85,269,141"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node1" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a7dfd7f3387d4f9f61d8eb48e31be1e4f" title="Reflects the vector off the normal" alt="" coords="108,5,269,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="317,13,484,54"/>
+</map>

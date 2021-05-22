@@ -1,4 +1,8 @@
 <map id="CppRayTracerChallenge::Core::Math::Sphere::transform" name="CppRayTracerChallenge::Core::Math::Sphere::transform">
-<area shape="rect" id="node1" title="Transforms the Sphere" alt="" coords="215,5,376,61"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="5,5,167,61"/>
+<area shape="rect" id="node1" title="Transforms the Sphere" alt="" coords="317,56,479,112"/>
+<area shape="rect" id="node2" href="$win32__main_8cpp.html#a990679f43e0187ccc0112f1c72bc899b" title=" " alt="" coords="110,5,267,32"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,56,269,112"/>
+<area shape="rect" id="node6" href="$sphere__test_8cpp.html#a4fbb167d3b4b47773f6e9ecaeaa778e7" title=" " alt="" coords="161,136,216,163"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="7,5,58,32"/>
+<area shape="rect" id="node5" href="$world__test_8cpp.html#a839c0eff085fa7f8fd18f39e504e9800" title=" " alt="" coords="5,71,60,97"/>
 </map>

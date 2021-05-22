@@ -1,4 +1,7 @@
 <map id="CppRayTracerChallenge::Core::Graphics::Color::black" name="CppRayTracerChallenge::Core::Graphics::Color::black">
-<area shape="rect" id="node1" title="Returns a black color" alt="" coords="215,5,376,61"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#afb0339b802ed560e69eb07358d30198f" title="Constructs an image of set width, height. Initializes all color data to black." alt="" coords="5,5,167,61"/>
+<area shape="rect" id="node1" title="Returns a black color" alt="" coords="313,56,475,112"/>
+<area shape="rect" id="node2" href="$win32__main_8cpp.html#a990679f43e0187ccc0112f1c72bc899b" title=" " alt="" coords="106,5,263,32"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#afb0339b802ed560e69eb07358d30198f" title="Constructs an image of set width, height. Initializes all color data to black." alt="" coords="104,56,265,112"/>
+<area shape="rect" id="node5" href="$canvas__test_8cpp.html#ab8edb03e4a120173ca378598a043606c" title=" " alt="" coords="157,136,212,163"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
 </map>

@@ -1,4 +1,9 @@
 <map id="CppRayTracerChallenge::Core::Math::Sphere::position" name="CppRayTracerChallenge::Core::Math::Sphere::position">
-<area shape="rect" id="node1" title="Returns the position of the sphere" alt="" coords="215,5,376,61"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="5,5,167,61"/>
+<area shape="rect" id="node1" title="Returns the position of the sphere" alt="" coords="425,136,587,192"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6" title=" " alt="" coords="216,56,377,112"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="216,136,377,192"/>
+<area shape="rect" id="node7" href="$sphere__test_8cpp.html#a4fbb167d3b4b47773f6e9ecaeaa778e7" title=" " alt="" coords="269,216,324,243"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_object.html#a97f6712a2abcc3243e7e7c0ad35fea0d" title="Intersects a ray on the shape" alt="" coords="5,5,168,61"/>
+<area shape="rect" id="node4" href="$sphere__test_8cpp.html#a7697e4d02d7f2d17619710f3a6c252ed" title=" " alt="" coords="59,85,114,112"/>
+<area shape="rect" id="node6" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="59,151,114,177"/>
 </map>

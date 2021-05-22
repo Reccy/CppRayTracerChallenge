@@ -86,14 +86,14 @@ $(document).ready(function(){initNavTree('portable__pixmap__image__serializer__t
 <div class="title">portable_pixmap_image_serializer_test.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;gtest/gtest.h&quot;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;serializer/portable_pixmap_image_serializer.h&quot;</span></div>
+<a href="portable__pixmap__image__serializer__test_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;gtest/gtest.h&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="portable__pixmap__image__serializer_8h.html">serializer/portable_pixmap_image_serializer.h</a>&quot;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using namespace </span>CppRayTracerChallenge::Core::Serializer;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_serializer.html">CppRayTracerChallenge::Core::Serializer</a>;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_correct_header)</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="portable__pixmap__image__serializer__test_8cpp.html#abf419d5b2e3757f420192e978e4d5851">    8</a></span>&#160;<a class="code" href="portable__pixmap__image__serializer__test_8cpp.html#abf419d5b2e3757f420192e978e4d5851">TEST</a>(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_correct_header)</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html">Graphics::Image</a> image(5,3);</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
@@ -127,7 +127,7 @@ $(document).ready(function(){initNavTree('portable__pixmap__image__serializer__t
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    EXPECT_EQ(header.str(), expectedResult);</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_correct_image_data)</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="portable__pixmap__image__serializer__test_8cpp.html#aadb6257ac450969c33119709fa3dafa4">   42</a></span>&#160;<a class="code" href="portable__pixmap__image__serializer__test_8cpp.html#abf419d5b2e3757f420192e978e4d5851">TEST</a>(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_correct_image_data)</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// Setup color palette</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a> c1 = <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>(1.5, 0, 0);</div>
@@ -184,7 +184,7 @@ $(document).ready(function(){initNavTree('portable__pixmap__image__serializer__t
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    EXPECT_EQ(result, expectedResult);</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, split_long_lines_over_70_chars)</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="portable__pixmap__image__serializer__test_8cpp.html#a31352640609a2095f57859f061345939">   99</a></span>&#160;<a class="code" href="portable__pixmap__image__serializer__test_8cpp.html#abf419d5b2e3757f420192e978e4d5851">TEST</a>(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, split_long_lines_over_70_chars)</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;{</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="comment">// Setup color palette</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a> c = <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>(1.0f, 0.8f, 0.6f);</div>
@@ -233,7 +233,7 @@ $(document).ready(function(){initNavTree('portable__pixmap__image__serializer__t
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    EXPECT_EQ(result, expectedResult);</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;}</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, file_is_terminated_with_a_newline)</div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="portable__pixmap__image__serializer__test_8cpp.html#a606ddb78b45a5d6fa63c22defe43c695">  148</a></span>&#160;<a class="code" href="portable__pixmap__image__serializer__test_8cpp.html#abf419d5b2e3757f420192e978e4d5851">TEST</a>(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, file_is_terminated_with_a_newline)</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;{</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html">Graphics::Image</a> image(10, 10);</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
@@ -251,12 +251,15 @@ $(document).ready(function(){initNavTree('portable__pixmap__image__serializer__t
 <div class="ttc" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer_html_ab1addd635673be34a1b4939587da91f8"><div class="ttname"><a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#ab1addd635673be34a1b4939587da91f8">CppRayTracerChallenge::Core::Serializer::BaseImageSerializer::buffer</a></div><div class="ttdeci">std::vector&lt; char &gt; buffer() const</div><div class="ttdoc">Returns the serialized image as a buffer</div><div class="ttdef"><b>Definition:</b> <a href="base__image__serializer_8cpp_source.html#l00012">base_image_serializer.cpp:12</a></div></div>
 <div class="ttc" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer_html"><div class="ttname"><a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html">CppRayTracerChallenge::Core::Serializer::PortablePixmapImageSerializer</a></div><div class="ttdoc">A PortablePixmap serializer responsible for serializing an image to a buffer and vice versa http://ne...</div><div class="ttdef"><b>Definition:</b> <a href="portable__pixmap__image__serializer_8h_source.html#l00018">portable_pixmap_image_serializer.h:19</a></div></div>
 <div class="ttc" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer_html_a4a1a96db5d06e8ad687c3f07a1c74b14"><div class="ttname"><a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html#a4a1a96db5d06e8ad687c3f07a1c74b14">CppRayTracerChallenge::Core::Serializer::PortablePixmapImageSerializer::serialize</a></div><div class="ttdeci">void serialize(Graphics::Image image) override</div><div class="ttdoc">Serializes an Image, making it available to access via the buffer</div><div class="ttdef"><b>Definition:</b> <a href="portable__pixmap__image__serializer_8cpp_source.html#l00005">portable_pixmap_image_serializer.cpp:5</a></div></div>
+<div class="ttc" id="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_html"><div class="ttname"><a href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_serializer.html">CppRayTracerChallenge::Core::Serializer</a></div><div class="ttdef"><b>Definition:</b> <a href="base__image__serializer_8h_source.html#l00007">base_image_serializer.h:7</a></div></div>
+<div class="ttc" id="aportable__pixmap__image__serializer_8h_html"><div class="ttname"><a href="portable__pixmap__image__serializer_8h.html">portable_pixmap_image_serializer.h</a></div></div>
+<div class="ttc" id="aportable__pixmap__image__serializer__test_8cpp_html_abf419d5b2e3757f420192e978e4d5851"><div class="ttname"><a href="portable__pixmap__image__serializer__test_8cpp.html#abf419d5b2e3757f420192e978e4d5851">TEST</a></div><div class="ttdeci">TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_correct_header)</div><div class="ttdef"><b>Definition:</b> <a href="portable__pixmap__image__serializer__test_8cpp_source.html#l00008">portable_pixmap_image_serializer_test.cpp:8</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_120ed4da3e3217b1e7fc0b4f48568e79.html">test</a></li><li class="navelem"><a class="el" href="dir_25a9e11dbc65181166ed52990eb35b85.html">core</a></li><li class="navelem"><a class="el" href="dir_d856120120a076ab0d9d79558062488b.html">serializer</a></li><li class="navelem"><b>portable_pixmap_image_serializer_test.cpp</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_120ed4da3e3217b1e7fc0b4f48568e79.html">test</a></li><li class="navelem"><a class="el" href="dir_25a9e11dbc65181166ed52990eb35b85.html">core</a></li><li class="navelem"><a class="el" href="dir_d856120120a076ab0d9d79558062488b.html">serializer</a></li><li class="navelem"><a class="el" href="portable__pixmap__image__serializer__test_8cpp.html">portable_pixmap_image_serializer_test.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

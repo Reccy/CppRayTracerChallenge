@@ -1,0 +1,13 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node1" title=" " alt="" coords="5,260,60,287"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,165,269,221"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a79ef1531e3e3df40268dc7e06444e6f5" title="Returns how many lights are in the world" alt="" coords="108,245,269,301"/>
+<area shape="rect" id="node11" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#aa7aaea63faa42d0dd8338ad3b117c399" title="Returns how many objects are in the world" alt="" coords="108,325,269,381"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="317,5,479,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#af301463417bcb2e963a697841de006e0" title="Adds a object to the world" alt="" coords="317,85,479,141"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="317,165,479,221"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="317,245,479,301"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8" title="Constructs a World that is completely empty" alt="" coords="317,325,479,381"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="527,165,688,221"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="527,245,688,301"/>
+</map>

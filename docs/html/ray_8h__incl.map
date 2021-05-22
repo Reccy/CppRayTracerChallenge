@@ -1,0 +1,18 @@
+<map id="src/core/math/ray.h" name="src/core/math/ray.h">
+<area shape="rect" id="node1" title=" " alt="" coords="354,5,489,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="353,229,409,256"/>
+<area shape="rect" id="node3" href="$point_8h.html" title=" " alt="" coords="595,80,656,107"/>
+<area shape="rect" id="node4" href="$vector_8h.html" title=" " alt="" coords="592,155,659,181"/>
+<area shape="rect" id="node9" href="$intersections_8h.html" title=" " alt="" coords="207,80,313,107"/>
+<area shape="rect" id="node13" href="$transform_8h.html" title=" " alt="" coords="419,80,506,107"/>
+<area shape="rect" id="node5" href="$tuple_8h.html" title=" " alt="" coords="589,229,651,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="553,304,625,331"/>
+<area shape="rect" id="node7" title=" " alt="" coords="529,379,612,405"/>
+<area shape="rect" id="node8" href="$comparison_8h.html" title=" " alt="" coords="429,304,529,331"/>
+<area shape="rect" id="node10" title=" " alt="" coords="227,155,293,181"/>
+<area shape="rect" id="node11" href="$intersection_8h.html" title=" " alt="" coords="102,155,202,181"/>
+<area shape="rect" id="node12" href="$i__intersectable_8h.html" title=" " alt="" coords="5,229,123,256"/>
+<area shape="rect" id="node14" title=" " alt="" coords="513,155,567,181"/>
+<area shape="rect" id="node15" href="$matrix_8h.html" title=" " alt="" coords="419,155,488,181"/>
+<area shape="rect" id="node16" title=" " alt="" coords="491,229,560,256"/>
+</map>

@@ -1,4 +1,7 @@
 <map id="CppRayTracerChallenge::Core::Math::Intersection::intersectable" name="CppRayTracerChallenge::Core::Math::Intersection::intersectable">
-<area shape="rect" id="node1" title="Returns a const reference to the intersectable object" alt="" coords="277,5,447,61"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a325609a69321d16a1f99a29a5a0548e8" title="Computes the values of the intersection and the ray" alt="" coords="5,5,229,61"/>
+<area shape="rect" id="node1" title="Returns a const reference to the intersectable object" alt="" coords="376,71,545,127"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a325609a69321d16a1f99a29a5a0548e8" title="Computes the values of the intersection and the ray" alt="" coords="104,5,328,61"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#a990679f43e0187ccc0112f1c72bc899b" title=" " alt="" coords="137,85,295,112"/>
+<area shape="rect" id="node5" href="$intersection__test_8cpp.html#ac1f23a339a082a2d414bac044366901b" title=" " alt="" coords="189,136,243,163"/>
+<area shape="rect" id="node4" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,85,56,112"/>
 </map>

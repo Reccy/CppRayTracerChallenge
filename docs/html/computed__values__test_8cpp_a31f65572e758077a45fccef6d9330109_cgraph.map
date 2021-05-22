@@ -1,0 +1,9 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node1" title=" " alt="" coords="5,206,60,233"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a622264bce1b187d850a385034df91dc1" title="Returns the eye vector" alt="" coords="108,5,361,47"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a7b606f9f2328d8082e7930787b237bf4" title="Returns a const reference to the intersectable" alt="" coords="123,71,347,127"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a5233b26043e7696c260258f19b9867d0" title="If the intersection occurred inside or outside of the intersectable object" alt="" coords="123,151,347,207"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a1d400c7edc498808c9de5e35a436824a" title="Returns the normal vector" alt="" coords="123,231,347,287"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8" title="Returns the position of the intersection" alt="" coords="123,311,347,367"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#ab6c08535b526bc2e37e63d1fce575f39" title="Returns the t value from the intersection" alt="" coords="117,392,353,433"/>
+</map>

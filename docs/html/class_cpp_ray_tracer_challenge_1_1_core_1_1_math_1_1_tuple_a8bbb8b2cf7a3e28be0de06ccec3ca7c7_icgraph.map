@@ -1,4 +1,10 @@
 <map id="CppRayTracerChallenge::Core::Math::Tuple::z" name="CppRayTracerChallenge::Core::Math::Tuple::z">
-<area shape="rect" id="node1" title="Returns a const Z component" alt="" coords="240,5,401,47"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ab3970dc118e7c6d4d67927cc96d26e1b" title="Returns the value of the blue channel" alt="" coords="5,5,192,47"/>
+<area shape="rect" id="node1" title="Returns a const Z component" alt="" coords="449,206,611,247"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ab3970dc118e7c6d4d67927cc96d26e1b" title="Returns the value of the blue channel" alt="" coords="215,133,401,174"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#adce048e4801671bf00d3e7f200c66226" title=" " alt="" coords="227,199,389,255"/>
+<area shape="rect" id="node8" href="$point__test_8cpp.html#a2eac03845a26091eedcf484468b52af2" title=" " alt="" coords="281,279,335,305"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#aa94a48b149c52efeff8fdc6a4a6962bb" title=" " alt="" coords="5,5,167,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#af120872d8445c917e04039f4921279d3" title=" " alt="" coords="5,85,167,141"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a185821340c57a5a560507331052a928d" title=" " alt="" coords="5,165,167,221"/>
+<area shape="rect" id="node6" href="$color__test_8cpp.html#a2f5606c6b9746000ac36111be48fe3b6" title=" " alt="" coords="59,245,113,272"/>
 </map>

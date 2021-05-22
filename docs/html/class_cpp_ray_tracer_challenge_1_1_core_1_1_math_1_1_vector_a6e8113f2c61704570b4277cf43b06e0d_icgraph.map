@@ -1,4 +1,9 @@
 <map id="CppRayTracerChallenge::Core::Math::Vector::dot" name="CppRayTracerChallenge::Core::Math::Vector::dot">
-<area shape="rect" id="node1" title="Performs a dot product operation and returns the result" alt="" coords="215,13,381,54"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a7dfd7f3387d4f9f61d8eb48e31be1e4f" title="Reflects the vector off the normal" alt="" coords="5,5,167,61"/>
+<area shape="rect" id="node1" title="Performs a dot product operation and returns the result" alt="" coords="425,143,592,185"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6" title=" " alt="" coords="216,56,377,112"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a7dfd7f3387d4f9f61d8eb48e31be1e4f" title="Reflects the vector off the normal" alt="" coords="216,136,377,192"/>
+<area shape="rect" id="node7" href="$vector__test_8cpp.html#a318bfee2f00c4e95824c34ad60de9fd6" title=" " alt="" coords="269,216,324,243"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_object.html#a97f6712a2abcc3243e7e7c0ad35fea0d" title="Intersects a ray on the shape" alt="" coords="5,5,168,61"/>
+<area shape="rect" id="node4" href="$sphere__test_8cpp.html#a7697e4d02d7f2d17619710f3a6c252ed" title=" " alt="" coords="59,85,114,112"/>
+<area shape="rect" id="node6" href="$vector__test_8cpp.html#a6f255d78943a972e07b99879441c5e8c" title=" " alt="" coords="59,151,114,177"/>
 </map>

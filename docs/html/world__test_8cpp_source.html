@@ -86,28 +86,28 @@ $(document).ready(function(){initNavTree('world__test_8cpp_source.html',''); ini
 <div class="title">world_test.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;gtest/gtest.h&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;renderer/world.h&quot;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;math/ray.h&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;math/intersections.h&quot;</span></div>
+<a href="world__test_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;gtest/gtest.h&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="world_8h.html">renderer/world.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ray_8h.html">math/ray.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="intersections_8h.html">math/intersections.h</a>&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using namespace </span>CppRayTracerChallenge::Core::Renderer;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html">CppRayTracerChallenge::Core::Renderer</a>;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;TEST(CppRayTracerChallenge_Core_Renderer_World, world_creation)</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="world__test_8cpp.html#a17a7bb52734ec725561066c61eecca85">    8</a></span>&#160;<a class="code" href="world__test_8cpp.html#a17a7bb52734ec725561066c61eecca85">TEST</a>(CppRayTracerChallenge_Core_Renderer_World, world_creation)</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html">World</a> w = <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html">World</a>();</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    EXPECT_EQ(w.<a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#aa7aaea63faa42d0dd8338ad3b117c399">objectCount</a>(), 0);</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    EXPECT_EQ(w.<a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a79ef1531e3e3df40268dc7e06444e6f5">lightCount</a>(), 0);</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;TEST(CppRayTracerChallenge_Core_Renderer_World, default_world)</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="world__test_8cpp.html#a839c0eff085fa7f8fd18f39e504e9800">   15</a></span>&#160;<a class="code" href="world__test_8cpp.html#a17a7bb52734ec725561066c61eecca85">TEST</a>(CppRayTracerChallenge_Core_Renderer_World, default_world)</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html">World</a> w = <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c">World::defaultWorld</a>();</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    EXPECT_EQ(w.<a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a79ef1531e3e3df40268dc7e06444e6f5">lightCount</a>(), 1);</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    EXPECT_EQ(w.<a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#aa7aaea63faa42d0dd8338ad3b117c399">objectCount</a>(), 2);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;TEST(CppRayTracerChallenge_Core_Renderer_World, intersect_ray)</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="world__test_8cpp.html#a4f2df99db83debc89a68c6952fb73e0f">   22</a></span>&#160;<a class="code" href="world__test_8cpp.html#a17a7bb52734ec725561066c61eecca85">TEST</a>(CppRayTracerChallenge_Core_Renderer_World, intersect_ray)</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html">World</a> w = <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c">World::defaultWorld</a>();</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Math::Ray</a> r = <a class="code" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Math::Ray</a>({ 0, 0, -5 }, { 0,0,1 });</div>
@@ -127,12 +127,17 @@ $(document).ready(function(){initNavTree('world__test_8cpp_source.html',''); ini
 <div class="ttc" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_html_a79ef1531e3e3df40268dc7e06444e6f5"><div class="ttname"><a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a79ef1531e3e3df40268dc7e06444e6f5">CppRayTracerChallenge::Core::Renderer::World::lightCount</a></div><div class="ttdeci">int lightCount() const</div><div class="ttdoc">Returns how many lights are in the world</div><div class="ttdef"><b>Definition:</b> <a href="world_8cpp_source.html#l00063">world.cpp:63</a></div></div>
 <div class="ttc" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_html_aa7aaea63faa42d0dd8338ad3b117c399"><div class="ttname"><a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#aa7aaea63faa42d0dd8338ad3b117c399">CppRayTracerChallenge::Core::Renderer::World::objectCount</a></div><div class="ttdeci">int objectCount() const</div><div class="ttdoc">Returns how many objects are in the world</div><div class="ttdef"><b>Definition:</b> <a href="world_8cpp_source.html#l00058">world.cpp:58</a></div></div>
 <div class="ttc" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_html_ab0cc8359a45545669b30dc1742b3e329"><div class="ttname"><a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ab0cc8359a45545669b30dc1742b3e329">CppRayTracerChallenge::Core::Renderer::World::intersectRay</a></div><div class="ttdeci">Math::Intersections intersectRay(const Math::Ray ray) const</div><div class="ttdoc">Returns the intersections between objects in the world and the ray</div><div class="ttdef"><b>Definition:</b> <a href="world_8cpp_source.html#l00068">world.cpp:68</a></div></div>
+<div class="ttc" id="aintersections_8h_html"><div class="ttname"><a href="intersections_8h.html">intersections.h</a></div></div>
+<div class="ttc" id="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_html"><div class="ttname"><a href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html">CppRayTracerChallenge::Core::Renderer</a></div><div class="ttdef"><b>Definition:</b> <a href="computed__values_8h_source.html#l00006">computed_values.h:7</a></div></div>
+<div class="ttc" id="aray_8h_html"><div class="ttname"><a href="ray_8h.html">ray.h</a></div></div>
+<div class="ttc" id="aworld_8h_html"><div class="ttname"><a href="world_8h.html">world.h</a></div></div>
+<div class="ttc" id="aworld__test_8cpp_html_a17a7bb52734ec725561066c61eecca85"><div class="ttname"><a href="world__test_8cpp.html#a17a7bb52734ec725561066c61eecca85">TEST</a></div><div class="ttdeci">TEST(CppRayTracerChallenge_Core_Renderer_World, world_creation)</div><div class="ttdef"><b>Definition:</b> <a href="world__test_8cpp_source.html#l00008">world_test.cpp:8</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_120ed4da3e3217b1e7fc0b4f48568e79.html">test</a></li><li class="navelem"><a class="el" href="dir_25a9e11dbc65181166ed52990eb35b85.html">core</a></li><li class="navelem"><a class="el" href="dir_946543385d01b2b5017ce51024a6a3d4.html">renderer</a></li><li class="navelem"><b>world_test.cpp</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_120ed4da3e3217b1e7fc0b4f48568e79.html">test</a></li><li class="navelem"><a class="el" href="dir_25a9e11dbc65181166ed52990eb35b85.html">core</a></li><li class="navelem"><a class="el" href="dir_946543385d01b2b5017ce51024a6a3d4.html">renderer</a></li><li class="navelem"><a class="el" href="world__test_8cpp.html">world_test.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

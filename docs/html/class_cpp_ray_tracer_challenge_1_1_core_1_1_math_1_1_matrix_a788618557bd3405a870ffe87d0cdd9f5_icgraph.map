@@ -1,7 +1,12 @@
 <map id="CppRayTracerChallenge::Core::Math::Matrix::identity" name="CppRayTracerChallenge::Core::Math::Matrix::identity">
-<area shape="rect" id="node1" title="Creates a square Identity Matrix of a specific size" alt="" coords="424,85,585,141"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#ab4aa91a4dc6d8ca7653acf8c82f33986" title="Rotates the Transform along the x, y and z axes" alt="" coords="215,5,376,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="215,85,376,141"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a2518b8aa2d8e95ca80f5c61817a2d33c" title="Translates the Transform along x, y, z co&#45;ordinates" alt="" coords="215,165,376,221"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="5,85,167,141"/>
+<area shape="rect" id="node1" title="Creates a square Identity Matrix of a specific size" alt="" coords="527,119,688,175"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#ab4aa91a4dc6d8ca7653acf8c82f33986" title="Rotates the Transform along the x, y and z axes" alt="" coords="317,5,479,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="317,85,479,141"/>
+<area shape="rect" id="node8" href="$matrix__test_8cpp.html#aed8977233cfb42946b60407c71924281" title=" " alt="" coords="371,165,425,192"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a2518b8aa2d8e95ca80f5c61817a2d33c" title="Translates the Transform along x, y, z co&#45;ordinates" alt="" coords="317,216,479,272"/>
+<area shape="rect" id="node3" href="$transform__test_8cpp.html#a76194ac1de00662ebe995e3d9760a6ae" title=" " alt="" coords="161,20,216,47"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,77,269,133"/>
+<area shape="rect" id="node7" href="$ray__test_8cpp.html#ad7cf2355e3d70227dbdfeaf26a66b26f" title=" " alt="" coords="161,157,216,184"/>
+<area shape="rect" id="node6" href="$world__test_8cpp.html#a839c0eff085fa7f8fd18f39e504e9800" title=" " alt="" coords="5,92,60,119"/>
+<area shape="rect" id="node10" href="$ray__test_8cpp.html#a32cb8f5fe90e650dcb9db4ec58e3f4df" title=" " alt="" coords="161,231,216,257"/>
 </map>

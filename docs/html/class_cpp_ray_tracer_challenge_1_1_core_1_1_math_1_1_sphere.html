@@ -130,8 +130,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6c0d9278ac68586717e5379b9058de94"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94">normal</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Point</a> <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d">position</a>) const</td></tr>
 <tr class="memdesc:a6c0d9278ac68586717e5379b9058de94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates and returns the normal at the passed in position for this sphere  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94">More...</a><br /></td></tr>
 <tr class="separator:a6c0d9278ac68586717e5379b9058de94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab2ab526694cf67dfc8fedd6a9a7f8b6"><td class="memItemLeft" align="right" valign="top"><a id="aab2ab526694cf67dfc8fedd6a9a7f8b6"></a>
-virtual const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html">Intersections</a>&#160;</td><td class="memItemRight" valign="bottom"><b>intersect</b> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Ray</a> &amp;ray) const</td></tr>
+<tr class="memitem:aab2ab526694cf67dfc8fedd6a9a7f8b6"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html">Intersections</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6">intersect</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Ray</a> &amp;ray) const</td></tr>
 <tr class="separator:aab2ab526694cf67dfc8fedd6a9a7f8b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -161,6 +160,61 @@ virtual const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_ma
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aab2ab526694cf67dfc8fedd6a9a7f8b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab2ab526694cf67dfc8fedd6a9a7f8b6">&#9670;&nbsp;</a></span>intersect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html">Intersections</a> Sphere::intersect </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Ray</a> &amp;&#160;</td>
+          <td class="paramname"><em>ray</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_intersectable.html#ae8906b728ff23cf7f9593b5f20dbd505">CppRayTracerChallenge::Core::Math::IIntersectable</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="sphere_8cpp_source.html#l00030">30</a> of file <a class="el" href="sphere_8cpp_source.html">sphere.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_aab2ab526694cf67dfc8fedd6a9a7f8b6_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_aab2ab526694cf67dfc8fedd6a9a7f8b6_cgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_aab2ab526694cf67dfc8fedd6a9a7f8b6_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_aab2ab526694cf67dfc8fedd6a9a7f8b6_cgraph">
+<area shape="rect" title=" " alt="" coords="5,151,167,207"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="449,5,632,47"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="225,188,391,229"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="459,136,623,177"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="227,254,389,310"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="227,334,389,390"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="215,71,401,112"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="460,71,621,112"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_aab2ab526694cf67dfc8fedd6a9a7f8b6_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_aab2ab526694cf67dfc8fedd6a9a7f8b6_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_aab2ab526694cf67dfc8fedd6a9a7f8b6_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_aab2ab526694cf67dfc8fedd6a9a7f8b6_icgraph">
+<area shape="rect" title=" " alt="" coords="216,39,377,95"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_object.html#a97f6712a2abcc3243e7e7c0ad35fea0d" title="Intersects a ray on the shape" alt="" coords="5,5,168,61"/>
+<area shape="rect" href="sphere__test_8cpp.html#a7697e4d02d7f2d17619710f3a6c252ed" title=" " alt="" coords="59,85,114,112"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a6c0d9278ac68586717e5379b9058de94"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6c0d9278ac68586717e5379b9058de94">&#9670;&nbsp;</a></span>normal()</h2>
 
@@ -194,7 +248,7 @@ virtual const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_ma
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The normal vector at the position</dd></dl>
 
-<p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_intersectable.html">CppRayTracerChallenge::Core::Math::IIntersectable</a>.</p>
+<p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_intersectable.html#afd969dd2b7b9bed61fe20360b1dd870f">CppRayTracerChallenge::Core::Math::IIntersectable</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="sphere_8cpp_source.html#l00022">22</a> of file <a class="el" href="sphere_8cpp_source.html">sphere.cpp</a>.</p>
 <div class="dynheader">
@@ -216,6 +270,15 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#ad507851069381b6a2f8affd01fb79d0e" title="Calculates and returns the magnitude of the vector" alt="" coords="424,256,585,312"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6f80c73b5f18dcf3f8e36065bdc8b9e5" title="Constructs a Vector with components 0, 0, 0 Note that this has an undefined direction!" alt="" coords="424,336,585,392"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a2deeccee4c66e9a774aff36da5b309e6" title="Transposes the Matrix, changing its rows into columns, and columns into rows" alt="" coords="424,423,585,479"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a6c0d9278ac68586717e5379b9058de94_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a6c0d9278ac68586717e5379b9058de94_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a6c0d9278ac68586717e5379b9058de94_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a6c0d9278ac68586717e5379b9058de94_icgraph">
+<area shape="rect" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="108,5,269,61"/>
+<area shape="rect" href="sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="5,20,60,47"/>
 </map>
 </div>
 
@@ -247,7 +310,7 @@ Here is the call graph for this function:</div>
 <p>Returns the position of the sphere </p>
 <dl class="section return"><dt>Returns</dt><dd>Position of the sphere</dd></dl>
 
-<p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_intersectable.html">CppRayTracerChallenge::Core::Math::IIntersectable</a>.</p>
+<p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_intersectable.html#a22aaf6914b0144d05eb927802daf1a40">CppRayTracerChallenge::Core::Math::IIntersectable</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="sphere_8cpp_source.html#l00007">7</a> of file <a class="el" href="sphere_8cpp_source.html">sphere.cpp</a>.</p>
 <div class="dynheader">
@@ -255,8 +318,13 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a25021757a8dfc40355af117802d88e0d_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a25021757a8dfc40355af117802d88e0d_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a25021757a8dfc40355af117802d88e0d_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a25021757a8dfc40355af117802d88e0d_icgraph">
-<area shape="rect" title="Returns the position of the sphere" alt="" coords="215,5,376,61"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="5,5,167,61"/>
+<area shape="rect" title="Returns the position of the sphere" alt="" coords="425,136,587,192"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6" title=" " alt="" coords="216,56,377,112"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="216,136,377,192"/>
+<area shape="rect" href="sphere__test_8cpp.html#a4fbb167d3b4b47773f6e9ecaeaa778e7" title=" " alt="" coords="269,216,324,243"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_object.html#a97f6712a2abcc3243e7e7c0ad35fea0d" title="Intersects a ray on the shape" alt="" coords="5,5,168,61"/>
+<area shape="rect" href="sphere__test_8cpp.html#a7697e4d02d7f2d17619710f3a6c252ed" title=" " alt="" coords="59,85,114,112"/>
+<area shape="rect" href="sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="59,151,114,177"/>
 </map>
 </div>
 
@@ -286,9 +354,16 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a7fb9e923100bd7b572f577b140f85e2f_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a7fb9e923100bd7b572f577b140f85e2f_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a7fb9e923100bd7b572f577b140f85e2f_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a7fb9e923100bd7b572f577b140f85e2f_icgraph">
-<area shape="rect" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="424,5,585,61"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="215,5,376,61"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="5,5,167,61"/>
+<area shape="rect" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="528,128,689,184"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6" title=" " alt="" coords="319,71,480,127"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="319,168,480,224"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_object.html#a97f6712a2abcc3243e7e7c0ad35fea0d" title="Intersects a ray on the shape" alt="" coords="108,5,271,61"/>
+<area shape="rect" href="sphere__test_8cpp.html#a7697e4d02d7f2d17619710f3a6c252ed" title=" " alt="" coords="162,85,217,112"/>
+<area shape="rect" href="win32__main_8cpp.html#a990679f43e0187ccc0112f1c72bc899b" title=" " alt="" coords="111,136,268,163"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="109,187,270,243"/>
+<area shape="rect" href="sphere__test_8cpp.html#a4fbb167d3b4b47773f6e9ecaeaa778e7" title=" " alt="" coords="162,267,217,293"/>
+<area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="7,136,58,163"/>
+<area shape="rect" href="world__test_8cpp.html#a839c0eff085fa7f8fd18f39e504e9800" title=" " alt="" coords="5,201,60,228"/>
 </map>
 </div>
 
@@ -333,8 +408,12 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a15c7cc60bb00530ac0d77992de267cd2_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a15c7cc60bb00530ac0d77992de267cd2_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a15c7cc60bb00530ac0d77992de267cd2_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere_a15c7cc60bb00530ac0d77992de267cd2_icgraph">
-<area shape="rect" title="Transforms the Sphere" alt="" coords="215,5,376,61"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="5,5,167,61"/>
+<area shape="rect" title="Transforms the Sphere" alt="" coords="317,56,479,112"/>
+<area shape="rect" href="win32__main_8cpp.html#a990679f43e0187ccc0112f1c72bc899b" title=" " alt="" coords="110,5,267,32"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,56,269,112"/>
+<area shape="rect" href="sphere__test_8cpp.html#a4fbb167d3b4b47773f6e9ecaeaa778e7" title=" " alt="" coords="161,136,216,163"/>
+<area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="7,5,58,32"/>
+<area shape="rect" href="world__test_8cpp.html#a839c0eff085fa7f8fd18f39e504e9800" title=" " alt="" coords="5,71,60,97"/>
 </map>
 </div>
 
@@ -349,7 +428,7 @@ Here is the caller graph for this function:</div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>CppRayTracerChallenge</b></li><li class="navelem"><b>Core</b></li><li class="navelem"><b>Math</b></li><li class="navelem"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html">Sphere</a></li>
+    <li class="navelem"><a class="el" href="namespace_cpp_ray_tracer_challenge.html">CppRayTracerChallenge</a></li><li class="navelem"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core.html">Core</a></li><li class="navelem"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html">Math</a></li><li class="navelem"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html">Sphere</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

@@ -1,7 +1,13 @@
 <map id="CppRayTracerChallenge::Core::Math::Vector::Vector" name="CppRayTracerChallenge::Core::Math::Vector::Vector">
-<area shape="rect" id="node1" title="Constructs a Vector with components 0, 0, 0 Note that this has an undefined direction!" alt="" coords="436,85,597,141"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#af05ee88d1437c9ffa8ea2eba722b1ce4" title="Performs a cross product operation and returns the result" alt="" coords="221,5,382,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a339165be3900e10ed558402d68a1b750" title="Calculates and returns a normalized version of the vector" alt="" coords="221,85,382,141"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a653c0ad7759c9b8a8df4bfa5e97a7d16" title="Creates a vector where all components are 0" alt="" coords="215,166,388,207"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="5,85,167,141"/>
+<area shape="rect" id="node1" title="Constructs a Vector with components 0, 0, 0 Note that this has an undefined direction!" alt="" coords="539,107,700,163"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#af05ee88d1437c9ffa8ea2eba722b1ce4" title="Performs a cross product operation and returns the result" alt="" coords="323,9,485,65"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a339165be3900e10ed558402d68a1b750" title="Calculates and returns a normalized version of the vector" alt="" coords="323,107,485,163"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a653c0ad7759c9b8a8df4bfa5e97a7d16" title="Creates a vector where all components are 0" alt="" coords="317,209,491,250"/>
+<area shape="rect" id="node3" href="$vector__test_8cpp.html#a4daa807a05950fbf326e0377f36c5721" title=" " alt="" coords="161,5,216,32"/>
+<area shape="rect" id="node5" href="$win32__main_8cpp.html#a990679f43e0187ccc0112f1c72bc899b" title=" " alt="" coords="110,56,267,83"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="108,107,269,163"/>
+<area shape="rect" id="node9" href="$sphere__test_8cpp.html#a5f14118cd9a55dbe24a83ab12d95cc1a" title=" " alt="" coords="161,187,216,213"/>
+<area shape="rect" id="node6" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="7,56,58,83"/>
+<area shape="rect" id="node8" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="5,121,60,148"/>
+<area shape="rect" id="node11" href="$vector__test_8cpp.html#a06a10b97d9e64f5c7f7ab1daf8969344" title=" " alt="" coords="161,237,216,264"/>
 </map>

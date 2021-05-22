@@ -1,13 +1,13 @@
 var annotated_dup =
 [
-    [ "CppRayTracerChallenge", null, [
-      [ "Core", null, [
-        [ "Graphics", null, [
+    [ "CppRayTracerChallenge", "namespace_cpp_ray_tracer_challenge.html", [
+      [ "Core", "namespace_cpp_ray_tracer_challenge_1_1_core.html", [
+        [ "Graphics", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_graphics.html", [
           [ "Canvas", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas" ],
           [ "Color", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color" ],
           [ "Image", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image" ]
         ] ],
-        [ "Math", null, [
+        [ "Math", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html", [
           [ "IIntersectable", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_intersectable.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_intersectable" ],
           [ "Intersection", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection" ],
           [ "Intersections", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections" ],
@@ -24,14 +24,14 @@ var annotated_dup =
           [ "Tuple", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple" ],
           [ "Vector", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector" ]
         ] ],
-        [ "Renderer", null, [
+        [ "Renderer", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html", [
           [ "ComputedValues", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values" ],
           [ "Material", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material" ],
           [ "Object", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_object.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_object" ],
           [ "PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light" ],
           [ "World", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world" ]
         ] ],
-        [ "Serializer", null, [
+        [ "Serializer", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_serializer.html", [
           [ "BaseImageSerializer", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer" ],
           [ "PortablePixmapImageSerializer", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer" ]
         ] ]

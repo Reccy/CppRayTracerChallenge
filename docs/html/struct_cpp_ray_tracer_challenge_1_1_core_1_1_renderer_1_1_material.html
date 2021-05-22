@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('struct_cpp_ray_tracer_challenge_1_1_co
 </div><!--header-->
 <div class="contents">
 
-<p>Represents a <a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html" title="Represents a Material struct for use in a Phong Lighting Model">Material</a> struct for use in a Phong Lighting Model  
+<p>Represents a <a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html" title="Represents a Material struct for use in a Phong Lighting Model">Material</a> struct for use in a Phong <a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html">Lighting</a> Model  
  <a href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="material_8h_source.html">material.h</a>&gt;</code></p>
@@ -106,27 +106,103 @@ Collaboration diagram for CppRayTracerChallenge::Core::Renderer::Material:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a85b6c671e5d2edf0a00c76017afc655e"><td class="memItemLeft" align="right" valign="top"><a id="a85b6c671e5d2edf0a00c76017afc655e"></a>
-<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><b>color</b> = <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a154c895b965e8aa00cc42e9ad53d8b75">Graphics::Color::white</a>()</td></tr>
+<tr class="memitem:a85b6c671e5d2edf0a00c76017afc655e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a85b6c671e5d2edf0a00c76017afc655e">color</a> = <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a154c895b965e8aa00cc42e9ad53d8b75">Graphics::Color::white</a>()</td></tr>
 <tr class="separator:a85b6c671e5d2edf0a00c76017afc655e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f1365af3ae165d009d51970b40af61e"><td class="memItemLeft" align="right" valign="top"><a id="a7f1365af3ae165d009d51970b40af61e"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>ambient</b> = 0.1f</td></tr>
+<tr class="memitem:a7f1365af3ae165d009d51970b40af61e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a7f1365af3ae165d009d51970b40af61e">ambient</a> = 0.1f</td></tr>
 <tr class="separator:a7f1365af3ae165d009d51970b40af61e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6756e5f3b47a36493bb644432c4196f3"><td class="memItemLeft" align="right" valign="top"><a id="a6756e5f3b47a36493bb644432c4196f3"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>diffuse</b> = 0.9f</td></tr>
+<tr class="memitem:a6756e5f3b47a36493bb644432c4196f3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a6756e5f3b47a36493bb644432c4196f3">diffuse</a> = 0.9f</td></tr>
 <tr class="separator:a6756e5f3b47a36493bb644432c4196f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d35cd848e5abf5400c1682b97313c04"><td class="memItemLeft" align="right" valign="top"><a id="a0d35cd848e5abf5400c1682b97313c04"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>specular</b> = 0.9f</td></tr>
+<tr class="memitem:a0d35cd848e5abf5400c1682b97313c04"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a0d35cd848e5abf5400c1682b97313c04">specular</a> = 0.9f</td></tr>
 <tr class="separator:a0d35cd848e5abf5400c1682b97313c04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01ed82b967742cd0c957ca5937cfbd3c"><td class="memItemLeft" align="right" valign="top"><a id="a01ed82b967742cd0c957ca5937cfbd3c"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>shininess</b> = 200.0f</td></tr>
+<tr class="memitem:a01ed82b967742cd0c957ca5937cfbd3c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a01ed82b967742cd0c957ca5937cfbd3c">shininess</a> = 200.0f</td></tr>
 <tr class="separator:a01ed82b967742cd0c957ca5937cfbd3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represents a <a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html" title="Represents a Material struct for use in a Phong Lighting Model">Material</a> struct for use in a Phong Lighting Model </p>
+<div class="textblock"><p>Represents a <a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html" title="Represents a Material struct for use in a Phong Lighting Model">Material</a> struct for use in a Phong <a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html">Lighting</a> Model </p>
 
 <p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00012">12</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a7f1365af3ae165d009d51970b40af61e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f1365af3ae165d009d51970b40af61e">&#9670;&nbsp;</a></span>ambient</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float CppRayTracerChallenge::Core::Renderer::Material::ambient = 0.1f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00015">15</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+
+</div>
+</div>
+<a id="a85b6c671e5d2edf0a00c76017afc655e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85b6c671e5d2edf0a00c76017afc655e">&#9670;&nbsp;</a></span>color</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a> CppRayTracerChallenge::Core::Renderer::Material::color = <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a154c895b965e8aa00cc42e9ad53d8b75">Graphics::Color::white</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00014">14</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+
+</div>
+</div>
+<a id="a6756e5f3b47a36493bb644432c4196f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6756e5f3b47a36493bb644432c4196f3">&#9670;&nbsp;</a></span>diffuse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float CppRayTracerChallenge::Core::Renderer::Material::diffuse = 0.9f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00016">16</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+
+</div>
+</div>
+<a id="a01ed82b967742cd0c957ca5937cfbd3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01ed82b967742cd0c957ca5937cfbd3c">&#9670;&nbsp;</a></span>shininess</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float CppRayTracerChallenge::Core::Renderer::Material::shininess = 200.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00018">18</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+
+</div>
+</div>
+<a id="a0d35cd848e5abf5400c1682b97313c04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d35cd848e5abf5400c1682b97313c04">&#9670;&nbsp;</a></span>specular</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float CppRayTracerChallenge::Core::Renderer::Material::specular = 0.9f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00017">17</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/core/renderer/<a class="el" href="material_8h_source.html">material.h</a></li>
 </ul>
 </div><!-- contents -->
@@ -134,7 +210,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>shininess</b> = 200.
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>CppRayTracerChallenge</b></li><li class="navelem"><b>Core</b></li><li class="navelem"><b>Renderer</b></li><li class="navelem"><a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html">Material</a></li>
+    <li class="navelem"><a class="el" href="namespace_cpp_ray_tracer_challenge.html">CppRayTracerChallenge</a></li><li class="navelem"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core.html">Core</a></li><li class="navelem"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html">Renderer</a></li><li class="navelem"><a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html">Material</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

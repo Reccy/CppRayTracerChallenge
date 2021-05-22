@@ -1,5 +1,10 @@
 <map id="CppRayTracerChallenge::Core::Math::Vector::magnitude" name="CppRayTracerChallenge::Core::Math::Vector::magnitude">
-<area shape="rect" id="node1" title="Calculates and returns the magnitude of the vector" alt="" coords="424,5,585,61"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a339165be3900e10ed558402d68a1b750" title="Calculates and returns a normalized version of the vector" alt="" coords="215,5,376,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="5,5,167,61"/>
+<area shape="rect" id="node1" title="Calculates and returns the magnitude of the vector" alt="" coords="527,89,688,145"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a339165be3900e10ed558402d68a1b750" title="Calculates and returns a normalized version of the vector" alt="" coords="317,56,479,112"/>
+<area shape="rect" id="node8" href="$point__test_8cpp.html#ad640c1ad28980c8a4d133e8ef21a73eb" title=" " alt="" coords="371,136,425,163"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#a990679f43e0187ccc0112f1c72bc899b" title=" " alt="" coords="110,5,267,32"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="108,56,269,112"/>
+<area shape="rect" id="node7" href="$sphere__test_8cpp.html#a5f14118cd9a55dbe24a83ab12d95cc1a" title=" " alt="" coords="161,136,216,163"/>
+<area shape="rect" id="node4" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="7,5,58,32"/>
+<area shape="rect" id="node6" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="5,71,60,97"/>
 </map>

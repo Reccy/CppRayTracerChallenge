@@ -86,19 +86,19 @@ $(document).ready(function(){initNavTree('trig__test_8cpp_source.html',''); init
 <div class="title">trig_test.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;gtest/gtest.h&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;math/trig.h&quot;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;math/comparison.h&quot;</span></div>
+<a href="trig__test_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;gtest/gtest.h&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="trig_8h.html">math/trig.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="comparison_8h.html">math/comparison.h</a>&quot;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html">CppRayTracerChallenge::Core::Math::Trig</a>;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_comparison.html">Comparison</a> = <a class="code" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_comparison.html">CppRayTracerChallenge::Core::Math::Comparison</a>;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;TEST(CppRayTracerChallenge_Core_Math_Trig, value_of_pi)</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="trig__test_8cpp.html#a99a782f103cb323b514056d205b3b4c5">    8</a></span>&#160;<a class="code" href="trig__test_8cpp.html#a99a782f103cb323b514056d205b3b4c5">TEST</a>(CppRayTracerChallenge_Core_Math_Trig, value_of_pi)</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    EXPECT_EQ(PI, 3.141592653589793238462643383279502884);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    EXPECT_EQ(<a class="code" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#a6405498f7e02c51f4f946db487de1c8f">PI</a>, 3.141592653589793238462643383279502884);</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;TEST(CppRayTracerChallenge_Core_Math_Trig, convert_degrees_to_radians)</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="trig__test_8cpp.html#abc0be64fda3f185f16d7d474776e95ef">   13</a></span>&#160;<a class="code" href="trig__test_8cpp.html#a99a782f103cb323b514056d205b3b4c5">TEST</a>(CppRayTracerChallenge_Core_Math_Trig, convert_degrees_to_radians)</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">double</span> degrees = 45.0;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">double</span> result = <a class="code" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#a712b1a452e58e36bf35ca3aa101f0745">degrees_to_radians</a>(degrees);</div>
@@ -108,7 +108,7 @@ $(document).ready(function(){initNavTree('trig__test_8cpp_source.html',''); init
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    EXPECT_TRUE(Comparison::equal&lt;double&gt;(result, expectedResult));</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;TEST(CppRayTracerChallenge_Core_Math_Trig, convert_radians_to_degrees)</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="trig__test_8cpp.html#ae8b4cf9ab57f207ccc0fd3b60eb456c0">   23</a></span>&#160;<a class="code" href="trig__test_8cpp.html#a99a782f103cb323b514056d205b3b4c5">TEST</a>(CppRayTracerChallenge_Core_Math_Trig, convert_radians_to_degrees)</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">double</span> radians = 0.785398;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">double</span> result = <a class="code" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#aae5b6c25eeb2f02b255e45561e2a3b7e">radians_to_degrees</a>(radians);</div>
@@ -117,16 +117,20 @@ $(document).ready(function(){initNavTree('trig__test_8cpp_source.html',''); init
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    EXPECT_TRUE(Comparison::equal&lt;double&gt;(result, expectedResult));</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<div class="ttc" id="acomparison_8h_html"><div class="ttname"><a href="comparison_8h.html">comparison.h</a></div></div>
 <div class="ttc" id="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_comparison_html"><div class="ttname"><a href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_comparison.html">CppRayTracerChallenge::Core::Math::Comparison</a></div><div class="ttdoc">Double point precision floating point helper functions</div><div class="ttdef"><b>Definition:</b> <a href="comparison_8h_source.html#l00009">comparison.h:9</a></div></div>
 <div class="ttc" id="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig_html"><div class="ttname"><a href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html">CppRayTracerChallenge::Core::Math::Trig</a></div><div class="ttdoc">Trigonometry helpers</div><div class="ttdef"><b>Definition:</b> <a href="trig_8h_source.html#l00007">trig.h:8</a></div></div>
+<div class="ttc" id="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig_html_a6405498f7e02c51f4f946db487de1c8f"><div class="ttname"><a href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#a6405498f7e02c51f4f946db487de1c8f">CppRayTracerChallenge::Core::Math::Trig::PI</a></div><div class="ttdeci">constexpr double PI</div><div class="ttdef"><b>Definition:</b> <a href="trig_8h_source.html#l00009">trig.h:9</a></div></div>
 <div class="ttc" id="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig_html_a712b1a452e58e36bf35ca3aa101f0745"><div class="ttname"><a href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#a712b1a452e58e36bf35ca3aa101f0745">CppRayTracerChallenge::Core::Math::Trig::degrees_to_radians</a></div><div class="ttdeci">double degrees_to_radians(const double degrees)</div><div class="ttdoc">Converts degrees to radians</div><div class="ttdef"><b>Definition:</b> <a href="trig_8cpp_source.html#l00005">trig.cpp:5</a></div></div>
 <div class="ttc" id="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig_html_aae5b6c25eeb2f02b255e45561e2a3b7e"><div class="ttname"><a href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#aae5b6c25eeb2f02b255e45561e2a3b7e">CppRayTracerChallenge::Core::Math::Trig::radians_to_degrees</a></div><div class="ttdeci">double radians_to_degrees(const double radians)</div><div class="ttdoc">Converts radians to degrees</div><div class="ttdef"><b>Definition:</b> <a href="trig_8cpp_source.html#l00010">trig.cpp:10</a></div></div>
+<div class="ttc" id="atrig_8h_html"><div class="ttname"><a href="trig_8h.html">trig.h</a></div></div>
+<div class="ttc" id="atrig__test_8cpp_html_a99a782f103cb323b514056d205b3b4c5"><div class="ttname"><a href="trig__test_8cpp.html#a99a782f103cb323b514056d205b3b4c5">TEST</a></div><div class="ttdeci">TEST(CppRayTracerChallenge_Core_Math_Trig, value_of_pi)</div><div class="ttdef"><b>Definition:</b> <a href="trig__test_8cpp_source.html#l00008">trig_test.cpp:8</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_120ed4da3e3217b1e7fc0b4f48568e79.html">test</a></li><li class="navelem"><a class="el" href="dir_25a9e11dbc65181166ed52990eb35b85.html">core</a></li><li class="navelem"><a class="el" href="dir_bd70a3b1e08f40d415195ad3b8a991da.html">math</a></li><li class="navelem"><b>trig_test.cpp</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_120ed4da3e3217b1e7fc0b4f48568e79.html">test</a></li><li class="navelem"><a class="el" href="dir_25a9e11dbc65181166ed52990eb35b85.html">core</a></li><li class="navelem"><a class="el" href="dir_bd70a3b1e08f40d415195ad3b8a991da.html">math</a></li><li class="navelem"><a class="el" href="trig__test_8cpp.html">trig_test.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

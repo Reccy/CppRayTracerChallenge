@@ -1,0 +1,8 @@
+<map id="CppRayTracerChallenge::Core::Renderer::PointLight::intensity" name="CppRayTracerChallenge::Core::Renderer::PointLight::intensity">
+<area shape="rect" id="node1" title="Returns the intensity / color of the light" alt="" coords="528,49,711,105"/>
+<area shape="rect" id="node2" href="$namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#af3e2528666bd47ece98fadbc5f1491bc" title="Computes the color at a given point with lighting." alt="" coords="309,16,480,72"/>
+<area shape="rect" id="node6" href="$point__light__test_8cpp.html#a28d3e565a98357c67c34b64ff50c94e9" title=" " alt="" coords="367,96,422,123"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#a990679f43e0187ccc0112f1c72bc899b" title=" " alt="" coords="104,5,261,32"/>
+<area shape="rect" id="node5" href="$lighting__test_8cpp.html#a0e283b70b8912ffe2b8900567c61fd4a" title=" " alt="" coords="148,56,217,83"/>
+<area shape="rect" id="node4" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+</map>

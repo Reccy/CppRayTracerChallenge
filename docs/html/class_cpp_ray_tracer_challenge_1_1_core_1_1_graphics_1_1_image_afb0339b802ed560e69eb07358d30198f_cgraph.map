@@ -1,4 +1,5 @@
 <map id="CppRayTracerChallenge::Core::Graphics::Image::Image" name="CppRayTracerChallenge::Core::Graphics::Image::Image">
 <area shape="rect" id="node1" title="Constructs an image of set width, height. Initializes all color data to black." alt="" coords="5,5,167,61"/>
 <area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="215,5,376,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="424,5,585,61"/>
 </map>

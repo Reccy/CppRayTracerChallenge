@@ -1,0 +1,37 @@
+<map id="src/main/win32_main.cpp" name="src/main/win32_main.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="969,5,1138,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="209,617,281,644"/>
+<area shape="rect" id="node3" title=" " alt="" coords="1739,543,1808,569"/>
+<area shape="rect" id="node4" title=" " alt="" coords="1395,80,1461,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="1342,319,1407,345"/>
+<area shape="rect" id="node6" title=" " alt="" coords="1486,80,1573,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="1597,80,1669,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="1694,80,1757,107"/>
+<area shape="rect" id="node9" href="$vector_8h.html" title=" " alt="" coords="277,468,377,495"/>
+<area shape="rect" id="node13" href="$point_8h.html" title=" " alt="" coords="279,393,374,420"/>
+<area shape="rect" id="node14" href="$transform_8h.html" title=" " alt="" coords="1132,393,1252,420"/>
+<area shape="rect" id="node18" href="$trig_8h.html" title=" " alt="" coords="1781,80,1865,107"/>
+<area shape="rect" id="node19" href="$sphere_8h.html" title=" " alt="" coords="905,162,1010,189"/>
+<area shape="rect" id="node21" href="$intersections_8h.html" title=" " alt="" coords="989,393,1096,420"/>
+<area shape="rect" id="node24" href="$ray_8h.html" title=" " alt="" coords="864,319,915,345"/>
+<area shape="rect" id="node25" href="$canvas_8h.html" title=" " alt="" coords="697,244,823,271"/>
+<area shape="rect" id="node27" href="$color_8h.html" title=" " alt="" coords="480,393,541,420"/>
+<area shape="rect" id="node28" href="$object_8h.html" title=" " alt="" coords="994,80,1113,107"/>
+<area shape="rect" id="node29" href="$material_8h.html" title=" " alt="" coords="566,319,645,345"/>
+<area shape="rect" id="node30" href="$point__light_8h.html" title=" " alt="" coords="246,319,389,345"/>
+<area shape="rect" id="node31" href="$lighting_8h.html" title=" " alt="" coords="264,244,389,271"/>
+<area shape="rect" id="node32" href="$portable__pixmap__image__serializer_8h.html" title=" " alt="" coords="1467,155,1650,196"/>
+<area shape="rect" id="node10" href="$tuple_8h.html" title=" " alt="" coords="480,543,541,569"/>
+<area shape="rect" id="node11" title=" " alt="" coords="521,692,604,719"/>
+<area shape="rect" id="node12" href="$comparison_8h.html" title=" " alt="" coords="571,617,671,644"/>
+<area shape="rect" id="node15" title=" " alt="" coords="1165,468,1219,495"/>
+<area shape="rect" id="node16" href="$matrix_8h.html" title=" " alt="" coords="1244,468,1313,495"/>
+<area shape="rect" id="node17" title=" " alt="" coords="920,543,976,569"/>
+<area shape="rect" id="node20" href="$i__intersectable_8h.html" title=" " alt="" coords="899,244,1016,271"/>
+<area shape="rect" id="node22" title=" " alt="" coords="1073,468,1140,495"/>
+<area shape="rect" id="node23" href="$intersection_8h.html" title=" " alt="" coords="898,468,998,495"/>
+<area shape="rect" id="node26" href="$image_8h.html" title=" " alt="" coords="771,319,839,345"/>
+<area shape="rect" id="node33" href="$base__image__serializer_8h.html" title=" " alt="" coords="1293,244,1456,271"/>
+<area shape="rect" id="node34" title=" " alt="" coords="1611,244,1685,271"/>
+<area shape="rect" id="node35" title=" " alt="" coords="1531,244,1586,271"/>
+</map>

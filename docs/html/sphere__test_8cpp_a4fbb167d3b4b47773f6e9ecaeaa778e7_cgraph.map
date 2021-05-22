@@ -1,0 +1,6 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node1" title=" " alt="" coords="5,60,60,87"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="108,5,269,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="108,85,269,141"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="317,85,479,141"/>
+</map>
