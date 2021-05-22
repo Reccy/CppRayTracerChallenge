@@ -5,6 +5,15 @@
 
 using namespace CppRayTracerChallenge::Core::Math;
 
+TEST(CppRayTracerChallenge_Core_Math_Point, construct_default)
+{
+	Point point = Vector();
+
+	Point expectedPoint(0, 0, 0);
+
+	EXPECT_EQ(point, expectedPoint);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Point, construct_from_tuple)
 {
 	Tuple<double> tuple(1, 2, 3, 4);

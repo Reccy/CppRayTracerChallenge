@@ -4,6 +4,15 @@
 
 using namespace CppRayTracerChallenge::Core::Math;
 
+TEST(CppRayTracerChallenge_Core_Math_Vector, construct_default)
+{
+	Vector vector = Vector();
+
+	Vector expectedResult(0, 0, 0);
+
+	EXPECT_EQ(vector, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Vector, construct_from_tuple)
 {
 	Tuple<double> tuple(1, 2, 3, 4);

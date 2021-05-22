@@ -10,7 +10,11 @@ namespace CppRayTracerChallenge::Core::Math
 	/// </summary>
 	class Vector : public Tuple<double> {
 	public:
-		Vector() = delete;
+		/// <summary>
+		/// Constructs a Vector with components 0, 0, 0
+		/// Note that this has an undefined direction!
+		/// </summary>
+		Vector();
 
 		/// <summary>
 		/// Constructs a Vector from a tuple, by copying x, y and z components.

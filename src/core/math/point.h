@@ -12,7 +12,10 @@ namespace CppRayTracerChallenge::Core::Math
 	class Point : public Tuple<double>
 	{
 	public:
-		Point() = delete;
+		/// <summary>
+		/// Constructs a Point at position 0, 0, 0
+		/// </summary>
+		Point();
 
 		/// <summary>
 		/// Constructs a Point from a tuple, by copying x, y and z components.
