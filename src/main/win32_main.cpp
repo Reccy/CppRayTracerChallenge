@@ -16,7 +16,7 @@
 #include "math/transform.h"
 #include "graphics/canvas.h"
 #include "graphics/color.h"
-#include "renderer/sphere.h"
+#include "renderer/object.h"
 #include "renderer/material.h"
 #include "renderer/point_light.h"
 #include "renderer/lighting.h"
@@ -31,9 +31,10 @@ Graphics::Canvas createSphereSilhouette()
 	Renderer::Material material = Renderer::Material();
 	material.color = Graphics::Color(1.0f, 0.2f, 1.0f);
 
-	Renderer::Sphere sphere = Renderer::Sphere();
-	sphere.material(material);
+	Math::Sphere sphere = Math::Sphere();
 	sphere.transform(Math::Transform().scale(2, 2, 2));
+
+	Renderer::Object object = Renderer::Object(sphere, material);
 
 	Renderer::PointLight light = Renderer::PointLight({ -10, 10, -10 }, Graphics::Color::white());
 
@@ -54,7 +55,7 @@ Graphics::Canvas createSphereSilhouette()
 			Math::Vector rayDirection = Math::Vector(0, 0, 1).normalize();
 
 			Math::Ray raycast = Math::Ray(rayPosition, rayDirection);
-			Math::Intersections intersections = raycast.intersect_sphere(sphere);
+			Math::Intersections intersections = object.intersect(raycast);
 
 			if (intersections.hit().has_value())
 			{

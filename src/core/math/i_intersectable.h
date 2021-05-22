@@ -11,6 +11,8 @@ namespace CppRayTracerChallenge::Core::Math
 	class IIntersectable
 	{
 	public:
+		virtual Point position() const = 0;
+		virtual const Vector normal(const Point position) const = 0;
 		virtual const Intersections intersect(const Ray& ray) const = 0;
 	};
 }

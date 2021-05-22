@@ -22,7 +22,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// Returns the position of the sphere
 		/// </summary>
 		/// <returns>Position of the sphere</returns>
-		Point position() const;
+		virtual Point position() const;
 
 		/// <summary>
 		/// Transforms the Sphere
@@ -41,7 +41,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="position">The position of the normal vector</param>
 		/// <returns>The normal vector at the position</returns>
-		const Vector normal(const Point position) const;
+		virtual const Vector normal(const Point position) const;
 
 		virtual const Intersections intersect(const Ray& ray) const;
 	private:
