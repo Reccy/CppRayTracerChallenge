@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "renderer/camera.h"
+#include "renderer/world.h"
 #include "math/transform.h"
 #include "math/ray.h"
 #include "math/vector.h"
@@ -90,4 +91,17 @@ TEST(CppRayTracerChallenge_Core_Renderer_Camera, construct_ray_when_camera_is_tr
 
 	EXPECT_EQ(ray.origin(), Math::Point(0, 2, -5));
 	EXPECT_EQ(ray.direction(), Math::Vector(sqrt(2) / 2, 0, -sqrt(2) / 2));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Camera, render_world_with_camera)
+{
+	Renderer::World world = Renderer::World::defaultWorld();
+	Renderer::Camera camera = Renderer::Camera(11, 11, 90);
+
+	auto cameraTransform = Renderer::Camera::viewMatrix({ 0, 0, -5 }, { 0, 0, 0 }, { 0, 1, 0 });
+	camera.transform(cameraTransform);
+
+	auto image = camera.render(world);
+
+	EXPECT_EQ(image.readPixel(5, 5), Graphics::Color(0.38066f, 0.47583f, 0.2855f));
 }

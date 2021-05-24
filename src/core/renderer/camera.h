@@ -5,6 +5,8 @@
 #include "../math/vector.h"
 #include "../math/transform.h"
 #include "../math/ray.h"
+#include "../renderer/world.h"
+#include "../graphics/image.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
@@ -52,6 +54,12 @@ namespace CppRayTracerChallenge::Core::Renderer
 		double pixelSize() const;
 
 		/// <summary>
+		/// Transforms the camera by the passed in transform matrix
+		/// </summary>
+		/// <param name="matrix">The transform matrix to apply to the camera</param>
+		void transform(const Math::Matrix<double>& matrix);
+
+		/// <summary>
 		/// Transforms the camera by the passed in transform
 		/// </summary>
 		/// <param name="transform">The transform to apply to the camera</param>
@@ -70,6 +78,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// </summary>
 		/// <returns>The transform matrix</returns>
 		Matrix<double> transformMatrix() const;
+
+		/// <summary>
+		/// Renders the world from the point of view of the camera. Returns an image
+		/// </summary>
+		/// <param name="world">The world to render</param>
+		/// <returns>The image of the rendered world</returns>
+		Graphics::Image render(const Renderer::World& world) const;
 
 		/// <summary>
 		/// Creates a matrix that can be used to transform the world around the camera, effectively changing camera position

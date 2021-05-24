@@ -1,4 +1,5 @@
 #include "camera.h"
+#include "../graphics/canvas.h"
 #include "../math/trig.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
@@ -30,6 +31,11 @@ double Camera::pixelSize() const
 	return m_pixelSize;
 }
 
+void Camera::transform(const Math::Matrix<double>& matrix)
+{
+	m_transformMatrix = matrix;
+}
+
 void Camera::transform(const Math::Transform& transform)
 {
 	m_transformMatrix = transform.matrix();
@@ -56,6 +62,25 @@ Ray Camera::rayForPixel(int xPixel, int yPixel) const
 Matrix<double> Camera::transformMatrix() const
 {
 	return m_transformMatrix;
+}
+
+Graphics::Image Camera::render(const World& world) const
+{
+	Graphics::Canvas canvas = Graphics::Canvas(m_hSize, m_vSize);
+
+	for (int y = 0; y < m_vSize; ++y)
+	{
+		for (int x = 0; x < m_hSize; ++x)
+		{
+			Math::Ray ray = rayForPixel(x, y);
+			Graphics::Color color = world.colorAt(ray);
+			canvas.writePixel(x, y, color);
+		}
+	}
+
+	Graphics::Image image = Graphics::Image(m_hSize, m_vSize, canvas.toBuffer());
+
+	return image;
 }
 
 Matrix<double> Camera::viewMatrix(const Point from, const Point to, const Vector up)
