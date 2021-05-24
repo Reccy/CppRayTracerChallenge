@@ -33,6 +33,28 @@ Intersections::Intersections(const std::vector<Intersection> intersections) : m_
 	calculateHitindex();
 };
 
+Intersections Intersections::intersect(Ray ray, const Sphere& sphere)
+{
+	ray = ray.transform(sphere.transform().invert());
+
+	Vector sphereToRay = ray.origin() - sphere.position();
+	double a = Vector::dot(ray.direction(), ray.direction());
+	double b = 2 * Vector::dot(ray.direction(), sphereToRay);
+	double c = Vector::dot(sphereToRay, sphereToRay) - 1;
+
+	double discriminant = b * b - 4 * a * c;
+
+	if (discriminant < 0)
+	{
+		return Intersections();
+	}
+
+	double t1 = (-b - sqrt(discriminant)) / (2 * a);
+	double t2 = (-b + sqrt(discriminant)) / (2 * a);
+
+	return Intersections({ Intersection(t1, sphere), Intersection(t2, sphere) });
+}
+
 const Intersection& Intersections::at(unsigned int index) const
 {
 	return m_intersections.at(static_cast<size_t>(index));

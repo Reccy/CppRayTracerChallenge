@@ -26,25 +26,3 @@ Ray Ray::transform(const Transform& transform) const
 
 	return Ray(origin, direction);
 }
-
-const Intersections Ray::intersect(const Sphere& sphere) const
-{
-	Ray rayCopy = transform(sphere.transform().invert());
-
-	Vector sphereToRay = rayCopy.origin() - sphere.position();
-	double a = Vector::dot(rayCopy.direction(), rayCopy.direction());
-	double b = 2 * Vector::dot(rayCopy.direction(), sphereToRay);
-	double c = Vector::dot(sphereToRay, sphereToRay) - 1;
-
-	double discriminant = b * b - 4 * a * c;
-
-	if (discriminant < 0)
-	{
-		return Intersections();
-	}
-
-	double t1 = (-b - sqrt(discriminant)) / (2 * a);
-	double t2 = (-b + sqrt(discriminant)) / (2 * a);
-
-	return Intersections({ Intersection(t1, sphere), Intersection(t2, sphere) });
-}

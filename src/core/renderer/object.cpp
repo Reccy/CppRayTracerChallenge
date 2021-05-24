@@ -18,5 +18,5 @@ void Object::material(const Material material)
 
 Math::Intersections Object::intersect(const Math::Ray& ray) const
 {
-	return ray.intersect(m_shape);
+	return Math::Intersections::intersect(ray, m_shape);
 }

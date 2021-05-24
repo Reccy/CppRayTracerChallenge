@@ -4,6 +4,8 @@
 #include <vector>
 #include <optional>
 #include "intersection.h"
+#include "ray.h"
+#include "sphere.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
@@ -23,6 +25,14 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="intersections">A list of intersections, passed as const references. They will be sorted and added to intersections.</param>
 		const Intersections(const std::vector<Intersection> intersections);
+
+		/// <summary>
+		/// Calculates if the ray intersects with the sphere.
+		/// </summary>
+		/// <param name="ray">The ray to intersect with the sphere</param>
+		/// <param name="sphere">The sphere to intersect with the ray</param>
+		/// <returns>The Intersections</returns>
+		static Intersections intersect(Ray ray, const Sphere& sphere);
 
 		/// <summary>
 		/// Returns a const reference to the intersection at the index
