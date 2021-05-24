@@ -63,13 +63,9 @@ const Transform Transform::rotate(const double x, const double y, const double z
 			0, 0, 0, 1
 	});
 
-	Matrix<double> rotationMatrix = Matrix<double>::identity(4);
-
-	rotationMatrix = rotationMatrix * xRotationMatrix;
-	rotationMatrix = rotationMatrix * yRotationMatrix;
-	rotationMatrix = rotationMatrix * zRotationMatrix;
-
-	copy.m_matrices.push(rotationMatrix);
+	copy.m_matrices.push(xRotationMatrix);
+	copy.m_matrices.push(yRotationMatrix);
+	copy.m_matrices.push(zRotationMatrix);
 
 	return copy;
 }

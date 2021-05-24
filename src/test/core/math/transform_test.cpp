@@ -227,6 +227,21 @@ TEST(CppRayTracerChallenge_Core_Math_Transform, rotate_z_inverse)
 	EXPECT_EQ(transform * point, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Transform, rotate_all_axes_is_applied_correctly)
+{
+	Transform transformA = Transform()
+		.rotate(45, 90, 270);
+
+	Transform transformB = Transform()
+		.rotate(45, 0, 0)
+		.rotate(0, 90, 0)
+		.rotate(0, 0, 270);
+
+	Point point = Point(0, 1, 0);
+
+	EXPECT_EQ(transformA * point, transformB * point);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Transform, shear_moves_x_in_proportion_to_y)
 {
 	Transform transform = Transform()
