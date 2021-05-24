@@ -30,6 +30,29 @@ double Camera::pixelSize() const
 	return m_pixelSize;
 }
 
+void Camera::transform(const Math::Transform& transform)
+{
+	m_transformMatrix = transform.matrix();
+}
+
+Ray Camera::rayForPixel(int xPixel, int yPixel) const
+{
+	// Calculates the offsets from the edge of the canvas to the pixel's center
+	double xOffset = static_cast<double>(xPixel + 0.5) * m_pixelSize;
+	double yOffset = static_cast<double>(yPixel + 0.5) * m_pixelSize;
+
+	// The positions of the pixels in world space before being transformed
+	double worldX = m_halfWidth - xOffset;
+	double worldY = m_halfHeight - yOffset;
+
+	// Transform the canvas point and origin using camera matrix to compute ray direction vector
+	Point pixel = m_transformMatrix.invert() * Point(worldX, worldY, -1);
+	Point origin = m_transformMatrix.invert() * Point(0, 0, 0);
+	Vector direction = (pixel - origin).normalize();
+
+	return Ray(origin, direction);
+}
+
 Matrix<double> Camera::transformMatrix() const
 {
 	return m_transformMatrix;
@@ -57,19 +80,16 @@ void Camera::calculatePixelSize()
 	double halfView = tan(Math::Trig::degrees_to_radians(m_fieldOfView) / 2);
 	double aspect = static_cast<double>(m_hSize) / static_cast<double>(m_vSize);
 
-	double halfWidth;
-	double halfHeight;
-
 	if (aspect >= 1)
 	{
-		halfWidth = halfView;
-		halfHeight = halfView / aspect;
+		m_halfWidth = halfView;
+		m_halfHeight = halfView / aspect;
 	}
 	else
 	{
-		halfWidth = halfView * aspect;
-		halfHeight = halfView;
+		m_halfWidth = halfView * aspect;
+		m_halfHeight = halfView;
 	}
 
-	m_pixelSize = (halfWidth * 2) / m_hSize;
+	m_pixelSize = (m_halfWidth * 2) / m_hSize;
 }

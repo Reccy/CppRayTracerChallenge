@@ -4,6 +4,7 @@
 #include "../math/point.h"
 #include "../math/vector.h"
 #include "../math/transform.h"
+#include "../math/ray.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
@@ -51,6 +52,20 @@ namespace CppRayTracerChallenge::Core::Renderer
 		double pixelSize() const;
 
 		/// <summary>
+		/// Transforms the camera by the passed in transform
+		/// </summary>
+		/// <param name="transform">The transform to apply to the camera</param>
+		void transform(const Math::Transform& transform);
+
+		/// <summary>
+		/// Calculates the Ray that will go from the camera origin through the pixel on the canvas
+		/// </summary>
+		/// <param name="xPixel"><The horizontal pixel to cast a ray through/param>
+		/// <param name="yPixel">The vertical pixel to cast a ray through</param>
+		/// <returns></returns>
+		Math::Ray Camera::rayForPixel(int xPixel, int yPixel) const;
+
+		/// <summary>
 		/// The underlying transform matrix for the camera
 		/// </summary>
 		/// <returns>The transform matrix</returns>
@@ -68,6 +83,8 @@ namespace CppRayTracerChallenge::Core::Renderer
 		int m_hSize;
 		int m_vSize;
 		int m_fieldOfView;
+		double m_halfWidth;
+		double m_halfHeight;
 		double m_pixelSize;
 		Matrix<double> m_transformMatrix;
 

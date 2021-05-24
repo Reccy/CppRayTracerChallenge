@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "renderer/camera.h"
 #include "math/transform.h"
+#include "math/ray.h"
 #include "math/vector.h"
 #include "math/trig.h"
 
@@ -57,4 +58,36 @@ TEST(CppRayTracerChallenge_Core_Renderer_Camera, vertical_camera_pixel_size)
 {
 	Renderer::Camera camera = Renderer::Camera(125, 200, 90);
 	EXPECT_TRUE(Math::Comparison::equal<double>(camera.pixelSize(), 0.01));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Camera, construct_ray_through_center_of_camera)
+{
+	Renderer::Camera camera = Renderer::Camera(201, 101, 90);
+	Math::Ray ray = camera.rayForPixel(100, 50);
+
+	EXPECT_EQ(ray.origin(), Math::Point(0, 0, 0));
+	EXPECT_EQ(ray.direction(), Math::Vector(0, 0, -1));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Camera, construct_ray_through_corner_of_canvas)
+{
+	Renderer::Camera camera = Renderer::Camera(201, 101, 90);
+	Math::Ray ray = camera.rayForPixel(0, 0);
+
+	EXPECT_EQ(ray.origin(), Math::Point(0, 0, 0));
+	EXPECT_EQ(ray.direction(), Math::Vector(0.66519, 0.33259, -0.66851));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Camera, construct_ray_when_camera_is_transformed)
+{
+	Renderer::Camera camera = Renderer::Camera(201, 101, 90);
+	Math::Transform transform = Math::Transform()
+		.translate(0, -2, 5)
+		.rotate(0, Math::Trig::radians_to_degrees(Math::Trig::PI / 4), 0);
+	camera.transform(transform);
+
+	Math::Ray ray = camera.rayForPixel(100, 50);
+
+	EXPECT_EQ(ray.origin(), Math::Point(0, 2, -5));
+	EXPECT_EQ(ray.direction(), Math::Vector(sqrt(2) / 2, 0, -sqrt(2) / 2));
 }
