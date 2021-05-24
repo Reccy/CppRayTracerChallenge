@@ -45,6 +45,12 @@ namespace CppRayTracerChallenge::Core::Renderer
 		int fieldOfView() const;
 
 		/// <summary>
+		/// The size of a pixel in respect to the camera
+		/// </summary>
+		/// <returns>The pixel size</returns>
+		double pixelSize() const;
+
+		/// <summary>
 		/// The underlying transform matrix for the camera
 		/// </summary>
 		/// <returns>The transform matrix</returns>
@@ -62,7 +68,10 @@ namespace CppRayTracerChallenge::Core::Renderer
 		int m_hSize;
 		int m_vSize;
 		int m_fieldOfView;
+		double m_pixelSize;
 		Matrix<double> m_transformMatrix;
+
+		void calculatePixelSize();
 	};
 }
 

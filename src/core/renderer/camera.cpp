@@ -1,10 +1,14 @@
 #include "camera.h"
+#include "../math/trig.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core::Math;
 
 Camera::Camera(int hSize, int vSize, int fieldOfView) :
-	m_hSize(hSize), m_vSize(vSize), m_fieldOfView(fieldOfView), m_transformMatrix(Matrix<double>::identity(4)) {};
+	m_hSize(hSize), m_vSize(vSize), m_fieldOfView(fieldOfView), m_transformMatrix(Matrix<double>::identity(4))
+{
+	calculatePixelSize();
+};
 
 int Camera::hSize() const
 {
@@ -19,6 +23,11 @@ int Camera::vSize() const
 int Camera::fieldOfView() const
 {
 	return m_fieldOfView;
+}
+
+double Camera::pixelSize() const
+{
+	return m_pixelSize;
 }
 
 Matrix<double> Camera::transformMatrix() const
@@ -41,4 +50,26 @@ Matrix<double> Camera::viewMatrix(const Point from, const Point to, const Vector
 	});
 
 	return orientation * Transform().translate(-from.x(), -from.y(), -from.z()).matrix();
+}
+
+void Camera::calculatePixelSize()
+{
+	double halfView = tan(Math::Trig::degrees_to_radians(m_fieldOfView) / 2);
+	double aspect = static_cast<double>(m_hSize) / static_cast<double>(m_vSize);
+
+	double halfWidth;
+	double halfHeight;
+
+	if (aspect >= 1)
+	{
+		halfWidth = halfView;
+		halfHeight = halfView / aspect;
+	}
+	else
+	{
+		halfWidth = halfView * aspect;
+		halfHeight = halfView;
+	}
+
+	m_pixelSize = (halfWidth * 2) / m_hSize;
 }

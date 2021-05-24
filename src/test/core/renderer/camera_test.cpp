@@ -46,3 +46,15 @@ TEST(CppRayTracerChallenge_Core_Renderer_Camera, creating_a_camera)
 	EXPECT_EQ(camera.fieldOfView(), 90);
 	EXPECT_EQ(camera.transformMatrix(), Math::Transform().matrix());
 }
+
+TEST(CppRayTracerChallenge_Core_Renderer_Camera, horizontal_camera_pixel_size)
+{
+	Renderer::Camera camera = Renderer::Camera(200, 125, 90);
+	EXPECT_TRUE(Math::Comparison::equal<double>(camera.pixelSize(), 0.01));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Camera, vertical_camera_pixel_size)
+{
+	Renderer::Camera camera = Renderer::Camera(125, 200, 90);
+	EXPECT_TRUE(Math::Comparison::equal<double>(camera.pixelSize(), 0.01));
+}
