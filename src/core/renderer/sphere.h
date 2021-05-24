@@ -1,5 +1,5 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_OBJECT
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_OBJECT
+#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_SPHERE
+#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_SPHERE
 
 #include "../math/sphere.h"
 #include "material.h"
@@ -12,11 +12,12 @@ namespace CppRayTracerChallenge::Core::Renderer
 	/// Represents an object within the rendered world.
 	/// The Object is composed of a shape and a material
 	/// </summary>
-	class Object
+	class Sphere : public ::CppRayTracerChallenge::Core::Math::Sphere
 	{
 	public:
-		Object(Math::Sphere shape);
-		Object(Math::Sphere shape, Material material);
+		Sphere();
+
+		Sphere(Material material);
 
 		/// <summary>
 		/// Returns the material assigned to the object
@@ -37,9 +38,8 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <returns>The Intersections between the ray and the shape</returns>
 		Math::Intersections intersect(const Math::Ray& ray) const;
 	private:
-		Math::Sphere m_shape;
 		Material m_material;
 	};
 }
 
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_OBJECT
+#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_SPHERE

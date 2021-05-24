@@ -1,7 +1,8 @@
 #include "world.h"
 #include "point_light.h"
 #include "material.h"
-#include "object.h"
+#include "sphere.h"
+#include "lighting.h"
 #include "../math/sphere.h"
 #include "../math/transform.h"
 #include "../math/ray.h"
@@ -18,26 +19,22 @@ World World::defaultWorld()
 	PointLight light = PointLight({ -10, 10, -10 }, { 1, 1, 1 });
 
 	Material mat = Material();
-	mat.color = Graphics::Color(1,1,1);
+	mat.color = Graphics::Color(0.8f, 1.0f, 0.6f);
 	mat.diffuse = 0.7f;
 	mat.specular = 0.2f;
 
-	Math::Sphere s1 = Math::Sphere();
-
-	Object obj1 = Object(s1, mat);
+	Sphere s1 = Sphere(mat);
 
 	Math::Transform transform = Math::Transform()
 		.scale(0.5, 0.5, 0.5);
 
-	Math::Sphere s2 = Math::Sphere();
+	Renderer::Sphere s2 = Renderer::Sphere();
 	s2.transform(transform);
-
-	Object obj2 = Object(s2, mat);
 
 	World w = World();
 	w.addLight(light);
-	w.addObject(obj1);
-	w.addObject(obj2);
+	w.addObject(s1);
+	w.addObject(s2);
 
 	return w;
 }
@@ -48,10 +45,26 @@ World World::addLight(PointLight light)
 	return *this;
 }
 
-World World::addObject(Object obj)
+const PointLight& World::lightAt(int index) const
+{
+	return m_lights.at(index);
+}
+
+World World::clearLights()
+{
+	m_lights.clear();
+	return *this;
+}
+
+World World::addObject(Sphere obj)
 {
 	m_objects.push_back(obj);
 	return *this;
+}
+
+const Sphere& World::objectAt(int index) const
+{
+	return m_objects.at(index);
 }
 
 int World::objectCount() const
@@ -68,10 +81,22 @@ Math::Intersections World::intersectRay(const Math::Ray ray) const
 {
 	Math::Intersections result = Math::Intersections();
 
-	for (const Object& object : m_objects)
+	for (const Sphere& object : m_objects)
 	{
 		result += object.intersect(ray);
 	}
 
 	return result;
+}
+
+Graphics::Color World::shadeHit(const ComputedValues& cv) const
+{
+	Graphics::Color color = Graphics::Color::black();
+
+	for (const PointLight& light : m_lights)
+	{
+		color = color + Lighting::lighting(cv.shape().material(), light, cv.position(), cv.eye(), cv.normal());
+	}
+
+	return color;
 }

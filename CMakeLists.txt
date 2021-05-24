@@ -44,7 +44,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/renderer/lighting.h"
 	"${CORE_LIBRARY_DIR}/renderer/world.h"
 	"${CORE_LIBRARY_DIR}/renderer/computed_values.h"
-	"${CORE_LIBRARY_DIR}/renderer/object.h"
+	"${CORE_LIBRARY_DIR}/renderer/sphere.h"
 	"${CORE_LIBRARY_DIR}/serializer/base_image_serializer.h"
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.h"
 )
@@ -66,7 +66,7 @@ set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/renderer/lighting.cpp"
 	"${CORE_LIBRARY_DIR}/renderer/world.cpp"
 	"${CORE_LIBRARY_DIR}/renderer/computed_values.cpp"
-	"${CORE_LIBRARY_DIR}/renderer/object.cpp"
+	"${CORE_LIBRARY_DIR}/renderer/sphere.cpp"
 	"${CORE_LIBRARY_DIR}/serializer/base_image_serializer.cpp"
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.cpp"
 )
@@ -98,7 +98,7 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/graphics/canvas_test.cpp"
 	"${TEST_SUITE_DIR}/core/renderer/point_light_test.cpp"
 	"${TEST_SUITE_DIR}/core/renderer/material_test.cpp"
-	"${TEST_SUITE_DIR}/core/renderer/object_test.cpp"
+	"${TEST_SUITE_DIR}/core/renderer/sphere_test.cpp"
 	"${TEST_SUITE_DIR}/core/renderer/lighting_test.cpp"
 	"${TEST_SUITE_DIR}/core/renderer/world_test.cpp"
 	"${TEST_SUITE_DIR}/core/renderer/computed_values_test.cpp"

@@ -2,7 +2,8 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_WORLD
 
 #include "point_light.h"
-#include "object.h"
+#include "sphere.h"
+#include "computed_values.h"
 #include "../math/ray.h"
 #include "../math/intersections.h"
 
@@ -32,11 +33,31 @@ namespace CppRayTracerChallenge::Core::Renderer
 		World addLight(PointLight light);
 
 		/// <summary>
+		/// Returns a const ref to the light at the index
+		/// </summary>
+		/// <param name="index">Index of the light</param>
+		/// <returns>Const reference to light</returns>
+		const PointLight& lightAt(int index) const;
+
+		/// <summary>
+		/// Clears all lights from the world
+		/// </summary>
+		/// <returns>The world, after all lights being destroyed from it</returns>
+		World clearLights();
+
+		/// <summary>
 		/// Adds a object to the world
 		/// </summary>
 		/// <param name="obj">The object to add</param>
 		/// <returns>The world, after the object being added to it</returns>
-		World addObject(Object obj);
+		World addObject(Sphere obj);
+
+		/// <summary>
+		/// Returns a const ref to the object at the index
+		/// </summary>
+		/// <param name="index">Index of the object</param>
+		/// <returns>Const reference to object</returns>
+		const Sphere& objectAt(int index) const;
 
 		/// <summary>
 		/// Returns how many objects are in the world
@@ -56,9 +77,16 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <param name="ray">The ray to cast in the world</param>
 		/// <returns>Intersections</returns>
 		Math::Intersections intersectRay(const Math::Ray ray) const;
+
+		/// <summary>
+		/// Calculates the color in the world from precomputed values
+		/// </summary>
+		/// <param name="cv">The precomputed values</param>
+		/// <returns>The color</returns>
+		Graphics::Color shadeHit(const ComputedValues& cv) const;
 	private:
 		std::vector<PointLight> m_lights;
-		std::vector<Object> m_objects;
+		std::vector<Sphere> m_objects;
 	};
 }
 
