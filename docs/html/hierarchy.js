@@ -12,9 +12,6 @@ var hierarchy =
       [ "CppRayTracerChallenge::Core::Math::MatrixUndefinedDeterminantException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception.html", null ],
       [ "CppRayTracerChallenge::Core::Math::MatrixUndefinedProductException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception.html", null ]
     ] ],
-    [ "CppRayTracerChallenge::Core::Math::IIntersectable", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_intersectable.html", [
-      [ "CppRayTracerChallenge::Core::Math::Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", null ]
-    ] ],
     [ "CppRayTracerChallenge::Core::Graphics::Image", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html", [
       [ "CppRayTracerChallenge::Core::Graphics::Canvas", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html", null ]
     ] ],
@@ -26,6 +23,7 @@ var hierarchy =
     [ "CppRayTracerChallenge::Core::Renderer::Object", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_object.html", null ],
     [ "CppRayTracerChallenge::Core::Renderer::PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", null ],
+    [ "CppRayTracerChallenge::Core::Math::Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", null ],
     [ "testing::Test", null, [
       [ "CppRayTracerChallenge_Core_Renderer_LightingTest", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html", null ]
     ] ],

@@ -8,7 +8,6 @@ var annotated_dup =
           [ "Image", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image" ]
         ] ],
         [ "Math", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html", [
-          [ "IIntersectable", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_intersectable.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_intersectable" ],
           [ "Intersection", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection" ],
           [ "Intersections", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections" ],
           [ "Matrix", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix" ],

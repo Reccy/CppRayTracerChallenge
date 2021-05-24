@@ -92,34 +92,35 @@ $(document).ready(function(){initNavTree('sphere__test_8cpp.html',''); initResiz
 <code>#include &quot;<a class="el" href="sphere_8h_source.html">math/sphere.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="vector_8h_source.html">math/vector.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="trig_8h_source.html">math/trig.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ray_8h_source.html">math/ray.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="intersections_8h_source.html">math/intersections.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="material_8h_source.html">renderer/material.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for sphere_test.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="sphere__test_8cpp__incl.png" border="0" usemap="#asrc_2test_2core_2math_2sphere__test_8cpp" alt=""/></div>
 <map name="asrc_2test_2core_2math_2sphere__test_8cpp" id="asrc_2test_2core_2math_2sphere__test_8cpp">
-<area shape="rect" title=" " alt="" coords="519,5,647,47"/>
-<area shape="rect" title=" " alt="" coords="293,95,388,121"/>
-<area shape="rect" href="sphere_8h.html" title=" " alt="" coords="412,95,517,121"/>
-<area shape="rect" href="vector_8h.html" title=" " alt="" coords="546,393,613,420"/>
-<area shape="rect" href="trig_8h.html" title=" " alt="" coords="672,95,756,121"/>
-<area shape="rect" href="material_8h.html" title=" " alt="" coords="635,319,766,345"/>
-<area shape="rect" href="point_8h.html" title=" " alt="" coords="434,319,495,345"/>
-<area shape="rect" href="transform_8h.html" title=" " alt="" coords="323,319,409,345"/>
-<area shape="rect" href="i__intersectable_8h.html" title=" " alt="" coords="198,169,315,196"/>
-<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="518,468,579,495"/>
-<area shape="rect" title=" " alt="" coords="439,543,511,569"/>
-<area shape="rect" title=" " alt="" coords="551,617,634,644"/>
-<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="587,543,687,569"/>
-<area shape="rect" title=" " alt="" coords="416,393,471,420"/>
-<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="322,393,391,420"/>
-<area shape="rect" title=" " alt="" coords="257,468,313,495"/>
-<area shape="rect" title=" " alt="" coords="394,468,463,495"/>
-<area shape="rect" href="intersections_8h.html" title=" " alt="" coords="141,319,247,345"/>
-<area shape="rect" href="ray_8h.html" title=" " alt="" coords="269,244,319,271"/>
-<area shape="rect" title=" " alt="" coords="130,393,197,420"/>
-<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="5,393,105,420"/>
-<area shape="rect" href="color_8h.html" title=" " alt="" coords="637,393,764,420"/>
+<area shape="rect" title=" " alt="" coords="210,5,338,47"/>
+<area shape="rect" title=" " alt="" coords="5,95,100,121"/>
+<area shape="rect" href="sphere_8h.html" title=" " alt="" coords="243,244,348,271"/>
+<area shape="rect" href="vector_8h.html" title=" " alt="" coords="438,393,505,420"/>
+<area shape="rect" href="trig_8h.html" title=" " alt="" coords="232,95,316,121"/>
+<area shape="rect" href="ray_8h.html" title=" " alt="" coords="401,244,485,271"/>
+<area shape="rect" href="intersections_8h.html" title=" " alt="" coords="343,95,483,121"/>
+<area shape="rect" href="material_8h.html" title=" " alt="" coords="61,319,191,345"/>
+<area shape="rect" href="point_8h.html" title=" " alt="" coords="363,319,425,345"/>
+<area shape="rect" href="transform_8h.html" title=" " alt="" coords="252,319,339,345"/>
+<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="307,468,369,495"/>
+<area shape="rect" title=" " alt="" coords="251,543,323,569"/>
+<area shape="rect" title=" " alt="" coords="227,617,310,644"/>
+<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="127,543,227,569"/>
+<area shape="rect" title=" " alt="" coords="308,393,363,420"/>
+<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="214,393,283,420"/>
+<area shape="rect" title=" " alt="" coords="535,468,591,495"/>
+<area shape="rect" title=" " alt="" coords="214,468,283,495"/>
+<area shape="rect" title=" " alt="" coords="453,169,519,196"/>
+<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="227,169,327,196"/>
+<area shape="rect" href="color_8h.html" title=" " alt="" coords="63,393,189,420"/>
 </map>
 </div>
 </div>
@@ -189,23 +190,25 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00092">92</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00094">94</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="sphere__test_8cpp_affd20113b0bb36e90a14b7c3523d7fb2_cgraph.png" border="0" usemap="#asphere__test_8cpp_affd20113b0bb36e90a14b7c3523d7fb2_cgraph" alt=""/></div>
 <map name="asphere__test_8cpp_affd20113b0bb36e90a14b7c3523d7fb2_cgraph" id="asphere__test_8cpp_affd20113b0bb36e90a14b7c3523d7fb2_cgraph">
-<area shape="rect" title=" " alt="" coords="5,166,60,193"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="115,85,309,127"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6" title=" " alt="" coords="131,151,293,207"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="108,232,316,273"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="599,5,781,47"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="374,188,541,229"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="608,136,772,177"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="377,254,538,310"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="377,334,538,390"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="364,71,551,112"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="609,71,771,112"/>
+<area shape="rect" title=" " alt="" coords="5,201,60,227"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="115,120,309,161"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a9e8481ad8524cd8859a7cb49664c15dd" title="Calculates if the ray intersects with the sphere." alt="" coords="124,186,300,242"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="108,267,316,308"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="599,59,781,100"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="374,47,541,88"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a74fe953a5f2aefbc4801175842008c8d" title="Creates an empty collection of Intersections" alt="" coords="369,113,545,169"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="608,291,772,332"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="377,259,538,315"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="364,193,551,235"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="377,390,538,446"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="609,193,771,235"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="609,390,771,446"/>
 </map>
 </div>
 
@@ -237,23 +240,25 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00081">81</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00083">83</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="sphere__test_8cpp_a7697e4d02d7f2d17619710f3a6c252ed_cgraph.png" border="0" usemap="#asphere__test_8cpp_a7697e4d02d7f2d17619710f3a6c252ed_cgraph" alt=""/></div>
 <map name="asphere__test_8cpp_a7697e4d02d7f2d17619710f3a6c252ed_cgraph" id="asphere__test_8cpp_a7697e4d02d7f2d17619710f3a6c252ed_cgraph">
-<area shape="rect" title=" " alt="" coords="5,166,60,193"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="115,85,309,127"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6" title=" " alt="" coords="131,151,293,207"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="108,232,316,273"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="599,5,781,47"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="374,188,541,229"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="608,136,772,177"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="377,254,538,310"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="377,334,538,390"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="364,71,551,112"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="609,71,771,112"/>
+<area shape="rect" title=" " alt="" coords="5,201,60,227"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="115,120,309,161"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a9e8481ad8524cd8859a7cb49664c15dd" title="Calculates if the ray intersects with the sphere." alt="" coords="124,186,300,242"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="108,267,316,308"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="599,59,781,100"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="374,47,541,88"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a74fe953a5f2aefbc4801175842008c8d" title="Creates an empty collection of Intersections" alt="" coords="369,113,545,169"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="608,291,772,332"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="377,259,538,315"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="364,193,551,235"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="377,390,538,446"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="609,193,771,235"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="609,390,771,446"/>
 </map>
 </div>
 
@@ -285,22 +290,24 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00103">103</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00105">105</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="sphere__test_8cpp_a21006d42245e66d91dfb3f30a68effde_cgraph.png" border="0" usemap="#asphere__test_8cpp_a21006d42245e66d91dfb3f30a68effde_cgraph" alt=""/></div>
 <map name="asphere__test_8cpp_a21006d42245e66d91dfb3f30a68effde_cgraph" id="asphere__test_8cpp_a21006d42245e66d91dfb3f30a68effde_cgraph">
-<area shape="rect" title=" " alt="" coords="5,203,60,230"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6" title=" " alt="" coords="131,151,293,207"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="108,232,316,273"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="599,5,781,47"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="374,188,541,229"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="608,136,772,177"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="377,254,538,310"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="377,334,538,390"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="364,71,551,112"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="609,71,771,112"/>
+<area shape="rect" title=" " alt="" coords="5,229,60,255"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a9e8481ad8524cd8859a7cb49664c15dd" title="Calculates if the ray intersects with the sphere." alt="" coords="124,177,300,233"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="108,257,316,299"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="599,49,781,91"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="374,37,541,79"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a74fe953a5f2aefbc4801175842008c8d" title="Creates an empty collection of Intersections" alt="" coords="369,103,545,159"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="608,281,772,323"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="377,250,538,306"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="364,184,551,225"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="377,381,538,437"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="609,184,771,225"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="609,381,771,437"/>
 </map>
 </div>
 
@@ -332,26 +339,27 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00145">145</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00147">147</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="sphere__test_8cpp_a954f77a853f7fe8eb088a572d0b4f144_cgraph.png" border="0" usemap="#asphere__test_8cpp_a954f77a853f7fe8eb088a572d0b4f144_cgraph" alt=""/></div>
 <map name="asphere__test_8cpp_a954f77a853f7fe8eb088a572d0b4f144_cgraph" id="asphere__test_8cpp_a954f77a853f7fe8eb088a572d0b4f144_cgraph">
-<area shape="rect" title=" " alt="" coords="5,221,60,247"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="108,60,303,101"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#adc9777ea186e745c6bb6aa40aadd6f27" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="117,126,293,182"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6" title=" " alt="" coords="125,206,286,262"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html#a021399201b213e492e5d973ca80a7aa8" title="Returns the stored value t" alt="" coords="115,287,296,328"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="125,363,286,419"/>
+<area shape="rect" title=" " alt="" coords="5,275,60,302"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="108,115,303,156"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#adc9777ea186e745c6bb6aa40aadd6f27" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="117,181,293,237"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a9e8481ad8524cd8859a7cb49664c15dd" title="Calculates if the ray intersects with the sphere." alt="" coords="117,261,293,317"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="374,465,535,521"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html#a021399201b213e492e5d973ca80a7aa8" title="Returns the stored value t" alt="" coords="115,392,296,433"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="351,5,559,47"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="607,144,789,185"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="371,268,538,309"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="616,300,780,341"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a74fe953a5f2aefbc4801175842008c8d" title="Creates an empty collection of Intersections" alt="" coords="367,334,543,390"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="616,336,780,377"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="374,71,535,127"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="374,385,535,441"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="361,203,548,244"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="617,209,779,251"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="617,465,779,521"/>
 </map>
 </div>
 
@@ -383,24 +391,25 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00158">158</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00160">160</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="sphere__test_8cpp_a6783b35f48476d46baec5992d9a690c4_cgraph.png" border="0" usemap="#asphere__test_8cpp_a6783b35f48476d46baec5992d9a690c4_cgraph" alt=""/></div>
 <map name="asphere__test_8cpp_a6783b35f48476d46baec5992d9a690c4_cgraph" id="asphere__test_8cpp_a6783b35f48476d46baec5992d9a690c4_cgraph">
-<area shape="rect" title=" " alt="" coords="5,243,60,270"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#adc9777ea186e745c6bb6aa40aadd6f27" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="108,58,284,114"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6" title=" " alt="" coords="115,229,277,285"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="115,330,277,386"/>
+<area shape="rect" title=" " alt="" coords="5,275,60,302"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#adc9777ea186e745c6bb6aa40aadd6f27" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="108,90,284,146"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a9e8481ad8524cd8859a7cb49664c15dd" title="Calculates if the ray intersects with the sphere." alt="" coords="108,261,284,317"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="355,465,517,521"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="332,5,540,47"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="588,144,771,185"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="353,268,519,309"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="597,300,761,341"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a74fe953a5f2aefbc4801175842008c8d" title="Creates an empty collection of Intersections" alt="" coords="348,334,524,390"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="597,336,761,377"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="355,71,517,127"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="355,385,517,441"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="343,203,529,244"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="599,209,760,251"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="599,465,760,521"/>
 </map>
 </div>
 
@@ -432,24 +441,26 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00134">134</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00136">136</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="sphere__test_8cpp_a22bba2502f233e78ea027e05dcfdf142_cgraph.png" border="0" usemap="#asphere__test_8cpp_a22bba2502f233e78ea027e05dcfdf142_cgraph" alt=""/></div>
 <map name="asphere__test_8cpp_a22bba2502f233e78ea027e05dcfdf142_cgraph" id="asphere__test_8cpp_a22bba2502f233e78ea027e05dcfdf142_cgraph">
-<area shape="rect" title=" " alt="" coords="5,206,60,233"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="115,85,309,127"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6" title=" " alt="" coords="131,151,293,207"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html#af437395c0f6a14512751471e1ad24c4c" title="Returns a const reference to the intersectable object" alt="" coords="127,231,297,287"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="108,312,316,353"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="599,5,781,47"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="374,188,541,229"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="608,136,772,177"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="377,254,538,310"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="377,334,538,390"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="364,71,551,112"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="609,71,771,112"/>
+<area shape="rect" title=" " alt="" coords="5,241,60,267"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="115,120,309,161"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a9e8481ad8524cd8859a7cb49664c15dd" title="Calculates if the ray intersects with the sphere." alt="" coords="124,186,300,242"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html#af0df72dc18c28e6890f6484a7e3afda6" title="Returns a const reference to the intersectable object" alt="" coords="127,266,297,322"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="108,347,316,388"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="599,59,781,100"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="374,47,541,88"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a74fe953a5f2aefbc4801175842008c8d" title="Creates an empty collection of Intersections" alt="" coords="369,113,545,169"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="608,291,772,332"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="377,259,538,315"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="364,193,551,235"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="377,390,538,446"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="609,193,771,235"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="609,390,771,446"/>
 </map>
 </div>
 
@@ -481,23 +492,25 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00123">123</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00125">125</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="sphere__test_8cpp_a06e8a9687b1c49304e52bed8da7b1f45_cgraph.png" border="0" usemap="#asphere__test_8cpp_a06e8a9687b1c49304e52bed8da7b1f45_cgraph" alt=""/></div>
 <map name="asphere__test_8cpp_a06e8a9687b1c49304e52bed8da7b1f45_cgraph" id="asphere__test_8cpp_a06e8a9687b1c49304e52bed8da7b1f45_cgraph">
-<area shape="rect" title=" " alt="" coords="5,166,60,193"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="115,85,309,127"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6" title=" " alt="" coords="131,151,293,207"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="108,232,316,273"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="599,5,781,47"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="374,188,541,229"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="608,136,772,177"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="377,254,538,310"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="377,334,538,390"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="364,71,551,112"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="609,71,771,112"/>
+<area shape="rect" title=" " alt="" coords="5,201,60,227"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="115,120,309,161"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a9e8481ad8524cd8859a7cb49664c15dd" title="Calculates if the ray intersects with the sphere." alt="" coords="124,186,300,242"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="108,267,316,308"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="599,59,781,100"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="374,47,541,88"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a74fe953a5f2aefbc4801175842008c8d" title="Creates an empty collection of Intersections" alt="" coords="369,113,545,169"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="608,291,772,332"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="377,259,538,315"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="364,193,551,235"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="377,390,538,446"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="609,193,771,235"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="609,390,771,446"/>
 </map>
 </div>
 
@@ -529,23 +542,25 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00112">112</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00114">114</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="sphere__test_8cpp_a71a5c7f41a6cc0f47e123107554a1247_cgraph.png" border="0" usemap="#asphere__test_8cpp_a71a5c7f41a6cc0f47e123107554a1247_cgraph" alt=""/></div>
 <map name="asphere__test_8cpp_a71a5c7f41a6cc0f47e123107554a1247_cgraph" id="asphere__test_8cpp_a71a5c7f41a6cc0f47e123107554a1247_cgraph">
-<area shape="rect" title=" " alt="" coords="5,166,60,193"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="115,85,309,127"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#aab2ab526694cf67dfc8fedd6a9a7f8b6" title=" " alt="" coords="131,151,293,207"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="108,232,316,273"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="599,5,781,47"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="374,188,541,229"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="608,136,772,177"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="377,254,538,310"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="377,334,538,390"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="364,71,551,112"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="609,71,771,112"/>
+<area shape="rect" title=" " alt="" coords="5,201,60,227"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="115,120,309,161"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a9e8481ad8524cd8859a7cb49664c15dd" title="Calculates if the ray intersects with the sphere." alt="" coords="124,186,300,242"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="108,267,316,308"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="599,59,781,100"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="374,47,541,88"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a74fe953a5f2aefbc4801175842008c8d" title="Creates an empty collection of Intersections" alt="" coords="369,113,545,169"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="608,291,772,332"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="377,259,538,315"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="364,193,551,235"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="377,390,538,446"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="609,193,771,235"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="609,390,771,446"/>
 </map>
 </div>
 
@@ -577,7 +592,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00009">9</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00011">11</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -618,7 +633,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00046">46</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00048">48</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -670,7 +685,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00028">28</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00030">30</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -722,7 +737,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00034">34</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00036">36</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -774,7 +789,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00040">40</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00042">42</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -826,7 +841,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00072">72</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00074">74</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -880,7 +895,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00064">64</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00066">66</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -934,7 +949,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00054">54</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00056">56</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -986,7 +1001,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00017">17</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphere__test_8cpp_source.html#l00019">19</a> of file <a class="el" href="sphere__test_8cpp_source.html">sphere_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

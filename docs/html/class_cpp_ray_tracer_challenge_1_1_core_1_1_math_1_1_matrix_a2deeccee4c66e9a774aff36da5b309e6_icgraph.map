@@ -1,8 +1,11 @@
 <map id="CppRayTracerChallenge::Core::Math::Matrix::transpose" name="CppRayTracerChallenge::Core::Math::Matrix::transpose">
-<area shape="rect" id="node1" title="Transposes the Matrix, changing its rows into columns, and columns into rows" alt="" coords="527,24,688,80"/>
-<area shape="rect" id="node2" href="$matrix__test_8cpp.html#a5d5f253b88dced8dc1532690596c918c" title=" " alt="" coords="371,5,425,32"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a3f1d33d2eb0d3c951536bc09914274cb" title="Transposes the matrix" alt="" coords="317,56,479,112"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="108,23,269,79"/>
-<area shape="rect" id="node6" href="$transform__test_8cpp.html#ad1bdf36f442a1197d9bd9e9de1530bac" title=" " alt="" coords="161,103,216,129"/>
-<area shape="rect" id="node5" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="5,37,60,64"/>
+<area shape="rect" id="node1" title="Transposes the Matrix, changing its rows into columns, and columns into rows" alt="" coords="795,72,956,128"/>
+<area shape="rect" id="node2" href="$matrix__test_8cpp.html#a5d5f253b88dced8dc1532690596c918c" title=" " alt="" coords="639,53,693,80"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a3f1d33d2eb0d3c951536bc09914274cb" title="Transposes the matrix" alt="" coords="585,104,747,160"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="376,71,537,127"/>
+<area shape="rect" id="node9" href="$transform__test_8cpp.html#ad1bdf36f442a1197d9bd9e9de1530bac" title=" " alt="" coords="429,151,484,177"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a325609a69321d16a1f99a29a5a0548e8" title="Computes the values of the intersection and the ray" alt="" coords="104,5,328,61"/>
+<area shape="rect" id="node6" href="$win32__main_8cpp.html#a990679f43e0187ccc0112f1c72bc899b" title=" " alt="" coords="137,85,295,112"/>
+<area shape="rect" id="node8" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="189,136,243,163"/>
+<area shape="rect" id="node7" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,85,56,112"/>
 </map>
