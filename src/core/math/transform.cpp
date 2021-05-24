@@ -115,6 +115,15 @@ const Transform Transform::invert() const
 	return copy;
 }
 
+const Matrix<double> Transform::matrix() const
+{
+	Transform copy = *this;
+
+	copy.calculateMatrix();
+
+	return copy.m_matrix;
+}
+
 Tuple<double> Transform::operator*(const Tuple<double>& tuple) const
 {
 	Transform copy = *this;

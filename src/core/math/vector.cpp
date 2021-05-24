@@ -13,6 +13,21 @@ Vector Vector::zero()
 	return Vector(0, 0, 0);
 }
 
+Vector Vector::up()
+{
+	return Vector(0, 1, 0);
+}
+
+Vector Vector::right()
+{
+	return Vector(1, 0, 0);
+}
+
+Vector Vector::forward()
+{
+	return Vector(0, 0, 1);
+}
+
 Vector Vector::cross(const Vector& a, const Vector& b)
 {
 	return Vector (

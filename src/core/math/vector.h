@@ -38,6 +38,24 @@ namespace CppRayTracerChallenge::Core::Math
 		static Vector zero();
 
 		/// <summary>
+		/// Creates a vector pointing up along the y axis
+		/// </summary>
+		/// <returns>Vector pointing up</returns>
+		static Vector up();
+
+		/// <summary>
+		/// Creates a vector pointing right along the x axis
+		/// </summary>
+		/// <returns>Vector pointing right</returns>
+		static Vector right();
+
+		/// <summary>
+		/// Creates a vector pointing forward along the z axis
+		/// </summary>
+		/// <returns>Vector pointing forward</returns>
+		static Vector forward();
+
+		/// <summary>
 		/// Performs a cross product operation and returns the result
 		/// </summary>
 		/// <param name="a">The first vector</param>

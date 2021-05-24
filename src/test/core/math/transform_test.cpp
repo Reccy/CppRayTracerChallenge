@@ -382,6 +382,21 @@ TEST(CppRayTracerChallenge_Core_Math_Transform, invert_does_not_mutate_original)
 	EXPECT_TRUE(original != mutated);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Transform, read_matrix)
+{
+	Transform original = Transform()
+		.translate(1, 0, 0);
+
+	Matrix<double> expectedResult = Matrix<double>(4, 4, std::vector<double>{
+		1,0,0,1,
+		0,1,0,0,
+		0,0,1,0,
+		0,0,0,1
+	});
+
+	EXPECT_EQ(original.matrix(), expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Transform, equality)
 {
 	Transform a = Transform()

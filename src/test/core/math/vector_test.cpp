@@ -31,6 +31,30 @@ TEST(CppRayTracerChallenge_Core_Math_Vector, zero_will_build_zero_vector)
 	EXPECT_EQ(vector, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Vector, up_will_build_vector_pointing_up)
+{
+	Vector vector = Vector::up();
+	Vector expectedResult(0, 1, 0);
+
+	EXPECT_EQ(vector, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Vector, right_will_build_vector_pointing_right)
+{
+	Vector vector = Vector::right();
+	Vector expectedResult(1, 0, 0);
+
+	EXPECT_EQ(vector, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Vector, forward_will_build_vector_pointing_forward)
+{
+	Vector vector = Vector::forward();
+	Vector expectedResult(0, 0, 1);
+
+	EXPECT_EQ(vector, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Vector, x)
 {
 	Vector vectorA(1, 2, 3);

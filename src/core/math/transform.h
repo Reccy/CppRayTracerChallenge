@@ -69,6 +69,12 @@ namespace CppRayTracerChallenge::Core::Math
 		const Transform invert() const;
 
 		/// <summary>
+		/// Returns the transform as an actual matrix
+		/// </summary>
+		/// <returns>The transform matrix</returns>
+		const Matrix<double> matrix() const;
+
+		/// <summary>
 		/// Multiplies the Tuple by the Transform, and returns the transformed Tuple
 		/// </summary>
 		/// <param name="tuple">The Tuple to transform</param>
