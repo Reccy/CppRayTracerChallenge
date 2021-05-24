@@ -3,14 +3,17 @@
 
 #include "point.h"
 #include "transform.h"
-#include "i_intersectable.h"
+#include "intersections.h"
+#include "ray.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
+	class Intersections;
+	class Ray;
 	/// <summary>
 	/// A 3D Sphere
 	/// </summary>
-	class Sphere : public IIntersectable
+	class Sphere
 	{
 	public:
 		/// <summary>
@@ -22,7 +25,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// Returns the position of the sphere
 		/// </summary>
 		/// <returns>Position of the sphere</returns>
-		virtual Point position() const;
+		Point position() const;
 
 		/// <summary>
 		/// Transforms the Sphere
@@ -41,9 +44,9 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="position">The position of the normal vector</param>
 		/// <returns>The normal vector at the position</returns>
-		virtual const Vector normal(const Point position) const;
+		const Vector normal(const Point position) const;
 
-		virtual const Intersections intersect(const Ray& ray) const;
+		const Intersections intersect(const Ray& ray) const;
 	private:
 		Point m_position;
 		Transform m_transform;

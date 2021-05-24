@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 #include "math/intersection.h"
-#include "math/i_intersectable.h"
 #include "math/sphere.h"
 
 using namespace CppRayTracerChallenge::Core::Math;

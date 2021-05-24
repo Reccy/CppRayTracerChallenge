@@ -26,7 +26,7 @@ double ComputedValues::t() const
 	return m_t;
 }
 
-const IIntersectable& ComputedValues::intersectable() const
+const Sphere& ComputedValues::intersectable() const
 {
 	return m_intersectable;
 }

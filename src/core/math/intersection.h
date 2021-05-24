@@ -1,11 +1,11 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_INTERSECTION
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_INTERSECTION
 
-#include "i_intersectable.h"
+#include "sphere.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
-	class IIntersectable;
+	class Sphere;
 	/// <summary>
 	/// Represents an intersection on an object from a ray and the time from the ray as 't'
 	/// </summary>
@@ -19,7 +19,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="t">The distrance from the ray origin in which to calculate the new position</param>
 		/// <param name="intersectable">An object that can be intersected by the ray</param>
-		Intersection(const double t, const IIntersectable& intersectable);
+		Intersection(const double t, const Sphere& intersectable); // NOTE: Temporarily removing IIntersectable. Replace with Shape in future refactor
 
 		/// <summary>
 		/// Returns the stored value t
@@ -31,13 +31,13 @@ namespace CppRayTracerChallenge::Core::Math
 		/// Returns a const reference to the intersectable object
 		/// </summary>
 		/// <returns>Returns the stored intersectable</returns>
-		const IIntersectable& intersectable() const;
+		const Sphere& intersectable() const; // NOTE: Temporarily removing IIntersectable. Replace with Shape in future refactor
 
 		bool operator==(const Intersection& other) const;
 		bool operator!=(const Intersection& other) const;
 	private:
 		const double m_t;
-		const IIntersectable& m_intersectable;
+		const Sphere& m_intersectable; // NOTE: Temporarily removing IIntersectable. Replace with Shape in future refactor
 	};
 }
 

@@ -28,7 +28,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// Returns a const reference to the intersectable
 		/// </summary>
 		/// <returns>Intersectable const reference</returns>
-		const Math::IIntersectable& intersectable() const;
+		const Math::Sphere& intersectable() const; // NOTE: Temporarily removing IIntersectable. Replace with Shape in future refactor
 
 		/// <summary>
 		/// Returns the position of the intersection
@@ -55,7 +55,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		bool isInside() const;
 	private:
 		double m_t;
-		const Math::IIntersectable& m_intersectable;
+		const Math::Sphere& m_intersectable; // NOTE: Temporarily removing IIntersectable. Replace with Shape in future refactor
 		Math::Point m_position;
 		Math::Vector m_eye;
 		Math::Vector m_normal;

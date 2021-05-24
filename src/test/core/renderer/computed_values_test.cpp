@@ -8,7 +8,7 @@ using namespace CppRayTracerChallenge::Core;
 TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_from_outside)
 {
 	Math::Ray ray = Math::Ray({ 0,0,-5 }, { 0,0,1 });
-	Math::IIntersectable* sphere = new Math::Sphere();
+	Math::Sphere* sphere = new Math::Sphere();
 	Math::Intersection intersection = Math::Intersection(4, *sphere);
 
 	Renderer::ComputedValues cv = Renderer::ComputedValues(intersection, ray);
@@ -22,7 +22,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_from_outside)
 TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_from_inside)
 {
 	Math::Ray ray = Math::Ray({ 0,0,0 }, { 0,0,1 });
-	Math::IIntersectable* sphere = new Math::Sphere();
+	Math::Sphere* sphere = new Math::Sphere();
 	Math::Intersection intersection = Math::Intersection(1, *sphere);
 
 	Renderer::ComputedValues cv = Renderer::ComputedValues(intersection, ray);

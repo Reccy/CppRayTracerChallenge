@@ -36,7 +36,6 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/math/sphere.h"
 	"${CORE_LIBRARY_DIR}/math/intersection.h"
 	"${CORE_LIBRARY_DIR}/math/intersections.h"
-	"${CORE_LIBRARY_DIR}/math/i_intersectable.h"
 	"${CORE_LIBRARY_DIR}/graphics/color.h"
 	"${CORE_LIBRARY_DIR}/graphics/image.h"
 	"${CORE_LIBRARY_DIR}/graphics/canvas.h"

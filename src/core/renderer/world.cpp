@@ -3,7 +3,6 @@
 #include "material.h"
 #include "object.h"
 #include "../math/sphere.h"
-#include "../math/i_intersectable.h"
 #include "../math/transform.h"
 #include "../math/ray.h"
 #include "../math/intersection.h"
