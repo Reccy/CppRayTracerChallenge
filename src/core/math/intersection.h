@@ -5,7 +5,6 @@
 
 namespace CppRayTracerChallenge::Core::Math
 {
-	class Sphere;
 	/// <summary>
 	/// Represents an intersection on an object from a ray and the time from the ray as 't'
 	/// </summary>

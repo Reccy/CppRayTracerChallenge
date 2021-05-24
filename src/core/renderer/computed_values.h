@@ -2,6 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_COMPUTED_VALUES
 
 #include "../math/intersection.h"
+#include "../math/ray.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {

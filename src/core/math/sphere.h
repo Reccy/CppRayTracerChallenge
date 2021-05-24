@@ -3,13 +3,9 @@
 
 #include "point.h"
 #include "transform.h"
-#include "intersections.h"
-#include "ray.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
-	class Intersections;
-	class Ray;
 	/// <summary>
 	/// A 3D Sphere
 	/// </summary>
@@ -45,8 +41,6 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="position">The position of the normal vector</param>
 		/// <returns>The normal vector at the position</returns>
 		const Vector normal(const Point position) const;
-
-		const Intersections intersect(const Ray& ray) const;
 	private:
 		Point m_position;
 		Transform m_transform;

@@ -4,6 +4,7 @@
 #include "../math/sphere.h"
 #include "material.h"
 #include "../math/intersections.h"
+#include "../math/ray.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
