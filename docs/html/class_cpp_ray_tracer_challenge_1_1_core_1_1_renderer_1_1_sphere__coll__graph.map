@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Renderer::Sphere" name="CppRayTracerChallenge::Core::Renderer::Sphere">
+<area shape="rect" id="node1" title="Represents an object within the rendered world. The Object is composed of a shape and a material" alt="" coords="5,95,172,136"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html" title="A 3D Sphere" alt="" coords="8,5,169,47"/>
+</map>

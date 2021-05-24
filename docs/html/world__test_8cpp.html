@@ -90,36 +90,39 @@ $(document).ready(function(){initNavTree('world__test_8cpp.html',''); initResiza
 <div class="contents">
 <div class="textblock"><code>#include &lt;gtest/gtest.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="world_8h_source.html">renderer/world.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="computed__values_8h_source.html">renderer/computed_values.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ray_8h_source.html">math/ray.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="intersections_8h_source.html">math/intersections.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="math_2sphere_8h_source.html">math/sphere.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for world_test.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="world__test_8cpp__incl.png" border="0" usemap="#asrc_2test_2core_2renderer_2world__test_8cpp" alt=""/></div>
 <map name="asrc_2test_2core_2renderer_2world__test_8cpp" id="asrc_2test_2core_2renderer_2world__test_8cpp">
-<area shape="rect" title=" " alt="" coords="303,5,450,47"/>
-<area shape="rect" title=" " alt="" coords="183,95,277,121"/>
-<area shape="rect" href="world_8h.html" title=" " alt="" coords="381,95,495,121"/>
-<area shape="rect" href="intersections_8h.html" title=" " alt="" coords="239,244,391,271"/>
-<area shape="rect" href="ray_8h.html" title=" " alt="" coords="469,319,519,345"/>
-<area shape="rect" href="point__light_8h.html" title=" " alt="" coords="583,393,675,420"/>
-<area shape="rect" href="object_8h.html" title=" " alt="" coords="404,169,472,196"/>
-<area shape="rect" href="point_8h.html" title=" " alt="" coords="531,468,638,495"/>
-<area shape="rect" href="color_8h.html" title=" " alt="" coords="329,468,456,495"/>
-<area shape="rect" href="vector_8h.html" title=" " alt="" coords="461,543,527,569"/>
-<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="391,617,453,644"/>
-<area shape="rect" title=" " alt="" coords="335,692,407,719"/>
-<area shape="rect" title=" " alt="" coords="311,767,394,793"/>
-<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="211,692,311,719"/>
-<area shape="rect" href="sphere_8h.html" title=" " alt="" coords="182,393,299,420"/>
-<area shape="rect" href="material_8h.html" title=" " alt="" coords="5,393,84,420"/>
-<area shape="rect" href="transform_8h.html" title=" " alt="" coords="219,468,305,495"/>
-<area shape="rect" title=" " alt="" coords="219,543,273,569"/>
-<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="298,543,367,569"/>
-<area shape="rect" title=" " alt="" coords="153,617,209,644"/>
-<area shape="rect" title=" " alt="" coords="298,617,367,644"/>
-<area shape="rect" title=" " alt="" coords="277,319,343,345"/>
-<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="152,319,252,345"/>
+<area shape="rect" title=" " alt="" coords="241,5,387,47"/>
+<area shape="rect" title=" " alt="" coords="5,95,100,121"/>
+<area shape="rect" href="world_8h.html" title=" " alt="" coords="409,95,523,121"/>
+<area shape="rect" href="math_2sphere_8h.html" title=" " alt="" coords="233,468,350,495"/>
+<area shape="rect" href="intersections_8h.html" title=" " alt="" coords="554,319,706,345"/>
+<area shape="rect" href="ray_8h.html" title=" " alt="" coords="453,393,503,420"/>
+<area shape="rect" href="computed__values_8h.html" title=" " alt="" coords="313,169,446,196"/>
+<area shape="rect" href="point__light_8h.html" title=" " alt="" coords="116,468,208,495"/>
+<area shape="rect" href="renderer_2sphere_8h.html" title=" " alt="" coords="425,244,497,271"/>
+<area shape="rect" href="point_8h.html" title=" " alt="" coords="246,543,353,569"/>
+<area shape="rect" href="color_8h.html" title=" " alt="" coords="95,543,221,569"/>
+<area shape="rect" href="vector_8h.html" title=" " alt="" coords="283,617,350,644"/>
+<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="242,692,303,719"/>
+<area shape="rect" title=" " alt="" coords="237,767,309,793"/>
+<area shape="rect" title=" " alt="" coords="250,841,333,868"/>
+<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="333,767,433,793"/>
+<area shape="rect" href="material_8h.html" title=" " alt="" coords="13,468,92,495"/>
+<area shape="rect" href="transform_8h.html" title=" " alt="" coords="445,543,532,569"/>
+<area shape="rect" title=" " alt="" coords="375,617,429,644"/>
+<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="454,617,523,644"/>
+<area shape="rect" title=" " alt="" coords="545,692,601,719"/>
+<area shape="rect" title=" " alt="" coords="451,692,521,719"/>
+<area shape="rect" title=" " alt="" coords="658,393,725,420"/>
+<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="227,393,327,420"/>
 </map>
 </div>
 </div>
@@ -131,12 +134,67 @@ Functions</h2></td></tr>
 <tr class="separator:a17a7bb52734ec725561066c61eecca85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a839c0eff085fa7f8fd18f39e504e9800"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="world__test_8cpp.html#a839c0eff085fa7f8fd18f39e504e9800">TEST</a> (CppRayTracerChallenge_Core_Renderer_World, default_world)</td></tr>
 <tr class="separator:a839c0eff085fa7f8fd18f39e504e9800"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af68d091bdf920fa9a466bc48dd903354"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="world__test_8cpp.html#af68d091bdf920fa9a466bc48dd903354">TEST</a> (CppRayTracerChallenge_Core_Renderer_World, clear_lights)</td></tr>
+<tr class="separator:af68d091bdf920fa9a466bc48dd903354"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f2df99db83debc89a68c6952fb73e0f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="world__test_8cpp.html#a4f2df99db83debc89a68c6952fb73e0f">TEST</a> (CppRayTracerChallenge_Core_Renderer_World, intersect_ray)</td></tr>
 <tr class="separator:a4f2df99db83debc89a68c6952fb73e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaee355ab233f61586978a02f9c6bc4b6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6">TEST</a> (CppRayTracerChallenge_Core_Renderer_World, shade_hit)</td></tr>
+<tr class="separator:aaee355ab233f61586978a02f9c6bc4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abce7f9f9428f0d1476240fc739ea15d4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="world__test_8cpp.html#abce7f9f9428f0d1476240fc739ea15d4">TEST</a> (CppRayTracerChallenge_Core_Renderer_World, shade_hit_from_inside)</td></tr>
+<tr class="separator:abce7f9f9428f0d1476240fc739ea15d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="af68d091bdf920fa9a466bc48dd903354"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af68d091bdf920fa9a466bc48dd903354">&#9670;&nbsp;</a></span>TEST() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CppRayTracerChallenge_Core_Renderer_World&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">clear_lights&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="world__test_8cpp_source.html#l00044">44</a> of file <a class="el" href="world__test_8cpp_source.html">world_test.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="world__test_8cpp_af68d091bdf920fa9a466bc48dd903354_cgraph.png" border="0" usemap="#aworld__test_8cpp_af68d091bdf920fa9a466bc48dd903354_cgraph" alt=""/></div>
+<map name="aworld__test_8cpp_af68d091bdf920fa9a466bc48dd903354_cgraph" id="aworld__test_8cpp_af68d091bdf920fa9a466bc48dd903354_cgraph">
+<area shape="rect" title=" " alt="" coords="5,220,60,247"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a29542072dd459b5eca10cdd80970ff63" title="Clears all lights from the world" alt="" coords="108,85,269,141"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,165,269,221"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a79ef1531e3e3df40268dc7e06444e6f5" title="Returns how many lights are in the world" alt="" coords="108,245,269,301"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#aa7aaea63faa42d0dd8338ad3b117c399" title="Returns how many objects are in the world" alt="" coords="108,325,269,381"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="317,5,479,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a02cabc7a86133ebaf28fc607a5187efb" title="Adds a object to the world" alt="" coords="317,85,479,141"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="317,165,479,221"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="317,245,479,301"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8" title="Constructs a World that is completely empty" alt="" coords="317,325,479,381"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="527,165,688,221"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="527,245,688,301"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a839c0eff085fa7f8fd18f39e504e9800"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a839c0eff085fa7f8fd18f39e504e9800">&#9670;&nbsp;</a></span>TEST() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a839c0eff085fa7f8fd18f39e504e9800">&#9670;&nbsp;</a></span>TEST() <span class="overload">[2/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -161,30 +219,37 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="world__test_8cpp_source.html#l00015">15</a> of file <a class="el" href="world__test_8cpp_source.html">world_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="world__test_8cpp_source.html#l00017">17</a> of file <a class="el" href="world__test_8cpp_source.html">world_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="world__test_8cpp_a839c0eff085fa7f8fd18f39e504e9800_cgraph.png" border="0" usemap="#aworld__test_8cpp_a839c0eff085fa7f8fd18f39e504e9800_cgraph" alt=""/></div>
 <map name="aworld__test_8cpp_a839c0eff085fa7f8fd18f39e504e9800_cgraph" id="aworld__test_8cpp_a839c0eff085fa7f8fd18f39e504e9800_cgraph">
-<area shape="rect" title=" " alt="" coords="5,260,60,287"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,165,269,221"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a79ef1531e3e3df40268dc7e06444e6f5" title="Returns how many lights are in the world" alt="" coords="108,245,269,301"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#aa7aaea63faa42d0dd8338ad3b117c399" title="Returns how many objects are in the world" alt="" coords="108,325,269,381"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="317,5,479,61"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#af301463417bcb2e963a697841de006e0" title="Adds a object to the world" alt="" coords="317,85,479,141"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="317,165,479,221"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="317,245,479,301"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8" title="Constructs a World that is completely empty" alt="" coords="317,325,479,381"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="527,165,688,221"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="527,245,688,301"/>
+<area shape="rect" title=" " alt="" coords="5,536,60,563"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="119,172,280,228"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="339,245,500,301"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="339,325,500,381"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="108,361,291,417"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a8c16ba31cb3d0e58abb6b7579afcacd9" title="Returns a const ref to the light at the index" alt="" coords="119,441,280,497"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a79ef1531e3e3df40268dc7e06444e6f5" title="Returns how many lights are in the world" alt="" coords="119,521,280,577"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html#a29abed33e6e21552bc9fe8afc827383b" title="Returns the material assigned to the object" alt="" coords="116,601,283,657"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9723d4f649b0a2c68e8b1113d629d664" title="Returns a const ref to the object at the index" alt="" coords="119,681,280,737"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#aa7aaea63faa42d0dd8338ad3b117c399" title="Returns how many objects are in the world" alt="" coords="119,761,280,817"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#a1e5accc8b122a9e71d54297698eab78b" title="Returns the position of the light" alt="" coords="108,841,291,897"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a154c895b965e8aa00cc42e9ad53d8b75" title="Returns a white color" alt="" coords="119,921,280,977"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="339,5,500,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a02cabc7a86133ebaf28fc607a5187efb" title="Adds a object to the world" alt="" coords="339,85,500,141"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8" title="Constructs a World that is completely empty" alt="" coords="339,165,500,221"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="548,245,709,301"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="548,325,709,381"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="339,921,500,977"/>
 </map>
 </div>
 
 </div>
 </div>
 <a id="a4f2df99db83debc89a68c6952fb73e0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f2df99db83debc89a68c6952fb73e0f">&#9670;&nbsp;</a></span>TEST() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f2df99db83debc89a68c6952fb73e0f">&#9670;&nbsp;</a></span>TEST() <span class="overload">[3/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -209,7 +274,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="world__test_8cpp_source.html#l00022">22</a> of file <a class="el" href="world__test_8cpp_source.html">world_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="world__test_8cpp_source.html#l00055">55</a> of file <a class="el" href="world__test_8cpp_source.html">world_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -219,7 +284,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,205,269,261"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ab0cc8359a45545669b30dc1742b3e329" title="Returns the intersections between objects in the world and the ray" alt="" coords="108,351,269,407"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="325,85,486,141"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#af301463417bcb2e963a697841de006e0" title="Adds a object to the world" alt="" coords="325,165,486,221"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a02cabc7a86133ebaf28fc607a5187efb" title="Adds a object to the world" alt="" coords="325,165,486,221"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="325,245,486,301"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="554,311,715,367"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8" title="Constructs a World that is completely empty" alt="" coords="325,5,486,61"/>
@@ -238,8 +303,143 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="aaee355ab233f61586978a02f9c6bc4b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaee355ab233f61586978a02f9c6bc4b6">&#9670;&nbsp;</a></span>TEST() <span class="overload">[4/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CppRayTracerChallenge_Core_Renderer_World&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">shade_hit&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="world__test_8cpp_source.html#l00069">69</a> of file <a class="el" href="world__test_8cpp_source.html">world_test.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="world__test_8cpp_aaee355ab233f61586978a02f9c6bc4b6_cgraph.png" border="0" usemap="#aworld__test_8cpp_aaee355ab233f61586978a02f9c6bc4b6_cgraph" alt=""/></div>
+<map name="aworld__test_8cpp_aaee355ab233f61586978a02f9c6bc4b6_cgraph" id="aworld__test_8cpp_aaee355ab233f61586978a02f9c6bc4b6_cgraph">
+<area shape="rect" title=" " alt="" coords="5,391,60,417"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,176,269,232"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ab0cc8359a45545669b30dc1742b3e329" title="Returns the intersections between objects in the world and the ray" alt="" coords="108,376,269,432"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="108,693,269,749"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="363,216,525,272"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a02cabc7a86133ebaf28fc607a5187efb" title="Adds a object to the world" alt="" coords="363,296,525,352"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="363,5,525,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="631,92,793,148"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8" title="Constructs a World that is completely empty" alt="" coords="363,136,525,192"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="631,5,793,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="864,92,1025,148"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a9e8481ad8524cd8859a7cb49664c15dd" title="Calculates if the ray intersects with the sphere." alt="" coords="356,376,532,432"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="853,515,1036,557"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="629,179,795,221"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a74fe953a5f2aefbc4801175842008c8d" title="Creates an empty collection of Intersections" alt="" coords="624,245,800,301"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="863,351,1027,393"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="631,376,793,432"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="619,457,805,498"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="864,450,1025,491"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="363,973,525,1029"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a622264bce1b187d850a385034df91dc1" title="Returns the eye vector" alt="" coords="317,507,571,549"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#af3e2528666bd47ece98fadbc5f1491bc" title="Computes the color at a given point with lighting." alt="" coords="359,573,529,629"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html#a29abed33e6e21552bc9fe8afc827383b" title="Returns the material assigned to the object" alt="" coords="361,653,527,709"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a1d400c7edc498808c9de5e35a436824a" title="Returns the normal vector" alt="" coords="332,733,556,789"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8" title="Returns the position of the intersection" alt="" coords="332,813,556,869"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#af5a02af84e6b9d1bcc8a835e844eba30" title="Returns a const reference to the intersectable" alt="" coords="332,893,556,949"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="631,973,793,1029"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="621,653,803,709"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#a1e5accc8b122a9e71d54297698eab78b" title="Returns the position of the light" alt="" coords="621,573,803,629"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abce7f9f9428f0d1476240fc739ea15d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abce7f9f9428f0d1476240fc739ea15d4">&#9670;&nbsp;</a></span>TEST() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CppRayTracerChallenge_Core_Renderer_World&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">shade_hit_from_inside&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="world__test_8cpp_source.html#l00083">83</a> of file <a class="el" href="world__test_8cpp_source.html">world_test.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="world__test_8cpp_abce7f9f9428f0d1476240fc739ea15d4_cgraph.png" border="0" usemap="#aworld__test_8cpp_abce7f9f9428f0d1476240fc739ea15d4_cgraph" alt=""/></div>
+<map name="aworld__test_8cpp_abce7f9f9428f0d1476240fc739ea15d4_cgraph" id="aworld__test_8cpp_abce7f9f9428f0d1476240fc739ea15d4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,489,60,516"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="401,5,562,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a29542072dd459b5eca10cdd80970ff63" title="Clears all lights from the world" alt="" coords="127,475,288,531"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="127,199,288,255"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#af2ff355f45fc3b2100e116bc7955840b" title="Finds the intersection that the ray hits, if it exists." alt="" coords="108,555,307,597"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ab0cc8359a45545669b30dc1742b3e329" title="Returns the intersections between objects in the world and the ray" alt="" coords="127,395,288,451"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="127,873,288,929"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a154c895b965e8aa00cc42e9ad53d8b75" title="Returns a white color" alt="" coords="127,621,288,677"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a02cabc7a86133ebaf28fc607a5187efb" title="Adds a object to the world" alt="" coords="401,85,562,141"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="401,165,562,221"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="669,212,830,268"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8" title="Constructs a World that is completely empty" alt="" coords="401,296,562,352"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="669,132,830,188"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="901,201,1063,257"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a9e8481ad8524cd8859a7cb49664c15dd" title="Calculates if the ray intersects with the sphere." alt="" coords="393,395,569,451"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="891,282,1073,323"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="666,461,833,502"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a74fe953a5f2aefbc4801175842008c8d" title="Creates an empty collection of Intersections" alt="" coords="661,527,837,583"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="900,413,1064,454"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="669,607,830,663"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="656,343,843,385"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="901,347,1063,389"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="401,687,562,743"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a622264bce1b187d850a385034df91dc1" title="Returns the eye vector" alt="" coords="355,767,608,809"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#af3e2528666bd47ece98fadbc5f1491bc" title="Computes the color at a given point with lighting." alt="" coords="396,833,567,889"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html#a29abed33e6e21552bc9fe8afc827383b" title="Returns the material assigned to the object" alt="" coords="398,913,565,969"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a1d400c7edc498808c9de5e35a436824a" title="Returns the normal vector" alt="" coords="369,993,593,1049"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8" title="Returns the position of the intersection" alt="" coords="369,1073,593,1129"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#af5a02af84e6b9d1bcc8a835e844eba30" title="Returns a const reference to the intersectable" alt="" coords="369,1153,593,1209"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="669,687,830,743"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="658,800,841,856"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#a1e5accc8b122a9e71d54297698eab78b" title="Returns the position of the light" alt="" coords="658,880,841,936"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a17a7bb52734ec725561066c61eecca85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17a7bb52734ec725561066c61eecca85">&#9670;&nbsp;</a></span>TEST() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a17a7bb52734ec725561066c61eecca85">&#9670;&nbsp;</a></span>TEST() <span class="overload">[6/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,7 +464,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="world__test_8cpp_source.html#l00008">8</a> of file <a class="el" href="world__test_8cpp_source.html">world_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="world__test_8cpp_source.html#l00010">10</a> of file <a class="el" href="world__test_8cpp_source.html">world_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

@@ -1,6 +1,7 @@
 <map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,100,60,127"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a21a753fbd1767b50b7fa025f31288913" title="Returns a const reference to the intersectable" alt="" coords="114,5,338,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a5233b26043e7696c260258f19b9867d0" title="If the intersection occurred inside or outside of the intersectable object" alt="" coords="114,85,338,141"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#ab6c08535b526bc2e37e63d1fce575f39" title="Returns the t value from the intersection" alt="" coords="108,166,344,207"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,140,60,167"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a5233b26043e7696c260258f19b9867d0" title="If the intersection occurred inside or outside of the intersectable object" alt="" coords="114,5,338,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html#a29abed33e6e21552bc9fe8afc827383b" title="Returns the material assigned to the object" alt="" coords="143,85,309,141"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#af5a02af84e6b9d1bcc8a835e844eba30" title="Returns a const reference to the intersectable" alt="" coords="114,165,338,221"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#ab6c08535b526bc2e37e63d1fce575f39" title="Returns the t value from the intersection" alt="" coords="108,246,344,287"/>
 </map>

@@ -25,8 +25,8 @@ var dir_e235ce117329fd16b24743c07cd49299 =
     [ "ray.h", "ray_8h.html", [
       [ "Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray" ]
     ] ],
-    [ "sphere.cpp", "sphere_8cpp.html", null ],
-    [ "sphere.h", "sphere_8h.html", [
+    [ "sphere.cpp", "math_2sphere_8cpp.html", null ],
+    [ "sphere.h", "math_2sphere_8h.html", [
       [ "Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere" ]
     ] ],
     [ "transform.cpp", "transform_8cpp.html", null ],

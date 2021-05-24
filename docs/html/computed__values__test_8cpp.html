@@ -90,30 +90,37 @@ $(document).ready(function(){initNavTree('computed__values__test_8cpp.html','');
 <div class="contents">
 <div class="textblock"><code>#include &lt;gtest/gtest.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="computed__values_8h_source.html">renderer/computed_values.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="renderer_2sphere_8h_source.html">renderer/sphere.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="material_8h_source.html">renderer/material.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="intersection_8h_source.html">math/intersection.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="sphere_8h_source.html">math/sphere.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="math_2sphere_8h_source.html">math/sphere.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for computed_values_test.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="computed__values__test_8cpp__incl.png" border="0" usemap="#asrc_2test_2core_2renderer_2computed__values__test_8cpp" alt=""/></div>
 <map name="asrc_2test_2core_2renderer_2computed__values__test_8cpp" id="asrc_2test_2core_2renderer_2computed__values__test_8cpp">
-<area shape="rect" title=" " alt="" coords="73,5,253,47"/>
+<area shape="rect" title=" " alt="" coords="124,5,304,47"/>
 <area shape="rect" title=" " alt="" coords="5,95,100,121"/>
-<area shape="rect" href="computed__values_8h.html" title=" " alt="" coords="226,95,410,121"/>
-<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="176,169,321,196"/>
-<area shape="rect" href="sphere_8h.html" title=" " alt="" coords="194,244,266,271"/>
-<area shape="rect" href="ray_8h.html" title=" " alt="" coords="311,244,407,271"/>
-<area shape="rect" href="point_8h.html" title=" " alt="" coords="190,319,251,345"/>
-<area shape="rect" href="transform_8h.html" title=" " alt="" coords="327,319,413,345"/>
-<area shape="rect" href="vector_8h.html" title=" " alt="" coords="219,393,286,420"/>
-<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="227,468,289,495"/>
-<area shape="rect" title=" " alt="" coords="250,543,322,569"/>
-<area shape="rect" title=" " alt="" coords="263,617,346,644"/>
-<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="347,543,447,569"/>
-<area shape="rect" title=" " alt="" coords="311,393,365,420"/>
-<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="390,393,459,420"/>
-<area shape="rect" title=" " alt="" coords="465,468,521,495"/>
-<area shape="rect" title=" " alt="" coords="318,468,387,495"/>
+<area shape="rect" href="computed__values_8h.html" title=" " alt="" coords="327,95,511,121"/>
+<area shape="rect" href="renderer_2sphere_8h.html" title=" " alt="" coords="277,169,349,196"/>
+<area shape="rect" href="math_2sphere_8h.html" title=" " alt="" coords="271,393,389,420"/>
+<area shape="rect" href="material_8h.html" title=" " alt="" coords="72,244,151,271"/>
+<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="277,319,377,345"/>
+<area shape="rect" href="ray_8h.html" title=" " alt="" coords="519,393,570,420"/>
+<area shape="rect" href="intersections_8h.html" title=" " alt="" coords="423,244,575,271"/>
+<area shape="rect" href="point_8h.html" title=" " alt="" coords="283,468,345,495"/>
+<area shape="rect" href="transform_8h.html" title=" " alt="" coords="429,468,516,495"/>
+<area shape="rect" href="vector_8h.html" title=" " alt="" coords="279,543,346,569"/>
+<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="217,617,278,644"/>
+<area shape="rect" title=" " alt="" coords="322,692,394,719"/>
+<area shape="rect" title=" " alt="" coords="162,767,245,793"/>
+<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="197,692,297,719"/>
+<area shape="rect" title=" " alt="" coords="464,543,519,569"/>
+<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="370,543,439,569"/>
+<area shape="rect" title=" " alt="" coords="529,617,585,644"/>
+<area shape="rect" title=" " alt="" coords="370,617,439,644"/>
+<area shape="rect" href="color_8h.html" title=" " alt="" coords="120,393,247,420"/>
+<area shape="rect" title=" " alt="" coords="453,319,519,345"/>
 </map>
 </div>
 </div>
@@ -153,7 +160,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00022">22</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00028">28</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -161,10 +168,10 @@ Here is the call graph for this function:</div>
 <map name="acomputed__values__test_8cpp_a31f65572e758077a45fccef6d9330109_cgraph" id="acomputed__values__test_8cpp_a31f65572e758077a45fccef6d9330109_cgraph">
 <area shape="rect" title=" " alt="" coords="5,206,60,233"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a622264bce1b187d850a385034df91dc1" title="Returns the eye vector" alt="" coords="108,5,361,47"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a21a753fbd1767b50b7fa025f31288913" title="Returns a const reference to the intersectable" alt="" coords="123,71,347,127"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a5233b26043e7696c260258f19b9867d0" title="If the intersection occurred inside or outside of the intersectable object" alt="" coords="123,151,347,207"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a1d400c7edc498808c9de5e35a436824a" title="Returns the normal vector" alt="" coords="123,231,347,287"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8" title="Returns the position of the intersection" alt="" coords="123,311,347,367"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a5233b26043e7696c260258f19b9867d0" title="If the intersection occurred inside or outside of the intersectable object" alt="" coords="123,71,347,127"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a1d400c7edc498808c9de5e35a436824a" title="Returns the normal vector" alt="" coords="123,151,347,207"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8" title="Returns the position of the intersection" alt="" coords="123,231,347,287"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#af5a02af84e6b9d1bcc8a835e844eba30" title="Returns a const reference to the intersectable" alt="" coords="123,311,347,367"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#ab6c08535b526bc2e37e63d1fce575f39" title="Returns the t value from the intersection" alt="" coords="117,392,353,433"/>
 </map>
 </div>
@@ -197,16 +204,17 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00008">8</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00010">10</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="computed__values__test_8cpp_a5bf659ad7aa3c8ffcc77645acd49d7fc_cgraph.png" border="0" usemap="#acomputed__values__test_8cpp_a5bf659ad7aa3c8ffcc77645acd49d7fc_cgraph" alt=""/></div>
 <map name="acomputed__values__test_8cpp_a5bf659ad7aa3c8ffcc77645acd49d7fc_cgraph" id="acomputed__values__test_8cpp_a5bf659ad7aa3c8ffcc77645acd49d7fc_cgraph">
-<area shape="rect" title=" " alt="" coords="5,100,60,127"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a21a753fbd1767b50b7fa025f31288913" title="Returns a const reference to the intersectable" alt="" coords="114,5,338,61"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a5233b26043e7696c260258f19b9867d0" title="If the intersection occurred inside or outside of the intersectable object" alt="" coords="114,85,338,141"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#ab6c08535b526bc2e37e63d1fce575f39" title="Returns the t value from the intersection" alt="" coords="108,166,344,207"/>
+<area shape="rect" title=" " alt="" coords="5,140,60,167"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a5233b26043e7696c260258f19b9867d0" title="If the intersection occurred inside or outside of the intersectable object" alt="" coords="114,5,338,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html#a29abed33e6e21552bc9fe8afc827383b" title="Returns the material assigned to the object" alt="" coords="143,85,309,141"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#af5a02af84e6b9d1bcc8a835e844eba30" title="Returns a const reference to the intersectable" alt="" coords="114,165,338,221"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#ab6c08535b526bc2e37e63d1fce575f39" title="Returns the t value from the intersection" alt="" coords="108,246,344,287"/>
 </map>
 </div>
 

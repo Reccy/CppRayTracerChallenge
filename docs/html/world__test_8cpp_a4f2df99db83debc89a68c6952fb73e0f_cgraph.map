@@ -3,7 +3,7 @@
 <area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,205,269,261"/>
 <area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ab0cc8359a45545669b30dc1742b3e329" title="Returns the intersections between objects in the world and the ray" alt="" coords="108,351,269,407"/>
 <area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="325,85,486,141"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#af301463417bcb2e963a697841de006e0" title="Adds a object to the world" alt="" coords="325,165,486,221"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a02cabc7a86133ebaf28fc607a5187efb" title="Adds a object to the world" alt="" coords="325,165,486,221"/>
 <area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="325,245,486,301"/>
 <area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="554,311,715,367"/>
 <area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8" title="Constructs a World that is completely empty" alt="" coords="325,5,486,61"/>

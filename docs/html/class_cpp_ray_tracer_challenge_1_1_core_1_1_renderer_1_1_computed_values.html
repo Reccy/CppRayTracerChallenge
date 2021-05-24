@@ -105,9 +105,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab6c08535b526bc2e37e63d1fce575f39"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#ab6c08535b526bc2e37e63d1fce575f39">t</a> () const</td></tr>
 <tr class="memdesc:ab6c08535b526bc2e37e63d1fce575f39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the t value from the intersection  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#ab6c08535b526bc2e37e63d1fce575f39">More...</a><br /></td></tr>
 <tr class="separator:ab6c08535b526bc2e37e63d1fce575f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21a753fbd1767b50b7fa025f31288913"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html">Math::Sphere</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a21a753fbd1767b50b7fa025f31288913">intersectable</a> () const</td></tr>
-<tr class="memdesc:a21a753fbd1767b50b7fa025f31288913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const reference to the intersectable  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a21a753fbd1767b50b7fa025f31288913">More...</a><br /></td></tr>
-<tr class="separator:a21a753fbd1767b50b7fa025f31288913"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5a02af84e6b9d1bcc8a835e844eba30"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html">Renderer::Sphere</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#af5a02af84e6b9d1bcc8a835e844eba30">shape</a> () const</td></tr>
+<tr class="memdesc:af5a02af84e6b9d1bcc8a835e844eba30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const reference to the intersectable  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#af5a02af84e6b9d1bcc8a835e844eba30">More...</a><br /></td></tr>
+<tr class="separator:af5a02af84e6b9d1bcc8a835e844eba30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6698907169b43336b1effae379eb94d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8">position</a> () const</td></tr>
 <tr class="memdesc:a6698907169b43336b1effae379eb94d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the position of the intersection  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8">More...</a><br /></td></tr>
 <tr class="separator:a6698907169b43336b1effae379eb94d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,7 +124,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a collection of values computed from an intersection and a ray </p>
 
-<p class="definition">Definition at line <a class="el" href="computed__values_8h_source.html#l00012">12</a> of file <a class="el" href="computed__values_8h_source.html">computed_values.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="computed__values_8h_source.html#l00013">13</a> of file <a class="el" href="computed__values_8h_source.html">computed_values.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a817626ea549fdf1ac7c4ac5fae2af883"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a817626ea549fdf1ac7c4ac5fae2af883">&#9670;&nbsp;</a></span>ComputedValues() <span class="overload">[1/2]</span></h2>
@@ -179,7 +179,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Computes the values of the intersection and the ray </p>
 
-<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00007">7</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00008">8</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -227,45 +227,16 @@ Here is the call graph for this function:</div>
 <p>Returns the eye vector </p>
 <dl class="section return"><dt>Returns</dt><dd>The eye vector</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00039">39</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00040">40</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a622264bce1b187d850a385034df91dc1_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a622264bce1b187d850a385034df91dc1_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a622264bce1b187d850a385034df91dc1_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a622264bce1b187d850a385034df91dc1_icgraph">
-<area shape="rect" title="Returns the eye vector" alt="" coords="108,5,361,47"/>
-<area shape="rect" href="computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="5,13,60,39"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a21a753fbd1767b50b7fa025f31288913"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21a753fbd1767b50b7fa025f31288913">&#9670;&nbsp;</a></span>intersectable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html">Sphere</a> &amp; ComputedValues::intersectable </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns a const reference to the intersectable </p>
-<dl class="section return"><dt>Returns</dt><dd>Intersectable const reference</dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00029">29</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a21a753fbd1767b50b7fa025f31288913_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a21a753fbd1767b50b7fa025f31288913_icgraph" alt=""/></div>
-<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a21a753fbd1767b50b7fa025f31288913_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a21a753fbd1767b50b7fa025f31288913_icgraph">
-<area shape="rect" title="Returns a const reference to the intersectable" alt="" coords="108,5,332,61"/>
-<area shape="rect" href="computed__values__test_8cpp.html#a5bf659ad7aa3c8ffcc77645acd49d7fc" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" title="Returns the eye vector" alt="" coords="317,46,571,87"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="108,5,269,61"/>
+<area shape="rect" href="computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="161,85,216,112"/>
+<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,20,60,47"/>
 </map>
 </div>
 
@@ -289,7 +260,7 @@ Here is the caller graph for this function:</div>
 <p>If the intersection occurred inside or outside of the intersectable object </p>
 <dl class="section return"><dt>Returns</dt><dd>Bool for if intersection was inside or outside</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00049">49</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00050">50</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -320,14 +291,16 @@ Here is the caller graph for this function:</div>
 <p>Returns the normal vector </p>
 <dl class="section return"><dt>Returns</dt><dd>The normal vector</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00044">44</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00045">45</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a1d400c7edc498808c9de5e35a436824a_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a1d400c7edc498808c9de5e35a436824a_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a1d400c7edc498808c9de5e35a436824a_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a1d400c7edc498808c9de5e35a436824a_icgraph">
-<area shape="rect" title="Returns the normal vector" alt="" coords="108,5,332,61"/>
-<area shape="rect" href="computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" title="Returns the normal vector" alt="" coords="317,39,541,95"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="108,5,269,61"/>
+<area shape="rect" href="computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="161,85,216,112"/>
+<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,20,60,47"/>
 </map>
 </div>
 
@@ -351,14 +324,49 @@ Here is the caller graph for this function:</div>
 <p>Returns the position of the intersection </p>
 <dl class="section return"><dt>Returns</dt><dd>Where the intersection occurred</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00034">34</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00035">35</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a6698907169b43336b1effae379eb94d8_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a6698907169b43336b1effae379eb94d8_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a6698907169b43336b1effae379eb94d8_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a6698907169b43336b1effae379eb94d8_icgraph">
-<area shape="rect" title="Returns the position of the intersection" alt="" coords="108,5,332,61"/>
-<area shape="rect" href="computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" title="Returns the position of the intersection" alt="" coords="317,39,541,95"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="108,5,269,61"/>
+<area shape="rect" href="computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="161,85,216,112"/>
+<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,20,60,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af5a02af84e6b9d1bcc8a835e844eba30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5a02af84e6b9d1bcc8a835e844eba30">&#9670;&nbsp;</a></span>shape()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html">Renderer::Sphere</a> &amp; ComputedValues::shape </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a const reference to the intersectable </p>
+<dl class="section return"><dt>Returns</dt><dd>Intersectable const reference</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00030">30</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_af5a02af84e6b9d1bcc8a835e844eba30_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_af5a02af84e6b9d1bcc8a835e844eba30_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_af5a02af84e6b9d1bcc8a835e844eba30_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_af5a02af84e6b9d1bcc8a835e844eba30_icgraph">
+<area shape="rect" title="Returns a const reference to the intersectable" alt="" coords="317,39,541,95"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="108,5,269,61"/>
+<area shape="rect" href="computed__values__test_8cpp.html#a5bf659ad7aa3c8ffcc77645acd49d7fc" title=" " alt="" coords="161,85,216,112"/>
+<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,20,60,47"/>
 </map>
 </div>
 
@@ -382,7 +390,7 @@ Here is the caller graph for this function:</div>
 <p>Returns the t value from the intersection </p>
 <dl class="section return"><dt>Returns</dt><dd>t</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00024">24</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="computed__values_8cpp_source.html#l00025">25</a> of file <a class="el" href="computed__values_8cpp_source.html">computed_values.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">

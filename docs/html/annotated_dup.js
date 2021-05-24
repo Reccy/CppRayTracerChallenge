@@ -26,8 +26,8 @@ var annotated_dup =
         [ "Renderer", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html", [
           [ "ComputedValues", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values" ],
           [ "Material", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material" ],
-          [ "Object", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_object.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_object" ],
           [ "PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light" ],
+          [ "Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere" ],
           [ "World", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world" ]
         ] ],
         [ "Serializer", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_serializer.html", [

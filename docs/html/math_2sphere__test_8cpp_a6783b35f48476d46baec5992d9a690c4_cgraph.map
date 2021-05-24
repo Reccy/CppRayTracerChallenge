@@ -1,0 +1,15 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node1" title=" " alt="" coords="5,275,60,302"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#adc9777ea186e745c6bb6aa40aadd6f27" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="108,90,284,146"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a9e8481ad8524cd8859a7cb49664c15dd" title="Calculates if the ray intersects with the sphere." alt="" coords="108,261,284,317"/>
+<area shape="rect" id="node12" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a15c7cc60bb00530ac0d77992de267cd2" title="Transforms the Sphere" alt="" coords="355,465,517,521"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="332,5,540,47"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="588,144,771,185"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="353,268,519,309"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a74fe953a5f2aefbc4801175842008c8d" title="Creates an empty collection of Intersections" alt="" coords="348,334,524,390"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="597,336,761,377"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a25021757a8dfc40355af117802d88e0d" title="Returns the position of the sphere" alt="" coords="355,71,517,127"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="343,203,529,244"/>
+<area shape="rect" id="node11" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="599,209,760,251"/>
+<area shape="rect" id="node13" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a7fb9e923100bd7b572f577b140f85e2f" title="Returns a copy of the Sphere&#39;s Transform" alt="" coords="599,465,760,521"/>
+</map>

@@ -1,12 +1,12 @@
 <map id="src/core/renderer/point_light.h" name="src/core/renderer/point_light.h">
-<area shape="rect" id="node1" title=" " alt="" coords="555,5,707,47"/>
-<area shape="rect" id="node2" href="$lighting_8h.html" title=" " alt="" coords="227,102,403,129"/>
-<area shape="rect" id="node4" href="$win32__main_8cpp.html" title=" " alt="" coords="392,191,561,218"/>
-<area shape="rect" id="node6" href="$point__light_8cpp.html" title=" " alt="" coords="499,95,651,136"/>
-<area shape="rect" id="node7" href="$world_8cpp.html" title=" " alt="" coords="599,191,778,218"/>
-<area shape="rect" id="node8" href="$world_8h.html" title=" " alt="" coords="726,102,891,129"/>
-<area shape="rect" id="node10" href="$point__light__test_8cpp.html" title=" " alt="" coords="915,95,1062,136"/>
-<area shape="rect" id="node3" href="$lighting_8cpp.html" title=" " alt="" coords="5,191,196,218"/>
-<area shape="rect" id="node5" href="$lighting__test_8cpp.html" title=" " alt="" coords="221,184,367,225"/>
-<area shape="rect" id="node9" href="$world__test_8cpp.html" title=" " alt="" coords="802,184,949,225"/>
+<area shape="rect" id="node1" title=" " alt="" coords="468,5,620,47"/>
+<area shape="rect" id="node2" href="$lighting_8h.html" title=" " alt="" coords="393,102,569,129"/>
+<area shape="rect" id="node4" href="$world_8cpp.html" title=" " alt="" coords="176,191,355,218"/>
+<area shape="rect" id="node5" href="$win32__main_8cpp.html" title=" " alt="" coords="765,191,934,218"/>
+<area shape="rect" id="node7" href="$point__light_8cpp.html" title=" " alt="" coords="644,95,796,136"/>
+<area shape="rect" id="node8" href="$world_8h.html" title=" " alt="" coords="153,102,319,129"/>
+<area shape="rect" id="node10" href="$point__light__test_8cpp.html" title=" " alt="" coords="820,95,967,136"/>
+<area shape="rect" id="node3" href="$lighting_8cpp.html" title=" " alt="" coords="550,191,741,218"/>
+<area shape="rect" id="node6" href="$lighting__test_8cpp.html" title=" " alt="" coords="379,184,525,225"/>
+<area shape="rect" id="node9" href="$world__test_8cpp.html" title=" " alt="" coords="5,184,152,225"/>
 </map>

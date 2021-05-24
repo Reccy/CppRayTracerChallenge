@@ -1,0 +1,7 @@
+<map id="CppRayTracerChallenge::Core::Renderer::Sphere::material" name="CppRayTracerChallenge::Core::Renderer::Sphere::material">
+<area shape="rect" id="node1" title="Returns the material assigned to the object" alt="" coords="323,85,489,141"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html#a18c004e5f35c28155759ff1a3c797079" title="Assigns a material to the object" alt="" coords="108,5,275,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="111,85,272,141"/>
+<area shape="rect" id="node5" href="$renderer_2sphere__test_8cpp.html#a8386763edd56aa116baff2e54ea3b8ed" title=" " alt="" coords="164,165,219,192"/>
+<area shape="rect" id="node4" href="$world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,100,60,127"/>
+</map>
