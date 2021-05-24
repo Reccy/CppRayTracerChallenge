@@ -1,5 +1,6 @@
 var dir_946543385d01b2b5017ce51024a6a3d4 =
 [
+    [ "camera_test.cpp", "camera__test_8cpp.html", "camera__test_8cpp" ],
     [ "computed_values_test.cpp", "computed__values__test_8cpp.html", "computed__values__test_8cpp" ],
     [ "lighting_test.cpp", "lighting__test_8cpp.html", "lighting__test_8cpp" ],
     [ "material_test.cpp", "material__test_8cpp.html", "material__test_8cpp" ],

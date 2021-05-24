@@ -1,0 +1,8 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node1" title=" " alt="" coords="5,180,60,207"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a1cea1058a574aaa3cd2aaf3291258816" title="The field of view in degrees" alt="" coords="108,5,279,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a16c1cdc994887bcbc29bcfa3fb7358f9" title="The horizontal size of the camera in pixels" alt="" coords="108,85,279,141"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#aabf26af6b515ca222ee6cd75f55d54ed" title="Returns the transform as an actual matrix" alt="" coords="113,165,274,221"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#ab65835986ca17034ca092e9a6584d362" title="The underlying transform matrix for the camera" alt="" coords="108,245,279,301"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a3e30f9502e2ca31dff1b9aee8f624b6c" title="The vertical size of the camera in pixels" alt="" coords="108,325,279,381"/>
+</map>

@@ -1,12 +1,20 @@
 <map id="CppRayTracerChallenge::Core::Math::Matrix::identity" name="CppRayTracerChallenge::Core::Math::Matrix::identity">
-<area shape="rect" id="node1" title="Creates a square Identity Matrix of a specific size" alt="" coords="527,119,688,175"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#ab4aa91a4dc6d8ca7653acf8c82f33986" title="Rotates the Transform along the x, y and z axes" alt="" coords="317,5,479,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="317,85,479,141"/>
-<area shape="rect" id="node8" href="$matrix__test_8cpp.html#aed8977233cfb42946b60407c71924281" title=" " alt="" coords="371,165,425,192"/>
-<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a2518b8aa2d8e95ca80f5c61817a2d33c" title="Translates the Transform along x, y, z co&#45;ordinates" alt="" coords="317,216,479,272"/>
-<area shape="rect" id="node3" href="$transform__test_8cpp.html#a76194ac1de00662ebe995e3d9760a6ae" title=" " alt="" coords="161,20,216,47"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,77,269,133"/>
-<area shape="rect" id="node7" href="$ray__test_8cpp.html#ad7cf2355e3d70227dbdfeaf26a66b26f" title=" " alt="" coords="161,157,216,184"/>
-<area shape="rect" id="node6" href="$world__test_8cpp.html#a839c0eff085fa7f8fd18f39e504e9800" title=" " alt="" coords="5,92,60,119"/>
-<area shape="rect" id="node10" href="$ray__test_8cpp.html#a32cb8f5fe90e650dcb9db4ec58e3f4df" title=" " alt="" coords="161,231,216,257"/>
+<area shape="rect" id="node1" title="Creates a square Identity Matrix of a specific size" alt="" coords="683,293,844,349"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="473,203,635,259"/>
+<area shape="rect" id="node13" href="$matrix__test_8cpp.html#aed8977233cfb42946b60407c71924281" title=" " alt="" coords="527,373,581,400"/>
+<area shape="rect" id="node14" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a2518b8aa2d8e95ca80f5c61817a2d33c" title="Translates the Transform along x, y, z co&#45;ordinates" alt="" coords="473,293,635,349"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#ae350dfbd7685be861181b555e7416f4f" title=" " alt="" coords="301,136,379,163"/>
+<area shape="rect" id="node6" href="$win32__main_8cpp.html#a9748c9a5340278f090af9309b37ee993" title=" " alt="" coords="285,339,395,365"/>
+<area shape="rect" id="node7" href="$win32__main_8cpp.html#a0bcf13ec611bf64dc468bd65345cc26f" title=" " alt="" coords="280,187,400,213"/>
+<area shape="rect" id="node8" href="$win32__main_8cpp.html#a3d1af0e3939078c7d300ed5f969a3b88" title=" " alt="" coords="292,237,388,264"/>
+<area shape="rect" id="node9" href="$win32__main_8cpp.html#a401d23bdff230fb7f0b501e93fd1730c" title=" " alt="" coords="287,288,393,315"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="259,5,421,61"/>
+<area shape="rect" id="node12" href="$ray__test_8cpp.html#ad7cf2355e3d70227dbdfeaf26a66b26f" title=" " alt="" coords="313,85,367,112"/>
+<area shape="rect" id="node4" href="$win32__main_8cpp.html#adbdf70141f50bb84ab8270053913566a" title=" " alt="" coords="104,288,207,315"/>
+<area shape="rect" id="node5" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,288,56,315"/>
+<area shape="rect" id="node11" href="$camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,20,183,47"/>
+<area shape="rect" id="node15" href="$win32__main_8cpp.html#a0fbef7c62386e7b2a7ffd0efb385e366" title=" " alt="" coords="276,389,404,416"/>
+<area shape="rect" id="node16" href="$ray__test_8cpp.html#a32cb8f5fe90e650dcb9db4ec58e3f4df" title=" " alt="" coords="313,440,367,467"/>
+<area shape="rect" id="node17" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a4db33858bd0ed84b50466a85221e15d2" title="Creates a matrix that can be used to transform the world around the camera, effectively changing came..." alt="" coords="255,491,425,547"/>
+<area shape="rect" id="node18" href="$camera__test_8cpp.html#aaeb4ccf47528badd6620dfdc13171c5b" title=" " alt="" coords="128,505,183,532"/>
 </map>

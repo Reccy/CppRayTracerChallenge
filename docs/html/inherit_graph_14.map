@@ -1,3 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html" title="Represents a Material struct for use in a Phong Lighting Model" alt="" coords="5,5,176,47"/>
+<area shape="rect" id="node1" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html" title="Represents a collection of values computed from an intersection and a ray" alt="" coords="5,5,229,47"/>
 </map>

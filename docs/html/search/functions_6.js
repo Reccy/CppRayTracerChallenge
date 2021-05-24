@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['height_320',['height',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a000645ffdca3b8260ddda3932b56b9d4',1,'CppRayTracerChallenge::Core::Graphics::Image']]],
-  ['hit_321',['hit',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#af2ff355f45fc3b2100e116bc7955840b',1,'CppRayTracerChallenge::Core::Math::Intersections']]]
+  ['green_360',['green',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a5dcccf7b529ee13c0b5850a29e1df8da',1,'CppRayTracerChallenge::Core::Graphics::Color']]]
 ];

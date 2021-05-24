@@ -1,6 +1,13 @@
 <map id="CppRayTracerChallenge::Core::Math::Transform::scale" name="CppRayTracerChallenge::Core::Math::Transform::scale">
-<area shape="rect" id="node1" title="Scales the Transform along x, y, z axes" alt="" coords="317,39,479,95"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node4" href="$ray__test_8cpp.html#ad7cf2355e3d70227dbdfeaf26a66b26f" title=" " alt="" coords="161,85,216,112"/>
-<area shape="rect" id="node3" href="$world__test_8cpp.html#a839c0eff085fa7f8fd18f39e504e9800" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node1" title="Scales the Transform along x, y, z axes" alt="" coords="464,143,625,199"/>
+<area shape="rect" id="node2" href="$win32__main_8cpp.html#ae350dfbd7685be861181b555e7416f4f" title=" " alt="" coords="296,5,375,32"/>
+<area shape="rect" id="node5" href="$win32__main_8cpp.html#a9748c9a5340278f090af9309b37ee993" title=" " alt="" coords="280,56,391,83"/>
+<area shape="rect" id="node6" href="$win32__main_8cpp.html#a0bcf13ec611bf64dc468bd65345cc26f" title=" " alt="" coords="275,107,395,133"/>
+<area shape="rect" id="node7" href="$win32__main_8cpp.html#a3d1af0e3939078c7d300ed5f969a3b88" title=" " alt="" coords="287,157,383,184"/>
+<area shape="rect" id="node8" href="$win32__main_8cpp.html#a401d23bdff230fb7f0b501e93fd1730c" title=" " alt="" coords="283,208,388,235"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="255,259,416,315"/>
+<area shape="rect" id="node11" href="$ray__test_8cpp.html#ad7cf2355e3d70227dbdfeaf26a66b26f" title=" " alt="" coords="308,339,363,365"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#adbdf70141f50bb84ab8270053913566a" title=" " alt="" coords="104,107,207,133"/>
+<area shape="rect" id="node4" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,107,56,133"/>
+<area shape="rect" id="node10" href="$camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,273,183,300"/>
 </map>

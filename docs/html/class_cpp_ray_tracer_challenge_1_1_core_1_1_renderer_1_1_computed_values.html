@@ -105,7 +105,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab6c08535b526bc2e37e63d1fce575f39"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#ab6c08535b526bc2e37e63d1fce575f39">t</a> () const</td></tr>
 <tr class="memdesc:ab6c08535b526bc2e37e63d1fce575f39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the t value from the intersection  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#ab6c08535b526bc2e37e63d1fce575f39">More...</a><br /></td></tr>
 <tr class="separator:ab6c08535b526bc2e37e63d1fce575f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5a02af84e6b9d1bcc8a835e844eba30"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html">Renderer::Sphere</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#af5a02af84e6b9d1bcc8a835e844eba30">shape</a> () const</td></tr>
+<tr class="memitem:af5a02af84e6b9d1bcc8a835e844eba30"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html">Renderer::Sphere</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#af5a02af84e6b9d1bcc8a835e844eba30">shape</a> () const</td></tr>
 <tr class="memdesc:af5a02af84e6b9d1bcc8a835e844eba30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const reference to the intersectable  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#af5a02af84e6b9d1bcc8a835e844eba30">More...</a><br /></td></tr>
 <tr class="separator:af5a02af84e6b9d1bcc8a835e844eba30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6698907169b43336b1effae379eb94d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8">position</a> () const</td></tr>
@@ -185,8 +185,9 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a325609a69321d16a1f99a29a5a0548e8_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a325609a69321d16a1f99a29a5a0548e8_cgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a325609a69321d16a1f99a29a5a0548e8_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a325609a69321d16a1f99a29a5a0548e8_cgraph">
-<area shape="rect" title="Computes the values of the intersection and the ray" alt="" coords="5,263,229,319"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="277,157,460,198"/>
+<area shape="rect" title="Computes the values of the intersection and the ray" alt="" coords="5,223,229,279"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="277,91,460,133"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="285,157,452,198"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html#af0df72dc18c28e6890f6484a7e3afda6" title="Returns a const reference to the intersectable object" alt="" coords="284,223,453,279"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="288,303,449,359"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a2856a293c912aa2d3c67b23c725868a2" title="Calculates and returns the position at &#39;t&#39; distance from the origin" alt="" coords="279,383,458,425"/>
@@ -233,10 +234,16 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a622264bce1b187d850a385034df91dc1_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a622264bce1b187d850a385034df91dc1_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a622264bce1b187d850a385034df91dc1_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a622264bce1b187d850a385034df91dc1_icgraph">
-<area shape="rect" title="Returns the eye vector" alt="" coords="317,46,571,87"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="108,5,269,61"/>
-<area shape="rect" href="computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="161,85,216,112"/>
-<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" title="Returns the eye vector" alt="" coords="892,121,1145,162"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="683,80,844,136"/>
+<area shape="rect" href="computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="736,160,791,187"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf" title="Calculates the color from the point of view of the passed in ray" alt="" coords="473,48,635,104"/>
+<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="527,128,581,155"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="255,16,425,72"/>
+<area shape="rect" href="world__test_8cpp.html#a686b8a092e4c4ab41c32146223828901" title=" " alt="" coords="313,96,367,123"/>
+<area shape="rect" href="win32__main_8cpp.html#adbdf70141f50bb84ab8270053913566a" title=" " alt="" coords="104,5,207,32"/>
+<area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,56,183,83"/>
+<area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
 </map>
 </div>
 
@@ -297,10 +304,16 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a1d400c7edc498808c9de5e35a436824a_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a1d400c7edc498808c9de5e35a436824a_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a1d400c7edc498808c9de5e35a436824a_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a1d400c7edc498808c9de5e35a436824a_icgraph">
-<area shape="rect" title="Returns the normal vector" alt="" coords="317,39,541,95"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="108,5,269,61"/>
-<area shape="rect" href="computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="161,85,216,112"/>
-<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" title="Returns the normal vector" alt="" coords="892,113,1116,169"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="683,80,844,136"/>
+<area shape="rect" href="computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="736,160,791,187"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf" title="Calculates the color from the point of view of the passed in ray" alt="" coords="473,48,635,104"/>
+<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="527,128,581,155"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="255,16,425,72"/>
+<area shape="rect" href="world__test_8cpp.html#a686b8a092e4c4ab41c32146223828901" title=" " alt="" coords="313,96,367,123"/>
+<area shape="rect" href="win32__main_8cpp.html#adbdf70141f50bb84ab8270053913566a" title=" " alt="" coords="104,5,207,32"/>
+<area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,56,183,83"/>
+<area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
 </map>
 </div>
 
@@ -330,10 +343,16 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a6698907169b43336b1effae379eb94d8_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a6698907169b43336b1effae379eb94d8_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a6698907169b43336b1effae379eb94d8_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_a6698907169b43336b1effae379eb94d8_icgraph">
-<area shape="rect" title="Returns the position of the intersection" alt="" coords="317,39,541,95"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="108,5,269,61"/>
-<area shape="rect" href="computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="161,85,216,112"/>
-<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" title="Returns the position of the intersection" alt="" coords="892,113,1116,169"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="683,80,844,136"/>
+<area shape="rect" href="computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="736,160,791,187"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf" title="Calculates the color from the point of view of the passed in ray" alt="" coords="473,48,635,104"/>
+<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="527,128,581,155"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="255,16,425,72"/>
+<area shape="rect" href="world__test_8cpp.html#a686b8a092e4c4ab41c32146223828901" title=" " alt="" coords="313,96,367,123"/>
+<area shape="rect" href="win32__main_8cpp.html#adbdf70141f50bb84ab8270053913566a" title=" " alt="" coords="104,5,207,32"/>
+<area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,56,183,83"/>
+<area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
 </map>
 </div>
 
@@ -346,7 +365,7 @@ Here is the caller graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html">Renderer::Sphere</a> &amp; ComputedValues::shape </td>
+          <td class="memname">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html">Renderer::Sphere</a> &amp; ComputedValues::shape </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -363,10 +382,16 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_af5a02af84e6b9d1bcc8a835e844eba30_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_af5a02af84e6b9d1bcc8a835e844eba30_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_af5a02af84e6b9d1bcc8a835e844eba30_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values_af5a02af84e6b9d1bcc8a835e844eba30_icgraph">
-<area shape="rect" title="Returns a const reference to the intersectable" alt="" coords="317,39,541,95"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="108,5,269,61"/>
-<area shape="rect" href="computed__values__test_8cpp.html#a5bf659ad7aa3c8ffcc77645acd49d7fc" title=" " alt="" coords="161,85,216,112"/>
-<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" title="Returns a const reference to the intersectable" alt="" coords="892,113,1116,169"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="683,80,844,136"/>
+<area shape="rect" href="computed__values__test_8cpp.html#a5bf659ad7aa3c8ffcc77645acd49d7fc" title=" " alt="" coords="736,160,791,187"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf" title="Calculates the color from the point of view of the passed in ray" alt="" coords="473,48,635,104"/>
+<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="527,128,581,155"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="255,16,425,72"/>
+<area shape="rect" href="world__test_8cpp.html#a686b8a092e4c4ab41c32146223828901" title=" " alt="" coords="313,96,367,123"/>
+<area shape="rect" href="win32__main_8cpp.html#adbdf70141f50bb84ab8270053913566a" title=" " alt="" coords="104,5,207,32"/>
+<area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,56,183,83"/>
+<area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
 </map>
 </div>
 

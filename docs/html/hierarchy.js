@@ -3,6 +3,7 @@ var hierarchy =
     [ "CppRayTracerChallenge::Core::Serializer::BaseImageSerializer", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html", [
       [ "CppRayTracerChallenge::Core::Serializer::PortablePixmapImageSerializer", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html", null ]
     ] ],
+    [ "CppRayTracerChallenge::Core::Renderer::Camera", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html", null ],
     [ "CppRayTracerChallenge::Core::Graphics::Color", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html", null ],
     [ "CppRayTracerChallenge::Core::Renderer::ComputedValues", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html", null ],
     [ "std::exception", null, [

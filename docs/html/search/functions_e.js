@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['scale_371',['scale',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964',1,'CppRayTracerChallenge::Core::Math::Transform']]],
-  ['serialize_372',['serialize',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#a9e7ddf2da2c40d269dcc90f126efc66f',1,'CppRayTracerChallenge::Core::Serializer::BaseImageSerializer::serialize()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html#a4a1a96db5d06e8ad687c3f07a1c74b14',1,'CppRayTracerChallenge::Core::Serializer::PortablePixmapImageSerializer::serialize()']]],
-  ['setup_373',['SetUp',['../class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html#a87d5707177de868b2f3e20d587b57836',1,'CppRayTracerChallenge_Core_Renderer_LightingTest']]],
-  ['shadehit_374',['shadeHit',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41',1,'CppRayTracerChallenge::Core::Renderer::World']]],
-  ['shape_375',['shape',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#af5a02af84e6b9d1bcc8a835e844eba30',1,'CppRayTracerChallenge::Core::Renderer::ComputedValues']]],
-  ['shear_376',['shear',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a7da07cf9782883f9327bf9c4d6bb0caa',1,'CppRayTracerChallenge::Core::Math::Transform']]],
-  ['size_377',['size',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722',1,'CppRayTracerChallenge::Core::Math::Intersections']]],
-  ['sphere_378',['Sphere',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a890a63ff583cb88e7ec4e840b4ef5eb9',1,'CppRayTracerChallenge::Core::Math::Sphere::Sphere()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html#a890a63ff583cb88e7ec4e840b4ef5eb9',1,'CppRayTracerChallenge::Core::Renderer::Sphere::Sphere()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html#a0177371fbedca5e58edb6faf5e7cb337',1,'CppRayTracerChallenge::Core::Renderer::Sphere::Sphere(Material material)']]],
-  ['submatrix_379',['submatrix',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a81ee5f59b2eb010dfa8d2e645715421d',1,'CppRayTracerChallenge::Core::Math::Matrix']]]
+  ['radians_5fto_5fdegrees_409',['radians_to_degrees',['../namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#aae5b6c25eeb2f02b255e45561e2a3b7e',1,'CppRayTracerChallenge::Core::Math::Trig']]],
+  ['ray_410',['Ray',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f',1,'CppRayTracerChallenge::Core::Math::Ray::Ray()=delete'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#abb5ae5740dadc7291acdcf37cccd1196',1,'CppRayTracerChallenge::Core::Math::Ray::Ray(Point origin, Vector direction)']]],
+  ['readpixel_411',['readPixel',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#aa14ced10c26eb8dcec567af55495eefd',1,'CppRayTracerChallenge::Core::Graphics::Image']]],
+  ['red_412',['red',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a95098c6e8933aa258cac20b61cf1c70b',1,'CppRayTracerChallenge::Core::Graphics::Color']]],
+  ['reflect_413',['reflect',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a7dfd7f3387d4f9f61d8eb48e31be1e4f',1,'CppRayTracerChallenge::Core::Math::Vector']]],
+  ['render_414',['render',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c',1,'CppRayTracerChallenge::Core::Renderer::Camera']]],
+  ['right_415',['right',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#ad4559276bfd5709474d129ef59fc3946',1,'CppRayTracerChallenge::Core::Math::Vector']]],
+  ['rotate_416',['rotate',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#ab4aa91a4dc6d8ca7653acf8c82f33986',1,'CppRayTracerChallenge::Core::Math::Transform']]]
 ];

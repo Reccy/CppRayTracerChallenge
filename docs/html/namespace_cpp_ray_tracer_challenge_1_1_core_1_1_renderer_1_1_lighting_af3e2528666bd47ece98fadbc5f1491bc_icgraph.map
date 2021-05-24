@@ -1,8 +1,12 @@
 <map id="CppRayTracerChallenge::Core::Renderer::Lighting::lighting" name="CppRayTracerChallenge::Core::Renderer::Lighting::lighting">
-<area shape="rect" id="node1" title="Computes the color at a given point with lighting." alt="" coords="317,56,488,112"/>
-<area shape="rect" id="node2" href="$win32__main_8cpp.html#a990679f43e0187ccc0112f1c72bc899b" title=" " alt="" coords="110,5,267,32"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="108,56,269,112"/>
-<area shape="rect" id="node6" href="$lighting__test_8cpp.html#a0e283b70b8912ffe2b8900567c61fd4a" title=" " alt="" coords="154,136,223,163"/>
-<area shape="rect" id="node3" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="7,5,58,32"/>
-<area shape="rect" id="node5" href="$world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,71,60,97"/>
+<area shape="rect" id="node1" title="Computes the color at a given point with lighting." alt="" coords="892,113,1063,169"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="683,80,844,136"/>
+<area shape="rect" id="node10" href="$lighting__test_8cpp.html#a0e283b70b8912ffe2b8900567c61fd4a" title=" " alt="" coords="729,160,798,187"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf" title="Calculates the color from the point of view of the passed in ray" alt="" coords="473,48,635,104"/>
+<area shape="rect" id="node9" href="$world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="527,128,581,155"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="255,16,425,72"/>
+<area shape="rect" id="node8" href="$world__test_8cpp.html#a686b8a092e4c4ab41c32146223828901" title=" " alt="" coords="313,96,367,123"/>
+<area shape="rect" id="node5" href="$win32__main_8cpp.html#adbdf70141f50bb84ab8270053913566a" title=" " alt="" coords="104,5,207,32"/>
+<area shape="rect" id="node7" href="$camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,56,183,83"/>
+<area shape="rect" id="node6" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
 </map>

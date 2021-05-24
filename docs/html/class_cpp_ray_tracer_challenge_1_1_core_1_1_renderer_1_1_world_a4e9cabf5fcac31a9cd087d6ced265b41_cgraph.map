@@ -1,12 +1,11 @@
 <map id="CppRayTracerChallenge::Core::Renderer::World::shadeHit" name="CppRayTracerChallenge::Core::Renderer::World::shadeHit">
-<area shape="rect" id="node1" title="Calculates the color in the world from precomputed values" alt="" coords="5,232,167,288"/>
+<area shape="rect" id="node1" title="Calculates the color in the world from precomputed values" alt="" coords="5,192,167,248"/>
 <area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="261,5,422,61"/>
 <area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a622264bce1b187d850a385034df91dc1" title="Returns the eye vector" alt="" coords="215,86,468,127"/>
 <area shape="rect" id="node5" href="$namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#af3e2528666bd47ece98fadbc5f1491bc" title="Computes the color at a given point with lighting." alt="" coords="256,152,427,208"/>
-<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html#a29abed33e6e21552bc9fe8afc827383b" title="Returns the material assigned to the object" alt="" coords="258,232,425,288"/>
-<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a1d400c7edc498808c9de5e35a436824a" title="Returns the normal vector" alt="" coords="229,312,453,368"/>
-<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8" title="Returns the position of the intersection" alt="" coords="229,392,453,448"/>
-<area shape="rect" id="node11" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#af5a02af84e6b9d1bcc8a835e844eba30" title="Returns a const reference to the intersectable" alt="" coords="229,472,453,528"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a1d400c7edc498808c9de5e35a436824a" title="Returns the normal vector" alt="" coords="229,232,453,288"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8" title="Returns the position of the intersection" alt="" coords="229,312,453,368"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#af5a02af84e6b9d1bcc8a835e844eba30" title="Returns a const reference to the intersectable" alt="" coords="229,392,453,448"/>
 <area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="527,5,688,61"/>
 <area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="516,119,699,175"/>
 <area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#a1e5accc8b122a9e71d54297698eab78b" title="Returns the position of the light" alt="" coords="516,199,699,255"/>

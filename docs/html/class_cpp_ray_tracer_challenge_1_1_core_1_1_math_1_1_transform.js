@@ -2,6 +2,7 @@ var class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform =
 [
     [ "Transform", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#aa08ca4266efabc768973cdeea51945ab", null ],
     [ "invert", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a893ef7e6b4a9dbe27260cfb11ae50b76", null ],
+    [ "matrix", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#aabf26af6b515ca222ee6cd75f55d54ed", null ],
     [ "operator!=", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a0814a71f6683a480b89e4c14b905b9f2", null ],
     [ "operator*", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a88f1a615ffe395e8c2bb01a560b02f69", null ],
     [ "operator==", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#aecb2e8fe27024e2765594385f28c532a", null ],

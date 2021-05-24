@@ -1,10 +1,4 @@
 var searchData=
 [
-  ['w_391',['w',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a2914e57e9f2263a9413b94c528c29877',1,'CppRayTracerChallenge::Core::Math::Tuple']]],
-  ['what_392',['what',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_not_invertible_exception.html#af713424e77246537d5445e75f63cb6be',1,'CppRayTracerChallenge::Core::Math::MatrixNotInvertibleException::what()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_too_small_exception.html#a94ea32e30459b24279eded83e9a30a71',1,'CppRayTracerChallenge::Core::Math::MatrixTooSmallException::what()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_initial_data_size_mismatch.html#a9dbcdb11e282dc7ff98e1a1cc29668de',1,'CppRayTracerChallenge::Core::Math::MatrixInitialDataSizeMismatch::what()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception.html#a9deb36d436c38b15199d589388e85628',1,'CppRayTracerChallenge::Core::Math::MatrixUndefinedDeterminantException::what()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception.html#aebd01a35b641322a1a0a484bfd1a899b',1,'CppRayTracerChallenge::Core::Math::MatrixUndefinedProductException::what()']]],
-  ['white_393',['white',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a154c895b965e8aa00cc42e9ad53d8b75',1,'CppRayTracerChallenge::Core::Graphics::Color']]],
-  ['width_394',['width',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#ae533bfa2a8ddf6719e227c68bfcaa42e',1,'CppRayTracerChallenge::Core::Graphics::Image']]],
-  ['world_395',['World',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8',1,'CppRayTracerChallenge::Core::Renderer::World']]],
-  ['writecanvas_396',['writeCanvas',['../win32__main_8cpp.html#a92b3c7ef4550d0a814c4c85b67f02344',1,'win32_main.cpp']]],
-  ['writepixel_397',['writePixel',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ae8f153c5b936b2c4229a80f9639ded31',1,'CppRayTracerChallenge::Core::Graphics::Canvas']]]
+  ['up_437',['up',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a90a37a258aebe9ea87c98920ad582654',1,'CppRayTracerChallenge::Core::Math::Vector']]]
 ];

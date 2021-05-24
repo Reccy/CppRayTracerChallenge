@@ -1,5 +1,7 @@
 <map id="CppRayTracerChallenge::Core::Renderer::World::addObject" name="CppRayTracerChallenge::Core::Renderer::World::addObject">
-<area shape="rect" id="node1" title="Adds a object to the world" alt="" coords="317,5,479,61"/>
+<area shape="rect" id="node1" title="Adds a object to the world" alt="" coords="317,39,479,95"/>
 <area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node3" href="$world__test_8cpp.html#a839c0eff085fa7f8fd18f39e504e9800" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node4" href="$win32__main_8cpp.html#adbdf70141f50bb84ab8270053913566a" title=" " alt="" coords="137,85,240,112"/>
+<area shape="rect" id="node3" href="$camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node5" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="7,85,58,112"/>
 </map>

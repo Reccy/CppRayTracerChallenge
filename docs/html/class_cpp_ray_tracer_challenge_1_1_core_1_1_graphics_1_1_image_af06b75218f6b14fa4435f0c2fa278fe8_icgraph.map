@@ -1,4 +1,8 @@
 <map id="CppRayTracerChallenge::Core::Graphics::Image::toBuffer" name="CppRayTracerChallenge::Core::Graphics::Image::toBuffer">
-<area shape="rect" id="node1" title="Returns a buffer with all of the Colors in left&#45;right, top&#45;down order" alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node2" href="$canvas__test_8cpp.html#ab8edb03e4a120173ca378598a043606c" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node1" title="Returns a buffer with all of the Colors in left&#45;right, top&#45;down order" alt="" coords="473,48,635,104"/>
+<area shape="rect" id="node2" href="$win32__main_8cpp.html#adbdf70141f50bb84ab8270053913566a" title=" " alt="" coords="104,5,207,32"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="255,48,425,104"/>
+<area shape="rect" id="node6" href="$canvas__test_8cpp.html#ab8edb03e4a120173ca378598a043606c" title=" " alt="" coords="313,128,367,155"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+<area shape="rect" id="node5" href="$camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,63,183,89"/>
 </map>
