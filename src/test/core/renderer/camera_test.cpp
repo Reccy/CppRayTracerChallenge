@@ -2,6 +2,7 @@
 #include "renderer/camera.h"
 #include "math/transform.h"
 #include "math/vector.h"
+#include "math/trig.h"
 
 using namespace CppRayTracerChallenge::Core;
 
@@ -34,4 +35,14 @@ TEST(CppRayTracerChallenge_Core_Renderer_Camera, view_matrix_arbitrary_translati
 	});
 
 	EXPECT_EQ(transform, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Camera, creating_a_camera)
+{
+	Renderer::Camera camera = Renderer::Camera(160, 120, 90);
+
+	EXPECT_EQ(camera.hSize(), 160);
+	EXPECT_EQ(camera.vSize(), 120);
+	EXPECT_EQ(camera.fieldOfView(), 90);
+	EXPECT_EQ(camera.transformMatrix(), Math::Transform().matrix());
 }

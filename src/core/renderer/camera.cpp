@@ -3,6 +3,29 @@
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core::Math;
 
+Camera::Camera(int hSize, int vSize, int fieldOfView) :
+	m_hSize(hSize), m_vSize(vSize), m_fieldOfView(fieldOfView), m_transformMatrix(Matrix<double>::identity(4)) {};
+
+int Camera::hSize() const
+{
+	return m_hSize;
+}
+
+int Camera::vSize() const
+{
+	return m_vSize;
+}
+
+int Camera::fieldOfView() const
+{
+	return m_fieldOfView;
+}
+
+Matrix<double> Camera::transformMatrix() const
+{
+	return m_transformMatrix;
+}
+
 Matrix<double> Camera::viewMatrix(const Point from, const Point to, const Vector up)
 {
 	Vector forward = (to - from).normalize();

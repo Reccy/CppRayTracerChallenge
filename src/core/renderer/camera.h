@@ -15,6 +15,41 @@ namespace CppRayTracerChallenge::Core::Renderer
 	class Camera
 	{
 	public:
+		Camera() = delete;
+
+		/// <summary>
+		/// Creates a Camera with a horizontal and vertical pixel image size.
+		/// Also sets the camera FOV.
+		/// </summary>
+		/// <param name="hSize">Horizontal size in pixels</param>
+		/// <param name="vSize">Vertical size in pixels</param>
+		/// <param name="fieldOfView">Field of view in degrees</param>
+		Camera(int hSize, int vSize, int fieldOfView);
+
+		/// <summary>
+		/// The horizontal size of the camera in pixels
+		/// </summary>
+		/// <returns>Horizontal size</returns>
+		int hSize() const;
+
+		/// <summary>
+		/// The vertical size of the camera in pixels
+		/// </summary>
+		/// <returns>Vertical size</returns>
+		int vSize() const;
+
+		/// <summary>
+		/// The field of view in degrees
+		/// </summary>
+		/// <returns>FOV</returns>
+		int fieldOfView() const;
+
+		/// <summary>
+		/// The underlying transform matrix for the camera
+		/// </summary>
+		/// <returns>The transform matrix</returns>
+		Matrix<double> transformMatrix() const;
+
 		/// <summary>
 		/// Creates a matrix that can be used to transform the world around the camera, effectively changing camera position
 		/// </summary>
@@ -23,6 +58,11 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <param name="up">The up vector from the camera's point of view</param>
 		/// <returns>The Matrix used to transform the world around the camera</returns>
 		static Matrix<double> viewMatrix(const Point from, const Point to, const Vector up);
+	private:
+		int m_hSize;
+		int m_vSize;
+		int m_fieldOfView;
+		Matrix<double> m_transformMatrix;
 	};
 }
 
