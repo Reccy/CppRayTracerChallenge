@@ -16,10 +16,10 @@
 #include "math/transform.h"
 #include "graphics/canvas.h"
 #include "graphics/color.h"
-#include "renderer/object.h"
 #include "renderer/material.h"
 #include "renderer/point_light.h"
 #include "renderer/lighting.h"
+#include "renderer/sphere.h"
 #include "serializer/portable_pixmap_image_serializer.h"
 
 using namespace CppRayTracerChallenge::Core;
@@ -31,10 +31,8 @@ Graphics::Canvas createSphereSilhouette()
 	Renderer::Material material = Renderer::Material();
 	material.color = Graphics::Color(1.0f, 0.2f, 1.0f);
 
-	Math::Sphere sphere = Math::Sphere();
+	Renderer::Sphere sphere = Renderer::Sphere(material);
 	sphere.transform(Math::Transform().scale(2, 2, 2));
-
-	Renderer::Object object = Renderer::Object(sphere, material);
 
 	Renderer::PointLight light = Renderer::PointLight({ -10, 10, -10 }, Graphics::Color::white());
 
@@ -55,7 +53,8 @@ Graphics::Canvas createSphereSilhouette()
 			Math::Vector rayDirection = Math::Vector(0, 0, 1).normalize();
 
 			Math::Ray raycast = Math::Ray(rayPosition, rayDirection);
-			Math::Intersections intersections = object.intersect(raycast);
+
+			Math::Intersections intersections = Math::Intersections::intersect(raycast, sphere);
 
 			if (intersections.hit().has_value())
 			{
