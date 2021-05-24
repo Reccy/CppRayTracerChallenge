@@ -84,6 +84,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <param name="cv">The precomputed values</param>
 		/// <returns>The color</returns>
 		Graphics::Color shadeHit(const ComputedValues& cv) const;
+
+		/// <summary>
+		/// Calculates the color from the point of view of the passed in ray
+		/// </summary>
+		/// <param name="ray">Ray to trace along the world</param>
+		/// <returns>The color from the traced ray</returns>
+		Graphics::Color colorAt(const Math::Ray& ray) const;
 	private:
 		std::vector<PointLight> m_lights;
 		std::vector<Sphere> m_objects;

@@ -97,3 +97,30 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, shade_hit_from_inside)
 
 	EXPECT_EQ(color, Graphics::Color(0.90498f, 0.90498f, 0.90498f));
 }
+
+TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_miss)
+{
+	World world = World::defaultWorld();
+	Math::Ray ray = Math::Ray({ 0, 0, -5 }, { 0, 1, 0 });
+	Graphics::Color color = world.colorAt(ray);
+
+	EXPECT_EQ(color, Graphics::Color::black());
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_hit)
+{
+	World world = World::defaultWorld();
+	Math::Ray ray = Math::Ray({ 0, 0, -5 }, { 0, 0, 1 });
+	Graphics::Color color = world.colorAt(ray);
+
+	EXPECT_EQ(color, Graphics::Color(0.38066f, 0.47583f, 0.2855f));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_hit_behind_ray)
+{
+	World world = World::defaultWorld();
+	Math::Ray ray = Math::Ray({ 0, 0, 0.75f }, { 0, 0, -1 });
+	Graphics::Color color = world.colorAt(ray);
+
+	EXPECT_EQ(color, Graphics::Color(0.1f, 0.1f, 0.1f));
+}

@@ -100,3 +100,19 @@ Graphics::Color World::shadeHit(const ComputedValues& cv) const
 
 	return color;
 }
+
+Graphics::Color World::colorAt(const Math::Ray& ray) const
+{
+	Math::Intersections intersections = intersectRay(ray);
+
+	if (!intersections.hit().has_value())
+	{
+		return Graphics::Color::black();
+	}
+
+	const Math::Intersection& hit = intersections.hit().value();
+
+	ComputedValues cv = ComputedValues(hit, ray);
+
+	return shadeHit(cv);
+}
