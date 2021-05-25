@@ -2,6 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_COMPARISON
 
 #include <type_traits>
+#include "constants.h"
 
 /// <summary>
 /// Double point precision floating point helper functions
@@ -18,7 +19,7 @@ namespace CppRayTracerChallenge::Core::Math::Comparison {
 	{
 		if (constexpr(std::is_floating_point<T>::value))
 		{
-			return abs(lhs - rhs) < 0.00001f; // EPSILON comparison
+			return abs(lhs - rhs) < EPSILON;
 		}
 		else
 		{

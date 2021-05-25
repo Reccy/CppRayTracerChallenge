@@ -39,6 +39,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Math::Point position() const;
 
 		/// <summary>
+		/// Returns the position of the intersection translated slightly in front of the normal.
+		/// This accounts for floating point imprecision errors.
+		/// </summary>
+		/// <returns>Where the intersection occurred, translated in the positive normal direction</returns>
+		Math::Point overPosition() const;
+
+		/// <summary>
 		/// Returns the eye vector
 		/// </summary>
 		/// <returns>The eye vector</returns>
@@ -59,6 +66,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		double m_t;
 		const Renderer::Sphere& m_intersectable;
 		Math::Point m_position;
+		Math::Point m_overPosition;
 		Math::Vector m_eye;
 		Math::Vector m_normal;
 		bool m_isInside;

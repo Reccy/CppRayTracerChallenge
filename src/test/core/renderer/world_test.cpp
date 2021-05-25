@@ -98,6 +98,23 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, shade_hit_from_inside)
 	EXPECT_EQ(color, Graphics::Color(0.90498f, 0.90498f, 0.90498f));
 }
 
+TEST(CppRayTracerChallenge_Core_Renderer_World, shade_hit_given_shadowed_intersection)
+{
+	World world = World::World();
+	world.addLight(PointLight({0, 0, -10}, Graphics::Color::white()));
+	world.addObject(Renderer::Sphere());
+
+	Renderer::Sphere s = Renderer::Sphere();
+	s.transform(Math::Transform().translate(0, 0, 10));
+	world.addObject(s);
+
+	Math::Ray ray = Math::Ray({ 0, 0, 5 }, { 0, 0, 1 });
+
+	Graphics::Color result = world.colorAt(ray);
+
+	EXPECT_EQ(result, Graphics::Color(0.1f, 0.1f, 0.1f));
+}
+
 TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_miss)
 {
 	World world = World::defaultWorld();

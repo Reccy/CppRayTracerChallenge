@@ -20,6 +20,8 @@ ComputedValues::ComputedValues(Math::Intersection intersection, Math::Ray ray) :
 	{
 		m_isInside = false;
 	}
+
+	m_overPosition = m_position + m_normal * Math::EPSILON;
 }
 
 double ComputedValues::t() const
@@ -35,6 +37,11 @@ const Renderer::Sphere& ComputedValues::shape() const
 Point ComputedValues::position() const
 {
 	return m_position;
+}
+
+Point ComputedValues::overPosition() const
+{
+	return m_overPosition;
 }
 
 Vector ComputedValues::eye() const

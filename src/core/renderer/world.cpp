@@ -95,7 +95,8 @@ Graphics::Color World::shadeHit(const ComputedValues& cv) const
 
 	for (const PointLight& light : m_lights)
 	{
-		color = color + Lighting::lighting(cv.shape().material(), light, cv.position(), cv.eye(), cv.normal(), false);
+		bool s = isShadowed(cv.overPosition(), light);
+		color = color + Lighting::lighting(cv.shape().material(), light, cv.position(), cv.eye(), cv.normal(), s);
 	}
 
 	return color;

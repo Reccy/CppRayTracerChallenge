@@ -41,3 +41,16 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_from_inside)
 	EXPECT_EQ(cv.eye(), Math::Vector(0, 0, -1));
 	EXPECT_EQ(cv.normal(), Math::Vector(0, 0, -1));
 }
+
+TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_offsets_point)
+{
+	Math::Ray ray = Math::Ray({ 0, 0, -5 }, { 0, 0, 1 });
+	Math::Sphere sphere = Math::Sphere();
+	sphere.transform(Math::Transform().translate(0, 0, 1));
+	Math::Intersection intersection = Math::Intersection(5, sphere);
+
+	Renderer::ComputedValues cv = Renderer::ComputedValues(intersection, ray);
+
+	EXPECT_TRUE(cv.overPosition().z() < -Math::EPSILON / 2);
+	EXPECT_TRUE(cv.position().z() > cv.overPosition().z());
+}

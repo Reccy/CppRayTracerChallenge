@@ -25,6 +25,7 @@ set(CORE_LIBRARY_DIR "src/core")
 set(CORE_LIBRARY_NAME "${PROJECT_NAME}Core")
 
 set(LIBRARY_HEADERS
+	"${CORE_LIBRARY_DIR}/math/constants.h"
 	"${CORE_LIBRARY_DIR}/math/tuple.h"
 	"${CORE_LIBRARY_DIR}/math/comparison.h"
 	"${CORE_LIBRARY_DIR}/math/trig.h"
