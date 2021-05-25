@@ -91,13 +91,13 @@ $(document).ready(function(){initNavTree('namespace_cpp_ray_tracer_challenge_1_1
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af3e2528666bd47ece98fadbc5f1491bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#af3e2528666bd47ece98fadbc5f1491bc">lighting</a> (const <a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html">Material</a> &amp;material, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html">PointLight</a> &amp;light, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a> &amp;position, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a> &amp;eyev, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a> &amp;normalv)</td></tr>
-<tr class="memdesc:af3e2528666bd47ece98fadbc5f1491bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the color at a given point with lighting.  <a href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#af3e2528666bd47ece98fadbc5f1491bc">More...</a><br /></td></tr>
-<tr class="separator:af3e2528666bd47ece98fadbc5f1491bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30daebc290e1eb0e3510bb236b356fe9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9">lighting</a> (const <a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html">Material</a> &amp;material, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html">PointLight</a> &amp;light, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a> &amp;position, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a> &amp;eyev, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a> &amp;normalv, const bool isShadowed)</td></tr>
+<tr class="memdesc:a30daebc290e1eb0e3510bb236b356fe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the color at a given point with lighting  <a href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9">More...</a><br /></td></tr>
+<tr class="separator:a30daebc290e1eb0e3510bb236b356fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="af3e2528666bd47ece98fadbc5f1491bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3e2528666bd47ece98fadbc5f1491bc">&#9670;&nbsp;</a></span>lighting()</h2>
+<a id="a30daebc290e1eb0e3510bb236b356fe9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30daebc290e1eb0e3510bb236b356fe9">&#9670;&nbsp;</a></span>lighting()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -130,7 +130,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a> &amp;&#160;</td>
-          <td class="paramname"><em>normalv</em>&#160;</td>
+          <td class="paramname"><em>normalv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>isShadowed</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -140,15 +146,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Computes the color at a given point with lighting. </p>
+<p>Computes the color at a given point with lighting </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">material</td><td>The material of the intersected object</td></tr>
+    <tr><td class="paramname">light</td><td>The point light that is lighting the area</td></tr>
+    <tr><td class="paramname">position</td><td>The position on the surface that is being lit</td></tr>
+    <tr><td class="paramname">eyev</td><td>The eye vector to the camera</td></tr>
+    <tr><td class="paramname">normalv</td><td>The normal vector of the surface</td></tr>
+    <tr><td class="paramname">isShadowed</td><td>If the position is in front of or behind the light</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The color at the position</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="lighting_8cpp_source.html#l00003">3</a> of file <a class="el" href="lighting_8cpp_source.html">lighting.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_af3e2528666bd47ece98fadbc5f1491bc_cgraph.png" border="0" usemap="#anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_af3e2528666bd47ece98fadbc5f1491bc_cgraph" alt=""/></div>
-<map name="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_af3e2528666bd47ece98fadbc5f1491bc_cgraph" id="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_af3e2528666bd47ece98fadbc5f1491bc_cgraph">
-<area shape="rect" title="Computes the color at a given point with lighting." alt="" coords="5,45,176,101"/>
+<div class="center"><img src="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_a30daebc290e1eb0e3510bb236b356fe9_cgraph.png" border="0" usemap="#anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_a30daebc290e1eb0e3510bb236b356fe9_cgraph" alt=""/></div>
+<map name="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_a30daebc290e1eb0e3510bb236b356fe9_cgraph" id="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_a30daebc290e1eb0e3510bb236b356fe9_cgraph">
+<area shape="rect" title="Computes the color at a given point with lighting" alt="" coords="5,45,176,101"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="224,5,407,61"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#a1e5accc8b122a9e71d54297698eab78b" title="Returns the position of the light" alt="" coords="224,85,407,141"/>
 </map>
@@ -156,16 +174,16 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_af3e2528666bd47ece98fadbc5f1491bc_icgraph.png" border="0" usemap="#anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_af3e2528666bd47ece98fadbc5f1491bc_icgraph" alt=""/></div>
-<map name="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_af3e2528666bd47ece98fadbc5f1491bc_icgraph" id="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_af3e2528666bd47ece98fadbc5f1491bc_icgraph">
-<area shape="rect" title="Computes the color at a given point with lighting." alt="" coords="892,113,1063,169"/>
+<div class="center"><img src="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_a30daebc290e1eb0e3510bb236b356fe9_icgraph.png" border="0" usemap="#anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_a30daebc290e1eb0e3510bb236b356fe9_icgraph" alt=""/></div>
+<map name="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_a30daebc290e1eb0e3510bb236b356fe9_icgraph" id="anamespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting_a30daebc290e1eb0e3510bb236b356fe9_icgraph">
+<area shape="rect" title="Computes the color at a given point with lighting" alt="" coords="892,113,1063,169"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="683,80,844,136"/>
 <area shape="rect" href="lighting__test_8cpp.html#a0e283b70b8912ffe2b8900567c61fd4a" title=" " alt="" coords="729,160,798,187"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf" title="Calculates the color from the point of view of the passed in ray" alt="" coords="473,48,635,104"/>
 <area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="527,128,581,155"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="255,16,425,72"/>
-<area shape="rect" href="world__test_8cpp.html#a686b8a092e4c4ab41c32146223828901" title=" " alt="" coords="313,96,367,123"/>
-<area shape="rect" href="win32__main_8cpp.html#adbdf70141f50bb84ab8270053913566a" title=" " alt="" coords="104,5,207,32"/>
+<area shape="rect" href="world__test_8cpp.html#ab2d8493dc183b724b5d1a18686359bcb" title=" " alt="" coords="313,96,367,123"/>
+<area shape="rect" href="win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,5,207,32"/>
 <area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,56,183,83"/>
 <area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
 </map>

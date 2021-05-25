@@ -2,14 +2,15 @@
 <area shape="rect" id="node1" title=" " alt="" coords="227,5,390,61"/>
 <area shape="rect" id="node2" href="$base__image__serializer_8h.html" title=" " alt="" coords="73,109,235,136"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,184,71,211"/>
-<area shape="rect" id="node10" title=" " alt="" coords="231,259,287,285"/>
-<area shape="rect" id="node11" title=" " alt="" coords="310,109,379,136"/>
-<area shape="rect" id="node12" title=" " alt="" coords="403,109,478,136"/>
-<area shape="rect" id="node13" title=" " alt="" coords="503,109,557,136"/>
+<area shape="rect" id="node11" title=" " alt="" coords="231,259,287,285"/>
+<area shape="rect" id="node12" title=" " alt="" coords="310,109,379,136"/>
+<area shape="rect" id="node13" title=" " alt="" coords="403,109,478,136"/>
+<area shape="rect" id="node14" title=" " alt="" coords="503,109,557,136"/>
 <area shape="rect" id="node4" href="$image_8h.html" title=" " alt="" coords="99,184,233,211"/>
 <area shape="rect" id="node5" href="$color_8h.html" title=" " alt="" coords="135,259,197,285"/>
 <area shape="rect" id="node6" href="$tuple_8h.html" title=" " alt="" coords="113,333,219,360"/>
 <area shape="rect" id="node7" title=" " alt="" coords="57,408,129,435"/>
-<area shape="rect" id="node8" title=" " alt="" coords="169,483,251,509"/>
+<area shape="rect" id="node8" title=" " alt="" coords="125,483,207,509"/>
 <area shape="rect" id="node9" href="$comparison_8h.html" title=" " alt="" coords="204,408,304,435"/>
+<area shape="rect" id="node10" href="$constants_8h.html" title=" " alt="" coords="231,483,322,509"/>
 </map>

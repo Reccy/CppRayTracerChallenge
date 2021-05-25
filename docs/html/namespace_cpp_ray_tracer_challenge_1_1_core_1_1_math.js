@@ -21,5 +21,6 @@ var namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math =
     [ "Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere" ],
     [ "Transform", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform" ],
     [ "Tuple", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple" ],
-    [ "Vector", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector" ]
+    [ "Vector", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector" ],
+    [ "EPSILON", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html#a001ec8d8dfcad4599b542701f8d44b23", null ]
 ];

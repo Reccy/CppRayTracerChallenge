@@ -3,10 +3,11 @@
 <area shape="rect" id="node2" title=" " alt="" coords="5,95,100,121"/>
 <area shape="rect" id="node3" href="$point__light_8h.html" title=" " alt="" coords="176,95,319,121"/>
 <area shape="rect" id="node4" href="$point_8h.html" title=" " alt="" coords="123,169,230,196"/>
-<area shape="rect" id="node10" href="$color_8h.html" title=" " alt="" coords="255,169,381,196"/>
+<area shape="rect" id="node11" href="$color_8h.html" title=" " alt="" coords="255,169,381,196"/>
 <area shape="rect" id="node5" href="$vector_8h.html" title=" " alt="" coords="143,244,210,271"/>
 <area shape="rect" id="node6" href="$tuple_8h.html" title=" " alt="" coords="217,319,278,345"/>
 <area shape="rect" id="node7" title=" " alt="" coords="138,393,210,420"/>
-<area shape="rect" id="node8" title=" " alt="" coords="250,468,333,495"/>
+<area shape="rect" id="node8" title=" " alt="" coords="206,468,289,495"/>
 <area shape="rect" id="node9" href="$comparison_8h.html" title=" " alt="" coords="285,393,385,420"/>
+<area shape="rect" id="node10" href="$constants_8h.html" title=" " alt="" coords="313,468,403,495"/>
 </map>

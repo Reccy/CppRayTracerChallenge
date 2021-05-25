@@ -7,7 +7,7 @@ var win32__main_8cpp =
     [ "buildRightSphere", "win32__main_8cpp.html#a0bcf13ec611bf64dc468bd65345cc26f", null ],
     [ "buildWallLeft", "win32__main_8cpp.html#a3d1af0e3939078c7d300ed5f969a3b88", null ],
     [ "buildWallRight", "win32__main_8cpp.html#a401d23bdff230fb7f0b501e93fd1730c", null ],
-    [ "doRealRender", "win32__main_8cpp.html#adbdf70141f50bb84ab8270053913566a", null ],
+    [ "doRealRender", "win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f", null ],
     [ "main", "win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4", null ],
-    [ "writeCanvas", "win32__main_8cpp.html#a92b3c7ef4550d0a814c4c85b67f02344", null ]
+    [ "writeImage", "win32__main_8cpp.html#a6bb225c5cbe506a3e05e159da914f941", null ]
 ];

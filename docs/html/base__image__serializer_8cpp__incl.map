@@ -4,9 +4,10 @@
 <area shape="rect" id="node3" title=" " alt="" coords="5,169,71,196"/>
 <area shape="rect" id="node4" href="$image_8h.html" title=" " alt="" coords="95,169,229,196"/>
 <area shape="rect" id="node5" href="$color_8h.html" title=" " alt="" coords="90,244,151,271"/>
-<area shape="rect" id="node10" title=" " alt="" coords="175,244,231,271"/>
+<area shape="rect" id="node11" title=" " alt="" coords="175,244,231,271"/>
 <area shape="rect" id="node6" href="$tuple_8h.html" title=" " alt="" coords="67,319,174,345"/>
 <area shape="rect" id="node7" title=" " alt="" coords="11,393,83,420"/>
-<area shape="rect" id="node8" title=" " alt="" coords="123,468,206,495"/>
+<area shape="rect" id="node8" title=" " alt="" coords="79,468,162,495"/>
 <area shape="rect" id="node9" href="$comparison_8h.html" title=" " alt="" coords="159,393,259,420"/>
+<area shape="rect" id="node10" href="$constants_8h.html" title=" " alt="" coords="186,468,277,495"/>
 </map>

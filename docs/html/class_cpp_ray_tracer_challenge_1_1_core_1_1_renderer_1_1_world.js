@@ -6,6 +6,7 @@ var class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world =
     [ "clearLights", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a29542072dd459b5eca10cdd80970ff63", null ],
     [ "colorAt", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf", null ],
     [ "intersectRay", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ab0cc8359a45545669b30dc1742b3e329", null ],
+    [ "isShadowed", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9ee7e82e7caf361aef5c7ee510465130", null ],
     [ "lightAt", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a8c16ba31cb3d0e58abb6b7579afcacd9", null ],
     [ "lightCount", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a79ef1531e3e3df40268dc7e06444e6f5", null ],
     [ "objectAt", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9723d4f649b0a2c68e8b1113d629d664", null ],
