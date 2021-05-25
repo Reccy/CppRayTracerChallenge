@@ -116,7 +116,7 @@ Renderer::PointLight buildLight()
 	return Renderer::PointLight({ -10, 10, -10 }, Graphics::Color(1, 1, 1));
 }
 
-Graphics::Canvas doRealRender()
+Graphics::Image doRealRender()
 {
 	std::cout << "Rendering scene..." << std::endl;
 
@@ -145,15 +145,13 @@ Graphics::Canvas doRealRender()
 	auto cameraTransform = Renderer::Camera::viewMatrix({ 0, 1.5, -5 }, { 0,1,0 }, Math::Vector::up());
 	camera.transform(cameraTransform);
 
-	Graphics::Image img = camera.render(world);
-
-	return Graphics::Canvas(100, 50, img.toBuffer());
+	return camera.render(world);
 }
 
-void writeCanvas(Graphics::Canvas canvas)
+void writeImage(Graphics::Image image)
 {
 	Serializer::PortablePixmapImageSerializer ppm;
-	ppm.serialize(canvas);
+	ppm.serialize(image);
 
 	std::vector<char> ppmBuffer = ppm.buffer();
 
@@ -184,8 +182,8 @@ void writeCanvas(Graphics::Canvas canvas)
 
 int main()
 {
-	Graphics::Canvas canvas = doRealRender();
-	writeCanvas(canvas);
+	Graphics::Image image = doRealRender();
+	writeImage(image);
 
 	return 0;
 }
