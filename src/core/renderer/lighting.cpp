@@ -1,10 +1,15 @@
 #include "lighting.h"
 
-Graphics::Color CppRayTracerChallenge::Core::Renderer::Lighting::lighting(const Material& material, const PointLight& light, const Math::Point& position, const Math::Vector& eyev, const Math::Vector& normalv)
+Graphics::Color CppRayTracerChallenge::Core::Renderer::Lighting::lighting(const Material& material, const PointLight& light, const Math::Point& position, const Math::Vector& eyev, const Math::Vector& normalv, const bool isShadowed)
 {
 	Graphics::Color effectiveColor = material.color * light.intensity();
 	Math::Vector lightv = (light.position() - position).normalize();
 	Graphics::Color ambient = effectiveColor * material.ambient;
+
+	if (isShadowed)
+	{
+		return ambient;
+	}
 
 	float lightDotNormal = static_cast<float>(Math::Vector::dot(lightv, normalv));
 
