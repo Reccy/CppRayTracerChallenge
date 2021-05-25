@@ -124,3 +124,39 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_hit_behind_ray)
 
 	EXPECT_EQ(color, Graphics::Color(0.1f, 0.1f, 0.1f));
 }
+
+TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_nothing_is_colinear_with_point_and_light)
+{
+	World world = World::defaultWorld();
+	Math::Point position = Math::Point(0, 10, 0);
+	const PointLight& light = world.lightAt(0);
+
+	EXPECT_FALSE(world.isShadowed(position, light));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_object_between_point_and_light)
+{
+	World world = World::defaultWorld();
+	Math::Point position = Math::Point(10, -10, 10);
+	const PointLight& light = world.lightAt(0);
+
+	EXPECT_TRUE(world.isShadowed(position, light));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_object_behind_light)
+{
+	World world = World::defaultWorld();
+	Math::Point position = Math::Point(-20, 20, -20);
+	const PointLight& light = world.lightAt(0);
+
+	EXPECT_FALSE(world.isShadowed(position, light));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_when_object_behind_point)
+{
+	World world = World::defaultWorld();
+	Math::Point position = Math::Point(-2, 2, -2);
+	const PointLight& light = world.lightAt(0);
+
+	EXPECT_FALSE(world.isShadowed(position, light));
+}

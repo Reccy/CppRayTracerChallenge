@@ -101,6 +101,30 @@ Graphics::Color World::shadeHit(const ComputedValues& cv) const
 	return color;
 }
 
+bool World::isShadowed(const Math::Point& position, const PointLight& light) const
+{
+	Math::Vector positionToLight = light.position() - position;
+	double distance = positionToLight.magnitude();
+	Math::Vector positionToLightDirection = positionToLight.normalize();
+
+	Math::Ray ray = Math::Ray(position, positionToLightDirection);
+	Math::Intersections intersections = intersectRay(ray);
+
+	if (!intersections.hit().has_value())
+	{
+		return false;
+	}
+
+	if (intersections.hit().value().t() < distance)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 Graphics::Color World::colorAt(const Math::Ray& ray) const
 {
 	Math::Intersections intersections = intersectRay(ray);

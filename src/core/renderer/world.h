@@ -86,6 +86,14 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Graphics::Color shadeHit(const ComputedValues& cv) const;
 
 		/// <summary>
+		/// Calculates if a position in world space is lit by a specific light
+		/// </summary>
+		/// <param name="position">The position to check if it is shaded</param>
+		/// <param name="light">The light that is lighting the position</param>
+		/// <returns>True if in shade, False otherwise</returns>
+		bool isShadowed(const Math::Point& position, const PointLight& light) const;
+
+		/// <summary>
 		/// Calculates the color from the point of view of the passed in ray
 		/// </summary>
 		/// <param name="ray">Ray to trace along the world</param>
