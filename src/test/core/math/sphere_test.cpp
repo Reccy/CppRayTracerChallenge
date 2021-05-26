@@ -139,8 +139,8 @@ TEST(CppRayTracerChallenge_Core_Math_Ray, ray_intersection_sets_object)
 	Intersections intersections = Intersections::intersect(ray, sphere);
 
 	EXPECT_EQ(intersections.size(), 2);
-	EXPECT_EQ(&intersections.at(0).intersectable(), &sphere);
-	EXPECT_EQ(&intersections.at(0).intersectable(), &sphere);
+	EXPECT_EQ(&intersections.at(0).shape(), &sphere);
+	EXPECT_EQ(&intersections.at(0).shape(), &sphere);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Ray, intersecting_scaled_sphere_with_ray)

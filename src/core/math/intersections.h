@@ -5,7 +5,7 @@
 #include <optional>
 #include "intersection.h"
 #include "ray.h"
-#include "sphere.h"
+#include "i_shape.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
@@ -30,9 +30,9 @@ namespace CppRayTracerChallenge::Core::Math
 		/// Calculates if the ray intersects with the sphere.
 		/// </summary>
 		/// <param name="ray">The ray to intersect with the sphere</param>
-		/// <param name="sphere">The sphere to intersect with the ray</param>
+		/// <param name="shape">The shape to intersect with the ray</param>
 		/// <returns>The Intersections</returns>
-		static Intersections intersect(Ray ray, const Sphere& sphere);
+		static Intersections intersect(Ray ray, const IShape& shape);
 
 		/// <summary>
 		/// Returns a const reference to the intersection at the index

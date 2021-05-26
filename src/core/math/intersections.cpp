@@ -33,9 +33,9 @@ Intersections::Intersections(const std::vector<Intersection> intersections) : m_
 	calculateHitindex();
 };
 
-Intersections Intersections::intersect(Ray ray, const Sphere& sphere)
+Intersections Intersections::intersect(Ray ray, const IShape& shape)
 {
-	ray = ray.transform(sphere.transform().invert());
+	ray = ray.transform(shape.transform().invert());
 
 	Vector sphereToRay = ray.origin() - Point(0, 0, 0);
 	double a = Vector::dot(ray.direction(), ray.direction());
@@ -52,7 +52,7 @@ Intersections Intersections::intersect(Ray ray, const Sphere& sphere)
 	double t1 = (-b - sqrt(discriminant)) / (2 * a);
 	double t2 = (-b + sqrt(discriminant)) / (2 * a);
 
-	return Intersections({ Intersection(t1, sphere), Intersection(t2, sphere) });
+	return Intersections({ Intersection(t1, shape), Intersection(t2, shape) });
 }
 
 const Intersection& Intersections::at(unsigned int index) const

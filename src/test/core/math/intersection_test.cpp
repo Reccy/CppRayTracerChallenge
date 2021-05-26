@@ -11,7 +11,7 @@ TEST(CppRayTracerChallenge_Core_Math_Intersection, creates_intersection)
 	Intersection intersection = Intersection(t, obj);
 
 	EXPECT_EQ(intersection.t(), t);
-	EXPECT_EQ(&intersection.intersectable(), &obj);
+	EXPECT_EQ(&intersection.shape(), &obj);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Intersection, equality)

@@ -1,15 +1,15 @@
 #include "computed_values.h"
-#include "sphere.h"
+#include "shape.h"
 #include "../math/point.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core::Math;
 
-ComputedValues::ComputedValues(Math::Intersection intersection, Math::Ray ray) : m_t(intersection.t()), m_intersectable(static_cast<const Renderer::Sphere&>(intersection.intersectable()))
+ComputedValues::ComputedValues(Math::Intersection intersection, Math::Ray ray) : m_t(intersection.t()), m_shape(static_cast<const Renderer::Shape&>(intersection.shape()))
 {
 	m_position = ray.position(m_t);
 	m_eye = -ray.direction();
-	m_normal = intersection.intersectable().normal(m_position);
+	m_normal = intersection.shape().normal(m_position);
 
 	if (Vector::dot(m_normal, m_eye) < 0)
 	{
@@ -29,9 +29,9 @@ double ComputedValues::t() const
 	return m_t;
 }
 
-const Renderer::Sphere& ComputedValues::shape() const
+const Renderer::Shape& ComputedValues::shape() const
 {
-	return m_intersectable;
+	return m_shape;
 }
 
 Point ComputedValues::position() const

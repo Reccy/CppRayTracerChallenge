@@ -18,8 +18,8 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, default_world)
 {
 	World world = World::defaultWorld();
 
-	const Sphere& obj1 = world.objectAt(0);
-	const Sphere& obj2 = world.objectAt(1);
+	const Shape& obj1 = world.objectAt(0);
+	const Shape& obj2 = world.objectAt(1);
 	const PointLight& light1 = world.lightAt(0);
 
 	Material s1mat = Material();
@@ -102,9 +102,12 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, shade_hit_given_shadowed_interse
 {
 	World world = World::World();
 	world.addLight(PointLight({0, 0, -10}, Graphics::Color::white()));
-	world.addObject(Renderer::Sphere());
 
-	Renderer::Sphere s = Renderer::Sphere();
+auto sphere1 = std::make_shared<Math::Sphere>(Math::Sphere());
+world.addObject(Renderer::Shape(sphere1));
+
+	auto sphere2 = std::make_shared<Math::Sphere>(Math::Sphere());
+	Renderer::Shape s = Renderer::Shape(sphere2);
 	s.transform(Math::Transform().translate(0, 0, 10));
 	world.addObject(s);
 

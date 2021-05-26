@@ -2,7 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_WORLD
 
 #include "point_light.h"
-#include "sphere.h"
+#include "shape.h"
 #include "computed_values.h"
 #include "../math/ray.h"
 #include "../math/intersections.h"
@@ -50,14 +50,14 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// </summary>
 		/// <param name="obj">The object to add</param>
 		/// <returns>The world, after the object being added to it</returns>
-		World addObject(Sphere obj);
+		World addObject(Shape obj);
 
 		/// <summary>
 		/// Returns a const ref to the object at the index
 		/// </summary>
 		/// <param name="index">Index of the object</param>
 		/// <returns>Const reference to object</returns>
-		const Sphere& objectAt(int index) const;
+		const Shape& objectAt(int index) const;
 
 		/// <summary>
 		/// Returns how many objects are in the world
@@ -101,7 +101,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Graphics::Color colorAt(const Math::Ray& ray) const;
 	private:
 		std::vector<PointLight> m_lights;
-		std::vector<Sphere> m_objects;
+		std::vector<Shape> m_objects;
 	};
 }
 

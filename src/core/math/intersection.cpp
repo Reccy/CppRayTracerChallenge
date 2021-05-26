@@ -2,21 +2,21 @@
 
 using namespace CppRayTracerChallenge::Core::Math;
 
-Intersection::Intersection(const double t, const Sphere& intersectable) : m_t(t), m_intersectable(intersectable) {}; // NOTE: Temporarily removing IIntersectable. Replace with Shape in future refactor
+Intersection::Intersection(const double t, const IShape& shape) : m_t(t), m_shape(shape) {};
 
 const double Intersection::t() const
 {
 	return m_t;
 }
 
-const Sphere& Intersection::intersectable() const // NOTE: Temporarily removing IIntersectable. Replace with Shape in future refactor
+const IShape& Intersection::shape() const
 {
-	return m_intersectable;
+	return m_shape;
 }
 
 bool Intersection::operator==(const Intersection& other) const
 {
-	return this->m_t == other.m_t && &this->m_intersectable == &other.m_intersectable;
+	return this->m_t == other.m_t && &this->m_shape == &other.m_shape;
 }
 
 bool Intersection::operator!=(const Intersection& other) const

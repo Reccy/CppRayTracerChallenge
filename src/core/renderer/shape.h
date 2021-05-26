@@ -19,9 +19,9 @@ namespace CppRayTracerChallenge::Core::Renderer
 	public:
 		Shape() = delete;
 
-		Shape(Math::IShape& shape);
+		Shape(std::shared_ptr<Math::IShape> shape);
 
-		Shape(Math::IShape& shape, Material material);
+		Shape(std::shared_ptr<Math::IShape>, Material material);
 
 		/// <summary>
 		/// Returns the material assigned to the shape
@@ -37,11 +37,11 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		// Delegating methods
 
-		void transform(Math::Transform transform);
-		const Math::Transform transform() const;
-		const Math::Vector normal(const Math::Point position) const;
+		void transform(Math::Transform transform) override;
+		const Math::Transform transform() const override;
+		const Math::Vector normal(const Math::Point position) const override;
 	private:
-		IShape& m_shape;
+		std::shared_ptr<IShape> m_shape;
 		Material m_material;
 	};
 }

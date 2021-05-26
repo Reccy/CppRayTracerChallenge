@@ -1,7 +1,7 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_COMPUTED_VALUES
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_COMPUTED_VALUES
 
-#include "sphere.h"
+#include "shape.h"
 #include "../math/intersection.h"
 #include "../math/ray.h"
 
@@ -27,10 +27,10 @@ namespace CppRayTracerChallenge::Core::Renderer
 		double t() const;
 
 		/// <summary>
-		/// Returns a const reference to the intersectable
+		/// Returns a const reference to the shape that was intersected
 		/// </summary>
-		/// <returns>Intersectable const reference</returns>
-		const Renderer::Sphere& shape() const;
+		/// <returns>Shape const reference</returns>
+		const Renderer::Shape& shape() const;
 
 		/// <summary>
 		/// Returns the position of the intersection
@@ -64,7 +64,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		bool isInside() const;
 	private:
 		double m_t;
-		const Renderer::Sphere& m_intersectable;
+		const Renderer::Shape& m_shape;
 		Math::Point m_position;
 		Math::Point m_overPosition;
 		Math::Vector m_eye;

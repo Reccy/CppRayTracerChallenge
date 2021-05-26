@@ -1,7 +1,7 @@
 #include "world.h"
 #include "point_light.h"
 #include "material.h"
-#include "sphere.h"
+#include "shape.h"
 #include "lighting.h"
 #include "../math/sphere.h"
 #include "../math/transform.h"
@@ -23,12 +23,14 @@ World World::defaultWorld()
 	mat.diffuse = 0.7f;
 	mat.specular = 0.2f;
 
-	Sphere s1 = Sphere(mat);
+	auto sphere1 = std::make_shared<Math::Sphere>(Math::Sphere());
+	Shape s1 = Shape(sphere1, mat);
 
 	Math::Transform transform = Math::Transform()
 		.scale(0.5, 0.5, 0.5);
 
-	Renderer::Sphere s2 = Renderer::Sphere();
+	auto sphere2 = std::make_shared<Math::Sphere>(Math::Sphere());
+	Shape s2 = Shape(sphere2);
 	s2.transform(transform);
 
 	World w = World();
@@ -56,13 +58,13 @@ World World::clearLights()
 	return *this;
 }
 
-World World::addObject(Sphere obj)
+World World::addObject(Shape obj)
 {
 	m_objects.push_back(obj);
 	return *this;
 }
 
-const Sphere& World::objectAt(int index) const
+const Shape& World::objectAt(int index) const
 {
 	return m_objects.at(index);
 }
@@ -81,9 +83,9 @@ Math::Intersections World::intersectRay(const Math::Ray ray) const
 {
 	Math::Intersections result = Math::Intersections();
 
-	for (const Sphere& object : m_objects)
+	for (const Shape& object : m_objects)
 	{
-		result += object.intersect(ray);
+		result += Math::Intersections::intersect(ray, object);
 	}
 
 	return result;
