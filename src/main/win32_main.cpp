@@ -20,15 +20,16 @@
 #include "renderer/material.h"
 #include "renderer/point_light.h"
 #include "renderer/lighting.h"
-#include "renderer/sphere.h"
+#include "renderer/shape.h"
 #include "renderer/camera.h"
 #include "serializer/portable_pixmap_image_serializer.h"
 
 using namespace CppRayTracerChallenge::Core;
 
-Renderer::Sphere buildFloor(const Renderer::Material& mat)
+Renderer::Shape buildFloor(const Renderer::Material& mat)
 {
-	Renderer::Sphere floor = Renderer::Sphere();
+	auto shape = std::make_shared<Renderer::Sphere>(Renderer::Sphere());
+	Renderer::Shape floor = Renderer::Shape(shape);
 	Math::Transform floorTransform = Math::Transform()
 		.scale(10, 0.01, 10);
 	floor.material(mat);
@@ -36,9 +37,10 @@ Renderer::Sphere buildFloor(const Renderer::Material& mat)
 	return floor;
 }
 
-Renderer::Sphere buildWallLeft(const Renderer::Material& mat)
+Renderer::Shape buildWallLeft(const Renderer::Material& mat)
 {
-	Renderer::Sphere wallLeft = Renderer::Sphere();
+	auto shape = std::make_shared<Renderer::Sphere>(Renderer::Sphere());
+	Renderer::Shape wallLeft = Renderer::Shape(shape);
 	Math::Transform transform = Math::Transform()
 		.scale(10, 0.01, 10)
 		.rotate(90, 0, 0)
@@ -50,9 +52,10 @@ Renderer::Sphere buildWallLeft(const Renderer::Material& mat)
 	return wallLeft;
 }
 
-Renderer::Sphere buildWallRight(const Renderer::Material& mat)
+Renderer::Shape buildWallRight(const Renderer::Material& mat)
 {
-	Renderer::Sphere wallRight = Renderer::Sphere();
+	auto shape = std::make_shared<Renderer::Sphere>(Renderer::Sphere());
+	Renderer::Shape wallRight = Renderer::Shape(shape);
 	Math::Transform transform = Math::Transform()
 		.scale(10, 0.01, 10)
 		.rotate(90, 0, 0)
@@ -64,9 +67,10 @@ Renderer::Sphere buildWallRight(const Renderer::Material& mat)
 	return wallRight;
 }
 
-Renderer::Sphere buildMiddleSphere()
+Renderer::Shape buildMiddleSphere()
 {
-	Renderer::Sphere sphere = Renderer::Sphere();
+	auto shape = std::make_shared<Renderer::Sphere>(Renderer::Sphere());
+	Renderer::Shape sphere = Renderer::Shape(shape);
 	Math::Transform transform = Math::Transform()
 		.translate(-0.5, 1, 0.5);
 	Renderer::Material material = Renderer::Material();
@@ -79,9 +83,10 @@ Renderer::Sphere buildMiddleSphere()
 	return sphere;
 }
 
-Renderer::Sphere buildRightSphere()
+Renderer::Shape buildRightSphere()
 {
-	Renderer::Sphere sphere = Renderer::Sphere();
+	auto shape = std::make_shared<Renderer::Sphere>(Renderer::Sphere());
+	Renderer::Shape sphere = Renderer::Shape(shape);
 	Math::Transform transform = Math::Transform()
 		.scale(0.5, 0.5, 0.5)
 		.translate(1.5, 0.5, -0.5);
@@ -95,9 +100,10 @@ Renderer::Sphere buildRightSphere()
 	return sphere;
 }
 
-Renderer::Sphere buildLeftSphere()
+Renderer::Shape buildLeftSphere()
 {
-	Renderer::Sphere sphere = Renderer::Sphere();
+	auto shape = std::make_shared<Renderer::Sphere>(Renderer::Sphere());
+	Renderer::Shape sphere = Renderer::Shape(shape);
 	Math::Transform transform = Math::Transform()
 		.scale(0.33, 0.33, 0.33)
 		.translate(-1.5, 0.33, -0.75);
@@ -124,12 +130,12 @@ Graphics::Image doRealRender()
 	bgMaterial.color = Graphics::Color(1, 0.9f, 0.9f);
 	bgMaterial.specular = 0;
 
-	Renderer::Sphere floor = buildFloor(bgMaterial);
-	Renderer::Sphere wallLeft = buildWallLeft(bgMaterial);
-	Renderer::Sphere wallRight = buildWallRight(bgMaterial);
-	Renderer::Sphere middleSphere = buildMiddleSphere();
-	Renderer::Sphere rightSphere = buildRightSphere();
-	Renderer::Sphere leftSphere = buildLeftSphere();
+	Renderer::Shape floor = buildFloor(bgMaterial);
+	Renderer::Shape wallLeft = buildWallLeft(bgMaterial);
+	Renderer::Shape wallRight = buildWallRight(bgMaterial);
+	Renderer::Shape middleSphere = buildMiddleSphere();
+	Renderer::Shape rightSphere = buildRightSphere();
+	Renderer::Shape leftSphere = buildLeftSphere();
 	Renderer::PointLight light = buildLight();
 
 	Renderer::World world = Renderer::World();
