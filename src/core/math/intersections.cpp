@@ -37,7 +37,7 @@ Intersections Intersections::intersect(Ray ray, const Sphere& sphere)
 {
 	ray = ray.transform(sphere.transform().invert());
 
-	Vector sphereToRay = ray.origin() - sphere.position();
+	Vector sphereToRay = ray.origin() - Point(0, 0, 0);
 	double a = Vector::dot(ray.direction(), ray.direction());
 	double b = 2 * Vector::dot(ray.direction(), sphereToRay);
 	double c = Vector::dot(sphereToRay, sphereToRay) - 1;

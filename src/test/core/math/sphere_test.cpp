@@ -12,7 +12,6 @@ TEST(CppRayTracerChallenge_Core_Math_Sphere, creating_a_sphere)
 {
 	Sphere sphere = Sphere();
 
-	EXPECT_EQ(sphere.position(), Point(0, 0, 0));
 	EXPECT_EQ(sphere.transform(), Transform());
 }
 
