@@ -1,12 +1,11 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_SHAPE
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_SHAPE
 
-#include "point.h"
-#include "transform.h"
+#include "i_shape.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
-	class Shape
+	class Shape : public IShape
 	{
 	public:
 		/// <summary>
@@ -20,15 +19,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <returns>The Shape's transform</returns>
 		const Transform transform() const;
-
-		/// <summary>
-		/// Calculates and returns the normal at the passed in position for this shape
-		/// </summary>
-		/// <param name="position">The position of the normal vector</param>
-		/// <returns>The normal vector at the position</returns>
-		virtual const Vector normal(const Point position) const = 0;
 	protected:
-		Point m_position;
 		Transform m_transform;
 	};
 }

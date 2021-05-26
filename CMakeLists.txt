@@ -34,6 +34,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/math/matrix.h"
 	"${CORE_LIBRARY_DIR}/math/transform.h"
 	"${CORE_LIBRARY_DIR}/math/ray.h"
+	"${CORE_LIBRARY_DIR}/math/i_shape.h"
 	"${CORE_LIBRARY_DIR}/math/shape.h"
 	"${CORE_LIBRARY_DIR}/math/sphere.h"
 	"${CORE_LIBRARY_DIR}/math/intersection.h"
