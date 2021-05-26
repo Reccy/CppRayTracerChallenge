@@ -8,6 +8,7 @@ var annotated_dup =
           [ "Image", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image" ]
         ] ],
         [ "Math", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html", [
+          [ "IShape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape" ],
           [ "Intersection", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection" ],
           [ "Intersections", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections" ],
           [ "Matrix", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix" ],
@@ -18,6 +19,7 @@ var annotated_dup =
           [ "MatrixUndefinedProductException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception" ],
           [ "Point", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point" ],
           [ "Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray" ],
+          [ "Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape" ],
           [ "Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere" ],
           [ "Transform", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform" ],
           [ "Tuple", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple" ],
@@ -28,7 +30,7 @@ var annotated_dup =
           [ "ComputedValues", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values" ],
           [ "Material", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material" ],
           [ "PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light" ],
-          [ "Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere" ],
+          [ "Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape" ],
           [ "World", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world" ]
         ] ],
         [ "Serializer", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_serializer.html", [
@@ -37,5 +39,6 @@ var annotated_dup =
         ] ]
       ] ]
     ] ],
-    [ "CppRayTracerChallenge_Core_Renderer_LightingTest", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test" ]
+    [ "CppRayTracerChallenge_Core_Renderer_LightingTest", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test" ],
+    [ "TestingShape", "class_testing_shape.html", "class_testing_shape" ]
 ];

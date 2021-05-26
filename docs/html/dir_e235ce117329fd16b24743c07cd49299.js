@@ -2,6 +2,9 @@ var dir_e235ce117329fd16b24743c07cd49299 =
 [
     [ "comparison.h", "comparison_8h.html", "comparison_8h" ],
     [ "constants.h", "constants_8h.html", "constants_8h" ],
+    [ "i_shape.h", "i__shape_8h.html", [
+      [ "IShape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape" ]
+    ] ],
     [ "intersection.cpp", "intersection_8cpp.html", null ],
     [ "intersection.h", "intersection_8h.html", [
       [ "Intersection", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection" ]
@@ -26,8 +29,12 @@ var dir_e235ce117329fd16b24743c07cd49299 =
     [ "ray.h", "ray_8h.html", [
       [ "Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray" ]
     ] ],
-    [ "sphere.cpp", "math_2sphere_8cpp.html", null ],
-    [ "sphere.h", "math_2sphere_8h.html", [
+    [ "shape.cpp", "math_2shape_8cpp.html", null ],
+    [ "shape.h", "math_2shape_8h.html", [
+      [ "Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape" ]
+    ] ],
+    [ "sphere.cpp", "sphere_8cpp.html", null ],
+    [ "sphere.h", "sphere_8h.html", [
       [ "Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere" ]
     ] ],
     [ "transform.cpp", "transform_8cpp.html", null ],

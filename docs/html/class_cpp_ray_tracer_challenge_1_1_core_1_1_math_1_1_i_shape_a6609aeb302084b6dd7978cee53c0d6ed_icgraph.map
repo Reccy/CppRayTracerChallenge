@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Math::IShape::normal" name="CppRayTracerChallenge::Core::Math::IShape::normal">
+<area shape="rect" id="node1" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="277,5,439,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a325609a69321d16a1f99a29a5a0548e8" title="Computes the values of the intersection and the ray" alt="" coords="5,5,229,61"/>
+</map>

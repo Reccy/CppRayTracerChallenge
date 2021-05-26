@@ -1,0 +1,7 @@
+<map id="CppRayTracerChallenge::Core::Math::IShape" name="CppRayTracerChallenge::Core::Math::IShape">
+<area shape="rect" id="node1" title=" " alt="" coords="5,68,167,109"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html" title=" " alt="" coords="215,35,377,76"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html" title="Represents a shape within the rendered world. This is a wrapper around a Math::IShape which adds mate..." alt="" coords="215,100,377,141"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html" title="A 3D Sphere" alt="" coords="425,5,587,47"/>
+<area shape="rect" id="node4" href="$class_testing_shape.html" title="Shape only to be used in the test suite" alt="" coords="455,71,557,98"/>
+</map>

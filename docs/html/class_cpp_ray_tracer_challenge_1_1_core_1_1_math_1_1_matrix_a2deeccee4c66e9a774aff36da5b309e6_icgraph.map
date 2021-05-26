@@ -1,9 +1,8 @@
 <map id="CppRayTracerChallenge::Core::Math::Matrix::transpose" name="CppRayTracerChallenge::Core::Math::Matrix::transpose">
-<area shape="rect" id="node1" title="Transposes the Matrix, changing its rows into columns, and columns into rows" alt="" coords="696,39,857,95"/>
-<area shape="rect" id="node2" href="$matrix__test_8cpp.html#a5d5f253b88dced8dc1532690596c918c" title=" " alt="" coords="540,20,595,47"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a3f1d33d2eb0d3c951536bc09914274cb" title="Transposes the matrix" alt="" coords="487,71,648,127"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="277,37,439,93"/>
-<area shape="rect" id="node7" href="$transform__test_8cpp.html#ad1bdf36f442a1197d9bd9e9de1530bac" title=" " alt="" coords="331,117,385,144"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a325609a69321d16a1f99a29a5a0548e8" title="Computes the values of the intersection and the ray" alt="" coords="5,5,229,61"/>
-<area shape="rect" id="node6" href="$math_2sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="90,85,145,112"/>
+<area shape="rect" id="node1" title="Transposes the Matrix, changing its rows into columns, and columns into rows" alt="" coords="527,24,688,80"/>
+<area shape="rect" id="node2" href="$matrix__test_8cpp.html#a5d5f253b88dced8dc1532690596c918c" title=" " alt="" coords="371,5,425,32"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a3f1d33d2eb0d3c951536bc09914274cb" title="Transposes the matrix" alt="" coords="317,56,479,112"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="108,23,269,79"/>
+<area shape="rect" id="node6" href="$transform__test_8cpp.html#ad1bdf36f442a1197d9bd9e9de1530bac" title=" " alt="" coords="161,103,216,129"/>
+<area shape="rect" id="node5" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="5,37,60,64"/>
 </map>

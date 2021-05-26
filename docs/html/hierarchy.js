@@ -18,14 +18,18 @@ var hierarchy =
     ] ],
     [ "CppRayTracerChallenge::Core::Math::Intersection", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Intersections", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html", null ],
+    [ "CppRayTracerChallenge::Core::Math::IShape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html", [
+      [ "CppRayTracerChallenge::Core::Math::Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html", [
+        [ "CppRayTracerChallenge::Core::Math::Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", null ],
+        [ "TestingShape", "class_testing_shape.html", null ]
+      ] ],
+      [ "CppRayTracerChallenge::Core::Renderer::Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html", null ]
+    ] ],
     [ "CppRayTracerChallenge::Core::Renderer::Material", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Matrix< T >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Matrix< double >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html", null ],
     [ "CppRayTracerChallenge::Core::Renderer::PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", null ],
-    [ "CppRayTracerChallenge::Core::Math::Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", [
-      [ "CppRayTracerChallenge::Core::Renderer::Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html", null ]
-    ] ],
     [ "testing::Test", null, [
       [ "CppRayTracerChallenge_Core_Renderer_LightingTest", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html", null ]
     ] ],

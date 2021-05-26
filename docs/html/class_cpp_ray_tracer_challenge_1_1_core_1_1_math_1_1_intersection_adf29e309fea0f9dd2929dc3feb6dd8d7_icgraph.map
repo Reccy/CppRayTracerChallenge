@@ -1,0 +1,5 @@
+<map id="CppRayTracerChallenge::Core::Math::Intersection::shape" name="CppRayTracerChallenge::Core::Math::Intersection::shape">
+<area shape="rect" id="node1" title="Returns a const reference to the intersectable object" alt="" coords="277,39,447,95"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a325609a69321d16a1f99a29a5a0548e8" title="Computes the values of the intersection and the ray" alt="" coords="5,5,229,61"/>
+<area shape="rect" id="node3" href="$intersection__test_8cpp.html#ac1f23a339a082a2d414bac044366901b" title=" " alt="" coords="90,85,145,112"/>
+</map>

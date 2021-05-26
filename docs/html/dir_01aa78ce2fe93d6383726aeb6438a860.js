@@ -16,9 +16,9 @@ var dir_01aa78ce2fe93d6383726aeb6438a860 =
     [ "point_light.h", "point__light_8h.html", [
       [ "PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light" ]
     ] ],
-    [ "sphere.cpp", "renderer_2sphere_8cpp.html", null ],
-    [ "sphere.h", "renderer_2sphere_8h.html", [
-      [ "Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_sphere" ]
+    [ "shape.cpp", "renderer_2shape_8cpp.html", null ],
+    [ "shape.h", "renderer_2shape_8h.html", [
+      [ "Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape" ]
     ] ],
     [ "world.cpp", "world_8cpp.html", null ],
     [ "world.h", "world_8h.html", [
