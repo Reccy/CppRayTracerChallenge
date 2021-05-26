@@ -21,9 +21,8 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_from_outside)
 
 	EXPECT_FALSE(cv.isInside());
 
-	EXPECT_EQ(cv.shape().material(), material);
+	EXPECT_EQ(cv.material(), material);
 	EXPECT_EQ(cv.t(), 4);
-	//EXPECT_EQ(cv.shape(), shape);
 }
 
 TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_from_inside)
@@ -37,7 +36,6 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_from_inside)
 	EXPECT_TRUE(cv.isInside());
 
 	EXPECT_EQ(cv.t(), 1);
-	//EXPECT_EQ(cv.shape(), sphere);
 	EXPECT_EQ(cv.position(), Math::Point(0, 0, 1));
 	EXPECT_EQ(cv.eye(), Math::Vector(0, 0, -1));
 	EXPECT_EQ(cv.normal(), Math::Vector(0, 0, -1));

@@ -5,7 +5,7 @@
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core::Math;
 
-ComputedValues::ComputedValues(Math::Intersection intersection, Math::Ray ray) : m_t(intersection.t()), m_shape(static_cast<const Renderer::Shape&>(intersection.shape()))
+ComputedValues::ComputedValues(Math::Intersection intersection, Math::Ray ray) : m_t(intersection.t()), m_material(static_cast<const Renderer::Shape&>(intersection.shape()).material())
 {
 	m_position = ray.position(m_t);
 	m_eye = -ray.direction();
@@ -29,9 +29,9 @@ double ComputedValues::t() const
 	return m_t;
 }
 
-const Renderer::Shape& ComputedValues::shape() const
+Renderer::Material ComputedValues::material() const
 {
-	return m_shape;
+	return m_material;
 }
 
 Point ComputedValues::position() const
