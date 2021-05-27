@@ -26,18 +26,32 @@ namespace CppRayTracerChallenge::Core::Math
 		virtual const Transform transform() const = 0;
 
 		/// <summary>
-		/// Calculates and returns the normal at the passed in position for this shape
+		/// Calculates and returns the normal at the passed in world space position for this shape
 		/// </summary>
-		/// <param name="position">The position of the normal vector</param>
+		/// <param name="position">The world space position of the normal vector</param>
 		/// <returns>The normal vector at the position</returns>
 		virtual const Vector normal(const Point position) const = 0;
 
 		/// <summary>
-		/// Calculates if the ray intersects with the shape.
+		/// Calculates and returns the normal at the passed in local space position for this shape
 		/// </summary>
-		/// <param name="ray">The ray to intersect with the shape</param>
+		/// <param name="position">The local space position of the normal vector</param>
+		/// <returns>The normal vector at the position</returns>
+		virtual const Vector normalLocal(const Point position) const = 0;
+
+		/// <summary>
+		/// Calculates if the world space ray intersects with the shape.
+		/// </summary>
+		/// <param name="ray">The local space ray to intersect with the shape</param>
 		/// <returns>The Intersections</returns>
 		virtual const Intersections intersect(Ray ray) const = 0;
+
+		/// <summary>
+		/// Calculates if the local space ray intersects with the shape.
+		/// </summary>
+		/// <param name="ray">The local space ray to intersect with the shape</param>
+		/// <returns>The Intersections</returns>
+		virtual const Intersections intersectLocal(Ray ray) const = 0;
 	};
 }
 

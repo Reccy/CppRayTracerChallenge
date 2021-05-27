@@ -4,18 +4,13 @@ using namespace CppRayTracerChallenge::Core::Math;
 
 Sphere::Sphere() {};
 
-const Vector Sphere::normal(const Point position) const
+const Vector Sphere::normalLocal(const Point position) const
 {
-	Point objectPoint = m_transform.invert() * position;
-	Vector objectNormal = objectPoint - Point(0, 0, 0);
-	Vector worldNormal = m_transform.invert().transpose() * objectNormal;
-	return worldNormal.normalize();
+	return position - Point(0, 0, 0);
 }
 
-const Intersections Sphere::intersect(Ray ray) const
+const Intersections Sphere::intersectLocal(Ray ray) const
 {
-	ray = ray.transform(m_transform.invert());
-
 	Vector sphereToRay = ray.origin() - Point(0, 0, 0);
 	double a = Vector::dot(ray.direction(), ray.direction());
 	double b = 2 * Vector::dot(ray.direction(), sphereToRay);

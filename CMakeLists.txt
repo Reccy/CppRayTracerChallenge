@@ -96,7 +96,6 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/math/matrix_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/transform_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/ray_test.cpp"
-	"${TEST_SUITE_DIR}/core/math/shape_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/sphere_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/intersection_test.cpp"
 	"${TEST_SUITE_DIR}/core/math/intersections_test.cpp"

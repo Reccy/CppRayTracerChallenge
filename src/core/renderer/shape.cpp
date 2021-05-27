@@ -31,12 +31,36 @@ const Math::Vector Shape::normal(const Math::Point position) const
 	return m_shape->normal(position);
 }
 
+const Math::Vector Shape::normalLocal(const Math::Point position) const
+{
+	return m_shape->normalLocal(position);
+}
+
 const Math::Intersections Shape::intersect(Math::Ray ray) const
 {
 	// NOTE: Instead of just delegating to Math::Shape::intersect and returning that result,
 	// we need to replace the pointer to the IShape inside each Intersection.
 
 	const Math::Intersections originalResult = m_shape->intersect(ray);
+	std::vector<Math::Intersection> newIntersections;
+
+	for (int i = 0; i < originalResult.count(); ++i)
+	{
+		const Math::Intersection& newIntersection = originalResult.at(i);
+		Math::Intersection replacement = Math::Intersection(newIntersection.t(), *this);
+
+		newIntersections.push_back(replacement);
+	}
+
+	return Math::Intersections(newIntersections);
+}
+
+const Math::Intersections Shape::intersectLocal(Math::Ray ray) const
+{
+	// NOTE: Instead of just delegating to Math::Shape::intersect and returning that result,
+	// we need to replace the pointer to the IShape inside each Intersection.
+
+	const Math::Intersections originalResult = m_shape->intersectLocal(ray);
 	std::vector<Math::Intersection> newIntersections;
 
 	for (int i = 0; i < originalResult.count(); ++i)

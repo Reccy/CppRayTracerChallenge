@@ -19,18 +19,18 @@ namespace CppRayTracerChallenge::Core::Math
 		Sphere();
 
 		/// <summary>
-		/// Calculates and returns the normal at the passed in position for this sphere
+		/// Calculates and returns the normal at the passed in local space position for this sphere
 		/// </summary>
-		/// <param name="position">The position of the normal vector</param>
+		/// <param name="position">The local space position of the normal vector</param>
 		/// <returns>The normal vector at the position</returns>
-		const Vector normal(const Point position) const;
+		const Vector normalLocal(const Point position) const override;
 
 		/// <summary>
-		/// Calculates if the ray intersects with the sphere.
+		/// Calculates if the local space ray intersects with the sphere.
 		/// </summary>
-		/// <param name="ray">The ray to intersect with the sphere</param>
+		/// <param name="ray">The local space ray to intersect with the sphere</param>
 		/// <returns>The Intersections</returns>
-		const Intersections intersect(Ray ray) const;
+		const Intersections intersectLocal(Ray ray) const override;
 	};
 }
 
