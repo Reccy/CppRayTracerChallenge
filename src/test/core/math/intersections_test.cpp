@@ -107,3 +107,42 @@ TEST(CppRayTracerChallenge_Core_Math_Intersections, assignment_adding_intersecti
 	EXPECT_EQ(a.at(2).t(), 5);
 	EXPECT_EQ(a.at(3).t(), 7);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Intersections, equality)
+{
+	Sphere s1 = Sphere();
+	s1.transform(Transform().translate(1, 1, 1));
+
+	Sphere s2 = Sphere();
+	s2.transform(Transform().translate(2, 2, 2));
+
+	Intersections a = Intersections({ Intersection(2, s1), Intersection(3, s2) });
+	Intersections b = Intersections({ Intersection(3, s2), Intersection(2, s1) });
+
+	EXPECT_TRUE(a == b);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Intersections, inequality_shape)
+{
+	Sphere s1 = Sphere();
+	s1.transform(Transform().translate(1, 1, 1));
+
+	Sphere s2 = Sphere();
+	s2.transform(Transform().translate(2, 2, 2));
+
+	Intersections a = Intersections({ Intersection(2, s1), Intersection(3, s1) });
+	Intersections b = Intersections({ Intersection(2, s2), Intersection(3, s2) });
+
+	EXPECT_TRUE(a != b);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Intersections, inequality_t)
+{
+	Sphere s1 = Sphere();
+	s1.transform(Transform().translate(1, 1, 1));
+
+	Intersections a = Intersections({ Intersection(2, s1), Intersection(4, s1) });
+	Intersections b = Intersections({ Intersection(2, s1), Intersection(3, s1) });
+
+	EXPECT_TRUE(a != b);
+}

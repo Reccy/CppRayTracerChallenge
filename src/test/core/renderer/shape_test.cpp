@@ -4,8 +4,6 @@
 
 using namespace CppRayTracerChallenge::Core;
 
-// todo add tests for wrapper
-
 TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_wraps_transform)
 {
 	auto sphere = std::make_shared<Math::Sphere>(Math::Sphere());
@@ -27,6 +25,16 @@ TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_wraps_normal)
 	Math::Point p = Math::Point(2, 3, 4);
 
 	EXPECT_EQ(sphere->normal(p), shape.normal(p));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_wraps_normal_local)
+{
+	auto sphere = std::make_shared<Math::Sphere>(Math::Sphere());
+	Renderer::Shape shape = Renderer::Shape(sphere);
+
+	Math::Point p = Math::Point(2, 3, 4);
+
+	EXPECT_EQ(sphere->normalLocal(p), shape.normalLocal(p));
 }
 
 TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_has_a_default_material)

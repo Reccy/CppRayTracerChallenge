@@ -112,6 +112,43 @@ Intersections Intersections::operator+=(const Intersections& other)
 	return *this;
 }
 
+bool Intersections::operator==(const Intersections& other) const
+{
+	if (other.count() != count())
+	{
+		return false;
+	}
+
+	for (int i = 0; i < count(); ++i)
+	{
+		const Intersection& thisIntersection = at(i);
+		const Intersection& otherIntersection = other.at(i);
+
+		if (thisIntersection != otherIntersection)
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+bool Intersections::operator!=(const Intersections& other) const
+{
+	return !(*this == other);
+}
+
+std::ostream& CppRayTracerChallenge::Core::Math::operator<<(std::ostream& os, const Intersections& intersections)
+{
+	for (int i = 0; i < intersections.count(); ++i)
+	{
+		os << intersections.at(i);
+		os << std::endl;
+	}
+
+	return os;
+}
+
 void Intersections::calculateHitindex()
 {
 	double tSmallest = std::numeric_limits<double>::max();

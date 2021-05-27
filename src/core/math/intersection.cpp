@@ -23,3 +23,9 @@ bool Intersection::operator!=(const Intersection& other) const
 {
 	return !((*this) == other);
 }
+
+std::ostream& CppRayTracerChallenge::Core::Math::operator<<(std::ostream& os, const Intersection& intersection)
+{
+	os << "t(" << intersection.t() << "), shape_ptr(" << &intersection.shape() << ")";
+	return os;
+}

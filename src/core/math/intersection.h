@@ -35,6 +35,7 @@ namespace CppRayTracerChallenge::Core::Math
 
 		bool operator==(const Intersection& other) const;
 		bool operator!=(const Intersection& other) const;
+		friend std::ostream& operator<<(std::ostream& os, const Intersection& intersection);
 	private:
 		const double m_t;
 		const IShape& m_shape;
