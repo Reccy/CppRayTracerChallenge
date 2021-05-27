@@ -2,8 +2,6 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_SPHERE
 
 #include "shape.h"
-#include "point.h"
-#include "transform.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
