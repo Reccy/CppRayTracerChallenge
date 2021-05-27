@@ -2,6 +2,7 @@
 #include "renderer/pattern.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
+using namespace CppRayTracerChallenge::Core;
 
 TEST(CppRayTracerChallenge_Core_Renderer_Pattern, creating_a_stripe_pattern)
 {

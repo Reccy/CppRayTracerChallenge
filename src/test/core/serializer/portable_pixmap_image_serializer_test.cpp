@@ -3,13 +3,13 @@
 
 #include <vector>
 
-using namespace CppRayTracerChallenge::Core::Serializer;
+using namespace CppRayTracerChallenge::Core;
 
 TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_correct_header)
 {
 	Graphics::Image image(5,3);
 
-	PortablePixmapImageSerializer ppm;
+	Serializer::PortablePixmapImageSerializer ppm;
 	ppm.serialize(image);
 
 	std::string expectedResult = "";
@@ -65,7 +65,7 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_c
 	std::string expectedResult = ss.str();
 
 	// Get actual result
-	PortablePixmapImageSerializer ppm;
+	Serializer::PortablePixmapImageSerializer ppm;
 	ppm.serialize(image);
 
 	std::vector<char> chars = ppm.buffer();
@@ -114,7 +114,7 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, split_
 	std::string expectedResult = ss.str();
 
 	// Get actual result
-	PortablePixmapImageSerializer ppm;
+	Serializer::PortablePixmapImageSerializer ppm;
 	ppm.serialize(image);
 
 	std::vector<char> chars = ppm.buffer();
@@ -149,7 +149,7 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, file_i
 {
 	Graphics::Image image(10, 10);
 
-	PortablePixmapImageSerializer ppm;
+	Serializer::PortablePixmapImageSerializer ppm;
 	ppm.serialize(image);
 
 	char result = ppm.buffer().back();

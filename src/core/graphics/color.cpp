@@ -1,8 +1,10 @@
 #include "color.h"
+#include "../math/comparison.h"
 
 using namespace CppRayTracerChallenge::Core::Graphics;
+using namespace CppRayTracerChallenge::Core::Math;
 
-Color::Color(const float red, const float green, const float blue) : m_tuple(Math::Tuple(red, green, blue, 1.0f)) {};
+Color::Color(const float red, const float green, const float blue) : m_red(red), m_green(green), m_blue(blue) {};
 
 Color Color::black()
 {
@@ -16,22 +18,24 @@ Color Color::white()
 
 float Color::red() const
 {
-	return this->m_tuple.x();
+	return m_red;
 }
 
 float Color::green() const
 {
-	return this->m_tuple.y();
+	return m_green;
 }
 
 float Color::blue() const
 {
-	return this->m_tuple.z();
+	return m_blue;
 }
 
 bool Color::operator==(const Color& other) const
 {
-	return this->m_tuple == other.m_tuple;
+	return Comparison::equal(m_red, other.m_red) &&
+		Comparison::equal(m_green, other.m_green) &&
+		Comparison::equal(m_blue, other.m_blue);
 }
 
 bool Color::operator!=(const Color& other) const

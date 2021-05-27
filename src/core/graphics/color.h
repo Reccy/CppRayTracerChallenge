@@ -1,9 +1,7 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_GRAPHICS_COLOR
 #define _CPPRAYTRACERCHALLENGE_CORE_GRAPHICS_COLOR
 
-#include "../math/tuple.h"
-
-using namespace CppRayTracerChallenge::Core;
+#include <iostream>
 
 namespace CppRayTracerChallenge::Core::Graphics
 {
@@ -53,7 +51,7 @@ namespace CppRayTracerChallenge::Core::Graphics
 		Color operator*(const Color& other) const;
 		friend std::ostream& operator<<(std::ostream& os, const Color& color);
 	private:
-		Math::Tuple<float> m_tuple;
+		float m_red, m_green, m_blue;
 	};
 }
 

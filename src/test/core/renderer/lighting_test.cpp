@@ -4,7 +4,7 @@
 #include "math/point.h"
 #include "math/vector.h"
 
-using namespace CppRayTracerChallenge::Core::Renderer::Lighting;
+using namespace CppRayTracerChallenge::Core;
 
 class CppRayTracerChallenge_Core_Renderer_LightingTest : public ::testing::Test
 {
@@ -31,7 +31,7 @@ TEST_F(CppRayTracerChallenge_Core_Renderer_LightingTest, lighting_with_eye_betwe
 	Math::Vector normalv = Math::Vector(0, 0, -1);
 	Renderer::PointLight light = Renderer::PointLight({ 0, 0, -10 }, { 1, 1, 1 });
 
-	Graphics::Color result = lighting(*material, light, *position, eyev, normalv, false);
+	Graphics::Color result = Renderer::Lighting::lighting(*material, light, *position, eyev, normalv, false);
 	Graphics::Color expectedResult = Graphics::Color(1.9f, 1.9f, 1.9f);
 
 	EXPECT_EQ(result, expectedResult);
@@ -43,7 +43,7 @@ TEST_F(CppRayTracerChallenge_Core_Renderer_LightingTest, lighting_with_eye_betwe
 	Math::Vector normalv = Math::Vector(0, 0, -1);
 	Renderer::PointLight light = Renderer::PointLight({ 0, 0, -10 }, { 1, 1, 1 });
 
-	Graphics::Color result = lighting(*material, light, *position, eyev, normalv, false);
+	Graphics::Color result = Renderer::Lighting::lighting(*material, light, *position, eyev, normalv, false);
 	Graphics::Color expectedResult = Graphics::Color(1, 1, 1);
 
 	EXPECT_EQ(result, expectedResult);
@@ -55,7 +55,7 @@ TEST_F(CppRayTracerChallenge_Core_Renderer_LightingTest, lighting_with_eye_oppos
 	Math::Vector normalv = Math::Vector(0, 0, -1);
 	Renderer::PointLight light = Renderer::PointLight({ 0, 10, -10 }, { 1, 1, 1 });
 
-	Graphics::Color result = lighting(*material, light, *position, eyev, normalv, false);
+	Graphics::Color result = Renderer::Lighting::lighting(*material, light, *position, eyev, normalv, false);
 	Graphics::Color expectedResult = Graphics::Color(0.7364f, 0.7364f, 0.7364f);
 
 	EXPECT_EQ(result, expectedResult);
@@ -67,7 +67,7 @@ TEST_F(CppRayTracerChallenge_Core_Renderer_LightingTest, lighting_with_eye_in_th
 	Math::Vector normalv = Math::Vector(0, 0, -1);
 	Renderer::PointLight light = Renderer::PointLight({ 0, 10, -10 }, { 1, 1, 1 });
 
-	Graphics::Color result = lighting(*material, light, *position, eyev, normalv, false);
+	Graphics::Color result = Renderer::Lighting::lighting(*material, light, *position, eyev, normalv, false);
 	Graphics::Color expectedResult = Graphics::Color(1.6364f, 1.6364f, 1.6364f);
 
 	EXPECT_EQ(result, expectedResult);
@@ -79,7 +79,7 @@ TEST_F(CppRayTracerChallenge_Core_Renderer_LightingTest, lighting_with_the_light
 	Math::Vector normalv = Math::Vector(0, 0, -1);
 	Renderer::PointLight light = Renderer::PointLight({ 0, 0, 10 }, { 1, 1, 1 });
 
-	Graphics::Color result = lighting(*material, light, *position, eyev, normalv, false);
+	Graphics::Color result = Renderer::Lighting::lighting(*material, light, *position, eyev, normalv, false);
 	Graphics::Color expectedResult = Graphics::Color(0.1f, 0.1f, 0.1f);
 
 	EXPECT_EQ(result, expectedResult);
@@ -91,7 +91,7 @@ TEST_F(CppRayTracerChallenge_Core_Renderer_LightingTest, lighting_with_the_surfa
 	Math::Vector normalv = Math::Vector(0, 0, -1);
 	Renderer::PointLight light = Renderer::PointLight({ 0, 0, -10 }, { 1, 1, 1 });
 
-	Graphics::Color result = lighting(*material, light, *position, eyev, normalv, true);
+	Graphics::Color result = Renderer::Lighting::lighting(*material, light, *position, eyev, normalv, true);
 	Graphics::Color expectedResult = Graphics::Color(0.1f, 0.1f, 0.1f);
 
 	EXPECT_EQ(result, expectedResult);
