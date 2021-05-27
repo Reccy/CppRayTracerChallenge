@@ -24,6 +24,13 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="position">The position of the normal vector</param>
 		/// <returns>The normal vector at the position</returns>
 		const Vector normal(const Point position) const;
+
+		/// <summary>
+		/// Calculates if the ray intersects with the sphere.
+		/// </summary>
+		/// <param name="ray">The ray to intersect with the sphere</param>
+		/// <returns>The Intersections</returns>
+		const Intersections intersect(Ray ray) const;
 	};
 }
 

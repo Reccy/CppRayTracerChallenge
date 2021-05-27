@@ -83,7 +83,7 @@ TEST(CppRayTracerChallenge_Core_Math_Ray, computing_a_ray_intersecting_a_sphere_
 {
 	Ray ray = Ray(Point(0, 0, -5), Vector(0, 0, 1));
 	Sphere sphere = Sphere();
-	Intersections intersections = Intersections::intersect(ray, sphere);
+	Intersections intersections = sphere.intersect(ray);
 
 	EXPECT_EQ(intersections.size(), 2);
 	EXPECT_EQ(intersections.at(0), Intersection(4, sphere));
@@ -94,7 +94,7 @@ TEST(CppRayTracerChallenge_Core_Math_Ray, computing_a_ray_intersecting_a_sphere_
 {
 	Ray ray = Ray(Point(0, 1, -5), Vector(0, 0, 1));
 	Sphere sphere = Sphere();
-	Intersections intersections = Intersections::intersect(ray, sphere);
+	Intersections intersections = sphere.intersect(ray);
 
 	EXPECT_EQ(intersections.size(), 2);
 	EXPECT_EQ(intersections.at(0), Intersection(5, sphere));
@@ -105,7 +105,7 @@ TEST(CppRayTracerChallenge_Core_Math_Ray, computing_a_ray_missing_a_sphere)
 {
 	Ray ray = Ray(Point(0, 2, -5), Vector(0, 0, 1));
 	Sphere sphere = Sphere();
-	Intersections intersections = Intersections::intersect(ray, sphere);
+	Intersections intersections = sphere.intersect(ray);
 
 	EXPECT_EQ(intersections.size(), 0);
 }
@@ -114,7 +114,7 @@ TEST(CppRayTracerChallenge_Core_Math_Ray, ray_originates_inside_sphere)
 {
 	Ray ray = Ray(Point(0, 0, 0), Vector(0, 0, 1));
 	Sphere sphere = Sphere();
-	Intersections intersections = Intersections::intersect(ray, sphere);
+	Intersections intersections = sphere.intersect(ray);
 
 	EXPECT_EQ(intersections.size(), 2);
 	EXPECT_EQ(intersections.at(0), Intersection(-1, sphere));
@@ -125,7 +125,7 @@ TEST(CppRayTracerChallenge_Core_Math_Ray, ray_originates_in_front_of_sphere)
 {
 	Ray ray = Ray(Point(0, 0, 5), Vector(0, 0, 1));
 	Sphere sphere = Sphere();
-	Intersections intersections = Intersections::intersect(ray, sphere);
+	Intersections intersections = sphere.intersect(ray);
 
 	EXPECT_EQ(intersections.size(), 2);
 	EXPECT_EQ(intersections.at(0), Intersection(-6, sphere));
@@ -136,7 +136,7 @@ TEST(CppRayTracerChallenge_Core_Math_Ray, ray_intersection_sets_object)
 {
 	Ray ray = Ray(Point(0, 0, -5), Vector(0, 0, 1));
 	Sphere sphere = Sphere();
-	Intersections intersections = Intersections::intersect(ray, sphere);
+	Intersections intersections = sphere.intersect(ray);
 
 	EXPECT_EQ(intersections.size(), 2);
 	EXPECT_EQ(&intersections.at(0).shape(), &sphere);
@@ -149,7 +149,7 @@ TEST(CppRayTracerChallenge_Core_Math_Ray, intersecting_scaled_sphere_with_ray)
 	Sphere sphere = Sphere();
 	sphere.transform(Transform().scale(2, 2, 2));
 
-	Intersections intersections = Intersections::intersect(ray, sphere);
+	Intersections intersections = sphere.intersect(ray);
 
 	EXPECT_EQ(intersections.count(), 2);
 	EXPECT_EQ(intersections.at(0).t(), 3);
@@ -162,7 +162,7 @@ TEST(CppRayTracerChallenge_Core_Math_Ray, intersecting_translated_sphere_with_ra
 	Sphere sphere = Sphere();
 	sphere.transform(Transform().translate(5, 0, 0));
 
-	Intersections intersections = Intersections::intersect(ray, sphere);
+	Intersections intersections = sphere.intersect(ray);
 
 	EXPECT_EQ(intersections.count(), 0);
 }

@@ -40,6 +40,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		void transform(Math::Transform transform) override;
 		const Math::Transform transform() const override;
 		const Math::Vector normal(const Math::Point position) const override;
+		const Math::Intersections intersect(Math::Ray ray) const override;
 	private:
 		std::shared_ptr<IShape> m_shape;
 		Material m_material;

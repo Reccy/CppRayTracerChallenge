@@ -15,6 +15,11 @@ public:
 	{
 		return Vector(position);
 	}
+
+	const Intersections intersect(Ray ray) const
+	{
+		return Intersections({ Intersection(ray.direction().x(), *this) });
+	}
 };
 
 TEST(CppRayTracerChallenge_Core_Math_Shape, transforming_a_shape)

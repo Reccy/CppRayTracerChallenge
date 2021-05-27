@@ -85,7 +85,7 @@ Math::Intersections World::intersectRay(const Math::Ray ray) const
 
 	for (const Shape& object : m_objects)
 	{
-		result += Math::Intersections::intersect(ray, object);
+		result += object.intersect(ray);
 	}
 
 	return result;

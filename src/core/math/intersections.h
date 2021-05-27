@@ -5,10 +5,11 @@
 #include <optional>
 #include "intersection.h"
 #include "ray.h"
-#include "i_shape.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
+	class Ray;
+	class Intersection;
 	/// <summary>
 	/// Represents a sorted collection of Intersections
 	/// </summary>
@@ -25,14 +26,6 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="intersections">A list of intersections, passed as const references. They will be sorted and added to intersections.</param>
 		const Intersections(const std::vector<Intersection> intersections);
-
-		/// <summary>
-		/// Calculates if the ray intersects with the sphere.
-		/// </summary>
-		/// <param name="ray">The ray to intersect with the sphere</param>
-		/// <param name="shape">The shape to intersect with the ray</param>
-		/// <returns>The Intersections</returns>
-		static Intersections intersect(Ray ray, const IShape& shape);
 
 		/// <summary>
 		/// Returns a const reference to the intersection at the index

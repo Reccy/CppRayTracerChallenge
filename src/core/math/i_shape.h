@@ -4,9 +4,12 @@
 #include "transform.h"
 #include "vector.h"
 #include "point.h"
+#include "intersections.h"
+#include "ray.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
+	class Intersections;
 	class IShape
 	{
 	public:
@@ -28,6 +31,13 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="position">The position of the normal vector</param>
 		/// <returns>The normal vector at the position</returns>
 		virtual const Vector normal(const Point position) const = 0;
+
+		/// <summary>
+		/// Calculates if the ray intersects with the shape.
+		/// </summary>
+		/// <param name="ray">The ray to intersect with the shape</param>
+		/// <returns>The Intersections</returns>
+		virtual const Intersections intersect(Ray ray) const = 0;
 	};
 }
 
