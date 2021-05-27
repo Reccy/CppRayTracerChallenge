@@ -1,25 +1,25 @@
 <map id="src/core/renderer/world.h" name="src/core/renderer/world.h">
-<area shape="rect" id="node1" title=" " alt="" coords="281,5,446,32"/>
-<area shape="rect" id="node2" href="$point__light_8h.html" title=" " alt="" coords="269,229,361,256"/>
-<area shape="rect" id="node11" href="$renderer_2shape_8h.html" title=" " alt="" coords="147,155,215,181"/>
-<area shape="rect" id="node19" href="$computed__values_8h.html" title=" " alt="" coords="297,80,430,107"/>
-<area shape="rect" id="node21" href="$ray_8h.html" title=" " alt="" coords="533,229,629,256"/>
-<area shape="rect" id="node22" href="$intersections_8h.html" title=" " alt="" coords="487,80,639,107"/>
-<area shape="rect" id="node3" href="$point_8h.html" title=" " alt="" coords="431,304,538,331"/>
-<area shape="rect" id="node10" href="$color_8h.html" title=" " alt="" coords="21,304,148,331"/>
-<area shape="rect" id="node4" href="$vector_8h.html" title=" " alt="" coords="366,379,433,405"/>
-<area shape="rect" id="node5" href="$tuple_8h.html" title=" " alt="" coords="286,453,347,480"/>
-<area shape="rect" id="node6" title=" " alt="" coords="291,528,363,555"/>
-<area shape="rect" id="node7" title=" " alt="" coords="213,603,295,629"/>
-<area shape="rect" id="node8" href="$comparison_8h.html" title=" " alt="" coords="105,528,205,555"/>
-<area shape="rect" id="node9" href="$constants_8h.html" title=" " alt="" coords="98,603,189,629"/>
-<area shape="rect" id="node12" href="$material_8h.html" title=" " alt="" coords="45,229,124,256"/>
-<area shape="rect" id="node13" href="$transform_8h.html" title=" " alt="" coords="224,304,356,331"/>
-<area shape="rect" id="node18" href="$i__shape_8h.html" title=" " alt="" coords="386,229,509,256"/>
-<area shape="rect" id="node14" title=" " alt="" coords="287,379,341,405"/>
-<area shape="rect" id="node15" href="$matrix_8h.html" title=" " alt="" coords="193,379,262,405"/>
-<area shape="rect" id="node16" title=" " alt="" coords="598,453,654,480"/>
-<area shape="rect" id="node17" title=" " alt="" coords="193,453,262,480"/>
-<area shape="rect" id="node20" href="$intersection_8h.html" title=" " alt="" coords="291,155,436,181"/>
-<area shape="rect" id="node23" title=" " alt="" coords="562,155,629,181"/>
+<area shape="rect" id="node1" title=" " alt="" coords="239,5,405,32"/>
+<area shape="rect" id="node2" href="$point__light_8h.html" title=" " alt="" coords="635,379,727,405"/>
+<area shape="rect" id="node11" href="$renderer_2shape_8h.html" title=" " alt="" coords="424,155,492,181"/>
+<area shape="rect" id="node19" href="$intersections_8h.html" title=" " alt="" coords="98,304,205,331"/>
+<area shape="rect" id="node22" href="$ray_8h.html" title=" " alt="" coords="271,379,322,405"/>
+<area shape="rect" id="node23" href="$computed__values_8h.html" title=" " alt="" coords="151,80,285,107"/>
+<area shape="rect" id="node3" href="$point_8h.html" title=" " alt="" coords="447,453,554,480"/>
+<area shape="rect" id="node10" href="$color_8h.html" title=" " alt="" coords="735,453,861,480"/>
+<area shape="rect" id="node4" href="$vector_8h.html" title=" " alt="" coords="377,528,443,555"/>
+<area shape="rect" id="node5" href="$tuple_8h.html" title=" " alt="" coords="533,603,594,629"/>
+<area shape="rect" id="node6" title=" " alt="" coords="578,677,650,704"/>
+<area shape="rect" id="node7" title=" " alt="" coords="537,752,619,779"/>
+<area shape="rect" id="node8" href="$comparison_8h.html" title=" " alt="" coords="675,677,775,704"/>
+<area shape="rect" id="node9" href="$constants_8h.html" title=" " alt="" coords="679,752,770,779"/>
+<area shape="rect" id="node12" href="$material_8h.html" title=" " alt="" coords="759,379,837,405"/>
+<area shape="rect" id="node13" href="$transform_8h.html" title=" " alt="" coords="579,453,711,480"/>
+<area shape="rect" id="node18" href="$i__shape_8h.html" title=" " alt="" coords="333,229,455,256"/>
+<area shape="rect" id="node14" title=" " alt="" coords="539,528,593,555"/>
+<area shape="rect" id="node15" href="$matrix_8h.html" title=" " alt="" coords="618,528,687,555"/>
+<area shape="rect" id="node16" title=" " alt="" coords="230,603,286,629"/>
+<area shape="rect" id="node17" title=" " alt="" coords="618,603,687,629"/>
+<area shape="rect" id="node20" title=" " alt="" coords="181,379,247,405"/>
+<area shape="rect" id="node21" href="$intersection_8h.html" title=" " alt="" coords="5,379,105,405"/>
 </map>

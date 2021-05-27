@@ -1,4 +1,5 @@
 <map id="CppRayTracerChallenge::Core::Math::Intersections::count" name="CppRayTracerChallenge::Core::Math::Intersections::count">
-<area shape="rect" id="node1" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="108,5,284,61"/>
-<area shape="rect" id="node2" href="$intersections__test_8cpp.html#a8d8abdbc55562c03d4b573216623eb33" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node1" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="216,39,392,95"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#af6a5cfa18be0155155f4a0035a6909c3" title="Calculates if the ray intersects with the shape." alt="" coords="5,5,168,61"/>
+<area shape="rect" id="node3" href="$intersections__test_8cpp.html#a8d8abdbc55562c03d4b573216623eb33" title=" " alt="" coords="59,85,114,112"/>
 </map>

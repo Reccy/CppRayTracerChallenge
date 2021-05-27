@@ -121,6 +121,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6a57f2d2155764da35d30bb06ca7fadb"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_testing_shape.html#a6a57f2d2155764da35d30bb06ca7fadb">normal</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Point</a> position) const</td></tr>
 <tr class="memdesc:a6a57f2d2155764da35d30bb06ca7fadb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates and returns the normal at the passed in position for this shape  <a href="class_testing_shape.html#a6a57f2d2155764da35d30bb06ca7fadb">More...</a><br /></td></tr>
 <tr class="separator:a6a57f2d2155764da35d30bb06ca7fadb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a684f121137df07cf9afe075b3fd9a6f3"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html">Intersections</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_testing_shape.html#a684f121137df07cf9afe075b3fd9a6f3">intersect</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Ray</a> ray) const</td></tr>
+<tr class="memdesc:a684f121137df07cf9afe075b3fd9a6f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates if the ray intersects with the shape.  <a href="class_testing_shape.html#a684f121137df07cf9afe075b3fd9a6f3">More...</a><br /></td></tr>
+<tr class="separator:a684f121137df07cf9afe075b3fd9a6f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">CppRayTracerChallenge::Core::Math::Shape</a></td></tr>
 <tr class="memitem:a8d578dcc370c20a2213430d0e87c7cc9 inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#a8d578dcc370c20a2213430d0e87c7cc9">transform</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Transform</a> transform)</td></tr>
 <tr class="memdesc:a8d578dcc370c20a2213430d0e87c7cc9 inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms the shape  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#a8d578dcc370c20a2213430d0e87c7cc9">More...</a><br /></td></tr>
@@ -168,6 +171,55 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a684f121137df07cf9afe075b3fd9a6f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a684f121137df07cf9afe075b3fd9a6f3">&#9670;&nbsp;</a></span>intersect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html">Intersections</a> TestingShape::intersect </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Ray</a>&#160;</td>
+          <td class="paramname"><em>ray</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates if the ray intersects with the shape. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ray</td><td>The ray to intersect with the shape</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The Intersections</dd></dl>
+
+<p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a76960c9e7db08b226a210db109e1bf5b">CppRayTracerChallenge::Core::Math::IShape</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="math_2shape__test_8cpp_source.html#l00019">19</a> of file <a class="el" href="math_2shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_testing_shape_a684f121137df07cf9afe075b3fd9a6f3_cgraph.png" border="0" usemap="#aclass_testing_shape_a684f121137df07cf9afe075b3fd9a6f3_cgraph" alt=""/></div>
+<map name="aclass_testing_shape_a684f121137df07cf9afe075b3fd9a6f3_cgraph" id="aclass_testing_shape_a684f121137df07cf9afe075b3fd9a6f3_cgraph">
+<area shape="rect" title="Calculates if the ray intersects with the shape." alt="" coords="5,46,164,73"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="212,5,395,47"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a88cd3ab070137859ed4a413239c6414d" title="Returns a const X component" alt="" coords="223,71,384,112"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a6a57f2d2155764da35d30bb06ca7fadb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6a57f2d2155764da35d30bb06ca7fadb">&#9670;&nbsp;</a></span>normal()</h2>
 

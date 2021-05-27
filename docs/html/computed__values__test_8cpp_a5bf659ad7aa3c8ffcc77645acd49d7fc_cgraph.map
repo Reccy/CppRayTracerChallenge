@@ -1,6 +1,6 @@
 <map id="TEST" name="TEST">
 <area shape="rect" id="node1" title=" " alt="" coords="5,100,60,127"/>
 <area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a5233b26043e7696c260258f19b9867d0" title="If the intersection occurred inside or outside of the intersectable object" alt="" coords="114,5,338,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#afceae4ed2825e874f18bce7a65f75bb6" title="Returns a const reference to the shape that was intersected" alt="" coords="114,85,338,141"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#aeacd82647cc41c46465820d2106b2b08" title="Returns the material of the shape that was intersected" alt="" coords="114,85,338,141"/>
 <area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#ab6c08535b526bc2e37e63d1fce575f39" title="Returns the t value from the intersection" alt="" coords="108,166,344,207"/>
 </map>
