@@ -11,6 +11,7 @@
 #include "math/transform.h"
 #include "math/trig.h"
 #include "math/sphere.h"
+#include "math/plane.h"
 #include "math/intersections.h"
 #include "math/ray.h"
 #include "math/transform.h"
@@ -28,43 +29,13 @@ using namespace CppRayTracerChallenge::Core;
 
 Renderer::Shape buildFloor(const Renderer::Material& mat)
 {
-	auto shape = std::make_shared<Renderer::Sphere>(Renderer::Sphere());
+	auto shape = std::make_shared<Math::Plane>(Math::Plane());
 	Renderer::Shape floor = Renderer::Shape(shape);
 	Math::Transform floorTransform = Math::Transform()
 		.scale(10, 0.01, 10);
 	floor.material(mat);
 	floor.transform(floorTransform);
 	return floor;
-}
-
-Renderer::Shape buildWallLeft(const Renderer::Material& mat)
-{
-	auto shape = std::make_shared<Renderer::Sphere>(Renderer::Sphere());
-	Renderer::Shape wallLeft = Renderer::Shape(shape);
-	Math::Transform transform = Math::Transform()
-		.scale(10, 0.01, 10)
-		.rotate(90, 0, 0)
-		.rotate(0, -45, 0)
-		.translate(0, 0, 5);
-	wallLeft.material(mat);
-	wallLeft.transform(transform);
-
-	return wallLeft;
-}
-
-Renderer::Shape buildWallRight(const Renderer::Material& mat)
-{
-	auto shape = std::make_shared<Renderer::Sphere>(Renderer::Sphere());
-	Renderer::Shape wallRight = Renderer::Shape(shape);
-	Math::Transform transform = Math::Transform()
-		.scale(10, 0.01, 10)
-		.rotate(90, 0, 0)
-		.rotate(0, 45, 0)
-		.translate(0, 0, 5);
-	wallRight.material(mat);
-	wallRight.transform(transform);
-
-	return wallRight;
 }
 
 Renderer::Shape buildMiddleSphere()
@@ -131,8 +102,6 @@ Graphics::Image doRealRender()
 	bgMaterial.specular = 0;
 
 	Renderer::Shape floor = buildFloor(bgMaterial);
-	Renderer::Shape wallLeft = buildWallLeft(bgMaterial);
-	Renderer::Shape wallRight = buildWallRight(bgMaterial);
 	Renderer::Shape middleSphere = buildMiddleSphere();
 	Renderer::Shape rightSphere = buildRightSphere();
 	Renderer::Shape leftSphere = buildLeftSphere();
@@ -140,8 +109,6 @@ Graphics::Image doRealRender()
 
 	Renderer::World world = Renderer::World();
 	world.addObject(floor);
-	world.addObject(wallLeft);
-	world.addObject(wallRight);
 	world.addObject(middleSphere);
 	world.addObject(rightSphere);
 	world.addObject(leftSphere);
