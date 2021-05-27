@@ -1,8 +1,4 @@
 <map id="CppRayTracerChallenge::Core::Math::Transform::rotate" name="CppRayTracerChallenge::Core::Math::Transform::rotate">
-<area shape="rect" id="node1" title="Rotates the Transform along the x, y and z axes" alt="" coords="408,41,569,97"/>
-<area shape="rect" id="node2" href="$win32__main_8cpp.html#a2fb93657bf446b1d0326c65b849f4c65" title=" " alt="" coords="259,5,355,32"/>
-<area shape="rect" id="node5" href="$win32__main_8cpp.html#a53150bce59dbe4cf7d5e3316db8b5d7b" title=" " alt="" coords="255,56,360,83"/>
-<area shape="rect" id="node6" href="$renderer_2shape__test_8cpp.html#aa33f3d3af78df8c672baf537ca697aca" title=" " alt="" coords="280,107,335,133"/>
-<area shape="rect" id="node3" href="$win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,31,207,57"/>
-<area shape="rect" id="node4" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,56,57"/>
+<area shape="rect" id="node1" title="Rotates the Transform along the x, y and z axes" alt="" coords="108,5,269,61"/>
+<area shape="rect" id="node2" href="$transform__test_8cpp.html#a76194ac1de00662ebe995e3d9760a6ae" title=" " alt="" coords="5,20,60,47"/>
 </map>

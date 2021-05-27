@@ -10,7 +10,5 @@ var searchData=
   ['buildleftsphere_11',['buildLeftSphere',['../win32__main_8cpp.html#ae4ea00d401eb7a5aee5a5f1eeff59948',1,'win32_main.cpp']]],
   ['buildlight_12',['buildLight',['../win32__main_8cpp.html#ae20849830e242c00d07624b4186e13bf',1,'win32_main.cpp']]],
   ['buildmiddlesphere_13',['buildMiddleSphere',['../win32__main_8cpp.html#a54f9bd520bfe628965f2975e3a755205',1,'win32_main.cpp']]],
-  ['buildrightsphere_14',['buildRightSphere',['../win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f',1,'win32_main.cpp']]],
-  ['buildwallleft_15',['buildWallLeft',['../win32__main_8cpp.html#a2fb93657bf446b1d0326c65b849f4c65',1,'win32_main.cpp']]],
-  ['buildwallright_16',['buildWallRight',['../win32__main_8cpp.html#a53150bce59dbe4cf7d5e3316db8b5d7b',1,'win32_main.cpp']]]
+  ['buildrightsphere_14',['buildRightSphere',['../win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f',1,'win32_main.cpp']]]
 ];

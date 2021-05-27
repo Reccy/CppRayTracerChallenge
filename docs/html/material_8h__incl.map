@@ -1,9 +1,8 @@
 <map id="src/core/renderer/material.h" name="src/core/renderer/material.h">
-<area shape="rect" id="node1" title=" " alt="" coords="42,5,223,32"/>
-<area shape="rect" id="node2" href="$comparison_8h.html" title=" " alt="" coords="5,229,151,256"/>
-<area shape="rect" id="node5" href="$color_8h.html" title=" " alt="" coords="123,80,249,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="147,304,230,331"/>
-<area shape="rect" id="node4" href="$constants_8h.html" title=" " alt="" coords="33,304,123,331"/>
-<area shape="rect" id="node6" href="$tuple_8h.html" title=" " alt="" coords="134,155,241,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="226,229,298,256"/>
+<area shape="rect" id="node1" title=" " alt="" coords="119,5,300,32"/>
+<area shape="rect" id="node2" href="$comparison_8h.html" title=" " alt="" coords="57,80,202,107"/>
+<area shape="rect" id="node5" href="$color_8h.html" title=" " alt="" coords="226,80,353,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,155,88,181"/>
+<area shape="rect" id="node4" href="$constants_8h.html" title=" " alt="" coords="112,155,203,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="253,155,325,181"/>
 </map>

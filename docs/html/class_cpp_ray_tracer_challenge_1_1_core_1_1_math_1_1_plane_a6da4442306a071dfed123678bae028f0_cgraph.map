@@ -1,0 +1,5 @@
+<map id="CppRayTracerChallenge::Core::Math::Plane::normalLocal" name="CppRayTracerChallenge::Core::Math::Plane::normalLocal">
+<area shape="rect" id="node1" title="Calculates and returns the normal at the passed in local space position for this plane" alt="" coords="5,5,167,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a90a37a258aebe9ea87c98920ad582654" title="Creates a vector pointing up along the y axis" alt="" coords="215,13,377,54"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6f80c73b5f18dcf3f8e36065bdc8b9e5" title="Constructs a Vector with components 0, 0, 0 Note that this has an undefined direction!" alt="" coords="425,5,587,61"/>
+</map>

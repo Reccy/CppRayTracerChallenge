@@ -1,13 +1,11 @@
 <map id="CppRayTracerChallenge::Core::Math::Transform::scale" name="CppRayTracerChallenge::Core::Math::Transform::scale">
-<area shape="rect" id="node1" title="Scales the Transform along x, y, z axes" alt="" coords="464,143,625,199"/>
+<area shape="rect" id="node1" title="Scales the Transform along x, y, z axes" alt="" coords="464,92,625,148"/>
 <area shape="rect" id="node2" href="$win32__main_8cpp.html#ab8fb22f544cb1bb550af5e048be0fbbd" title=" " alt="" coords="296,5,375,32"/>
 <area shape="rect" id="node5" href="$win32__main_8cpp.html#ae4ea00d401eb7a5aee5a5f1eeff59948" title=" " alt="" coords="280,56,391,83"/>
 <area shape="rect" id="node6" href="$win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f" title=" " alt="" coords="275,107,395,133"/>
-<area shape="rect" id="node7" href="$win32__main_8cpp.html#a2fb93657bf446b1d0326c65b849f4c65" title=" " alt="" coords="287,157,383,184"/>
-<area shape="rect" id="node8" href="$win32__main_8cpp.html#a53150bce59dbe4cf7d5e3316db8b5d7b" title=" " alt="" coords="283,208,388,235"/>
-<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="255,259,416,315"/>
-<area shape="rect" id="node11" href="$ray__test_8cpp.html#ad7cf2355e3d70227dbdfeaf26a66b26f" title=" " alt="" coords="308,339,363,365"/>
-<area shape="rect" id="node3" href="$win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,107,207,133"/>
-<area shape="rect" id="node4" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,107,56,133"/>
-<area shape="rect" id="node10" href="$camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,273,183,300"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="255,157,416,213"/>
+<area shape="rect" id="node9" href="$ray__test_8cpp.html#ad7cf2355e3d70227dbdfeaf26a66b26f" title=" " alt="" coords="308,237,363,264"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,56,207,83"/>
+<area shape="rect" id="node4" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,56,56,83"/>
+<area shape="rect" id="node8" href="$camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,172,183,199"/>
 </map>

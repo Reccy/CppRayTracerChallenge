@@ -2,9 +2,9 @@
 <area shape="rect" id="node1" title="Creates a copy of the Matrix that is inverted" alt="" coords="527,119,688,175"/>
 <area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a893ef7e6b4a9dbe27260cfb11ae50b76" title="Inverts the Transform" alt="" coords="317,85,479,141"/>
 <area shape="rect" id="node8" href="$matrix__test_8cpp.html#a7ba758d76c1be60e3dd6ebccd73f8c6a" title=" " alt="" coords="371,165,425,192"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a0eb68b78143b93ad97cb3ed91e64fa89" title="Calculates if the ray intersects with the sphere." alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94" title="Calculates and returns the normal at the passed in position for this sphere" alt="" coords="108,85,269,141"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad81a13ce601592d252c6ce7f9ecb7a0b" title="Calculates if the ray intersects with the sphere." alt="" coords="108,5,269,61"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="108,85,269,141"/>
 <area shape="rect" id="node7" href="$transform__test_8cpp.html#a3fbe430d3325b29322d91e99df9e4e48" title=" " alt="" coords="161,165,216,192"/>
-<area shape="rect" id="node4" href="$sphere__test_8cpp.html#a7697e4d02d7f2d17619710f3a6c252ed" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node4" href="$sphere__test_8cpp.html#a3d3c518a0ec1d96b253d671b311bc8b6" title=" " alt="" coords="5,20,60,47"/>
 <area shape="rect" id="node6" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="5,100,60,127"/>
 </map>

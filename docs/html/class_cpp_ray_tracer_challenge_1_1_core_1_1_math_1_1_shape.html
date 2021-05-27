@@ -97,10 +97,10 @@ Inheritance diagram for CppRayTracerChallenge::Core::Math::Shape:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape__inherit__graph.png" border="0" usemap="#a_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_inherit__map" id="a_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_inherit__map">
-<area shape="rect" title=" " alt="" coords="83,95,244,136"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html" title="A 3D Sphere" alt="" coords="5,184,167,225"/>
-<area shape="rect" href="class_testing_shape.html" title="Shape only to be used in the test suite" alt="" coords="191,191,293,218"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html" title=" " alt="" coords="83,5,244,47"/>
+<area shape="rect" title=" " alt="" coords="215,39,376,80"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html" title="A 3D Plane across the xz axes" alt="" coords="424,5,585,47"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html" title="A 3D Sphere" alt="" coords="424,71,585,112"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html" title=" " alt="" coords="5,39,167,80"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -122,13 +122,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2e3409c88f8955cfb90998d5ed37b1b5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#a2e3409c88f8955cfb90998d5ed37b1b5">transform</a> () const</td></tr>
 <tr class="memdesc:a2e3409c88f8955cfb90998d5ed37b1b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a copy of the <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a>'s transform  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#a2e3409c88f8955cfb90998d5ed37b1b5">More...</a><br /></td></tr>
 <tr class="separator:a2e3409c88f8955cfb90998d5ed37b1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4617b8d0724caf7b92ef584762fc2b6"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6">normal</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Point</a> position) const override</td></tr>
+<tr class="memdesc:ac4617b8d0724caf7b92ef584762fc2b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates and returns the normal at the passed in position for this shape  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6">More...</a><br /></td></tr>
+<tr class="separator:ac4617b8d0724caf7b92ef584762fc2b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad81a13ce601592d252c6ce7f9ecb7a0b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html">Intersections</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad81a13ce601592d252c6ce7f9ecb7a0b">intersect</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Ray</a> ray) const override</td></tr>
+<tr class="memdesc:ad81a13ce601592d252c6ce7f9ecb7a0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates if the ray intersects with the sphere.  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad81a13ce601592d252c6ce7f9ecb7a0b">More...</a><br /></td></tr>
+<tr class="separator:ad81a13ce601592d252c6ce7f9ecb7a0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html">CppRayTracerChallenge::Core::Math::IShape</a></td></tr>
-<tr class="memitem:a6609aeb302084b6dd7978cee53c0d6ed inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a6609aeb302084b6dd7978cee53c0d6ed">normal</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Point</a> position) const =0</td></tr>
-<tr class="memdesc:a6609aeb302084b6dd7978cee53c0d6ed inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates and returns the normal at the passed in position for this shape  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a6609aeb302084b6dd7978cee53c0d6ed">More...</a><br /></td></tr>
-<tr class="separator:a6609aeb302084b6dd7978cee53c0d6ed inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76960c9e7db08b226a210db109e1bf5b inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html">Intersections</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a76960c9e7db08b226a210db109e1bf5b">intersect</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Ray</a> ray) const =0</td></tr>
-<tr class="memdesc:a76960c9e7db08b226a210db109e1bf5b inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates if the ray intersects with the shape.  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a76960c9e7db08b226a210db109e1bf5b">More...</a><br /></td></tr>
-<tr class="separator:a76960c9e7db08b226a210db109e1bf5b inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af627244fce374bca075871035a107db6 inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#af627244fce374bca075871035a107db6">normalLocal</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Point</a> position) const =0</td></tr>
+<tr class="memdesc:af627244fce374bca075871035a107db6 inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates and returns the normal at the passed in local space position for this shape  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#af627244fce374bca075871035a107db6">More...</a><br /></td></tr>
+<tr class="separator:af627244fce374bca075871035a107db6 inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bc2672feaeb677145c00f584369cda inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html">Intersections</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a35bc2672feaeb677145c00f584369cda">intersectLocal</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Ray</a> ray) const =0</td></tr>
+<tr class="memdesc:a35bc2672feaeb677145c00f584369cda inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates if the local space ray intersects with the shape.  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a35bc2672feaeb677145c00f584369cda">More...</a><br /></td></tr>
+<tr class="separator:a35bc2672feaeb677145c00f584369cda inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -139,6 +145,143 @@ Protected Attributes</h2></td></tr>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="math_2shape_8h_source.html#l00008">8</a> of file <a class="el" href="math_2shape_8h_source.html">shape.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad81a13ce601592d252c6ce7f9ecb7a0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad81a13ce601592d252c6ce7f9ecb7a0b">&#9670;&nbsp;</a></span>intersect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html">Math::Intersections</a> Shape::intersect </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Math::Ray</a>&#160;</td>
+          <td class="paramname"><em>ray</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates if the ray intersects with the sphere. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ray</td><td>The ray to intersect with the sphere</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html" title="Represents a sorted collection of Intersections">Intersections</a></dd></dl>
+
+<p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a76960c9e7db08b226a210db109e1bf5b">CppRayTracerChallenge::Core::Math::IShape</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="math_2shape_8cpp_source.html#l00023">23</a> of file <a class="el" href="math_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ad81a13ce601592d252c6ce7f9ecb7a0b_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ad81a13ce601592d252c6ce7f9ecb7a0b_cgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ad81a13ce601592d252c6ce7f9ecb7a0b_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ad81a13ce601592d252c6ce7f9ecb7a0b_cgraph">
+<area shape="rect" title="Calculates if the ray intersects with the sphere." alt="" coords="5,187,167,243"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a35bc2672feaeb677145c00f584369cda" title="Calculates if the local space ray intersects with the shape." alt="" coords="227,107,389,163"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a893ef7e6b4a9dbe27260cfb11ae50b76" title="Inverts the Transform" alt="" coords="227,187,389,243"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="215,293,401,334"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aa7feb564bed9f6347435713dc6b03f18" title="Creates a copy of the Matrix that is inverted" alt="" coords="460,121,621,177"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aefe9fd335841e20c20c12311a0a3fb50" title="Checks if the Matrix can be inverted" alt="" coords="680,187,841,243"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ace02bb54a9415ffa260c84e50a6d94d3" title="Calculates the cofactor of the square Matrix" alt="" coords="680,56,841,112"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a87172940c17b94e7b20c0f15add2fe62" title="Calculates the determinant of the square Matrix" alt="" coords="1099,103,1260,159"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ac5dae214bed842b2b75e3dc777252fbf" title="Calculates the minor / determinant of the square submatrix." alt="" coords="889,5,1051,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a81ee5f59b2eb010dfa8d2e645715421d" title="Returns a copy of the Matrix, with the row and column removed." alt="" coords="1099,5,1260,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="449,253,632,294"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="459,318,623,359"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="460,383,621,425"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ad81a13ce601592d252c6ce7f9ecb7a0b_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ad81a13ce601592d252c6ce7f9ecb7a0b_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ad81a13ce601592d252c6ce7f9ecb7a0b_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ad81a13ce601592d252c6ce7f9ecb7a0b_icgraph">
+<area shape="rect" title="Calculates if the ray intersects with the sphere." alt="" coords="108,5,269,61"/>
+<area shape="rect" href="sphere__test_8cpp.html#a3d3c518a0ec1d96b253d671b311bc8b6" title=" " alt="" coords="5,20,60,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac4617b8d0724caf7b92ef584762fc2b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4617b8d0724caf7b92ef584762fc2b6">&#9670;&nbsp;</a></span>normal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a> Shape::normal </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Point</a>&#160;</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates and returns the normal at the passed in position for this shape </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>The position of the normal vector</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The normal vector at the position</dd></dl>
+
+<p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a6609aeb302084b6dd7978cee53c0d6ed">CppRayTracerChallenge::Core::Math::IShape</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="math_2shape_8cpp_source.html#l00015">15</a> of file <a class="el" href="math_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ac4617b8d0724caf7b92ef584762fc2b6_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ac4617b8d0724caf7b92ef584762fc2b6_cgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ac4617b8d0724caf7b92ef584762fc2b6_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ac4617b8d0724caf7b92ef584762fc2b6_cgraph">
+<area shape="rect" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="5,303,167,359"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a893ef7e6b4a9dbe27260cfb11ae50b76" title="Inverts the Transform" alt="" coords="215,183,376,239"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a339165be3900e10ed558402d68a1b750" title="Calculates and returns a normalized version of the vector" alt="" coords="215,263,376,319"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#af627244fce374bca075871035a107db6" title="Calculates and returns the normal at the passed in local space position for this shape" alt="" coords="215,343,376,399"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a3f1d33d2eb0d3c951536bc09914274cb" title="Transposes the matrix" alt="" coords="215,423,376,479"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aa7feb564bed9f6347435713dc6b03f18" title="Creates a copy of the Matrix that is inverted" alt="" coords="424,121,585,177"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aefe9fd335841e20c20c12311a0a3fb50" title="Checks if the Matrix can be inverted" alt="" coords="633,187,795,243"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ace02bb54a9415ffa260c84e50a6d94d3" title="Calculates the cofactor of the square Matrix" alt="" coords="633,56,795,112"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a87172940c17b94e7b20c0f15add2fe62" title="Calculates the determinant of the square Matrix" alt="" coords="1052,103,1213,159"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ac5dae214bed842b2b75e3dc777252fbf" title="Calculates the minor / determinant of the square submatrix." alt="" coords="843,5,1004,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a81ee5f59b2eb010dfa8d2e645715421d" title="Returns a copy of the Matrix, with the row and column removed." alt="" coords="1052,5,1213,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#ad507851069381b6a2f8affd01fb79d0e" title="Calculates and returns the magnitude of the vector" alt="" coords="424,256,585,312"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6f80c73b5f18dcf3f8e36065bdc8b9e5" title="Constructs a Vector with components 0, 0, 0 Note that this has an undefined direction!" alt="" coords="424,336,585,392"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a2deeccee4c66e9a774aff36da5b309e6" title="Transposes the Matrix, changing its rows into columns, and columns into rows" alt="" coords="424,423,585,479"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ac4617b8d0724caf7b92ef584762fc2b6_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ac4617b8d0724caf7b92ef584762fc2b6_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ac4617b8d0724caf7b92ef584762fc2b6_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_ac4617b8d0724caf7b92ef584762fc2b6_icgraph">
+<area shape="rect" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="108,5,269,61"/>
+<area shape="rect" href="sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="5,20,60,47"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a2e3409c88f8955cfb90998d5ed37b1b5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2e3409c88f8955cfb90998d5ed37b1b5">&#9670;&nbsp;</a></span>transform() <span class="overload">[1/2]</span></h2>
 
@@ -176,7 +319,7 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="Returns a copy of the Shape&#39;s transform" alt="" coords="527,39,688,95"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#a8d578dcc370c20a2213430d0e87c7cc9" title="Transforms the shape" alt="" coords="317,39,479,95"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,5,269,61"/>
-<area shape="rect" href="math_2shape__test_8cpp.html#a6dea1617473b38a999e451ca79bb1c4b" title=" " alt="" coords="161,85,216,112"/>
+<area shape="rect" href="intersections__test_8cpp.html#a295122d0f7d3cb79b0ebba5bbad6182b" title=" " alt="" coords="161,85,216,112"/>
 <area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="5,20,60,47"/>
 </map>
 </div>
@@ -234,7 +377,7 @@ Here is the caller graph for this function:</div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_a8d578dcc370c20a2213430d0e87c7cc9_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape_a8d578dcc370c20a2213430d0e87c7cc9_icgraph">
 <area shape="rect" title="Transforms the shape" alt="" coords="317,39,479,95"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,5,269,61"/>
-<area shape="rect" href="math_2shape__test_8cpp.html#a6dea1617473b38a999e451ca79bb1c4b" title=" " alt="" coords="161,85,216,112"/>
+<area shape="rect" href="intersections__test_8cpp.html#a295122d0f7d3cb79b0ebba5bbad6182b" title=" " alt="" coords="161,85,216,112"/>
 <area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="5,20,60,47"/>
 </map>
 </div>
@@ -262,7 +405,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="math_2shape_8h_source.html#l00023">23</a> of file <a class="el" href="math_2shape_8h_source.html">shape.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="math_2shape_8h_source.html#l00037">37</a> of file <a class="el" href="math_2shape_8h_source.html">shape.h</a>.</p>
 
 </div>
 </div>

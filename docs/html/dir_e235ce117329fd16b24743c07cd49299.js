@@ -21,6 +21,10 @@ var dir_e235ce117329fd16b24743c07cd49299 =
       [ "MatrixUndefinedDeterminantException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception" ],
       [ "MatrixUndefinedProductException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception" ]
     ] ],
+    [ "plane.cpp", "plane_8cpp.html", null ],
+    [ "plane.h", "plane_8h.html", [
+      [ "Plane", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane" ]
+    ] ],
     [ "point.cpp", "point_8cpp.html", null ],
     [ "point.h", "point_8h.html", [
       [ "Point", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point" ]

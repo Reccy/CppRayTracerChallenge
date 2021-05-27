@@ -1,6 +1,6 @@
 <map id="CppRayTracerChallenge::Core::Math::Shape::transform" name="CppRayTracerChallenge::Core::Math::Shape::transform">
 <area shape="rect" id="node1" title="Transforms the shape" alt="" coords="317,39,479,95"/>
 <area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node4" href="$math_2shape__test_8cpp.html#a6dea1617473b38a999e451ca79bb1c4b" title=" " alt="" coords="161,85,216,112"/>
+<area shape="rect" id="node4" href="$intersections__test_8cpp.html#a295122d0f7d3cb79b0ebba5bbad6182b" title=" " alt="" coords="161,85,216,112"/>
 <area shape="rect" id="node3" href="$camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="5,20,60,47"/>
 </map>

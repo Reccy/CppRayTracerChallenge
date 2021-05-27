@@ -1,12 +1,10 @@
 <map id="CppRayTracerChallenge::Core::Renderer::Shape::transform" name="CppRayTracerChallenge::Core::Renderer::Shape::transform">
-<area shape="rect" id="node1" title="Transforms the shape" alt="" coords="431,143,593,199"/>
+<area shape="rect" id="node1" title="Transforms the shape" alt="" coords="431,92,593,148"/>
 <area shape="rect" id="node2" href="$win32__main_8cpp.html#ab8fb22f544cb1bb550af5e048be0fbbd" title=" " alt="" coords="279,5,358,32"/>
 <area shape="rect" id="node5" href="$win32__main_8cpp.html#ae4ea00d401eb7a5aee5a5f1eeff59948" title=" " alt="" coords="263,56,374,83"/>
 <area shape="rect" id="node6" href="$win32__main_8cpp.html#a54f9bd520bfe628965f2975e3a755205" title=" " alt="" coords="255,107,383,133"/>
 <area shape="rect" id="node7" href="$win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f" title=" " alt="" coords="259,157,379,184"/>
-<area shape="rect" id="node8" href="$win32__main_8cpp.html#a2fb93657bf446b1d0326c65b849f4c65" title=" " alt="" coords="271,208,367,235"/>
-<area shape="rect" id="node9" href="$win32__main_8cpp.html#a53150bce59dbe4cf7d5e3316db8b5d7b" title=" " alt="" coords="266,259,371,285"/>
-<area shape="rect" id="node10" href="$renderer_2shape__test_8cpp.html#aa33f3d3af78df8c672baf537ca697aca" title=" " alt="" coords="291,309,346,336"/>
-<area shape="rect" id="node3" href="$win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,132,207,159"/>
-<area shape="rect" id="node4" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,132,56,159"/>
+<area shape="rect" id="node8" href="$shape__test_8cpp.html#aa33f3d3af78df8c672baf537ca697aca" title=" " alt="" coords="291,208,346,235"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,81,207,108"/>
+<area shape="rect" id="node4" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,81,56,108"/>
 </map>

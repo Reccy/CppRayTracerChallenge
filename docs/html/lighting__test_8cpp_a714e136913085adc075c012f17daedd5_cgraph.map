@@ -1,6 +1,10 @@
 <map id="TEST_F" name="TEST_F">
-<area shape="rect" id="node1" title=" " alt="" coords="5,60,75,87"/>
-<area shape="rect" id="node2" href="$namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9" title="Computes the color at a given point with lighting" alt="" coords="123,45,293,101"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="341,5,524,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#a1e5accc8b122a9e71d54297698eab78b" title="Returns the position of the light" alt="" coords="341,85,524,141"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,151,75,177"/>
+<area shape="rect" id="node2" href="$namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9" title="Computes the color at a given point with lighting" alt="" coords="123,136,293,192"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="352,5,513,61"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="572,194,739,235"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="341,136,524,192"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#a1e5accc8b122a9e71d54297698eab78b" title="Returns the position of the light" alt="" coords="341,216,524,272"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a7dfd7f3387d4f9f61d8eb48e31be1e4f" title="Reflects the vector off the normal" alt="" coords="352,296,513,352"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="575,5,736,61"/>
 </map>

@@ -1,8 +1,9 @@
 <map id="CppRayTracerChallenge::Core::Math::Intersections::size" name="CppRayTracerChallenge::Core::Math::Intersections::size">
-<area shape="rect" id="node1" title="Returns how many intersections are in the collection" alt="" coords="440,125,648,166"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#adc9777ea186e745c6bb6aa40aadd6f27" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="216,37,392,93"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a9a271766cfaa3a1976b0b069c44629cb" title=" " alt="" coords="216,117,392,173"/>
-<area shape="rect" id="node6" href="$sphere__test_8cpp.html#a7697e4d02d7f2d17619710f3a6c252ed" title=" " alt="" coords="277,197,331,224"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#af6a5cfa18be0155155f4a0035a6909c3" title="Calculates if the ray intersects with the shape." alt="" coords="5,5,168,61"/>
-<area shape="rect" id="node4" href="$intersections__test_8cpp.html#a8d8abdbc55562c03d4b573216623eb33" title=" " alt="" coords="59,85,114,112"/>
+<area shape="rect" id="node1" title="Returns how many intersections are in the collection" alt="" coords="453,173,661,214"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#adc9777ea186e745c6bb6aa40aadd6f27" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="229,85,405,141"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a9a271766cfaa3a1976b0b069c44629cb" title=" " alt="" coords="229,165,405,221"/>
+<area shape="rect" id="node7" href="$sphere__test_8cpp.html#a3d3c518a0ec1d96b253d671b311bc8b6" title=" " alt="" coords="290,245,345,272"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#acfd1367b7c7a8a1d063d0f0be1d65833" title="Calculates if the local space ray intersects with the shape." alt="" coords="12,5,175,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a86aafe97cd96869c08420527b8102a91" title=" " alt="" coords="5,85,181,141"/>
+<area shape="rect" id="node5" href="$intersections__test_8cpp.html#a8d8abdbc55562c03d4b573216623eb33" title=" " alt="" coords="66,165,121,192"/>
 </map>

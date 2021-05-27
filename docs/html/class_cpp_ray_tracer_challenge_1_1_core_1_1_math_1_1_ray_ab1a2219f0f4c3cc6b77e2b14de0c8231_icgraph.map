@@ -1,10 +1,12 @@
 <map id="CppRayTracerChallenge::Core::Math::Ray::direction" name="CppRayTracerChallenge::Core::Math::Ray::direction">
-<area shape="rect" id="node1" title="Returns a copy of the Ray vector" alt="" coords="589,129,772,170"/>
+<area shape="rect" id="node1" title="Returns a copy of the Ray vector" alt="" coords="589,173,772,214"/>
 <area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a325609a69321d16a1f99a29a5a0548e8" title="Computes the values of the intersection and the ray" alt="" coords="317,5,541,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a0eb68b78143b93ad97cb3ed91e64fa89" title="Calculates if the ray intersects with the sphere." alt="" coords="108,119,269,175"/>
-<area shape="rect" id="node5" href="$class_testing_shape.html#a684f121137df07cf9afe075b3fd9a6f3" title="Calculates if the ray intersects with the shape." alt="" coords="350,136,509,163"/>
-<area shape="rect" id="node6" href="$ray__test_8cpp.html#a0645b6a4ed11e5bfc6a4ccab1f2005f4" title=" " alt="" coords="402,187,457,213"/>
-<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="336,238,523,279"/>
-<area shape="rect" id="node4" href="$sphere__test_8cpp.html#a7697e4d02d7f2d17619710f3a6c252ed" title=" " alt="" coords="5,133,60,160"/>
-<area shape="rect" id="node8" href="$ray__test_8cpp.html#a32cb8f5fe90e650dcb9db4ec58e3f4df" title=" " alt="" coords="161,245,216,272"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html#a626de608246773a3567af6641c35dace" title="Calculates if the local space ray intersects with the plane." alt="" coords="349,85,510,141"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a5d70aee6c6b0e0cfdaed13c9ad6aa636" title="Calculates if the local space ray intersects with the sphere." alt="" coords="349,165,510,221"/>
+<area shape="rect" id="node6" href="$ray__test_8cpp.html#a0645b6a4ed11e5bfc6a4ccab1f2005f4" title=" " alt="" coords="402,245,457,272"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="336,297,523,338"/>
+<area shape="rect" id="node4" href="$plane__test_8cpp.html#a74df6ad5968b2c00f5820a2187b16e66" title=" " alt="" coords="161,100,216,127"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad81a13ce601592d252c6ce7f9ecb7a0b" title="Calculates if the ray intersects with the sphere." alt="" coords="108,256,269,312"/>
+<area shape="rect" id="node10" href="$ray__test_8cpp.html#a32cb8f5fe90e650dcb9db4ec58e3f4df" title=" " alt="" coords="161,336,216,363"/>
+<area shape="rect" id="node9" href="$sphere__test_8cpp.html#a3d3c518a0ec1d96b253d671b311bc8b6" title=" " alt="" coords="5,271,60,297"/>
 </map>

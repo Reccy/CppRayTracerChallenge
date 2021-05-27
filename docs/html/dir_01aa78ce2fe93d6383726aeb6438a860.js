@@ -12,6 +12,10 @@ var dir_01aa78ce2fe93d6383726aeb6438a860 =
     [ "lighting.h", "lighting_8h.html", "lighting_8h" ],
     [ "material.cpp", "material_8cpp.html", null ],
     [ "material.h", "material_8h.html", "material_8h" ],
+    [ "pattern.cpp", "pattern_8cpp.html", null ],
+    [ "pattern.h", "pattern_8h.html", [
+      [ "Pattern", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern" ]
+    ] ],
     [ "point_light.cpp", "point__light_8cpp.html", null ],
     [ "point_light.h", "point__light_8h.html", [
       [ "PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light" ]

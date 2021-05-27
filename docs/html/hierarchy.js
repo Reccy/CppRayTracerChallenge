@@ -20,14 +20,15 @@ var hierarchy =
     [ "CppRayTracerChallenge::Core::Math::Intersections", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html", null ],
     [ "CppRayTracerChallenge::Core::Math::IShape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html", [
       [ "CppRayTracerChallenge::Core::Math::Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html", [
-        [ "CppRayTracerChallenge::Core::Math::Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", null ],
-        [ "TestingShape", "class_testing_shape.html", null ]
+        [ "CppRayTracerChallenge::Core::Math::Plane", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html", null ],
+        [ "CppRayTracerChallenge::Core::Math::Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", null ]
       ] ],
       [ "CppRayTracerChallenge::Core::Renderer::Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html", null ]
     ] ],
     [ "CppRayTracerChallenge::Core::Renderer::Material", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Matrix< T >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Matrix< double >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html", null ],
+    [ "CppRayTracerChallenge::Core::Renderer::Pattern", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html", null ],
     [ "CppRayTracerChallenge::Core::Renderer::PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", null ],
     [ "testing::Test", null, [
@@ -39,6 +40,5 @@ var hierarchy =
       [ "CppRayTracerChallenge::Core::Math::Point", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html", null ],
       [ "CppRayTracerChallenge::Core::Math::Vector", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html", null ]
     ] ],
-    [ "CppRayTracerChallenge::Core::Math::Tuple< float >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html", null ],
     [ "CppRayTracerChallenge::Core::Renderer::World", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html", null ]
 ];

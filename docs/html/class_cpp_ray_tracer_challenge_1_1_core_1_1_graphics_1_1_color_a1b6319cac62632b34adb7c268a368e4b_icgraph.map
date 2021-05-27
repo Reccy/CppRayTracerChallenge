@@ -1,13 +1,15 @@
 <map id="CppRayTracerChallenge::Core::Graphics::Color::black" name="CppRayTracerChallenge::Core::Graphics::Color::black">
-<area shape="rect" id="node1" title="Returns a black color" alt="" coords="892,113,1053,169"/>
+<area shape="rect" id="node1" title="Returns a black color" alt="" coords="1111,145,1272,201"/>
 <area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf" title="Calculates the color from the point of view of the passed in ray" alt="" coords="473,48,635,104"/>
-<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#afb0339b802ed560e69eb07358d30198f" title="Constructs an image of set width, height. Initializes all color data to black." alt="" coords="683,73,844,129"/>
-<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="683,153,844,209"/>
-<area shape="rect" id="node11" href="$canvas__test_8cpp.html#ab8edb03e4a120173ca378598a043606c" title=" " alt="" coords="736,233,791,260"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#afb0339b802ed560e69eb07358d30198f" title="Constructs an image of set width, height. Initializes all color data to black." alt="" coords="897,80,1058,136"/>
+<area shape="rect" id="node9" href="$namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9" title="Computes the color at a given point with lighting" alt="" coords="892,211,1063,267"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="683,145,844,201"/>
+<area shape="rect" id="node13" href="$canvas__test_8cpp.html#ab8edb03e4a120173ca378598a043606c" title=" " alt="" coords="950,291,1005,317"/>
 <area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="255,16,425,72"/>
 <area shape="rect" id="node7" href="$world__test_8cpp.html#ab2d8493dc183b724b5d1a18686359bcb" title=" " alt="" coords="313,96,367,123"/>
 <area shape="rect" id="node4" href="$win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,5,207,32"/>
 <area shape="rect" id="node6" href="$camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,56,183,83"/>
 <area shape="rect" id="node5" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
-<area shape="rect" id="node10" href="$world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="527,168,581,195"/>
+<area shape="rect" id="node12" href="$lighting__test_8cpp.html#a0e283b70b8912ffe2b8900567c61fd4a" title=" " alt="" coords="729,225,798,252"/>
+<area shape="rect" id="node11" href="$world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="527,160,581,187"/>
 </map>

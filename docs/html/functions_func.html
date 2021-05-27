@@ -132,8 +132,15 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>Color()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5">CppRayTracerChallenge::Core::Graphics::Color</a>
 </li>
+<li>colorA()
+: <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#a0595641a3e037abd9aaccc6f0b98edfb">CppRayTracerChallenge::Core::Renderer::Pattern</a>
+</li>
 <li>colorAt()
-: <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf">CppRayTracerChallenge::Core::Renderer::World</a>
+: <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#abe148d587e11f959c56d69d35f18a971">CppRayTracerChallenge::Core::Renderer::Pattern</a>
+, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf">CppRayTracerChallenge::Core::Renderer::World</a>
+</li>
+<li>colorB()
+: <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#a3f62f6ea426eecc5574320991ce5f296">CppRayTracerChallenge::Core::Renderer::Pattern</a>
 </li>
 <li>ComputedValues()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a817626ea549fdf1ac7c4ac5fae2af883">CppRayTracerChallenge::Core::Renderer::ComputedValues</a>
@@ -220,15 +227,20 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </li>
 <li>intersect()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a76960c9e7db08b226a210db109e1bf5b">CppRayTracerChallenge::Core::Math::IShape</a>
-, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a0eb68b78143b93ad97cb3ed91e64fa89">CppRayTracerChallenge::Core::Math::Sphere</a>
-, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#af6a5cfa18be0155155f4a0035a6909c3">CppRayTracerChallenge::Core::Renderer::Shape</a>
-, <a class="el" href="class_testing_shape.html#a684f121137df07cf9afe075b3fd9a6f3">TestingShape</a>
+, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad81a13ce601592d252c6ce7f9ecb7a0b">CppRayTracerChallenge::Core::Math::Shape</a>
+, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#abdfadb11f486d27cf48f374258bea6a0">CppRayTracerChallenge::Core::Renderer::Shape</a>
 </li>
 <li>Intersection()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html#afcf5dbf7c328114ff55df271e10e4772">CppRayTracerChallenge::Core::Math::Intersection</a>
 </li>
 <li>Intersections()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a74fe953a5f2aefbc4801175842008c8d">CppRayTracerChallenge::Core::Math::Intersections</a>
+</li>
+<li>intersectLocal()
+: <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a35bc2672feaeb677145c00f584369cda">CppRayTracerChallenge::Core::Math::IShape</a>
+, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html#a626de608246773a3567af6641c35dace">CppRayTracerChallenge::Core::Math::Plane</a>
+, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a5d70aee6c6b0e0cfdaed13c9ad6aa636">CppRayTracerChallenge::Core::Math::Sphere</a>
+, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#acfd1367b7c7a8a1d063d0f0be1d65833">CppRayTracerChallenge::Core::Renderer::Shape</a>
 </li>
 <li>intersectRay()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ab0cc8359a45545669b30dc1742b3e329">CppRayTracerChallenge::Core::Renderer::World</a>
@@ -297,13 +309,18 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <h3><a id="index_n"></a>- n -</h3><ul>
 <li>normal()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a6609aeb302084b6dd7978cee53c0d6ed">CppRayTracerChallenge::Core::Math::IShape</a>
-, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a6c0d9278ac68586717e5379b9058de94">CppRayTracerChallenge::Core::Math::Sphere</a>
+, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6">CppRayTracerChallenge::Core::Math::Shape</a>
 , <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a1d400c7edc498808c9de5e35a436824a">CppRayTracerChallenge::Core::Renderer::ComputedValues</a>
-, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#abad326c47ee8f661bbe576ba17d4b352">CppRayTracerChallenge::Core::Renderer::Shape</a>
-, <a class="el" href="class_testing_shape.html#a6a57f2d2155764da35d30bb06ca7fadb">TestingShape</a>
+, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a71ca82a05c21fdb5c78cff09e127f71c">CppRayTracerChallenge::Core::Renderer::Shape</a>
 </li>
 <li>normalize()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a339165be3900e10ed558402d68a1b750">CppRayTracerChallenge::Core::Math::Vector</a>
+</li>
+<li>normalLocal()
+: <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#af627244fce374bca075871035a107db6">CppRayTracerChallenge::Core::Math::IShape</a>
+, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html#a6da4442306a071dfed123678bae028f0">CppRayTracerChallenge::Core::Math::Plane</a>
+, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#a33a230373ab23cd322c467df5a1f1258">CppRayTracerChallenge::Core::Math::Sphere</a>
+, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#abb164eb0e5e7e460ca335074d1f0e918">CppRayTracerChallenge::Core::Renderer::Shape</a>
 </li>
 </ul>
 
@@ -318,6 +335,7 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>operator!=()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a02121562a10f0bb1fc9593dd33e313fa">CppRayTracerChallenge::Core::Graphics::Color</a>
 , <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html#aa17826a3ea8c1bb4e5f774aa10ec695a">CppRayTracerChallenge::Core::Math::Intersection</a>
+, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ac024f4f8811c5036b45a66038c861ce8">CppRayTracerChallenge::Core::Math::Intersections</a>
 , <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a02d646fdc103c9452ca16eb42eee91d4">CppRayTracerChallenge::Core::Math::Matrix&lt; T &gt;</a>
 , <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a0814a71f6683a480b89e4c14b905b9f2">CppRayTracerChallenge::Core::Math::Transform</a>
 , <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a0d8da2b1324636f57173d2cf62ca221f">CppRayTracerChallenge::Core::Math::Tuple&lt; T &gt;</a>
@@ -350,6 +368,7 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>operator==()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ae4b5d5500c2ee028e3f7d92a4d098ee0">CppRayTracerChallenge::Core::Graphics::Color</a>
 , <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html#a514cba432d577fac05d8c2080882f787">CppRayTracerChallenge::Core::Math::Intersection</a>
+, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a86aafe97cd96869c08420527b8102a91">CppRayTracerChallenge::Core::Math::Intersections</a>
 , <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#abc9bf847a180dd82e88e6c3965078434">CppRayTracerChallenge::Core::Math::Matrix&lt; T &gt;</a>
 , <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#aecb2e8fe27024e2765594385f28c532a">CppRayTracerChallenge::Core::Math::Transform</a>
 , <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a4c641d9e1a24635e62fbef3d2dc95bc4">CppRayTracerChallenge::Core::Math::Tuple&lt; T &gt;</a>
@@ -364,11 +383,17 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_p"></a>- p -</h3><ul>
+<li>Pattern()
+: <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#aec7f2298857f9b5ea093d8dd4bf1f19a">CppRayTracerChallenge::Core::Renderer::Pattern</a>
+</li>
 <li>pixelIndexAt()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a042a834f5a144cc45600dfb1ced54284">CppRayTracerChallenge::Core::Graphics::Image</a>
 </li>
 <li>pixelSize()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a55a4a88227ff8755ea60cfa31376c283">CppRayTracerChallenge::Core::Renderer::Camera</a>
+</li>
+<li>Plane()
+: <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html#acac0d9c003e0ab10d07b146c3566a0c7">CppRayTracerChallenge::Core::Math::Plane</a>
 </li>
 <li>Point()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html#ad92f2337b839a94ce97dcdb439b4325a">CppRayTracerChallenge::Core::Math::Point</a>
@@ -451,9 +476,6 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </li>
 <li>TearDown()
 : <a class="el" href="class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html#a14bc0892d06288b7311979f4beb26837">CppRayTracerChallenge_Core_Renderer_LightingTest</a>
-</li>
-<li>TestingShape()
-: <a class="el" href="class_testing_shape.html#ac632cafd53aa52ddc46fc87a0b3f9eec">TestingShape</a>
 </li>
 <li>toBuffer()
 : <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#af06b75218f6b14fa4435f0c2fa278fe8">CppRayTracerChallenge::Core::Graphics::Image</a>

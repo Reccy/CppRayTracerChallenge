@@ -1,0 +1,13 @@
+<map id="src/core/renderer/pattern.cpp" name="src/core/renderer/pattern.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,195,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="25,80,84,107"/>
+<area shape="rect" id="node3" href="$pattern_8h.html" title=" " alt="" coords="109,80,182,107"/>
+<area shape="rect" id="node4" href="$color_8h.html" title=" " alt="" coords="14,229,141,256"/>
+<area shape="rect" id="node6" href="$point_8h.html" title=" " alt="" coords="145,155,252,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="72,379,144,405"/>
+<area shape="rect" id="node7" href="$vector_8h.html" title=" " alt="" coords="165,229,232,256"/>
+<area shape="rect" id="node8" href="$tuple_8h.html" title=" " alt="" coords="168,304,229,331"/>
+<area shape="rect" id="node9" title=" " alt="" coords="152,453,235,480"/>
+<area shape="rect" id="node10" href="$comparison_8h.html" title=" " alt="" coords="231,379,331,405"/>
+<area shape="rect" id="node11" href="$constants_8h.html" title=" " alt="" coords="259,453,349,480"/>
+</map>

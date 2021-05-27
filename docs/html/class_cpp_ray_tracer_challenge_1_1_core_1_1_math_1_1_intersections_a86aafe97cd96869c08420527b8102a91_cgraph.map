@@ -1,0 +1,6 @@
+<map id="CppRayTracerChallenge::Core::Math::Intersections::operator==" name="CppRayTracerChallenge::Core::Math::Intersections::operator==">
+<area shape="rect" id="node1" title=" " alt="" coords="5,35,181,91"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="229,5,424,47"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#adc9777ea186e745c6bb6aa40aadd6f27" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="239,71,415,127"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="472,79,680,120"/>
+</map>

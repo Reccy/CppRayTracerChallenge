@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Renderer::Pattern::colorAt" name="CppRayTracerChallenge::Core::Renderer::Pattern::colorAt">
+<area shape="rect" id="node1" title="Returns the color of the pattern at a specific point in local space" alt="" coords="5,5,172,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a88cd3ab070137859ed4a413239c6414d" title="Returns a const X component" alt="" coords="220,13,381,54"/>
+</map>

@@ -1,13 +1,13 @@
 <map id="src/core/renderer/lighting.h" name="src/core/renderer/lighting.h">
-<area shape="rect" id="node1" title=" " alt="" coords="43,5,219,32"/>
-<area shape="rect" id="node2" href="$color_8h.html" title=" " alt="" coords="152,155,279,181"/>
-<area shape="rect" id="node8" href="$vector_8h.html" title=" " alt="" coords="15,229,127,256"/>
-<area shape="rect" id="node9" href="$point_8h.html" title=" " alt="" coords="21,155,127,181"/>
-<area shape="rect" id="node10" href="$material_8h.html" title=" " alt="" coords="253,80,332,107"/>
-<area shape="rect" id="node11" href="$point__light_8h.html" title=" " alt="" coords="85,80,177,107"/>
-<area shape="rect" id="node3" href="$tuple_8h.html" title=" " alt="" coords="131,304,238,331"/>
-<area shape="rect" id="node4" title=" " alt="" coords="159,379,231,405"/>
-<area shape="rect" id="node5" title=" " alt="" coords="118,453,201,480"/>
-<area shape="rect" id="node6" href="$comparison_8h.html" title=" " alt="" coords="256,379,356,405"/>
-<area shape="rect" id="node7" href="$constants_8h.html" title=" " alt="" coords="261,453,351,480"/>
+<area shape="rect" id="node1" title=" " alt="" coords="129,5,305,32"/>
+<area shape="rect" id="node2" href="$color_8h.html" title=" " alt="" coords="5,155,132,181"/>
+<area shape="rect" id="node4" href="$vector_8h.html" title=" " alt="" coords="285,229,397,256"/>
+<area shape="rect" id="node9" href="$point_8h.html" title=" " alt="" coords="207,155,314,181"/>
+<area shape="rect" id="node10" href="$material_8h.html" title=" " alt="" coords="68,80,147,107"/>
+<area shape="rect" id="node11" href="$point__light_8h.html" title=" " alt="" coords="171,80,263,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="33,379,105,405"/>
+<area shape="rect" id="node5" href="$tuple_8h.html" title=" " alt="" coords="217,304,278,331"/>
+<area shape="rect" id="node6" title=" " alt="" coords="226,453,309,480"/>
+<area shape="rect" id="node7" href="$comparison_8h.html" title=" " alt="" coords="129,379,229,405"/>
+<area shape="rect" id="node8" href="$constants_8h.html" title=" " alt="" coords="111,453,202,480"/>
 </map>
