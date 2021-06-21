@@ -4,7 +4,7 @@ using namespace CppRayTracerChallenge::Core::Renderer;
 
 bool ::CppRayTracerChallenge::Core::Renderer::operator==(const Material& lhs, const Material& rhs)
 {
-	if (lhs.color != rhs.color) return false;
+	if (*lhs.pattern != *rhs.pattern) return false;
 
 	if (!Math::Comparison::equal(lhs.ambient, rhs.ambient)) return false;
 
@@ -24,7 +24,7 @@ bool ::CppRayTracerChallenge::Core::Renderer::operator!=(const Material& lhs, co
 
 std::ostream& CppRayTracerChallenge::Core::Renderer::operator<<(std::ostream& os, const Material& material)
 {
-	os << "C[" << material.color << "] - ";
+	os << "&P[" << material.pattern << "] - ";
 	os << "A[" << material.ambient << "] - ";
 	os << "D[" << material.diffuse << "] - ";
 	os << "Sp[" << material.specular << "] - ";

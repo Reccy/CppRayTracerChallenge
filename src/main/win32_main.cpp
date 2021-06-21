@@ -23,6 +23,7 @@
 #include "renderer/lighting.h"
 #include "renderer/shape.h"
 #include "renderer/camera.h"
+#include "renderer/patterns/solid_color.h"
 #include "serializer/portable_pixmap_image_serializer.h"
 
 using namespace CppRayTracerChallenge::Core;
@@ -45,7 +46,7 @@ Renderer::Shape buildMiddleSphere()
 	Math::Transform transform = Math::Transform()
 		.translate(-0.5, 1, 0.5);
 	Renderer::Material material = Renderer::Material();
-	material.color = Graphics::Color(0.1f, 1.0f, 0.5f);
+	material.pattern = std::make_shared<Renderer::Pattern>(Renderer::Patterns::SolidColor(Graphics::Color(0.1f, 1.0f, 0.5f)));
 	material.diffuse = 0.7f;
 	material.specular = 0.3f;
 	sphere.material(material);
@@ -62,7 +63,7 @@ Renderer::Shape buildRightSphere()
 		.scale(0.5, 0.5, 0.5)
 		.translate(1.5, 0.5, -0.5);
 	Renderer::Material material = Renderer::Material();
-	material.color = Graphics::Color(0.5f, 1.0f, 0.1f);
+	material.pattern = std::make_shared<Renderer::Pattern>(Renderer::Patterns::SolidColor(Graphics::Color(0.5f, 1.0f, 0.1f)));
 	material.diffuse = 0.7f;
 	material.specular = 0.3f;
 	sphere.material(material);
@@ -79,7 +80,7 @@ Renderer::Shape buildLeftSphere()
 		.scale(0.33, 0.33, 0.33)
 		.translate(-1.5, 0.33, -0.75);
 	Renderer::Material material = Renderer::Material();
-	material.color = Graphics::Color(1.0f, 0.8f, 0.1f);
+	material.pattern = std::make_shared<Renderer::Pattern>(Renderer::Patterns::SolidColor(Graphics::Color(1.0f, 0.8f, 0.1f)));
 	material.diffuse = 0.7f;
 	material.specular = 0.3f;
 	sphere.material(material);
@@ -98,7 +99,7 @@ Graphics::Image doRealRender()
 	std::cout << "Rendering scene..." << std::endl;
 
 	Renderer::Material bgMaterial = Renderer::Material();
-	bgMaterial.color = Graphics::Color(1, 0.9f, 0.9f);
+	bgMaterial.pattern = std::make_shared<Renderer::Pattern>(Renderer::Patterns::SolidColor(Graphics::Color(1, 0.9f, 0.9f)));
 	bgMaterial.specular = 0;
 
 	Renderer::Shape floor = buildFloor(bgMaterial);

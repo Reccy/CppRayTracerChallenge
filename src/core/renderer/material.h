@@ -3,6 +3,8 @@
 
 #include "../math/comparison.h"
 #include "../graphics/color.h"
+#include "pattern.h"
+#include "patterns/solid_color.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
@@ -11,7 +13,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 	/// </summary>
 	struct Material
 	{
-		Graphics::Color color = Graphics::Color::white();
+		std::shared_ptr<Pattern> pattern = std::make_shared<Patterns::SolidColor>(Patterns::SolidColor(Graphics::Color::white()));
 		float ambient = 0.1f;
 		float diffuse = 0.9f;
 		float specular = 0.9f;

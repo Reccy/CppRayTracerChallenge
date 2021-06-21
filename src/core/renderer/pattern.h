@@ -14,36 +14,20 @@ namespace CppRayTracerChallenge::Core::Renderer
 	class Pattern
 	{
 	public:
-		Pattern() = delete;
-
-		/// <summary>
-		/// Creates the pattern with 2 colors
-		/// </summary>
-		/// <param name="a">Color A</param>
-		/// <param name="b">Color B</param>
-		Pattern(Color a, Color b);
-
-		/// <summary>
-		/// Returns Color A
-		/// </summary>
-		/// <returns>Color A</returns>
-		Color colorA() const;
-
-		/// <summary>
-		/// Returns Color B
-		/// </summary>
-		/// <returns>Color B</returns>
-		Color colorB() const;
+		virtual ~Pattern() {};
 
 		/// <summary>
 		/// Returns the color of the pattern at a specific point in local space
 		/// </summary>
 		/// <param name="position">The position in local space</param>
 		/// <returns>The pattern color at the position in local space</returns>
-		Color colorAt(const Math::Point position) const;
-	private:
-		const Color m_colorA;
-		const Color m_colorB;
+		virtual Color colorAt(const Math::Point position) const = 0;
+
+		virtual bool operator==(const Pattern& other) const = 0;
+		bool operator!=(const Pattern& other) const
+		{
+			return !(*this == other);
+		};
 	};
 }
 

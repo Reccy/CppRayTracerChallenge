@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "renderer/world.h"
 #include "renderer/computed_values.h"
+#include "renderer/patterns/solid_color.h"
 #include "math/ray.h"
 #include "math/intersections.h"
 #include "math/sphere.h"
@@ -23,7 +24,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, default_world)
 	const PointLight& light1 = world.lightAt(0);
 
 	Material s1mat = Material();
-	s1mat.color = Graphics::Color(0.8f, 1.0f, 0.6f);
+	s1mat.pattern = std::make_shared<Renderer::Patterns::SolidColor>(Renderer::Patterns::SolidColor(Graphics::Color(0.8f, 1.0f, 0.6f)));
 	s1mat.diffuse = 0.7f;
 	s1mat.specular = 0.2f;
 

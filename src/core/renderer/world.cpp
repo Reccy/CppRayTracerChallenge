@@ -3,6 +3,7 @@
 #include "material.h"
 #include "shape.h"
 #include "lighting.h"
+#include "patterns/solid_color.h"
 #include "../math/sphere.h"
 #include "../math/transform.h"
 #include "../math/ray.h"
@@ -19,7 +20,7 @@ World World::defaultWorld()
 	PointLight light = PointLight({ -10, 10, -10 }, { 1, 1, 1 });
 
 	Material mat = Material();
-	mat.color = Graphics::Color(0.8f, 1.0f, 0.6f);
+	mat.pattern = std::make_shared<Patterns::SolidColor>(Patterns::SolidColor(Graphics::Color(0.8f, 1.0f, 0.6f)));
 	mat.diffuse = 0.7f;
 	mat.specular = 0.2f;
 

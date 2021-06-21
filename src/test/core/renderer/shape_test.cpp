@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "renderer/shape.h"
+#include "renderer/patterns/solid_color.h"
 #include "math/sphere.h"
 
 using namespace CppRayTracerChallenge::Core;
@@ -51,7 +52,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_can_be_assigned_a_material
 	Renderer::Shape shape = Renderer::Shape(sphere);
 
 	Renderer::Material material;
-	material.color = Graphics::Color(0.5, 0.5, 0.5);
+	material.pattern = std::make_shared<Renderer::Patterns::SolidColor>(Renderer::Patterns::SolidColor(Graphics::Color(0.5, 0.5, 0.5)));
 
 	shape.material(material);
 

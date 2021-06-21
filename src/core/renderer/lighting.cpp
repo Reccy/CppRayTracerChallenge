@@ -4,7 +4,7 @@ using namespace CppRayTracerChallenge::Core;
 
 Graphics::Color CppRayTracerChallenge::Core::Renderer::Lighting::lighting(const Material& material, const PointLight& light, const Math::Point& position, const Math::Vector& eyev, const Math::Vector& normalv, const bool isShadowed)
 {
-	Graphics::Color effectiveColor = material.color * light.intensity();
+	Graphics::Color effectiveColor = material.pattern->colorAt(position) * light.intensity();
 	Math::Vector lightv = (light.position() - position).normalize();
 	Graphics::Color ambient = effectiveColor * material.ambient;
 
