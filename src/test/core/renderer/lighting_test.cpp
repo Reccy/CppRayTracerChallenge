@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "renderer/lighting.h"
 #include "renderer/material.h"
+#include "renderer/patterns/stripe.h"
 #include "math/point.h"
 #include "math/vector.h"
 
@@ -95,4 +96,26 @@ TEST_F(CppRayTracerChallenge_Core_Renderer_LightingTest, lighting_with_the_surfa
 	Graphics::Color expectedResult = Graphics::Color(0.1f, 0.1f, 0.1f);
 
 	EXPECT_EQ(result, expectedResult);
+}
+
+TEST_F(CppRayTracerChallenge_Core_Renderer_LightingTest, lighting_with_stripe_pattern)
+{
+	Math::Vector eyev = Math::Vector(0, 0, -1);
+	Math::Vector normalv = Math::Vector(0, 0, -1);
+	Renderer::PointLight light = Renderer::PointLight({ 0, 0, -10 }, { 1, 1, 1 });
+
+	material->pattern = std::make_shared<Renderer::Patterns::Stripe>(Renderer::Patterns::Stripe(Graphics::Color::white(), Graphics::Color::black()));
+	material->ambient = 1;
+	material->diffuse = 0;
+	material->specular = 0;
+
+	Graphics::Color resultA = Renderer::Lighting::lighting(*material, light, Math::Point(0.9f, 0, 0), eyev, normalv, false);
+	Graphics::Color expectedResultA = Graphics::Color::white();
+
+	EXPECT_EQ(resultA, expectedResultA);
+
+	Graphics::Color resultB = Renderer::Lighting::lighting(*material, light, Math::Point(1.1f, 0, 0), eyev, normalv, false);
+	Graphics::Color expectedResultB = Graphics::Color::black();
+
+	EXPECT_EQ(resultB, expectedResultB);
 }

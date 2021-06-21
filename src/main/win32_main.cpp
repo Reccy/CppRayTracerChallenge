@@ -24,6 +24,7 @@
 #include "renderer/shape.h"
 #include "renderer/camera.h"
 #include "renderer/patterns/solid_color.h"
+#include "renderer/patterns/stripe.h"
 #include "serializer/portable_pixmap_image_serializer.h"
 
 using namespace CppRayTracerChallenge::Core;
@@ -99,7 +100,7 @@ Graphics::Image doRealRender()
 	std::cout << "Rendering scene..." << std::endl;
 
 	Renderer::Material bgMaterial = Renderer::Material();
-	bgMaterial.pattern = std::make_shared<Renderer::Patterns::SolidColor>(Renderer::Patterns::SolidColor(Graphics::Color(1, 0.9f, 0.9f)));
+	bgMaterial.pattern = std::make_shared<Renderer::Patterns::Stripe>(Renderer::Patterns::Stripe(Graphics::Color(1, 0.9f, 0.9f), Graphics::Color::black()));
 	bgMaterial.specular = 0;
 
 	Renderer::Shape floor = buildFloor(bgMaterial);
