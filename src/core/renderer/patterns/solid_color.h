@@ -20,6 +20,12 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		/// <param name="color">The color to use</param>
 		SolidColor(Color color);
 
+		/// <summary>
+		/// Returns the color of the pattern
+		/// </summary>
+		/// <returns></returns>
+		Color color() const;
+
 		Color colorAt(Math::Point _) const override;
 
 		bool operator==(const SolidColor& other) const;

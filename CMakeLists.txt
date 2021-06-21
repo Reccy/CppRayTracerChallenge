@@ -119,6 +119,8 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/renderer/computed_values_test.cpp"
 	"${TEST_SUITE_DIR}/core/renderer/camera_test.cpp"
 	"${TEST_SUITE_DIR}/core/renderer/pattern_test.cpp"
+	"${TEST_SUITE_DIR}/core/renderer/patterns/stripe_test.cpp"
+	"${TEST_SUITE_DIR}/core/renderer/patterns/solid_color_test.cpp"
 	"${TEST_SUITE_DIR}/core/serializer/portable_pixmap_image_serializer_test.cpp"
 )
 list(APPEND TEST_INCLUDED_DIRS "${CORE_LIBRARY_NAME}")
