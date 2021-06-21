@@ -100,8 +100,9 @@ Graphics::Image doRealRender()
 	std::cout << "Rendering scene..." << std::endl;
 
 	Renderer::Material bgMaterial = Renderer::Material();
-	bgMaterial.pattern = std::make_shared<Renderer::Patterns::Stripe>(Renderer::Patterns::Stripe(Graphics::Color(1, 0.9f, 0.9f), Graphics::Color::black()));
-	bgMaterial.specular = 0;
+	bgMaterial.pattern = std::make_shared<Renderer::Patterns::Stripe>(Renderer::Patterns::Stripe(Graphics::Color(1, 0.9f, 0.9f), Graphics::Color(0.6f, 0.5f, 0.4f)));
+	bgMaterial.pattern->transform(Math::Transform().scale(0.25f, 1, 1).rotate(0, 45, 0));
+	bgMaterial.specular = 0.1f;
 
 	Renderer::Shape floor = buildFloor(bgMaterial);
 	Renderer::Shape middleSphere = buildMiddleSphere();

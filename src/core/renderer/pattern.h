@@ -7,8 +7,6 @@
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
-	using namespace CppRayTracerChallenge::Core::Graphics;
-
 	/// <summary>
 	/// Represents a color pattern that can be used to vary the color of materials
 	/// </summary>
@@ -22,7 +20,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// </summary>
 		/// <param name="position">The position in local space</param>
 		/// <returns>The pattern color at the position in local space</returns>
-		virtual Color colorAt(const Math::Point position) const = 0;
+		virtual ::CppRayTracerChallenge::Core::Graphics::Color colorAt(const Math::Point position) const = 0;
 
 		/// <summary>
 		/// Transforms the pattern

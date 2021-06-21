@@ -13,7 +13,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_from_outside)
 	Renderer::Material material = Renderer::Material();
 	material.ambient = 200.0f;
 
-	auto sphere = std::make_shared<Math::Sphere>(Math::Sphere());
+	auto sphere = std::make_shared<Math::Sphere>();
 	Renderer::Shape shape = Renderer::Shape(sphere, material);
 	Math::Intersection intersection = Math::Intersection(4, shape);
 
@@ -28,8 +28,9 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_from_outside)
 TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_from_inside)
 {
 	Math::Ray ray = Math::Ray({ 0,0,0 }, { 0,0,1 });
-	Math::Sphere sphere = Math::Sphere();
-	Math::Intersection intersection = Math::Intersection(1, sphere);
+	auto sphere = std::make_shared<Math::Sphere>();
+	Renderer::Shape shape = Renderer::Shape(sphere, Renderer::Material());
+	Math::Intersection intersection = Math::Intersection(1, shape);
 
 	Renderer::ComputedValues cv = Renderer::ComputedValues(intersection, ray);
 
@@ -44,9 +45,10 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_from_inside)
 TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_offsets_point)
 {
 	Math::Ray ray = Math::Ray({ 0, 0, -5 }, { 0, 0, 1 });
-	Math::Sphere sphere = Math::Sphere();
-	sphere.transform(Math::Transform().translate(0, 0, 1));
-	Math::Intersection intersection = Math::Intersection(5, sphere);
+	auto sphere = std::make_shared<Math::Sphere>();
+	Renderer::Shape shape = Renderer::Shape(sphere, Renderer::Material());
+	shape.transform(Math::Transform().translate(0, 0, 1));
+	Math::Intersection intersection = Math::Intersection(5, shape);
 
 	Renderer::ComputedValues cv = Renderer::ComputedValues(intersection, ray);
 

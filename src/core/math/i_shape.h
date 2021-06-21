@@ -13,6 +13,8 @@ namespace CppRayTracerChallenge::Core::Math
 	class IShape
 	{
 	public:
+		virtual ~IShape() {};
+
 		/// <summary>
 		/// Transforms the shape
 		/// </summary>

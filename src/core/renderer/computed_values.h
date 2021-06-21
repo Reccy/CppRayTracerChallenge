@@ -27,6 +27,12 @@ namespace CppRayTracerChallenge::Core::Renderer
 		double t() const;
 
 		/// <summary>
+		/// Returns the shape that was intersected
+		/// </summary>
+		/// <returns>The reference to the shape</returns>
+		const Renderer::Shape& shape() const;
+
+		/// <summary>
 		/// Returns the material of the shape that was intersected
 		/// </summary>
 		/// <returns>Material const reference</returns>
@@ -64,7 +70,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		bool isInside() const;
 	private:
 		double m_t;
-		Renderer::Material m_material;
+		Renderer::Shape m_shape;
 		Math::Point m_position;
 		Math::Point m_overPosition;
 		Math::Vector m_eye;

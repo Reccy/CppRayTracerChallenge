@@ -10,6 +10,7 @@
 #include "../math/intersection.h"
 #include "../math/intersections.h"
 #include "../graphics/color.h"
+#include "../renderer/shape.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core;
@@ -100,7 +101,7 @@ Graphics::Color World::shadeHit(const ComputedValues& cv) const
 	for (const PointLight& light : m_lights)
 	{
 		bool s = isShadowed(cv.overPosition(), light);
-		color = color + Lighting::lighting(cv.material(), light, cv.position(), cv.eye(), cv.normal(), s);
+		color = color + Lighting::lighting(cv.shape(), light, cv.position(), cv.eye(), cv.normal(), s);
 	}
 
 	return color;

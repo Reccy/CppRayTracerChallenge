@@ -33,6 +33,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <param name="material">Material to assign</param>
 		void material(const Material material);
 
+		/// <summary>
+		/// Returns the color of the shape at the world position, taking into account the material and lighting
+		/// </summary>
+		/// <param name="worldPosition">The position in the world of the surface of the shape to render</param>
+		/// <returns>The color of the fragment</returns>
+		Graphics::Color colorAt(Math::Point worldPosition) const;
+
 		// Delegating methods
 
 		void transform(Math::Transform transform) override;

@@ -53,6 +53,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/renderer/pattern.h"
 	"${CORE_LIBRARY_DIR}/renderer/patterns/solid_color.h"
 	"${CORE_LIBRARY_DIR}/renderer/patterns/stripe.h"
+	"${CORE_LIBRARY_DIR}/renderer/patterns/test_pattern.h"
 	"${CORE_LIBRARY_DIR}/serializer/base_image_serializer.h"
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.h"
 	"${CORE_LIBRARY_DIR}/helpers/polymorphic_comparable.h"
@@ -82,6 +83,7 @@ set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/renderer/pattern.cpp"
 	"${CORE_LIBRARY_DIR}/renderer/patterns/solid_color.cpp"
 	"${CORE_LIBRARY_DIR}/renderer/patterns/stripe.cpp"
+	"${CORE_LIBRARY_DIR}/renderer/patterns/test_pattern.cpp"
 	"${CORE_LIBRARY_DIR}/serializer/base_image_serializer.cpp"
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.cpp"
 )

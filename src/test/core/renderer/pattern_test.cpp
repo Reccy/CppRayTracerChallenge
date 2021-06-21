@@ -1,16 +1,18 @@
 #include <gtest/gtest.h>
 #include "renderer/patterns/stripe.h"
 #include "renderer/patterns/solid_color.h"
+#include "renderer/patterns/test_pattern.h"
 
 using CppRayTracerChallenge::Core::Graphics::Color;
 using CppRayTracerChallenge::Core::Renderer::Pattern;
 using CppRayTracerChallenge::Core::Renderer::Patterns::SolidColor;
 using CppRayTracerChallenge::Core::Renderer::Patterns::Stripe;
+using CppRayTracerChallenge::Core::Renderer::Patterns::TestPattern;
 using CppRayTracerChallenge::Core::Math::Transform;
 
 TEST(CppRayTracerChallenge_Core_Renderer_Pattern, pattern_has_default_identity_matrix_as_transform)
 {
-	auto pattern = std::make_shared<SolidColor>(Color::white());
+	auto pattern = std::make_shared<TestPattern>();
 
 	EXPECT_EQ(pattern->transform(), Transform());
 }
@@ -18,7 +20,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_Pattern, pattern_has_default_identity_m
 TEST(CppRayTracerChallenge_Core_Renderer_Pattern, pattern_transform_can_be_changed)
 {
 	auto newTransform = Transform().translate(5, 10, -5).rotate(1,2,3).invert();
-	auto pattern = std::make_shared<SolidColor>(Color::white());
+	auto pattern = std::make_shared<TestPattern>();
 
 	pattern->transform(newTransform);
 

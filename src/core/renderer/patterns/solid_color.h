@@ -18,19 +18,19 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		/// Creates the solid color pattern
 		/// </summary>
 		/// <param name="color">The color to use</param>
-		SolidColor(Color color);
+		SolidColor(CppRayTracerChallenge::Core::Graphics::Color color);
 
 		/// <summary>
 		/// Returns the color of the pattern
 		/// </summary>
 		/// <returns></returns>
-		Color color() const;
+		CppRayTracerChallenge::Core::Graphics::Color color() const;
 
-		Color colorAt(Math::Point _) const override;
+		CppRayTracerChallenge::Core::Graphics::Color colorAt(Math::Point _) const override;
 
 		bool operator==(const SolidColor& other) const;
 	private:
-		Color m_color;
+		CppRayTracerChallenge::Core::Graphics::Color m_color;
 	};
 }
 
