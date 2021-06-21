@@ -1,0 +1,13 @@
+<map id="src/core/renderer/patterns/solid_color.h" name="src/core/renderer/patterns/solid_color.h">
+<area shape="rect" id="node1" title=" " alt="" coords="94,5,265,47"/>
+<area shape="rect" id="node2" href="$pattern_8h.html" title=" " alt="" coords="97,102,182,129"/>
+<area shape="rect" id="node3" href="$color_8h.html" title=" " alt="" coords="5,184,132,211"/>
+<area shape="rect" id="node5" href="$point_8h.html" title=" " alt="" coords="158,184,265,211"/>
+<area shape="rect" id="node11" href="$polymorphic__comparable_8h.html" title=" " alt="" coords="257,95,419,136"/>
+<area shape="rect" id="node4" title=" " alt="" coords="33,408,105,435"/>
+<area shape="rect" id="node6" href="$vector_8h.html" title=" " alt="" coords="109,259,175,285"/>
+<area shape="rect" id="node7" href="$tuple_8h.html" title=" " alt="" coords="111,333,173,360"/>
+<area shape="rect" id="node8" title=" " alt="" coords="101,483,183,509"/>
+<area shape="rect" id="node9" href="$comparison_8h.html" title=" " alt="" coords="180,408,280,435"/>
+<area shape="rect" id="node10" href="$constants_8h.html" title=" " alt="" coords="207,483,298,509"/>
+</map>

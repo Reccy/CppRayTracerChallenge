@@ -1,5 +1,8 @@
 var hierarchy =
 [
+    [ "Base", null, [
+      [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Base, Derived >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", null ]
+    ] ],
     [ "CppRayTracerChallenge::Core::Serializer::BaseImageSerializer", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html", [
       [ "CppRayTracerChallenge::Core::Serializer::PortablePixmapImageSerializer", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html", null ]
     ] ],
@@ -29,6 +32,14 @@ var hierarchy =
     [ "CppRayTracerChallenge::Core::Math::Matrix< T >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Matrix< double >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html", null ],
     [ "CppRayTracerChallenge::Core::Renderer::Pattern", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html", null ],
+    [ "Pattern", null, [
+      [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, SolidColor >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
+        [ "CppRayTracerChallenge::Core::Renderer::Patterns::SolidColor", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_solid_color.html", null ]
+      ] ],
+      [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, Stripe >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
+        [ "CppRayTracerChallenge::Core::Renderer::Patterns::Stripe", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_stripe.html", null ]
+      ] ]
+    ] ],
     [ "CppRayTracerChallenge::Core::Renderer::PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", null ],
     [ "testing::Test", null, [

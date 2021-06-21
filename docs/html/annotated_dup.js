@@ -7,6 +7,9 @@ var annotated_dup =
           [ "Color", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color" ],
           [ "Image", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image" ]
         ] ],
+        [ "Helpers", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_helpers.html", [
+          [ "PolymorphicComparable", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", null ]
+        ] ],
         [ "Math", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html", [
           [ "IShape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape" ],
           [ "Intersection", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection" ],
@@ -27,6 +30,10 @@ var annotated_dup =
           [ "Vector", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector" ]
         ] ],
         [ "Renderer", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html", [
+          [ "Patterns", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns.html", [
+            [ "SolidColor", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_solid_color.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_solid_color" ],
+            [ "Stripe", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_stripe.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_stripe" ]
+          ] ],
           [ "Camera", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera" ],
           [ "ComputedValues", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values" ],
           [ "Material", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material" ],

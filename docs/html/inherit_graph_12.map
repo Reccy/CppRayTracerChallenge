@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html" title="Represents a camera within the world" alt="" coords="5,5,176,47"/>
+<area shape="rect" id="node1" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html" title=" " alt="" coords="5,31,167,87"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html" title="Point in Euclidean Space" alt="" coords="215,5,376,47"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html" title="A Vector in Euclidean Space" alt="" coords="215,71,376,112"/>
 </map>
