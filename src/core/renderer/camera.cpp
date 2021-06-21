@@ -4,6 +4,7 @@
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core::Math;
+using namespace CppRayTracerChallenge::Core;
 
 Camera::Camera(int hSize, int vSize, int fieldOfView) :
 	m_hSize(hSize), m_vSize(vSize), m_fieldOfView(fieldOfView), m_transformMatrix(Matrix<double>::identity(4))

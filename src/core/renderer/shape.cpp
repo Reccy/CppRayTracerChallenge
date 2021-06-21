@@ -1,6 +1,7 @@
 #include "shape.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
+using namespace CppRayTracerChallenge::Core;
 
 Shape::Shape(std::shared_ptr<Math::IShape> shape) : m_shape(shape) {};
 

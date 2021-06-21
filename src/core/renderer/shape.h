@@ -8,8 +8,6 @@
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
-	using namespace CppRayTracerChallenge::Core;
-
 	/// <summary>
 	/// Represents a shape within the rendered world.
 	/// This is a wrapper around a Math::IShape which adds materials

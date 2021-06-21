@@ -12,6 +12,7 @@
 #include "../graphics/color.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
+using namespace CppRayTracerChallenge::Core;
 
 World::World() {};
 

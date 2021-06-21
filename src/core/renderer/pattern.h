@@ -3,6 +3,7 @@
 
 #include "../graphics/color.h"
 #include "../math/point.h"
+#include "../math/transform.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
@@ -23,11 +24,25 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <returns>The pattern color at the position in local space</returns>
 		virtual Color colorAt(const Math::Point position) const = 0;
 
+		/// <summary>
+		/// Transforms the pattern
+		/// </summary>
+		/// <param name="transform">The transform to apply to the pattern</param>
+		void transform(Math::Transform transform);
+
+		/// <summary>
+		/// Returns a copy of the pattern's transform
+		/// </summary>
+		/// <returns></returns>
+		const Math::Transform transform() const;
+
 		virtual bool operator==(const Pattern& other) const = 0;
 		bool operator!=(const Pattern& other) const
 		{
 			return !(*this == other);
 		};
+	protected:
+		Math::Transform m_transform;
 	};
 }
 

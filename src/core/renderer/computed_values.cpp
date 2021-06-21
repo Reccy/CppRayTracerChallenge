@@ -29,7 +29,7 @@ double ComputedValues::t() const
 	return m_t;
 }
 
-Renderer::Material ComputedValues::material() const
+Material ComputedValues::material() const
 {
 	return m_material;
 }
