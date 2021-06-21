@@ -32,7 +32,8 @@ var annotated_dup =
         [ "Renderer", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html", [
           [ "Patterns", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns.html", [
             [ "SolidColor", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_solid_color.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_solid_color" ],
-            [ "Stripe", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_stripe.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_stripe" ]
+            [ "Stripe", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_stripe.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_stripe" ],
+            [ "TestPattern", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_test_pattern.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_test_pattern" ]
           ] ],
           [ "Camera", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera" ],
           [ "ComputedValues", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values" ],

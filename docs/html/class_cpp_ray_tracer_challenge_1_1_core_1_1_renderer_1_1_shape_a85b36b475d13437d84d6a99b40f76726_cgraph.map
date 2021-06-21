@@ -1,0 +1,5 @@
+<map id="CppRayTracerChallenge::Core::Renderer::Shape::Shape" name="CppRayTracerChallenge::Core::Renderer::Shape::Shape">
+<area shape="rect" id="node1" title=" " alt="" coords="5,45,168,101"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#ae9aa797deee5171f363c33715a1414f9" title="Returns the color of the shape at the world position, taking into account the material and lighting" alt="" coords="216,5,379,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#abf27352f00f308b409c5fdaa93f1bef0" title="Returns the material assigned to the shape" alt="" coords="216,85,379,141"/>
+</map>

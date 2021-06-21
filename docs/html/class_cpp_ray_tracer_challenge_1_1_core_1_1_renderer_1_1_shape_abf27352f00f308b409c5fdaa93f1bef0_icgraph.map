@@ -1,10 +1,11 @@
 <map id="CppRayTracerChallenge::Core::Renderer::Shape::material" name="CppRayTracerChallenge::Core::Renderer::Shape::material">
-<area shape="rect" id="node1" title="Returns the material assigned to the shape" alt="" coords="431,92,593,148"/>
-<area shape="rect" id="node2" href="$win32__main_8cpp.html#ab8fb22f544cb1bb550af5e048be0fbbd" title=" " alt="" coords="279,5,358,32"/>
-<area shape="rect" id="node5" href="$win32__main_8cpp.html#ae4ea00d401eb7a5aee5a5f1eeff59948" title=" " alt="" coords="263,56,374,83"/>
-<area shape="rect" id="node6" href="$win32__main_8cpp.html#a54f9bd520bfe628965f2975e3a755205" title=" " alt="" coords="255,107,383,133"/>
-<area shape="rect" id="node7" href="$win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f" title=" " alt="" coords="259,157,379,184"/>
-<area shape="rect" id="node8" href="$shape__test_8cpp.html#a696ba2c55cceb054065ebee92ebd0d2c" title=" " alt="" coords="291,208,346,235"/>
+<area shape="rect" id="node1" title="Returns the material assigned to the shape" alt="" coords="465,117,628,173"/>
+<area shape="rect" id="node2" href="$win32__main_8cpp.html#ab8fb22f544cb1bb550af5e048be0fbbd" title=" " alt="" coords="297,5,375,32"/>
+<area shape="rect" id="node5" href="$win32__main_8cpp.html#ae4ea00d401eb7a5aee5a5f1eeff59948" title=" " alt="" coords="281,56,391,83"/>
+<area shape="rect" id="node6" href="$win32__main_8cpp.html#a54f9bd520bfe628965f2975e3a755205" title=" " alt="" coords="272,107,400,133"/>
+<area shape="rect" id="node7" href="$win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f" title=" " alt="" coords="276,157,396,184"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a85b36b475d13437d84d6a99b40f76726" title=" " alt="" coords="255,208,417,264"/>
+<area shape="rect" id="node9" href="$shape__test_8cpp.html#a696ba2c55cceb054065ebee92ebd0d2c" title=" " alt="" coords="309,288,363,315"/>
 <area shape="rect" id="node3" href="$win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,81,207,108"/>
 <area shape="rect" id="node4" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,81,56,108"/>
 </map>

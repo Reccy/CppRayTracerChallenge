@@ -36,6 +36,9 @@ var hierarchy =
       [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, SolidColor >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
         [ "CppRayTracerChallenge::Core::Renderer::Patterns::SolidColor", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_solid_color.html", null ]
       ] ],
+      [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, TestPattern >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
+        [ "CppRayTracerChallenge::Core::Renderer::Patterns::TestPattern", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_test_pattern.html", null ]
+      ] ],
       [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, Stripe >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
         [ "CppRayTracerChallenge::Core::Renderer::Patterns::Stripe", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_stripe.html", null ]
       ] ]

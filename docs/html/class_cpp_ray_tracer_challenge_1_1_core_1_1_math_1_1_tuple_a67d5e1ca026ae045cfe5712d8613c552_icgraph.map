@@ -1,11 +1,12 @@
 <map id="CppRayTracerChallenge::Core::Math::Tuple::y" name="CppRayTracerChallenge::Core::Math::Tuple::y">
-<area shape="rect" id="node1" title="Returns a const Y component" alt="" coords="473,126,635,167"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html#a626de608246773a3567af6641c35dace" title="Calculates if the local space ray intersects with the plane." alt="" coords="259,5,421,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#adce048e4801671bf00d3e7f200c66226" title=" " alt="" coords="259,85,421,141"/>
-<area shape="rect" id="node5" href="$point__test_8cpp.html#ad76ac7fd85dce7cb3c5fc6d8f959ef72" title=" " alt="" coords="313,165,367,192"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a4db33858bd0ed84b50466a85221e15d2" title="Creates a matrix that can be used to transform the world around the camera, effectively changing came..." alt="" coords="255,216,425,272"/>
-<area shape="rect" id="node3" href="$plane__test_8cpp.html#a74df6ad5968b2c00f5820a2187b16e66" title=" " alt="" coords="128,20,183,47"/>
-<area shape="rect" id="node7" href="$win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,205,207,232"/>
-<area shape="rect" id="node9" href="$camera__test_8cpp.html#aaeb4ccf47528badd6620dfdc13171c5b" title=" " alt="" coords="128,256,183,283"/>
-<area shape="rect" id="node8" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,205,56,232"/>
+<area shape="rect" id="node1" title="Returns a const Y component" alt="" coords="477,173,639,214"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_test_pattern.html#af098e6cecdaa07d8d76cd055554a7ddc" title=" " alt="" coords="255,5,429,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html#a626de608246773a3567af6641c35dace" title="Calculates if the local space ray intersects with the plane." alt="" coords="261,85,423,141"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#adce048e4801671bf00d3e7f200c66226" title=" " alt="" coords="261,165,423,221"/>
+<area shape="rect" id="node6" href="$point__test_8cpp.html#ad76ac7fd85dce7cb3c5fc6d8f959ef72" title=" " alt="" coords="315,245,369,272"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a4db33858bd0ed84b50466a85221e15d2" title="Creates a matrix that can be used to transform the world around the camera, effectively changing came..." alt="" coords="257,296,427,352"/>
+<area shape="rect" id="node4" href="$plane__test_8cpp.html#a74df6ad5968b2c00f5820a2187b16e66" title=" " alt="" coords="128,100,183,127"/>
+<area shape="rect" id="node8" href="$win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,285,207,312"/>
+<area shape="rect" id="node10" href="$camera__test_8cpp.html#aaeb4ccf47528badd6620dfdc13171c5b" title=" " alt="" coords="128,336,183,363"/>
+<area shape="rect" id="node9" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,285,56,312"/>
 </map>

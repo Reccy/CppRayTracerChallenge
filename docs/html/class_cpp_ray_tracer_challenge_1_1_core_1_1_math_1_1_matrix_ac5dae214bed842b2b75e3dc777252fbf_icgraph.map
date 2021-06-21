@@ -1,15 +1,16 @@
 <map id="CppRayTracerChallenge::Core::Math::Matrix::minor" name="CppRayTracerChallenge::Core::Math::Matrix::minor">
-<area shape="rect" id="node1" title="Calculates the minor / determinant of the square submatrix." alt="" coords="1364,203,1525,259"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ace02bb54a9415ffa260c84e50a6d94d3" title="Calculates the cofactor of the square Matrix" alt="" coords="1155,235,1316,291"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a87172940c17b94e7b20c0f15add2fe62" title="Calculates the determinant of the square Matrix" alt="" coords="945,169,1107,225"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aa7feb564bed9f6347435713dc6b03f18" title="Creates a copy of the Matrix that is inverted" alt="" coords="527,151,688,207"/>
-<area shape="rect" id="node12" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aefe9fd335841e20c20c12311a0a3fb50" title="Checks if the Matrix can be inverted" alt="" coords="736,85,897,141"/>
-<area shape="rect" id="node13" href="$matrix__test_8cpp.html#a23104677606604bf1a9f165d645e75ab" title=" " alt="" coords="789,216,844,243"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a893ef7e6b4a9dbe27260cfb11ae50b76" title="Inverts the Transform" alt="" coords="317,85,479,141"/>
-<area shape="rect" id="node11" href="$matrix__test_8cpp.html#a7ba758d76c1be60e3dd6ebccd73f8c6a" title=" " alt="" coords="371,165,425,192"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad81a13ce601592d252c6ce7f9ecb7a0b" title="Calculates if the ray intersects with the sphere." alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="108,85,269,141"/>
-<area shape="rect" id="node10" href="$transform__test_8cpp.html#a3fbe430d3325b29322d91e99df9e4e48" title=" " alt="" coords="161,165,216,192"/>
-<area shape="rect" id="node7" href="$sphere__test_8cpp.html#a3d3c518a0ec1d96b253d671b311bc8b6" title=" " alt="" coords="5,20,60,47"/>
-<area shape="rect" id="node9" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="5,100,60,127"/>
+<area shape="rect" id="node1" title="Calculates the minor / determinant of the square submatrix." alt="" coords="1533,203,1695,259"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ace02bb54a9415ffa260c84e50a6d94d3" title="Calculates the cofactor of the square Matrix" alt="" coords="1324,235,1485,291"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a87172940c17b94e7b20c0f15add2fe62" title="Calculates the determinant of the square Matrix" alt="" coords="1115,169,1276,225"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aa7feb564bed9f6347435713dc6b03f18" title="Creates a copy of the Matrix that is inverted" alt="" coords="696,151,857,207"/>
+<area shape="rect" id="node13" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aefe9fd335841e20c20c12311a0a3fb50" title="Checks if the Matrix can be inverted" alt="" coords="905,85,1067,141"/>
+<area shape="rect" id="node14" href="$matrix__test_8cpp.html#a23104677606604bf1a9f165d645e75ab" title=" " alt="" coords="959,216,1013,243"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a893ef7e6b4a9dbe27260cfb11ae50b76" title="Inverts the Transform" alt="" coords="487,85,648,141"/>
+<area shape="rect" id="node12" href="$matrix__test_8cpp.html#a7ba758d76c1be60e3dd6ebccd73f8c6a" title=" " alt="" coords="540,165,595,192"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad81a13ce601592d252c6ce7f9ecb7a0b" title="Calculates if the ray intersects with the sphere." alt="" coords="277,5,439,61"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="277,85,439,141"/>
+<area shape="rect" id="node11" href="$transform__test_8cpp.html#a3fbe430d3325b29322d91e99df9e4e48" title=" " alt="" coords="331,165,385,192"/>
+<area shape="rect" id="node7" href="$sphere__test_8cpp.html#a3d3c518a0ec1d96b253d671b311bc8b6" title=" " alt="" coords="90,20,145,47"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a325609a69321d16a1f99a29a5a0548e8" title="Computes the values of the intersection and the ray" alt="" coords="5,77,229,133"/>
+<area shape="rect" id="node10" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="90,157,145,184"/>
 </map>

@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('class_cpp_ray_tracer_challenge_1_1_cor
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CppRayTracerChallenge::Core::Renderer::Pattern Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -94,23 +95,43 @@ $(document).ready(function(){initNavTree('class_cpp_ray_tracer_challenge_1_1_cor
  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="pattern_8h_source.html">pattern.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for CppRayTracerChallenge::Core::Renderer::Pattern:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern__coll__graph.png" border="0" usemap="#a_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern_coll__map" alt="Collaboration graph"/></div>
+<map name="a_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern_coll__map" id="a_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern_coll__map">
+<area shape="rect" title="Represents a color pattern that can be used to vary the color of materials" alt="" coords="5,109,172,151"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html" title="Represents a Transformation Matrix that can be used to transform vectors and points" alt="" coords="8,5,169,47"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a99aae17a40c749176a32de15424ea970"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#a99aae17a40c749176a32de15424ea970">~Pattern</a> ()</td></tr>
 <tr class="separator:a99aae17a40c749176a32de15424ea970"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8e318f351ba3e2723408d51fff01690"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#ad8e318f351ba3e2723408d51fff01690">colorAt</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a> position) const =0</td></tr>
-<tr class="memdesc:ad8e318f351ba3e2723408d51fff01690"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the color of the pattern at a specific point in local space  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#ad8e318f351ba3e2723408d51fff01690">More...</a><br /></td></tr>
-<tr class="separator:ad8e318f351ba3e2723408d51fff01690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec9d754d45b579df9ce60ead2400e8c2"><td class="memItemLeft" align="right" valign="top">virtual ::<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">CppRayTracerChallenge::Core::Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#aec9d754d45b579df9ce60ead2400e8c2">colorAt</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a> position) const =0</td></tr>
+<tr class="memdesc:aec9d754d45b579df9ce60ead2400e8c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the color of the pattern at a specific point in local space  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#aec9d754d45b579df9ce60ead2400e8c2">More...</a><br /></td></tr>
+<tr class="separator:aec9d754d45b579df9ce60ead2400e8c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9402f2cc251b67320094c420d3c8c3d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#a9402f2cc251b67320094c420d3c8c3d0">transform</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Math::Transform</a> transform)</td></tr>
+<tr class="memdesc:a9402f2cc251b67320094c420d3c8c3d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms the pattern  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#a9402f2cc251b67320094c420d3c8c3d0">More...</a><br /></td></tr>
+<tr class="separator:a9402f2cc251b67320094c420d3c8c3d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4549af86fcfc70d32e27161fe1094b7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Math::Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#af4549af86fcfc70d32e27161fe1094b7">transform</a> () const</td></tr>
+<tr class="memdesc:af4549af86fcfc70d32e27161fe1094b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a copy of the pattern's transform  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#af4549af86fcfc70d32e27161fe1094b7">More...</a><br /></td></tr>
+<tr class="separator:af4549af86fcfc70d32e27161fe1094b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5326cb2a21b9fd19c2f4d75d879d4268"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#a5326cb2a21b9fd19c2f4d75d879d4268">operator==</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html">Pattern</a> &amp;other) const =0</td></tr>
 <tr class="separator:a5326cb2a21b9fd19c2f4d75d879d4268"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70bbdb13340cc8ccbce733851921a9b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#a70bbdb13340cc8ccbce733851921a9b5">operator!=</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html">Pattern</a> &amp;other) const</td></tr>
 <tr class="separator:a70bbdb13340cc8ccbce733851921a9b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a97b9071bcb1fa2a03a2bdf6496c279ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Math::Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#a97b9071bcb1fa2a03a2bdf6496c279ff">m_transform</a></td></tr>
+<tr class="separator:a97b9071bcb1fa2a03a2bdf6496c279ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a color pattern that can be used to vary the color of materials </p>
 
-<p class="definition">Definition at line <a class="el" href="pattern_8h_source.html#l00014">14</a> of file <a class="el" href="pattern_8h_source.html">pattern.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pattern_8h_source.html#l00013">13</a> of file <a class="el" href="pattern_8h_source.html">pattern.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a99aae17a40c749176a32de15424ea970"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a99aae17a40c749176a32de15424ea970">&#9670;&nbsp;</a></span>~Pattern()</h2>
@@ -135,13 +156,13 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pattern_8h_source.html#l00017">17</a> of file <a class="el" href="pattern_8h_source.html">pattern.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pattern_8h_source.html#l00016">16</a> of file <a class="el" href="pattern_8h_source.html">pattern.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad8e318f351ba3e2723408d51fff01690"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad8e318f351ba3e2723408d51fff01690">&#9670;&nbsp;</a></span>colorAt()</h2>
+<a id="aec9d754d45b579df9ce60ead2400e8c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec9d754d45b579df9ce60ead2400e8c2">&#9670;&nbsp;</a></span>colorAt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -150,7 +171,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> CppRayTracerChallenge::Core::Renderer::Pattern::colorAt </td>
+          <td class="memname">virtual ::<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">CppRayTracerChallenge::Core::Graphics::Color</a> CppRayTracerChallenge::Core::Renderer::Pattern::colorAt </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a>&#160;</td>
           <td class="paramname"><em>position</em></td><td>)</td>
@@ -199,7 +220,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pattern_8h_source.html#l00027">27</a> of file <a class="el" href="pattern_8h_source.html">pattern.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pattern_8h_source.html#l00038">38</a> of file <a class="el" href="pattern_8h_source.html">pattern.h</a>.</p>
 
 </div>
 </div>
@@ -229,8 +250,102 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a id="af4549af86fcfc70d32e27161fe1094b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4549af86fcfc70d32e27161fe1094b7">&#9670;&nbsp;</a></span>transform() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Transform</a> Pattern::transform </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a copy of the pattern's transform </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="pattern_8cpp_source.html#l00011">11</a> of file <a class="el" href="pattern_8cpp_source.html">pattern.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern_af4549af86fcfc70d32e27161fe1094b7_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern_af4549af86fcfc70d32e27161fe1094b7_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern_af4549af86fcfc70d32e27161fe1094b7_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern_af4549af86fcfc70d32e27161fe1094b7_icgraph">
+<area shape="rect" title="Returns a copy of the pattern&#39;s transform" alt="" coords="220,5,387,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#a9402f2cc251b67320094c420d3c8c3d0" title="Transforms the pattern" alt="" coords="5,5,172,61"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9402f2cc251b67320094c420d3c8c3d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9402f2cc251b67320094c420d3c8c3d0">&#9670;&nbsp;</a></span>transform() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Pattern::transform </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Math::Transform</a>&#160;</td>
+          <td class="paramname"><em>transform</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transforms the pattern </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">transform</td><td>The transform to apply to the pattern</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="pattern_8cpp_source.html#l00006">6</a> of file <a class="el" href="pattern_8cpp_source.html">pattern.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern_a9402f2cc251b67320094c420d3c8c3d0_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern_a9402f2cc251b67320094c420d3c8c3d0_cgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern_a9402f2cc251b67320094c420d3c8c3d0_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern_a9402f2cc251b67320094c420d3c8c3d0_cgraph">
+<area shape="rect" title="Transforms the pattern" alt="" coords="5,5,172,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#af4549af86fcfc70d32e27161fe1094b7" title="Returns a copy of the pattern&#39;s transform" alt="" coords="220,5,387,61"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a97b9071bcb1fa2a03a2bdf6496c279ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97b9071bcb1fa2a03a2bdf6496c279ff">&#9670;&nbsp;</a></span>m_transform</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Math::Transform</a> CppRayTracerChallenge::Core::Renderer::Pattern::m_transform</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="pattern_8h_source.html#l00043">43</a> of file <a class="el" href="pattern_8h_source.html">pattern.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/core/renderer/<a class="el" href="pattern_8h_source.html">pattern.h</a></li>
+<li>src/core/renderer/<a class="el" href="pattern_8cpp_source.html">pattern.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

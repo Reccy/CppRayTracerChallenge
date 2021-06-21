@@ -1,7 +1,7 @@
 var namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer =
 [
     [ "Lighting", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html", [
-      [ "lighting", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9", null ]
+      [ "lighting", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#aff4b37c265f093479f845c87c5b42aa3", null ]
     ] ],
     [ "Patterns", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns.html", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns" ],
     [ "Camera", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera" ],

@@ -1,8 +1,9 @@
 <map id="CppRayTracerChallenge::Core::Math::Transform::invert" name="CppRayTracerChallenge::Core::Math::Transform::invert">
-<area shape="rect" id="node1" title="Inverts the Transform" alt="" coords="317,85,479,141"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad81a13ce601592d252c6ce7f9ecb7a0b" title="Calculates if the ray intersects with the sphere." alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="108,85,269,141"/>
-<area shape="rect" id="node6" href="$transform__test_8cpp.html#a3fbe430d3325b29322d91e99df9e4e48" title=" " alt="" coords="161,165,216,192"/>
-<area shape="rect" id="node3" href="$sphere__test_8cpp.html#a3d3c518a0ec1d96b253d671b311bc8b6" title=" " alt="" coords="5,20,60,47"/>
-<area shape="rect" id="node5" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="5,100,60,127"/>
+<area shape="rect" id="node1" title="Inverts the Transform" alt="" coords="487,85,648,141"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad81a13ce601592d252c6ce7f9ecb7a0b" title="Calculates if the ray intersects with the sphere." alt="" coords="277,5,439,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="277,85,439,141"/>
+<area shape="rect" id="node7" href="$transform__test_8cpp.html#a3fbe430d3325b29322d91e99df9e4e48" title=" " alt="" coords="331,165,385,192"/>
+<area shape="rect" id="node3" href="$sphere__test_8cpp.html#a3d3c518a0ec1d96b253d671b311bc8b6" title=" " alt="" coords="90,20,145,47"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a325609a69321d16a1f99a29a5a0548e8" title="Computes the values of the intersection and the ray" alt="" coords="5,77,229,133"/>
+<area shape="rect" id="node6" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="90,157,145,184"/>
 </map>

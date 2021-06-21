@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['pattern_149',['Pattern',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html',1,'CppRayTracerChallenge::Core::Renderer']]],
-  ['pattern_150',['pattern',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#afb31bd394a4a10f1e43d3e064b9a1beb',1,'CppRayTracerChallenge::Core::Renderer::Material']]],
+  ['pattern_148',['Pattern',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html',1,'CppRayTracerChallenge::Core::Renderer']]],
+  ['pattern_149',['pattern',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#afb31bd394a4a10f1e43d3e064b9a1beb',1,'CppRayTracerChallenge::Core::Renderer::Material']]],
+  ['pattern_2ecpp_150',['pattern.cpp',['../pattern_8cpp.html',1,'']]],
   ['pattern_2eh_151',['pattern.h',['../pattern_8h.html',1,'']]],
   ['pattern_5ftest_2ecpp_152',['pattern_test.cpp',['../pattern__test_8cpp.html',1,'']]],
   ['pi_153',['PI',['../namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#a6405498f7e02c51f4f946db487de1c8f',1,'CppRayTracerChallenge::Core::Math::Trig']]],
@@ -23,9 +24,10 @@ var searchData=
   ['polymorphiccomparable_169',['PolymorphicComparable',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html',1,'CppRayTracerChallenge::Core::Helpers']]],
   ['polymorphiccomparable_3c_20pattern_2c_20solidcolor_20_3e_170',['PolymorphicComparable&lt; Pattern, SolidColor &gt;',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html',1,'CppRayTracerChallenge::Core::Helpers']]],
   ['polymorphiccomparable_3c_20pattern_2c_20stripe_20_3e_171',['PolymorphicComparable&lt; Pattern, Stripe &gt;',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html',1,'CppRayTracerChallenge::Core::Helpers']]],
-  ['portable_5fpixmap_5fimage_5fserializer_2ecpp_172',['portable_pixmap_image_serializer.cpp',['../portable__pixmap__image__serializer_8cpp.html',1,'']]],
-  ['portable_5fpixmap_5fimage_5fserializer_2eh_173',['portable_pixmap_image_serializer.h',['../portable__pixmap__image__serializer_8h.html',1,'']]],
-  ['portable_5fpixmap_5fimage_5fserializer_5ftest_2ecpp_174',['portable_pixmap_image_serializer_test.cpp',['../portable__pixmap__image__serializer__test_8cpp.html',1,'']]],
-  ['portablepixmapimageserializer_175',['PortablePixmapImageSerializer',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html',1,'CppRayTracerChallenge::Core::Serializer']]],
-  ['position_176',['position',['../class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html#ac36af7b66da12075837486cf46e56b06',1,'CppRayTracerChallenge_Core_Renderer_LightingTest::position()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a2856a293c912aa2d3c67b23c725868a2',1,'CppRayTracerChallenge::Core::Math::Ray::position()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8',1,'CppRayTracerChallenge::Core::Renderer::ComputedValues::position()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#a1e5accc8b122a9e71d54297698eab78b',1,'CppRayTracerChallenge::Core::Renderer::PointLight::position()']]]
+  ['polymorphiccomparable_3c_20pattern_2c_20testpattern_20_3e_172',['PolymorphicComparable&lt; Pattern, TestPattern &gt;',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html',1,'CppRayTracerChallenge::Core::Helpers']]],
+  ['portable_5fpixmap_5fimage_5fserializer_2ecpp_173',['portable_pixmap_image_serializer.cpp',['../portable__pixmap__image__serializer_8cpp.html',1,'']]],
+  ['portable_5fpixmap_5fimage_5fserializer_2eh_174',['portable_pixmap_image_serializer.h',['../portable__pixmap__image__serializer_8h.html',1,'']]],
+  ['portable_5fpixmap_5fimage_5fserializer_5ftest_2ecpp_175',['portable_pixmap_image_serializer_test.cpp',['../portable__pixmap__image__serializer__test_8cpp.html',1,'']]],
+  ['portablepixmapimageserializer_176',['PortablePixmapImageSerializer',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html',1,'CppRayTracerChallenge::Core::Serializer']]],
+  ['position_177',['position',['../class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html#a84eaef280580720a5c6777a053a3a187',1,'CppRayTracerChallenge_Core_Renderer_LightingTest::position()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a2856a293c912aa2d3c67b23c725868a2',1,'CppRayTracerChallenge::Core::Math::Ray::position()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8',1,'CppRayTracerChallenge::Core::Renderer::ComputedValues::position()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#a1e5accc8b122a9e71d54297698eab78b',1,'CppRayTracerChallenge::Core::Renderer::PointLight::position()']]]
 ];

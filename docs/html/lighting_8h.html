@@ -94,25 +94,37 @@ $(document).ready(function(){initNavTree('lighting_8h.html',''); initResizable()
 <code>#include &quot;<a class="el" href="point_8h_source.html">../math/point.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="material_8h_source.html">material.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="point__light_8h_source.html">point_light.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="renderer_2shape_8h_source.html">../renderer/shape.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for lighting.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="lighting_8h__incl.png" border="0" usemap="#asrc_2core_2renderer_2lighting_8h" alt=""/></div>
 <map name="asrc_2core_2renderer_2lighting_8h" id="asrc_2core_2renderer_2lighting_8h">
-<area shape="rect" title=" " alt="" coords="275,5,451,32"/>
-<area shape="rect" href="color_8h.html" title=" " alt="" coords="455,319,582,345"/>
-<area shape="rect" href="vector_8h.html" title=" " alt="" coords="144,393,256,420"/>
-<area shape="rect" href="point_8h.html" title=" " alt="" coords="193,319,300,345"/>
-<area shape="rect" href="material_8h.html" title=" " alt="" coords="323,80,402,107"/>
-<area shape="rect" href="point__light_8h.html" title=" " alt="" coords="582,237,674,263"/>
-<area shape="rect" title=" " alt="" coords="305,543,377,569"/>
-<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="205,468,267,495"/>
-<area shape="rect" title=" " alt="" coords="195,617,277,644"/>
-<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="86,543,186,569"/>
-<area shape="rect" href="constants_8h.html" title=" " alt="" coords="80,617,171,644"/>
-<area shape="rect" href="pattern_8h.html" title=" " alt="" coords="382,237,455,263"/>
-<area shape="rect" href="solid__color_8h.html" title=" " alt="" coords="235,155,381,181"/>
-<area shape="rect" href="polymorphic__comparable_8h.html" title=" " alt="" coords="195,229,357,271"/>
+<area shape="rect" title=" " alt="" coords="549,5,725,32"/>
+<area shape="rect" href="color_8h.html" title=" " alt="" coords="59,393,186,420"/>
+<area shape="rect" href="vector_8h.html" title=" " alt="" coords="695,468,807,495"/>
+<area shape="rect" href="point_8h.html" title=" " alt="" coords="568,393,675,420"/>
+<area shape="rect" href="material_8h.html" title=" " alt="" coords="459,155,538,181"/>
+<area shape="rect" href="point__light_8h.html" title=" " alt="" coords="94,311,186,338"/>
+<area shape="rect" href="renderer_2shape_8h.html" title=" " alt="" coords="749,80,880,107"/>
+<area shape="rect" title=" " alt="" coords="307,617,379,644"/>
+<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="661,543,723,569"/>
+<area shape="rect" title=" " alt="" coords="695,692,777,719"/>
+<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="598,617,698,644"/>
+<area shape="rect" href="constants_8h.html" title=" " alt="" coords="580,692,671,719"/>
+<area shape="rect" href="pattern_8h.html" title=" " alt="" coords="550,311,623,338"/>
+<area shape="rect" href="solid__color_8h.html" title=" " alt="" coords="403,229,549,256"/>
+<area shape="rect" href="transform_8h.html" title=" " alt="" coords="1231,393,1363,420"/>
+<area shape="rect" title=" " alt="" coords="1325,468,1379,495"/>
+<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="1231,468,1300,495"/>
+<area shape="rect" title=" " alt="" coords="1132,543,1188,569"/>
+<area shape="rect" title=" " alt="" coords="1263,543,1332,569"/>
+<area shape="rect" href="polymorphic__comparable_8h.html" title=" " alt="" coords="312,304,475,345"/>
+<area shape="rect" href="i__shape_8h.html" title=" " alt="" coords="891,155,1013,181"/>
+<area shape="rect" href="intersections_8h.html" title=" " alt="" coords="1007,229,1113,256"/>
+<area shape="rect" href="ray_8h.html" title=" " alt="" coords="1168,311,1219,338"/>
+<area shape="rect" title=" " alt="" coords="1027,311,1093,338"/>
+<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="902,311,1002,338"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -143,9 +155,9 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a30daebc290e1eb0e3510bb236b356fe9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9">CppRayTracerChallenge::Core::Renderer::Lighting::lighting</a> (const Material &amp;material, const PointLight &amp;light, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a> &amp;position, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a> &amp;eyev, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a> &amp;normalv, const bool isShadowed)</td></tr>
-<tr class="memdesc:a30daebc290e1eb0e3510bb236b356fe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the color at a given point with lighting  <a href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9">More...</a><br /></td></tr>
-<tr class="separator:a30daebc290e1eb0e3510bb236b356fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff4b37c265f093479f845c87c5b42aa3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#aff4b37c265f093479f845c87c5b42aa3">CppRayTracerChallenge::Core::Renderer::Lighting::lighting</a> (const Shape &amp;shape, const PointLight &amp;light, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a> &amp;position, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a> &amp;eyev, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a> &amp;normalv, const bool isShadowed)</td></tr>
+<tr class="memdesc:aff4b37c265f093479f845c87c5b42aa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the color at a given point with lighting  <a href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#aff4b37c265f093479f845c87c5b42aa3">More...</a><br /></td></tr>
+<tr class="separator:aff4b37c265f093479f845c87c5b42aa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -106,6 +106,8 @@ Inheritance diagram for CppRayTracerChallenge::Core::Math::IShape:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a46c593493fe339f58223d9c74370e6dd"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a46c593493fe339f58223d9c74370e6dd">~IShape</a> ()</td></tr>
+<tr class="separator:a46c593493fe339f58223d9c74370e6dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a712c1307d20376f344b86772c298cea9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a712c1307d20376f344b86772c298cea9">transform</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Transform</a> transform)=0</td></tr>
 <tr class="memdesc:a712c1307d20376f344b86772c298cea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms the shape  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a712c1307d20376f344b86772c298cea9">More...</a><br /></td></tr>
 <tr class="separator:a712c1307d20376f344b86772c298cea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,7 +130,35 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="i__shape_8h_source.html#l00013">13</a> of file <a class="el" href="i__shape_8h_source.html">i_shape.h</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a46c593493fe339f58223d9c74370e6dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46c593493fe339f58223d9c74370e6dd">&#9670;&nbsp;</a></span>~IShape()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual CppRayTracerChallenge::Core::Math::IShape::~IShape </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="i__shape_8h_source.html#l00016">16</a> of file <a class="el" href="i__shape_8h_source.html">i_shape.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a76960c9e7db08b226a210db109e1bf5b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a76960c9e7db08b226a210db109e1bf5b">&#9670;&nbsp;</a></span>intersect()</h2>
 
@@ -247,15 +277,6 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>The normal vector at the position</dd></dl>
 
 <p>Implemented in <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6">CppRayTracerChallenge::Core::Math::Shape</a>, and <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a71ca82a05c21fdb5c78cff09e127f71c">CppRayTracerChallenge::Core::Renderer::Shape</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape_a6609aeb302084b6dd7978cee53c0d6ed_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape_a6609aeb302084b6dd7978cee53c0d6ed_icgraph" alt=""/></div>
-<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape_a6609aeb302084b6dd7978cee53c0d6ed_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape_a6609aeb302084b6dd7978cee53c0d6ed_icgraph">
-<area shape="rect" title="Calculates and returns the normal at the passed in world space position for this shape" alt="" coords="277,5,439,61"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a325609a69321d16a1f99a29a5a0548e8" title="Computes the values of the intersection and the ray" alt="" coords="5,5,229,61"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -298,9 +319,10 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape_af627244fce374bca075871035a107db6_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape_af627244fce374bca075871035a107db6_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape_af627244fce374bca075871035a107db6_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape_af627244fce374bca075871035a107db6_icgraph">
-<area shape="rect" title="Calculates and returns the normal at the passed in local space position for this shape" alt="" coords="317,5,479,61"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="108,5,269,61"/>
-<area shape="rect" href="sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" title="Calculates and returns the normal at the passed in local space position for this shape" alt="" coords="487,39,648,95"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="277,39,439,95"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a325609a69321d16a1f99a29a5a0548e8" title="Computes the values of the intersection and the ray" alt="" coords="5,5,229,61"/>
+<area shape="rect" href="sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="90,85,145,112"/>
 </map>
 </div>
 

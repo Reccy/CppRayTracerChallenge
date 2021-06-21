@@ -92,6 +92,10 @@ $(document).ready(function(){initNavTree('lighting__test_8cpp.html',''); initRes
 <div class="textblock"><code>#include &lt;gtest/gtest.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="lighting_8h_source.html">renderer/lighting.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="material_8h_source.html">renderer/material.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stripe_8h_source.html">renderer/patterns/stripe.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="test__pattern_8h_source.html">renderer/patterns/test_pattern.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="renderer_2shape_8h_source.html">renderer/shape.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sphere_8h_source.html">math/sphere.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="point_8h_source.html">math/point.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="vector_8h_source.html">math/vector.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -99,22 +103,37 @@ Include dependency graph for lighting_test.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="lighting__test_8cpp__incl.png" border="0" usemap="#asrc_2test_2core_2renderer_2lighting__test_8cpp" alt=""/></div>
 <map name="asrc_2test_2core_2renderer_2lighting__test_8cpp" id="asrc_2test_2core_2renderer_2lighting__test_8cpp">
-<area shape="rect" title=" " alt="" coords="115,5,262,47"/>
-<area shape="rect" title=" " alt="" coords="5,95,100,121"/>
-<area shape="rect" href="lighting_8h.html" title=" " alt="" coords="254,95,379,121"/>
-<area shape="rect" href="vector_8h.html" title=" " alt="" coords="186,483,298,509"/>
-<area shape="rect" href="point_8h.html" title=" " alt="" coords="321,408,427,435"/>
-<area shape="rect" href="material_8h.html" title=" " alt="" coords="528,169,607,196"/>
-<area shape="rect" href="color_8h.html" title=" " alt="" coords="720,408,847,435"/>
-<area shape="rect" href="point__light_8h.html" title=" " alt="" coords="328,326,420,353"/>
-<area shape="rect" title=" " alt="" coords="646,632,718,659"/>
-<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="373,557,434,584"/>
-<area shape="rect" title=" " alt="" coords="362,707,445,733"/>
-<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="452,632,552,659"/>
-<area shape="rect" href="constants_8h.html" title=" " alt="" coords="469,707,559,733"/>
-<area shape="rect" href="pattern_8h.html" title=" " alt="" coords="784,326,857,353"/>
-<area shape="rect" href="solid__color_8h.html" title=" " alt="" coords="554,244,701,271"/>
-<area shape="rect" href="polymorphic__comparable_8h.html" title=" " alt="" coords="546,319,709,360"/>
+<area shape="rect" title=" " alt="" coords="810,5,957,47"/>
+<area shape="rect" title=" " alt="" coords="263,95,357,121"/>
+<area shape="rect" href="lighting_8h.html" title=" " alt="" coords="434,95,559,121"/>
+<area shape="rect" href="vector_8h.html" title=" " alt="" coords="955,572,1067,599"/>
+<area shape="rect" href="point_8h.html" title=" " alt="" coords="774,497,881,524"/>
+<area shape="rect" href="material_8h.html" title=" " alt="" coords="356,244,435,271"/>
+<area shape="rect" href="renderer_2shape_8h.html" title=" " alt="" coords="971,169,1102,196"/>
+<area shape="rect" href="stripe_8h.html" title=" " alt="" coords="705,326,872,353"/>
+<area shape="rect" href="test__pattern_8h.html" title=" " alt="" coords="534,319,681,360"/>
+<area shape="rect" href="sphere_8h.html" title=" " alt="" coords="1205,95,1311,121"/>
+<area shape="rect" href="color_8h.html" title=" " alt="" coords="60,497,187,524"/>
+<area shape="rect" href="point__light_8h.html" title=" " alt="" coords="44,415,136,442"/>
+<area shape="rect" title=" " alt="" coords="413,721,485,748"/>
+<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="845,647,906,673"/>
+<area shape="rect" title=" " alt="" coords="878,796,961,823"/>
+<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="781,721,881,748"/>
+<area shape="rect" href="constants_8h.html" title=" " alt="" coords="763,796,854,823"/>
+<area shape="rect" href="pattern_8h.html" title=" " alt="" coords="385,415,459,442"/>
+<area shape="rect" href="solid__color_8h.html" title=" " alt="" coords="262,326,409,353"/>
+<area shape="rect" href="transform_8h.html" title=" " alt="" coords="1273,497,1405,524"/>
+<area shape="rect" title=" " alt="" coords="1312,572,1367,599"/>
+<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="1129,572,1198,599"/>
+<area shape="rect" title=" " alt="" coords="1415,647,1471,673"/>
+<area shape="rect" title=" " alt="" coords="1129,647,1198,673"/>
+<area shape="rect" href="polymorphic__comparable_8h.html" title=" " alt="" coords="534,408,697,449"/>
+<area shape="rect" href="i__shape_8h.html" title=" " alt="" coords="1201,244,1323,271"/>
+<area shape="rect" href="intersections_8h.html" title=" " alt="" coords="1251,326,1358,353"/>
+<area shape="rect" href="ray_8h.html" title=" " alt="" coords="1366,415,1417,442"/>
+<area shape="rect" title=" " alt="" coords="1275,415,1342,442"/>
+<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="1151,415,1251,442"/>
+<area shape="rect" href="math_2shape_8h.html" title=" " alt="" coords="1227,169,1295,196"/>
 </map>
 </div>
 </div>
@@ -139,10 +158,12 @@ Functions</h2></td></tr>
 <tr class="separator:aa8077639285cd55aa9856a29c84a7151"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16cc04d944f01ef460ed7d602e6b05a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lighting__test_8cpp.html#a16cc04d944f01ef460ed7d602e6b05a1">TEST_F</a> (<a class="el" href="class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html">CppRayTracerChallenge_Core_Renderer_LightingTest</a>, lighting_with_the_surface_in_shadow)</td></tr>
 <tr class="separator:a16cc04d944f01ef460ed7d602e6b05a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69805080c0b2def8b80177007b13a991"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lighting__test_8cpp.html#a69805080c0b2def8b80177007b13a991">TEST_F</a> (<a class="el" href="class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html">CppRayTracerChallenge_Core_Renderer_LightingTest</a>, lighting_with_stripe_pattern)</td></tr>
+<tr class="separator:a69805080c0b2def8b80177007b13a991"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a0e283b70b8912ffe2b8900567c61fd4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e283b70b8912ffe2b8900567c61fd4a">&#9670;&nbsp;</a></span>TEST_F() <span class="overload">[1/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e283b70b8912ffe2b8900567c61fd4a">&#9670;&nbsp;</a></span>TEST_F() <span class="overload">[1/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -167,14 +188,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lighting__test_8cpp_source.html#l00028">28</a> of file <a class="el" href="lighting__test_8cpp_source.html">lighting_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lighting__test_8cpp_source.html#l00031">31</a> of file <a class="el" href="lighting__test_8cpp_source.html">lighting_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="lighting__test_8cpp_a0e283b70b8912ffe2b8900567c61fd4a_cgraph.png" border="0" usemap="#alighting__test_8cpp_a0e283b70b8912ffe2b8900567c61fd4a_cgraph" alt=""/></div>
 <map name="alighting__test_8cpp_a0e283b70b8912ffe2b8900567c61fd4a_cgraph" id="alighting__test_8cpp_a0e283b70b8912ffe2b8900567c61fd4a_cgraph">
 <area shape="rect" title=" " alt="" coords="5,151,75,177"/>
-<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9" title="Computes the color at a given point with lighting" alt="" coords="123,136,293,192"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#aff4b37c265f093479f845c87c5b42aa3" title="Computes the color at a given point with lighting" alt="" coords="123,136,293,192"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="352,5,513,61"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="572,194,739,235"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="341,136,524,192"/>
@@ -187,7 +208,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a714e136913085adc075c012f17daedd5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a714e136913085adc075c012f17daedd5">&#9670;&nbsp;</a></span>TEST_F() <span class="overload">[2/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a714e136913085adc075c012f17daedd5">&#9670;&nbsp;</a></span>TEST_F() <span class="overload">[2/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -212,14 +233,14 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lighting__test_8cpp_source.html#l00040">40</a> of file <a class="el" href="lighting__test_8cpp_source.html">lighting_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lighting__test_8cpp_source.html#l00043">43</a> of file <a class="el" href="lighting__test_8cpp_source.html">lighting_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="lighting__test_8cpp_a714e136913085adc075c012f17daedd5_cgraph.png" border="0" usemap="#alighting__test_8cpp_a714e136913085adc075c012f17daedd5_cgraph" alt=""/></div>
 <map name="alighting__test_8cpp_a714e136913085adc075c012f17daedd5_cgraph" id="alighting__test_8cpp_a714e136913085adc075c012f17daedd5_cgraph">
 <area shape="rect" title=" " alt="" coords="5,151,75,177"/>
-<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9" title="Computes the color at a given point with lighting" alt="" coords="123,136,293,192"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#aff4b37c265f093479f845c87c5b42aa3" title="Computes the color at a given point with lighting" alt="" coords="123,136,293,192"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="352,5,513,61"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="572,194,739,235"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="341,136,524,192"/>
@@ -232,7 +253,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a176f31355230058268b5a63153e7a453"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a176f31355230058268b5a63153e7a453">&#9670;&nbsp;</a></span>TEST_F() <span class="overload">[3/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a176f31355230058268b5a63153e7a453">&#9670;&nbsp;</a></span>TEST_F() <span class="overload">[3/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -257,14 +278,14 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lighting__test_8cpp_source.html#l00064">64</a> of file <a class="el" href="lighting__test_8cpp_source.html">lighting_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lighting__test_8cpp_source.html#l00067">67</a> of file <a class="el" href="lighting__test_8cpp_source.html">lighting_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="lighting__test_8cpp_a176f31355230058268b5a63153e7a453_cgraph.png" border="0" usemap="#alighting__test_8cpp_a176f31355230058268b5a63153e7a453_cgraph" alt=""/></div>
 <map name="alighting__test_8cpp_a176f31355230058268b5a63153e7a453_cgraph" id="alighting__test_8cpp_a176f31355230058268b5a63153e7a453_cgraph">
 <area shape="rect" title=" " alt="" coords="5,151,75,177"/>
-<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9" title="Computes the color at a given point with lighting" alt="" coords="123,136,293,192"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#aff4b37c265f093479f845c87c5b42aa3" title="Computes the color at a given point with lighting" alt="" coords="123,136,293,192"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="352,5,513,61"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="572,194,739,235"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="341,136,524,192"/>
@@ -277,7 +298,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="ae829d95958fb1f792f37a060aa79b182"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae829d95958fb1f792f37a060aa79b182">&#9670;&nbsp;</a></span>TEST_F() <span class="overload">[4/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae829d95958fb1f792f37a060aa79b182">&#9670;&nbsp;</a></span>TEST_F() <span class="overload">[4/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -302,14 +323,14 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lighting__test_8cpp_source.html#l00052">52</a> of file <a class="el" href="lighting__test_8cpp_source.html">lighting_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lighting__test_8cpp_source.html#l00055">55</a> of file <a class="el" href="lighting__test_8cpp_source.html">lighting_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="lighting__test_8cpp_ae829d95958fb1f792f37a060aa79b182_cgraph.png" border="0" usemap="#alighting__test_8cpp_ae829d95958fb1f792f37a060aa79b182_cgraph" alt=""/></div>
 <map name="alighting__test_8cpp_ae829d95958fb1f792f37a060aa79b182_cgraph" id="alighting__test_8cpp_ae829d95958fb1f792f37a060aa79b182_cgraph">
 <area shape="rect" title=" " alt="" coords="5,151,75,177"/>
-<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9" title="Computes the color at a given point with lighting" alt="" coords="123,136,293,192"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#aff4b37c265f093479f845c87c5b42aa3" title="Computes the color at a given point with lighting" alt="" coords="123,136,293,192"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="352,5,513,61"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="572,194,739,235"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="341,136,524,192"/>
@@ -321,8 +342,54 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a69805080c0b2def8b80177007b13a991"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69805080c0b2def8b80177007b13a991">&#9670;&nbsp;</a></span>TEST_F() <span class="overload">[5/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST_F </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html">CppRayTracerChallenge_Core_Renderer_LightingTest</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">lighting_with_stripe_pattern&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="lighting__test_8cpp_source.html#l00103">103</a> of file <a class="el" href="lighting__test_8cpp_source.html">lighting_test.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="lighting__test_8cpp_a69805080c0b2def8b80177007b13a991_cgraph.png" border="0" usemap="#alighting__test_8cpp_a69805080c0b2def8b80177007b13a991_cgraph" alt=""/></div>
+<map name="alighting__test_8cpp_a69805080c0b2def8b80177007b13a991_cgraph" id="alighting__test_8cpp_a69805080c0b2def8b80177007b13a991_cgraph">
+<area shape="rect" title=" " alt="" coords="5,85,75,112"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="352,71,513,127"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#aff4b37c265f093479f845c87c5b42aa3" title="Computes the color at a given point with lighting" alt="" coords="123,183,293,239"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a154c895b965e8aa00cc42e9ad53d8b75" title="Returns a white color" alt="" coords="127,5,289,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="575,39,736,95"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="572,295,739,337"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="341,281,524,337"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#a1e5accc8b122a9e71d54297698eab78b" title="Returns the position of the light" alt="" coords="341,151,524,207"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a7dfd7f3387d4f9f61d8eb48e31be1e4f" title="Reflects the vector off the normal" alt="" coords="352,361,513,417"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="aa8077639285cd55aa9856a29c84a7151"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8077639285cd55aa9856a29c84a7151">&#9670;&nbsp;</a></span>TEST_F() <span class="overload">[5/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8077639285cd55aa9856a29c84a7151">&#9670;&nbsp;</a></span>TEST_F() <span class="overload">[6/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -347,14 +414,14 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lighting__test_8cpp_source.html#l00076">76</a> of file <a class="el" href="lighting__test_8cpp_source.html">lighting_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lighting__test_8cpp_source.html#l00079">79</a> of file <a class="el" href="lighting__test_8cpp_source.html">lighting_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="lighting__test_8cpp_aa8077639285cd55aa9856a29c84a7151_cgraph.png" border="0" usemap="#alighting__test_8cpp_aa8077639285cd55aa9856a29c84a7151_cgraph" alt=""/></div>
 <map name="alighting__test_8cpp_aa8077639285cd55aa9856a29c84a7151_cgraph" id="alighting__test_8cpp_aa8077639285cd55aa9856a29c84a7151_cgraph">
 <area shape="rect" title=" " alt="" coords="5,151,75,177"/>
-<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9" title="Computes the color at a given point with lighting" alt="" coords="123,136,293,192"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#aff4b37c265f093479f845c87c5b42aa3" title="Computes the color at a given point with lighting" alt="" coords="123,136,293,192"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="352,5,513,61"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="572,194,739,235"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="341,136,524,192"/>
@@ -367,7 +434,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a16cc04d944f01ef460ed7d602e6b05a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16cc04d944f01ef460ed7d602e6b05a1">&#9670;&nbsp;</a></span>TEST_F() <span class="overload">[6/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a16cc04d944f01ef460ed7d602e6b05a1">&#9670;&nbsp;</a></span>TEST_F() <span class="overload">[7/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -392,14 +459,14 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lighting__test_8cpp_source.html#l00088">88</a> of file <a class="el" href="lighting__test_8cpp_source.html">lighting_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lighting__test_8cpp_source.html#l00091">91</a> of file <a class="el" href="lighting__test_8cpp_source.html">lighting_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="lighting__test_8cpp_a16cc04d944f01ef460ed7d602e6b05a1_cgraph.png" border="0" usemap="#alighting__test_8cpp_a16cc04d944f01ef460ed7d602e6b05a1_cgraph" alt=""/></div>
 <map name="alighting__test_8cpp_a16cc04d944f01ef460ed7d602e6b05a1_cgraph" id="alighting__test_8cpp_a16cc04d944f01ef460ed7d602e6b05a1_cgraph">
 <area shape="rect" title=" " alt="" coords="5,151,75,177"/>
-<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#a30daebc290e1eb0e3510bb236b356fe9" title="Computes the color at a given point with lighting" alt="" coords="123,136,293,192"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html#aff4b37c265f093479f845c87c5b42aa3" title="Computes the color at a given point with lighting" alt="" coords="123,136,293,192"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="352,5,513,61"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="572,194,739,235"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="341,136,524,192"/>

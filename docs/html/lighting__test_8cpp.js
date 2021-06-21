@@ -5,6 +5,7 @@ var lighting__test_8cpp =
     [ "TEST_F", "lighting__test_8cpp.html#a714e136913085adc075c012f17daedd5", null ],
     [ "TEST_F", "lighting__test_8cpp.html#a176f31355230058268b5a63153e7a453", null ],
     [ "TEST_F", "lighting__test_8cpp.html#ae829d95958fb1f792f37a060aa79b182", null ],
+    [ "TEST_F", "lighting__test_8cpp.html#a69805080c0b2def8b80177007b13a991", null ],
     [ "TEST_F", "lighting__test_8cpp.html#aa8077639285cd55aa9856a29c84a7151", null ],
     [ "TEST_F", "lighting__test_8cpp.html#a16cc04d944f01ef460ed7d602e6b05a1", null ]
 ];

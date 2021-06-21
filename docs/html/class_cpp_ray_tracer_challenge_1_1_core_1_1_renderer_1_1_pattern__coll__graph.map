@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Renderer::Pattern" name="CppRayTracerChallenge::Core::Renderer::Pattern">
+<area shape="rect" id="node1" title="Represents a color pattern that can be used to vary the color of materials" alt="" coords="5,109,172,151"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html" title="Represents a Transformation Matrix that can be used to transform vectors and points" alt="" coords="8,5,169,47"/>
+</map>

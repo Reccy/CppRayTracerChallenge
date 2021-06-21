@@ -127,6 +127,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0ec292d43e20ae1c49a30d11b31afc4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a0ec292d43e20ae1c49a30d11b31afc4e">material</a> (const <a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html">Material</a> material)</td></tr>
 <tr class="memdesc:a0ec292d43e20ae1c49a30d11b31afc4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns a material to the shape  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a0ec292d43e20ae1c49a30d11b31afc4e">More...</a><br /></td></tr>
 <tr class="separator:a0ec292d43e20ae1c49a30d11b31afc4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9aa797deee5171f363c33715a1414f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#ae9aa797deee5171f363c33715a1414f9">colorAt</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a> worldPosition) const</td></tr>
+<tr class="memdesc:ae9aa797deee5171f363c33715a1414f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the color of the shape at the world position, taking into account the material and lighting  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#ae9aa797deee5171f363c33715a1414f9">More...</a><br /></td></tr>
+<tr class="separator:ae9aa797deee5171f363c33715a1414f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa278451e9d8057425d6961e939716dc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aa278451e9d8057425d6961e939716dc7">transform</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Math::Transform</a> transform) override</td></tr>
 <tr class="memdesc:aa278451e9d8057425d6961e939716dc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms the shape  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aa278451e9d8057425d6961e939716dc7">More...</a><br /></td></tr>
 <tr class="separator:aa278451e9d8057425d6961e939716dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,11 +148,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acfd1367b7c7a8a1d063d0f0be1d65833"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html">Math::Intersections</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#acfd1367b7c7a8a1d063d0f0be1d65833">intersectLocal</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Math::Ray</a> ray) const override</td></tr>
 <tr class="memdesc:acfd1367b7c7a8a1d063d0f0be1d65833"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates if the local space ray intersects with the shape.  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#acfd1367b7c7a8a1d063d0f0be1d65833">More...</a><br /></td></tr>
 <tr class="separator:acfd1367b7c7a8a1d063d0f0be1d65833"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html">CppRayTracerChallenge::Core::Math::IShape</a></td></tr>
+<tr class="memitem:a46c593493fe339f58223d9c74370e6dd inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a46c593493fe339f58223d9c74370e6dd">~IShape</a> ()</td></tr>
+<tr class="separator:a46c593493fe339f58223d9c74370e6dd inherit pub_methods_class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a shape within the rendered world. This is a wrapper around a <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html">Math::IShape</a> which adds materials </p>
 
-<p class="definition">Definition at line <a class="el" href="renderer_2shape_8h_source.html#l00017">17</a> of file <a class="el" href="renderer_2shape_8h_source.html">shape.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8h_source.html#l00015">15</a> of file <a class="el" href="renderer_2shape_8h_source.html">shape.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3baa05e430077dc0344865d7778f6a39"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3baa05e430077dc0344865d7778f6a39">&#9670;&nbsp;</a></span>Shape() <span class="overload">[1/3]</span></h2>
@@ -192,7 +198,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00005">5</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00006">6</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
 
 </div>
 </div>
@@ -221,10 +227,59 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_a85b36b475d13437d84d6a99b40f76726_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_a85b36b475d13437d84d6a99b40f76726_cgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_a85b36b475d13437d84d6a99b40f76726_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_a85b36b475d13437d84d6a99b40f76726_cgraph">
+<area shape="rect" title=" " alt="" coords="5,45,168,101"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#ae9aa797deee5171f363c33715a1414f9" title="Returns the color of the shape at the world position, taking into account the material and lighting" alt="" coords="216,5,379,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#abf27352f00f308b409c5fdaa93f1bef0" title="Returns the material assigned to the shape" alt="" coords="216,85,379,141"/>
+</map>
+</div>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae9aa797deee5171f363c33715a1414f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9aa797deee5171f363c33715a1414f9">&#9670;&nbsp;</a></span>colorAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a> Shape::colorAt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a>&#160;</td>
+          <td class="paramname"><em>worldPosition</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the color of the shape at the world position, taking into account the material and lighting </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPosition</td><td>The position in the world of the surface of the shape to render</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The color of the fragment</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00020">20</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_ae9aa797deee5171f363c33715a1414f9_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_ae9aa797deee5171f363c33715a1414f9_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_ae9aa797deee5171f363c33715a1414f9_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_ae9aa797deee5171f363c33715a1414f9_icgraph">
+<area shape="rect" title="Returns the color of the shape at the world position, taking into account the material and lighting" alt="" coords="216,39,379,95"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a85b36b475d13437d84d6a99b40f76726" title=" " alt="" coords="5,5,168,61"/>
+<area shape="rect" href="shape__test_8cpp.html#a82143fc6cf58893d37c7c6e9c97abda3" title=" " alt="" coords="59,85,114,112"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="abdfadb11f486d27cf48f374258bea6a0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abdfadb11f486d27cf48f374258bea6a0">&#9670;&nbsp;</a></span>intersect()</h2>
 
@@ -297,7 +352,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a35bc2672feaeb677145c00f584369cda">CppRayTracerChallenge::Core::Math::IShape</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00058">58</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00067">67</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -331,18 +386,19 @@ Here is the call graph for this function:</div>
 <p>Returns the material assigned to the shape </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html" title="Represents a Material struct for use in a Phong Lighting Model">Material</a> assigned to the shape</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00009">9</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00010">10</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_abf27352f00f308b409c5fdaa93f1bef0_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_abf27352f00f308b409c5fdaa93f1bef0_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_abf27352f00f308b409c5fdaa93f1bef0_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_abf27352f00f308b409c5fdaa93f1bef0_icgraph">
-<area shape="rect" title="Returns the material assigned to the shape" alt="" coords="431,92,593,148"/>
-<area shape="rect" href="win32__main_8cpp.html#ab8fb22f544cb1bb550af5e048be0fbbd" title=" " alt="" coords="279,5,358,32"/>
-<area shape="rect" href="win32__main_8cpp.html#ae4ea00d401eb7a5aee5a5f1eeff59948" title=" " alt="" coords="263,56,374,83"/>
-<area shape="rect" href="win32__main_8cpp.html#a54f9bd520bfe628965f2975e3a755205" title=" " alt="" coords="255,107,383,133"/>
-<area shape="rect" href="win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f" title=" " alt="" coords="259,157,379,184"/>
-<area shape="rect" href="shape__test_8cpp.html#a696ba2c55cceb054065ebee92ebd0d2c" title=" " alt="" coords="291,208,346,235"/>
+<area shape="rect" title="Returns the material assigned to the shape" alt="" coords="465,117,628,173"/>
+<area shape="rect" href="win32__main_8cpp.html#ab8fb22f544cb1bb550af5e048be0fbbd" title=" " alt="" coords="297,5,375,32"/>
+<area shape="rect" href="win32__main_8cpp.html#ae4ea00d401eb7a5aee5a5f1eeff59948" title=" " alt="" coords="281,56,391,83"/>
+<area shape="rect" href="win32__main_8cpp.html#a54f9bd520bfe628965f2975e3a755205" title=" " alt="" coords="272,107,400,133"/>
+<area shape="rect" href="win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f" title=" " alt="" coords="276,157,396,184"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a85b36b475d13437d84d6a99b40f76726" title=" " alt="" coords="255,208,417,264"/>
+<area shape="rect" href="shape__test_8cpp.html#a696ba2c55cceb054065ebee92ebd0d2c" title=" " alt="" coords="309,288,363,315"/>
 <area shape="rect" href="win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,81,207,108"/>
 <area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,81,56,108"/>
 </map>
@@ -374,7 +430,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00014">14</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00015">15</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
 
 </div>
 </div>
@@ -459,7 +515,7 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#af627244fce374bca075871035a107db6">CppRayTracerChallenge::Core::Math::IShape</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00034">34</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00043">43</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -545,7 +601,7 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="win32__main_8cpp.html#ae4ea00d401eb7a5aee5a5f1eeff59948" title=" " alt="" coords="263,56,374,83"/>
 <area shape="rect" href="win32__main_8cpp.html#a54f9bd520bfe628965f2975e3a755205" title=" " alt="" coords="255,107,383,133"/>
 <area shape="rect" href="win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f" title=" " alt="" coords="259,157,379,184"/>
-<area shape="rect" href="shape__test_8cpp.html#aa33f3d3af78df8c672baf537ca697aca" title=" " alt="" coords="291,208,346,235"/>
+<area shape="rect" href="computed__values__test_8cpp.html#aca91c66630e763de77a97a16b9a0423e" title=" " alt="" coords="291,208,346,235"/>
 <area shape="rect" href="win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,81,207,108"/>
 <area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,81,56,108"/>
 </map>
