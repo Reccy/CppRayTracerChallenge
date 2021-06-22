@@ -25,6 +25,7 @@
 #include "renderer/camera.h"
 #include "renderer/patterns/solid_color.h"
 #include "renderer/patterns/stripe.h"
+#include "renderer/patterns/ring.h"
 #include "serializer/base_image_serializer.h"
 #include "serializer/portable_pixmap_image_serializer.h"
 
@@ -65,7 +66,8 @@ Renderer::Shape buildRightSphere()
 		.scale(0.5, 0.5, 0.5)
 		.translate(1.5, 0.5, -0.5);
 	Renderer::Material material = Renderer::Material();
-	material.pattern = std::make_shared<Renderer::Patterns::SolidColor>(Renderer::Patterns::SolidColor(Graphics::Color(0.5f, 1.0f, 0.1f)));
+	material.pattern = std::make_shared<Renderer::Patterns::Stripe>(Graphics::Color(0.5f, 1.0f, 0.1f), Graphics::Color(0.7f, 0.02f, 0.6f));
+	material.pattern->transform(Math::Transform().rotate(66, 283, 1).scale(2, 1.3, 0.2));
 	material.diffuse = 0.7f;
 	material.specular = 0.3f;
 	sphere.material(material);
@@ -82,7 +84,8 @@ Renderer::Shape buildLeftSphere()
 		.scale(0.33, 0.33, 0.33)
 		.translate(-1.5, 0.33, -0.75);
 	Renderer::Material material = Renderer::Material();
-	material.pattern = std::make_shared<Renderer::Patterns::SolidColor>(Renderer::Patterns::SolidColor(Graphics::Color(1.0f, 0.8f, 0.1f)));
+	material.pattern = std::make_shared<Renderer::Patterns::Stripe>(Graphics::Color(1.0f, 0.8f, 0.1f), Graphics::Color(0.9f, 0.2f, 0.5f));
+	material.pattern->transform(Math::Transform().rotate(33, 24, 93).scale(0.2, 1.3, 0.2));
 	material.diffuse = 0.7f;
 	material.specular = 0.3f;
 	sphere.material(material);
@@ -101,8 +104,8 @@ Graphics::Image doRealRender()
 	std::cout << "Rendering scene..." << std::endl;
 
 	Renderer::Material bgMaterial = Renderer::Material();
-	bgMaterial.pattern = std::make_shared<Renderer::Patterns::Stripe>(Renderer::Patterns::Stripe(Graphics::Color(1, 0.9f, 0.9f), Graphics::Color(0.6f, 0.5f, 0.4f)));
-	bgMaterial.pattern->transform(Math::Transform().scale(0.25f, 1, 1).rotate(0, 45, 0));
+	bgMaterial.pattern = std::make_shared<Renderer::Patterns::Ring>(Graphics::Color(1, 0.9f, 0.9f), Graphics::Color(0.6f, 0.5f, 0.4f));
+	bgMaterial.pattern->transform(Math::Transform().scale(0.25f, 0.25f, 0.25f).rotate(0, 45, 0));
 	bgMaterial.specular = 0.1f;
 
 	Renderer::Shape floor = buildFloor(bgMaterial);
