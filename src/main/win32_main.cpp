@@ -26,6 +26,7 @@
 #include "renderer/patterns/solid_color.h"
 #include "renderer/patterns/stripe.h"
 #include "renderer/patterns/ring.h"
+#include "renderer/patterns/radial_gradient.h"
 #include "serializer/base_image_serializer.h"
 #include "serializer/portable_pixmap_image_serializer.h"
 
@@ -104,7 +105,7 @@ Graphics::Image doRealRender()
 	std::cout << "Rendering scene..." << std::endl;
 
 	Renderer::Material bgMaterial = Renderer::Material();
-	bgMaterial.pattern = std::make_shared<Renderer::Patterns::Ring>(Graphics::Color(1, 0.9f, 0.9f), Graphics::Color(0.6f, 0.5f, 0.4f));
+	bgMaterial.pattern = std::make_shared<Renderer::Patterns::RadialGradient>(Graphics::Color(1,0, 0), Graphics::Color(0, 1, 0));
 	bgMaterial.pattern->transform(Math::Transform().scale(0.25f, 0.25f, 0.25f).rotate(0, 45, 0));
 	bgMaterial.specular = 0.1f;
 
@@ -121,7 +122,7 @@ Graphics::Image doRealRender()
 	world.addObject(leftSphere);
 	world.addLight(light);
 
-	Renderer::Camera camera = Renderer::Camera(100, 50, 75);
+	Renderer::Camera camera = Renderer::Camera(300, 150, 75);
 	auto cameraTransform = Renderer::Camera::viewMatrix({ 0, 1.5, -5 }, { 0,1,0 }, Math::Vector::up());
 	camera.transform(cameraTransform);
 
