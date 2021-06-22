@@ -25,6 +25,7 @@
 #include "renderer/camera.h"
 #include "renderer/patterns/solid_color.h"
 #include "renderer/patterns/stripe.h"
+#include "serializer/base_image_serializer.h"
 #include "serializer/portable_pixmap_image_serializer.h"
 
 using namespace CppRayTracerChallenge::Core;
@@ -124,12 +125,11 @@ Graphics::Image doRealRender()
 	return camera.render(world);
 }
 
-void writeImage(Graphics::Image image)
+void writeImage(Graphics::Image image, Serializer::BaseImageSerializer& serializer)
 {
-	Serializer::PortablePixmapImageSerializer ppm;
-	ppm.serialize(image);
+	serializer.serialize(image);
 
-	std::vector<char> ppmBuffer = ppm.buffer();
+	std::vector<char> ppmBuffer = serializer.buffer();
 
 	std::string bufferData(ppmBuffer.begin(), ppmBuffer.end());
 
@@ -159,7 +159,9 @@ void writeImage(Graphics::Image image)
 int main()
 {
 	Graphics::Image image = doRealRender();
-	writeImage(image);
+	Serializer::PortablePixmapImageSerializer serializer;
+
+	writeImage(image, serializer);
 
 	return 0;
 }
