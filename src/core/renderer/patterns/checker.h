@@ -1,21 +1,20 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_GRADIENT
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_GRADIENT
+#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_CHECKER
+#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_CHECKER
 
 #include "../pattern.h"
-#include "../../math/point.h"
 #include "../../helpers/polymorphic_comparable.h"
 
 namespace CppRayTracerChallenge::Core::Renderer::Patterns
 {
-	class Gradient : public Helpers::PolymorphicComparable<Pattern, Gradient>
+	class Checker : public Helpers::PolymorphicComparable<Pattern, Checker>
 	{
 	public:
 		/// <summary>
-		/// Creates a gradient from color A to color B
+		/// Creates a 3D Checker pattern with Color A and Color B
 		/// </summary>
 		/// <param name="a">Color A</param>
 		/// <param name="b">Color B</param>
-		Gradient(Graphics::Color a, Graphics::Color b);
+		Checker(Graphics::Color a, Graphics::Color b);
 
 		/// <summary>
 		/// Returns Color A
@@ -31,11 +30,11 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 
 		Graphics::Color colorAt(Math::Point position) const override;
 
-		bool operator==(const Gradient& other) const;
+		bool operator==(const Checker& other) const;
 	private:
 		Graphics::Color m_colorA;
 		Graphics::Color m_colorB;
 	};
 }
 
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_GRADIENT
+#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_CHECKER
