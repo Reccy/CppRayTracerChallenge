@@ -57,6 +57,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/renderer/patterns/ring.h"
 	"${CORE_LIBRARY_DIR}/renderer/patterns/checker.h"
 	"${CORE_LIBRARY_DIR}/renderer/patterns/radial_gradient.h"
+	"${CORE_LIBRARY_DIR}/renderer/patterns/masked.h"
 	"${CORE_LIBRARY_DIR}/renderer/patterns/test_pattern.h"
 	"${CORE_LIBRARY_DIR}/serializer/base_image_serializer.h"
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.h"
@@ -135,6 +136,7 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/renderer/patterns/ring_test.cpp"
 	"${TEST_SUITE_DIR}/core/renderer/patterns/checker_test.cpp"
 	"${TEST_SUITE_DIR}/core/renderer/patterns/radial_gradient_test.cpp"
+	"${TEST_SUITE_DIR}/core/renderer/patterns/masked_test.cpp"
 	"${TEST_SUITE_DIR}/core/renderer/patterns/solid_color_test.cpp"
 	"${TEST_SUITE_DIR}/core/serializer/portable_pixmap_image_serializer_test.cpp"
 )

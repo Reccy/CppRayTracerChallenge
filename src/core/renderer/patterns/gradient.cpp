@@ -18,10 +18,9 @@ Color Gradient::colorB() const
 
 Color Gradient::colorAt(Point localPosition) const
 {
-	Color difference = m_colorB - m_colorA;
 	float fraction = static_cast<float>(localPosition.x()) - floor(static_cast<float>(localPosition.x()));
 
-	return m_colorA + difference * fraction;
+	return Color::blend(m_colorA, m_colorB, fraction);
 }
 
 bool Gradient::operator==(const Gradient& other) const

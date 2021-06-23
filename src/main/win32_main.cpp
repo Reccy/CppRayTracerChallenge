@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include <ShlObj.h>
 #include <tchar.h>
+#include <chrono>
 
 #include "math/vector.h"
 #include "math/point.h"
@@ -26,31 +27,63 @@
 #include "renderer/patterns/solid_color.h"
 #include "renderer/patterns/stripe.h"
 #include "renderer/patterns/ring.h"
+#include "renderer/patterns/gradient.h"
 #include "renderer/patterns/radial_gradient.h"
+#include "renderer/patterns/checker.h"
+#include "renderer/patterns/masked.h"
 #include "serializer/base_image_serializer.h"
 #include "serializer/portable_pixmap_image_serializer.h"
 
 using namespace CppRayTracerChallenge::Core;
+using namespace CppRayTracerChallenge::Core::Serializer;
 
-Renderer::Shape buildFloor(const Renderer::Material& mat)
+using namespace Renderer;
+using namespace Renderer::Patterns;
+
+using Graphics::Color;
+using Graphics::Image;
+
+void log(std::string message)
 {
-	auto shape = std::make_shared<Math::Plane>(Math::Plane());
+	std::cout << message << std::endl;
+}
+
+std::shared_ptr<Renderer::Pattern> buildFloorPattern()
+{
+	std::shared_ptr<Pattern> a = std::make_shared<Stripe>(Color(0.5f, 0, 0), Color(0.2f, 0, 0));
+	a->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
+
+	std::shared_ptr<Pattern> b = std::make_shared<Stripe>(Color(0, 0, 0.5f), Color(0, 0, 0.2f));
+	b->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
+
+	std::shared_ptr<Pattern> pattern = std::make_shared<Masked<Checker>>(a, b);
+	pattern->transform(Math::Transform().rotate(0,23,0).translate(0,0.01f,0));
+
+	return pattern;
+}
+
+Renderer::Shape buildFloor()
+{
+	auto shape = std::make_shared<Plane>();
 	Renderer::Shape floor = Renderer::Shape(shape);
-	Math::Transform floorTransform = Math::Transform()
+	Transform floorTransform = Transform()
 		.scale(10, 0.01, 10);
-	floor.material(mat);
+	Material bgMaterial = Material();
+	bgMaterial.pattern = buildFloorPattern();
+	bgMaterial.specular = 0.1f;
+	floor.material(bgMaterial);
 	floor.transform(floorTransform);
 	return floor;
 }
 
 Renderer::Shape buildMiddleSphere()
 {
-	auto shape = std::make_shared<Renderer::Sphere>(Renderer::Sphere());
+	auto shape = std::make_shared<Sphere>(Sphere());
 	Renderer::Shape sphere = Renderer::Shape(shape);
 	Math::Transform transform = Math::Transform()
 		.translate(-0.5, 1, 0.5);
-	Renderer::Material material = Renderer::Material();
-	material.pattern = std::make_shared<Renderer::Patterns::SolidColor>(Renderer::Patterns::SolidColor(Graphics::Color(0.1f, 1.0f, 0.5f)));
+	Renderer::Material material = Material();
+	material.pattern = std::make_shared<SolidColor>(Color(0.1f, 1.0f, 0.5f));
 	material.diffuse = 0.7f;
 	material.specular = 0.3f;
 	sphere.material(material);
@@ -61,14 +94,14 @@ Renderer::Shape buildMiddleSphere()
 
 Renderer::Shape buildRightSphere()
 {
-	auto shape = std::make_shared<Renderer::Sphere>(Renderer::Sphere());
+	auto shape = std::make_shared<Sphere>(Sphere());
 	Renderer::Shape sphere = Renderer::Shape(shape);
-	Math::Transform transform = Math::Transform()
+	Transform transform = Transform()
 		.scale(0.5, 0.5, 0.5)
 		.translate(1.5, 0.5, -0.5);
-	Renderer::Material material = Renderer::Material();
-	material.pattern = std::make_shared<Renderer::Patterns::Stripe>(Graphics::Color(0.5f, 1.0f, 0.1f), Graphics::Color(0.7f, 0.02f, 0.6f));
-	material.pattern->transform(Math::Transform().rotate(66, 283, 1).scale(2, 1.3, 0.2));
+	Material material = Material();
+	material.pattern = std::make_shared<Stripe>(Color(0.5f, 1.0f, 0.1f), Color(0.7f, 0.02f, 0.6f));
+	material.pattern->transform(Transform().rotate(66, 283, 1).scale(2, 1.3, 0.2));
 	material.diffuse = 0.7f;
 	material.specular = 0.3f;
 	sphere.material(material);
@@ -79,14 +112,14 @@ Renderer::Shape buildRightSphere()
 
 Renderer::Shape buildLeftSphere()
 {
-	auto shape = std::make_shared<Renderer::Sphere>(Renderer::Sphere());
+	auto shape = std::make_shared<Sphere>(Sphere());
 	Renderer::Shape sphere = Renderer::Shape(shape);
-	Math::Transform transform = Math::Transform()
+	Transform transform = Transform()
 		.scale(0.33, 0.33, 0.33)
 		.translate(-1.5, 0.33, -0.75);
-	Renderer::Material material = Renderer::Material();
-	material.pattern = std::make_shared<Renderer::Patterns::Stripe>(Graphics::Color(1.0f, 0.8f, 0.1f), Graphics::Color(0.9f, 0.2f, 0.5f));
-	material.pattern->transform(Math::Transform().rotate(33, 24, 93).scale(0.2, 1.3, 0.2));
+	Material material = Material();
+	material.pattern = std::make_shared<Stripe>(Color(1.0f, 0.8f, 0.1f), Color(0.9f, 0.2f, 0.5f));
+	material.pattern->transform(Transform().rotate(33, 24, 93).scale(0.2, 1.3, 0.2));
 	material.diffuse = 0.7f;
 	material.specular = 0.3f;
 	sphere.material(material);
@@ -95,41 +128,73 @@ Renderer::Shape buildLeftSphere()
 	return sphere;
 }
 
-Renderer::PointLight buildLight()
+PointLight buildLight()
 {
-	return Renderer::PointLight({ -10, 10, -10 }, Graphics::Color(1, 1, 1));
+	return PointLight({ -10, 10, -10 }, Color(1, 1, 1));
 }
 
-Graphics::Image doRealRender()
+Image doRealRender()
 {
-	std::cout << "Rendering scene..." << std::endl;
+	log("Initializing...");
 
-	Renderer::Material bgMaterial = Renderer::Material();
-	bgMaterial.pattern = std::make_shared<Renderer::Patterns::RadialGradient>(Graphics::Color(1,0, 0), Graphics::Color(0, 1, 0));
-	bgMaterial.pattern->transform(Math::Transform().scale(0.25f, 0.25f, 0.25f).rotate(0, 45, 0));
-	bgMaterial.specular = 0.1f;
+	log("Building Floor...");
+	Renderer::Shape floor = buildFloor();
 
-	Renderer::Shape floor = buildFloor(bgMaterial);
+	log("Building Middle Sphere...");
 	Renderer::Shape middleSphere = buildMiddleSphere();
-	Renderer::Shape rightSphere = buildRightSphere();
-	Renderer::Shape leftSphere = buildLeftSphere();
-	Renderer::PointLight light = buildLight();
 
-	Renderer::World world = Renderer::World();
+	log("Building Right Sphere...");
+	Renderer::Shape rightSphere = buildRightSphere();
+
+	log("Building Left Sphere...");
+	Renderer::Shape leftSphere = buildLeftSphere();
+
+	log("Building Light...");
+	PointLight light = buildLight();
+
+	log("Setting up world...");
+	World world = World();
+
+	log("Adding Floor to World...");
 	world.addObject(floor);
+
+	log("Adding Middle Sphere to World...");
 	world.addObject(middleSphere);
+
+	log("Adding Right Sphere to World...");
 	world.addObject(rightSphere);
+
+	log("Adding Left Sphere to World...");
 	world.addObject(leftSphere);
+
+	log("Adding Light to World...");
 	world.addLight(light);
 
-	Renderer::Camera camera = Renderer::Camera(300, 150, 75);
-	auto cameraTransform = Renderer::Camera::viewMatrix({ 0, 1.5, -5 }, { 0,1,0 }, Math::Vector::up());
+	int width = 300;
+	int height = 150;
+	int fov = 75;
+
+	log("Setting up camera: " + std::to_string(width) + ", " + std::to_string(height) + ", " + std::to_string(fov));
+	Camera camera = Camera(width, height, fov);
+	auto cameraTransform = Camera::viewMatrix({ 0, 1.5, -5 }, { 0,1,0 }, Vector::up());
 	camera.transform(cameraTransform);
 
-	return camera.render(world);
+	log("Initialization Done");
+
+	auto startTime = std::chrono::high_resolution_clock::now();
+
+	log("Rendering scene -> Start: " + std::to_string(startTime.time_since_epoch().count()));
+	auto result = camera.render(world);
+
+	auto endTime = std::chrono::high_resolution_clock::now();
+	auto elapsed = endTime - startTime;
+
+	log("Render complete -> End: " + std::to_string(endTime.time_since_epoch().count()) + ", Elapsed: " + std::to_string(elapsed.count()));
+
+	return result;
 }
 
-void writeImage(Graphics::Image image, Serializer::BaseImageSerializer& serializer)
+void writeImage(Image image, BaseImageSerializer& serializer)
 {
 	serializer.serialize(image);
 
@@ -162,8 +227,8 @@ void writeImage(Graphics::Image image, Serializer::BaseImageSerializer& serializ
 
 int main()
 {
-	Graphics::Image image = doRealRender();
-	Serializer::PortablePixmapImageSerializer serializer;
+	Image image = doRealRender();
+	PortablePixmapImageSerializer serializer;
 
 	writeImage(image, serializer);
 

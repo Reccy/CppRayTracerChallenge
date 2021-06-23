@@ -88,6 +88,26 @@ TEST(CppRayTracerChallenge_Core_Graphics_Color, multiply_two_colors_together)
 	EXPECT_EQ(colorA * colorB, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Graphics_Color, blend_two_colors_togethe_monochrome)
+{
+	Color colorA(1.0f, 1.0f, 1.0f);
+	Color colorB(0.0f, 0.0f, 0.0f);
+
+	Color expectedResult(0.5f, 0.5f, 0.5f);
+
+	EXPECT_EQ(Color::blend(colorA, colorB, 0.5f), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Graphics_Color, blend_two_colors_together_rgb)
+{
+	Color colorA(0.2f, 0.4f, 0.1f);
+	Color colorB(0.0f, 0.0f, 0.3f);
+
+	Color expectedResult(0.1f, 0.2f, 0.2f);
+
+	EXPECT_EQ(Color::blend(colorA, colorB, 0.5f), expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Graphics_Color, ostream_will_show_r_g_b_components)
 {
 	Color color(0.5f, 0.3f, 0.1f);

@@ -18,14 +18,12 @@ Graphics::Color RadialGradient::colorB() const
 
 Graphics::Color RadialGradient::colorAt(Math::Point position) const
 {
-	Graphics::Color difference = m_colorB - m_colorA;
-
 	Math::Point realPos = Math::Point(position.x(), 0, position.z());
 
 	double distance = (realPos - Math::Point(0, 0, 0)).magnitude();
 	float fraction = static_cast<float>(std::fmod(distance, 1));
 
-	return m_colorA + difference * fraction;
+	return Graphics::Color::blend(m_colorA, m_colorB, fraction);
 }
 
 bool RadialGradient::operator==(const RadialGradient& other) const

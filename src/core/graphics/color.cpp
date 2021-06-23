@@ -31,6 +31,14 @@ float Color::blue() const
 	return m_blue;
 }
 
+Color Color::blend(const Color& a, const Color& b, float t)
+{
+	Color difference = b - a;
+
+	return a + difference * t;
+}
+
+
 bool Color::operator==(const Color& other) const
 {
 	return Comparison::equal(m_red, other.m_red) &&

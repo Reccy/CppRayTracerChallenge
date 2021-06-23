@@ -35,6 +35,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		const Math::Transform transform() const;
 
 		virtual bool operator==(const Pattern& other) const = 0;
+
 		bool operator!=(const Pattern& other) const
 		{
 			return !(*this == other);

@@ -11,10 +11,10 @@ namespace CppRayTracerChallenge::Core::Helpers
 			if (typeid(other) != typeid(Derived))
 				return false;
 
-			const Derived& a = static_cast<const Derived&>(*this);
-			const Derived& b = static_cast<const Derived&>(other);
+			const Derived& derivedA = static_cast<const Derived&>(*this);
+			const Derived& derivedB = static_cast<const Derived&>(other);
 
-			return a == b;
+			return derivedA == derivedB;
 		}
 	};
 }

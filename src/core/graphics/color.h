@@ -10,7 +10,8 @@ namespace CppRayTracerChallenge::Core::Graphics
 		Color() = delete;
 
 		/// <summary>
-		/// Constructs a Color with red, green and blue channels
+		/// Constructs a Color with red, green and blue channels.
+		/// All channels have a range of 0.0f (minimum) to 1.0f (max) intensity.
 		/// </summary>
 		/// <param name="red">Red channel</param>
 		/// <param name="green">Green channel</param>
@@ -42,6 +43,15 @@ namespace CppRayTracerChallenge::Core::Graphics
 		/// Returns the value of the blue channel
 		/// </summary>
 		float blue() const;
+
+		/// <summary>
+		/// Linearly interpolates between the two colors
+		/// </summary>
+		/// <param name="a">Color A</param>
+		/// <param name="b">Color B</param>
+		/// <param name="t">Float for combining a and b</param>
+		/// <returns>Returns the blended color</returns>
+		static Color blend(const Color& a, const Color& b, float t);
 
 		bool operator==(const Color& other) const;
 		bool operator!=(const Color& other) const;
