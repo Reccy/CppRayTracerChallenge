@@ -43,6 +43,7 @@ using namespace Renderer::Patterns;
 
 using Graphics::Color;
 using Graphics::Image;
+using Graphics::Canvas;
 
 void log(std::string message)
 {
@@ -61,6 +62,7 @@ std::shared_ptr<Renderer::Pattern> buildFloorPattern()
 	masked->transform(Math::Transform().rotate(0,23,0).translate(0,0.01f,0));
 
 	std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
+	pattern->transform(Math::Transform().scale(0.5, 0.5, 0.5));
 	return pattern;
 }
 
@@ -172,9 +174,9 @@ Image doRealRender()
 	log("Adding Light to World...");
 	world.addLight(light);
 
-	int width = 150;
-	int height = 75;
-	int fov = 75;
+	int width = 300;
+	int height = 200;
+	int fov = 70;
 
 	log("Setting up camera: " + std::to_string(width) + ", " + std::to_string(height) + ", " + std::to_string(fov));
 	Camera camera = Camera(width, height, fov);
@@ -227,9 +229,46 @@ void writeImage(Image image, BaseImageSerializer& serializer)
 	}
 }
 
+Image generatePerlin()
+{
+	PerlinNoise perlin = PerlinNoise();
+
+	int canvasWidth = 1080;
+	int canvasHeight = 1080;
+
+	Canvas canvas = Canvas(canvasWidth, canvasHeight);
+
+	double offsetX = 2348;
+	double offsetY = 512304;
+	double scale = 0.1;
+
+	for (int x = 0; x < canvas.width(); ++x)
+	{
+		//std::cout << "ROW " << std::to_string(x) << "\n";
+
+		for (int y = 0; y < canvas.height(); ++y)
+		{
+			double xArg = static_cast<double>(x) / (canvasWidth * scale) + offsetX;
+			double yArg = 2343.2;
+			double zArg = static_cast<double>(y) / (canvasHeight * scale) + offsetY;
+
+			//std::cout << std::to_string(y) << ":: " << std::to_string(xArg) << ", " << std::to_string(yArg) << ", " << std::to_string(zArg) << "\n";
+
+			double value = perlin.at({ xArg, yArg, zArg });
+
+			Color color = Color(static_cast<float>(value), static_cast<float>(value), static_cast<float>(value));
+
+			canvas.writePixel(x, y, color);
+		}
+	}
+
+	return static_cast<Image>(canvas);
+}
+
 int main()
 {
 	Image image = doRealRender();
+	//Image image = generatePerlin();
 	PortablePixmapImageSerializer serializer;
 
 	writeImage(image, serializer);

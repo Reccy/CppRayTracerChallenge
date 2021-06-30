@@ -32,6 +32,13 @@ namespace CppRayTracerChallenge::Core::Math
 		Vector(const double x, const double y, const double z);
 
 		/// <summary>
+		/// Constructs a Vector with x, y and z components, where z is 0
+		/// </summary>
+		/// <param name="x">X component</param>
+		/// <param name="y">Y component</param>
+		Vector(const double x, const double y);
+
+		/// <summary>
 		/// Creates a vector where all components are 0
 		/// </summary>
 		/// <returns>Zero Vector</returns>

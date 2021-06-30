@@ -13,5 +13,5 @@ TEST(CppRayTracerChallenge_Core_Renderer_Patterns_Perturbed, create_perturbed_by
 	std::shared_ptr<Pattern> solidColorPtr = std::make_shared<SolidColor>(Graphics::Color::white());
 	Perturbed pattern = Perturbed(solidColorPtr);
 
-	EXPECT_EQ(pattern.colorAt({ 0,0,0 }), Graphics::Color::white());
+	EXPECT_EQ(pattern.colorAt({ 0,0,0 }), Graphics::Color(0.5f, 0.5f, 0.5f));
 }

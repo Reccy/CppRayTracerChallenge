@@ -13,6 +13,15 @@ TEST(CppRayTracerChallenge_Core_Math_Vector, construct_default)
 	EXPECT_EQ(vector, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Vector, construct_2d)
+{
+	Vector vector = Vector(1, 2);
+
+	Vector expectedResult = Vector(1, 2, 0);
+
+	EXPECT_EQ(vector, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Vector, construct_from_tuple)
 {
 	Tuple<double> tuple(1, 2, 3, 4);

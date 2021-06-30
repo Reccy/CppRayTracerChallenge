@@ -8,6 +8,8 @@ Vector::Vector(const Tuple tuple) : Tuple(tuple.x(), tuple.y(), tuple.z(), 0) {}
 
 Vector::Vector(const double x, const double y, const double z) : Tuple(x, y, z, 0) {};
 
+Vector::Vector(const double x, const double y) : Tuple(x, y, 0, 0) {};
+
 Vector Vector::zero()
 {
 	return Vector(0, 0, 0);

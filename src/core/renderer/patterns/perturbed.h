@@ -2,6 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_PERTURBED
 
 #include "../pattern.h"
+#include "../../math/perlin_noise.h"
 #include "../../helpers/polymorphic_comparable.h"
 
 namespace CppRayTracerChallenge::Core::Renderer::Patterns
@@ -19,6 +20,7 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		bool operator==(const Perturbed& other) const;
 	private:
 		const std::shared_ptr<Pattern> m_pattern;
+		const Math::PerlinNoise m_perlin;
 	};
 }
 
