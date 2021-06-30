@@ -30,6 +30,7 @@
 #include "renderer/patterns/gradient.h"
 #include "renderer/patterns/radial_gradient.h"
 #include "renderer/patterns/checker.h"
+#include "renderer/patterns/perturbed.h"
 #include "renderer/patterns/masked.h"
 #include "serializer/base_image_serializer.h"
 #include "serializer/portable_pixmap_image_serializer.h"
@@ -56,9 +57,10 @@ std::shared_ptr<Renderer::Pattern> buildFloorPattern()
 	std::shared_ptr<Pattern> b = std::make_shared<Stripe>(Color(0, 0, 0.5f), Color(0, 0, 0.2f));
 	b->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
 
-	std::shared_ptr<Pattern> pattern = std::make_shared<Masked<Checker>>(a, b);
-	pattern->transform(Math::Transform().rotate(0,23,0).translate(0,0.01f,0));
+	std::shared_ptr<Pattern> masked = std::make_shared<Masked<Checker>>(a, b);
+	masked->transform(Math::Transform().rotate(0,23,0).translate(0,0.01f,0));
 
+	std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
 	return pattern;
 }
 
@@ -170,8 +172,8 @@ Image doRealRender()
 	log("Adding Light to World...");
 	world.addLight(light);
 
-	int width = 300;
-	int height = 150;
+	int width = 150;
+	int height = 75;
 	int fov = 75;
 
 	log("Setting up camera: " + std::to_string(width) + ", " + std::to_string(height) + ", " + std::to_string(fov));

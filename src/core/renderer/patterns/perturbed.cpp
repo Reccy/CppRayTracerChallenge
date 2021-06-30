@@ -7,7 +7,8 @@ Perturbed::Perturbed(const std::shared_ptr<Pattern> pattern) : m_pattern(pattern
 
 Graphics::Color Perturbed::colorAt(Math::Point position) const
 {
-	return m_pattern->colorAt(position);
+	Math::Point patternLocal = m_pattern->transform().invert() * position;
+	return m_pattern->colorAt(patternLocal);
 };
 
 bool Perturbed::operator==(const Perturbed& other) const
