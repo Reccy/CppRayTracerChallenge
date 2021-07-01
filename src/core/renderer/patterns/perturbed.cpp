@@ -9,9 +9,23 @@ Graphics::Color Perturbed::colorAt(Math::Point position) const
 {
 	Math::Point patternLocal = m_pattern->transform().invert() * position;
 
-	double perlinValue = m_perlin.at(patternLocal);
+	double xIn = patternLocal.x();
+	double yIn = patternLocal.y();
+	double zIn = patternLocal.z();
 
-	return Graphics::Color((float)perlinValue, (float)perlinValue, (float)perlinValue);
+	double x = xIn / (m_sampleWidth * m_scale) + m_offsetX;
+	double y = yIn / (m_sampleHeight * m_scale) + m_offsetY;
+	double z = zIn / (m_sampleDepth * m_scale) + m_offsetZ;
+
+	float xNoise = static_cast<float>(m_perlin.at({ x, y, z }));
+	float yNoise = static_cast<float>(m_perlin.at({ z, x, y }));
+	float zNoise = static_cast<float>(m_perlin.at({ y, z, x }));
+
+	float xOut = static_cast<float>(xIn) + (xNoise * m_intensity);
+	float yOut = static_cast<float>(yIn) + (yNoise * m_intensity);
+	float zOut = static_cast<float>(zIn) + (zNoise * m_intensity);
+
+	return m_pattern->colorAt({ xOut, yOut, zOut });
 };
 
 bool Perturbed::operator==(const Perturbed& other) const

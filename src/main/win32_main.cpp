@@ -62,7 +62,6 @@ std::shared_ptr<Renderer::Pattern> buildFloorPattern()
 	masked->transform(Math::Transform().rotate(0,23,0).translate(0,0.01f,0));
 
 	std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
-	pattern->transform(Math::Transform().scale(0.5, 0.5, 0.5));
 	return pattern;
 }
 
@@ -174,8 +173,8 @@ Image doRealRender()
 	log("Adding Light to World...");
 	world.addLight(light);
 
-	int width = 300;
-	int height = 200;
+	int width = 600;
+	int height = 500;
 	int fov = 70;
 
 	log("Setting up camera: " + std::to_string(width) + ", " + std::to_string(height) + ", " + std::to_string(fov));
@@ -244,19 +243,13 @@ Image generatePerlin()
 
 	for (int x = 0; x < canvas.width(); ++x)
 	{
-		//std::cout << "ROW " << std::to_string(x) << "\n";
-
 		for (int y = 0; y < canvas.height(); ++y)
 		{
-			double xArg = static_cast<double>(x) / (canvasWidth * scale) + offsetX;
-			double yArg = 2343.2;
-			double zArg = static_cast<double>(y) / (canvasHeight * scale) + offsetY;
+			float r = (float)perlin.at({ static_cast<double>(x) / (canvasWidth * scale) + offsetX, static_cast<double>(y) / (canvasHeight * scale) + offsetY, 0 });
+			float g = (float)perlin.at({ static_cast<double>(x) / (canvasWidth * scale) + offsetX, 0, static_cast<double>(y) / (canvasHeight * scale) + offsetY });
+			float b = (float)perlin.at({ 0, static_cast<double>(x) / (canvasWidth * scale) + offsetX, static_cast<double>(y) / (canvasHeight * scale) + offsetY });
 
-			//std::cout << std::to_string(y) << ":: " << std::to_string(xArg) << ", " << std::to_string(yArg) << ", " << std::to_string(zArg) << "\n";
-
-			double value = perlin.at({ xArg, yArg, zArg });
-
-			Color color = Color(static_cast<float>(value), static_cast<float>(value), static_cast<float>(value));
+			Color color = Color(r, g, b);
 
 			canvas.writePixel(x, y, color);
 		}
