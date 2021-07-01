@@ -21,6 +21,10 @@ var dir_e235ce117329fd16b24743c07cd49299 =
       [ "MatrixUndefinedDeterminantException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception" ],
       [ "MatrixUndefinedProductException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception" ]
     ] ],
+    [ "perlin_noise.cpp", "perlin__noise_8cpp.html", "perlin__noise_8cpp" ],
+    [ "perlin_noise.h", "perlin__noise_8h.html", [
+      [ "PerlinNoise", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_perlin_noise.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_perlin_noise" ]
+    ] ],
     [ "plane.cpp", "plane_8cpp.html", null ],
     [ "plane.h", "plane_8h.html", [
       [ "Plane", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane" ]

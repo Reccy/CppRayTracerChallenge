@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['pattern_284',['Pattern',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html',1,'CppRayTracerChallenge::Core::Renderer']]],
-  ['plane_285',['Plane',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html',1,'CppRayTracerChallenge::Core::Math']]],
-  ['point_286',['Point',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html',1,'CppRayTracerChallenge::Core::Math']]],
-  ['pointlight_287',['PointLight',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html',1,'CppRayTracerChallenge::Core::Renderer']]],
-  ['polymorphiccomparable_288',['PolymorphicComparable',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html',1,'CppRayTracerChallenge::Core::Helpers']]],
-  ['polymorphiccomparable_3c_20pattern_2c_20solidcolor_20_3e_289',['PolymorphicComparable&lt; Pattern, SolidColor &gt;',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html',1,'CppRayTracerChallenge::Core::Helpers']]],
-  ['polymorphiccomparable_3c_20pattern_2c_20stripe_20_3e_290',['PolymorphicComparable&lt; Pattern, Stripe &gt;',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html',1,'CppRayTracerChallenge::Core::Helpers']]],
-  ['polymorphiccomparable_3c_20pattern_2c_20testpattern_20_3e_291',['PolymorphicComparable&lt; Pattern, TestPattern &gt;',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html',1,'CppRayTracerChallenge::Core::Helpers']]],
-  ['portablepixmapimageserializer_292',['PortablePixmapImageSerializer',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html',1,'CppRayTracerChallenge::Core::Serializer']]]
+  ['masked_322',['Masked',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_masked.html',1,'CppRayTracerChallenge::Core::Renderer::Patterns']]],
+  ['material_323',['Material',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html',1,'CppRayTracerChallenge::Core::Renderer']]],
+  ['matrix_324',['Matrix',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html',1,'CppRayTracerChallenge::Core::Math']]],
+  ['matrix_3c_20double_20_3e_325',['Matrix&lt; double &gt;',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html',1,'CppRayTracerChallenge::Core::Math']]],
+  ['matrixinitialdatasizemismatch_326',['MatrixInitialDataSizeMismatch',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_initial_data_size_mismatch.html',1,'CppRayTracerChallenge::Core::Math']]],
+  ['matrixnotinvertibleexception_327',['MatrixNotInvertibleException',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_not_invertible_exception.html',1,'CppRayTracerChallenge::Core::Math']]],
+  ['matrixtoosmallexception_328',['MatrixTooSmallException',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_too_small_exception.html',1,'CppRayTracerChallenge::Core::Math']]],
+  ['matrixundefineddeterminantexception_329',['MatrixUndefinedDeterminantException',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception.html',1,'CppRayTracerChallenge::Core::Math']]],
+  ['matrixundefinedproductexception_330',['MatrixUndefinedProductException',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception.html',1,'CppRayTracerChallenge::Core::Math']]]
 ];

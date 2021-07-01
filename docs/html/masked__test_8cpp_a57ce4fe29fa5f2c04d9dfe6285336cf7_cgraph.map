@@ -1,0 +1,7 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node1" title=" " alt="" coords="5,60,60,87"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_masked.html#a6be8c097d07ca648d993699ca3b9cfed" title=" " alt="" coords="108,5,283,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="115,85,276,141"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#abb0a62eeff190aa127a52a0cc78e83e7" title="Linearly interpolates between the two colors" alt="" coords="331,5,492,61"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="331,85,492,141"/>
+</map>

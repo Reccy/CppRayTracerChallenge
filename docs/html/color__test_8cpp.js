@@ -1,6 +1,8 @@
 var color__test_8cpp =
 [
     [ "TEST", "color__test_8cpp.html#a6957f4750625add915f9c3e232ee40ce", null ],
+    [ "TEST", "color__test_8cpp.html#acf6472b129294261555b0c3ed5be6180", null ],
+    [ "TEST", "color__test_8cpp.html#a16a3995ed6a5a5162b5909b80c59c149", null ],
     [ "TEST", "color__test_8cpp.html#a2f5606c6b9746000ac36111be48fe3b6", null ],
     [ "TEST", "color__test_8cpp.html#a42d2a7bb1d92d928637a994c8aed0eda", null ],
     [ "TEST", "color__test_8cpp.html#a1de483be4a1dd77b6850e7b91d302aa6", null ],

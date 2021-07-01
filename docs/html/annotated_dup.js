@@ -20,6 +20,7 @@ var annotated_dup =
           [ "MatrixInitialDataSizeMismatch", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_initial_data_size_mismatch.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_initial_data_size_mismatch" ],
           [ "MatrixUndefinedDeterminantException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception" ],
           [ "MatrixUndefinedProductException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception" ],
+          [ "PerlinNoise", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_perlin_noise.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_perlin_noise" ],
           [ "Plane", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane" ],
           [ "Point", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point" ],
           [ "Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray" ],
@@ -31,6 +32,12 @@ var annotated_dup =
         ] ],
         [ "Renderer", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html", [
           [ "Patterns", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns.html", [
+            [ "Checker", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_checker.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_checker" ],
+            [ "Gradient", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_gradient.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_gradient" ],
+            [ "Masked", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_masked.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_masked" ],
+            [ "Perturbed", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_perturbed.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_perturbed" ],
+            [ "RadialGradient", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_radial_gradient.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_radial_gradient" ],
+            [ "Ring", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_ring.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_ring" ],
             [ "SolidColor", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_solid_color.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_solid_color" ],
             [ "Stripe", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_stripe.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_stripe" ],
             [ "TestPattern", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_test_pattern.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_test_pattern" ]

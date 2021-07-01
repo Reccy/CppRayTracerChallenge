@@ -99,7 +99,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad5f44c1fa19c0010b3546e0c72ed09c5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5">Color</a> ()=delete</td></tr>
 <tr class="separator:ad5f44c1fa19c0010b3546e0c72ed09c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a060c5585ae19809db36b58c4d169a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a0a060c5585ae19809db36b58c4d169a1">Color</a> (const float <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a95098c6e8933aa258cac20b61cf1c70b">red</a>, const float <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a5dcccf7b529ee13c0b5850a29e1df8da">green</a>, const float <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ab3970dc118e7c6d4d67927cc96d26e1b">blue</a>)</td></tr>
-<tr class="memdesc:a0a060c5585ae19809db36b58c4d169a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> with red, green and blue channels  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a0a060c5585ae19809db36b58c4d169a1">More...</a><br /></td></tr>
+<tr class="memdesc:a0a060c5585ae19809db36b58c4d169a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> with red, green and blue channels. All channels have a range of 0.0f (minimum) to 1.0f (max) intensity.  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a0a060c5585ae19809db36b58c4d169a1">More...</a><br /></td></tr>
 <tr class="separator:a0a060c5585ae19809db36b58c4d169a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95098c6e8933aa258cac20b61cf1c70b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a95098c6e8933aa258cac20b61cf1c70b">red</a> () const</td></tr>
 <tr class="memdesc:a95098c6e8933aa258cac20b61cf1c70b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value of the red channel  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a95098c6e8933aa258cac20b61cf1c70b">More...</a><br /></td></tr>
@@ -131,6 +131,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a154c895b965e8aa00cc42e9ad53d8b75"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a154c895b965e8aa00cc42e9ad53d8b75">white</a> ()</td></tr>
 <tr class="memdesc:a154c895b965e8aa00cc42e9ad53d8b75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a white color  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a154c895b965e8aa00cc42e9ad53d8b75">More...</a><br /></td></tr>
 <tr class="separator:a154c895b965e8aa00cc42e9ad53d8b75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb0a62eeff190aa127a52a0cc78e83e7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#abb0a62eeff190aa127a52a0cc78e83e7">blend</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> &amp;a, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> &amp;b, float t)</td></tr>
+<tr class="memdesc:abb0a62eeff190aa127a52a0cc78e83e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linearly interpolates between the two colors  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#abb0a62eeff190aa127a52a0cc78e83e7">More...</a><br /></td></tr>
+<tr class="separator:abb0a62eeff190aa127a52a0cc78e83e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -182,7 +185,7 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="lighting__test_8cpp.html#a69805080c0b2def8b80177007b13a991" title=" " alt="" coords="524,433,593,460"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="255,16,425,72"/>
 <area shape="rect" href="world__test_8cpp.html#ab2d8493dc183b724b5d1a18686359bcb" title=" " alt="" coords="313,96,367,123"/>
-<area shape="rect" href="win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,5,207,32"/>
+<area shape="rect" href="win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="104,5,207,32"/>
 <area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,56,183,83"/>
 <area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
 <area shape="rect" href="lighting__test_8cpp.html#a0e283b70b8912ffe2b8900567c61fd4a" title=" " alt="" coords="305,273,375,300"/>
@@ -225,7 +228,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> with red, green and blue channels </p>
+<p>Constructs a <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> with red, green and blue channels. All channels have a range of 0.0f (minimum) to 1.0f (max) intensity. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">red</td><td>Red channel</td></tr>
@@ -289,11 +292,79 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="lighting__test_8cpp.html#a69805080c0b2def8b80177007b13a991" title=" " alt="" coords="524,389,593,416"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="255,16,425,72"/>
 <area shape="rect" href="world__test_8cpp.html#ab2d8493dc183b724b5d1a18686359bcb" title=" " alt="" coords="313,96,367,123"/>
-<area shape="rect" href="win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,5,207,32"/>
+<area shape="rect" href="win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="104,5,207,32"/>
 <area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,56,183,83"/>
 <area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
 <area shape="rect" href="lighting__test_8cpp.html#a0e283b70b8912ffe2b8900567c61fd4a" title=" " alt="" coords="305,273,375,300"/>
 <area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="128,208,183,235"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abb0a62eeff190aa127a52a0cc78e83e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb0a62eeff190aa127a52a0cc78e83e7">&#9670;&nbsp;</a></span>blend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> Color::blend </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> &amp;&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Linearly interpolates between the two colors </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> A</td></tr>
+    <tr><td class="paramname">b</td><td><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> B</td></tr>
+    <tr><td class="paramname">t</td><td>Float for combining a and b</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the blended color</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="color_8cpp_source.html#l00034">34</a> of file <a class="el" href="color_8cpp_source.html">color.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color_abb0a62eeff190aa127a52a0cc78e83e7_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color_abb0a62eeff190aa127a52a0cc78e83e7_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color_abb0a62eeff190aa127a52a0cc78e83e7_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color_abb0a62eeff190aa127a52a0cc78e83e7_icgraph">
+<area shape="rect" title="Linearly interpolates between the two colors" alt="" coords="331,85,492,141"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_masked.html#a6be8c097d07ca648d993699ca3b9cfed" title=" " alt="" coords="108,5,283,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_radial_gradient.html#a4c25fb5bd6945609f462852014e38616" title=" " alt="" coords="108,85,283,141"/>
+<area shape="rect" href="color__test_8cpp.html#acf6472b129294261555b0c3ed5be6180" title=" " alt="" coords="168,165,223,192"/>
+<area shape="rect" href="masked__test_8cpp.html#a57ce4fe29fa5f2c04d9dfe6285336cf7" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" href="radial__gradient__test_8cpp.html#aeefea0d2273ec748ea7a722fca18612a" title=" " alt="" coords="5,100,60,127"/>
 </map>
 </div>
 
@@ -382,7 +453,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="color_8cpp_source.html#l00041">41</a> of file <a class="el" href="color_8cpp_source.html">color.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="color_8cpp_source.html#l00049">49</a> of file <a class="el" href="color_8cpp_source.html">color.cpp</a>.</p>
 
 </div>
 </div>
@@ -402,7 +473,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="color_8cpp_source.html#l00073">73</a> of file <a class="el" href="color_8cpp_source.html">color.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="color_8cpp_source.html#l00081">81</a> of file <a class="el" href="color_8cpp_source.html">color.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -434,7 +505,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="color_8cpp_source.html#l00064">64</a> of file <a class="el" href="color_8cpp_source.html">color.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="color_8cpp_source.html#l00072">72</a> of file <a class="el" href="color_8cpp_source.html">color.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -466,7 +537,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="color_8cpp_source.html#l00046">46</a> of file <a class="el" href="color_8cpp_source.html">color.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="color_8cpp_source.html#l00054">54</a> of file <a class="el" href="color_8cpp_source.html">color.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -498,7 +569,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="color_8cpp_source.html#l00055">55</a> of file <a class="el" href="color_8cpp_source.html">color.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="color_8cpp_source.html#l00063">63</a> of file <a class="el" href="color_8cpp_source.html">color.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -530,7 +601,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="color_8cpp_source.html#l00034">34</a> of file <a class="el" href="color_8cpp_source.html">color.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="color_8cpp_source.html#l00042">42</a> of file <a class="el" href="color_8cpp_source.html">color.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

@@ -1,8 +1,8 @@
 <map id="src/core/serializer/base_image_serializer.h" name="src/core/serializer/base_image_serializer.h">
-<area shape="rect" id="node1" title=" " alt="" coords="109,5,276,47"/>
-<area shape="rect" id="node2" href="$base__image__serializer_8cpp.html" title=" " alt="" coords="5,102,185,143"/>
-<area shape="rect" id="node3" href="$portable__pixmap__image__serializer_8h.html" title=" " alt="" coords="210,95,373,151"/>
-<area shape="rect" id="node4" href="$portable__pixmap__image__serializer_8cpp.html" title=" " alt="" coords="19,199,182,255"/>
-<area shape="rect" id="node5" href="$win32__main_8cpp.html" title=" " alt="" coords="207,213,376,240"/>
-<area shape="rect" id="node6" href="$portable__pixmap__image__serializer__test_8cpp.html" title=" " alt="" coords="401,199,563,255"/>
+<area shape="rect" id="node1" title=" " alt="" coords="209,5,375,47"/>
+<area shape="rect" id="node2" href="$base__image__serializer_8cpp.html" title=" " alt="" coords="6,102,186,143"/>
+<area shape="rect" id="node3" href="$portable__pixmap__image__serializer_8h.html" title=" " alt="" coords="211,95,373,151"/>
+<area shape="rect" id="node5" href="$win32__main_8cpp.html" title=" " alt="" coords="379,213,549,240"/>
+<area shape="rect" id="node4" href="$portable__pixmap__image__serializer_8cpp.html" title=" " alt="" coords="5,199,168,255"/>
+<area shape="rect" id="node6" href="$portable__pixmap__image__serializer__test_8cpp.html" title=" " alt="" coords="192,199,355,255"/>
 </map>

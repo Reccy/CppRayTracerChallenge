@@ -1,0 +1,8 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node1" title=" " alt="" coords="5,140,60,167"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="115,5,276,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_ring.html#a1ee68f61eb868087510afb7c27d539d2" title="Returns Color A" alt="" coords="108,85,283,141"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_ring.html#a4b3c5e504d9eca14d4cc53ddf1cf0939" title="Returns Color B" alt="" coords="108,165,283,221"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a154c895b965e8aa00cc42e9ad53d8b75" title="Returns a white color" alt="" coords="115,245,276,301"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="331,125,492,181"/>
+</map>

@@ -4,6 +4,7 @@ var dir_bd70a3b1e08f40d415195ad3b8a991da =
     [ "intersection_test.cpp", "intersection__test_8cpp.html", "intersection__test_8cpp" ],
     [ "intersections_test.cpp", "intersections__test_8cpp.html", "intersections__test_8cpp" ],
     [ "matrix_test.cpp", "matrix__test_8cpp.html", "matrix__test_8cpp" ],
+    [ "perlin_noise_test.cpp", "perlin__noise__test_8cpp.html", "perlin__noise__test_8cpp" ],
     [ "plane_test.cpp", "plane__test_8cpp.html", "plane__test_8cpp" ],
     [ "point_test.cpp", "point__test_8cpp.html", "point__test_8cpp" ],
     [ "ray_test.cpp", "ray__test_8cpp.html", "ray__test_8cpp" ],

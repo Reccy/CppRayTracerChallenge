@@ -1,7 +1,5 @@
 <map id="CppRayTracerChallenge::Core::Serializer::BaseImageSerializer::image" name="CppRayTracerChallenge::Core::Serializer::BaseImageSerializer::image">
-<area shape="rect" id="node1" title="Returns the deserialized image" alt="" coords="495,16,687,72"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html#a4a1a96db5d06e8ad687c3f07a1c74b14" title="Serializes an Image, making it available to access via the buffer" alt="" coords="236,16,447,72"/>
-<area shape="rect" id="node3" href="$portable__pixmap__image__serializer__test_8cpp.html#abf419d5b2e3757f420192e978e4d5851" title=" " alt="" coords="119,5,173,32"/>
-<area shape="rect" id="node4" href="$win32__main_8cpp.html#a6bb225c5cbe506a3e05e159da914f941" title=" " alt="" coords="104,56,188,83"/>
-<area shape="rect" id="node5" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,56,56,83"/>
+<area shape="rect" id="node1" title="Returns the deserialized image" alt="" coords="367,5,559,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html#a4a1a96db5d06e8ad687c3f07a1c74b14" title="Serializes an Image, making it available to access via the buffer" alt="" coords="108,5,319,61"/>
+<area shape="rect" id="node3" href="$portable__pixmap__image__serializer__test_8cpp.html#abf419d5b2e3757f420192e978e4d5851" title=" " alt="" coords="5,20,60,47"/>
 </map>

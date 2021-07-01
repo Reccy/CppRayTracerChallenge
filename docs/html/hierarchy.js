@@ -36,13 +36,32 @@ var hierarchy =
       [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, SolidColor >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
         [ "CppRayTracerChallenge::Core::Renderer::Patterns::SolidColor", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_solid_color.html", null ]
       ] ],
+      [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, Gradient >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
+        [ "CppRayTracerChallenge::Core::Renderer::Patterns::Gradient", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_gradient.html", null ]
+      ] ],
+      [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, Ring >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
+        [ "CppRayTracerChallenge::Core::Renderer::Patterns::Ring", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_ring.html", null ]
+      ] ],
+      [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, Perturbed >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
+        [ "CppRayTracerChallenge::Core::Renderer::Patterns::Perturbed", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_perturbed.html", null ]
+      ] ],
+      [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, RadialGradient >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
+        [ "CppRayTracerChallenge::Core::Renderer::Patterns::RadialGradient", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_radial_gradient.html", null ]
+      ] ],
+      [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, Masked< PATTERN_MASK > >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
+        [ "CppRayTracerChallenge::Core::Renderer::Patterns::Masked< PATTERN_MASK >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_masked.html", null ]
+      ] ],
       [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, TestPattern >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
         [ "CppRayTracerChallenge::Core::Renderer::Patterns::TestPattern", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_test_pattern.html", null ]
+      ] ],
+      [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, Checker >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
+        [ "CppRayTracerChallenge::Core::Renderer::Patterns::Checker", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_checker.html", null ]
       ] ],
       [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, Stripe >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
         [ "CppRayTracerChallenge::Core::Renderer::Patterns::Stripe", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_stripe.html", null ]
       ] ]
     ] ],
+    [ "CppRayTracerChallenge::Core::Math::PerlinNoise", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_perlin_noise.html", null ],
     [ "CppRayTracerChallenge::Core::Renderer::PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", null ],
     [ "testing::Test", null, [

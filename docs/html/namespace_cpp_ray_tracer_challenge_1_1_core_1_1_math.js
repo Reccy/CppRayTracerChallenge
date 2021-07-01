@@ -17,6 +17,7 @@ var namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math =
     [ "MatrixInitialDataSizeMismatch", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_initial_data_size_mismatch.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_initial_data_size_mismatch" ],
     [ "MatrixUndefinedDeterminantException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception" ],
     [ "MatrixUndefinedProductException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception" ],
+    [ "PerlinNoise", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_perlin_noise.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_perlin_noise" ],
     [ "Plane", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane" ],
     [ "Point", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point" ],
     [ "Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray" ],

@@ -1,10 +1,19 @@
 <map id="CppRayTracerChallenge::Core::Math::Tuple::z" name="CppRayTracerChallenge::Core::Math::Tuple::z">
-<area shape="rect" id="node1" title="Returns a const Z component" alt="" coords="477,126,639,167"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_test_pattern.html#af098e6cecdaa07d8d76cd055554a7ddc" title=" " alt="" coords="255,5,429,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#adce048e4801671bf00d3e7f200c66226" title=" " alt="" coords="261,85,423,141"/>
-<area shape="rect" id="node4" href="$point__test_8cpp.html#a2eac03845a26091eedcf484468b52af2" title=" " alt="" coords="315,165,369,192"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a4db33858bd0ed84b50466a85221e15d2" title="Creates a matrix that can be used to transform the world around the camera, effectively changing came..." alt="" coords="257,216,427,272"/>
-<area shape="rect" id="node6" href="$win32__main_8cpp.html#a5ba160facb0571a8380ca93f9b0f188f" title=" " alt="" coords="104,205,207,232"/>
-<area shape="rect" id="node8" href="$camera__test_8cpp.html#aaeb4ccf47528badd6620dfdc13171c5b" title=" " alt="" coords="128,256,183,283"/>
-<area shape="rect" id="node7" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,205,56,232"/>
+<area shape="rect" id="node1" title="Returns a const Z component" alt="" coords="565,311,727,353"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_perlin_noise.html#a80d231c3ee315950f5cff367367d1215" title="Gets the value of the noise at the passed in point" alt="" coords="331,78,517,119"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_perturbed.html#a205f76562e308da483f33e0729bf17a4" title=" " alt="" coords="108,5,283,61"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_checker.html#a3cbdfa05a49ac921b69baae7136c6721" title=" " alt="" coords="337,144,511,200"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_radial_gradient.html#a4c25fb5bd6945609f462852014e38616" title=" " alt="" coords="337,224,511,280"/>
+<area shape="rect" id="node11" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_ring.html#a7afc91450b337cf34879ca0de785bfe6" title=" " alt="" coords="337,304,511,360"/>
+<area shape="rect" id="node13" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_test_pattern.html#af098e6cecdaa07d8d76cd055554a7ddc" title=" " alt="" coords="337,384,511,440"/>
+<area shape="rect" id="node14" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#adce048e4801671bf00d3e7f200c66226" title=" " alt="" coords="343,464,505,520"/>
+<area shape="rect" id="node15" href="$point__test_8cpp.html#a2eac03845a26091eedcf484468b52af2" title=" " alt="" coords="397,544,451,571"/>
+<area shape="rect" id="node16" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a4db33858bd0ed84b50466a85221e15d2" title="Creates a matrix that can be used to transform the world around the camera, effectively changing came..." alt="" coords="339,595,509,651"/>
+<area shape="rect" id="node5" href="$win32__main_8cpp.html#acd243cc663bed9ad4b844377f97f3622" title=" " alt="" coords="143,85,248,112"/>
+<area shape="rect" id="node6" href="$perlin__noise__test_8cpp.html#a3b3be4eaeb23c55879ec99e14d29f57d" title=" " alt="" coords="168,136,223,163"/>
+<area shape="rect" id="node4" href="$perturbed__test_8cpp.html#ae7e366250bc12b6ab520465771bcc3f6" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node8" href="$checker__test_8cpp.html#a6e45a459efe88dc49d89002a59c4fe04" title=" " alt="" coords="168,187,223,213"/>
+<area shape="rect" id="node10" href="$radial__gradient__test_8cpp.html#aeefea0d2273ec748ea7a722fca18612a" title=" " alt="" coords="168,239,223,265"/>
+<area shape="rect" id="node12" href="$ring__test_8cpp.html#a199a000747d334aa225533978fe23224" title=" " alt="" coords="168,319,223,345"/>
+<area shape="rect" id="node17" href="$camera__test_8cpp.html#aaeb4ccf47528badd6620dfdc13171c5b" title=" " alt="" coords="168,609,223,636"/>
 </map>

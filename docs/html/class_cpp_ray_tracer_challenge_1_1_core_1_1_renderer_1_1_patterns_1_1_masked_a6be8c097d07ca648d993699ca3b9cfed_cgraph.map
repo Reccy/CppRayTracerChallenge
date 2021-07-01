@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Renderer::Patterns::Masked::colorAt" name="CppRayTracerChallenge::Core::Renderer::Patterns::Masked::colorAt">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,180,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#abb0a62eeff190aa127a52a0cc78e83e7" title="Linearly interpolates between the two colors" alt="" coords="228,5,389,61"/>
+</map>

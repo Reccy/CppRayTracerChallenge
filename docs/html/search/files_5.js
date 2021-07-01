@@ -1,19 +1,10 @@
 var searchData=
 [
-  ['pattern_2ecpp_350',['pattern.cpp',['../pattern_8cpp.html',1,'']]],
-  ['pattern_2eh_351',['pattern.h',['../pattern_8h.html',1,'']]],
-  ['pattern_5ftest_2ecpp_352',['pattern_test.cpp',['../pattern__test_8cpp.html',1,'']]],
-  ['plane_2ecpp_353',['plane.cpp',['../plane_8cpp.html',1,'']]],
-  ['plane_2eh_354',['plane.h',['../plane_8h.html',1,'']]],
-  ['plane_5ftest_2ecpp_355',['plane_test.cpp',['../plane__test_8cpp.html',1,'']]],
-  ['point_2ecpp_356',['point.cpp',['../point_8cpp.html',1,'']]],
-  ['point_2eh_357',['point.h',['../point_8h.html',1,'']]],
-  ['point_5flight_2ecpp_358',['point_light.cpp',['../point__light_8cpp.html',1,'']]],
-  ['point_5flight_2eh_359',['point_light.h',['../point__light_8h.html',1,'']]],
-  ['point_5flight_5ftest_2ecpp_360',['point_light_test.cpp',['../point__light__test_8cpp.html',1,'']]],
-  ['point_5ftest_2ecpp_361',['point_test.cpp',['../point__test_8cpp.html',1,'']]],
-  ['polymorphic_5fcomparable_2eh_362',['polymorphic_comparable.h',['../polymorphic__comparable_8h.html',1,'']]],
-  ['portable_5fpixmap_5fimage_5fserializer_2ecpp_363',['portable_pixmap_image_serializer.cpp',['../portable__pixmap__image__serializer_8cpp.html',1,'']]],
-  ['portable_5fpixmap_5fimage_5fserializer_2eh_364',['portable_pixmap_image_serializer.h',['../portable__pixmap__image__serializer_8h.html',1,'']]],
-  ['portable_5fpixmap_5fimage_5fserializer_5ftest_2ecpp_365',['portable_pixmap_image_serializer_test.cpp',['../portable__pixmap__image__serializer__test_8cpp.html',1,'']]]
+  ['masked_2eh_408',['masked.h',['../masked_8h.html',1,'']]],
+  ['masked_5ftest_2ecpp_409',['masked_test.cpp',['../masked__test_8cpp.html',1,'']]],
+  ['material_2ecpp_410',['material.cpp',['../material_8cpp.html',1,'']]],
+  ['material_2eh_411',['material.h',['../material_8h.html',1,'']]],
+  ['material_5ftest_2ecpp_412',['material_test.cpp',['../material__test_8cpp.html',1,'']]],
+  ['matrix_2eh_413',['matrix.h',['../matrix_8h.html',1,'']]],
+  ['matrix_5ftest_2ecpp_414',['matrix_test.cpp',['../matrix__test_8cpp.html',1,'']]]
 ];
