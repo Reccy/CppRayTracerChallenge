@@ -6,6 +6,10 @@
 #include <ShlObj.h>
 #include <tchar.h>
 #include <chrono>
+#include <thread>
+
+#include <glad.h>
+#include <GLFW/glfw3.h>
 
 #include "math/vector.h"
 #include "math/point.h"
@@ -258,13 +262,121 @@ Image generatePerlin()
 	return static_cast<Image>(canvas);
 }
 
-int main()
+void renderTask(std::atomic<bool>* threadProgress)
 {
 	Image image = doRealRender();
 	//Image image = generatePerlin();
 	PortablePixmapImageSerializer serializer;
-
+	
 	writeImage(image, serializer);
+
+	threadProgress->store(true);
+}
+
+bool initGLFW()
+{
+	return glfwInit();
+}
+
+void endGLFW()
+{
+	glfwTerminate();
+}
+
+class RAIIglfw
+{
+public:
+	RAIIglfw()
+	{
+		m_window = glfwCreateWindow(640, 480, "Ray Tracer", NULL, NULL);
+		glfwMakeContextCurrent(m_window);
+		gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		glfwSetKeyCallback(m_window, keyCallback);
+		glfwSetErrorCallback(errorCallback);
+		glfwSwapInterval(1);
+	}
+
+	~RAIIglfw()
+	{
+		glfwDestroyWindow(m_window);
+		glfwTerminate();
+	}
+
+	bool windowShouldOpen()
+	{
+		return !glfwWindowShouldClose(m_window);
+	}
+
+	void loop()
+	{
+		glfwPollEvents();
+
+		if (!windowShouldOpen())
+		{
+			std::cout << "Window closed\n";
+			glfwDestroyWindow(m_window);
+			return;
+		}
+
+		updateFramebufferSize();
+
+		glViewport(0, 0, m_width, m_height);
+		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+	}
+private:
+	GLFWwindow* m_window;
+	int m_width = 0;
+	int m_height = 0;
+	float m_aspectRatio = 0;
+
+	void updateFramebufferSize()
+	{
+		int newWidth, newHeight;
+		glfwGetFramebufferSize(m_window, &newWidth, &newHeight);
+
+		if (newWidth != m_width || newHeight != m_height)
+		{
+			m_width = newWidth;
+			m_height = newHeight;
+			m_aspectRatio = static_cast<float>(m_width) / static_cast<float>(m_height);
+			std::cout << "Framebuffer change: w" << m_width << ", h" << m_height << ", a" << m_aspectRatio << "\n";
+		}
+	}
+
+	static void keyCallback(GLFWwindow* window, int key, int , int action, int )
+	{
+		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+			glfwSetWindowShouldClose(window, GLFW_TRUE);
+	}
+
+	static void errorCallback(int error, const char* description)
+	{
+		std::cout << "Error: " << std::to_string(error) << "\n" << description << "\n";
+	}
+};
+
+int main()
+{
+	if (!glfwInit())
+	{
+		std::cout << "FATAL: GLFW init failed" << std::endl;
+		exit(EXIT_FAILURE);
+	}
+
+	std::atomic<bool> threadProgress(0);
+	std::thread renderThread(renderTask, &threadProgress);
+
+	RAIIglfw glfw = RAIIglfw();
+
+	while (glfw.windowShouldOpen())
+	{
+		glfw.loop();
+	}
+
+	while (!threadProgress.load() && !renderThread.joinable()) {}
+
+	renderThread.join();
 
 	return 0;
 }

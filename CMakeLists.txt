@@ -174,3 +174,18 @@ endif()
 target_include_directories("${EXECUTABLE_NAME}" PRIVATE "${CORE_LIBRARY_DIR}")
 target_link_libraries("${EXECUTABLE_NAME}" PRIVATE "${INCLUDED_LIBS}")
 target_compile_options("${EXECUTABLE_NAME}" PRIVATE "${CUSTOM_COMPILE_FLAGS}")
+
+#
+# GLFW
+#
+
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+
+
+add_subdirectory("src/lib/glfw")
+target_link_libraries("${EXECUTABLE_NAME}" PRIVATE glfw)
+
+add_subdirectory("src/lib/glad")
+target_link_libraries("${EXECUTABLE_NAME}" PRIVATE glad)
