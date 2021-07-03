@@ -49,6 +49,11 @@ using Graphics::Color;
 using Graphics::Image;
 using Graphics::Canvas;
 
+const int WINDOW_WIDTH = 640;
+const int WINDOW_HEIGHT = 480;
+const int RENDER_WIDTH = 150;
+const int RENDER_HEIGHT = 75;
+
 void log(std::string message)
 {
 	std::cout << message << std::endl;
@@ -177,8 +182,8 @@ Image doRealRender()
 	log("Adding Light to World...");
 	world.addLight(light);
 
-	int width = 600;
-	int height = 500;
+	int width = RENDER_WIDTH;
+	int height = RENDER_HEIGHT;
 	int fov = 70;
 
 	log("Setting up camera: " + std::to_string(width) + ", " + std::to_string(height) + ", " + std::to_string(fov));
@@ -288,7 +293,7 @@ class RAIIglfw
 public:
 	RAIIglfw()
 	{
-		m_window = glfwCreateWindow(640, 480, "Ray Tracer", NULL, NULL);
+		m_window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Ray Tracer", NULL, NULL);
 		glfwMakeContextCurrent(m_window);
 		gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		glfwSetKeyCallback(m_window, keyCallback);
