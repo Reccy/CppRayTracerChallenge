@@ -288,6 +288,32 @@ void endGLFW()
 	glfwTerminate();
 }
 
+const char* vertexShaderSource = "#version 330 core\n"
+"layout (location = 0) in vec3 aPos;\n"
+"void main()\n"
+"{\n"
+"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+"}\0";
+
+const char* fragmentShaderSource = "#version 330 core\n"
+"out vec4 FragColor;\n"
+"void main()\n"
+"{\n"
+"	FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+"}\0";
+
+float verts[] = {
+	1.0f,  1.0f, 0.0f,  // top right
+	 1.0f, -1.0f, 0.0f,  // bottom right
+	-1.0f, -1.0f, 0.0f,  // bottom left
+	-1.0f,  1.0f, 0.0f   // top left 
+};
+
+unsigned int indices[] = {  // note that we start from 0!
+    0, 1, 3,   // first triangle
+    1, 2, 3    // second triangle
+}; 
+
 class RAIIglfw
 {
 public:
@@ -298,6 +324,79 @@ public:
 		gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		glfwSetKeyCallback(m_window, keyCallback);
 		glfwSetErrorCallback(errorCallback);
+		glfwSwapInterval(1);
+		
+		// Shader Compilation
+		m_vertexShader = glCreateShader(GL_VERTEX_SHADER);
+		glShaderSource(m_vertexShader, 1, &vertexShaderSource, NULL);
+		glCompileShader(m_vertexShader);
+
+		int success;
+		char infoLog[512];
+		
+		glGetShaderiv(m_vertexShader, GL_COMPILE_STATUS, &success);
+		if (!success)
+		{
+			glGetShaderInfoLog(m_vertexShader, 512, NULL, infoLog);
+			std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			std::cout << "SUCCESS::SHADER::VERTEX::COMPILATION_COMPLETE" << std::endl;
+		}
+
+		m_fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(m_fragmentShader, 1, &fragmentShaderSource, NULL);
+		glCompileShader(m_fragmentShader);
+		glGetShaderiv(m_fragmentShader, GL_COMPILE_STATUS, &success);
+		if (!success)
+		{
+			glGetShaderInfoLog(m_fragmentShader, 512, NULL, infoLog);
+			std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			std::cout << "SUCCESS::SHADER::FRAGMENT::COMPILATION_COMPLETE" << std::endl;
+		}
+
+		m_shaderProgram = glCreateProgram();
+		glAttachShader(m_shaderProgram, m_vertexShader);
+		glAttachShader(m_shaderProgram, m_fragmentShader);
+		glLinkProgram(m_shaderProgram);
+
+		glGetProgramiv(m_shaderProgram, GL_LINK_STATUS, &success);
+		if (!success)
+		{
+			glGetProgramInfoLog(m_shaderProgram, 512, NULL, infoLog);
+			std::cout << "ERROR::SHADER::PROGRAM::LINK_FAILED\n" << infoLog << std::endl;
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			std::cout << "SUCCESS::SHADER::PROGRAM::LINKAGE_COMPLETE" << std::endl;
+		}
+
+		glDeleteShader(m_vertexShader);
+		glDeleteShader(m_fragmentShader);
+
+		// Draw
+
+		glGenBuffers(1, &m_VBO);
+		glGenVertexArrays(1, &m_VAO);
+		glGenBuffers(1, &m_EBO);
+		
+		glBindVertexArray(m_VAO);
+		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(0);
+
 		glfwSwapInterval(1);
 	}
 
@@ -314,26 +413,35 @@ public:
 
 	void loop()
 	{
+		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glUseProgram(m_shaderProgram);
+		glBindVertexArray(m_VAO);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glBindVertexArray(0);
+
+		glfwSwapBuffers(m_window);
 		glfwPollEvents();
+		updateFramebufferSize();
 
 		if (!windowShouldOpen())
 		{
 			std::cout << "Window closed\n";
 			glfwDestroyWindow(m_window);
-			return;
 		}
-
-		updateFramebufferSize();
-
-		glViewport(0, 0, m_width, m_height);
-		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
 	}
 private:
 	GLFWwindow* m_window;
 	int m_width = 0;
 	int m_height = 0;
 	float m_aspectRatio = 0;
+	unsigned int m_VBO = 0;
+	unsigned int m_VAO = 0;
+	unsigned int m_EBO = 0;
+	unsigned int m_vertexShader = 0;
+	unsigned int m_fragmentShader = 0;
+	unsigned int m_shaderProgram = 0;
 
 	void updateFramebufferSize()
 	{
@@ -346,6 +454,8 @@ private:
 			m_height = newHeight;
 			m_aspectRatio = static_cast<float>(m_width) / static_cast<float>(m_height);
 			std::cout << "Framebuffer change: w" << m_width << ", h" << m_height << ", a" << m_aspectRatio << "\n";
+
+			glViewport(0, 0, m_width, m_height);
 		}
 	}
 
