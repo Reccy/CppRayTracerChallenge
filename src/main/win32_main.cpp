@@ -289,24 +289,34 @@ void endGLFW()
 }
 
 const char* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
+"layout(location = 0) in vec3 aPos;\n"
+"layout(location = 1) in vec3 aColor;\n"
+"layout(location = 2) in vec2 aTexCoord;\n"
+"out vec3 ourColor;\n"
+"out vec2 TexCoord;\n"
 "void main()\n"
 "{\n"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+"	gl_Position = vec4(aPos, 1.0);\n"
+"	ourColor = aColor;\n"
+"	TexCoord = aTexCoord;\n"
 "}\0";
 
 const char* fragmentShaderSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
+"in vec3 ourColor;\n"
+"in vec2 TexCoord;\n"
+"uniform sampler2D ourTexture;\n"
 "void main()\n"
 "{\n"
-"	FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-"}\0";
+"	FragColor = texture(ourTexture, TexCoord);\n"
+"};\0";
 
 float verts[] = {
-	1.0f,  1.0f, 0.0f,  // top right
-	 1.0f, -1.0f, 0.0f,  // bottom right
-	-1.0f, -1.0f, 0.0f,  // bottom left
-	-1.0f,  1.0f, 0.0f   // top left 
+	// positions          // colors           // texture coords
+	 1.0f,  1.0f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
+	 1.0f, -1.0f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
+	-1.0f, -1.0f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
+	-1.0f,  1.0f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
 };
 
 unsigned int indices[] = {  // note that we start from 0!
@@ -386,6 +396,7 @@ public:
 		glGenBuffers(1, &m_VBO);
 		glGenVertexArrays(1, &m_VAO);
 		glGenBuffers(1, &m_EBO);
+		glGenTextures(1, &m_texture);
 		
 		glBindVertexArray(m_VAO);
 		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
@@ -394,8 +405,32 @@ public:
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+		glBindTexture(GL_TEXTURE_2D, m_texture);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		float color[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+		glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color);
+
+		unsigned char data[16] = {
+			255, 0, 0, 255,
+			0, 255, 0, 255,
+			0, 0, 255, 255,
+			255, 255, 255, 255
+		};
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 2, 2, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+		
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 		glEnableVertexAttribArray(0);
+
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+		glEnableVertexAttribArray(1);
+
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+		glEnableVertexAttribArray(2);
 
 		glfwSwapInterval(1);
 	}
@@ -417,6 +452,7 @@ public:
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		glUseProgram(m_shaderProgram);
+		glBindTexture(GL_TEXTURE_2D, m_texture);
 		glBindVertexArray(m_VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
@@ -442,6 +478,7 @@ private:
 	unsigned int m_vertexShader = 0;
 	unsigned int m_fragmentShader = 0;
 	unsigned int m_shaderProgram = 0;
+	unsigned int m_texture = 0;
 
 	void updateFramebufferSize()
 	{
