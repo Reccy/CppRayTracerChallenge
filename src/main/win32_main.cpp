@@ -49,10 +49,10 @@ using Graphics::Color;
 using Graphics::Image;
 using Graphics::Canvas;
 
-const int WINDOW_WIDTH = 640;
-const int WINDOW_HEIGHT = 480;
-const int RENDER_WIDTH = 150;
-const int RENDER_HEIGHT = 75;
+const int WINDOW_WIDTH = 480;
+const int WINDOW_HEIGHT = 270;
+const int RENDER_WIDTH = 400/2;
+const int RENDER_HEIGHT = 270/2;
 
 void log(std::string message)
 {
@@ -145,6 +145,8 @@ PointLight buildLight()
 	return PointLight({ -10, 10, -10 }, Color(1, 1, 1));
 }
 
+std::shared_ptr<Camera> camera = nullptr;
+
 Image doRealRender()
 {
 	log("Initializing...");
@@ -187,16 +189,16 @@ Image doRealRender()
 	int fov = 70;
 
 	log("Setting up camera: " + std::to_string(width) + ", " + std::to_string(height) + ", " + std::to_string(fov));
-	Camera camera = Camera(width, height, fov);
+	camera = std::make_shared<Camera>(width, height, fov);
 	auto cameraTransform = Camera::viewMatrix({ 0, 1.5, -5 }, { 0,1,0 }, Vector::up());
-	camera.transform(cameraTransform);
+	camera->transform(cameraTransform);
 
 	log("Initialization Done");
 
 	auto startTime = std::chrono::high_resolution_clock::now();
 
 	log("Rendering scene -> Start: " + std::to_string(startTime.time_since_epoch().count()));
-	auto result = camera.render(world);
+	auto result = camera->render(world);
 
 	auto endTime = std::chrono::high_resolution_clock::now();
 	auto elapsed = endTime - startTime;
@@ -270,7 +272,6 @@ Image generatePerlin()
 void renderTask(std::atomic<bool>* threadProgress)
 {
 	Image image = doRealRender();
-	//Image image = generatePerlin();
 	PortablePixmapImageSerializer serializer;
 	
 	writeImage(image, serializer);
@@ -313,16 +314,55 @@ const char* fragmentShaderSource = "#version 330 core\n"
 
 float verts[] = {
 	// positions          // colors           // texture coords
-	 1.0f,  1.0f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
-	 1.0f, -1.0f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
-	-1.0f, -1.0f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
-	-1.0f,  1.0f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
+	 1.0f,  1.0f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 0.0f,   // top right
+	 1.0f, -1.0f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f,   // bottom right
+	-1.0f, -1.0f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f,   // bottom left
+	-1.0f,  1.0f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 0.0f    // top left 
 };
 
 unsigned int indices[] = {  // note that we start from 0!
     0, 1, 3,   // first triangle
     1, 2, 3    // second triangle
 }; 
+
+std::vector<byte> renderData;
+byte* loadRenderData()
+{
+	auto buffer = camera->renderedImage().toBuffer();
+
+	renderData.clear();
+	renderData.reserve(buffer.size() * 4);
+
+	for (int colorIndex = 0; colorIndex < buffer.size(); ++colorIndex)
+	{
+		for (int componentIndex = 0; componentIndex < 4; ++componentIndex)
+		{
+			byte b = 0x0b;
+			Graphics::Color& color = buffer.at(colorIndex);
+
+			if (componentIndex == 0)
+			{
+				b = static_cast<byte>(std::clamp((int)std::ceil(color.red() * 255), 0, 255));
+			}
+			else if (componentIndex == 1)
+			{
+				b = static_cast<byte>(std::clamp((int)std::ceil(color.green() * 255), 0, 255));
+			}
+			else if (componentIndex == 2)
+			{
+				b = static_cast<byte>(std::clamp((int)std::ceil(color.blue() * 255), 0, 255));
+			}
+			else if (componentIndex == 3)
+			{
+				b = static_cast<byte>(0xFFb); // Alpha 1
+			}
+
+			renderData.push_back(b);
+		}
+	}
+
+	return renderData.data();
+}
 
 class RAIIglfw
 {
@@ -452,6 +492,7 @@ public:
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		glUseProgram(m_shaderProgram);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, RENDER_WIDTH, RENDER_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, loadRenderData());
 		glBindTexture(GL_TEXTURE_2D, m_texture);
 		glBindVertexArray(m_VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

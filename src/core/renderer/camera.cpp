@@ -7,7 +7,7 @@ using namespace CppRayTracerChallenge::Core::Math;
 using namespace CppRayTracerChallenge::Core;
 
 Camera::Camera(int hSize, int vSize, int fieldOfView) :
-	m_hSize(hSize), m_vSize(vSize), m_fieldOfView(fieldOfView), m_transformMatrix(Matrix<double>::identity(4))
+	m_hSize(hSize), m_vSize(vSize), m_fieldOfView(fieldOfView), m_transformMatrix(Matrix<double>::identity(4)), m_renderCanvas(std::make_unique<Graphics::Canvas>(m_hSize, m_vSize))
 {
 	calculatePixelSize();
 };
@@ -67,20 +67,22 @@ Matrix<double> Camera::transformMatrix() const
 
 Graphics::Image Camera::render(const World& world) const
 {
-	Graphics::Canvas canvas = Graphics::Canvas(m_hSize, m_vSize);
-
 	for (int y = 0; y < m_vSize; ++y)
 	{
 		for (int x = 0; x < m_hSize; ++x)
 		{
 			Math::Ray ray = rayForPixel(x, y);
 			Graphics::Color color = world.colorAt(ray);
-			canvas.writePixel(x, y, color);
+			m_renderCanvas->writePixel(x, y, color);
 		}
 	}
 
-	Graphics::Image image = Graphics::Image(m_hSize, m_vSize, canvas.toBuffer());
+	return renderedImage();
+}
 
+Graphics::Image Camera::renderedImage() const
+{
+	Graphics::Image image = Graphics::Image(m_hSize, m_vSize, m_renderCanvas->toBuffer());
 	return image;
 }
 

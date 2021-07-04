@@ -7,6 +7,7 @@
 #include "../math/ray.h"
 #include "../renderer/world.h"
 #include "../graphics/image.h"
+#include "../graphics/canvas.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
@@ -87,6 +88,12 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Graphics::Image render(const Renderer::World& world) const;
 
 		/// <summary>
+		/// Returns the current rendered image, regardless of if it is finished or not
+		/// </summary>
+		/// <returns>The image of the rendered world</returns>
+		Graphics::Image renderedImage() const;
+
+		/// <summary>
 		/// Creates a matrix that can be used to transform the world around the camera, effectively changing camera position
 		/// </summary>
 		/// <param name="from">The position of the camera in world space</param>
@@ -102,6 +109,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		double m_halfHeight;
 		double m_pixelSize;
 		Matrix<double> m_transformMatrix;
+		std::unique_ptr<Graphics::Canvas> m_renderCanvas;
 
 		void calculatePixelSize();
 	};
