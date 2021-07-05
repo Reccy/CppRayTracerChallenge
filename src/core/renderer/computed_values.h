@@ -64,6 +64,12 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Math::Vector normal() const;
 
 		/// <summary>
+		/// Returns the reflect vector
+		/// </summary>
+		/// <returns>The reflect vector</returns>
+		Math::Vector reflect() const;
+
+		/// <summary>
 		/// If the intersection occurred inside or outside of the intersectable object
 		/// </summary>
 		/// <returns>Bool for if intersection was inside or outside</returns>
@@ -75,6 +81,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Math::Point m_overPosition;
 		Math::Vector m_eye;
 		Math::Vector m_normal;
+		Math::Vector m_reflect;
 		bool m_isInside;
 	};
 }

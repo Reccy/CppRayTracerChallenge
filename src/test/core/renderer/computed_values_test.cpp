@@ -4,6 +4,7 @@
 #include "renderer/material.h"
 #include "math/intersection.h"
 #include "math/sphere.h"
+#include "math/plane.h"
 
 using namespace CppRayTracerChallenge::Core;
 
@@ -54,4 +55,16 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_offsets_point)
 
 	EXPECT_TRUE(cv.overPosition().z() < -Math::EPSILON / 2);
 	EXPECT_TRUE(cv.position().z() > cv.overPosition().z());
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, computes_reflection_vector)
+{
+	auto plane = std::make_shared<Math::Plane>();
+	Renderer::Shape shape = Renderer::Shape(plane, Renderer::Material());
+	Math::Ray ray = Math::Ray({ 0, 1, -1 }, { 0, -sqrt(2) / 2, sqrt(2) / 2 });
+	Math::Intersection intersection = Math::Intersection(sqrt(2), shape);
+
+	Renderer::ComputedValues cv = Renderer::ComputedValues(intersection, ray);
+
+	EXPECT_EQ(cv.reflect(), Math::Vector(0, sqrt(2) / 2, sqrt(2) / 2));
 }

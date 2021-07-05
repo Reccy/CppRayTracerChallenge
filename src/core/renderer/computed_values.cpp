@@ -10,6 +10,7 @@ ComputedValues::ComputedValues(Math::Intersection intersection, Math::Ray ray) :
 	m_position = ray.position(m_t);
 	m_eye = -ray.direction();
 	m_normal = m_shape.normal(m_position);
+	m_reflect = Math::Vector::reflect(ray.direction(), m_normal);
 
 	if (Vector::dot(m_normal, m_eye) < 0)
 	{
@@ -57,6 +58,11 @@ Vector ComputedValues::eye() const
 Vector ComputedValues::normal() const
 {
 	return m_normal;
+}
+
+Vector ComputedValues::reflect() const
+{
+	return m_reflect;
 }
 
 bool ComputedValues::isInside() const
