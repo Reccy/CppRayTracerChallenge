@@ -1,6 +1,5 @@
 <map id="CppRayTracerChallenge::Core::Renderer::ComputedValues::position" name="CppRayTracerChallenge::Core::Renderer::ComputedValues::position">
-<area shape="rect" id="node1" title="Returns the position of the intersection" alt="" coords="317,39,541,95"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node4" href="$computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="161,85,216,112"/>
-<area shape="rect" id="node3" href="$world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node1" title="Returns the position of the intersection" alt="" coords="215,39,439,95"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a8a4ae040ed58c5f57a39dff2b2708f5e" title="Calculates the color in the world from precomputed values" alt="" coords="5,5,167,61"/>
+<area shape="rect" id="node3" href="$computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="59,85,113,112"/>
 </map>

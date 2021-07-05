@@ -1,0 +1,7 @@
+<map id="RAIIglfw::loop" name="RAIIglfw::loop">
+<area shape="rect" id="node1" title=" " alt="" coords="5,86,105,113"/>
+<area shape="rect" id="node2" href="$win32__main_8cpp.html#a0202a0b7dd0c62f6c700df077a9a1c4d" title=" " alt="" coords="153,86,268,113"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ab3970dc118e7c6d4d67927cc96d26e1b" title="Returns the value of the blue channel" alt="" coords="316,5,503,47"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a5dcccf7b529ee13c0b5850a29e1df8da" title="Returns the value of the green channel" alt="" coords="329,71,490,127"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a95098c6e8933aa258cac20b61cf1c70b" title="Returns the value of the red channel" alt="" coords="319,152,500,193"/>
+</map>

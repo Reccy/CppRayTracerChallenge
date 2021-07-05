@@ -1,11 +1,12 @@
 <map id="CppRayTracerChallenge::Core::Renderer::Shape::material" name="CppRayTracerChallenge::Core::Renderer::Shape::material">
-<area shape="rect" id="node1" title="Returns the material assigned to the shape" alt="" coords="465,117,628,173"/>
-<area shape="rect" id="node2" href="$win32__main_8cpp.html#a96d4ef3a73403c1f572ed5bf3748e440" title=" " alt="" coords="297,5,375,32"/>
-<area shape="rect" id="node5" href="$win32__main_8cpp.html#ae4ea00d401eb7a5aee5a5f1eeff59948" title=" " alt="" coords="281,56,391,83"/>
-<area shape="rect" id="node6" href="$win32__main_8cpp.html#a54f9bd520bfe628965f2975e3a755205" title=" " alt="" coords="272,107,400,133"/>
-<area shape="rect" id="node7" href="$win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f" title=" " alt="" coords="276,157,396,184"/>
-<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a85b36b475d13437d84d6a99b40f76726" title=" " alt="" coords="255,208,417,264"/>
-<area shape="rect" id="node9" href="$shape__test_8cpp.html#a696ba2c55cceb054065ebee92ebd0d2c" title=" " alt="" coords="309,288,363,315"/>
-<area shape="rect" id="node3" href="$win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="104,81,207,108"/>
-<area shape="rect" id="node4" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,81,56,108"/>
+<area shape="rect" id="node1" title="Returns the material assigned to the shape" alt="" coords="600,117,763,173"/>
+<area shape="rect" id="node2" href="$win32__main_8cpp.html#a96d4ef3a73403c1f572ed5bf3748e440" title=" " alt="" coords="431,5,510,32"/>
+<area shape="rect" id="node6" href="$win32__main_8cpp.html#ae4ea00d401eb7a5aee5a5f1eeff59948" title=" " alt="" coords="415,56,526,83"/>
+<area shape="rect" id="node7" href="$win32__main_8cpp.html#a54f9bd520bfe628965f2975e3a755205" title=" " alt="" coords="407,107,535,133"/>
+<area shape="rect" id="node8" href="$win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f" title=" " alt="" coords="411,157,531,184"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a85b36b475d13437d84d6a99b40f76726" title=" " alt="" coords="389,208,552,264"/>
+<area shape="rect" id="node10" href="$shape__test_8cpp.html#a696ba2c55cceb054065ebee92ebd0d2c" title=" " alt="" coords="443,288,498,315"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="239,81,341,108"/>
+<area shape="rect" id="node4" href="$win32__main_8cpp.html#ab2101e7c16dcc71d3facc36c5de7f0c1" title=" " alt="" coords="104,81,191,108"/>
+<area shape="rect" id="node5" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,81,56,108"/>
 </map>

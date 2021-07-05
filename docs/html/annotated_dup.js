@@ -56,5 +56,6 @@ var annotated_dup =
         ] ]
       ] ]
     ] ],
-    [ "CppRayTracerChallenge_Core_Renderer_LightingTest", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test" ]
+    [ "CppRayTracerChallenge_Core_Renderer_LightingTest", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test" ],
+    [ "RAIIglfw", "class_r_a_i_iglfw.html", "class_r_a_i_iglfw" ]
 ];

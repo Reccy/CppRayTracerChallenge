@@ -1,0 +1,5 @@
+<map id="CppRayTracerChallenge::Core::Renderer::ComputedValues::reflect" name="CppRayTracerChallenge::Core::Renderer::ComputedValues::reflect">
+<area shape="rect" id="node1" title="Returns the reflect vector" alt="" coords="215,39,439,95"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a38cf9ede330e6d2b8e49e2c579ab22b7" title="Calculates the reflected color in the world from precomputed values" alt="" coords="5,5,167,61"/>
+<area shape="rect" id="node3" href="$computed__values__test_8cpp.html#a58368cfb3661ba26ef19b2f5eabe4722" title=" " alt="" coords="59,85,113,112"/>
+</map>

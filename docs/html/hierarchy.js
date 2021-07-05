@@ -63,6 +63,7 @@ var hierarchy =
     ] ],
     [ "CppRayTracerChallenge::Core::Math::PerlinNoise", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_perlin_noise.html", null ],
     [ "CppRayTracerChallenge::Core::Renderer::PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", null ],
+    [ "RAIIglfw", "class_r_a_i_iglfw.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", null ],
     [ "testing::Test", null, [
       [ "CppRayTracerChallenge_Core_Renderer_LightingTest", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html", null ]

@@ -1,6 +1,5 @@
 <map id="CppRayTracerChallenge::Core::Renderer::Lighting::lighting" name="CppRayTracerChallenge::Core::Renderer::Lighting::lighting">
-<area shape="rect" id="node1" title="Computes the color at a given point with lighting" alt="" coords="317,39,488,95"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41" title="Calculates the color in the world from precomputed values" alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node4" href="$lighting__test_8cpp.html#a0e283b70b8912ffe2b8900567c61fd4a" title=" " alt="" coords="154,85,223,112"/>
-<area shape="rect" id="node3" href="$world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node1" title="Computes the color at a given point with lighting" alt="" coords="215,39,385,95"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a8a4ae040ed58c5f57a39dff2b2708f5e" title="Calculates the color in the world from precomputed values" alt="" coords="5,5,167,61"/>
+<area shape="rect" id="node3" href="$lighting__test_8cpp.html#a0e283b70b8912ffe2b8900567c61fd4a" title=" " alt="" coords="51,85,121,112"/>
 </map>

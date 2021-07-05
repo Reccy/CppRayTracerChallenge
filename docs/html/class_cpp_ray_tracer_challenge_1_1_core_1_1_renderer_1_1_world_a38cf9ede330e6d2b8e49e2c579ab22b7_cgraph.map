@@ -1,0 +1,8 @@
+<map id="CppRayTracerChallenge::Core::Renderer::World::reflectedColor" name="CppRayTracerChallenge::Core::Renderer::World::reflectedColor">
+<area shape="rect" id="node1" title="Calculates the reflected color in the world from precomputed values" alt="" coords="5,125,167,181"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="246,5,407,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a345607acab0e18af9b6fb578faf85658" title="Returns the material of the shape that was intersected" alt="" coords="215,85,439,141"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a8b7b1357c02a66c4c4bf7703d45e713a" title="Returns the position of the intersection translated slightly in front of the normal...." alt="" coords="215,165,439,221"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a1538b6673d35b1ef0a3e2a86cec21e9e" title="Returns the reflect vector" alt="" coords="215,245,439,301"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="487,5,648,61"/>
+</map>

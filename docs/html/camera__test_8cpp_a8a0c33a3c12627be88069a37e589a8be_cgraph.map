@@ -1,11 +1,10 @@
 <map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,191,60,218"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,151,60,178"/>
 <area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="108,5,291,47"/>
 <area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="117,71,281,112"/>
 <area shape="rect" id="node4" href="$namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#aae5b6c25eeb2f02b255e45561e2a3b7e" title="Converts radians to degrees" alt="" coords="113,137,286,193"/>
 <area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#ab4aa91a4dc6d8ca7653acf8c82f33986" title="Rotates the Transform along the x, y and z axes" alt="" coords="119,217,280,273"/>
-<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a4a0bdf0c504c3b5ae4307b6f723fdc8d" title="Transforms the camera by the passed in transform matrix" alt="" coords="114,297,285,353"/>
-<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a2518b8aa2d8e95ca80f5c61817a2d33c" title="Translates the Transform along x, y, z co&#45;ordinates" alt="" coords="119,377,280,433"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a2518b8aa2d8e95ca80f5c61817a2d33c" title="Translates the Transform along x, y, z co&#45;ordinates" alt="" coords="119,297,280,353"/>
 <area shape="rect" id="node6" href="$namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#a712b1a452e58e36bf35ca3aa101f0745" title="Converts degrees to radians" alt="" coords="339,217,516,273"/>
-<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="347,377,508,433"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="347,297,508,353"/>
 </map>

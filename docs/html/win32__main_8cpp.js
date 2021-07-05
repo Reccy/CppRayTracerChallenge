@@ -1,5 +1,6 @@
 var win32__main_8cpp =
 [
+    [ "RAIIglfw", "class_r_a_i_iglfw.html", "class_r_a_i_iglfw" ],
     [ "buildFloor", "win32__main_8cpp.html#a96d4ef3a73403c1f572ed5bf3748e440", null ],
     [ "buildFloorPattern", "win32__main_8cpp.html#ae3ebfe6dbc0df0f8c0a3c4b0d32db208", null ],
     [ "buildLeftSphere", "win32__main_8cpp.html#ae4ea00d401eb7a5aee5a5f1eeff59948", null ],
@@ -7,8 +8,22 @@ var win32__main_8cpp =
     [ "buildMiddleSphere", "win32__main_8cpp.html#a54f9bd520bfe628965f2975e3a755205", null ],
     [ "buildRightSphere", "win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f", null ],
     [ "doRealRender", "win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06", null ],
+    [ "endGLFW", "win32__main_8cpp.html#a0a252fa8374e3f4699f94142d7f454cf", null ],
     [ "generatePerlin", "win32__main_8cpp.html#acd243cc663bed9ad4b844377f97f3622", null ],
+    [ "initGLFW", "win32__main_8cpp.html#aa76a5dd28427216d541ac05e815a9552", null ],
+    [ "loadRenderData", "win32__main_8cpp.html#a0202a0b7dd0c62f6c700df077a9a1c4d", null ],
     [ "log", "win32__main_8cpp.html#a897e3bec42575bc1c63e5d5b594be783", null ],
     [ "main", "win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4", null ],
-    [ "writeImage", "win32__main_8cpp.html#aa93dbd63f280b50c4415de8a4fa50cf4", null ]
+    [ "renderTask", "win32__main_8cpp.html#ab2101e7c16dcc71d3facc36c5de7f0c1", null ],
+    [ "writeImage", "win32__main_8cpp.html#aa93dbd63f280b50c4415de8a4fa50cf4", null ],
+    [ "camera", "win32__main_8cpp.html#a0c3adc735d1625f935b88973b70ee666", null ],
+    [ "fragmentShaderSource", "win32__main_8cpp.html#a64fbb08868038fa2dc1759b84fd3eb5c", null ],
+    [ "indices", "win32__main_8cpp.html#a572f5d704a0dc85bc7d3d5f50b496ede", null ],
+    [ "RENDER_HEIGHT", "win32__main_8cpp.html#a92862ddc2cfdc94ba887a7fa2a97a5b5", null ],
+    [ "RENDER_WIDTH", "win32__main_8cpp.html#ab571bcdbe80d366c99f5333b5243bd72", null ],
+    [ "renderData", "win32__main_8cpp.html#a3b231681089e073fc4d3ba4755ee5fcf", null ],
+    [ "vertexShaderSource", "win32__main_8cpp.html#a94affbdd2b20c61bcc4dfdd86e1ffea6", null ],
+    [ "verts", "win32__main_8cpp.html#a7f37695c8c6084173b46346f69e9dc90", null ],
+    [ "WINDOW_HEIGHT", "win32__main_8cpp.html#ab76d138fa589df9a65fc05eb3bd56073", null ],
+    [ "WINDOW_WIDTH", "win32__main_8cpp.html#a5e6ce0dd58078611570510dc4b8d81f3", null ]
 ];

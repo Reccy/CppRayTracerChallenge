@@ -116,6 +116,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac730839756a90049262819311741f1b5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ac730839756a90049262819311741f1b5">objectAt</a> (int index) const</td></tr>
 <tr class="memdesc:ac730839756a90049262819311741f1b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const ref to the object at the index  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ac730839756a90049262819311741f1b5">More...</a><br /></td></tr>
 <tr class="separator:ac730839756a90049262819311741f1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8db1400c154a10f2fadf0d316305eab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ab8db1400c154a10f2fadf0d316305eab">objectAt</a> (int index, <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> shape)</td></tr>
+<tr class="memdesc:ab8db1400c154a10f2fadf0d316305eab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the shape at the index with the new shape  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ab8db1400c154a10f2fadf0d316305eab">More...</a><br /></td></tr>
+<tr class="separator:ab8db1400c154a10f2fadf0d316305eab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7aaea63faa42d0dd8338ad3b117c399"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#aa7aaea63faa42d0dd8338ad3b117c399">objectCount</a> () const</td></tr>
 <tr class="memdesc:aa7aaea63faa42d0dd8338ad3b117c399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns how many objects are in the world  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#aa7aaea63faa42d0dd8338ad3b117c399">More...</a><br /></td></tr>
 <tr class="separator:aa7aaea63faa42d0dd8338ad3b117c399"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,12 +131,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4e9cabf5fcac31a9cd087d6ced265b41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41">shadeHit</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html">ComputedValues</a> &amp;cv) const</td></tr>
 <tr class="memdesc:a4e9cabf5fcac31a9cd087d6ced265b41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the color in the world from precomputed values  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41">More...</a><br /></td></tr>
 <tr class="separator:a4e9cabf5fcac31a9cd087d6ced265b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a4ae040ed58c5f57a39dff2b2708f5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a8a4ae040ed58c5f57a39dff2b2708f5e">shadeHit</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html">ComputedValues</a> &amp;cv, int remainingCalls) const</td></tr>
+<tr class="memdesc:a8a4ae040ed58c5f57a39dff2b2708f5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the color in the world from precomputed values  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a8a4ae040ed58c5f57a39dff2b2708f5e">More...</a><br /></td></tr>
+<tr class="separator:a8a4ae040ed58c5f57a39dff2b2708f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc54007efd4f6e3fcdb3a0eb78d28734"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#adc54007efd4f6e3fcdb3a0eb78d28734">reflectedColor</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html">ComputedValues</a> &amp;cv) const</td></tr>
+<tr class="memdesc:adc54007efd4f6e3fcdb3a0eb78d28734"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the reflected color in the world from precomputed values  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#adc54007efd4f6e3fcdb3a0eb78d28734">More...</a><br /></td></tr>
+<tr class="separator:adc54007efd4f6e3fcdb3a0eb78d28734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38cf9ede330e6d2b8e49e2c579ab22b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a38cf9ede330e6d2b8e49e2c579ab22b7">reflectedColor</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html">ComputedValues</a> &amp;cv, int remainingCalls) const</td></tr>
+<tr class="memdesc:a38cf9ede330e6d2b8e49e2c579ab22b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the reflected color in the world from precomputed values  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a38cf9ede330e6d2b8e49e2c579ab22b7">More...</a><br /></td></tr>
+<tr class="separator:a38cf9ede330e6d2b8e49e2c579ab22b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ee7e82e7caf361aef5c7ee510465130"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9ee7e82e7caf361aef5c7ee510465130">isShadowed</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a> &amp;position, const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html">PointLight</a> &amp;light) const</td></tr>
 <tr class="memdesc:a9ee7e82e7caf361aef5c7ee510465130"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates if a position in world space is lit by a specific light  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9ee7e82e7caf361aef5c7ee510465130">More...</a><br /></td></tr>
 <tr class="separator:a9ee7e82e7caf361aef5c7ee510465130"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae527875e77f99cd42ea6f1bed1ebd5bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf">colorAt</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Math::Ray</a> &amp;ray) const</td></tr>
 <tr class="memdesc:ae527875e77f99cd42ea6f1bed1ebd5bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the color from the point of view of the passed in ray  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf">More...</a><br /></td></tr>
 <tr class="separator:ae527875e77f99cd42ea6f1bed1ebd5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0a5128b4c9aa4877a97debdb3cb0c29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae0a5128b4c9aa4877a97debdb3cb0c29">colorAt</a> (const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Math::Ray</a> &amp;ray, int remainingCalls) const</td></tr>
+<tr class="memdesc:ae0a5128b4c9aa4877a97debdb3cb0c29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the color from the point of view of the passed in ray  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae0a5128b4c9aa4877a97debdb3cb0c29">More...</a><br /></td></tr>
+<tr class="separator:ae0a5128b4c9aa4877a97debdb3cb0c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -208,12 +223,13 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a9dfc0103bcef524272acc7074074adf1_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a9dfc0103bcef524272acc7074074adf1_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a9dfc0103bcef524272acc7074074adf1_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a9dfc0103bcef524272acc7074074adf1_icgraph">
-<area shape="rect" title="Adds a light to the world" alt="" coords="317,71,479,127"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,5,269,61"/>
-<area shape="rect" href="win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="137,85,240,112"/>
-<area shape="rect" href="world__test_8cpp.html#abce7f9f9428f0d1476240fc739ea15d4" title=" " alt="" coords="161,136,216,163"/>
-<area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="5,20,60,47"/>
-<area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="7,85,58,112"/>
+<area shape="rect" title="Adds a light to the world" alt="" coords="448,71,609,127"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="239,5,400,61"/>
+<area shape="rect" href="win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="268,85,371,112"/>
+<area shape="rect" href="world__test_8cpp.html#abce7f9f9428f0d1476240fc739ea15d4" title=" " alt="" coords="292,136,347,163"/>
+<area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="120,20,175,47"/>
+<area shape="rect" href="win32__main_8cpp.html#ab2101e7c16dcc71d3facc36c5de7f0c1" title=" " alt="" coords="104,85,191,112"/>
+<area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,85,56,112"/>
 </map>
 </div>
 
@@ -250,12 +266,13 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a427b35ad3e215434586001a185d1feee_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a427b35ad3e215434586001a185d1feee_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a427b35ad3e215434586001a185d1feee_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a427b35ad3e215434586001a185d1feee_icgraph">
-<area shape="rect" title="Adds a object to the world" alt="" coords="317,71,479,127"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,5,269,61"/>
-<area shape="rect" href="win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="137,85,240,112"/>
-<area shape="rect" href="world__test_8cpp.html#ab2d8493dc183b724b5d1a18686359bcb" title=" " alt="" coords="161,136,216,163"/>
-<area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="5,20,60,47"/>
-<area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="7,85,58,112"/>
+<area shape="rect" title="Adds a object to the world" alt="" coords="448,71,609,127"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="239,5,400,61"/>
+<area shape="rect" href="win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="268,85,371,112"/>
+<area shape="rect" href="world__test_8cpp.html#ab2d8493dc183b724b5d1a18686359bcb" title=" " alt="" coords="292,136,347,163"/>
+<area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="120,20,175,47"/>
+<area shape="rect" href="win32__main_8cpp.html#ab2101e7c16dcc71d3facc36c5de7f0c1" title=" " alt="" coords="104,85,191,112"/>
+<area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,85,56,112"/>
 </map>
 </div>
 
@@ -293,7 +310,7 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <a id="ae527875e77f99cd42ea6f1bed1ebd5bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae527875e77f99cd42ea6f1bed1ebd5bf">&#9670;&nbsp;</a></span>colorAt()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae527875e77f99cd42ea6f1bed1ebd5bf">&#9670;&nbsp;</a></span>colorAt() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -317,29 +334,66 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The color from the traced ray</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00134">134</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_ae527875e77f99cd42ea6f1bed1ebd5bf_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_ae527875e77f99cd42ea6f1bed1ebd5bf_cgraph" alt=""/></div>
-<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_ae527875e77f99cd42ea6f1bed1ebd5bf_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_ae527875e77f99cd42ea6f1bed1ebd5bf_cgraph">
-<area shape="rect" title="Calculates the color from the point of view of the passed in ray" alt="" coords="5,43,167,99"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="233,5,395,61"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#af2ff355f45fc3b2100e116bc7955840b" title="Finds the intersection that the ray hits, if it exists." alt="" coords="215,86,413,127"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="461,5,623,61"/>
-</map>
-</div>
+<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00162">162</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_ae527875e77f99cd42ea6f1bed1ebd5bf_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_ae527875e77f99cd42ea6f1bed1ebd5bf_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_ae527875e77f99cd42ea6f1bed1ebd5bf_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_ae527875e77f99cd42ea6f1bed1ebd5bf_icgraph">
-<area shape="rect" title="Calculates the color from the point of view of the passed in ray" alt="" coords="473,49,635,105"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="255,16,425,72"/>
-<area shape="rect" href="world__test_8cpp.html#ab2d8493dc183b724b5d1a18686359bcb" title=" " alt="" coords="313,96,367,123"/>
-<area shape="rect" href="win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="104,5,207,32"/>
-<area shape="rect" href="camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,56,183,83"/>
-<area shape="rect" href="win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+<area shape="rect" title="Calculates the color from the point of view of the passed in ray" alt="" coords="224,39,385,95"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="5,5,176,61"/>
+<area shape="rect" href="world__test_8cpp.html#ab2d8493dc183b724b5d1a18686359bcb" title=" " alt="" coords="63,85,118,112"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae0a5128b4c9aa4877a97debdb3cb0c29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0a5128b4c9aa4877a97debdb3cb0c29">&#9670;&nbsp;</a></span>colorAt() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a> World::colorAt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Math::Ray</a> &amp;&#160;</td>
+          <td class="paramname"><em>ray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>remainingCalls</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the color from the point of view of the passed in ray </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ray</td><td>Ray to trace along the world</td></tr>
+    <tr><td class="paramname">remainingCalls</td><td>The remaining calls when this method is used recursively</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The color from the traced ray</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00167">167</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_ae0a5128b4c9aa4877a97debdb3cb0c29_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_ae0a5128b4c9aa4877a97debdb3cb0c29_cgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_ae0a5128b4c9aa4877a97debdb3cb0c29_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_ae0a5128b4c9aa4877a97debdb3cb0c29_cgraph">
+<area shape="rect" title="Calculates the color from the point of view of the passed in ray" alt="" coords="5,43,167,99"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="233,5,395,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#af2ff355f45fc3b2100e116bc7955840b" title="Finds the intersection that the ray hits, if it exists." alt="" coords="215,86,413,127"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="461,5,623,61"/>
 </map>
 </div>
 
@@ -422,7 +476,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Intersections</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00085">85</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00090">90</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -471,7 +525,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if in shade, False otherwise</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00110">110</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00138">138</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -553,7 +607,7 @@ Here is the caller graph for this function:</div>
 <p>Returns how many lights are in the world </p>
 <dl class="section return"><dt>Returns</dt><dd>How many lights are in the world</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00080">80</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00085">85</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -567,7 +621,7 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <a id="ac730839756a90049262819311741f1b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac730839756a90049262819311741f1b5">&#9670;&nbsp;</a></span>objectAt()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac730839756a90049262819311741f1b5">&#9670;&nbsp;</a></span>objectAt() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -604,6 +658,45 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="ab8db1400c154a10f2fadf0d316305eab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8db1400c154a10f2fadf0d316305eab">&#9670;&nbsp;</a></span>objectAt() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void World::objectAt </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a>&#160;</td>
+          <td class="paramname"><em>shape</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Replaces the shape at the index with the new shape </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>Index of the object to replace</td></tr>
+    <tr><td class="paramname">shape</td><td>The shape to replace it with</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00075">75</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+
+</div>
+</div>
 <a id="aa7aaea63faa42d0dd8338ad3b117c399"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa7aaea63faa42d0dd8338ad3b117c399">&#9670;&nbsp;</a></span>objectCount()</h2>
 
@@ -622,7 +715,7 @@ Here is the caller graph for this function:</div>
 <p>Returns how many objects are in the world </p>
 <dl class="section return"><dt>Returns</dt><dd>How many objects are in the world</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00075">75</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00080">80</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -635,8 +728,99 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="adc54007efd4f6e3fcdb3a0eb78d28734"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc54007efd4f6e3fcdb3a0eb78d28734">&#9670;&nbsp;</a></span>reflectedColor() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a> World::reflectedColor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html">ComputedValues</a> &amp;&#160;</td>
+          <td class="paramname"><em>cv</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the reflected color in the world from precomputed values </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cv</td><td>The precomputed values</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The reflected color</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00120">120</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_adc54007efd4f6e3fcdb3a0eb78d28734_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_adc54007efd4f6e3fcdb3a0eb78d28734_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_adc54007efd4f6e3fcdb3a0eb78d28734_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_adc54007efd4f6e3fcdb3a0eb78d28734_icgraph">
+<area shape="rect" title="Calculates the reflected color in the world from precomputed values" alt="" coords="108,5,269,61"/>
+<area shape="rect" href="world__test_8cpp.html#ad363a2f31937007e9faf44c610f6ce59" title=" " alt="" coords="5,20,60,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a38cf9ede330e6d2b8e49e2c579ab22b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38cf9ede330e6d2b8e49e2c579ab22b7">&#9670;&nbsp;</a></span>reflectedColor() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a> World::reflectedColor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html">ComputedValues</a> &amp;&#160;</td>
+          <td class="paramname"><em>cv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>remainingCalls</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the reflected color in the world from precomputed values </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cv</td><td>The precomputed values</td></tr>
+    <tr><td class="paramname">remainingCalls</td><td>The remaining calls when this method is used recursively</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The reflected color</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00125">125</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a38cf9ede330e6d2b8e49e2c579ab22b7_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a38cf9ede330e6d2b8e49e2c579ab22b7_cgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a38cf9ede330e6d2b8e49e2c579ab22b7_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a38cf9ede330e6d2b8e49e2c579ab22b7_cgraph">
+<area shape="rect" title="Calculates the reflected color in the world from precomputed values" alt="" coords="5,125,167,181"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="246,5,407,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a345607acab0e18af9b6fb578faf85658" title="Returns the material of the shape that was intersected" alt="" coords="215,85,439,141"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a8b7b1357c02a66c4c4bf7703d45e713a" title="Returns the position of the intersection translated slightly in front of the normal...." alt="" coords="215,165,439,221"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a1538b6673d35b1ef0a3e2a86cec21e9e" title="Returns the reflect vector" alt="" coords="215,245,439,301"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="487,5,648,61"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a4e9cabf5fcac31a9cd087d6ced265b41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e9cabf5fcac31a9cd087d6ced265b41">&#9670;&nbsp;</a></span>shadeHit()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e9cabf5fcac31a9cd087d6ced265b41">&#9670;&nbsp;</a></span>shadeHit() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -660,12 +844,61 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The color</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00097">97</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00102">102</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a4e9cabf5fcac31a9cd087d6ced265b41_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a4e9cabf5fcac31a9cd087d6ced265b41_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a4e9cabf5fcac31a9cd087d6ced265b41_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a4e9cabf5fcac31a9cd087d6ced265b41_icgraph">
+<area shape="rect" title="Calculates the color in the world from precomputed values" alt="" coords="108,5,269,61"/>
+<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,20,60,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8a4ae040ed58c5f57a39dff2b2708f5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a4ae040ed58c5f57a39dff2b2708f5e">&#9670;&nbsp;</a></span>shadeHit() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a> World::shadeHit </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html">ComputedValues</a> &amp;&#160;</td>
+          <td class="paramname"><em>cv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>remainingCalls</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the color in the world from precomputed values </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cv</td><td>The precomputed values</td></tr>
+    <tr><td class="paramname">remainingCalls</td><td>The remaining calls when this method is used recursively</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The color</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="world_8cpp_source.html#l00107">107</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a4e9cabf5fcac31a9cd087d6ced265b41_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a4e9cabf5fcac31a9cd087d6ced265b41_cgraph" alt=""/></div>
-<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a4e9cabf5fcac31a9cd087d6ced265b41_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a4e9cabf5fcac31a9cd087d6ced265b41_cgraph">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a8a4ae040ed58c5f57a39dff2b2708f5e_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a8a4ae040ed58c5f57a39dff2b2708f5e_cgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a8a4ae040ed58c5f57a39dff2b2708f5e_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a8a4ae040ed58c5f57a39dff2b2708f5e_cgraph">
 <area shape="rect" title="Calculates the color in the world from precomputed values" alt="" coords="5,217,167,273"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="527,5,688,61"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a622264bce1b187d850a385034df91dc1" title="Returns the eye vector" alt="" coords="215,71,468,113"/>
@@ -679,15 +912,6 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="516,136,699,192"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#a1e5accc8b122a9e71d54297698eab78b" title="Returns the position of the light" alt="" coords="516,216,699,272"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a7dfd7f3387d4f9f61d8eb48e31be1e4f" title="Reflects the vector off the normal" alt="" coords="527,296,688,352"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a4e9cabf5fcac31a9cd087d6ced265b41_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a4e9cabf5fcac31a9cd087d6ced265b41_icgraph" alt=""/></div>
-<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a4e9cabf5fcac31a9cd087d6ced265b41_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world_a4e9cabf5fcac31a9cd087d6ced265b41_icgraph">
-<area shape="rect" title="Calculates the color in the world from precomputed values" alt="" coords="108,5,269,61"/>
-<area shape="rect" href="world__test_8cpp.html#aaee355ab233f61586978a02f9c6bc4b6" title=" " alt="" coords="5,20,60,47"/>
 </map>
 </div>
 

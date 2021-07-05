@@ -1,10 +1,5 @@
 <map id="CppRayTracerChallenge::Core::Renderer::Camera::render" name="CppRayTracerChallenge::Core::Renderer::Camera::render">
-<area shape="rect" id="node1" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="5,121,176,177"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf" title="Calculates the color from the point of view of the passed in ray" alt="" coords="227,41,388,97"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#af06b75218f6b14fa4435f0c2fa278fe8" title="Returns a buffer with all of the Colors in left&#45;right, top&#45;down order" alt="" coords="227,121,388,177"/>
-<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ae8f153c5b936b2c4229a80f9639ded31" title="Writes color data to the specified coordinate on the canvas (0,0) is the top&#45;left pixel" alt="" coords="224,201,391,257"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="457,5,619,61"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#af2ff355f45fc3b2100e116bc7955840b" title="Finds the intersection that the ray hits, if it exists." alt="" coords="439,86,637,127"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="685,5,847,61"/>
-<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a042a834f5a144cc45600dfb1ced54284" title="Returns the index of the pixel at the x and y coordinates" alt="" coords="457,201,619,257"/>
+<area shape="rect" id="node1" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="5,45,176,101"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf" title="Calculates the color from the point of view of the passed in ray" alt="" coords="229,5,390,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a573849ce50a6e551df6f579d3f40d0ba" title="Returns the current rendered image, regardless of if it is finished or not" alt="" coords="224,85,395,141"/>
 </map>

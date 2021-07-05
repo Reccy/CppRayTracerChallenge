@@ -8,6 +8,7 @@ var class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values =
     [ "normal", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a1d400c7edc498808c9de5e35a436824a", null ],
     [ "overPosition", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a8b7b1357c02a66c4c4bf7703d45e713a", null ],
     [ "position", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8", null ],
+    [ "reflect", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a1538b6673d35b1ef0a3e2a86cec21e9e", null ],
     [ "shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a55c3c312a2b720d902d9ab5640947c9b", null ],
     [ "t", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#ab6c08535b526bc2e37e63d1fce575f39", null ]
 ];

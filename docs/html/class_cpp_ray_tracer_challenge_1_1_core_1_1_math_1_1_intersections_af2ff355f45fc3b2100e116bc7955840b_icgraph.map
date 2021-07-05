@@ -1,12 +1,7 @@
 <map id="CppRayTracerChallenge::Core::Math::Intersections::hit" name="CppRayTracerChallenge::Core::Math::Intersections::hit">
-<area shape="rect" id="node1" title="Finds the intersection that the ray hits, if it exists." alt="" coords="683,154,881,195"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf" title="Calculates the color from the point of view of the passed in ray" alt="" coords="473,67,635,123"/>
-<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9ee7e82e7caf361aef5c7ee510465130" title="Calculates if a position in world space is lit by a specific light" alt="" coords="473,147,635,203"/>
-<area shape="rect" id="node10" href="$intersections__test_8cpp.html#a0ae33f3a629022e4bd9624dc3cfe4343" title=" " alt="" coords="527,227,581,253"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="255,16,425,72"/>
-<area shape="rect" id="node7" href="$world__test_8cpp.html#ab2d8493dc183b724b5d1a18686359bcb" title=" " alt="" coords="313,96,367,123"/>
-<area shape="rect" id="node4" href="$win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="104,5,207,32"/>
-<area shape="rect" id="node6" href="$camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="128,56,183,83"/>
-<area shape="rect" id="node5" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
-<area shape="rect" id="node9" href="$world__test_8cpp.html#a16c2344f855b1ef5d58b499b32749438" title=" " alt="" coords="313,161,367,188"/>
+<area shape="rect" id="node1" title="Finds the intersection that the ray hits, if it exists." alt="" coords="317,93,516,134"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae0a5128b4c9aa4877a97debdb3cb0c29" title="Calculates the color from the point of view of the passed in ray" alt="" coords="108,5,269,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9ee7e82e7caf361aef5c7ee510465130" title="Calculates if a position in world space is lit by a specific light" alt="" coords="108,85,269,141"/>
+<area shape="rect" id="node5" href="$intersections__test_8cpp.html#a0ae33f3a629022e4bd9624dc3cfe4343" title=" " alt="" coords="161,165,216,192"/>
+<area shape="rect" id="node4" href="$world__test_8cpp.html#a16c2344f855b1ef5d58b499b32749438" title=" " alt="" coords="5,100,60,127"/>
 </map>

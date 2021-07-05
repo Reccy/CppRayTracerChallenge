@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['diffuse_629',['diffuse',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a6756e5f3b47a36493bb644432c4196f3',1,'CppRayTracerChallenge::Core::Renderer::Material']]]
+  ['camera_662',['camera',['../win32__main_8cpp.html#a0c3adc735d1625f935b88973b70ee666',1,'win32_main.cpp']]]
 ];

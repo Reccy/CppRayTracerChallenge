@@ -58,9 +58,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_gradient.html#a65299ac3a485d720c369191fdfb2e433",
-"intersection__test_8cpp.html#ac1f23a339a082a2d414bac044366901b",
-"shape__test_8cpp.html#a73b530e5f692816418c4a3f2e6cca573"
+"class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_gradient.html#a36d60be21f2692672d3c2ade2ec016f5",
+"image_8cpp.html",
+"ray__test_8cpp.html#a32cb8f5fe90e650dcb9db4ec58e3f4df",
+"world__test_8cpp_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

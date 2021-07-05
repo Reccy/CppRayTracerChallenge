@@ -1,10 +1,11 @@
 <map id="CppRayTracerChallenge::Core::Math::Trig::degrees_to_radians" name="CppRayTracerChallenge::Core::Math::Trig::degrees_to_radians">
-<area shape="rect" id="node1" title="Converts degrees to radians" alt="" coords="759,49,936,105"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#ab4aa91a4dc6d8ca7653acf8c82f33986" title="Rotates the Transform along the x, y and z axes" alt="" coords="549,16,711,72"/>
-<area shape="rect" id="node8" href="$trig__test_8cpp.html#abc0be64fda3f185f16d7d474776e95ef" title=" " alt="" coords="603,96,657,123"/>
-<area shape="rect" id="node3" href="$win32__main_8cpp.html#ae3ebfe6dbc0df0f8c0a3c4b0d32db208" title=" " alt="" coords="381,5,501,32"/>
-<area shape="rect" id="node7" href="$transform__test_8cpp.html#a76194ac1de00662ebe995e3d9760a6ae" title=" " alt="" coords="414,56,469,83"/>
-<area shape="rect" id="node4" href="$win32__main_8cpp.html#a96d4ef3a73403c1f572ed5bf3748e440" title=" " alt="" coords="255,5,333,32"/>
-<area shape="rect" id="node5" href="$win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="104,5,207,32"/>
-<area shape="rect" id="node6" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
+<area shape="rect" id="node1" title="Converts degrees to radians" alt="" coords="893,49,1071,105"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#ab4aa91a4dc6d8ca7653acf8c82f33986" title="Rotates the Transform along the x, y and z axes" alt="" coords="684,16,845,72"/>
+<area shape="rect" id="node9" href="$trig__test_8cpp.html#abc0be64fda3f185f16d7d474776e95ef" title=" " alt="" coords="737,96,792,123"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#ae3ebfe6dbc0df0f8c0a3c4b0d32db208" title=" " alt="" coords="516,5,636,32"/>
+<area shape="rect" id="node8" href="$transform__test_8cpp.html#a76194ac1de00662ebe995e3d9760a6ae" title=" " alt="" coords="549,56,603,83"/>
+<area shape="rect" id="node4" href="$win32__main_8cpp.html#a96d4ef3a73403c1f572ed5bf3748e440" title=" " alt="" coords="389,5,468,32"/>
+<area shape="rect" id="node5" href="$win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="239,5,341,32"/>
+<area shape="rect" id="node6" href="$win32__main_8cpp.html#ab2101e7c16dcc71d3facc36c5de7f0c1" title=" " alt="" coords="104,5,191,32"/>
+<area shape="rect" id="node7" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
 </map>

@@ -1,32 +1,30 @@
 <map id="main" name="main">
-<area shape="rect" id="node1" title=" " alt="" coords="5,503,56,529"/>
-<area shape="rect" id="node2" href="$win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="104,361,207,388"/>
-<area shape="rect" id="node28" href="$win32__main_8cpp.html#aa93dbd63f280b50c4415de8a4fa50cf4" title=" " alt="" coords="113,644,197,671"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="270,267,431,323"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a427b35ad3e215434586001a185d1feee" title="Adds a object to the world" alt="" coords="270,347,431,403"/>
-<area shape="rect" id="node5" href="$win32__main_8cpp.html#a96d4ef3a73403c1f572ed5bf3748e440" title=" " alt="" coords="311,427,390,453"/>
-<area shape="rect" id="node14" href="$win32__main_8cpp.html#ae4ea00d401eb7a5aee5a5f1eeff59948" title=" " alt="" coords="295,477,406,504"/>
-<area shape="rect" id="node15" href="$win32__main_8cpp.html#af7c17f2ef02cbb4e48b33f4aac986fec" title=" " alt="" coords="312,5,389,32"/>
-<area shape="rect" id="node16" href="$win32__main_8cpp.html#a54f9bd520bfe628965f2975e3a755205" title=" " alt="" coords="287,579,415,605"/>
-<area shape="rect" id="node17" href="$win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f" title=" " alt="" coords="291,528,411,555"/>
-<area shape="rect" id="node18" href="$win32__main_8cpp.html#a897e3bec42575bc1c63e5d5b594be783" title=" " alt="" coords="331,56,370,83"/>
-<area shape="rect" id="node19" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="265,107,436,163"/>
-<area shape="rect" id="node27" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a4a0bdf0c504c3b5ae4307b6f723fdc8d" title="Transforms the camera by the passed in transform matrix" alt="" coords="265,187,436,243"/>
-<area shape="rect" id="node6" href="$win32__main_8cpp.html#ae3ebfe6dbc0df0f8c0a3c4b0d32db208" title=" " alt="" coords="518,317,638,344"/>
-<area shape="rect" id="node11" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#abf27352f00f308b409c5fdaa93f1bef0" title="Returns the material assigned to the shape" alt="" coords="497,579,659,635"/>
-<area shape="rect" id="node12" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="497,368,659,424"/>
-<area shape="rect" id="node13" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aa278451e9d8057425d6961e939716dc7" title="Transforms the shape" alt="" coords="497,499,659,555"/>
-<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#ab4aa91a4dc6d8ca7653acf8c82f33986" title="Rotates the Transform along the x, y and z axes" alt="" coords="728,303,889,359"/>
-<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a2518b8aa2d8e95ca80f5c61817a2d33c" title="Translates the Transform along x, y, z co&#45;ordinates" alt="" coords="728,433,889,489"/>
-<area shape="rect" id="node8" href="$namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#a712b1a452e58e36bf35ca3aa101f0745" title="Converts degrees to radians" alt="" coords="956,303,1133,359"/>
-<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="964,408,1125,464"/>
-<area shape="rect" id="node20" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf" title="Calculates the color from the point of view of the passed in ray" alt="" coords="497,171,659,227"/>
-<area shape="rect" id="node24" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#af06b75218f6b14fa4435f0c2fa278fe8" title="Returns a buffer with all of the Colors in left&#45;right, top&#45;down order" alt="" coords="497,11,659,67"/>
-<area shape="rect" id="node25" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ae8f153c5b936b2c4229a80f9639ded31" title="Writes color data to the specified coordinate on the canvas (0,0) is the top&#45;left pixel" alt="" coords="495,91,661,147"/>
-<area shape="rect" id="node21" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="728,223,889,279"/>
-<area shape="rect" id="node23" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#af2ff355f45fc3b2100e116bc7955840b" title="Finds the intersection that the ray hits, if it exists." alt="" coords="709,157,908,198"/>
-<area shape="rect" id="node22" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="964,223,1125,279"/>
-<area shape="rect" id="node26" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a042a834f5a144cc45600dfb1ced54284" title="Returns the index of the pixel at the x and y coordinates" alt="" coords="728,76,889,132"/>
-<area shape="rect" id="node29" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#ab1addd635673be34a1b4939587da91f8" title="Returns the serialized image as a buffer" alt="" coords="255,629,447,685"/>
-<area shape="rect" id="node30" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#a9e7ddf2da2c40d269dcc90f126efc66f" title="Serializes an Image, making it available to access via the buffer" alt="" coords="255,709,447,765"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,453,56,480"/>
+<area shape="rect" id="node2" href="$class_r_a_i_iglfw.html#a415e7c637a2e9b21db43f79fc13766e6" title=" " alt="" coords="149,268,249,295"/>
+<area shape="rect" id="node7" href="$win32__main_8cpp.html#ab2101e7c16dcc71d3facc36c5de7f0c1" title=" " alt="" coords="155,453,242,480"/>
+<area shape="rect" id="node28" href="$class_r_a_i_iglfw.html#ac2489547fef879685e75873bebfaee62" title=" " alt="" coords="104,504,293,531"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#a0202a0b7dd0c62f6c700df077a9a1c4d" title=" " alt="" coords="341,127,456,153"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ab3970dc118e7c6d4d67927cc96d26e1b" title="Returns the value of the blue channel" alt="" coords="507,151,693,193"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a5dcccf7b529ee13c0b5850a29e1df8da" title="Returns the value of the green channel" alt="" coords="519,5,681,61"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a95098c6e8933aa258cac20b61cf1c70b" title="Returns the value of the red channel" alt="" coords="509,86,691,127"/>
+<area shape="rect" id="node8" href="$win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="347,453,450,480"/>
+<area shape="rect" id="node25" href="$win32__main_8cpp.html#aa93dbd63f280b50c4415de8a4fa50cf4" title=" " alt="" coords="357,696,441,723"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="519,217,681,273"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a427b35ad3e215434586001a185d1feee" title="Adds a object to the world" alt="" coords="519,297,681,353"/>
+<area shape="rect" id="node11" href="$win32__main_8cpp.html#a96d4ef3a73403c1f572ed5bf3748e440" title=" " alt="" coords="561,377,639,404"/>
+<area shape="rect" id="node20" href="$win32__main_8cpp.html#ae4ea00d401eb7a5aee5a5f1eeff59948" title=" " alt="" coords="545,479,655,505"/>
+<area shape="rect" id="node21" href="$win32__main_8cpp.html#af7c17f2ef02cbb4e48b33f4aac986fec" title=" " alt="" coords="561,580,639,607"/>
+<area shape="rect" id="node22" href="$win32__main_8cpp.html#a54f9bd520bfe628965f2975e3a755205" title=" " alt="" coords="536,529,664,556"/>
+<area shape="rect" id="node23" href="$win32__main_8cpp.html#a8531cb070e68ecabb4c992e48b6dae4f" title=" " alt="" coords="540,428,660,455"/>
+<area shape="rect" id="node24" href="$win32__main_8cpp.html#a897e3bec42575bc1c63e5d5b594be783" title=" " alt="" coords="581,631,619,657"/>
+<area shape="rect" id="node12" href="$win32__main_8cpp.html#ae3ebfe6dbc0df0f8c0a3c4b0d32db208" title=" " alt="" coords="765,253,885,280"/>
+<area shape="rect" id="node17" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#abf27352f00f308b409c5fdaa93f1bef0" title="Returns the material assigned to the shape" alt="" coords="744,435,907,491"/>
+<area shape="rect" id="node18" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="745,304,906,360"/>
+<area shape="rect" id="node19" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aa278451e9d8057425d6961e939716dc7" title="Transforms the shape" alt="" coords="744,515,907,571"/>
+<area shape="rect" id="node13" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#ab4aa91a4dc6d8ca7653acf8c82f33986" title="Rotates the Transform along the x, y and z axes" alt="" coords="955,239,1116,295"/>
+<area shape="rect" id="node15" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a2518b8aa2d8e95ca80f5c61817a2d33c" title="Translates the Transform along x, y, z co&#45;ordinates" alt="" coords="955,369,1116,425"/>
+<area shape="rect" id="node14" href="$namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#a712b1a452e58e36bf35ca3aa101f0745" title="Converts degrees to radians" alt="" coords="1164,239,1341,295"/>
+<area shape="rect" id="node16" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="1172,344,1333,400"/>
+<area shape="rect" id="node26" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#ab1addd635673be34a1b4939587da91f8" title="Returns the serialized image as a buffer" alt="" coords="504,681,696,737"/>
+<area shape="rect" id="node27" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#a9e7ddf2da2c40d269dcc90f126efc66f" title="Serializes an Image, making it available to access via the buffer" alt="" coords="504,761,696,817"/>
 </map>
