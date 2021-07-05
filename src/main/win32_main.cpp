@@ -83,6 +83,7 @@ Renderer::Shape buildFloor()
 	Material bgMaterial = Material();
 	bgMaterial.pattern = buildFloorPattern();
 	bgMaterial.specular = 0.1f;
+	bgMaterial.reflective = 0.95f;
 	floor.material(bgMaterial);
 	floor.transform(floorTransform);
 	return floor;
@@ -98,6 +99,7 @@ Renderer::Shape buildMiddleSphere()
 	material.pattern = std::make_shared<SolidColor>(Color(0.1f, 1.0f, 0.5f));
 	material.diffuse = 0.7f;
 	material.specular = 0.3f;
+	material.reflective = 0.5f;
 	sphere.material(material);
 	sphere.transform(transform);
 
@@ -116,6 +118,7 @@ Renderer::Shape buildRightSphere()
 	material.pattern->transform(Transform().rotate(66, 283, 1).scale(2, 1.3, 0.2));
 	material.diffuse = 0.7f;
 	material.specular = 0.3f;
+	material.reflective = 0.2f;
 	sphere.material(material);
 	sphere.transform(transform);
 
@@ -134,6 +137,7 @@ Renderer::Shape buildLeftSphere()
 	material.pattern->transform(Transform().rotate(33, 24, 93).scale(0.2, 1.3, 0.2));
 	material.diffuse = 0.7f;
 	material.specular = 0.3f;
+	material.reflective = 1.0f;
 	sphere.material(material);
 	sphere.transform(transform);
 
