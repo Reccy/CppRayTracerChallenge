@@ -105,8 +105,8 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, shade_hit_given_shadowed_interse
 	World world = World::World();
 	world.addLight(PointLight({0, 0, -10}, Graphics::Color::white()));
 
-auto sphere1 = std::make_shared<Math::Sphere>(Math::Sphere());
-world.addObject(Renderer::Shape(sphere1));
+	auto sphere1 = std::make_shared<Math::Sphere>(Math::Sphere());
+	world.addObject(Renderer::Shape(sphere1));
 
 	auto sphere2 = std::make_shared<Math::Sphere>(Math::Sphere());
 	Renderer::Shape s = Renderer::Shape(sphere2);
@@ -118,6 +118,25 @@ world.addObject(Renderer::Shape(sphere1));
 	Graphics::Color result = world.colorAt(ray);
 
 	EXPECT_EQ(result, Graphics::Color(0.1f, 0.1f, 0.1f));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_color_for_nonreflected_material)
+{
+	World world = World::defaultWorld();
+	Math::Ray ray = Math::Ray({ 0, 0, 0 }, { 0, 0, 1 });
+	Renderer::Shape shape = world.objectAt(1);
+
+	Material mat = Material(shape.material());
+	mat.ambient = 1;
+	shape.material(mat);
+	world.objectAt(1, shape);
+
+	Math::Intersection intersection = Math::Intersection(1, shape);
+
+	ComputedValues cv = ComputedValues(intersection, ray);
+	Graphics::Color result = world.reflectedColor(cv);
+
+	EXPECT_EQ(result, Graphics::Color::black());
 }
 
 TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_miss)

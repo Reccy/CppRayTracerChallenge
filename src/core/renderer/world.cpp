@@ -72,6 +72,11 @@ const Shape& World::objectAt(int index) const
 	return m_objects.at(index);
 }
 
+void World::objectAt(int index, Shape shape)
+{
+	m_objects.at(index) = shape;
+}
+
 int World::objectCount() const
 {
 	return static_cast<int>(m_objects.size());
@@ -105,6 +110,17 @@ Graphics::Color World::shadeHit(const ComputedValues& cv) const
 	}
 
 	return color;
+}
+
+Graphics::Color World::reflectedColor(const ComputedValues& cv) const
+{
+	if (cv.material().reflective == 0)
+	{
+		return Graphics::Color::black();
+	}
+
+	// TODO
+	return Graphics::Color::white();
 }
 
 bool World::isShadowed(const Math::Point& position, const PointLight& light) const

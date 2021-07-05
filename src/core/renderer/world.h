@@ -60,6 +60,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		const Shape& objectAt(int index) const;
 
 		/// <summary>
+		/// Replaces the shape at the index with the new shape
+		/// </summary>
+		/// <param name="index">Index of the object to replace</param>
+		/// <param name="shape">The shape to replace it with</param>
+		void objectAt(int index, Shape shape);
+
+		/// <summary>
 		/// Returns how many objects are in the world
 		/// </summary>
 		/// <returns>How many objects are in the world</returns>
@@ -84,6 +91,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <param name="cv">The precomputed values</param>
 		/// <returns>The color</returns>
 		Graphics::Color shadeHit(const ComputedValues& cv) const;
+
+		/// <summary>
+		/// Calculates the reflected color in the world from precomputed values
+		/// </summary>
+		/// <param name="cv">The precomputed values</param>
+		/// <returns>The reflected color</returns>
+		Graphics::Color reflectedColor(const ComputedValues& cv) const;
 
 		/// <summary>
 		/// Calculates if a position in world space is lit by a specific light
