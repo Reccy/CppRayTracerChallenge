@@ -34,11 +34,12 @@ void RenderJob::doRender()
 	{
 		for (int x = 0; x < m_width; ++x)
 		{
-			Math::Ray ray = m_camera.rayForPixel(x,y);
+			Math::Ray ray = m_camera.rayForPixel(m_xOffset + x, m_yOffset + y);
 			Graphics::Color color = m_world.colorAt(ray);
 			m_canvas.writePixel(x, y, color);
 		}
 	}
 
+	std::cout << "Render Job Complete" << std::endl;
 	m_isComplete = true;
 }

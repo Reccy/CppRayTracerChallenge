@@ -66,16 +66,27 @@ Matrix<double> Camera::transformMatrix() const
 	return m_transformMatrix;
 }
 
+std::vector<Graphics::Color> composite(const RenderJob& a, const RenderJob& b)
+{
+	std::vector<Graphics::Color> compositeBuffer = a.canvas().toBuffer();
+
+	const std::vector<Graphics::Color>& bottomBuffer = b.canvas().toBuffer();
+
+	compositeBuffer.insert(std::end(compositeBuffer), std::begin(bottomBuffer), std::end(bottomBuffer));
+	return compositeBuffer;
+}
+
 Graphics::Image Camera::render(const World& world) const
 {
-	RenderJob renderJob = RenderJob(0, 0, m_hSize, m_vSize, world, *this);
+	RenderJob renderJobTop = RenderJob(0, 0, m_hSize, m_vSize/2, world, *this);
+	RenderJob renderJobBottom = RenderJob(0, m_vSize/2, m_hSize, m_vSize/2 + 1, world, *this);
 
-	while (!renderJob.isComplete())
+	while (!renderJobTop.isComplete() || !renderJobBottom.isComplete())
 	{
-		m_renderCanvas->fromBuffer(renderJob.canvas().toBuffer());
+		m_renderCanvas->fromBuffer(composite(renderJobTop, renderJobBottom));
 	}
 
-	m_renderCanvas->fromBuffer(renderJob.canvas().toBuffer());
+	m_renderCanvas->fromBuffer(composite(renderJobTop, renderJobBottom));
 
 	return renderedImage();
 }
