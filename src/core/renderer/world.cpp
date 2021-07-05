@@ -119,8 +119,10 @@ Graphics::Color World::reflectedColor(const ComputedValues& cv) const
 		return Graphics::Color::black();
 	}
 
-	// TODO
-	return Graphics::Color::white();
+	Math::Ray reflectRay = Math::Ray(cv.overPosition(), cv.reflect());
+	Graphics::Color color = colorAt(reflectRay);
+
+	return color * cv.material().reflective;
 }
 
 bool World::isShadowed(const Math::Point& position, const PointLight& light) const

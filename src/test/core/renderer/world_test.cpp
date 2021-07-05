@@ -5,6 +5,7 @@
 #include "math/ray.h"
 #include "math/intersections.h"
 #include "math/sphere.h"
+#include "math/plane.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core;
@@ -137,6 +138,27 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_color_for_nonreflected
 	Graphics::Color result = world.reflectedColor(cv);
 
 	EXPECT_EQ(result, Graphics::Color::black());
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_color_for_reflected_material)
+{
+	World world = World::defaultWorld();
+	auto plane = std::make_shared<Math::Plane>();
+	Renderer::Material mat = Renderer::Material();
+	mat.reflective = 0.5f;
+	Renderer::Shape shape = Renderer::Shape(plane, mat);
+	shape.transform(Math::Transform().translate(0, -1, 0));
+
+	world.addObject(shape);
+	Math::Ray ray = Math::Ray({ 0, 0, -3 }, { 0, -sqrt(2) / 2, sqrt(2) / 2 });
+	Math::Intersection intersection = Math::Intersection(sqrt(2), shape);
+
+	ComputedValues cv = ComputedValues(intersection, ray);
+	Graphics::Color result = world.reflectedColor(cv);
+
+	Graphics::Color expectedResult = Graphics::Color(0.190332f, 0.237915f, 0.142749f);
+
+	EXPECT_EQ(result, expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_miss)
