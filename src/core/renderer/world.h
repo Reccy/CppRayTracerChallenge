@@ -93,11 +93,27 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Graphics::Color shadeHit(const ComputedValues& cv) const;
 
 		/// <summary>
+		/// Calculates the color in the world from precomputed values
+		/// </summary>
+		/// <param name="cv">The precomputed values</param>
+		/// <param name="remainingCalls">The remaining calls when this method is used recursively</param>
+		/// <returns>The color</returns>
+		Graphics::Color shadeHit(const ComputedValues& cv, int remainingCalls) const;
+
+		/// <summary>
 		/// Calculates the reflected color in the world from precomputed values
 		/// </summary>
 		/// <param name="cv">The precomputed values</param>
 		/// <returns>The reflected color</returns>
 		Graphics::Color reflectedColor(const ComputedValues& cv) const;
+
+		/// <summary>
+		/// Calculates the reflected color in the world from precomputed values
+		/// </summary>
+		/// <param name="cv">The precomputed values</param>
+		/// <param name="remainingCalls">The remaining calls when this method is used recursively</param>
+		/// <returns>The reflected color</returns>
+		Graphics::Color reflectedColor(const ComputedValues& cv, int remainingCalls) const;
 
 		/// <summary>
 		/// Calculates if a position in world space is lit by a specific light
@@ -113,9 +129,18 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <param name="ray">Ray to trace along the world</param>
 		/// <returns>The color from the traced ray</returns>
 		Graphics::Color colorAt(const Math::Ray& ray) const;
+
+		/// <summary>
+		/// Calculates the color from the point of view of the passed in ray
+		/// </summary>
+		/// <param name="ray">Ray to trace along the world</param>
+		/// <param name="remainingCalls">The remaining calls when this method is used recursively</param>
+		/// <returns>The color from the traced ray</returns>
+		Graphics::Color colorAt(const Math::Ray& ray, int remainingCalls) const;
 	private:
 		std::vector<PointLight> m_lights;
 		std::vector<Shape> m_objects;
+		int const static DEFAULT_REMAINING_CALLS = 100;
 	};
 }
 

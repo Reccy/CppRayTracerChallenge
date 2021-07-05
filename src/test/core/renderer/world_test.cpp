@@ -182,6 +182,27 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_color_for_reflected_ma
 	EXPECT_EQ(result, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_color_at_max_recursion_depth)
+{
+	World world = World::defaultWorld();
+	auto plane = std::make_shared<Math::Plane>();
+	Renderer::Material mat = Renderer::Material();
+	mat.reflective = 0.5f;
+	Renderer::Shape shape = Renderer::Shape(plane, mat);
+	shape.transform(Math::Transform().translate(0, -1, 0));
+
+	world.addObject(shape);
+	Math::Ray ray = Math::Ray({ 0, 0, -3 }, { 0, -sqrt(2) / 2, sqrt(2) / 2 });
+	Math::Intersection intersection = Math::Intersection(sqrt(2), shape);
+
+	ComputedValues cv = ComputedValues(intersection, ray);
+	Graphics::Color result = world.reflectedColor(cv, 0);
+
+	Graphics::Color expectedResult = Graphics::Color::black();
+
+	EXPECT_EQ(result, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_miss)
 {
 	World world = World::defaultWorld();
@@ -207,6 +228,33 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_hit_behind_ray)
 	Graphics::Color color = world.colorAt(ray);
 
 	EXPECT_EQ(color, Graphics::Color(0.1f, 0.1f, 0.1f));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_with_mutually_reflective_surface)
+{
+	World world = World();
+	PointLight light = PointLight({ 0, 0, 0 }, Graphics::Color::white());
+	world.addLight(light);
+
+	Material reflectiveMaterial = Material();
+	reflectiveMaterial.reflective = 1;
+
+	auto lower = std::make_shared<Math::Plane>();
+	lower->transform(Math::Transform().translate(0, -1, 0));
+
+	auto upper = std::make_shared<Math::Plane>();
+	upper->transform(Math::Transform().translate(0, 1, 0));
+
+	Renderer::Shape upperShape = Renderer::Shape(upper, reflectiveMaterial);
+	Renderer::Shape lowerShape = Renderer::Shape(lower, reflectiveMaterial);
+
+	world.addObject(upperShape);
+	world.addObject(lowerShape);
+
+	Math::Ray ray = Math::Ray({ 0, 0, 0 }, { 0, 1, 0 });
+
+	// Infinite recursion gets terminated successfully
+	EXPECT_FALSE(world.colorAt(ray) == Graphics::Color::black());
 }
 
 TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_nothing_is_colinear_with_point_and_light)

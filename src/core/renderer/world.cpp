@@ -101,6 +101,11 @@ Math::Intersections World::intersectRay(const Math::Ray ray) const
 
 Graphics::Color World::shadeHit(const ComputedValues& cv) const
 {
+	return shadeHit(cv, DEFAULT_REMAINING_CALLS);
+}
+
+Graphics::Color World::shadeHit(const ComputedValues& cv, int remainingCalls) const
+{
 	Graphics::Color surfaceColor = Graphics::Color::black();
 
 	for (const PointLight& light : m_lights)
@@ -109,18 +114,23 @@ Graphics::Color World::shadeHit(const ComputedValues& cv) const
 		surfaceColor = surfaceColor + Lighting::lighting(cv.shape(), light, cv.position(), cv.eye(), cv.normal(), s);
 	}
 
-	return surfaceColor + reflectedColor(cv);
+	return surfaceColor + reflectedColor(cv, remainingCalls);
 }
 
 Graphics::Color World::reflectedColor(const ComputedValues& cv) const
 {
-	if (cv.material().reflective == 0)
+	return reflectedColor(cv, DEFAULT_REMAINING_CALLS);
+}
+
+Graphics::Color World::reflectedColor(const ComputedValues& cv, int remainingCalls) const
+{
+	if (remainingCalls == 0 || cv.material().reflective == 0)
 	{
 		return Graphics::Color::black();
 	}
 
 	Math::Ray reflectRay = Math::Ray(cv.overPosition(), cv.reflect());
-	Graphics::Color color = colorAt(reflectRay);
+	Graphics::Color color = colorAt(reflectRay, remainingCalls - 1);
 
 	return color * cv.material().reflective;
 }
@@ -151,6 +161,11 @@ bool World::isShadowed(const Math::Point& position, const PointLight& light) con
 
 Graphics::Color World::colorAt(const Math::Ray& ray) const
 {
+	return colorAt(ray, DEFAULT_REMAINING_CALLS);
+}
+
+Graphics::Color World::colorAt(const Math::Ray& ray, int remainingCalls) const
+{
 	Math::Intersections intersections = intersectRay(ray);
 
 	if (!intersections.hit().has_value())
@@ -162,5 +177,5 @@ Graphics::Color World::colorAt(const Math::Ray& ray) const
 
 	ComputedValues cv = ComputedValues(hit, ray);
 
-	return shadeHit(cv);
+	return shadeHit(cv, remainingCalls);
 }
