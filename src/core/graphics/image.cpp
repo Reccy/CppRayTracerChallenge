@@ -40,6 +40,11 @@ std::vector<Color> Image::toBuffer() const
 	return newVector;
 }
 
+void Image::fromBuffer(std::vector<Color> buffer)
+{
+	this->m_colors = buffer;
+}
+
 int Image::pixelIndexAt(int x, int y) const
 {
 	return x + y * m_width;

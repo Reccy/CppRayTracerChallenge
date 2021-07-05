@@ -1,4 +1,5 @@
 #include "camera.h"
+#include "render_job.h"
 #include "../graphics/canvas.h"
 #include "../math/trig.h"
 
@@ -67,15 +68,14 @@ Matrix<double> Camera::transformMatrix() const
 
 Graphics::Image Camera::render(const World& world) const
 {
-	for (int y = 0; y < m_vSize; ++y)
+	RenderJob renderJob = RenderJob(0, 0, m_hSize, m_vSize, world, *this);
+
+	while (!renderJob.isComplete())
 	{
-		for (int x = 0; x < m_hSize; ++x)
-		{
-			Math::Ray ray = rayForPixel(x, y);
-			Graphics::Color color = world.colorAt(ray);
-			m_renderCanvas->writePixel(x, y, color);
-		}
+		m_renderCanvas->fromBuffer(renderJob.canvas().toBuffer());
 	}
+
+	m_renderCanvas->fromBuffer(renderJob.canvas().toBuffer());
 
 	return renderedImage();
 }

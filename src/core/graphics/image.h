@@ -62,6 +62,12 @@ namespace CppRayTracerChallenge::Core::Graphics
 		Color readPixel(int x, int y) const;
 
 		/// <summary>
+		/// Replaces the image data with that of the passed in buffer
+		/// </summary>
+		/// <param name="buffer">The buffer to replace with</param>
+		void fromBuffer(std::vector<Color> buffer);
+
+		/// <summary>
 		/// Returns a buffer with all of the Colors in left-right, top-down order
 		/// </summary>
 		std::vector<Color> toBuffer() const;
