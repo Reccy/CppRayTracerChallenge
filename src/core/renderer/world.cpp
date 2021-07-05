@@ -101,15 +101,15 @@ Math::Intersections World::intersectRay(const Math::Ray ray) const
 
 Graphics::Color World::shadeHit(const ComputedValues& cv) const
 {
-	Graphics::Color color = Graphics::Color::black();
+	Graphics::Color surfaceColor = Graphics::Color::black();
 
 	for (const PointLight& light : m_lights)
 	{
 		bool s = isShadowed(cv.overPosition(), light);
-		color = color + Lighting::lighting(cv.shape(), light, cv.position(), cv.eye(), cv.normal(), s);
+		surfaceColor = surfaceColor + Lighting::lighting(cv.shape(), light, cv.position(), cv.eye(), cv.normal(), s);
 	}
 
-	return color;
+	return surfaceColor + reflectedColor(cv);
 }
 
 Graphics::Color World::reflectedColor(const ComputedValues& cv) const

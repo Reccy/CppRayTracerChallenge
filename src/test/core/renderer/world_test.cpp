@@ -121,6 +121,27 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, shade_hit_given_shadowed_interse
 	EXPECT_EQ(result, Graphics::Color(0.1f, 0.1f, 0.1f));
 }
 
+TEST(CppRayTracerChallenge_Core_Renderer_World, shade_hit_for_reflected_material)
+{
+	World world = World::defaultWorld();
+	auto plane = std::make_shared<Math::Plane>();
+	Renderer::Material mat = Renderer::Material();
+	mat.reflective = 0.5f;
+	Renderer::Shape shape = Renderer::Shape(plane, mat);
+	shape.transform(Math::Transform().translate(0, -1, 0));
+
+	world.addObject(shape);
+	Math::Ray ray = Math::Ray({ 0, 0, -3 }, { 0, -sqrt(2) / 2, sqrt(2) / 2 });
+	Math::Intersection intersection = Math::Intersection(sqrt(2), shape);
+
+	ComputedValues cv = ComputedValues(intersection, ray);
+	Graphics::Color result = world.shadeHit(cv);
+
+	Graphics::Color expectedResult = Graphics::Color(0.876758f, 0.924341f, 0.829175f);
+
+	EXPECT_EQ(result, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_color_for_nonreflected_material)
 {
 	World world = World::defaultWorld();
