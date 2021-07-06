@@ -65,6 +65,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/serializer/base_image_serializer.h"
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.h"
 	"${CORE_LIBRARY_DIR}/helpers/polymorphic_comparable.h"
+	"${CORE_LIBRARY_DIR}/helpers/material_helper.hpp"
 )
 
 set(LIBRARY_SOURCES
