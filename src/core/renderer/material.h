@@ -19,6 +19,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		float specular = 0.9f;
 		float shininess = 200.0f;
 		float reflective = 0.0f;
+		float refractiveIndex = 1.0f;
 	};
 
 	bool operator==(const Material& lhs, const Material& rhs);
