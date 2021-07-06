@@ -3,6 +3,8 @@
 #include "../graphics/canvas.h"
 #include "../math/trig.h"
 
+#include <taskflow/taskflow.hpp>
+
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core::Math;
 using namespace CppRayTracerChallenge::Core;
@@ -66,27 +68,59 @@ Matrix<double> Camera::transformMatrix() const
 	return m_transformMatrix;
 }
 
-std::vector<Graphics::Color> composite(const RenderJob& a, const RenderJob& b)
+std::vector<Graphics::Color> composite(const std::vector<std::unique_ptr<RenderJob>>& renderJobs)
 {
-	std::vector<Graphics::Color> compositeBuffer = a.canvas().toBuffer();
+	std::vector<Graphics::Color> compositeBuffer;
 
-	const std::vector<Graphics::Color>& bottomBuffer = b.canvas().toBuffer();
+	for (int i = 0; i < renderJobs.size(); ++i)
+	{
+		const std::vector<Graphics::Color>& renderBuffer = renderJobs[i]->canvas().toBuffer();
+		compositeBuffer.insert(std::end(compositeBuffer), std::begin(renderBuffer), std::end(renderBuffer));
+	}
 
-	compositeBuffer.insert(std::end(compositeBuffer), std::begin(bottomBuffer), std::end(bottomBuffer));
 	return compositeBuffer;
+}
+
+bool jobsComplete(const std::vector<std::unique_ptr<RenderJob>>& renderJobs)
+{
+	for (int i = 0; i < renderJobs.size(); ++i)
+	{
+		if (!renderJobs[i]->isComplete())
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
 
 Graphics::Image Camera::render(const World& world) const
 {
-	RenderJob renderJobTop = RenderJob(0, 0, m_hSize, m_vSize/2, world, *this);
-	RenderJob renderJobBottom = RenderJob(0, m_vSize/2, m_hSize, m_vSize/2 + 1, world, *this);
+	tf::Executor executor(12);
+	tf::Taskflow taskflow;
 
-	while (!renderJobTop.isComplete() || !renderJobBottom.isComplete())
+	std::vector<std::unique_ptr<RenderJob>> renderJobs;
+
+	for (int y = 0; y < m_vSize; ++y)
 	{
-		m_renderCanvas->fromBuffer(composite(renderJobTop, renderJobBottom));
+		renderJobs.push_back(std::make_unique<RenderJob>(0, y , m_hSize, 1, world, *this));
 	}
 
-	m_renderCanvas->fromBuffer(composite(renderJobTop, renderJobBottom));
+	for (int y = 0; y < m_vSize; ++y)
+	{
+		auto& job = renderJobs[y];
+
+		taskflow.emplace([&]() { job->doRender(); });
+	}
+
+	executor.run(taskflow);
+
+	while (!jobsComplete(renderJobs))
+	{
+		m_renderCanvas->fromBuffer(composite(renderJobs));
+	}
+
+	m_renderCanvas->fromBuffer(composite(renderJobs));
 
 	return renderedImage();
 }

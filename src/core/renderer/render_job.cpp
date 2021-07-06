@@ -9,14 +9,8 @@ RenderJob::RenderJob(int xOffset, int yOffset, int width, int height, const Worl
 	m_height(height),
 	m_world(world),
 	m_camera(camera),
-	m_canvas(width, height),
-	m_thread(&RenderJob::doRender, this)
+	m_canvas(width, height)
 {};
-
-RenderJob::~RenderJob()
-{
-	m_thread.join();
-}
 
 bool RenderJob::isComplete() const
 {
@@ -40,6 +34,5 @@ void RenderJob::doRender()
 		}
 	}
 
-	std::cout << "Render Job Complete" << std::endl;
 	m_isComplete = true;
 }

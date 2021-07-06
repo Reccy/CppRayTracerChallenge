@@ -192,3 +192,15 @@ target_link_libraries("${EXECUTABLE_NAME}" PRIVATE glfw)
 
 add_subdirectory("src/lib/glad")
 target_link_libraries("${EXECUTABLE_NAME}" PRIVATE glad)
+
+#
+# Concurrency Library
+#
+
+set(TF_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(TF_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(TF_BUILD_BENCHMARKS OFF CACHE BOOL "" FORCE)
+set(TF_BUILD_CUDA OFF CACHE BOOL "" FORCE)
+
+add_subdirectory("src/lib/taskflow")
+target_link_libraries("${CORE_LIBRARY_NAME}" PRIVATE Taskflow)
