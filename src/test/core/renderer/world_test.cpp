@@ -203,6 +203,18 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_color_at_max_recursion
 	EXPECT_EQ(result, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Renderer_World, refracted_color_with_opaque_surface)
+{
+	World world = World::defaultWorld();
+	auto shape = world.objectAt(0);
+	auto ray = Math::Ray({ 0,0,-5 }, { 0,0,1 });
+	auto intersections = Math::Intersections({ { 4, shape }, { 6, shape } });
+	auto cv = ComputedValues(intersections.at(0), ray, intersections);
+	auto result = world.refractedColor(cv, 5);
+
+	EXPECT_EQ(result, Graphics::Color::black());
+}
+
 TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_miss)
 {
 	World world = World::defaultWorld();

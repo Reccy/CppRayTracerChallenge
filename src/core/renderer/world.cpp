@@ -135,6 +135,23 @@ Graphics::Color World::reflectedColor(const ComputedValues& cv, int remainingCal
 	return color * cv.material().reflective;
 }
 
+Graphics::Color World::refractedColor(const ComputedValues& cv) const
+{
+	return refractedColor(cv, DEFAULT_REMAINING_CALLS);
+}
+
+Graphics::Color World::refractedColor(const ComputedValues& cv, int) const
+{
+	if (cv.shape().material().transparency == 0)
+	{
+		return Graphics::Color::black();
+	}
+	else
+	{
+		return Graphics::Color::white();
+	}
+}
+
 bool World::isShadowed(const Math::Point& position, const PointLight& light) const
 {
 	Math::Vector positionToLight = light.position() - position;

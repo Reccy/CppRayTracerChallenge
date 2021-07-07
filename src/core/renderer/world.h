@@ -116,6 +116,21 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Graphics::Color reflectedColor(const ComputedValues& cv, int remainingCalls) const;
 
 		/// <summary>
+		/// Calculates the refracted color in the world from precomputed values
+		/// </summary>
+		/// <param name="cv">The precomputed values</param>
+		/// <returns>The refracted color</returns>
+		Graphics::Color refractedColor(const ComputedValues& cv) const;
+
+		/// <summary>
+		/// Calculates the refracted color in the world from precomputed values
+		/// </summary>
+		/// <param name="cv">The precomputed values</param>
+		/// <param name="remainingCalls">The remaining calls when this method is used recursively</param>
+		/// <returns>The refracted color</returns>
+		Graphics::Color refractedColor(const ComputedValues& cv, int remainingCalls) const;
+
+		/// <summary>
 		/// Calculates if a position in world space is lit by a specific light
 		/// </summary>
 		/// <param name="position">The position to check if it is shaded</param>
