@@ -155,7 +155,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 	private:
 		std::vector<PointLight> m_lights;
 		std::vector<Shape> m_objects;
-		int const static DEFAULT_REMAINING_CALLS = 100;
+		int const static DEFAULT_REMAINING_CALLS = 16;
 	};
 }
 

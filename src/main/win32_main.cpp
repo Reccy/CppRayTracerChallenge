@@ -133,11 +133,13 @@ Renderer::Shape buildLeftSphere()
 		.scale(0.33, 0.33, 0.33)
 		.translate(-1.5, 0.33, -0.75);
 	Material material = Material();
-	material.pattern = std::make_shared<Stripe>(Color(1.0f, 0.8f, 0.1f), Color(0.9f, 0.2f, 0.5f));
+	material.pattern = std::make_shared<SolidColor>(Color(0.95f, 0.94f, 1.0f));
 	material.pattern->transform(Transform().rotate(33, 24, 93).scale(0.2, 1.3, 0.2));
-	material.diffuse = 0.7f;
-	material.specular = 0.3f;
-	material.reflective = 1.0f;
+	material.diffuse = 0.2f;
+	material.specular = 0.15f;
+	material.reflective = 0.2f;
+	material.refractiveIndex = 1.34f;
+	material.transparency = 0.65f;
 	sphere.material(material);
 	sphere.transform(transform);
 
