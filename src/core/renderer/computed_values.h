@@ -27,6 +27,18 @@ namespace CppRayTracerChallenge::Core::Renderer
 		double t() const;
 
 		/// <summary>
+		/// Returns the refractive index of the material of the object that this intersection is exiting
+		/// </summary>
+		/// <returns>Refractive Index n1</returns>
+		float n1() const;
+
+		/// <summary>
+		/// Returns the refractive index of the material of the object that this intersection is entering
+		/// </summary>
+		/// <returns>Refractive Index n2</returns>
+		float n2() const;
+
+		/// <summary>
 		/// Returns the shape that was intersected
 		/// </summary>
 		/// <returns>The reference to the shape</returns>
@@ -76,6 +88,8 @@ namespace CppRayTracerChallenge::Core::Renderer
 		bool isInside() const;
 	private:
 		double m_t;
+		float m_n1;
+		float m_n2;
 		Renderer::Shape m_shape;
 		Math::Point m_position;
 		Math::Point m_overPosition;

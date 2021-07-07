@@ -3,7 +3,7 @@
 #include <renderer/material.h>
 #include <renderer/pattern.h>
 #include <renderer/patterns/solid_color.h>
-#include "helpers/material_helper.hpp"
+#include "helpers/material_helper.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core;
