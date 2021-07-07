@@ -2,10 +2,12 @@
 #include "renderer/world.h"
 #include "renderer/computed_values.h"
 #include "renderer/patterns/solid_color.h"
+#include "renderer/patterns/test_pattern.h"
 #include "math/ray.h"
 #include "math/intersections.h"
 #include "math/sphere.h"
 #include "math/plane.h"
+#include "helpers/material_helper.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core;
@@ -244,6 +246,32 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, refracted_color_under_total_inte
 	auto result = world.refractedColor(cv);
 
 	EXPECT_EQ(result, Graphics::Color::black());
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_World, refracted_color_with_refracted_ray)
+{
+	World world = World::defaultWorld();
+	auto a = world.objectAt(0);
+	auto aMat = a.material();
+	aMat.ambient = 1.0f;
+	aMat.pattern = std::make_shared<Patterns::TestPattern>();
+	a.material(aMat);
+
+	auto b = world.objectAt(1);
+	auto bMat = b.material();
+	bMat.transparency = 1.0f;
+	bMat.refractiveIndex = 1.5f;
+	b.material(bMat);
+
+	world.objectAt(0, a);
+	world.objectAt(1, b);
+
+	auto ray = Math::Ray({ 0,0,0.1f }, { 0,1,0 });
+	auto intersections = Math::Intersections({ {-0.9899f, a}, {-0.4899f, b}, {0.4899f, b}, {0.9899, a} });
+	auto cv = ComputedValues(intersections.at(2), ray, intersections);
+	auto result = world.refractedColor(cv);
+
+	EXPECT_EQ(result, Graphics::Color(0, 0.998885f, 0.0472194f));
 }
 
 TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_miss)

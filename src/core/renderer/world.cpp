@@ -151,20 +151,24 @@ Graphics::Color World::refractedColor(const ComputedValues& cv, int remainingCal
 	{
 		return Graphics::Color::black();
 	}
-	else
+
+	float nRatio = cv.n1() / cv.n2();
+
+	float cosI = static_cast<float>(Math::Vector::dot(cv.eye(), cv.normal()));
+	float sin2t = powf(nRatio, 2.0f) * (1 - powf(cosI, 2.0f));
+
+	if (sin2t > 1)
 	{
-		float nRatio = cv.n1() / cv.n2();
-
-		float cosI = static_cast<float>(Math::Vector::dot(cv.eye(), cv.normal()));
-		float sin2t = powf(nRatio, 2) * (1 - powf(cosI, 2));
-
-		if (sin2t > 1)
-		{
-			return Graphics::Color::black();
-		}
-
-		return Graphics::Color::white();
+		return Graphics::Color::black();
 	}
+
+	float cosT = sqrtf(1.0f - sin2t);
+
+	Math::Vector direction = cv.normal() * (nRatio * cosI - cosT) - cv.eye() * nRatio;
+
+	Math::Ray refractedRay = Math::Ray(cv.underPosition(), direction);
+
+	return colorAt(refractedRay, remainingCalls - 1) * cv.material().transparency;
 }
 
 bool World::isShadowed(const Math::Point& position, const PointLight& light) const
