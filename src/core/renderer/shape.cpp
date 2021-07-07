@@ -82,3 +82,13 @@ const Math::Intersections Shape::intersectLocal(Math::Ray ray) const
 
 	return Math::Intersections(newIntersections);
 }
+
+bool Shape::operator==(const Shape& other) const
+{
+	return (m_shape == other.m_shape) && (m_material == other.m_material);
+}
+
+bool Shape::operator!=(const Shape& other) const
+{
+	return !(other == *this);
+}

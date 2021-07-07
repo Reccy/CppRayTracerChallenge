@@ -21,6 +21,12 @@ namespace CppRayTracerChallenge::Core::Renderer
 		ComputedValues(Math::Intersection intersection, Math::Ray ray);
 
 		/// <summary>
+		/// Computes the values of the intersection and the ray, also takes into account existing intersections
+		/// to calculate refraction and other effects
+		/// </summary>
+		ComputedValues(Math::Intersection intersection, Math::Ray ray, Math::Intersections intersections);
+
+		/// <summary>
 		/// Returns the t value from the intersection
 		/// </summary>
 		/// <returns>t</returns>
@@ -96,7 +102,10 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Math::Vector m_eye;
 		Math::Vector m_normal;
 		Math::Vector m_reflect;
+		Math::Intersections m_intersections;
 		bool m_isInside;
+
+		void calculateValues(Math::Intersection& hit, Math::Ray& ray);
 	};
 }
 

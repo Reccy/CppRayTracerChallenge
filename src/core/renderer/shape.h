@@ -48,6 +48,11 @@ namespace CppRayTracerChallenge::Core::Renderer
 		const Math::Vector normalLocal(const Math::Point position) const override;
 		const Math::Intersections intersect(Math::Ray ray) const override;
 		const Math::Intersections intersectLocal(Math::Ray ray) const override;
+
+		// Equality methods
+
+		bool operator==(const Shape& other) const;
+		bool operator!=(const Shape& other) const;
 	private:
 		std::shared_ptr<IShape> m_shape;
 		Material m_material;

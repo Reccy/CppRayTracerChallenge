@@ -122,7 +122,7 @@ TEST_P(CppRayTracerChallenge_Core_Renderer_ComputedValues_Params, computes_n1_an
 
 	auto& param = GetParam();
 
-	auto cv = Renderer::ComputedValues(intersections.at(param.idx), ray);
+	auto cv = Renderer::ComputedValues(intersections.at(param.idx), ray, intersections);
 
 	EXPECT_EQ(cv.n1(), param.n1);
 	EXPECT_EQ(cv.n2(), param.n2);

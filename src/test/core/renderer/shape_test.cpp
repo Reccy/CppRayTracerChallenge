@@ -119,3 +119,40 @@ TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_has_pattern_with_object_tr
 
 	EXPECT_EQ(result, expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_equality)
+{
+	auto sphere = std::make_shared<Sphere>();
+	Shape shape1 = Shape(sphere);
+	Shape shape2 = Shape(sphere);
+
+	EXPECT_TRUE(shape1 == shape2);
+	EXPECT_FALSE(shape1 != shape2);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_inequality_shape)
+{
+	auto sphere1 = std::make_shared<Sphere>();
+	auto sphere2 = std::make_shared<Sphere>();
+
+	Shape shape1 = Shape(sphere1);
+	Shape shape2 = Shape(sphere2);
+
+	EXPECT_FALSE(shape1 == shape2);
+	EXPECT_TRUE(shape1 != shape2);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_inequality_material)
+{
+	auto sphere = std::make_shared<Sphere>();
+
+	Shape shape1 = Shape(sphere);
+	Shape shape2 = Shape(sphere);
+
+	auto mat = shape1.material();
+	mat.shininess = 0.253f;
+	shape1.material(mat);
+
+	EXPECT_FALSE(shape1 == shape2);
+	EXPECT_TRUE(shape1 != shape2);
+}
