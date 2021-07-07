@@ -210,7 +210,22 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, refracted_color_with_opaque_surf
 	auto ray = Math::Ray({ 0,0,-5 }, { 0,0,1 });
 	auto intersections = Math::Intersections({ { 4, shape }, { 6, shape } });
 	auto cv = ComputedValues(intersections.at(0), ray, intersections);
-	auto result = world.refractedColor(cv, 5);
+	auto result = world.refractedColor(cv);
+
+	EXPECT_EQ(result, Graphics::Color::black());
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_World, refracted_color_at_maximum_recursive_depth)
+{
+	World world = World::defaultWorld();
+	auto shape = world.objectAt(0);
+	auto mat = shape.material();
+	mat.transparency = 1.0f;
+	mat.refractiveIndex = 1.5f;
+	auto ray = Math::Ray({ 0,0,-5 }, { 0,0,1 });
+	auto intersections = Math::Intersections({ { 4, shape }, { 6,shape } });
+	auto cv = ComputedValues(intersections.at(0), ray, intersections);
+	auto result = world.refractedColor(cv, 0);
 
 	EXPECT_EQ(result, Graphics::Color::black());
 }

@@ -140,8 +140,13 @@ Graphics::Color World::refractedColor(const ComputedValues& cv) const
 	return refractedColor(cv, DEFAULT_REMAINING_CALLS);
 }
 
-Graphics::Color World::refractedColor(const ComputedValues& cv, int) const
+Graphics::Color World::refractedColor(const ComputedValues& cv, int remainingCalls) const
 {
+	if (remainingCalls == 0)
+	{
+		return Graphics::Color::black();
+	}
+
 	if (cv.shape().material().transparency == 0)
 	{
 		return Graphics::Color::black();
