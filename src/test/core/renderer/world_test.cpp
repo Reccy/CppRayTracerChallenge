@@ -144,6 +144,33 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, shade_hit_for_reflected_material
 	EXPECT_EQ(result, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Renderer_World, shade_hit_for_refraction)
+{
+	World world = World::defaultWorld();
+
+	Renderer::Material floorMat;
+	floorMat.transparency = 0.5f;
+	floorMat.refractiveIndex = 1.5f;
+	Renderer::Shape floor = Renderer::Shape(std::make_shared<Math::Plane>(), floorMat);
+	floor.transform(Math::Transform().translate(0, -1, 0));
+	world.addObject(floor);
+
+	Renderer::Material ballMat;
+	ballMat.pattern = std::make_shared<Patterns::SolidColor>(Graphics::Color(1, 0, 0));
+	ballMat.ambient = 0.5f;
+	Renderer::Shape ball = Renderer::Shape(std::make_shared<Math::Sphere>(), ballMat);
+	ball.transform(Math::Transform().translate(0, -3.5f, -0.5f));
+	world.addObject(ball);
+
+	auto ray = Math::Ray({ 0,0,-3 }, { 0, -sqrt(2) / 2, sqrt(2) / 2 });
+	auto intersections = Math::Intersections({ {sqrt(2), floor} });
+
+	auto cv = ComputedValues(intersections.at(0), ray, intersections);
+	auto result = world.shadeHit(cv);
+
+	EXPECT_EQ(result, Graphics::Color(0.93642f, 0.68642f, 0.68642f));
+}
+
 TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_color_for_nonreflected_material)
 {
 	World world = World::defaultWorld();
