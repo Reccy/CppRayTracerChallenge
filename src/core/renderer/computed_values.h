@@ -70,6 +70,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Math::Point overPosition() const;
 
 		/// <summary>
+		/// Returns the position of the intersection translated slightly behind the normal.
+		/// This accounts for floating point imprecision errors and is used when calculating refraction.
+		/// </summary>
+		/// <returns>Where the intersection occurred, translated in the negative normal direction</returns>
+		Math::Point underPosition() const;
+
+		/// <summary>
 		/// Returns the eye vector
 		/// </summary>
 		/// <returns>The eye vector</returns>
@@ -99,6 +106,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Renderer::Shape m_shape;
 		Math::Point m_position;
 		Math::Point m_overPosition;
+		Math::Point m_underPosition;
 		Math::Vector m_eye;
 		Math::Vector m_normal;
 		Math::Vector m_reflect;

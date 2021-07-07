@@ -136,3 +136,17 @@ INSTANTIATE_TEST_SUITE_P(TestCase, CppRayTracerChallenge_Core_Renderer_ComputedV
 	N1N2(4, 2.5f, 1.5f),
 	N1N2(5, 1.5f, 1.0f)
 ));
+
+TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, under_point_is_offset_below_the_surface)
+{
+	auto ray = Math::Ray({ 0, 0, -5 }, { 0, 0, 1 });
+	auto shape = Helpers::MaterialHelper::glassSphere();
+	shape.transform(Math::Transform().translate(0, 0, 1));
+	auto intersection = Math::Intersection(5, shape);
+	auto intersections = Math::Intersections({ intersection });
+
+	auto cv = Renderer::ComputedValues(intersection, ray, intersections);
+
+	EXPECT_TRUE(cv.underPosition().z() > Math::EPSILON / 2);
+	EXPECT_TRUE(cv.position().z() < cv.underPosition().z());
+}

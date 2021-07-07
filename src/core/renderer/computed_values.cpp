@@ -47,6 +47,7 @@ void ComputedValues::calculateValues(Math::Intersection& hit, Math::Ray& ray)
 	}
 
 	m_overPosition = m_position + m_normal * Math::EPSILON;
+	m_underPosition = m_position + -m_normal * Math::EPSILON;
 
 	// Calculating n1 and n2
 
@@ -128,6 +129,11 @@ Point ComputedValues::position() const
 Point ComputedValues::overPosition() const
 {
 	return m_overPosition;
+}
+
+Point ComputedValues::underPosition() const
+{
+	return m_underPosition;
 }
 
 Vector ComputedValues::eye() const
