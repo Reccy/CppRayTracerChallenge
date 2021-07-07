@@ -153,6 +153,16 @@ Graphics::Color World::refractedColor(const ComputedValues& cv, int remainingCal
 	}
 	else
 	{
+		float nRatio = cv.n1() / cv.n2();
+
+		float cosI = static_cast<float>(Math::Vector::dot(cv.eye(), cv.normal()));
+		float sin2t = powf(nRatio, 2) * (1 - powf(cosI, 2));
+
+		if (sin2t > 1)
+		{
+			return Graphics::Color::black();
+		}
+
 		return Graphics::Color::white();
 	}
 }
