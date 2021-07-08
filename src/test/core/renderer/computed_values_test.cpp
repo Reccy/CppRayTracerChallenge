@@ -161,3 +161,31 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, reflectance_under_total
 
 	EXPECT_EQ(cv.reflectance(), 1.0f);
 }
+
+TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, reflectance_with_perpendicular_viewing_angle)
+{
+	auto shape = Helpers::MaterialHelper::glassSphere();
+	auto ray = Math::Ray({ 0,0,0 }, { 0,1,0 });
+	auto intersections = Math::Intersections({ {-1, shape}, {1, shape} });
+
+	auto cv = Renderer::ComputedValues(intersections.at(1), ray, intersections);
+
+	float result = cv.reflectance();
+	float expectedResult = 0.04f;
+
+	EXPECT_TRUE(Math::Comparison::equal(result, expectedResult));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, reflectance_with_small_angle_and_n1_greater_than_n2)
+{
+	auto shape = Helpers::MaterialHelper::glassSphere();
+	auto ray = Math::Ray({ 0, 0.99f, -2 }, { 0, 0, 1 });
+	auto intersections = Math::Intersections({ { 1.8589, shape } });
+
+	auto cv = Renderer::ComputedValues(intersections.at(0), ray, intersections);
+
+	auto result = cv.reflectance();
+	auto expectedResult = 0.488731f;
+
+	EXPECT_TRUE(Math::Comparison::equal(result, expectedResult));
+}

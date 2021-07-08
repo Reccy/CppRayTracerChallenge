@@ -40,9 +40,15 @@ float schlick(const ComputedValues& cv)
 		{
 			return 1.0f;
 		}
+
+		float cosT = sqrtf(1.0f - sin2t);
+
+		cos = cosT;
 	}
 
-	return 0.0f;
+	float r0 = powf((cv.n1() - cv.n2()) / (cv.n1() + cv.n2()), 2);
+
+	return r0 + (1 - r0) * powf(1 - cos, 5);
 }
 
 void ComputedValues::calculateValues(Math::Intersection& hit, Math::Ray& ray)
