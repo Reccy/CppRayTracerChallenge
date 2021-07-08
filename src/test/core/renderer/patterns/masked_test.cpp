@@ -4,12 +4,13 @@
 #include <renderer/patterns/checker.h>
 #include <graphics/color.h>
 #include <math/transform.h>
+#include <math/constants.h>
 
 using CppRayTracerChallenge::Core::Renderer::Patterns::Masked;
 using CppRayTracerChallenge::Core::Renderer::Patterns::Checker;
 using CppRayTracerChallenge::Core::Renderer::Patterns::SolidColor;
 using CppRayTracerChallenge::Core::Graphics::Color;
-using CppRayTracerChallenge::Core::Math::Transform;
+using namespace CppRayTracerChallenge::Core::Math;
 
 TEST(CppRayTracerChallenge_Core_Renderer_Patterns_Masked, can_create_masked_pattern_with_default_transform)
 {
@@ -17,7 +18,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_Patterns_Masked, can_create_masked_patt
 	std::shared_ptr<SolidColor> b = std::make_shared<SolidColor>(Color::black());
 
 	Masked<Checker> pattern = Masked<Checker>(a, b);
-}
+} 
 
 TEST(CppRayTracerChallenge_Core_Renderer_Patterns_Masked, can_create_masked_pattern_with_custom_transform)
 {
@@ -52,6 +53,6 @@ TEST(CppRayTracerChallenge_Core_Renderer_Patterns_Masked, can_render_different_p
 	Masked<Checker> pattern = Masked<Checker>(a, b, transform);
 
 	EXPECT_EQ(pattern.colorAt({ 0, 0, 0 }), Color::white());
-	EXPECT_EQ(pattern.colorAt({ 0.999999, 0, 0 }), Color::white());
-	EXPECT_EQ(pattern.colorAt({ 1.999999, 0, 0 }), Color::black());
+	EXPECT_EQ(pattern.colorAt({ 1 - EPSILON, 0, 0 }), Color::white());
+	EXPECT_EQ(pattern.colorAt({ 2 - EPSILON, 0, 0 }), Color::black());
 }

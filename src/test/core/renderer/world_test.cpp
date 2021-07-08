@@ -403,6 +403,27 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_object_between_
 	EXPECT_TRUE(world.isShadowed(position, light));
 }
 
+TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_transparent_object_between_point_and_light)
+{
+	World world = World::defaultWorld();
+	auto a = world.objectAt(0);
+	auto aMat = a.material();
+	aMat.transparency = 0.5f;
+	a.material(aMat);
+	world.objectAt(0, a);
+
+	auto b = world.objectAt(1);
+	auto bMat = b.material();
+	bMat.transparency = 0.5f;
+	b.material(bMat);
+	world.objectAt(1, b);
+
+	Math::Point position = Math::Point(10, -10, 10);
+	const PointLight& light = world.lightAt(0);
+
+	EXPECT_FALSE(world.isShadowed(position, light));
+}
+
 TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_object_behind_light)
 {
 	World world = World::defaultWorld();

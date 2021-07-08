@@ -17,7 +17,7 @@ Graphics::Color Checker::colorB() const
 
 Graphics::Color Checker::colorAt(Math::Point position) const
 {
-	if (static_cast<int>(floor(position.x()) + floor(position.y()) + floor(position.z())) % 2 == 0)
+	if (static_cast<int>(floor(position.x() + Math::EPSILON) + floor(position.y() + Math::EPSILON) + floor(position.z() + Math::EPSILON)) % 2 == 0)
 	{
 		return m_colorA;
 	}

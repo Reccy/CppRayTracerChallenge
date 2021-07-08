@@ -195,9 +195,20 @@ bool World::isShadowed(const Math::Point& position, const PointLight& light) con
 		return false;
 	}
 
-	if (intersections.hit().value().t() < distance)
+	const Math::Intersection& hit = intersections.hit().value();
+
+	if (hit.t() < distance)
 	{
-		return true;
+		const Renderer::Shape& shape = static_cast<const Renderer::Shape&>(hit.shape());
+		if (shape.material().transparency == 0)
+		{
+			return true;
+		}
+		else
+		{
+			Math::Point rayPosition = ray.position(hit.t() + Math::EPSILON);
+			return isShadowed(rayPosition, light);
+		}
 	}
 	else
 	{

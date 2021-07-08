@@ -38,6 +38,7 @@
 #include "renderer/patterns/masked.h"
 #include "serializer/base_image_serializer.h"
 #include "serializer/portable_pixmap_image_serializer.h"
+#include "helpers/material_helper.h"
 
 using namespace CppRayTracerChallenge::Core;
 using namespace CppRayTracerChallenge::Core::Serializer;
@@ -49,146 +50,236 @@ using Graphics::Color;
 using Graphics::Image;
 using Graphics::Canvas;
 
-const int WINDOW_WIDTH = 1920/4;
-const int WINDOW_HEIGHT = 1080/4;
-const int RENDER_WIDTH = 1920/8;
-const int RENDER_HEIGHT = 1080/8;
+const int WINDOW_WIDTH = 1920;
+const int WINDOW_HEIGHT = 1080;
+const int RENDER_WIDTH = 1920;
+const int RENDER_HEIGHT = 1080;
 
 void log(std::string message)
 {
 	std::cout << message << std::endl;
 }
 
-std::shared_ptr<Renderer::Pattern> buildFloorPattern()
+class WorldA
 {
-	std::shared_ptr<Pattern> a = std::make_shared<Stripe>(Color(0.5f, 0, 0), Color(0.2f, 0, 0));
-	a->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
+public:
+	static World build()
+	{
+		log("Building Floor...");
+		Renderer::Shape floor = buildFloor();
 
-	std::shared_ptr<Pattern> b = std::make_shared<Stripe>(Color(0, 0, 0.5f), Color(0, 0, 0.2f));
-	b->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
+		log("Building Middle Sphere...");
+		Renderer::Shape middleSphere = buildMiddleSphere();
 
-	std::shared_ptr<Pattern> masked = std::make_shared<Masked<Checker>>(a, b);
-	masked->transform(Math::Transform().rotate(0,23,0).translate(0,0.01f,0));
+		log("Building Right Sphere...");
+		Renderer::Shape rightSphere = buildRightSphere();
 
-	std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
-	return pattern;
-}
+		log("Building Left Sphere...");
+		Renderer::Shape leftSphere = buildLeftSphere();
 
-Renderer::Shape buildFloor()
+		log("Building Light...");
+		PointLight light = buildLight();
+
+		log("Setting up world...");
+		World world = World();
+
+		log("Adding Floor to World...");
+		world.addObject(floor);
+
+		log("Adding Middle Sphere to World...");
+		world.addObject(middleSphere);
+
+		log("Adding Right Sphere to World...");
+		world.addObject(rightSphere);
+
+		log("Adding Left Sphere to World...");
+		world.addObject(leftSphere);
+
+		log("Adding Light to World...");
+		world.addLight(light);
+
+		return world;
+	}
+private:
+	static std::shared_ptr<Renderer::Pattern> buildFloorPattern()
+	{
+		std::shared_ptr<Pattern> a = std::make_shared<Stripe>(Color(0.5f, 0, 0), Color(0.2f, 0, 0));
+		a->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
+
+		std::shared_ptr<Pattern> b = std::make_shared<Stripe>(Color(0, 0, 0.5f), Color(0, 0, 0.2f));
+		b->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
+
+		std::shared_ptr<Pattern> masked = std::make_shared<Masked<Checker>>(a, b);
+		masked->transform(Math::Transform().rotate(0, 23, 0).translate(0, 0.01f, 0));
+
+		std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
+		return pattern;
+	}
+
+	static Renderer::Shape buildFloor()
+	{
+		auto shape = std::make_shared<Plane>();
+		Renderer::Shape floor = Renderer::Shape(shape);
+		Transform floorTransform = Transform()
+			.scale(10, 0.01, 10);
+		Material bgMaterial = Material();
+		bgMaterial.pattern = buildFloorPattern();
+		bgMaterial.specular = 0.1f;
+		bgMaterial.reflective = 0.95f;
+		floor.material(bgMaterial);
+		floor.transform(floorTransform);
+		return floor;
+	}
+
+	static Renderer::Shape buildMiddleSphere()
+	{
+		auto shape = std::make_shared<Sphere>(Sphere());
+		Renderer::Shape sphere = Renderer::Shape(shape);
+		Math::Transform transform = Math::Transform()
+			.translate(-0.5, 1, 0.5);
+		Renderer::Material material = Material();
+		material.pattern = std::make_shared<SolidColor>(Color(0.1f, 1.0f, 0.5f));
+		material.diffuse = 0.7f;
+		material.specular = 0.3f;
+		material.reflective = 0.5f;
+		sphere.material(material);
+		sphere.transform(transform);
+
+		return sphere;
+	}
+
+	static Renderer::Shape buildRightSphere()
+	{
+		auto shape = std::make_shared<Sphere>(Sphere());
+		Renderer::Shape sphere = Renderer::Shape(shape);
+		Transform transform = Transform()
+			.scale(0.5, 0.5, 0.5)
+			.translate(1.5, 0.5, -0.5);
+		Material material = Material();
+		material.pattern = std::make_shared<Stripe>(Color(0.5f, 1.0f, 0.1f), Color(0.7f, 0.02f, 0.6f));
+		material.pattern->transform(Transform().rotate(66, 283, 1).scale(2, 1.3, 0.2));
+		material.diffuse = 0.7f;
+		material.specular = 0.3f;
+		material.reflective = 0.2f;
+		sphere.material(material);
+		sphere.transform(transform);
+
+		return sphere;
+	}
+
+	static Renderer::Shape buildLeftSphere()
+	{
+		auto shape = std::make_shared<Sphere>(Sphere());
+		Renderer::Shape sphere = Renderer::Shape(shape);
+		Transform transform = Transform()
+			.scale(0.33, 0.33, 0.33)
+			.translate(-1.5, 0.33, -0.75);
+		Material material = Material();
+		material.pattern = std::make_shared<SolidColor>(Color(0.95f, 0.94f, 1.0f));
+		material.pattern->transform(Transform().rotate(33, 24, 93).scale(0.2, 1.3, 0.2));
+		material.diffuse = 0.2f;
+		material.specular = 0.15f;
+		material.reflective = 0.9f;
+		material.refractiveIndex = 1.34f;
+		material.transparency = 0.65f;
+		sphere.material(material);
+		sphere.transform(transform);
+
+		return sphere;
+	}
+
+	static PointLight buildLight()
+	{
+		return PointLight({ -10, 10, -10 }, Color(1, 1, 1));
+	}
+
+};
+
+class WorldB
 {
-	auto shape = std::make_shared<Plane>();
-	Renderer::Shape floor = Renderer::Shape(shape);
-	Transform floorTransform = Transform()
-		.scale(10, 0.01, 10);
-	Material bgMaterial = Material();
-	bgMaterial.pattern = buildFloorPattern();
-	bgMaterial.specular = 0.1f;
-	bgMaterial.reflective = 0.95f;
-	floor.material(bgMaterial);
-	floor.transform(floorTransform);
-	return floor;
-}
+public:
+	static World build()
+	{
+		World world = World();
 
-Renderer::Shape buildMiddleSphere()
-{
-	auto shape = std::make_shared<Sphere>(Sphere());
-	Renderer::Shape sphere = Renderer::Shape(shape);
-	Math::Transform transform = Math::Transform()
-		.translate(-0.5, 1, 0.5);
-	Renderer::Material material = Material();
-	material.pattern = std::make_shared<SolidColor>(Color(0.1f, 1.0f, 0.5f));
-	material.diffuse = 0.7f;
-	material.specular = 0.3f;
-	material.reflective = 0.5f;
-	sphere.material(material);
-	sphere.transform(transform);
+		world.addObject(buildFloor());
+		world.addObject(buildWaterPlane());
+		world.addObject(buildBackWall());
+		world.addObject(buildMarble());
+		world.addLight(buildLight(0, 4, 5));
+		return world;
+	}
+private:
+	static Renderer::Shape buildFloor()
+	{
+		auto floorMat = Material();
+		floorMat.pattern = std::make_shared<Checker>(Graphics::Color::black(), Graphics::Color::white());
+		floorMat.shininess = 0.98f;
+		floorMat.reflective = 0.74f;
+		floorMat.specular = 0.3f;
 
-	return sphere;
-}
+		auto floorShape = std::make_shared<Math::Plane>();
+		
+		Renderer::Shape floor = Renderer::Shape(floorShape, floorMat);
+		floor.transform(Math::Transform().translate(0, 0, 0));
+		return floor;
+	}
 
-Renderer::Shape buildRightSphere()
-{
-	auto shape = std::make_shared<Sphere>(Sphere());
-	Renderer::Shape sphere = Renderer::Shape(shape);
-	Transform transform = Transform()
-		.scale(0.5, 0.5, 0.5)
-		.translate(1.5, 0.5, -0.5);
-	Material material = Material();
-	material.pattern = std::make_shared<Stripe>(Color(0.5f, 1.0f, 0.1f), Color(0.7f, 0.02f, 0.6f));
-	material.pattern->transform(Transform().rotate(66, 283, 1).scale(2, 1.3, 0.2));
-	material.diffuse = 0.7f;
-	material.specular = 0.3f;
-	material.reflective = 0.2f;
-	sphere.material(material);
-	sphere.transform(transform);
+	static Renderer::Shape buildWaterPlane()
+	{
+		auto floorMat = Helpers::MaterialHelper::glassSphere().material();
+		auto floorShape = std::make_shared<Math::Plane>();
+		floorMat.pattern = std::make_shared<SolidColor>(Graphics::Color(0.1f, 0.1f, 0.1f));
+		floorMat.reflective = 1.2f;
+		floorMat.diffuse = 0.001f;
 
-	return sphere;
-}
+		Renderer::Shape floor = Renderer::Shape(floorShape, floorMat);
+		floor.transform(Math::Transform().translate(0, 0.5f + Math::EPSILON * 2, 0));
+		return floor;
+	}
 
-Renderer::Shape buildLeftSphere()
-{
-	auto shape = std::make_shared<Sphere>(Sphere());
-	Renderer::Shape sphere = Renderer::Shape(shape);
-	Transform transform = Transform()
-		.scale(0.33, 0.33, 0.33)
-		.translate(-1.5, 0.33, -0.75);
-	Material material = Material();
-	material.pattern = std::make_shared<SolidColor>(Color(0.95f, 0.94f, 1.0f));
-	material.pattern->transform(Transform().rotate(33, 24, 93).scale(0.2, 1.3, 0.2));
-	material.diffuse = 0.2f;
-	material.specular = 0.15f;
-	material.reflective = 0.2f;
-	material.refractiveIndex = 1.34f;
-	material.transparency = 0.65f;
-	sphere.material(material);
-	sphere.transform(transform);
+	static Renderer::Shape buildBackWall()
+	{
+		auto stripePattern = std::make_shared<Stripe>(Graphics::Color(25.0f/255.0f, 158.0f/255.0f, 170.0f/255.0f), Graphics::Color(166.0f/255.0f, 228.0f/255.0f, 234.0f/255.0f));
 
-	return sphere;
-}
+		auto wallMat = Material();
+		wallMat.pattern = stripePattern;
+		wallMat.reflective = 0.05f;
+		wallMat.refractiveIndex = 1.23f;
+		wallMat.diffuse = 0.84f;
 
-PointLight buildLight()
-{
-	return PointLight({ -10, 10, -10 }, Color(1, 1, 1));
-}
+		auto wallShape = std::make_shared<Math::Plane>();
+
+		Renderer::Shape wall = Renderer::Shape(wallShape, wallMat);
+		wall.transform(Math::Transform().rotate(82, 3, 180).translate(0,0,10));
+
+		return wall;
+	}
+
+	static Renderer::Shape buildMarble()
+	{
+		auto ballMat = Helpers::MaterialHelper::glassSphere().material();
+		ballMat.diffuse = 0.0005f;
+		auto ballShape = std::make_shared<Math::Sphere>();
+
+		Renderer::Shape ball = Renderer::Shape(ballShape, ballMat);
+		ball.transform(Math::Transform().scale(2, 2, 2).translate(0, 4, 5));
+
+		return ball;
+	}
+
+	static PointLight buildLight(double x, double y, double z)
+	{
+		return PointLight({ x, y, z }, Color(0.98f, 0.95f, 0.94f));
+	}
+};
 
 std::shared_ptr<Camera> camera = nullptr;
 
 Image doRealRender()
 {
 	log("Initializing...");
-
-	log("Building Floor...");
-	Renderer::Shape floor = buildFloor();
-
-	log("Building Middle Sphere...");
-	Renderer::Shape middleSphere = buildMiddleSphere();
-
-	log("Building Right Sphere...");
-	Renderer::Shape rightSphere = buildRightSphere();
-
-	log("Building Left Sphere...");
-	Renderer::Shape leftSphere = buildLeftSphere();
-
-	log("Building Light...");
-	PointLight light = buildLight();
-
-	log("Setting up world...");
-	World world = World();
-
-	log("Adding Floor to World...");
-	world.addObject(floor);
-
-	log("Adding Middle Sphere to World...");
-	world.addObject(middleSphere);
-
-	log("Adding Right Sphere to World...");
-	world.addObject(rightSphere);
-
-	log("Adding Left Sphere to World...");
-	world.addObject(leftSphere);
-
-	log("Adding Light to World...");
-	world.addLight(light);
+	World world = WorldB::build();
 
 	int width = RENDER_WIDTH;
 	int height = RENDER_HEIGHT;
@@ -196,7 +287,7 @@ Image doRealRender()
 
 	log("Setting up camera: " + std::to_string(width) + ", " + std::to_string(height) + ", " + std::to_string(fov));
 	camera = std::make_shared<Camera>(width, height, fov);
-	auto cameraTransform = Camera::viewMatrix({ 0, 1.5, -5 }, { 0,1,0 }, Vector::up());
+	auto cameraTransform = Camera::viewMatrix({ 0, 10.5, -10 }, { 0,4,0 }, Vector::up());
 	camera->transform(cameraTransform);
 
 	log("Initialization Done");

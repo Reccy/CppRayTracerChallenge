@@ -18,7 +18,7 @@ Color Stripe::colorB() const
 
 Color Stripe::colorAt(Math::Point position) const
 {
-	if (static_cast<int>(floor(position.x())) % 2 == 0)
+	if (static_cast<int>(floor(position.x() + Math::EPSILON)) % 2 == 0)
 	{
 		return m_colorA;
 	}
