@@ -301,6 +301,36 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, refracted_color_with_refracted_r
 	EXPECT_EQ(result, Graphics::Color(0, 0.998885f, 0.0472194f));
 }
 
+TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_and_refracted_rays)
+{
+	World world = World::defaultWorld();
+	auto ray = Math::Ray({ 0,0,-3 }, { 0,-sqrt(2) / 2,sqrt(2) / 2 });
+
+	auto floorShape = std::make_shared<Math::Plane>();
+	auto floorMaterial = Renderer::Material();
+	floorMaterial.reflective = 0.5f;
+	floorMaterial.transparency = 0.5f;
+	floorMaterial.refractiveIndex = 1.5f;
+	auto floor = Renderer::Shape(floorShape, floorMaterial);
+	floor.transform(Math::Transform().translate(0, -1, 0));
+	world.addObject(floor);
+
+	auto ballShape = std::make_shared<Math::Sphere>();
+	auto ballMaterial = Renderer::Material();
+	ballMaterial.pattern = std::make_shared<Patterns::SolidColor>(Graphics::Color(1, 0, 0));
+	ballMaterial.ambient = 0.5f;
+	auto ball = Renderer::Shape(ballShape, ballMaterial);
+	ball.transform(Math::Transform().translate(0, -3.5f, -0.5f));
+	world.addObject(ball);
+
+	auto intersections = Math::Intersections({ {sqrt(2), floor} });
+
+	auto cv = ComputedValues(intersections.at(0), ray, intersections);
+	auto color = world.shadeHit(cv);
+
+	EXPECT_EQ(color, Graphics::Color(0.93391f, 0.69643f, 0.69243f));
+}
+
 TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_miss)
 {
 	World world = World::defaultWorld();

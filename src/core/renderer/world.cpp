@@ -114,7 +114,17 @@ Graphics::Color World::shadeHit(const ComputedValues& cv, int remainingCalls) co
 		surfaceColor = surfaceColor + Lighting::lighting(cv.shape(), light, cv.position(), cv.eye(), cv.normal(), s);
 	}
 
-	return surfaceColor + reflectedColor(cv, remainingCalls) + refractedColor(cv, remainingCalls);
+	Graphics::Color reflected = reflectedColor(cv, remainingCalls);
+	Graphics::Color refracted = refractedColor(cv, remainingCalls);
+
+	const Material& material = cv.shape().material();
+
+	if (material.reflective > 0 && material.transparency > 0)
+	{
+		return surfaceColor + reflected * cv.reflectance() + refracted * (1 - cv.reflectance());
+	}
+
+	return surfaceColor + reflected + refracted;
 }
 
 Graphics::Color World::reflectedColor(const ComputedValues& cv) const
