@@ -150,3 +150,14 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, under_point_is_offset_b
 	EXPECT_TRUE(cv.underPosition().z() > Math::EPSILON / 2);
 	EXPECT_TRUE(cv.position().z() < cv.underPosition().z());
 }
+
+TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, reflectance_under_total_internal_reflection)
+{
+	auto shape = Helpers::MaterialHelper::glassSphere();
+	auto ray = Math::Ray({ 0, 0, sqrt(2) / 2 }, { 0, 1, 0 });
+	auto intersections = Math::Intersections({ { -sqrt(2) / 2, shape }, {sqrt(2) / 2, shape} });
+
+	auto cv = Renderer::ComputedValues(intersections.at(1), ray, intersections);
+
+	EXPECT_EQ(cv.reflectance(), 1.0f);
+}

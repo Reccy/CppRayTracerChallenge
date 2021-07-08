@@ -27,6 +27,24 @@ int includedIn(const std::vector<CppRayTracerChallenge::Core::Renderer::Shape>& 
 	return -1;
 }
 
+float schlick(const ComputedValues& cv)
+{
+	float cos = static_cast<float>(Vector::dot(cv.eye(), cv.normal()));
+
+	if (cv.n1() > cv.n2())
+	{
+		float n = cv.n1() / cv.n2();
+		float sin2t = powf(n, 2) * (1.0f - powf(cos, 2));
+
+		if (sin2t > 1.0f)
+		{
+			return 1.0f;
+		}
+	}
+
+	return 0.0f;
+}
+
 void ComputedValues::calculateValues(Math::Intersection& hit, Math::Ray& ray)
 {
 	// Standard Values
@@ -94,6 +112,10 @@ void ComputedValues::calculateValues(Math::Intersection& hit, Math::Ray& ray)
 			}
 		}
 	}
+
+	// Calculating reflectance
+
+	m_reflectance = schlick(*this);
 }
 
 double ComputedValues::t() const
@@ -109,6 +131,11 @@ float ComputedValues::n1() const
 float ComputedValues::n2() const
 {
 	return m_n2;
+}
+
+float ComputedValues::reflectance() const
+{
+	return m_reflectance;
 }
 
 const Shape& ComputedValues::shape() const

@@ -45,6 +45,18 @@ namespace CppRayTracerChallenge::Core::Renderer
 		float n2() const;
 
 		/// <summary>
+		/// Returns the reflectance amount, calculated using Shclick's approximation to Fresnel's equations
+		/// </summary>
+		/// <returns>Reflectance value between 0 and 1</returns>
+		float reflectance() const;
+
+		/// <summary>
+		/// Returns the reflect vector
+		/// </summary>
+		/// <returns>The reflect vector</returns>
+		Math::Vector reflect() const;
+
+		/// <summary>
 		/// Returns the shape that was intersected
 		/// </summary>
 		/// <returns>The reference to the shape</returns>
@@ -89,12 +101,6 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Math::Vector normal() const;
 
 		/// <summary>
-		/// Returns the reflect vector
-		/// </summary>
-		/// <returns>The reflect vector</returns>
-		Math::Vector reflect() const;
-
-		/// <summary>
 		/// If the intersection occurred inside or outside of the intersectable object
 		/// </summary>
 		/// <returns>Bool for if intersection was inside or outside</returns>
@@ -103,6 +109,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		double m_t;
 		float m_n1;
 		float m_n2;
+		float m_reflectance;
 		Renderer::Shape m_shape;
 		Math::Point m_position;
 		Math::Point m_overPosition;
