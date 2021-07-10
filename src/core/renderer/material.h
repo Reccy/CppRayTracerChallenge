@@ -8,6 +8,13 @@
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
+	enum class ShadowcastMode
+	{
+		ALWAYS,
+		NEVER,
+		WHEN_TRANSPARENT
+	};
+
 	/// <summary>
 	/// Represents a Material struct for use in a Phong Lighting Model
 	/// </summary>
@@ -21,6 +28,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		float reflective = 0.0f;
 		float transparency = 0.0f;
 		float refractiveIndex = 1.0f;
+		ShadowcastMode shadowcastMode = ShadowcastMode::WHEN_TRANSPARENT;
 	};
 
 	bool operator==(const Material& lhs, const Material& rhs);

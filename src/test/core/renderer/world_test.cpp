@@ -151,6 +151,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, shade_hit_for_refraction)
 	Renderer::Material floorMat;
 	floorMat.transparency = 0.5f;
 	floorMat.refractiveIndex = 1.5f;
+	floorMat.shadowcastMode = ShadowcastMode::ALWAYS;
 	Renderer::Shape floor = Renderer::Shape(std::make_shared<Math::Plane>(), floorMat);
 	floor.transform(Math::Transform().translate(0, -1, 0));
 	world.addObject(floor);
@@ -311,6 +312,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_and_refracted_rays)
 	floorMaterial.reflective = 0.5f;
 	floorMaterial.transparency = 0.5f;
 	floorMaterial.refractiveIndex = 1.5f;
+	floorMaterial.shadowcastMode = ShadowcastMode::ALWAYS;
 	auto floor = Renderer::Shape(floorShape, floorMaterial);
 	floor.transform(Math::Transform().translate(0, -1, 0));
 	world.addObject(floor);
@@ -409,12 +411,14 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_transparent_obj
 	auto a = world.objectAt(0);
 	auto aMat = a.material();
 	aMat.transparency = 0.5f;
+	aMat.shadowcastMode = ShadowcastMode::WHEN_TRANSPARENT;
 	a.material(aMat);
 	world.objectAt(0, a);
 
 	auto b = world.objectAt(1);
 	auto bMat = b.material();
 	bMat.transparency = 0.5f;
+	bMat.shadowcastMode = ShadowcastMode::WHEN_TRANSPARENT;
 	b.material(bMat);
 	world.objectAt(1, b);
 

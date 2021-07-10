@@ -200,7 +200,9 @@ bool World::isShadowed(const Math::Point& position, const PointLight& light) con
 	if (hit.t() < distance)
 	{
 		const Renderer::Shape& shape = static_cast<const Renderer::Shape&>(hit.shape());
-		if (shape.material().transparency == 0)
+		auto mode = shape.material().shadowcastMode;
+
+		if (mode == ShadowcastMode::ALWAYS || (mode == ShadowcastMode::WHEN_TRANSPARENT && shape.material().transparency == 0))
 		{
 			return true;
 		}

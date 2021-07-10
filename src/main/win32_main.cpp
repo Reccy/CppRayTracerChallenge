@@ -50,10 +50,10 @@ using Graphics::Color;
 using Graphics::Image;
 using Graphics::Canvas;
 
-const int WINDOW_WIDTH = 1920;
-const int WINDOW_HEIGHT = 1080;
-const int RENDER_WIDTH = 1920;
-const int RENDER_HEIGHT = 1080;
+const int WINDOW_WIDTH = 1920/4;
+const int WINDOW_HEIGHT = 1080/4;
+const int RENDER_WIDTH = 1920/16;
+const int RENDER_HEIGHT = 1080/16;
 
 void log(std::string message)
 {
