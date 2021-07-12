@@ -59,6 +59,11 @@ const Intersections Cube::intersectLocal(Ray ray) const
 	double tMin = std::max({ x.tMin, y.tMin, z.tMin });
 	double tMax = std::min({ x.tMax, y.tMax, z.tMax });
 
+	if (tMin > tMax)
+	{
+		return Intersections();
+	}
+
 	std::vector<Intersection> xs{ {tMin, *this}, {tMax, *this} };
 	return Intersections(xs);
 }
