@@ -17,6 +17,7 @@
 #include "math/trig.h"
 #include "math/sphere.h"
 #include "math/plane.h"
+#include "math/cube.h"
 #include "math/intersections.h"
 #include "math/ray.h"
 #include "math/transform.h"
@@ -50,10 +51,10 @@ using Graphics::Color;
 using Graphics::Image;
 using Graphics::Canvas;
 
-const int WINDOW_WIDTH = 1920/4;
-const int WINDOW_HEIGHT = 1080/4;
-const int RENDER_WIDTH = 1920/16;
-const int RENDER_HEIGHT = 1080/16;
+const int WINDOW_WIDTH = 1920;
+const int WINDOW_HEIGHT = 1080;
+const int RENDER_WIDTH = 1920;
+const int RENDER_HEIGHT = 1080;
 
 void log(std::string message)
 {
@@ -77,6 +78,12 @@ public:
 		log("Building Left Sphere...");
 		Renderer::Shape leftSphere = buildLeftSphere();
 
+		log("Building Cube A...");
+		Renderer::Shape cubeA = buildCubeA();
+
+		log("Building Cube B...");
+		Renderer::Shape cubeB = buildCubeB();
+
 		log("Building Light...");
 		PointLight light = buildLight();
 
@@ -94,6 +101,12 @@ public:
 
 		log("Adding Left Sphere to World...");
 		world.addObject(leftSphere);
+
+		log("Adding Cube A to World...");
+		world.addObject(cubeA);
+
+		log("Adding Cube B to World...");
+		world.addObject(cubeB);
 
 		log("Adding Light to World...");
 		world.addLight(light);
@@ -133,7 +146,7 @@ private:
 
 	static Renderer::Shape buildMiddleSphere()
 	{
-		auto shape = std::make_shared<Sphere>(Sphere());
+		auto shape = std::make_shared<Sphere>();
 		Renderer::Shape sphere = Renderer::Shape(shape);
 		Math::Transform transform = Math::Transform()
 			.translate(-0.5, 1, 0.5);
@@ -186,6 +199,41 @@ private:
 		sphere.transform(transform);
 
 		return sphere;
+	}
+
+	static Renderer::Shape buildCubeA()
+	{
+		auto shape = std::make_shared<Cube>();
+		Renderer::Shape cube = Renderer::Shape(shape);
+		Transform transform = Transform()
+			.translate(5.3, 7, 1.5)
+			.rotate(45, 0, 23)
+			.scale(0.8, 0.8, 0.8);
+		Material material = Material();
+		material.pattern = std::make_shared<SolidColor>(Color(0.23f, 0.56f, 0.9f));
+		material.diffuse = 0.5f;
+		material.specular = 0.2f;
+		material.reflective = 0.2f;
+		cube.material(material);
+		cube.transform(transform);
+
+		return cube;
+	}
+
+	static Renderer::Shape buildCubeB()
+	{
+		auto shape = std::make_shared<Cube>();
+		Renderer::Shape cube = Renderer::Shape(shape);
+		Transform transform = Transform()
+			.translate(-3.3, 0, 8.5)
+			.scale(2, 5, 2.5)
+			.rotate(0, 0, 0);
+		Material material = Material();
+		material.pattern = std::make_shared<SolidColor>(Color(0.65f, 0.21f, 0.23f));
+		cube.material(material);
+		cube.transform(transform);
+
+		return cube;
 	}
 
 	static PointLight buildLight()
@@ -279,7 +327,7 @@ std::shared_ptr<Camera> camera = nullptr;
 Image doRealRender()
 {
 	log("Initializing...");
-	World world = WorldB::build();
+	World world = WorldA::build();
 
 	int width = RENDER_WIDTH;
 	int height = RENDER_HEIGHT;
@@ -287,7 +335,7 @@ Image doRealRender()
 
 	log("Setting up camera: " + std::to_string(width) + ", " + std::to_string(height) + ", " + std::to_string(fov));
 	camera = std::make_shared<Camera>(width, height, fov);
-	auto cameraTransform = Camera::viewMatrix({ 0, 10.5, -10 }, { 0,4,0 }, Vector::up());
+	auto cameraTransform = Camera::viewMatrix({ 0, 3, -8 }, { 0,1.5,0 }, Vector::up());
 	camera->transform(cameraTransform);
 
 	log("Initialization Done");

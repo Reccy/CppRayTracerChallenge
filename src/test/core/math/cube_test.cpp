@@ -69,7 +69,8 @@ TEST(CppRayTracerChallenge_Core_Math_Cube, ray_misses_cube)
 		RayMissesCubeParam({ 0, 0, -2 }, { 0.5345, 0.8018, 0.2673 }),
 		RayMissesCubeParam({ 2, 0, 2 }, { 0, 0, -1 }),
 		RayMissesCubeParam({ 0, 2, 2 }, { 0, -1, 0 }),
-		RayMissesCubeParam({ 2, 2, 0 }, { -1, 0, 0 })
+		RayMissesCubeParam({ 2, 2, 0 }, { -1, 0, 0 }),
+		RayMissesCubeParam({ 0, 0, 2 }, { 0, 0, 1 })
 	};
 
 	for (int i = 0; i < paramsList.size(); ++i)
