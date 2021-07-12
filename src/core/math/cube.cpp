@@ -45,9 +45,20 @@ CheckAxisResult checkAxis(double origin, double direction)
 	return result;
 }
 
-const Vector Cube::normalLocal(const Point) const
+const Vector Cube::normalLocal(const Point position) const
 {
-	return Vector();
+	double maxComponent = std::max({ abs(position.x()), abs(position.y()), abs(position.z()) });
+
+	if (Math::Comparison::equal(maxComponent, abs(position.x())))
+	{
+		return Vector(position.x(), 0, 0);
+	}
+	else if (Math::Comparison::equal(maxComponent, abs(position.y())))
+	{
+		return Vector(0, position.y(), 0);
+	}
+
+	return Vector(0, 0, position.z());
 }
 
 const Intersections Cube::intersectLocal(Ray ray) const

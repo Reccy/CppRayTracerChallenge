@@ -83,3 +83,44 @@ TEST(CppRayTracerChallenge_Core_Math_Cube, ray_misses_cube)
 		EXPECT_EQ(intersections.count(), 0);
 	}
 }
+
+class CubeNormalParam
+{
+public:
+	CubeNormalParam(Point position, Vector normal) : position(position), normal(normal) {};
+
+	Point position;
+	Vector normal;
+
+	friend std::ostream& operator<<(std::ostream& os, const CubeNormalParam& param)
+	{
+		os << ": origin(" << param.position << "), dir(" << param.normal << ")";
+		return os;
+	};
+};
+
+
+TEST(CppRayTracerChallenge_Core_Math_Cube, normal_on_surface_of_cube)
+{
+	std::vector<CubeNormalParam> paramsList = {
+		CubeNormalParam({ 1, 0.5, -0.8 }, { 1, 0, 0 }),
+		CubeNormalParam({ -1, -0.2, 0.9 }, { -1, 0, 0 }),
+		CubeNormalParam({ -0.4, 1, -0.1 }, { 0, 1, 0 }),
+		CubeNormalParam({ 0.3, -1, -0.7 }, { 0, -1, 0 }),
+		CubeNormalParam({ -0.6, 0.3, 1 }, { 0, 0, 1 }),
+		CubeNormalParam({ 0.4, 0.4, -1 }, { 0, 0, -1 }),
+		CubeNormalParam({ 1, 1, 1 }, { 1, 0, 0}),
+		CubeNormalParam({ -1, -1, -1 }, { -1, 0, 0 })
+	};
+
+	for (int i = 0; i < paramsList.size(); ++i)
+	{
+		CubeNormalParam& param = paramsList[i];
+
+		Cube cube = Cube();
+		Point position = param.position;
+		Vector normal = cube.normalLocal(position);
+
+		EXPECT_EQ(normal, param.normal);
+	}
+}
