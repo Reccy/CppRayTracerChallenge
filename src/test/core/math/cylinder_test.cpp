@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <math/cylinder.h>
+#include <math/comparison.h>
 
 using namespace CppRayTracerChallenge::Core::Math;
 
@@ -30,5 +31,39 @@ TEST(CppRayTracerChallenge_Core_Math_Cylinder, ray_misses_cylinder)
 		Intersections intersections = cylinder.intersectLocal(ray);
 
 		EXPECT_EQ(intersections.count(), 0);
+	}
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Cylinder, ray_hits_cylinder)
+{
+	struct Param
+	{
+		Param(Point origin, Vector direction, double t0, double t1) : origin(origin), direction(direction), t0(t0), t1(t1) {};
+
+		Point origin;
+		Vector direction;
+		double t0;
+		double t1;
+	};
+
+	std::vector<Param> paramsList{
+		Param({ 1, 0, -5 }, { 0, 0, 1 }, 5, 5),
+		Param({ 0, 0, -5 }, { 0, 0, 1 }, 4, 6),
+		Param({ 0.5, 0, -5 }, { 0.1, 1, 1 }, 6.80798, 7.08872)
+	};
+
+	for (int i = 0; i < paramsList.size(); ++i)
+	{
+		Cylinder cylinder = Cylinder();
+		Param& param = paramsList[i];
+
+		Vector direction = param.direction.normalize();
+		Ray ray = Ray(param.origin, direction);
+
+		Intersections intersections = cylinder.intersectLocal(ray);
+
+		EXPECT_EQ(intersections.count(), 2);
+		EXPECT_TRUE(Comparison::equal(intersections.at(0).t(), param.t0));
+		EXPECT_TRUE(Comparison::equal(intersections.at(1).t(), param.t1));
 	}
 }

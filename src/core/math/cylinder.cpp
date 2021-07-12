@@ -31,5 +31,8 @@ const Intersections Cylinder::intersectLocal(Ray ray) const
 		return Intersections();
 	}
 
-	return Intersections({ { 1, *this } });
+	double t0 = (-b - sqrt(disc)) / (2 * a);
+	double t1 = (-b + sqrt(disc)) / (2 * a);
+
+	return Intersections({ { t0, *this }, { t1, *this } });
 }
