@@ -4,9 +4,9 @@ using namespace CppRayTracerChallenge::Core::Math;
 
 Cylinder::Cylinder() {};
 
-const Vector Cylinder::normalLocal(const Point) const
+const Vector Cylinder::normalLocal(const Point position) const
 {
-	return Vector();
+	return Vector(position.x(), 0, position.z());
 }
 
 const Intersections Cylinder::intersectLocal(Ray ray) const

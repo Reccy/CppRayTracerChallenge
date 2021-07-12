@@ -67,3 +67,31 @@ TEST(CppRayTracerChallenge_Core_Math_Cylinder, ray_hits_cylinder)
 		EXPECT_TRUE(Comparison::equal(intersections.at(1).t(), param.t1));
 	}
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Cylinder, normal_vector_on_cylinder)
+{
+	struct Param
+	{
+		Param(Point position, Vector normal) : position(position), normal(normal) {};
+
+		Point position;
+		Vector normal;
+	};
+
+	std::vector<Param> paramsList{
+		Param({ 1, 0, 0 }, { 1, 0, 0 }),
+		Param({ 0, 5, -1 }, { 0, 0, -1 }),
+		Param({ 0, -2, 1 }, { 0, 0, 1 }),
+		Param({ -1, 1, 0 }, { -1, 0, 0 })
+	};
+
+	for (int i = 0; i < paramsList.size(); ++i)
+	{
+		Cylinder cylinder = Cylinder();
+		Param& param = paramsList[i];
+
+		Vector normal = cylinder.normalLocal(param.position);
+
+		EXPECT_EQ(normal, param.normal);
+	}
+}
