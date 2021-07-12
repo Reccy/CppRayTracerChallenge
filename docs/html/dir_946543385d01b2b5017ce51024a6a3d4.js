@@ -7,6 +7,7 @@ var dir_946543385d01b2b5017ce51024a6a3d4 =
     [ "material_test.cpp", "material__test_8cpp.html", "material__test_8cpp" ],
     [ "pattern_test.cpp", "pattern__test_8cpp.html", "pattern__test_8cpp" ],
     [ "point_light_test.cpp", "point__light__test_8cpp.html", "point__light__test_8cpp" ],
+    [ "render_job_test.cpp", "render__job__test_8cpp.html", null ],
     [ "shape_test.cpp", "shape__test_8cpp.html", "shape__test_8cpp" ],
     [ "world_test.cpp", "world__test_8cpp.html", "world__test_8cpp" ]
 ];

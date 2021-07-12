@@ -2,6 +2,10 @@ var dir_e235ce117329fd16b24743c07cd49299 =
 [
     [ "comparison.h", "comparison_8h.html", "comparison_8h" ],
     [ "constants.h", "constants_8h.html", "constants_8h" ],
+    [ "cube.cpp", "cube_8cpp.html", "cube_8cpp" ],
+    [ "cube.h", "cube_8h.html", [
+      [ "Cube", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube" ]
+    ] ],
     [ "i_shape.h", "i__shape_8h.html", [
       [ "IShape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape" ]
     ] ],

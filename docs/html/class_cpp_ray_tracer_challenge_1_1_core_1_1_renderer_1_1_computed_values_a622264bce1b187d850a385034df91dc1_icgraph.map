@@ -1,5 +1,7 @@
 <map id="CppRayTracerChallenge::Core::Renderer::ComputedValues::eye" name="CppRayTracerChallenge::Core::Renderer::ComputedValues::eye">
-<area shape="rect" id="node1" title="Returns the eye vector" alt="" coords="215,46,468,87"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a8a4ae040ed58c5f57a39dff2b2708f5e" title="Calculates the color in the world from precomputed values" alt="" coords="5,5,167,61"/>
-<area shape="rect" id="node3" href="$computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="59,85,113,112"/>
+<area shape="rect" id="node1" title="Returns the eye vector" alt="" coords="215,111,468,153"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a0d39181f30db188c879df0aea1886912" title="Calculates the refracted color in the world from precomputed values" alt="" coords="5,5,167,61"/>
+<area shape="rect" id="node3" href="$computed__values_8cpp.html#aaba06e6f4a8dc66b610f64784897431f" title=" " alt="" coords="55,85,117,112"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a8a4ae040ed58c5f57a39dff2b2708f5e" title="Calculates the color in the world from precomputed values" alt="" coords="5,136,167,192"/>
+<area shape="rect" id="node5" href="$computed__values__test_8cpp.html#a31f65572e758077a45fccef6d9330109" title=" " alt="" coords="59,216,113,243"/>
 </map>

@@ -1,4 +1,6 @@
 <map id="CppRayTracerChallenge::Core::Math::Intersection::shape" name="CppRayTracerChallenge::Core::Math::Intersection::shape">
-<area shape="rect" id="node1" title="Returns a const reference to the intersectable object" alt="" coords="108,5,277,61"/>
-<area shape="rect" id="node2" href="$intersection__test_8cpp.html#ac1f23a339a082a2d414bac044366901b" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node1" title="Returns a const reference to the intersectable object" alt="" coords="317,39,487,95"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9ee7e82e7caf361aef5c7ee510465130" title="Calculates if a position in world space is lit by a specific light" alt="" coords="108,5,269,61"/>
+<area shape="rect" id="node4" href="$intersection__test_8cpp.html#ac1f23a339a082a2d414bac044366901b" title=" " alt="" coords="161,85,216,112"/>
+<area shape="rect" id="node3" href="$world__test_8cpp.html#a16c2344f855b1ef5d58b499b32749438" title=" " alt="" coords="5,20,60,47"/>
 </map>

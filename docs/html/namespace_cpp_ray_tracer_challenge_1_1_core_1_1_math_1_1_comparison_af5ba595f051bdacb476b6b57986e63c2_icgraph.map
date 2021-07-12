@@ -1,7 +1,9 @@
 <map id="CppRayTracerChallenge::Core::Math::Comparison::equal" name="CppRayTracerChallenge::Core::Math::Comparison::equal">
-<area shape="rect" id="node1" title="Compares two numbers, and return true if they are close enough to EPSILON." alt="" coords="215,125,385,181"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ae4b5d5500c2ee028e3f7d92a4d098ee0" title=" " alt="" coords="5,5,167,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#abc9bf847a180dd82e88e6c3965078434" title=" " alt="" coords="5,85,167,141"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a4c641d9e1a24635e62fbef3d2dc95bc4" title=" " alt="" coords="5,165,167,221"/>
-<area shape="rect" id="node5" href="$comparison__test_8cpp.html#a52c9115418e3179fe0caea08477e0ebd" title=" " alt="" coords="59,245,113,272"/>
+<area shape="rect" id="node1" title="Compares two numbers, and return true if they are close enough to EPSILON." alt="" coords="367,151,537,207"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html#af6215ec5b4a46e2ab50ef7c3d62ebc6e" title="Calculates and returns the normal at the passed in local space position for this cube" alt="" coords="108,5,319,47"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ae4b5d5500c2ee028e3f7d92a4d098ee0" title=" " alt="" coords="133,71,294,127"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#abc9bf847a180dd82e88e6c3965078434" title=" " alt="" coords="133,151,294,207"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a4c641d9e1a24635e62fbef3d2dc95bc4" title=" " alt="" coords="133,231,294,287"/>
+<area shape="rect" id="node7" href="$comparison__test_8cpp.html#a52c9115418e3179fe0caea08477e0ebd" title=" " alt="" coords="186,311,241,338"/>
+<area shape="rect" id="node3" href="$cube__test_8cpp.html#ab45a9e1a69ec5418b922eee561b5e93e" title=" " alt="" coords="5,13,60,39"/>
 </map>

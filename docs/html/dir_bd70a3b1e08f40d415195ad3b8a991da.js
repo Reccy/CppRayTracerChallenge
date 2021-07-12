@@ -1,6 +1,7 @@
 var dir_bd70a3b1e08f40d415195ad3b8a991da =
 [
     [ "comparison_test.cpp", "comparison__test_8cpp.html", "comparison__test_8cpp" ],
+    [ "cube_test.cpp", "cube__test_8cpp.html", "cube__test_8cpp" ],
     [ "intersection_test.cpp", "intersection__test_8cpp.html", "intersection__test_8cpp" ],
     [ "intersections_test.cpp", "intersections__test_8cpp.html", "intersections__test_8cpp" ],
     [ "matrix_test.cpp", "matrix__test_8cpp.html", "matrix__test_8cpp" ],

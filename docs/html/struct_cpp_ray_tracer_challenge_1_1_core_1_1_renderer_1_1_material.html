@@ -109,11 +109,17 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a01ed82b967742cd0c957ca5937cfbd3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a835b8622637756b5caace87b9cc63872"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a835b8622637756b5caace87b9cc63872">reflective</a> = 0.0f</td></tr>
 <tr class="separator:a835b8622637756b5caace87b9cc63872"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22f6bd0b5a1c75b1fc6322ca873e0411"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a22f6bd0b5a1c75b1fc6322ca873e0411">transparency</a> = 0.0f</td></tr>
+<tr class="separator:a22f6bd0b5a1c75b1fc6322ca873e0411"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16a880b076ac1d5f1df2937c8a9804aa"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a16a880b076ac1d5f1df2937c8a9804aa">refractiveIndex</a> = 1.0f</td></tr>
+<tr class="separator:a16a880b076ac1d5f1df2937c8a9804aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ac61307c678c029d6efd248788efa27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html#ac1c6ade2b5f8006863164f6e1759eb41">ShadowcastMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a1ac61307c678c029d6efd248788efa27">shadowcastMode</a> = <a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html#ac1c6ade2b5f8006863164f6e1759eb41af3331e4524b4c79a6c033e9d13706682">ShadowcastMode::WHEN_TRANSPARENT</a></td></tr>
+<tr class="separator:a1ac61307c678c029d6efd248788efa27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a <a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html" title="Represents a Material struct for use in a Phong Lighting Model">Material</a> struct for use in a Phong <a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_lighting.html">Lighting</a> Model </p>
 
-<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00014">14</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00021">21</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a7f1365af3ae165d009d51970b40af61e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7f1365af3ae165d009d51970b40af61e">&#9670;&nbsp;</a></span>ambient</h2>
@@ -127,7 +133,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00017">17</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00024">24</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
 
 </div>
 </div>
@@ -143,7 +149,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00018">18</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00025">25</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
 
 </div>
 </div>
@@ -159,7 +165,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00016">16</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00023">23</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
 
 </div>
 </div>
@@ -175,7 +181,39 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00021">21</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00028">28</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+
+</div>
+</div>
+<a id="a16a880b076ac1d5f1df2937c8a9804aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16a880b076ac1d5f1df2937c8a9804aa">&#9670;&nbsp;</a></span>refractiveIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float CppRayTracerChallenge::Core::Renderer::Material::refractiveIndex = 1.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00030">30</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+
+</div>
+</div>
+<a id="a1ac61307c678c029d6efd248788efa27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ac61307c678c029d6efd248788efa27">&#9670;&nbsp;</a></span>shadowcastMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html#ac1c6ade2b5f8006863164f6e1759eb41">ShadowcastMode</a> CppRayTracerChallenge::Core::Renderer::Material::shadowcastMode = <a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html#ac1c6ade2b5f8006863164f6e1759eb41af3331e4524b4c79a6c033e9d13706682">ShadowcastMode::WHEN_TRANSPARENT</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00031">31</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
 
 </div>
 </div>
@@ -191,7 +229,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00020">20</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00027">27</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
 
 </div>
 </div>
@@ -207,7 +245,23 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00019">19</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00026">26</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+
+</div>
+</div>
+<a id="a22f6bd0b5a1c75b1fc6322ca873e0411"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22f6bd0b5a1c75b1fc6322ca873e0411">&#9670;&nbsp;</a></span>transparency</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float CppRayTracerChallenge::Core::Renderer::Material::transparency = 0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00029">29</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
 
 </div>
 </div>

@@ -7,8 +7,10 @@ var hierarchy =
       [ "CppRayTracerChallenge::Core::Serializer::PortablePixmapImageSerializer", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html", null ]
     ] ],
     [ "CppRayTracerChallenge::Core::Renderer::Camera", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html", null ],
+    [ "CheckAxisResult", "struct_check_axis_result.html", null ],
     [ "CppRayTracerChallenge::Core::Graphics::Color", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html", null ],
     [ "CppRayTracerChallenge::Core::Renderer::ComputedValues", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html", null ],
+    [ "CubeNormalParam", "class_cube_normal_param.html", null ],
     [ "std::exception", null, [
       [ "CppRayTracerChallenge::Core::Math::MatrixInitialDataSizeMismatch", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_initial_data_size_mismatch.html", null ],
       [ "CppRayTracerChallenge::Core::Math::MatrixNotInvertibleException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_not_invertible_exception.html", null ],
@@ -23,6 +25,7 @@ var hierarchy =
     [ "CppRayTracerChallenge::Core::Math::Intersections", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html", null ],
     [ "CppRayTracerChallenge::Core::Math::IShape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html", [
       [ "CppRayTracerChallenge::Core::Math::Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html", [
+        [ "CppRayTracerChallenge::Core::Math::Cube", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html", null ],
         [ "CppRayTracerChallenge::Core::Math::Plane", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html", null ],
         [ "CppRayTracerChallenge::Core::Math::Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", null ]
       ] ],
@@ -31,6 +34,7 @@ var hierarchy =
     [ "CppRayTracerChallenge::Core::Renderer::Material", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Matrix< T >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Matrix< double >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html", null ],
+    [ "N1N2", "class_n1_n2.html", null ],
     [ "CppRayTracerChallenge::Core::Renderer::Pattern", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html", null ],
     [ "Pattern", null, [
       [ "CppRayTracerChallenge::Core::Helpers::PolymorphicComparable< Pattern, SolidColor >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", [
@@ -65,8 +69,14 @@ var hierarchy =
     [ "CppRayTracerChallenge::Core::Renderer::PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", null ],
     [ "RAIIglfw", "class_r_a_i_iglfw.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", null ],
+    [ "RayIntersectsCubeParam", "class_ray_intersects_cube_param.html", null ],
+    [ "RayMissesCubeParam", "class_ray_misses_cube_param.html", null ],
+    [ "CppRayTracerChallenge::Core::Renderer::RenderJob", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_render_job.html", null ],
     [ "testing::Test", null, [
       [ "CppRayTracerChallenge_Core_Renderer_LightingTest", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html", null ]
+    ] ],
+    [ "testing::TestWithParam", null, [
+      [ "CppRayTracerChallenge_Core_Renderer_ComputedValues_Params", "class_cpp_ray_tracer_challenge___core___renderer___computed_values___params.html", null ]
     ] ],
     [ "CppRayTracerChallenge::Core::Math::Transform", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html", null ],
     [ "CppRayTracerChallenge::Core::Math::Tuple< T >", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html", null ],
@@ -74,5 +84,7 @@ var hierarchy =
       [ "CppRayTracerChallenge::Core::Math::Point", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html", null ],
       [ "CppRayTracerChallenge::Core::Math::Vector", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html", null ]
     ] ],
-    [ "CppRayTracerChallenge::Core::Renderer::World", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html", null ]
+    [ "CppRayTracerChallenge::Core::Renderer::World", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html", null ],
+    [ "WorldA", "class_world_a.html", null ],
+    [ "WorldB", "class_world_b.html", null ]
 ];

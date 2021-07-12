@@ -11,6 +11,7 @@ var annotated_dup =
           [ "PolymorphicComparable", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", null ]
         ] ],
         [ "Math", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html", [
+          [ "Cube", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube" ],
           [ "IShape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape" ],
           [ "Intersection", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection" ],
           [ "Intersections", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections" ],
@@ -47,6 +48,7 @@ var annotated_dup =
           [ "Material", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material" ],
           [ "Pattern", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern" ],
           [ "PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light" ],
+          [ "RenderJob", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_render_job.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_render_job" ],
           [ "Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape" ],
           [ "World", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world" ]
         ] ],
@@ -56,6 +58,14 @@ var annotated_dup =
         ] ]
       ] ]
     ] ],
+    [ "CheckAxisResult", "struct_check_axis_result.html", "struct_check_axis_result" ],
+    [ "CppRayTracerChallenge_Core_Renderer_ComputedValues_Params", "class_cpp_ray_tracer_challenge___core___renderer___computed_values___params.html", null ],
     [ "CppRayTracerChallenge_Core_Renderer_LightingTest", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test" ],
-    [ "RAIIglfw", "class_r_a_i_iglfw.html", "class_r_a_i_iglfw" ]
+    [ "CubeNormalParam", "class_cube_normal_param.html", "class_cube_normal_param" ],
+    [ "N1N2", "class_n1_n2.html", "class_n1_n2" ],
+    [ "RAIIglfw", "class_r_a_i_iglfw.html", "class_r_a_i_iglfw" ],
+    [ "RayIntersectsCubeParam", "class_ray_intersects_cube_param.html", "class_ray_intersects_cube_param" ],
+    [ "RayMissesCubeParam", "class_ray_misses_cube_param.html", "class_ray_misses_cube_param" ],
+    [ "WorldA", "class_world_a.html", null ],
+    [ "WorldB", "class_world_b.html", null ]
 ];

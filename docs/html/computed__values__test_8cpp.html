@@ -83,12 +83,15 @@ $(document).ready(function(){initNavTree('computed__values__test_8cpp.html','');
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">computed_values_test.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;gtest/gtest.h&gt;</code><br />
+<code>#include &lt;gtest/gtest-param-test.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="material__helper_8h_source.html">helpers/material_helper.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="computed__values_8h_source.html">renderer/computed_values.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="renderer_2shape_8h_source.html">renderer/shape.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="material_8h_source.html">renderer/material.h</a>&quot;</code><br />
@@ -100,40 +103,49 @@ Include dependency graph for computed_values_test.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="computed__values__test_8cpp__incl.png" border="0" usemap="#asrc_2test_2core_2renderer_2computed__values__test_8cpp" alt=""/></div>
 <map name="asrc_2test_2core_2renderer_2computed__values__test_8cpp" id="asrc_2test_2core_2renderer_2computed__values__test_8cpp">
-<area shape="rect" title=" " alt="" coords="625,5,805,47"/>
-<area shape="rect" title=" " alt="" coords="402,95,497,121"/>
-<area shape="rect" href="computed__values_8h.html" title=" " alt="" coords="623,95,807,121"/>
-<area shape="rect" href="renderer_2shape_8h.html" title=" " alt="" coords="581,169,649,196"/>
-<area shape="rect" href="material_8h.html" title=" " alt="" coords="274,244,353,271"/>
-<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="978,401,1078,427"/>
-<area shape="rect" href="sphere_8h.html" title=" " alt="" coords="953,95,1058,121"/>
-<area shape="rect" href="plane_8h.html" title=" " alt="" coords="831,95,929,121"/>
-<area shape="rect" href="ray_8h.html" title=" " alt="" coords="683,401,733,427"/>
-<area shape="rect" href="vector_8h.html" title=" " alt="" coords="612,557,679,584"/>
-<area shape="rect" href="transform_8h.html" title=" " alt="" coords="345,483,477,509"/>
-<area shape="rect" href="i__shape_8h.html" title=" " alt="" coords="735,244,857,271"/>
-<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="233,707,378,733"/>
-<area shape="rect" href="color_8h.html" title=" " alt="" coords="119,483,246,509"/>
-<area shape="rect" href="pattern_8h.html" title=" " alt="" coords="331,401,405,427"/>
-<area shape="rect" href="solid__color_8h.html" title=" " alt="" coords="184,319,331,345"/>
-<area shape="rect" title=" " alt="" coords="423,781,505,808"/>
-<area shape="rect" href="constants_8h.html" title=" " alt="" coords="260,781,351,808"/>
-<area shape="rect" title=" " alt="" coords="403,707,475,733"/>
-<area shape="rect" href="point_8h.html" title=" " alt="" coords="501,483,608,509"/>
-<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="472,632,533,659"/>
-<area shape="rect" title=" " alt="" coords="462,557,517,584"/>
-<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="368,557,437,584"/>
-<area shape="rect" title=" " alt="" coords="719,632,775,659"/>
-<area shape="rect" title=" " alt="" coords="368,632,437,659"/>
-<area shape="rect" href="polymorphic__comparable_8h.html" title=" " alt="" coords="144,393,307,435"/>
-<area shape="rect" href="intersections_8h.html" title=" " alt="" coords="835,319,941,345"/>
-<area shape="rect" title=" " alt="" coords="835,401,901,427"/>
-<area shape="rect" href="math_2shape_8h.html" title=" " alt="" coords="981,169,1049,196"/>
+<area shape="rect" title=" " alt="" coords="473,5,653,47"/>
+<area shape="rect" title=" " alt="" coords="73,95,167,121"/>
+<area shape="rect" title=" " alt="" coords="191,95,353,121"/>
+<area shape="rect" href="material__helper_8h.html" title=" " alt="" coords="479,95,646,121"/>
+<area shape="rect" href="material_8h.html" title=" " alt="" coords="305,319,447,345"/>
+<area shape="rect" href="renderer_2shape_8h.html" title=" " alt="" coords="528,244,659,271"/>
+<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="978,475,1078,502"/>
+<area shape="rect" href="sphere_8h.html" title=" " alt="" coords="803,169,920,196"/>
+<area shape="rect" href="computed__values_8h.html" title=" " alt="" coords="595,169,779,196"/>
+<area shape="rect" href="plane_8h.html" title=" " alt="" coords="945,169,1042,196"/>
+<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="270,781,415,808"/>
+<area shape="rect" href="color_8h.html" title=" " alt="" coords="119,557,246,584"/>
+<area shape="rect" href="pattern_8h.html" title=" " alt="" coords="331,475,405,502"/>
+<area shape="rect" href="solid__color_8h.html" title=" " alt="" coords="192,393,339,420"/>
+<area shape="rect" title=" " alt="" coords="460,856,543,883"/>
+<area shape="rect" href="constants_8h.html" title=" " alt="" coords="297,856,388,883"/>
+<area shape="rect" title=" " alt="" coords="440,781,512,808"/>
+<area shape="rect" href="point_8h.html" title=" " alt="" coords="501,557,608,584"/>
+<area shape="rect" href="transform_8h.html" title=" " alt="" coords="345,557,477,584"/>
+<area shape="rect" href="vector_8h.html" title=" " alt="" coords="612,632,679,659"/>
+<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="483,707,544,733"/>
+<area shape="rect" title=" " alt="" coords="462,632,517,659"/>
+<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="368,632,437,659"/>
+<area shape="rect" title=" " alt="" coords="719,707,775,733"/>
+<area shape="rect" title=" " alt="" coords="296,707,365,733"/>
+<area shape="rect" href="polymorphic__comparable_8h.html" title=" " alt="" coords="144,468,307,509"/>
+<area shape="rect" href="i__shape_8h.html" title=" " alt="" coords="735,319,857,345"/>
+<area shape="rect" href="intersections_8h.html" title=" " alt="" coords="835,393,941,420"/>
+<area shape="rect" href="ray_8h.html" title=" " alt="" coords="683,475,733,502"/>
+<area shape="rect" title=" " alt="" coords="835,475,901,502"/>
+<area shape="rect" href="math_2shape_8h.html" title=" " alt="" coords="966,244,1034,271"/>
 </map>
 </div>
 </div>
 <p><a href="computed__values__test_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_n1_n2.html">N1N2</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge___core___renderer___computed_values___params.html">CppRayTracerChallenge_Core_Renderer_ComputedValues_Params</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a5bf659ad7aa3c8ffcc77645acd49d7fc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="computed__values__test_8cpp.html#a5bf659ad7aa3c8ffcc77645acd49d7fc">TEST</a> (CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_from_outside)</td></tr>
@@ -144,10 +156,56 @@ Functions</h2></td></tr>
 <tr class="separator:aca91c66630e763de77a97a16b9a0423e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58368cfb3661ba26ef19b2f5eabe4722"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="computed__values__test_8cpp.html#a58368cfb3661ba26ef19b2f5eabe4722">TEST</a> (CppRayTracerChallenge_Core_Renderer_ComputedValues, computes_reflection_vector)</td></tr>
 <tr class="separator:a58368cfb3661ba26ef19b2f5eabe4722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7afc8b7925acdbe45c3d81bd614b8950"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="computed__values__test_8cpp.html#a7afc8b7925acdbe45c3d81bd614b8950">TEST_P</a> (<a class="el" href="class_cpp_ray_tracer_challenge___core___renderer___computed_values___params.html">CppRayTracerChallenge_Core_Renderer_ComputedValues_Params</a>, computes_n1_and_n2)</td></tr>
+<tr class="separator:a7afc8b7925acdbe45c3d81bd614b8950"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35516b74ef13402455d78e57c7ffd0dc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="computed__values__test_8cpp.html#a35516b74ef13402455d78e57c7ffd0dc">INSTANTIATE_TEST_SUITE_P</a> (TestCase, <a class="el" href="class_cpp_ray_tracer_challenge___core___renderer___computed_values___params.html">CppRayTracerChallenge_Core_Renderer_ComputedValues_Params</a>, ::testing::Values(<a class="el" href="class_n1_n2.html">N1N2</a>(0, 1.0f, 1.5f), <a class="el" href="class_n1_n2.html">N1N2</a>(1, 1.5f, 2.0f), <a class="el" href="class_n1_n2.html">N1N2</a>(2, 2.0f, 2.5f), <a class="el" href="class_n1_n2.html">N1N2</a>(3, 2.5f, 2.5f), <a class="el" href="class_n1_n2.html">N1N2</a>(4, 2.5f, 1.5f),))</td></tr>
+<tr class="separator:a35516b74ef13402455d78e57c7ffd0dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad81d5e766569c0a981aaa84f05710dc2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="computed__values__test_8cpp.html#ad81d5e766569c0a981aaa84f05710dc2">TEST</a> (CppRayTracerChallenge_Core_Renderer_ComputedValues, under_point_is_offset_below_the_surface)</td></tr>
+<tr class="separator:ad81d5e766569c0a981aaa84f05710dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a087b03cf2c7b3b4744ec43bd7e561d68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="computed__values__test_8cpp.html#a087b03cf2c7b3b4744ec43bd7e561d68">TEST</a> (CppRayTracerChallenge_Core_Renderer_ComputedValues, reflectance_under_total_internal_reflection)</td></tr>
+<tr class="separator:a087b03cf2c7b3b4744ec43bd7e561d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b20e3e745bd623d0e4ee1f06629aa76"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="computed__values__test_8cpp.html#a4b20e3e745bd623d0e4ee1f06629aa76">TEST</a> (CppRayTracerChallenge_Core_Renderer_ComputedValues, reflectance_with_perpendicular_viewing_angle)</td></tr>
+<tr class="separator:a4b20e3e745bd623d0e4ee1f06629aa76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2064c6a0763c8b36e1422a5288b8d49a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="computed__values__test_8cpp.html#a2064c6a0763c8b36e1422a5288b8d49a">TEST</a> (CppRayTracerChallenge_Core_Renderer_ComputedValues, reflectance_with_small_angle_and_n1_greater_than_n2)</td></tr>
+<tr class="separator:a2064c6a0763c8b36e1422a5288b8d49a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a35516b74ef13402455d78e57c7ffd0dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35516b74ef13402455d78e57c7ffd0dc">&#9670;&nbsp;</a></span>INSTANTIATE_TEST_SUITE_P()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INSTANTIATE_TEST_SUITE_P </td>
+          <td>(</td>
+          <td class="paramtype">TestCase&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_cpp_ray_tracer_challenge___core___renderer___computed_values___params.html">CppRayTracerChallenge_Core_Renderer_ComputedValues_Params</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">::testing::Values(<a class="el" href="class_n1_n2.html">N1N2</a>(0, 1.0f, 1.5f), <a class="el" href="class_n1_n2.html">N1N2</a>(1, 1.5f, 2.0f), <a class="el" href="class_n1_n2.html">N1N2</a>(2, 2.0f, 2.5f), <a class="el" href="class_n1_n2.html">N1N2</a>(3, 2.5f, 2.5f), <a class="el" href="class_n1_n2.html">N1N2</a>(4, 2.5f, 1.5f),)&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a58368cfb3661ba26ef19b2f5eabe4722"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58368cfb3661ba26ef19b2f5eabe4722">&#9670;&nbsp;</a></span>TEST() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a58368cfb3661ba26ef19b2f5eabe4722">&#9670;&nbsp;</a></span>TEST() <span class="overload">[1/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -172,7 +230,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00060">60</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00062">62</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -186,7 +244,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a31f65572e758077a45fccef6d9330109"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31f65572e758077a45fccef6d9330109">&#9670;&nbsp;</a></span>TEST() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a31f65572e758077a45fccef6d9330109">&#9670;&nbsp;</a></span>TEST() <span class="overload">[2/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -211,7 +269,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00029">29</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00031">31</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -229,7 +287,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a5bf659ad7aa3c8ffcc77645acd49d7fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5bf659ad7aa3c8ffcc77645acd49d7fc">&#9670;&nbsp;</a></span>TEST() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bf659ad7aa3c8ffcc77645acd49d7fc">&#9670;&nbsp;</a></span>TEST() <span class="overload">[3/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -254,7 +312,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00011">11</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00013">13</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -270,7 +328,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="aca91c66630e763de77a97a16b9a0423e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca91c66630e763de77a97a16b9a0423e">&#9670;&nbsp;</a></span>TEST() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aca91c66630e763de77a97a16b9a0423e">&#9670;&nbsp;</a></span>TEST() <span class="overload">[4/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -295,7 +353,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00046">46</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00048">48</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -306,6 +364,207 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a6698907169b43336b1effae379eb94d8" title="Returns the position of the intersection" alt="" coords="108,85,332,141"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aa278451e9d8057425d6961e939716dc7" title="Transforms the shape" alt="" coords="139,165,301,221"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a8bbb8b2cf7a3e28be0de06ccec3ca7c7" title="Returns a const Z component" alt="" coords="139,246,301,287"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a087b03cf2c7b3b4744ec43bd7e561d68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a087b03cf2c7b3b4744ec43bd7e561d68">&#9670;&nbsp;</a></span>TEST() <span class="overload">[5/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CppRayTracerChallenge_Core_Renderer_ComputedValues&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">reflectance_under_total_internal_reflection&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00154">154</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="computed__values__test_8cpp_a087b03cf2c7b3b4744ec43bd7e561d68_cgraph.png" border="0" usemap="#acomputed__values__test_8cpp_a087b03cf2c7b3b4744ec43bd7e561d68_cgraph" alt=""/></div>
+<map name="acomputed__values__test_8cpp_a087b03cf2c7b3b4744ec43bd7e561d68_cgraph" id="acomputed__values__test_8cpp_a087b03cf2c7b3b4744ec43bd7e561d68_cgraph">
+<area shape="rect" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_material_helper.html#a585bc83f0ffadd4a5437600af0b787a3" title=" " alt="" coords="108,5,308,61"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4b20e3e745bd623d0e4ee1f06629aa76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b20e3e745bd623d0e4ee1f06629aa76">&#9670;&nbsp;</a></span>TEST() <span class="overload">[6/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CppRayTracerChallenge_Core_Renderer_ComputedValues&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">reflectance_with_perpendicular_viewing_angle&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00165">165</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="computed__values__test_8cpp_a4b20e3e745bd623d0e4ee1f06629aa76_cgraph.png" border="0" usemap="#acomputed__values__test_8cpp_a4b20e3e745bd623d0e4ee1f06629aa76_cgraph" alt=""/></div>
+<map name="acomputed__values__test_8cpp_a4b20e3e745bd623d0e4ee1f06629aa76_cgraph" id="acomputed__values__test_8cpp_a4b20e3e745bd623d0e4ee1f06629aa76_cgraph">
+<area shape="rect" title=" " alt="" coords="5,60,60,87"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_comparison.html#af5ba595f051bdacb476b6b57986e63c2" title="Compares two numbers, and return true if they are close enough to EPSILON." alt="" coords="123,5,293,61"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_material_helper.html#a585bc83f0ffadd4a5437600af0b787a3" title=" " alt="" coords="108,85,308,141"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2064c6a0763c8b36e1422a5288b8d49a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2064c6a0763c8b36e1422a5288b8d49a">&#9670;&nbsp;</a></span>TEST() <span class="overload">[7/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CppRayTracerChallenge_Core_Renderer_ComputedValues&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">reflectance_with_small_angle_and_n1_greater_than_n2&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00179">179</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="computed__values__test_8cpp_a2064c6a0763c8b36e1422a5288b8d49a_cgraph.png" border="0" usemap="#acomputed__values__test_8cpp_a2064c6a0763c8b36e1422a5288b8d49a_cgraph" alt=""/></div>
+<map name="acomputed__values__test_8cpp_a2064c6a0763c8b36e1422a5288b8d49a_cgraph" id="acomputed__values__test_8cpp_a2064c6a0763c8b36e1422a5288b8d49a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,60,60,87"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_comparison.html#af5ba595f051bdacb476b6b57986e63c2" title="Compares two numbers, and return true if they are close enough to EPSILON." alt="" coords="123,5,293,61"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_material_helper.html#a585bc83f0ffadd4a5437600af0b787a3" title=" " alt="" coords="108,85,308,141"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad81d5e766569c0a981aaa84f05710dc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad81d5e766569c0a981aaa84f05710dc2">&#9670;&nbsp;</a></span>TEST() <span class="overload">[8/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CppRayTracerChallenge_Core_Renderer_ComputedValues&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">under_point_is_offset_below_the_surface&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00140">140</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="computed__values__test_8cpp_ad81d5e766569c0a981aaa84f05710dc2_cgraph.png" border="0" usemap="#acomputed__values__test_8cpp_ad81d5e766569c0a981aaa84f05710dc2_cgraph" alt=""/></div>
+<map name="acomputed__values__test_8cpp_ad81d5e766569c0a981aaa84f05710dc2_cgraph" id="acomputed__values__test_8cpp_ad81d5e766569c0a981aaa84f05710dc2_cgraph">
+<area shape="rect" title=" " alt="" coords="5,57,60,84"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_material_helper.html#a585bc83f0ffadd4a5437600af0b787a3" title=" " alt="" coords="108,5,308,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="115,86,301,127"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="356,21,539,62"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="365,86,529,127"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="367,151,528,193"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7afc8b7925acdbe45c3d81bd614b8950"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7afc8b7925acdbe45c3d81bd614b8950">&#9670;&nbsp;</a></span>TEST_P()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST_P </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_cpp_ray_tracer_challenge___core___renderer___computed_values___params.html">CppRayTracerChallenge_Core_Renderer_ComputedValues_Params</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">computes_n1_and_n2&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="computed__values__test_8cpp_source.html#l00092">92</a> of file <a class="el" href="computed__values__test_8cpp_source.html">computed_values_test.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="computed__values__test_8cpp_a7afc8b7925acdbe45c3d81bd614b8950_cgraph.png" border="0" usemap="#acomputed__values__test_8cpp_a7afc8b7925acdbe45c3d81bd614b8950_cgraph" alt=""/></div>
+<map name="acomputed__values__test_8cpp_a7afc8b7925acdbe45c3d81bd614b8950_cgraph" id="acomputed__values__test_8cpp_a7afc8b7925acdbe45c3d81bd614b8950_cgraph">
+<area shape="rect" title=" " alt="" coords="5,20,76,47"/>
+<area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_material_helper.html#a585bc83f0ffadd4a5437600af0b787a3" title=" " alt="" coords="124,5,324,61"/>
 </map>
 </div>
 

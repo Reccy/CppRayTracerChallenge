@@ -85,6 +85,7 @@ $(document).ready(function(){initNavTree('namespace_cpp_ray_tracer_challenge_1_1
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">CppRayTracerChallenge::Core::Renderer Namespace Reference</div>  </div>
@@ -115,12 +116,22 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html">PointLight</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a point in space that emits light  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_render_job.html">RenderJob</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html">Shape</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a shape within the rendered world. This is a wrapper around a <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html">Math::IShape</a> which adds materials  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html">World</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a world composed of multiple objects and light sources that can be rendererd to a canvas  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ac1c6ade2b5f8006863164f6e1759eb41"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html#ac1c6ade2b5f8006863164f6e1759eb41">ShadowcastMode</a> { <a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html#ac1c6ade2b5f8006863164f6e1759eb41af3fc827ade4b968e50406496907ef962">ALWAYS</a>
+, <a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html#ac1c6ade2b5f8006863164f6e1759eb41a443475558f0168dff92ecde26b98ae5a">NEVER</a>
+, <a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html#ac1c6ade2b5f8006863164f6e1759eb41af3331e4524b4c79a6c033e9d13706682">WHEN_TRANSPARENT</a>
+ }</td></tr>
+<tr class="separator:ac1c6ade2b5f8006863164f6e1759eb41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -131,6 +142,36 @@ Functions</h2></td></tr>
 <tr class="memitem:aa4af5f8453cbc374506e4e36b9eda269"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html#aa4af5f8453cbc374506e4e36b9eda269">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html">Material</a> &amp;material)</td></tr>
 <tr class="separator:aa4af5f8453cbc374506e4e36b9eda269"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ac1c6ade2b5f8006863164f6e1759eb41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1c6ade2b5f8006863164f6e1759eb41">&#9670;&nbsp;</a></span>ShadowcastMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer.html#ac1c6ade2b5f8006863164f6e1759eb41">CppRayTracerChallenge::Core::Renderer::ShadowcastMode</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac1c6ade2b5f8006863164f6e1759eb41af3fc827ade4b968e50406496907ef962"></a>ALWAYS&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac1c6ade2b5f8006863164f6e1759eb41a443475558f0168dff92ecde26b98ae5a"></a>NEVER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac1c6ade2b5f8006863164f6e1759eb41af3331e4524b4c79a6c033e9d13706682"></a>WHEN_TRANSPARENT&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="material_8h_source.html#l00011">11</a> of file <a class="el" href="material_8h_source.html">material.h</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a51780c95580c624ce7b743c1bb45dbcc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a51780c95580c624ce7b743c1bb45dbcc">&#9670;&nbsp;</a></span>operator!=()</h2>

@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Renderer::ComputedValues::reflectance" name="CppRayTracerChallenge::Core::Renderer::ComputedValues::reflectance">
+<area shape="rect" id="node1" title="Returns the reflectance amount, calculated using Shclick&#39;s approximation to Fresnel&#39;s equations" alt="" coords="215,5,439,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a8a4ae040ed58c5f57a39dff2b2708f5e" title="Calculates the color in the world from precomputed values" alt="" coords="5,5,167,61"/>
+</map>

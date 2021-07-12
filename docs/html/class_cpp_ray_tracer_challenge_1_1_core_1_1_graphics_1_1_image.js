@@ -5,6 +5,7 @@ var class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image =
     [ "Image", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#ad394da3c7a66fa6f701ac7dea4d4f4f2", null ],
     [ "Image", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a2b11f531ee57c88942dbf500ed9bb2f5", null ],
     [ "~Image", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a0294f63700543e11c0f0da85601c7ae5", null ],
+    [ "fromBuffer", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a580a56193414ac920bd81204329be459", null ],
     [ "height", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a000645ffdca3b8260ddda3932b56b9d4", null ],
     [ "pixelIndexAt", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a042a834f5a144cc45600dfb1ced54284", null ],
     [ "readPixel", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#aa14ced10c26eb8dcec567af55495eefd", null ],

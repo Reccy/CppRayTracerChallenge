@@ -130,6 +130,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa14ced10c26eb8dcec567af55495eefd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#aa14ced10c26eb8dcec567af55495eefd">readPixel</a> (int x, int y) const</td></tr>
 <tr class="memdesc:aa14ced10c26eb8dcec567af55495eefd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a copy of the <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> at the coordinates (0,0) is the top-left pixel  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#aa14ced10c26eb8dcec567af55495eefd">More...</a><br /></td></tr>
 <tr class="separator:aa14ced10c26eb8dcec567af55495eefd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a580a56193414ac920bd81204329be459"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a580a56193414ac920bd81204329be459">fromBuffer</a> (std::vector&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> &gt; buffer)</td></tr>
+<tr class="memdesc:a580a56193414ac920bd81204329be459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the image data with that of the passed in buffer  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a580a56193414ac920bd81204329be459">More...</a><br /></td></tr>
+<tr class="separator:a580a56193414ac920bd81204329be459"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af06b75218f6b14fa4435f0c2fa278fe8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#af06b75218f6b14fa4435f0c2fa278fe8">toBuffer</a> () const</td></tr>
 <tr class="memdesc:af06b75218f6b14fa4435f0c2fa278fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a buffer with all of the Colors in left-right, top-down order  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#af06b75218f6b14fa4435f0c2fa278fe8">More...</a><br /></td></tr>
 <tr class="separator:af06b75218f6b14fa4435f0c2fa278fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -366,6 +369,34 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a580a56193414ac920bd81204329be459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a580a56193414ac920bd81204329be459">&#9670;&nbsp;</a></span>fromBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Image::fromBuffer </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> &gt;&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Replaces the image data with that of the passed in buffer </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>The buffer to replace with</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="image_8cpp_source.html#l00043">43</a> of file <a class="el" href="image_8cpp_source.html">image.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a000645ffdca3b8260ddda3932b56b9d4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a000645ffdca3b8260ddda3932b56b9d4">&#9670;&nbsp;</a></span>height()</h2>
 
@@ -434,16 +465,17 @@ Here is the caller graph for this function:</div>
 <p>Returns the index of the pixel at the x and y coordinates </p>
 <dl class="section return"><dt>Returns</dt><dd>The index of the <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Color</a> in m_colors</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="image_8cpp_source.html#l00043">43</a> of file <a class="el" href="image_8cpp_source.html">image.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="image_8cpp_source.html#l00048">48</a> of file <a class="el" href="image_8cpp_source.html">image.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image_a042a834f5a144cc45600dfb1ced54284_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image_a042a834f5a144cc45600dfb1ced54284_icgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image_a042a834f5a144cc45600dfb1ced54284_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image_a042a834f5a144cc45600dfb1ced54284_icgraph">
-<area shape="rect" title="Returns the index of the pixel at the x and y coordinates" alt="" coords="323,45,484,101"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ad394da3c7a66fa6f701ac7dea4d4f4f2" title="Constructs an image of set width, height. Initializes color data to that of the passed in colors" alt="" coords="108,5,275,61"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ae8f153c5b936b2c4229a80f9639ded31" title="Writes color data to the specified coordinate on the canvas (0,0) is the top&#45;left pixel" alt="" coords="108,85,275,141"/>
-<area shape="rect" href="canvas__test_8cpp.html#a01d783f6e09b6b62b6745790d258d9d7" title=" " alt="" coords="5,100,60,127"/>
+<area shape="rect" title="Returns the index of the pixel at the x and y coordinates" alt="" coords="455,45,616,101"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ad394da3c7a66fa6f701ac7dea4d4f4f2" title="Constructs an image of set width, height. Initializes color data to that of the passed in colors" alt="" coords="240,5,407,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ae8f153c5b936b2c4229a80f9639ded31" title="Writes color data to the specified coordinate on the canvas (0,0) is the top&#45;left pixel" alt="" coords="240,85,407,141"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_render_job.html#a388946697630f55a38bfa3022a5e1460" title=" " alt="" coords="5,52,192,108"/>
+<area shape="rect" href="canvas__test_8cpp.html#a01d783f6e09b6b62b6745790d258d9d7" title=" " alt="" coords="71,132,126,159"/>
 </map>
 </div>
 
@@ -580,7 +612,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="image_8h_source.html#l00070">70</a> of file <a class="el" href="image_8h_source.html">image.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="image_8h_source.html#l00076">76</a> of file <a class="el" href="image_8h_source.html">image.h</a>.</p>
 
 </div>
 </div>
@@ -604,7 +636,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="image_8h_source.html#l00069">69</a> of file <a class="el" href="image_8h_source.html">image.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="image_8h_source.html#l00075">75</a> of file <a class="el" href="image_8h_source.html">image.h</a>.</p>
 
 </div>
 </div>
@@ -628,7 +660,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="image_8h_source.html#l00069">69</a> of file <a class="el" href="image_8h_source.html">image.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="image_8h_source.html#l00075">75</a> of file <a class="el" href="image_8h_source.html">image.h</a>.</p>
 
 </div>
 </div>
@@ -652,7 +684,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="image_8h_source.html#l00069">69</a> of file <a class="el" href="image_8h_source.html">image.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="image_8h_source.html#l00075">75</a> of file <a class="el" href="image_8h_source.html">image.h</a>.</p>
 
 </div>
 </div>

@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['window_5fheight_693',['WINDOW_HEIGHT',['../win32__main_8cpp.html#ab76d138fa589df9a65fc05eb3bd56073',1,'win32_main.cpp']]],
-  ['window_5fwidth_694',['WINDOW_WIDTH',['../win32__main_8cpp.html#a5e6ce0dd58078611570510dc4b8d81f3',1,'win32_main.cpp']]]
+  ['shadowcastmode_774',['shadowcastMode',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a1ac61307c678c029d6efd248788efa27',1,'CppRayTracerChallenge::Core::Renderer::Material']]],
+  ['shape_775',['shape',['../class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html#a90a36e07ae51880d24a58aac72c18309',1,'CppRayTracerChallenge_Core_Renderer_LightingTest']]],
+  ['shininess_776',['shininess',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a01ed82b967742cd0c957ca5937cfbd3c',1,'CppRayTracerChallenge::Core::Renderer::Material']]],
+  ['specular_777',['specular',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a0d35cd848e5abf5400c1682b97313c04',1,'CppRayTracerChallenge::Core::Renderer::Material']]],
+  ['sphere_778',['sphere',['../class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html#a0acdbb376fb7b2c8460d290ca76304d0',1,'CppRayTracerChallenge_Core_Renderer_LightingTest']]]
 ];

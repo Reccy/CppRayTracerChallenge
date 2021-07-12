@@ -1,6 +1,7 @@
 <map id="CppRayTracerChallenge::Core::Graphics::Image::pixelIndexAt" name="CppRayTracerChallenge::Core::Graphics::Image::pixelIndexAt">
-<area shape="rect" id="node1" title="Returns the index of the pixel at the x and y coordinates" alt="" coords="323,45,484,101"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ad394da3c7a66fa6f701ac7dea4d4f4f2" title="Constructs an image of set width, height. Initializes color data to that of the passed in colors" alt="" coords="108,5,275,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ae8f153c5b936b2c4229a80f9639ded31" title="Writes color data to the specified coordinate on the canvas (0,0) is the top&#45;left pixel" alt="" coords="108,85,275,141"/>
-<area shape="rect" id="node4" href="$canvas__test_8cpp.html#a01d783f6e09b6b62b6745790d258d9d7" title=" " alt="" coords="5,100,60,127"/>
+<area shape="rect" id="node1" title="Returns the index of the pixel at the x and y coordinates" alt="" coords="455,45,616,101"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ad394da3c7a66fa6f701ac7dea4d4f4f2" title="Constructs an image of set width, height. Initializes color data to that of the passed in colors" alt="" coords="240,5,407,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ae8f153c5b936b2c4229a80f9639ded31" title="Writes color data to the specified coordinate on the canvas (0,0) is the top&#45;left pixel" alt="" coords="240,85,407,141"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_render_job.html#a388946697630f55a38bfa3022a5e1460" title=" " alt="" coords="5,52,192,108"/>
+<area shape="rect" id="node5" href="$canvas__test_8cpp.html#a01d783f6e09b6b62b6745790d258d9d7" title=" " alt="" coords="71,132,126,159"/>
 </map>

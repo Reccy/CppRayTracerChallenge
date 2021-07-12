@@ -1,0 +1,9 @@
+<map id="CppRayTracerChallenge::Core::Math::Cube::intersectLocal" name="CppRayTracerChallenge::Core::Math::Cube::intersectLocal">
+<area shape="rect" id="node1" title="Calculates if the local space ray intersects with the sphere." alt="" coords="5,148,196,204"/>
+<area shape="rect" id="node2" href="$cube_8cpp.html#a28cf109576739ac9ca5df347c38986b8" title=" " alt="" coords="294,5,377,32"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="244,57,427,98"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="253,122,417,163"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a88cd3ab070137859ed4a413239c6414d" title="Returns a const X component" alt="" coords="255,187,416,229"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a67d5e1ca026ae045cfe5712d8613c552" title="Returns a const Y component" alt="" coords="255,253,416,294"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a8bbb8b2cf7a3e28be0de06ccec3ca7c7" title="Returns a const Z component" alt="" coords="255,318,416,359"/>
+</map>

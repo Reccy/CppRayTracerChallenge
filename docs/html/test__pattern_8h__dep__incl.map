@@ -1,7 +1,8 @@
 <map id="src/core/renderer/patterns/test_pattern.h" name="src/core/renderer/patterns/test_pattern.h">
-<area shape="rect" id="node1" title=" " alt="" coords="273,5,444,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="359,5,529,47"/>
 <area shape="rect" id="node2" href="$test__pattern_8cpp.html" title=" " alt="" coords="5,95,176,136"/>
 <area shape="rect" id="node3" href="$lighting__test_8cpp.html" title=" " alt="" coords="200,95,347,136"/>
 <area shape="rect" id="node4" href="$pattern__test_8cpp.html" title=" " alt="" coords="371,95,517,136"/>
 <area shape="rect" id="node5" href="$shape__test_8cpp.html" title=" " alt="" coords="541,95,688,136"/>
+<area shape="rect" id="node6" href="$world__test_8cpp.html" title=" " alt="" coords="712,95,859,136"/>
 </map>

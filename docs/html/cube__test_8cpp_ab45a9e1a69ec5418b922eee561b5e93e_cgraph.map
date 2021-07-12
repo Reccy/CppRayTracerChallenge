@@ -1,0 +1,8 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node1" title=" " alt="" coords="5,127,60,153"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html#af6215ec5b4a46e2ab50ef7c3d62ebc6e" title="Calculates and returns the normal at the passed in local space position for this cube" alt="" coords="108,119,319,161"/>
+<area shape="rect" id="node3" href="$namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_comparison.html#af5ba595f051bdacb476b6b57986e63c2" title="Compares two numbers, and return true if they are close enough to EPSILON." alt="" coords="367,5,537,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a88cd3ab070137859ed4a413239c6414d" title="Returns a const X component" alt="" coords="371,86,533,127"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a67d5e1ca026ae045cfe5712d8613c552" title="Returns a const Y component" alt="" coords="371,151,533,193"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a8bbb8b2cf7a3e28be0de06ccec3ca7c7" title="Returns a const Z component" alt="" coords="371,217,533,258"/>
+</map>

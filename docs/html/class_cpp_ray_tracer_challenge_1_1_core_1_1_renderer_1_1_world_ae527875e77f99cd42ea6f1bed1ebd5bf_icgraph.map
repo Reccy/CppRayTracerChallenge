@@ -1,5 +1,5 @@
 <map id="CppRayTracerChallenge::Core::Renderer::World::colorAt" name="CppRayTracerChallenge::Core::Renderer::World::colorAt">
-<area shape="rect" id="node1" title="Calculates the color from the point of view of the passed in ray" alt="" coords="224,39,385,95"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="5,5,176,61"/>
-<area shape="rect" id="node3" href="$world__test_8cpp.html#ab2d8493dc183b724b5d1a18686359bcb" title=" " alt="" coords="63,85,118,112"/>
+<area shape="rect" id="node1" title="Calculates the color from the point of view of the passed in ray" alt="" coords="240,39,401,95"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_render_job.html#a388946697630f55a38bfa3022a5e1460" title=" " alt="" coords="5,5,192,61"/>
+<area shape="rect" id="node3" href="$world__test_8cpp.html#ab2d8493dc183b724b5d1a18686359bcb" title=" " alt="" coords="71,85,126,112"/>
 </map>

@@ -15,6 +15,8 @@ var class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world =
     [ "objectCount", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#aa7aaea63faa42d0dd8338ad3b117c399", null ],
     [ "reflectedColor", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#adc54007efd4f6e3fcdb3a0eb78d28734", null ],
     [ "reflectedColor", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a38cf9ede330e6d2b8e49e2c579ab22b7", null ],
+    [ "refractedColor", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#aa25de95d6ebfdad9c64b57b4a28bf628", null ],
+    [ "refractedColor", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a0d39181f30db188c879df0aea1886912", null ],
     [ "shadeHit", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41", null ],
     [ "shadeHit", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a8a4ae040ed58c5f57a39dff2b2708f5e", null ]
 ];

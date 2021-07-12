@@ -1,17 +1,12 @@
 var searchData=
 [
-  ['w_310',['w',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a2914e57e9f2263a9413b94c528c29877',1,'CppRayTracerChallenge::Core::Math::Tuple']]],
-  ['what_311',['what',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_not_invertible_exception.html#af713424e77246537d5445e75f63cb6be',1,'CppRayTracerChallenge::Core::Math::MatrixNotInvertibleException::what()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_too_small_exception.html#a94ea32e30459b24279eded83e9a30a71',1,'CppRayTracerChallenge::Core::Math::MatrixTooSmallException::what()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_initial_data_size_mismatch.html#a9dbcdb11e282dc7ff98e1a1cc29668de',1,'CppRayTracerChallenge::Core::Math::MatrixInitialDataSizeMismatch::what()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception.html#a9deb36d436c38b15199d589388e85628',1,'CppRayTracerChallenge::Core::Math::MatrixUndefinedDeterminantException::what()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception.html#aebd01a35b641322a1a0a484bfd1a899b',1,'CppRayTracerChallenge::Core::Math::MatrixUndefinedProductException::what()']]],
-  ['white_312',['white',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a154c895b965e8aa00cc42e9ad53d8b75',1,'CppRayTracerChallenge::Core::Graphics::Color']]],
-  ['width_313',['width',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#ae533bfa2a8ddf6719e227c68bfcaa42e',1,'CppRayTracerChallenge::Core::Graphics::Image']]],
-  ['win32_5fmain_2ecpp_314',['win32_main.cpp',['../win32__main_8cpp.html',1,'']]],
-  ['window_5fheight_315',['WINDOW_HEIGHT',['../win32__main_8cpp.html#ab76d138fa589df9a65fc05eb3bd56073',1,'win32_main.cpp']]],
-  ['window_5fwidth_316',['WINDOW_WIDTH',['../win32__main_8cpp.html#a5e6ce0dd58078611570510dc4b8d81f3',1,'win32_main.cpp']]],
-  ['windowshouldopen_317',['windowShouldOpen',['../class_r_a_i_iglfw.html#ac2489547fef879685e75873bebfaee62',1,'RAIIglfw']]],
-  ['world_318',['World',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html',1,'CppRayTracerChallenge::Core::Renderer::World'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8',1,'CppRayTracerChallenge::Core::Renderer::World::World()']]],
-  ['world_2ecpp_319',['world.cpp',['../world_8cpp.html',1,'']]],
-  ['world_2eh_320',['world.h',['../world_8h.html',1,'']]],
-  ['world_5ftest_2ecpp_321',['world_test.cpp',['../world__test_8cpp.html',1,'']]],
-  ['writeimage_322',['writeImage',['../win32__main_8cpp.html#aa93dbd63f280b50c4415de8a4fa50cf4',1,'win32_main.cpp']]],
-  ['writepixel_323',['writePixel',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ae8f153c5b936b2c4229a80f9639ded31',1,'CppRayTracerChallenge::Core::Graphics::Canvas']]]
+  ['v_341',['v',['../perlin__noise_8cpp.html#ab59e6706fbcaaf1828b7a8d6683fd3f2',1,'perlin_noise.cpp']]],
+  ['vector_342',['Vector',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html',1,'CppRayTracerChallenge::Core::Math::Vector'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6f80c73b5f18dcf3f8e36065bdc8b9e5',1,'CppRayTracerChallenge::Core::Math::Vector::Vector()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a2c954f02301e7193ba1fc9dc826edac7',1,'CppRayTracerChallenge::Core::Math::Vector::Vector(const Tuple tuple)'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a8f5a8f4ee2199c55fb4303ae235fb51e',1,'CppRayTracerChallenge::Core::Math::Vector::Vector(const double x, const double y, const double z)'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a605e67e8c9cafabd1355c45298660967',1,'CppRayTracerChallenge::Core::Math::Vector::Vector(const double x, const double y)']]],
+  ['vector_2ecpp_343',['vector.cpp',['../vector_8cpp.html',1,'']]],
+  ['vector_2eh_344',['vector.h',['../vector_8h.html',1,'']]],
+  ['vector_5ftest_2ecpp_345',['vector_test.cpp',['../vector__test_8cpp.html',1,'']]],
+  ['vertexshadersource_346',['vertexShaderSource',['../win32__main_8cpp.html#a94affbdd2b20c61bcc4dfdd86e1ffea6',1,'win32_main.cpp']]],
+  ['verts_347',['verts',['../win32__main_8cpp.html#a7f37695c8c6084173b46346f69e9dc90',1,'win32_main.cpp']]],
+  ['viewmatrix_348',['viewMatrix',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a4db33858bd0ed84b50466a85221e15d2',1,'CppRayTracerChallenge::Core::Renderer::Camera']]],
+  ['vsize_349',['vSize',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a3e30f9502e2ca31dff1b9aee8f624b6c',1,'CppRayTracerChallenge::Core::Renderer::Camera']]]
 ];
