@@ -137,3 +137,9 @@ TEST(CppRayTracerChallenge_Core_Math_Cylinder, intersecting_constrained_cylinder
 		EXPECT_EQ(intersections.count(), param.count);
 	}
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Cylinder, default_closed_attribute)
+{
+	Cylinder cylinder = Cylinder();
+	EXPECT_EQ(cylinder.closed(), false);
+}

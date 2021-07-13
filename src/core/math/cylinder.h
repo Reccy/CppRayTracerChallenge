@@ -21,6 +21,14 @@ namespace CppRayTracerChallenge::Core::Math
 		Cylinder(double minimum, double maximum);
 
 		/// <summary>
+		/// Creates a Cylinder at position 0, 0, 0 with defined maximum and minimum bounds, with defined caps
+		/// </summary>
+		/// <param name="minimum">Minimum bounds</param>
+		/// <param name="maximum">Maximum bounds</param>
+		/// <param name="closed">If the cylinder is capped</param>
+		Cylinder(double minimum, double maximum, bool closed);
+
+		/// <summary>
 		/// Calculates and returns the normal at the passed in local space position for this cylinder
 		/// </summary>
 		/// <param name="position">The local space position of the normal vector</param>
@@ -57,9 +65,22 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="minimum">The minimum bounds to set</param>
 		void minimum(double minimum);
+
+		/// <summary>
+		/// Returns true if the cylinder is closed
+		/// </summary>
+		/// <returns>If the cylinder is closed</returns>
+		bool closed() const;
+
+		/// <summary>
+		/// Sets if the cylinder is closed
+		/// </summary>
+		/// <param name="closed">The closed value</param>
+		void closed(bool closed);
 	private:
 		double m_minimum;
 		double m_maximum;
+		bool m_closed;
 	};
 }
 

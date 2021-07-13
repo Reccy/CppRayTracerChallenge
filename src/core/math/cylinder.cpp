@@ -2,9 +2,11 @@
 
 using namespace CppRayTracerChallenge::Core::Math;
 
-Cylinder::Cylinder() : m_minimum(-INFINITY), m_maximum(INFINITY) {};
+Cylinder::Cylinder() : m_minimum(-INFINITY), m_maximum(INFINITY), m_closed(false) {};
 
-Cylinder::Cylinder(double minimum, double maximum) : m_minimum(minimum), m_maximum(maximum) {};
+Cylinder::Cylinder(double minimum, double maximum) : m_minimum(minimum), m_maximum(maximum), m_closed(false) {};
+
+Cylinder::Cylinder(double minimum, double maximum, bool closed) : m_minimum(minimum), m_maximum(maximum), m_closed(closed) {};
 
 const Vector Cylinder::normalLocal(const Point position) const
 {
@@ -78,4 +80,14 @@ double Cylinder::minimum() const
 void Cylinder::minimum(double minimum)
 {
 	m_minimum = minimum;
+}
+
+bool Cylinder::closed() const
+{
+	return m_closed;
+}
+
+void Cylinder::closed(bool closed)
+{
+	m_closed = closed;
 }
