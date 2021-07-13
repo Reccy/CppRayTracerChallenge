@@ -102,3 +102,38 @@ TEST(CppRayTracerChallenge_Core_Math_Cylinder, default_minimum_and_maximum_bound
 	EXPECT_EQ(cylinder.maximum(), INFINITY);
 	EXPECT_EQ(cylinder.minimum(), -INFINITY);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Cylinder, intersecting_constrained_cylinder)
+{
+	struct Param
+	{
+		Param(Point origin, Vector direction, int count)
+			: origin(origin), direction(direction), count(count) {};
+
+		Point origin;
+		Vector direction;
+		int count;
+	};
+
+	std::vector<Param> paramsList{
+		Param({0, 1.5, 0}, {0.1, 1, 0}, 0),
+		Param({0, 3, -5}, {0, 0, 1}, 0),
+		Param({0, 0, -5}, {0, 0, 1}, 0),
+		Param({0, 2, -5}, {0, 0, 1}, 0),
+		Param({0, 1, -5}, {0, 0, 1}, 0),
+		Param({0, 1.5, -2}, {0, 0, 1}, 2)
+	};
+
+	for (int i = 0; i < paramsList.size(); ++i)
+	{
+		Param& param = paramsList[i];
+
+		Cylinder cylinder = Cylinder(1, 2);
+		Vector direction = param.direction.normalize();
+		Ray ray = Ray(param.origin, direction);
+
+		Intersections intersections = cylinder.intersectLocal(ray);
+
+		EXPECT_EQ(intersections.count(), param.count);
+	}
+}
