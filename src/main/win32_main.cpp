@@ -18,6 +18,7 @@
 #include "math/sphere.h"
 #include "math/plane.h"
 #include "math/cube.h"
+#include "math/cylinder.h"
 #include "math/intersections.h"
 #include "math/ray.h"
 #include "math/transform.h"
@@ -53,8 +54,8 @@ using Graphics::Canvas;
 
 const int WINDOW_WIDTH = 1920;
 const int WINDOW_HEIGHT = 1080;
-const int RENDER_WIDTH = 1920;
-const int RENDER_HEIGHT = 1080;
+const int RENDER_WIDTH = 1920/4;
+const int RENDER_HEIGHT = 1080/4;
 
 void log(std::string message)
 {
@@ -84,6 +85,9 @@ public:
 		log("Building Cube B...");
 		Renderer::Shape cubeB = buildCubeB();
 
+		log("Building Cylinder A...");
+		Renderer::Shape cylinderA = buildCylinderA();
+
 		log("Building Light...");
 		PointLight light = buildLight();
 
@@ -107,6 +111,9 @@ public:
 
 		log("Adding Cube B to World...");
 		world.addObject(cubeB);
+
+		log("Adding Cylinder A to World...");
+		world.addObject(cylinderA);
 
 		log("Adding Light to World...");
 		world.addLight(light);
@@ -236,6 +243,21 @@ private:
 		return cube;
 	}
 
+	static Renderer::Shape buildCylinderA()
+	{
+		auto shape = std::make_shared<Cylinder>(1, 3);
+		Renderer::Shape cylinder = Renderer::Shape(shape);
+		Transform transform = Transform()
+			.translate(0, 1, 2)
+			.rotate(20, 20, 20);
+		Material material = Material();
+		material.pattern = std::make_shared<SolidColor>(Color(1, 0, 1));
+		cylinder.material(material);
+		cylinder.transform(transform);
+
+		return cylinder;
+	}
+
 	static PointLight buildLight()
 	{
 		return PointLight({ -10, 10, -10 }, Color(1, 1, 1));
@@ -331,11 +353,20 @@ Image doRealRender()
 
 	int width = RENDER_WIDTH;
 	int height = RENDER_HEIGHT;
+
+	double camPosX = 0;
+	double camPosY = 3;
+	double camPosZ = -8;
+
+	double camLookX = 0;
+	double camLookY = 1.5;
+	double camLookZ = 0;
+
 	int fov = 70;
 
 	log("Setting up camera: " + std::to_string(width) + ", " + std::to_string(height) + ", " + std::to_string(fov));
 	camera = std::make_shared<Camera>(width, height, fov);
-	auto cameraTransform = Camera::viewMatrix({ 0, 3, -8 }, { 0,1.5,0 }, Vector::up());
+	auto cameraTransform = Camera::viewMatrix({ camPosX, camPosY, camPosZ }, { camLookX, camLookY, camLookZ }, Vector::up());
 	camera->transform(cameraTransform);
 
 	log("Initialization Done");
