@@ -143,3 +143,37 @@ TEST(CppRayTracerChallenge_Core_Math_Cylinder, default_closed_attribute)
 	Cylinder cylinder = Cylinder();
 	EXPECT_EQ(cylinder.closed(), false);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Cylinder, intersecting_caps_of_closed_cylinder)
+{
+	struct Param
+	{
+		Param(Point origin, Vector direction, int count)
+			: origin(origin), direction(direction), count(count) {};
+
+		Point origin;
+		Vector direction;
+		int count;
+	};
+
+	std::vector<Param> paramsList{
+		Param({0, 3, 0}, {0, -1, 0}, 2),
+		Param({0, 3, -2}, {0, -1, 2}, 2),
+		Param({0, 4, -2}, {0, -1, 1}, 2),
+		Param({0, 0, -2}, {0, 1, 2}, 2),
+		Param({0, -1, -2}, {0, 1, 1}, 2)
+	};
+
+	for (int i = 0; i < paramsList.size(); ++i)
+	{
+		Param& param = paramsList[i];
+
+		Cylinder cylinder = Cylinder(1, 2, true);
+		Vector direction = param.direction.normalize();
+		Ray ray = Ray(param.origin, direction);
+
+		Intersections intersections = cylinder.intersectLocal(ray);
+
+		EXPECT_EQ(intersections.count(), param.count);
+	}
+}

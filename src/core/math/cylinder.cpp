@@ -1,4 +1,5 @@
 #include "cylinder.h"
+#include "comparison.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
 
@@ -20,7 +21,7 @@ const Intersections Cylinder::intersectLocal(Ray ray) const
 	// Ray is parallel to the Y Axis
 	if (Math::Comparison::equal(a, 0.0))
 	{
-		return Intersections();
+		return Intersections(intersectCaps(ray, {}));
 	}
 
 	double b = 2 * ray.origin().x() * ray.direction().x() +
@@ -38,6 +39,7 @@ const Intersections Cylinder::intersectLocal(Ray ray) const
 	double t0 = (-b - sqrt(disc)) / (2 * a);
 	double t1 = (-b + sqrt(disc)) / (2 * a);
 
+	// swap
 	if (t0 > t1)
 	{
 		double tTemp = t0;
@@ -57,6 +59,13 @@ const Intersections Cylinder::intersectLocal(Ray ray) const
 	if (m_minimum < y1 && y1 < m_maximum)
 	{
 		intersections.push_back(Intersection(t1, *this));
+	}
+
+	auto append = intersectCaps(ray, intersections);
+
+	for (int i = 0; i < append.size(); ++i)
+	{
+		intersections.push_back(append[i]);
 	}
 
 	return Intersections(intersections);
@@ -90,4 +99,36 @@ bool Cylinder::closed() const
 void Cylinder::closed(bool closed)
 {
 	m_closed = closed;
+}
+
+bool Cylinder::checkCap(Ray ray, double t) const
+{
+	double x = ray.origin().x() + t * ray.direction().x();
+	double z = ray.origin().z() + t * ray.direction().z();
+
+	return (pow(x, 2) + pow(z, 2)) <= 1;
+}
+
+std::vector<Intersection> Cylinder::intersectCaps(Ray ray, Intersections intersections) const
+{
+	std::vector<Intersection> intersectionsList;
+
+	if (!m_closed || Comparison::equal(ray.direction().y(), 0.0))
+	{
+		return intersectionsList;
+	}
+
+	double t = (m_minimum - ray.origin().y()) / ray.direction().y();
+	if (checkCap(ray, t))
+	{
+		intersectionsList.push_back(Intersection(t, *this));
+	}
+
+	t = (m_maximum - ray.origin().y()) / ray.direction().y();
+	if (checkCap(ray, t))
+	{
+		intersectionsList.push_back(Intersection(t, *this));
+	}
+
+	return intersectionsList;
 }
