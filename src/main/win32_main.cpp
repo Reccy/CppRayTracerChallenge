@@ -245,7 +245,7 @@ private:
 
 	static Renderer::Shape buildCylinderA()
 	{
-		auto shape = std::make_shared<Cylinder>(1, 3);
+		auto shape = std::make_shared<Cylinder>(1, 3, true);
 		Renderer::Shape cylinder = Renderer::Shape(shape);
 		Transform transform = Transform()
 			.translate(0, 1, 2)
