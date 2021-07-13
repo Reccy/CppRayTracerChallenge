@@ -2,7 +2,7 @@
 
 using namespace CppRayTracerChallenge::Core::Math;
 
-Cylinder::Cylinder() {};
+Cylinder::Cylinder() : m_minimum(-INFINITY), m_maximum(INFINITY) {};
 
 const Vector Cylinder::normalLocal(const Point position) const
 {
@@ -35,4 +35,14 @@ const Intersections Cylinder::intersectLocal(Ray ray) const
 	double t1 = (-b + sqrt(disc)) / (2 * a);
 
 	return Intersections({ { t0, *this }, { t1, *this } });
+}
+
+double Cylinder::maximum() const
+{
+	return m_maximum;
+}
+
+double Cylinder::minimum() const
+{
+	return m_minimum;
 }

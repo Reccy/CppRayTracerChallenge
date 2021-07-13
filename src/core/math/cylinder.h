@@ -26,6 +26,21 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="ray">The local space ray to intersect with the sphere</param>
 		/// <returns>The Intersections</returns>
 		const Intersections intersectLocal(Ray ray) const override;
+
+		/// <summary>
+		/// Returns the maximum bounds of the Cylinder
+		/// </summary>
+		/// <returns>Max length</returns>
+		double maximum() const;
+
+		/// <summary>
+		/// Returns the minimum bounds of the cylinder
+		/// </summary>
+		/// <returns>Min bounds</returns>
+		double minimum() const;
+	private:
+		double m_minimum;
+		double m_maximum;
 	};
 }
 

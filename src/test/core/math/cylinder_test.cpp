@@ -95,3 +95,10 @@ TEST(CppRayTracerChallenge_Core_Math_Cylinder, normal_vector_on_cylinder)
 		EXPECT_EQ(normal, param.normal);
 	}
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Cylinder, default_minimum_and_maximum_bounds)
+{
+	Cylinder cylinder = Cylinder();
+	EXPECT_EQ(cylinder.maximum(), INFINITY);
+	EXPECT_EQ(cylinder.minimum(), -INFINITY);
+}
