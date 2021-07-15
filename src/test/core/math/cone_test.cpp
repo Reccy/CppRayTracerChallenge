@@ -3,6 +3,24 @@
 
 using namespace CppRayTracerChallenge::Core::Math;
 
+TEST(CppRayTracerChallenge_Core_Math_Cone, default_attributes)
+{
+	Cone a = Cone();
+	EXPECT_EQ(a.maximum(), INFINITY);
+	EXPECT_EQ(a.minimum(), -INFINITY);
+	EXPECT_EQ(a.closed(), false);
+
+	Cone b = Cone(-0.5, 0.5);
+	EXPECT_EQ(b.minimum(), -0.5);
+	EXPECT_EQ(b.maximum(), 0.5);
+	EXPECT_EQ(b.closed(), false);
+
+	Cone c = Cone(-0.5, 0.5, true);
+	EXPECT_EQ(c.minimum(), -0.5);
+	EXPECT_EQ(c.maximum(), 0.5);
+	EXPECT_EQ(c.closed(), true);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Cone, intersecting_cone_with_ray)
 {
 	struct Param
@@ -34,8 +52,8 @@ TEST(CppRayTracerChallenge_Core_Math_Cone, intersecting_cone_with_ray)
 		Intersections intersections = cone.intersectLocal(ray);
 
 		EXPECT_EQ(intersections.count(), 2);
-		EXPECT_EQ(intersections.at(0).t(), param.t0);
-		EXPECT_EQ(intersections.at(1).t(), param.t1);
+		EXPECT_TRUE(Comparison::equal(intersections.at(0).t(), param.t0));
+		EXPECT_TRUE(Comparison::equal(intersections.at(1).t(), param.t1));
 	}
 }
 
@@ -48,7 +66,7 @@ TEST(CppRayTracerChallenge_Core_Math_Cone, intersecting_cone_with_ray_parallel_t
 	Intersections result = cone.intersectLocal(ray);
 
 	EXPECT_EQ(result.count(), 1);
-	EXPECT_EQ(result.at(0).t(), 0.35355);
+	EXPECT_TRUE(Comparison::equal(result.at(0).t(), 0.35355));
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Cone, intersecting_cone_end_caps)

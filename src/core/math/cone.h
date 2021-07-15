@@ -81,6 +81,9 @@ namespace CppRayTracerChallenge::Core::Math
 		double m_minimum;
 		double m_maximum;
 		bool m_closed;
+
+		bool checkCap(Ray ray, double t, double y) const;
+		std::vector<Intersection> intersectCaps(Ray ray) const;
 	};
 };
 

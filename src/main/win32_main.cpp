@@ -19,6 +19,7 @@
 #include "math/plane.h"
 #include "math/cube.h"
 #include "math/cylinder.h"
+#include "math/cone.h"
 #include "math/intersections.h"
 #include "math/ray.h"
 #include "math/transform.h"
@@ -88,6 +89,9 @@ public:
 		log("Building Cylinder A...");
 		Renderer::Shape cylinderA = buildCylinderA();
 
+		log("Build Cone A...");
+		Renderer::Shape coneA = buildConeA();
+
 		log("Building Light...");
 		PointLight light = buildLight();
 
@@ -114,6 +118,9 @@ public:
 
 		log("Adding Cylinder A to World...");
 		world.addObject(cylinderA);
+
+		log("Adding Cone A to World...");
+		world.addObject(coneA);
 
 		log("Adding Light to World...");
 		world.addLight(light);
@@ -256,6 +263,21 @@ private:
 		cylinder.transform(transform);
 
 		return cylinder;
+	}
+
+	static Renderer::Shape buildConeA()
+	{
+		auto shape = std::make_shared<Cone>(-1, 1, true);
+		Renderer::Shape cone = Renderer::Shape(shape);
+		Transform transform = Transform()
+			.rotate(40, 30, 20)
+			.translate(-4.5, 2.5, 3);
+		Material material = Material();
+		material.pattern = std::make_shared<SolidColor>(Color(1, 1, 0));
+		cone.material(material);
+		cone.transform(transform);
+
+		return cone;
 	}
 
 	static PointLight buildLight()
