@@ -21,7 +21,7 @@ namespace CppRayTracerChallenge::Core::Math
 		Cylinder(double minimum, double maximum);
 
 		/// <summary>
-		/// Creates a Cylinder at position 0, 0, 0 with defined maximum and minimum bounds, with defined caps
+		/// Creates a Cylinder at position 0, 0, 0 with defined minimum and maximum bounds, with defined caps
 		/// </summary>
 		/// <param name="minimum">Minimum bounds</param>
 		/// <param name="maximum">Maximum bounds</param>
@@ -38,7 +38,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <summary>
 		/// Calculates if the local space ray intersects with the cylinder.
 		/// </summary>
-		/// <param name="ray">The local space ray to intersect with the sphere</param>
+		/// <param name="ray">The local space ray to intersect with the cylinder</param>
 		/// <returns>The Intersections</returns>
 		const Intersections intersectLocal(Ray ray) const override;
 
