@@ -1,8 +1,9 @@
 <map id="CppRayTracerChallenge::Core::Math::Shape" name="CppRayTracerChallenge::Core::Math::Shape">
-<area shape="rect" id="node1" title=" " alt="" coords="215,104,376,145"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html" title=" " alt="" coords="424,5,585,47"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html" title=" " alt="" coords="424,71,585,112"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html" title="A 3D Plane across the xz axes" alt="" coords="424,136,585,177"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html" title="A 3D Sphere" alt="" coords="424,201,585,243"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html" title=" " alt="" coords="5,104,167,145"/>
+<area shape="rect" id="node1" title=" " alt="" coords="215,136,376,177"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html" title=" " alt="" coords="424,5,585,47"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html" title=" " alt="" coords="424,71,585,112"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html" title=" " alt="" coords="424,136,585,177"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html" title="A 3D Plane across the xz axes" alt="" coords="424,201,585,243"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html" title="A 3D Sphere" alt="" coords="424,267,585,308"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html" title=" " alt="" coords="5,136,167,177"/>
 </map>

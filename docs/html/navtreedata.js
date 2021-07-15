@@ -59,10 +59,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a55c3c312a2b720d902d9ab5640947c9b",
-"files.html",
-"namespace_cpp_ray_tracer_challenge_1_1_core_1_1_serializer.html",
-"trig_8h_source.html"
+"class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a573849ce50a6e551df6f579d3f40d0ba",
+"cylinder__test_8cpp.html#a56bf639ca8ee23812aa17b494b2c805b",
+"namespace_cpp_ray_tracer_challenge_1_1_core_1_1_graphics.html",
+"transform__test_8cpp.html#a88cf01f77c8dad15b552b0b8b3453050"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

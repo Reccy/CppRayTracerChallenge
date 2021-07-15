@@ -25,6 +25,7 @@ var hierarchy =
     [ "CppRayTracerChallenge::Core::Math::Intersections", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html", null ],
     [ "CppRayTracerChallenge::Core::Math::IShape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html", [
       [ "CppRayTracerChallenge::Core::Math::Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html", [
+        [ "CppRayTracerChallenge::Core::Math::Cone", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html", null ],
         [ "CppRayTracerChallenge::Core::Math::Cube", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html", null ],
         [ "CppRayTracerChallenge::Core::Math::Cylinder", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html", null ],
         [ "CppRayTracerChallenge::Core::Math::Plane", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html", null ],

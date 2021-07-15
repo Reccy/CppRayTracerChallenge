@@ -1,6 +1,10 @@
 var dir_e235ce117329fd16b24743c07cd49299 =
 [
     [ "comparison.h", "comparison_8h.html", "comparison_8h" ],
+    [ "cone.cpp", "cone_8cpp.html", null ],
+    [ "cone.h", "cone_8h.html", [
+      [ "Cone", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone" ]
+    ] ],
     [ "constants.h", "constants_8h.html", "constants_8h" ],
     [ "cube.cpp", "cube_8cpp.html", "cube_8cpp" ],
     [ "cube.h", "cube_8h.html", [

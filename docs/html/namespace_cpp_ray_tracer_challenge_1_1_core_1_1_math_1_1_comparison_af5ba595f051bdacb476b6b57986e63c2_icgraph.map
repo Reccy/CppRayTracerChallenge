@@ -1,11 +1,13 @@
 <map id="CppRayTracerChallenge::Core::Math::Comparison::equal" name="CppRayTracerChallenge::Core::Math::Comparison::equal">
-<area shape="rect" id="node1" title="Compares two numbers, and return true if they are close enough to EPSILON." alt="" coords="367,192,537,248"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html#a0bd3c6b9ed154ba95f397da05bd222a7" title="Calculates if the local space ray intersects with the cylinder." alt="" coords="133,5,294,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html#af6215ec5b4a46e2ab50ef7c3d62ebc6e" title="Calculates and returns the normal at the passed in local space position for this cube" alt="" coords="108,86,319,127"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ae4b5d5500c2ee028e3f7d92a4d098ee0" title=" " alt="" coords="133,152,294,208"/>
-<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#abc9bf847a180dd82e88e6c3965078434" title=" " alt="" coords="133,232,294,288"/>
-<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a4c641d9e1a24635e62fbef3d2dc95bc4" title=" " alt="" coords="133,312,294,368"/>
-<area shape="rect" id="node9" href="$comparison__test_8cpp.html#a52c9115418e3179fe0caea08477e0ebd" title=" " alt="" coords="186,392,241,419"/>
-<area shape="rect" id="node3" href="$cylinder__test_8cpp.html#a5d9305d36fcdb82a9abe2bfe80d253e0" title=" " alt="" coords="5,20,60,47"/>
-<area shape="rect" id="node5" href="$cube__test_8cpp.html#ab45a9e1a69ec5418b922eee561b5e93e" title=" " alt="" coords="5,93,60,120"/>
+<area shape="rect" id="node1" title="Compares two numbers, and return true if they are close enough to EPSILON." alt="" coords="367,232,537,288"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#a410356692212e5396d84c8c0edda3623" title="Calculates if the local space ray intersects with the cone" alt="" coords="118,5,309,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html#a0bd3c6b9ed154ba95f397da05bd222a7" title="Calculates if the local space ray intersects with the cylinder." alt="" coords="133,85,294,141"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html#af6215ec5b4a46e2ab50ef7c3d62ebc6e" title="Calculates and returns the normal at the passed in local space position for this cube" alt="" coords="108,166,319,207"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ae4b5d5500c2ee028e3f7d92a4d098ee0" title=" " alt="" coords="133,232,294,288"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#abc9bf847a180dd82e88e6c3965078434" title=" " alt="" coords="133,312,294,368"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a4c641d9e1a24635e62fbef3d2dc95bc4" title=" " alt="" coords="133,392,294,448"/>
+<area shape="rect" id="node11" href="$comparison__test_8cpp.html#a52c9115418e3179fe0caea08477e0ebd" title=" " alt="" coords="186,472,241,499"/>
+<area shape="rect" id="node3" href="$cone__test_8cpp.html#a3b72c0bbdbade38ed3c21eb79ba3938a" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node5" href="$cylinder__test_8cpp.html#a5d9305d36fcdb82a9abe2bfe80d253e0" title=" " alt="" coords="5,100,60,127"/>
+<area shape="rect" id="node7" href="$cube__test_8cpp.html#ab45a9e1a69ec5418b922eee561b5e93e" title=" " alt="" coords="5,173,60,200"/>
 </map>

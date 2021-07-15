@@ -8,6 +8,7 @@ var namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math =
       [ "radians_to_degrees", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#aae5b6c25eeb2f02b255e45561e2a3b7e", null ],
       [ "PI", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#a6405498f7e02c51f4f946db487de1c8f", null ]
     ] ],
+    [ "Cone", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone" ],
     [ "Cube", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube" ],
     [ "Cylinder", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder" ],
     [ "IShape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape" ],

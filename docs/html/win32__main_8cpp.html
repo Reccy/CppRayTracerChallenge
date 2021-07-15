@@ -109,6 +109,7 @@ $(document).ready(function(){initNavTree('win32__main_8cpp.html',''); initResiza
 <code>#include &quot;<a class="el" href="plane_8h_source.html">math/plane.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="cube_8h_source.html">math/cube.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="cylinder_8h_source.html">math/cylinder.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="cone_8h_source.html">math/cone.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="intersections_8h_source.html">math/intersections.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ray_8h_source.html">math/ray.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="canvas_8h_source.html">graphics/canvas.h</a>&quot;</code><br />
@@ -135,56 +136,56 @@ Include dependency graph for win32_main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="win32__main_8cpp__incl.png" border="0" usemap="#asrc_2main_2win32__main_8cpp" alt=""/></div>
 <map name="asrc_2main_2win32__main_8cpp" id="asrc_2main_2win32__main_8cpp">
-<area shape="rect" title=" " alt="" coords="1469,5,1638,32"/>
-<area shape="rect" title=" " alt="" coords="1025,781,1097,808"/>
-<area shape="rect" title=" " alt="" coords="2831,557,2900,584"/>
-<area shape="rect" title=" " alt="" coords="93,87,160,114"/>
-<area shape="rect" title=" " alt="" coords="2761,259,2826,285"/>
-<area shape="rect" title=" " alt="" coords="235,87,322,114"/>
-<area shape="rect" title=" " alt="" coords="347,87,419,114"/>
-<area shape="rect" title=" " alt="" coords="443,87,506,114"/>
-<area shape="rect" title=" " alt="" coords="531,87,592,114"/>
-<area shape="rect" title=" " alt="" coords="616,87,675,114"/>
-<area shape="rect" title=" " alt="" coords="699,87,757,114"/>
-<area shape="rect" title=" " alt="" coords="781,87,885,114"/>
-<area shape="rect" href="vector_8h.html" title=" " alt="" coords="1985,632,2085,659"/>
-<area shape="rect" href="point_8h.html" title=" " alt="" coords="1686,557,1781,584"/>
-<area shape="rect" href="transform_8h.html" title=" " alt="" coords="2565,408,2685,435"/>
-<area shape="rect" href="trig_8h.html" title=" " alt="" coords="1062,87,1146,114"/>
-<area shape="rect" href="sphere_8h.html" title=" " alt="" coords="967,177,1073,203"/>
-<area shape="rect" href="plane_8h.html" title=" " alt="" coords="727,177,825,203"/>
-<area shape="rect" href="cube_8h.html" title=" " alt="" coords="849,177,943,203"/>
-<area shape="rect" href="cylinder_8h.html" title=" " alt="" coords="367,177,478,203"/>
-<area shape="rect" href="intersections_8h.html" title=" " alt="" coords="2475,259,2581,285"/>
-<area shape="rect" href="ray_8h.html" title=" " alt="" coords="2349,333,2400,360"/>
-<area shape="rect" href="canvas_8h.html" title=" " alt="" coords="1769,177,1895,203"/>
-<area shape="rect" href="color_8h.html" title=" " alt="" coords="1031,557,1092,584"/>
-<area shape="rect" href="world_8h.html" title=" " alt="" coords="2149,177,2264,203"/>
-<area shape="rect" href="point__light_8h.html" title=" " alt="" coords="1347,333,1439,360"/>
-<area shape="rect" href="renderer_2shape_8h.html" title=" " alt="" coords="1754,333,1822,360"/>
-<area shape="rect" href="material_8h.html" title=" " alt="" coords="1091,408,1170,435"/>
-<area shape="rect" href="solid__color_8h.html" title=" " alt="" coords="1099,483,1245,509"/>
-<area shape="rect" href="lighting_8h.html" title=" " alt="" coords="1416,259,1541,285"/>
-<area shape="rect" href="camera_8h.html" title=" " alt="" coords="1993,87,2119,114"/>
-<area shape="rect" href="stripe_8h.html" title=" " alt="" coords="1729,408,1895,435"/>
-<area shape="rect" href="ring_8h.html" title=" " alt="" coords="2398,87,2554,114"/>
-<area shape="rect" href="gradient_8h.html" title=" " alt="" coords="1472,408,1653,435"/>
-<area shape="rect" href="radial__gradient_8h.html" title=" " alt="" coords="2785,80,2940,121"/>
-<area shape="rect" href="checker_8h.html" title=" " alt="" coords="2964,87,3145,114"/>
-<area shape="rect" href="perturbed_8h.html" title=" " alt="" coords="3169,87,3359,114"/>
-<area shape="rect" href="masked_8h.html" title=" " alt="" coords="3383,87,3564,114"/>
-<area shape="rect" href="base__image__serializer_8h.html" title=" " alt="" coords="2542,169,2690,211"/>
-<area shape="rect" href="portable__pixmap__image__serializer_8h.html" title=" " alt="" coords="2578,80,2761,121"/>
-<area shape="rect" href="material__helper_8h.html" title=" " alt="" coords="1222,87,1389,114"/>
-<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="1960,707,2021,733"/>
-<area shape="rect" title=" " alt="" coords="2598,483,2653,509"/>
-<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="2759,483,2828,509"/>
-<area shape="rect" title=" " alt="" coords="2448,557,2504,584"/>
-<area shape="rect" href="math_2shape_8h.html" title=" " alt="" coords="802,259,870,285"/>
-<area shape="rect" title=" " alt="" coords="2424,333,2491,360"/>
-<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="2225,333,2325,360"/>
-<area shape="rect" href="image_8h.html" title=" " alt="" coords="2022,259,2090,285"/>
-<area shape="rect" href="computed__values_8h.html" title=" " alt="" coords="2165,259,2299,285"/>
+<area shape="rect" title=" " alt="" coords="1985,5,2154,32"/>
+<area shape="rect" title=" " alt="" coords="740,707,812,733"/>
+<area shape="rect" title=" " alt="" coords="2061,557,2131,584"/>
+<area shape="rect" title=" " alt="" coords="2411,87,2477,114"/>
+<area shape="rect" title=" " alt="" coords="1993,259,2058,285"/>
+<area shape="rect" title=" " alt="" coords="2502,87,2589,114"/>
+<area shape="rect" title=" " alt="" coords="2613,87,2685,114"/>
+<area shape="rect" title=" " alt="" coords="2710,87,2773,114"/>
+<area shape="rect" title=" " alt="" coords="2797,87,2859,114"/>
+<area shape="rect" title=" " alt="" coords="2883,87,2941,114"/>
+<area shape="rect" title=" " alt="" coords="2966,87,3023,114"/>
+<area shape="rect" title=" " alt="" coords="3048,87,3152,114"/>
+<area shape="rect" href="vector_8h.html" title=" " alt="" coords="726,557,826,584"/>
+<area shape="rect" href="point_8h.html" title=" " alt="" coords="613,483,707,509"/>
+<area shape="rect" href="transform_8h.html" title=" " alt="" coords="1500,408,1620,435"/>
+<area shape="rect" href="trig_8h.html" title=" " alt="" coords="3177,87,3261,114"/>
+<area shape="rect" href="sphere_8h.html" title=" " alt="" coords="2225,177,2330,203"/>
+<area shape="rect" href="plane_8h.html" title=" " alt="" coords="2607,177,2705,203"/>
+<area shape="rect" href="cube_8h.html" title=" " alt="" coords="2729,177,2823,203"/>
+<area shape="rect" href="cylinder_8h.html" title=" " alt="" coords="2354,177,2465,203"/>
+<area shape="rect" href="cone_8h.html" title=" " alt="" coords="2489,177,2583,203"/>
+<area shape="rect" href="intersections_8h.html" title=" " alt="" coords="1059,259,1165,285"/>
+<area shape="rect" href="ray_8h.html" title=" " alt="" coords="1317,333,1368,360"/>
+<area shape="rect" href="canvas_8h.html" title=" " alt="" coords="1595,177,1722,203"/>
+<area shape="rect" href="color_8h.html" title=" " alt="" coords="1063,483,1124,509"/>
+<area shape="rect" href="world_8h.html" title=" " alt="" coords="1101,177,1216,203"/>
+<area shape="rect" href="point__light_8h.html" title=" " alt="" coords="627,259,719,285"/>
+<area shape="rect" href="renderer_2shape_8h.html" title=" " alt="" coords="957,259,1025,285"/>
+<area shape="rect" href="material_8h.html" title=" " alt="" coords="795,333,874,360"/>
+<area shape="rect" href="solid__color_8h.html" title=" " alt="" coords="693,408,840,435"/>
+<area shape="rect" href="lighting_8h.html" title=" " alt="" coords="696,177,821,203"/>
+<area shape="rect" href="camera_8h.html" title=" " alt="" coords="1418,87,1545,114"/>
+<area shape="rect" href="stripe_8h.html" title=" " alt="" coords="401,408,567,435"/>
+<area shape="rect" href="ring_8h.html" title=" " alt="" coords="3285,87,3441,114"/>
+<area shape="rect" href="gradient_8h.html" title=" " alt="" coords="93,408,275,435"/>
+<area shape="rect" href="radial__gradient_8h.html" title=" " alt="" coords="3465,80,3620,121"/>
+<area shape="rect" href="checker_8h.html" title=" " alt="" coords="3644,87,3825,114"/>
+<area shape="rect" href="perturbed_8h.html" title=" " alt="" coords="3849,87,4039,114"/>
+<area shape="rect" href="masked_8h.html" title=" " alt="" coords="4063,87,4244,114"/>
+<area shape="rect" href="base__image__serializer_8h.html" title=" " alt="" coords="1798,169,1946,211"/>
+<area shape="rect" href="portable__pixmap__image__serializer_8h.html" title=" " alt="" coords="1849,80,2031,121"/>
+<area shape="rect" href="material__helper_8h.html" title=" " alt="" coords="947,87,1114,114"/>
+<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="745,632,807,659"/>
+<area shape="rect" title=" " alt="" coords="1522,483,1577,509"/>
+<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="1601,483,1671,509"/>
+<area shape="rect" title=" " alt="" coords="1644,557,1700,584"/>
+<area shape="rect" href="math_2shape_8h.html" title=" " alt="" coords="2502,259,2570,285"/>
+<area shape="rect" title=" " alt="" coords="1000,333,1067,360"/>
+<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="1091,333,1191,360"/>
+<area shape="rect" href="image_8h.html" title=" " alt="" coords="1603,259,1671,285"/>
 </map>
 </div>
 </div>
@@ -259,7 +260,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00349">349</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00371">371</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -300,7 +301,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00463">463</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00485">485</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 
 </div>
 </div>
@@ -319,7 +320,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00418">418</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00440">440</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -357,7 +358,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00458">458</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00480">480</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 
 </div>
 </div>
@@ -376,7 +377,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00505">505</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00527">527</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -417,7 +418,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00060">60</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00061">61</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -448,7 +449,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00727">727</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00749">749</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -491,7 +492,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00448">448</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00470">470</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -546,7 +547,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00387">387</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00409">409</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -583,7 +584,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00347">347</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00369">369</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 
 </div>
 </div>
@@ -608,7 +609,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="stringliteral">&quot;   FragColor = texture(ourTexture, TexCoord);\n&quot;</span></div>
 <div class="line"><span class="stringliteral">&quot;};\0&quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00481">481</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00503">503</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 
 </div>
 </div>
@@ -628,7 +629,7 @@ Here is the caller graph for this function:</div>
 <div class="line">    1, 2, 3    </div>
 <div class="line">}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00499">499</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00521">521</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 
 </div>
 </div>
@@ -644,7 +645,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00058">58</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00059">59</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 
 </div>
 </div>
@@ -660,7 +661,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00057">57</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00058">58</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 
 </div>
 </div>
@@ -676,7 +677,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00504">504</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00526">526</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 
 </div>
 </div>
@@ -704,7 +705,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="stringliteral">&quot;   TexCoord = aTexCoord;\n&quot;</span></div>
 <div class="line"><span class="stringliteral">&quot;}\0&quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00468">468</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00490">490</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 
 </div>
 </div>
@@ -727,7 +728,7 @@ Here is the caller graph for this function:</div>
 <div class="line">    -1.0f,  1.0f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 0.0f    </div>
 <div class="line">}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00491">491</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00513">513</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 
 </div>
 </div>
@@ -743,7 +744,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00056">56</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00057">57</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 
 </div>
 </div>
@@ -759,7 +760,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00055">55</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="win32__main_8cpp_source.html#l00056">56</a> of file <a class="el" href="win32__main_8cpp_source.html">win32_main.cpp</a>.</p>
 
 </div>
 </div>

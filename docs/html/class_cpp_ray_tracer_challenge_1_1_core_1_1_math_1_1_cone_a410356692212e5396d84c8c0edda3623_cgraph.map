@@ -1,0 +1,9 @@
+<map id="CppRayTracerChallenge::Core::Math::Cone::intersectLocal" name="CppRayTracerChallenge::Core::Math::Cone::intersectLocal">
+<area shape="rect" id="node1" title="Calculates if the local space ray intersects with the cone" alt="" coords="5,178,196,234"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="244,5,427,47"/>
+<area shape="rect" id="node3" href="$namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_comparison.html#af5ba595f051bdacb476b6b57986e63c2" title="Compares two numbers, and return true if they are close enough to EPSILON." alt="" coords="250,71,421,127"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="253,152,417,193"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a88cd3ab070137859ed4a413239c6414d" title="Returns a const X component" alt="" coords="255,217,416,259"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a67d5e1ca026ae045cfe5712d8613c552" title="Returns a const Y component" alt="" coords="255,283,416,324"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a8bbb8b2cf7a3e28be0de06ccec3ca7c7" title="Returns a const Z component" alt="" coords="255,348,416,389"/>
+</map>
