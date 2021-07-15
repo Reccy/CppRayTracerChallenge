@@ -12,6 +12,7 @@ var annotated_dup =
         ] ],
         [ "Math", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html", [
           [ "Cube", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube" ],
+          [ "Cylinder", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder" ],
           [ "IShape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape" ],
           [ "Intersection", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection" ],
           [ "Intersections", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections" ],

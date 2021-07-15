@@ -1,5 +1,5 @@
 <map id="checkAxis" name="checkAxis">
 <area shape="rect" id="node1" title=" " alt="" coords="347,20,429,47"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html#aa996d90abe1e7ec856054c92481bac42" title="Calculates if the local space ray intersects with the sphere." alt="" coords="108,5,299,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html#aa996d90abe1e7ec856054c92481bac42" title="Calculates if the local space ray intersects with the cube." alt="" coords="108,5,299,61"/>
 <area shape="rect" id="node3" href="$cube__test_8cpp.html#abebbe34eae2cf95cd6e61e3549413f9d" title=" " alt="" coords="5,20,60,47"/>
 </map>

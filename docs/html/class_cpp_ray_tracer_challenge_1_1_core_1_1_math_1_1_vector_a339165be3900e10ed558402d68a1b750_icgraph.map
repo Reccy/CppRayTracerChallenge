@@ -2,7 +2,7 @@
 <area shape="rect" id="node1" title="Calculates and returns a normalized version of the vector" alt="" coords="327,119,488,175"/>
 <area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9ee7e82e7caf361aef5c7ee510465130" title="Calculates if a position in world space is lit by a specific light" alt="" coords="113,5,274,61"/>
 <area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="113,85,274,141"/>
-<area shape="rect" id="node6" href="$sphere__test_8cpp.html#a5f14118cd9a55dbe24a83ab12d95cc1a" title=" " alt="" coords="166,165,221,192"/>
+<area shape="rect" id="node6" href="$cylinder__test_8cpp.html#a73eba1a2b251cf058e8a036fde7b4c71" title=" " alt="" coords="166,165,221,192"/>
 <area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a4db33858bd0ed84b50466a85221e15d2" title="Creates a matrix that can be used to transform the world around the camera, effectively changing came..." alt="" coords="108,216,279,272"/>
 <area shape="rect" id="node3" href="$world__test_8cpp.html#a16c2344f855b1ef5d58b499b32749438" title=" " alt="" coords="5,20,60,47"/>
 <area shape="rect" id="node5" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="5,100,60,127"/>

@@ -1,4 +1,4 @@
 <map id="CppRayTracerChallenge::Core::Math::Cube::intersectLocal" name="CppRayTracerChallenge::Core::Math::Cube::intersectLocal">
-<area shape="rect" id="node1" title="Calculates if the local space ray intersects with the sphere." alt="" coords="108,5,299,61"/>
+<area shape="rect" id="node1" title="Calculates if the local space ray intersects with the cube." alt="" coords="108,5,299,61"/>
 <area shape="rect" id="node2" href="$cube__test_8cpp.html#abebbe34eae2cf95cd6e61e3549413f9d" title=" " alt="" coords="5,20,60,47"/>
 </map>

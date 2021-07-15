@@ -6,6 +6,10 @@ var dir_e235ce117329fd16b24743c07cd49299 =
     [ "cube.h", "cube_8h.html", [
       [ "Cube", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube" ]
     ] ],
+    [ "cylinder.cpp", "cylinder_8cpp.html", null ],
+    [ "cylinder.h", "cylinder_8h.html", [
+      [ "Cylinder", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder" ]
+    ] ],
     [ "i_shape.h", "i__shape_8h.html", [
       [ "IShape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape" ]
     ] ],
