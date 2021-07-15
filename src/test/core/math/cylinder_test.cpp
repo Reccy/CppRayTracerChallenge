@@ -177,3 +177,34 @@ TEST(CppRayTracerChallenge_Core_Math_Cylinder, intersecting_caps_of_closed_cylin
 		EXPECT_EQ(intersections.count(), param.count);
 	}
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Cylinder, normal_vector_on_caps)
+{
+	struct Param
+	{
+		Param(Point position, Vector normal)
+			: position(position), normal(normal) {};
+
+		Point position;
+		Vector normal;
+	};
+
+	std::vector<Param> paramsList{
+		Param({0, 1, 0}, {0, -1, 0}),
+		Param({0.5, 1, 0}, {0, -1, 0}),
+		Param({0, 1, 0.5}, {0, -1, 0}),
+		Param({0, 2, 0}, {0, 1, 0}),
+		Param({0.5, 2, 0}, {0, 1, 0}),
+		Param({0, 2, 0.5}, {0, 1, 0})
+	};
+
+	for (int i = 0; i < paramsList.size(); ++i)
+	{
+		Param& param = paramsList[i];
+		Cylinder cylinder = Cylinder(1, 2, true);
+
+		Vector result = cylinder.normalLocal(param.position);
+
+		EXPECT_EQ(result, param.normal);
+	}
+}

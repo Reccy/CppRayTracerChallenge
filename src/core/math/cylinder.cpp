@@ -11,6 +11,18 @@ Cylinder::Cylinder(double minimum, double maximum, bool closed) : m_minimum(mini
 
 const Vector Cylinder::normalLocal(const Point position) const
 {
+	double dist = pow(position.x(), 2) + pow(position.z(), 2);
+
+	if (dist < 1.0 && position.y() >= m_maximum - Math::EPSILON)
+	{
+		return Vector(0, 1, 0);
+	}
+
+	if (dist < 1.0 && position.y() <= m_minimum + Math::EPSILON)
+	{
+		return Vector(0, -1, 0);
+	}
+
 	return Vector(position.x(), 0, position.z());
 }
 
