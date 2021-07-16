@@ -10,7 +10,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 {
 	class Shape;
 
-	class Group : public Math::IShape
+	class Group : public Math::IShape, public std::enable_shared_from_this<Group>
 	{
 	public:
 		void transform(Math::Transform transform) override;
@@ -24,6 +24,10 @@ namespace CppRayTracerChallenge::Core::Renderer
 		const Math::Intersections intersect(Math::Ray ray) const override;
 
 		const Math::Intersections intersectLocal(Math::Ray ray) const override;
+
+		void addChild(std::shared_ptr<Shape> child);
+
+		bool includes(std::shared_ptr<Shape> child) const;
 
 		int size() const;
 

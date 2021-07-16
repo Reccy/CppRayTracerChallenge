@@ -75,7 +75,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_has_parent_attribute)
 	auto sphere = std::make_shared<Sphere>();
 	Shape shape = Shape(sphere);
 
-	EXPECT_EQ(shape.parent().has_value(), false);
+	EXPECT_EQ(shape.parent().expired(), true);
 }
 
 TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_has_pattern_with_object_transform)

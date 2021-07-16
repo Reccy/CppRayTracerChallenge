@@ -40,7 +40,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// Returns the parent group if it exists
 		/// </summary>
 		/// <returns>Parent</returns>
-		std::optional<std::shared_ptr<Group>> parent() const;
+		std::weak_ptr<Group> parent() const;
+
+		/// <summary>
+		/// Sets the parent group
+		/// </summary>
+		/// <param name="parent">Parent group to set</param>
+		void parent(std::weak_ptr<Group> parent);
 
 		/// <summary>
 		/// Returns the color of the shape at the world position, taking into account the material and lighting
@@ -64,7 +70,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		bool operator!=(const Shape& other) const;
 	private:
 		std::shared_ptr<IShape> m_shape;
-		std::optional<std::shared_ptr<Group>> m_parent;
+		std::weak_ptr<Group> m_parent;
 		Material m_material;
 	};
 }
