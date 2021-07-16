@@ -28,9 +28,16 @@ const Intersections Group::intersect(Ray) const
 	return Intersections();
 }
 
-const Intersections Group::intersectLocal(Ray) const
+const Intersections Group::intersectLocal(Ray ray) const
 {
-	return Intersections();
+	Intersections result = Intersections();
+
+	for (int i = 0; i < m_shapes.size(); ++i)
+	{
+		result += m_shapes[i]->intersect(ray);
+	}
+
+	return result;
 }
 
 void Group::addChild(std::shared_ptr<Shape> child)
