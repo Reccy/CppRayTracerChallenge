@@ -1,7 +1,9 @@
 #include <gtest/gtest.h>
 #include <renderer/group.h>
+#include <math/transform.h>
 
 using namespace CppRayTracerChallenge::Core::Renderer;
+using namespace CppRayTracerChallenge::Core::Math;
 
 TEST(CppRayTracerChallenge_Core_Renderer_Group, creating_new_group)
 {

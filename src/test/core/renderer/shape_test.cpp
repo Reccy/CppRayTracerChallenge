@@ -70,6 +70,14 @@ TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_can_be_assigned_a_material
 	EXPECT_EQ(shape.material(), material);
 }
 
+TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_has_parent_attribute)
+{
+	auto sphere = std::make_shared<Sphere>();
+	Shape shape = Shape(sphere);
+
+	EXPECT_EQ(shape.parent().has_value(), false);
+}
+
 TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_has_pattern_with_object_transform)
 {
 	auto sphere = std::make_shared<Sphere>();

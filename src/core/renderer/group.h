@@ -2,26 +2,28 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_GROUP
 
 #include "../math/i_shape.h"
+#include "../math/transform.h"
+#include "../math/intersections.h"
 #include "shape.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
-	using namespace CppRayTracerChallenge::Core::Math;
+	class Shape;
 
 	class Group : public Math::IShape
 	{
 	public:
-		void transform(Transform transform) override;
+		void transform(Math::Transform transform) override;
 
-		const Transform transform() const override;
+		const Math::Transform transform() const override;
 
-		const Vector normal(const Point position) const override;
+		const Math::Vector normal(const Math::Point position) const override;
 
-		const Vector normalLocal(const Point position) const override;
+		const Math::Vector normalLocal(const Math::Point position) const override;
 
-		const Intersections intersect(Ray ray) const override;
+		const Math::Intersections intersect(Math::Ray ray) const override;
 
-		const Intersections intersectLocal(Ray ray) const override;
+		const Math::Intersections intersectLocal(Math::Ray ray) const override;
 
 		int size() const;
 
@@ -29,8 +31,8 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		bool empty() const;
 	private:
-		Transform m_transform;
-		std::vector<std::unique_ptr<Renderer::Shape>> m_shapes;
+		Math::Transform m_transform;
+		std::vector<std::shared_ptr<Shape>> m_shapes;
 	};
 }
 

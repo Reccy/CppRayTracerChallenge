@@ -25,6 +25,11 @@ Graphics::Color Shape::colorAt(Math::Point worldPosition) const
 	return m_material.pattern->colorAt(patternLocalPosition);
 }
 
+std::optional<std::shared_ptr<Group>> Shape::parent() const
+{
+	return m_parent;
+}
+
 void Shape::transform(Math::Transform transform)
 {
 	m_shape->transform(transform);

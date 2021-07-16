@@ -236,7 +236,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_color_at_max_recursion
 TEST(CppRayTracerChallenge_Core_Renderer_World, refracted_color_with_opaque_surface)
 {
 	World world = World::defaultWorld();
-	auto shape = world.objectAt(0);
+	Shape shape = world.objectAt(0);
 	auto ray = Math::Ray({ 0,0,-5 }, { 0,0,1 });
 	auto intersections = Math::Intersections({ { 4, shape }, { 6, shape } });
 	auto cv = ComputedValues(intersections.at(0), ray, intersections);
@@ -248,7 +248,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, refracted_color_with_opaque_surf
 TEST(CppRayTracerChallenge_Core_Renderer_World, refracted_color_at_maximum_recursive_depth)
 {
 	World world = World::defaultWorld();
-	auto shape = world.objectAt(0);
+	Shape shape = world.objectAt(0);
 	auto mat = shape.material();
 	mat.transparency = 1.0f;
 	mat.refractiveIndex = 1.5f;
@@ -263,7 +263,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, refracted_color_at_maximum_recur
 TEST(CppRayTracerChallenge_Core_Renderer_World, refracted_color_under_total_internal_reflection)
 {
 	World world = World::defaultWorld();
-	auto shape = world.objectAt(0);
+	Shape shape = world.objectAt(0);
 	auto mat = shape.material();
 	mat.transparency = 1.0f;
 	mat.refractiveIndex = 1.5f;
@@ -279,13 +279,13 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, refracted_color_under_total_inte
 TEST(CppRayTracerChallenge_Core_Renderer_World, refracted_color_with_refracted_ray)
 {
 	World world = World::defaultWorld();
-	auto a = world.objectAt(0);
+	Shape a = world.objectAt(0);
 	auto aMat = a.material();
 	aMat.ambient = 1.0f;
 	aMat.pattern = std::make_shared<Patterns::TestPattern>();
 	a.material(aMat);
 
-	auto b = world.objectAt(1);
+	Shape b = world.objectAt(1);
 	auto bMat = b.material();
 	bMat.transparency = 1.0f;
 	bMat.refractiveIndex = 1.5f;
@@ -408,14 +408,14 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_object_between_
 TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_transparent_object_between_point_and_light)
 {
 	World world = World::defaultWorld();
-	auto a = world.objectAt(0);
+	Shape a = world.objectAt(0);
 	auto aMat = a.material();
 	aMat.transparency = 0.5f;
 	aMat.shadowcastMode = ShadowcastMode::WHEN_TRANSPARENT;
 	a.material(aMat);
 	world.objectAt(0, a);
 
-	auto b = world.objectAt(1);
+	Shape b = world.objectAt(1);
 	auto bMat = b.material();
 	bMat.transparency = 0.5f;
 	bMat.shadowcastMode = ShadowcastMode::WHEN_TRANSPARENT;

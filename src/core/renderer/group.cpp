@@ -1,6 +1,7 @@
 #include "group.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
+using namespace CppRayTracerChallenge::Core::Math;
 
 void Group::transform(Transform transform)
 {
