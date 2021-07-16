@@ -23,9 +23,11 @@ const Vector Group::normalLocal(const Point) const
 	return Vector();
 }
 
-const Intersections Group::intersect(Ray) const
+const Intersections Group::intersect(Ray ray) const
 {
-	return Intersections();
+	ray = ray.transform(m_transform.invert());
+
+	return intersectLocal(ray);
 }
 
 const Intersections Group::intersectLocal(Ray ray) const

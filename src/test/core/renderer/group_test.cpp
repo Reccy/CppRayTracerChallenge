@@ -70,3 +70,20 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, intersecting_ray_with_nonempty_g
 	EXPECT_EQ(static_cast<const Shape&>(intersections.at(2).shape()), *s1R);
 	EXPECT_EQ(static_cast<const Shape&>(intersections.at(3).shape()), *s1R);
 }
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, intersecting_transformed_group)
+{
+	auto group = std::make_shared<Group>();
+	group->transform(Math::Transform().scale(2, 2, 2));
+
+	auto sphere = std::make_shared<Math::Sphere>();
+	auto shape = std::make_shared<Shape>(sphere);
+	shape->transform(Math::Transform().translate(5, 0, 0));
+
+	group->addChild(shape);
+
+	auto ray = Math::Ray({ 10, 0, -10 }, { 0, 0, 1 });
+	auto intersections = group->intersect(ray);
+
+	EXPECT_EQ(intersections.count(), 2);
+}
