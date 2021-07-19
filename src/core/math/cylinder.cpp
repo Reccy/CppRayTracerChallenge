@@ -85,7 +85,7 @@ const Intersections Cylinder::intersectLocal(Ray ray) const
 
 const BoundingBox Cylinder::bounds() const
 {
-	return BoundingBox(); // Not implemented yet
+	return BoundingBox({ -1, m_minimum, -1 }, { 1, m_maximum, 1 });
 }
 
 double Cylinder::maximum() const

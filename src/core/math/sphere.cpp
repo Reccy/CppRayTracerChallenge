@@ -31,5 +31,5 @@ const Intersections Sphere::intersectLocal(Ray ray) const
 
 const BoundingBox Sphere::bounds() const
 {
-	return BoundingBox(); // Not implemented
+	return BoundingBox({ -1,-1,-1 }, { 1,1,1 });
 }

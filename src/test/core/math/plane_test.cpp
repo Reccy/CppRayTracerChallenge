@@ -60,3 +60,12 @@ TEST(CppRayTracerChallenge_Core_Math_Plane, intersect_is_from_below)
 	EXPECT_EQ(intersections.hit().value().t(), 1);
 	EXPECT_EQ(&intersections.hit().value().shape(), &plane);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Plane, plane_has_bounding_box)
+{
+	Plane plane = Plane();
+	BoundingBox box = plane.bounds();
+
+	Point expectedMin = Point(-INF, 0, -INF);
+	Point expectedMax = Point(INF, 0, INF);
+}

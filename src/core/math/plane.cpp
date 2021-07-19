@@ -24,5 +24,5 @@ const Intersections Plane::intersectLocal(const Ray ray) const
 
 const BoundingBox Plane::bounds() const
 {
-	return BoundingBox(); // Not implemented
+	return BoundingBox({ -INF, 0, -INF }, { INF, 0, INF });
 }

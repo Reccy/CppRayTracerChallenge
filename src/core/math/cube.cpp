@@ -86,5 +86,5 @@ const Intersections Cube::intersectLocal(Ray ray) const
 
 const BoundingBox Cube::bounds() const
 {
-	return BoundingBox(); // Not implemented
+	return BoundingBox({ -1,-1,-1 }, { 1,1,1 });
 }
