@@ -13,9 +13,16 @@ namespace CppRayTracerChallenge::Core::Renderer
 	{
 	public:
 		/// <summary>
-		/// Creates a Bounding Box with no defined bounds.
+		/// Creates a Bounding Box with no defined volume.
 		/// </summary>
 		BoundingBox();
+
+		/// <summary>
+		/// Creates a Bounding Box with defined volume.
+		/// </summary>
+		/// <param name="min">Minimum bounds</param>
+		/// <param name="max">Maximum bounds</param>
+		BoundingBox(Math::Point min, Math::Point max);
 
 		/// <summary>
 		/// Returns the minimum bounds

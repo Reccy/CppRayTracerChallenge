@@ -2,6 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_COMPARISON
 
 #include <type_traits>
+#include <cmath>
 #include "constants.h"
 
 /// <summary>
@@ -19,6 +20,11 @@ namespace CppRayTracerChallenge::Core::Math::Comparison {
 	{
 		if (constexpr(std::is_floating_point<T>::value))
 		{
+			if (std::isinf((double)lhs) && std::isinf((double)rhs))
+			{
+				return (lhs == INF && rhs == INF) || (lhs == -INF && rhs == -INF);
+			}
+
 			return abs(lhs - rhs) < EPSILON;
 		}
 		else
