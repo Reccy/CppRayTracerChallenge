@@ -6,6 +6,7 @@
 #include "renderer/patterns/test_pattern.h"
 #include "math/sphere.h"
 #include "math/trig.h"
+#include "math/comparison.h"
 
 using namespace CppRayTracerChallenge::Core;
 using namespace CppRayTracerChallenge::Core::Math::Trig;
@@ -18,6 +19,8 @@ using Renderer::Patterns::TestPattern;
 using Math::Sphere;
 using Math::Transform;
 using Math::Point;
+using Math::Vector;
+using Math::Tuple;
 using Graphics::Color;
 
 TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_wraps_transform)
@@ -152,6 +155,30 @@ TEST(CppRayTracerChallenge_Core_Renderer_Shape, convert_point_from_world_to_obje
 	auto result = shape->worldToObject({ -2, 0, -10 });
 
 	Point expectedResult = Point(0, 0, -1);
+
+	EXPECT_EQ(result, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Shape, convert_normal_from_object_to_world_space)
+{
+	auto g1 = std::make_shared<Group>();
+	g1->transform(Transform().rotate(0, radians_to_degrees(PI / 2), 0));
+
+	auto g2 = std::make_shared<Group>();
+	g2->transform(Transform().scale(1, 2, 3));
+
+	g1->addChild(g2);
+
+	auto sphere = std::make_shared<Sphere>();
+	auto shape = std::make_shared<Shape>(sphere);
+
+	shape->transform(Transform().translate(5, 0, 0));
+
+	g2->addChild(shape);
+
+	auto result = shape->normalToWorld({ sqrt(3) / 3, sqrt(3) / 3, sqrt(3) / 3 });
+
+	auto expectedResult = Vector(0.285714, 0.428571, -0.857143);
 
 	EXPECT_EQ(result, expectedResult);
 }

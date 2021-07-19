@@ -71,6 +71,19 @@ Point Group::worldToObject(Point worldPosition)
 	return m_transform.invert() * result;
 }
 
+Vector Group::normalToWorld(Vector objectNormal)
+{
+	Math::Vector normal = m_transform.invert().transpose() * objectNormal;
+	normal = normal.normalize();
+
+	if (!m_parent.expired())
+	{
+		normal = m_parent.lock()->normalToWorld(normal);
+	}
+
+	return normal;
+}
+
 bool Group::includes(std::shared_ptr<Shape> child) const
 {
 	for (int i = 0; i < m_shapes.size(); ++i)

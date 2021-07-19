@@ -34,6 +34,8 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		Math::Point worldToObject(Math::Point worldPosition);
 
+		Math::Vector normalToWorld(Math::Vector objectNormal);
+
 		bool includes(std::shared_ptr<Shape> child) const;
 
 		bool includes(std::shared_ptr<Group> child) const;

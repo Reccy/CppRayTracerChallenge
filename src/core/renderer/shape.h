@@ -56,6 +56,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Math::Point worldToObject(Math::Point worldPosition);
 
 		/// <summary>
+		/// Transforms a normal from object space to world space
+		/// </summary>
+		/// <param name="objectNormal">The normal in object space</param>
+		/// <returns>Transformed normal in world space</returns>
+		Math::Vector normalToWorld(Math::Vector objectNormal);
+
+		/// <summary>
 		/// Returns the color of the shape at the world position, taking into account the material and lighting
 		/// </summary>
 		/// <param name="worldPosition">The position in the world of the surface of the shape to render</param>

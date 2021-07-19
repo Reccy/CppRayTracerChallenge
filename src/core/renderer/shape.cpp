@@ -47,6 +47,19 @@ Math::Point Shape::worldToObject(Math::Point worldPosition)
 	return m_shape->transform().invert() * result;
 }
 
+Math::Vector Shape::normalToWorld(Math::Vector objectNormal)
+{
+	Math::Vector normal = m_shape->transform().invert().transpose() * objectNormal;
+	normal = normal.normalize();
+
+	if (!m_parent.expired())
+	{
+		normal = m_parent.lock()->normalToWorld(normal);
+	}
+
+	return normal;
+}
+
 void Shape::transform(Math::Transform transform)
 {
 	m_shape->transform(transform);
