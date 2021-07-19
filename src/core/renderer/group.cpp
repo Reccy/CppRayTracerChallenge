@@ -48,6 +48,17 @@ void Group::addChild(std::shared_ptr<Shape> child)
 	child->parent(weak_from_this());
 }
 
+void Group::addChild(std::shared_ptr<Group> child)
+{
+	m_groups.push_back(child);
+	child->m_parent = weak_from_this();
+}
+
+std::weak_ptr<Group> Group::parent() const
+{
+	return m_parent;
+}
+
 bool Group::includes(std::shared_ptr<Shape> child) const
 {
 	for (int i = 0; i < m_shapes.size(); ++i)

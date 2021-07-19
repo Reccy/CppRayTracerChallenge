@@ -27,7 +27,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		void addChild(std::shared_ptr<Shape> child);
 
+		void addChild(std::shared_ptr<Group> child);
+
+		std::weak_ptr<Group> parent() const;
+
 		bool includes(std::shared_ptr<Shape> child) const;
+
+		bool includes(std::shared_ptr<Group> child) const;
 
 		int size() const;
 
@@ -36,7 +42,9 @@ namespace CppRayTracerChallenge::Core::Renderer
 		bool empty() const;
 	private:
 		Math::Transform m_transform;
+		std::weak_ptr<Group> m_parent;
 		std::vector<std::shared_ptr<Shape>> m_shapes;
+		std::vector<std::shared_ptr<Group>> m_groups;
 	};
 }
 
