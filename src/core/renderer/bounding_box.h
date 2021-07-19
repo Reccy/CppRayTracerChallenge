@@ -35,6 +35,12 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// </summary>
 		/// <returns>Maximum bounds</returns>
 		Math::Point max() const;
+
+		/// <summary>
+		/// Resizes box to include passed in point
+		/// </summary>
+		/// <param name="position">The position to include</param>
+		void resizeToFit(Math::Point position);
 	private:
 		Math::Point m_min;
 		Math::Point m_max;

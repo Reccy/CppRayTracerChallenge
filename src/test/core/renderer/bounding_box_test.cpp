@@ -27,3 +27,20 @@ TEST(CppRayTracerChallenge_Core_Renderer_BoundingBox, create_with_volume)
 	EXPECT_EQ(box.min(), expectedMin);
 	EXPECT_EQ(box.max(), expectedMax);
 }
+
+TEST(CppRayTracerChallenge_Core_Renderer_BoundingBox, add_points_to_empty_bounding_box)
+{
+	BoundingBox box = BoundingBox();
+
+	Point p1 = Point(-5, 2, 0);
+	Point p2 = Point(7, 0, -3);
+
+	box.resizeToFit(p1);
+	box.resizeToFit(p2);
+
+	Point expectedMin = Point(-5, 0, -3);
+	Point expectedMax = Point(7, 2, 0);
+
+	EXPECT_EQ(box.min(), expectedMin);
+	EXPECT_EQ(box.max(), expectedMax);
+}
