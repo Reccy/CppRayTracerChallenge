@@ -49,6 +49,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		void parent(std::weak_ptr<Group> parent);
 
 		/// <summary>
+		/// Transforms a position from world space to object space
+		/// </summary>
+		/// <param name="worldPoint">The position in world space</param>
+		/// <returns>Transformed position in object space</returns>
+		Math::Point worldToObject(Math::Point worldPosition);
+
+		/// <summary>
 		/// Returns the color of the shape at the world position, taking into account the material and lighting
 		/// </summary>
 		/// <param name="worldPosition">The position in the world of the surface of the shape to render</param>

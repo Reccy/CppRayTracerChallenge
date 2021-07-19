@@ -4,6 +4,7 @@
 #include "../math/i_shape.h"
 #include "../math/transform.h"
 #include "../math/intersections.h"
+#include "../math/point.h"
 #include "shape.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
@@ -30,6 +31,8 @@ namespace CppRayTracerChallenge::Core::Renderer
 		void addChild(std::shared_ptr<Group> child);
 
 		std::weak_ptr<Group> parent() const;
+
+		Math::Point worldToObject(Math::Point worldPosition);
 
 		bool includes(std::shared_ptr<Shape> child) const;
 

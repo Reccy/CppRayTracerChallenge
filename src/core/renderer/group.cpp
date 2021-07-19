@@ -59,6 +59,18 @@ std::weak_ptr<Group> Group::parent() const
 	return m_parent;
 }
 
+Point Group::worldToObject(Point worldPosition)
+{
+	Point result = worldPosition;
+
+	if (!m_parent.expired())
+	{
+		result = m_parent.lock()->worldToObject(worldPosition);
+	}
+
+	return m_transform.invert() * result;
+}
+
 bool Group::includes(std::shared_ptr<Shape> child) const
 {
 	for (int i = 0; i < m_shapes.size(); ++i)

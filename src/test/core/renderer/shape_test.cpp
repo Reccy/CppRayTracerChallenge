@@ -1,12 +1,16 @@
 #include <gtest/gtest.h>
 #include "renderer/shape.h"
+#include "renderer/group.h"
 #include "renderer/patterns/stripe.h"
 #include "renderer/patterns/solid_color.h"
 #include "renderer/patterns/test_pattern.h"
 #include "math/sphere.h"
+#include "math/trig.h"
 
 using namespace CppRayTracerChallenge::Core;
+using namespace CppRayTracerChallenge::Core::Math::Trig;
 using Renderer::Shape;
+using Renderer::Group;
 using Renderer::Material;
 using Renderer::Patterns::SolidColor;
 using Renderer::Patterns::Stripe;
@@ -124,6 +128,30 @@ TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_has_pattern_with_object_tr
 
 	Color result = shape.colorAt({ 2.5, 3, 3.5 });
 	Color expectedResult = Color(0.75f, 0.5f, 0.25f);
+
+	EXPECT_EQ(result, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Shape, convert_point_from_world_to_object_space)
+{
+	auto g1 = std::make_shared<Group>();
+	g1->transform(Transform().rotate(0, radians_to_degrees(PI/2), 0));
+
+	auto g2 = std::make_shared<Group>();
+	g2->transform(Transform().scale(2, 2, 2));
+
+	g1->addChild(g2);
+
+	auto sphere = std::make_shared<Sphere>();
+	auto shape = std::make_shared<Shape>(sphere);
+
+	shape->transform(Transform().translate(5, 0, 0));
+
+	g2->addChild(shape);
+
+	auto result = shape->worldToObject({ -2, 0, -10 });
+
+	Point expectedResult = Point(0, 0, -1);
 
 	EXPECT_EQ(result, expectedResult);
 }

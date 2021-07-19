@@ -35,6 +35,18 @@ void Shape::parent(std::weak_ptr<Group> parent)
 	m_parent = parent;
 }
 
+Math::Point Shape::worldToObject(Math::Point worldPosition)
+{
+	Math::Point result = worldPosition;
+
+	if (!m_parent.expired())
+	{
+		result = m_parent.lock()->worldToObject(worldPosition);
+	}
+
+	return m_shape->transform().invert() * result;
+}
+
 void Shape::transform(Math::Transform transform)
 {
 	m_shape->transform(transform);
