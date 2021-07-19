@@ -35,7 +35,7 @@ void Shape::parent(std::weak_ptr<Group> parent)
 	m_parent = parent;
 }
 
-Math::Point Shape::worldToObject(Math::Point worldPosition)
+const Math::Point Shape::worldToObject(Math::Point worldPosition) const
 {
 	Math::Point result = worldPosition;
 
@@ -47,7 +47,7 @@ Math::Point Shape::worldToObject(Math::Point worldPosition)
 	return m_shape->transform().invert() * result;
 }
 
-Math::Vector Shape::normalToWorld(Math::Vector objectNormal)
+const Math::Vector Shape::normalToWorld(Math::Vector objectNormal) const
 {
 	Math::Vector normal = m_shape->transform().invert().transpose() * objectNormal;
 	normal = normal.normalize();
@@ -72,7 +72,9 @@ const Math::Transform Shape::transform() const
 
 const Math::Vector Shape::normal(const Math::Point position) const
 {
-	return m_shape->normal(position);
+	const Math::Point localPosition = worldToObject(position);
+	const Math::Vector localNormal = normalLocal(localPosition);
+	return normalToWorld(localNormal);
 }
 
 const Math::Vector Shape::normalLocal(const Math::Point position) const

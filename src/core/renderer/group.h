@@ -32,9 +32,9 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		std::weak_ptr<Group> parent() const;
 
-		Math::Point worldToObject(Math::Point worldPosition);
+		const Math::Point worldToObject(Math::Point worldPosition) const;
 
-		Math::Vector normalToWorld(Math::Vector objectNormal);
+		const Math::Vector normalToWorld(Math::Vector objectNormal) const;
 
 		bool includes(std::shared_ptr<Shape> child) const;
 

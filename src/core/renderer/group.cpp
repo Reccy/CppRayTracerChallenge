@@ -15,12 +15,12 @@ const Transform Group::transform() const
 
 const Vector Group::normal(const Point) const
 {
-	return Vector();
+	throw std::logic_error("Method not implemented");
 }
 
 const Vector Group::normalLocal(const Point) const
 {
-	return Vector();
+	throw std::logic_error("Method not implemented");
 }
 
 const Intersections Group::intersect(Ray ray) const
@@ -59,7 +59,7 @@ std::weak_ptr<Group> Group::parent() const
 	return m_parent;
 }
 
-Point Group::worldToObject(Point worldPosition)
+const Point Group::worldToObject(Point worldPosition) const
 {
 	Point result = worldPosition;
 
@@ -71,7 +71,7 @@ Point Group::worldToObject(Point worldPosition)
 	return m_transform.invert() * result;
 }
 
-Vector Group::normalToWorld(Vector objectNormal)
+const Vector Group::normalToWorld(Vector objectNormal) const
 {
 	Math::Vector normal = m_transform.invert().transpose() * objectNormal;
 	normal = normal.normalize();

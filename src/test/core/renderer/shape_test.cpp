@@ -183,6 +183,30 @@ TEST(CppRayTracerChallenge_Core_Renderer_Shape, convert_normal_from_object_to_wo
 	EXPECT_EQ(result, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Renderer_Shape, find_normal_on_child_object)
+{
+	auto g1 = std::make_shared<Group>();
+	g1->transform(Transform().rotate(0, radians_to_degrees(PI / 2), 0));
+
+	auto g2 = std::make_shared<Group>();
+	g2->transform(Transform().scale(1, 2, 3));
+
+	g1->addChild(g2);
+
+	auto sphere = std::make_shared<Sphere>();
+	auto shape = std::make_shared<Shape>(sphere);
+
+	shape->transform(Transform().translate(5, 0, 0));
+
+	g2->addChild(shape);
+
+	auto result = shape->normal({ 1.7321, 1.1547, -5.5774 });
+
+	auto expectedResult = Vector(0.285704, 0.428543, -0.857161);
+
+	EXPECT_EQ(result, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_equality)
 {
 	auto sphere = std::make_shared<Sphere>();
