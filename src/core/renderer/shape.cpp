@@ -19,7 +19,7 @@ void Shape::material(const Material material)
 
 Graphics::Color Shape::colorAt(Math::Point worldPosition) const
 {
-	Math::Point objectLocalPosition = m_shape->transform().invert() * worldPosition;
+	Math::Point objectLocalPosition = m_shape->transform().invert() * worldToObject(worldPosition);
 	Math::Point patternLocalPosition = m_material.pattern->transform().invert() * objectLocalPosition;
 
 	return m_material.pattern->colorAt(patternLocalPosition);

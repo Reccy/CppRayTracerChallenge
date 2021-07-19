@@ -10,8 +10,7 @@ Color SolidColor::color() const
 	return m_color;
 }
 
-#pragma warning(disable: 4100)
-Color SolidColor::colorAt(Math::Point _) const
+Color SolidColor::colorAt(Math::Point) const
 {
 	return m_color;
 }
