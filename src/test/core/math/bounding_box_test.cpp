@@ -89,7 +89,37 @@ TEST(CppRayTracerChallenge_Core_Math_BoundingBox, check_to_see_if_bounding_box_c
 	{
 		const Param& param = paramsList[i];
 
-		bool result = box.containsPoint(param.point);
+		bool result = box.contains(param.point);
+
+		EXPECT_EQ(result, param.result);
+	}
+}
+
+TEST(CppRayTracerChallenge_Core_Math_BoundingBox, check_to_see_if_box_contains_other_box)
+{
+	struct Param
+	{
+		Param(BoundingBox box, bool result)
+			: box(box), result(result) {};
+
+		BoundingBox box;
+		bool result;
+	};
+
+	std::vector<Param> paramsList = {
+		{ { Point(5, -2, 0), Point(11, 4, 7) }, true },
+		{ { Point(6, -1, 1), Point(10, 3, 6) }, true },
+		{ { Point(4, -3, -1), Point(10, 3, 6) }, false },
+		{ { Point(6, -1, 1), Point(12, 5, 8) }, false }
+	};
+
+	BoundingBox box = BoundingBox({ 5, -2, 0 }, { 11,4,7 });
+
+	for (int i = 0; i < paramsList.size(); ++i)
+	{
+		const Param& param = paramsList[i];
+
+		bool result = box.contains(param.box);
 
 		EXPECT_EQ(result, param.result);
 	}

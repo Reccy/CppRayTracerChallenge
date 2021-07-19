@@ -69,9 +69,14 @@ void BoundingBox::add(const BoundingBox& other)
 	add(other.min());
 }
 
-bool BoundingBox::containsPoint(const Point& position) const
+bool BoundingBox::contains(const Point& position) const
 {
 	return position.x() >= m_min.x() && position.x() <= m_max.x() &&
 		position.y() >= m_min.y() && position.y() <= m_max.y() &&
 		position.z() >= m_min.z() && position.z() <= m_max.z();
+}
+
+bool BoundingBox::contains(const BoundingBox& other) const
+{
+	return contains(other.min()) && contains(other.max());
 }

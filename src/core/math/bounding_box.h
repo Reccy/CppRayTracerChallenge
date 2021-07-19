@@ -53,7 +53,14 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="position">The position in local space to check</param>
 		/// <returns>If the position is within the bounds of the box</returns>
-		bool containsPoint(const Point& position) const;
+		bool contains(const Point& position) const;
+
+		/// <summary>
+		/// Checks if the passed in box fits within the volume of this bounding box.
+		/// </summary>
+		/// <param name="other">The other bounding box to check</param>
+		/// <returns>If the box is within the bounds of this box</returns>
+		bool contains(const BoundingBox& other) const;
 	private:
 		Point m_min;
 		Point m_max;
