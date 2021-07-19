@@ -132,6 +132,17 @@ TEST(CppRayTracerChallenge_Core_Math_Tuple, addition)
 	EXPECT_EQ((tupleA + tupleB), expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Tuple, addition_compound)
+{
+	Tuple<double> tupleA(3, -2, 5, 1);
+	Tuple<double> tupleB(-2, 3, 1, 0);
+	Tuple<double> expectedResult(1, 1, 6, 1);
+
+	tupleA += tupleB;
+
+	EXPECT_EQ(tupleA, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Tuple, subtraction)
 {
 	Tuple<double> tupleA(3, -2, 5, 1);
@@ -139,6 +150,17 @@ TEST(CppRayTracerChallenge_Core_Math_Tuple, subtraction)
 	Tuple<double> expectedResult(5, -5, 4, 1);
 
 	EXPECT_EQ((tupleA - tupleB), expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Tuple, subtraction_compound)
+{
+	Tuple<double> tupleA(3, -2, 5, 1);
+	Tuple<double> tupleB(-2, 3, 1, 0);
+	Tuple<double> expectedResult(5, -5, 4, 1);
+
+	tupleA -= tupleB;
+
+	EXPECT_EQ(tupleA, expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Tuple, unary_negation_will_negate_tuple)
@@ -157,6 +179,16 @@ TEST(CppRayTracerChallenge_Core_Math_Tuple, multiplication_by_scalar)
 	EXPECT_EQ(tuple * 3.5, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Tuple, multiplication_by_scalar_compound)
+{
+	Tuple<double> tuple(1, -2, 3, -4);
+	Tuple<double> expectedResult(3.5, -7, 10.5, -14);
+
+	tuple *= 3.5;
+
+	EXPECT_EQ(tuple, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Tuple, multiplication_by_fraction)
 {
 	Tuple<double> tuple(1, -2, 3, -4);
@@ -165,12 +197,32 @@ TEST(CppRayTracerChallenge_Core_Math_Tuple, multiplication_by_fraction)
 	EXPECT_EQ(tuple * 0.5, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Tuple, multiplication_by_fraction_compound)
+{
+	Tuple<double> tuple(1, -2, 3, -4);
+	Tuple<double> expectedResult(0.5, -1, 1.5, -2);
+
+	tuple *= 0.5;
+
+	EXPECT_EQ(tuple, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Tuple, dividing_by_scalar)
 {
 	Tuple<double> tuple(1, -2, 3, -4);
 	Tuple<double> expectedResult(0.5, -1, 1.5, -2);
 
 	EXPECT_EQ(tuple / 2, expectedResult);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Tuple, dividing_by_scalar_compound)
+{
+	Tuple<double> tuple(1, -2, 3, -4);
+	Tuple<double> expectedResult(0.5, -1, 1.5, -2);
+
+	tuple /= 2;
+
+	EXPECT_EQ(tuple, expectedResult);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Tuple, ostream_will_show_x_y_z_w_components)
