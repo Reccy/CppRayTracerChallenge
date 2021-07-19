@@ -62,3 +62,9 @@ void BoundingBox::add(Point position)
 	m_min = Point(minX, minY, minZ);
 	m_max = Point(maxX, maxY, maxZ);
 }
+
+void BoundingBox::add(const BoundingBox& other)
+{
+	add(other.max());
+	add(other.min());
+}

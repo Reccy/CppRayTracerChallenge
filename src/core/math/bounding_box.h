@@ -41,6 +41,12 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="position">The position to include</param>
 		void add(Point position);
+
+		/// <summary>
+		/// Combines other bounding box into this one
+		/// </summary>
+		/// <param name="other"></param>
+		void add(const BoundingBox& other);
 	private:
 		Point m_min;
 		Point m_max;
