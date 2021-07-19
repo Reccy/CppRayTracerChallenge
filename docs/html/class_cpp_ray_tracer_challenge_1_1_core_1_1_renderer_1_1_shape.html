@@ -127,6 +127,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0ec292d43e20ae1c49a30d11b31afc4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a0ec292d43e20ae1c49a30d11b31afc4e">material</a> (const <a class="el" href="struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html">Material</a> material)</td></tr>
 <tr class="memdesc:a0ec292d43e20ae1c49a30d11b31afc4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns a material to the shape  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a0ec292d43e20ae1c49a30d11b31afc4e">More...</a><br /></td></tr>
 <tr class="separator:a0ec292d43e20ae1c49a30d11b31afc4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadf1fade7b1ef0e956158e5336f6f952"><td class="memItemLeft" align="right" valign="top">std::weak_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html">Group</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aadf1fade7b1ef0e956158e5336f6f952">parent</a> () const</td></tr>
+<tr class="memdesc:aadf1fade7b1ef0e956158e5336f6f952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the parent group if it exists  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aadf1fade7b1ef0e956158e5336f6f952">More...</a><br /></td></tr>
+<tr class="separator:aadf1fade7b1ef0e956158e5336f6f952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc7a58728408375e0c4b00c309df9ecf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#afc7a58728408375e0c4b00c309df9ecf">parent</a> (std::weak_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html">Group</a> &gt; parent)</td></tr>
+<tr class="memdesc:afc7a58728408375e0c4b00c309df9ecf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parent group  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#afc7a58728408375e0c4b00c309df9ecf">More...</a><br /></td></tr>
+<tr class="separator:afc7a58728408375e0c4b00c309df9ecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcfa356ac36fe6ddc98df628bcdf6e59"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#adcfa356ac36fe6ddc98df628bcdf6e59">worldToObject</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a> worldPosition) const</td></tr>
+<tr class="memdesc:adcfa356ac36fe6ddc98df628bcdf6e59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a position from world space to object space  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#adcfa356ac36fe6ddc98df628bcdf6e59">More...</a><br /></td></tr>
+<tr class="separator:adcfa356ac36fe6ddc98df628bcdf6e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff93b7407d76055e3522e0f3826068c9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aff93b7407d76055e3522e0f3826068c9">normalToWorld</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a> objectNormal) const</td></tr>
+<tr class="memdesc:aff93b7407d76055e3522e0f3826068c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a normal from object space to world space  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aff93b7407d76055e3522e0f3826068c9">More...</a><br /></td></tr>
+<tr class="separator:aff93b7407d76055e3522e0f3826068c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9aa797deee5171f363c33715a1414f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html">Graphics::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#ae9aa797deee5171f363c33715a1414f9">colorAt</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a> worldPosition) const</td></tr>
 <tr class="memdesc:ae9aa797deee5171f363c33715a1414f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the color of the shape at the world position, taking into account the material and lighting  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#ae9aa797deee5171f363c33715a1414f9">More...</a><br /></td></tr>
 <tr class="separator:ae9aa797deee5171f363c33715a1414f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,7 +171,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a shape within the rendered world. This is a wrapper around a <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html">Math::IShape</a> which adds materials </p>
 
-<p class="definition">Definition at line <a class="el" href="renderer_2shape_8h_source.html#l00015">15</a> of file <a class="el" href="renderer_2shape_8h_source.html">shape.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8h_source.html#l00018">18</a> of file <a class="el" href="renderer_2shape_8h_source.html">shape.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3baa05e430077dc0344865d7778f6a39"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3baa05e430077dc0344865d7778f6a39">&#9670;&nbsp;</a></span>Shape() <span class="overload">[1/3]</span></h2>
@@ -236,9 +248,26 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_a85b36b475d13437d84d6a99b40f76726_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_a85b36b475d13437d84d6a99b40f76726_cgraph" alt=""/></div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_a85b36b475d13437d84d6a99b40f76726_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_a85b36b475d13437d84d6a99b40f76726_cgraph">
-<area shape="rect" title=" " alt="" coords="5,45,168,101"/>
+<area shape="rect" title=" " alt="" coords="5,165,168,221"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#ae9aa797deee5171f363c33715a1414f9" title="Returns the color of the shape at the world position, taking into account the material and lighting" alt="" coords="216,5,379,61"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#abf27352f00f308b409c5fdaa93f1bef0" title="Returns the material assigned to the shape" alt="" coords="216,85,379,141"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aff93b7407d76055e3522e0f3826068c9" title="Transforms a normal from object space to world space" alt="" coords="216,165,379,221"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aadf1fade7b1ef0e956158e5336f6f952" title="Returns the parent group if it exists" alt="" coords="216,245,379,301"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#adcfa356ac36fe6ddc98df628bcdf6e59" title="Transforms a position from world space to object space" alt="" coords="216,325,379,381"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="427,201,588,257"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a339165be3900e10ed558402d68a1b750" title="Calculates and returns a normalized version of the vector" alt="" coords="636,121,797,177"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a893ef7e6b4a9dbe27260cfb11ae50b76" title="Inverts the Transform" alt="" coords="636,201,797,257"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#af627244fce374bca075871035a107db6" title="Calculates and returns the normal at the passed in local space position for this shape" alt="" coords="636,361,797,417"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a3f1d33d2eb0d3c951536bc09914274cb" title="Transposes the matrix" alt="" coords="636,281,797,337"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aa7feb564bed9f6347435713dc6b03f18" title="Creates a copy of the Matrix that is inverted" alt="" coords="845,252,1007,308"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aefe9fd335841e20c20c12311a0a3fb50" title="Checks if the Matrix can be inverted" alt="" coords="1055,187,1216,243"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ace02bb54a9415ffa260c84e50a6d94d3" title="Calculates the cofactor of the square Matrix" alt="" coords="1055,317,1216,373"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a87172940c17b94e7b20c0f15add2fe62" title="Calculates the determinant of the square Matrix" alt="" coords="1473,271,1635,327"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ac5dae214bed842b2b75e3dc777252fbf" title="Calculates the minor / determinant of the square submatrix." alt="" coords="1264,368,1425,424"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a81ee5f59b2eb010dfa8d2e645715421d" title="Returns a copy of the Matrix, with the row and column removed." alt="" coords="1473,368,1635,424"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#ad507851069381b6a2f8affd01fb79d0e" title="Calculates and returns the magnitude of the vector" alt="" coords="845,121,1007,177"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6f80c73b5f18dcf3f8e36065bdc8b9e5" title="Constructs a Vector with components 0, 0, 0 Note that this has an undefined direction!" alt="" coords="845,41,1007,97"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a2deeccee4c66e9a774aff36da5b309e6" title="Transposes the Matrix, changing its rows into columns, and columns into rows" alt="" coords="845,332,1007,388"/>
 </map>
 </div>
 
@@ -356,7 +385,7 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a35bc2672feaeb677145c00f584369cda">CppRayTracerChallenge::Core::Math::IShape</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00067">67</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00104">104</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -513,7 +542,7 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#af627244fce374bca075871035a107db6">CppRayTracerChallenge::Core::Math::IShape</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00043">43</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00080">80</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -521,6 +550,66 @@ Here is the caller graph for this function:</div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_abb164eb0e5e7e460ca335074d1f0e918_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_abb164eb0e5e7e460ca335074d1f0e918_icgraph">
 <area shape="rect" title="Calculates and returns the normal at the passed in local space position for this shape" alt="" coords="108,5,271,61"/>
 <area shape="rect" href="shape__test_8cpp.html#aa3df8e49ad278e4021f47e809ae072e8" title=" " alt="" coords="5,20,60,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aff93b7407d76055e3522e0f3826068c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff93b7407d76055e3522e0f3826068c9">&#9670;&nbsp;</a></span>normalToWorld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a> Shape::normalToWorld </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a>&#160;</td>
+          <td class="paramname"><em>objectNormal</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transforms a normal from object space to world space </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">objectNormal</td><td>The normal in object space</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Transformed normal in world space</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00050">50</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aff93b7407d76055e3522e0f3826068c9_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aff93b7407d76055e3522e0f3826068c9_cgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aff93b7407d76055e3522e0f3826068c9_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aff93b7407d76055e3522e0f3826068c9_cgraph">
+<area shape="rect" title="Transforms a normal from object space to world space" alt="" coords="5,129,168,185"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="216,165,377,221"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a339165be3900e10ed558402d68a1b750" title="Calculates and returns a normalized version of the vector" alt="" coords="425,85,587,141"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a893ef7e6b4a9dbe27260cfb11ae50b76" title="Inverts the Transform" alt="" coords="425,165,587,221"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#af627244fce374bca075871035a107db6" title="Calculates and returns the normal at the passed in local space position for this shape" alt="" coords="425,325,587,381"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a3f1d33d2eb0d3c951536bc09914274cb" title="Transposes the matrix" alt="" coords="425,245,587,301"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aa7feb564bed9f6347435713dc6b03f18" title="Creates a copy of the Matrix that is inverted" alt="" coords="635,216,796,272"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aefe9fd335841e20c20c12311a0a3fb50" title="Checks if the Matrix can be inverted" alt="" coords="844,151,1005,207"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ace02bb54a9415ffa260c84e50a6d94d3" title="Calculates the cofactor of the square Matrix" alt="" coords="844,281,1005,337"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a87172940c17b94e7b20c0f15add2fe62" title="Calculates the determinant of the square Matrix" alt="" coords="1263,235,1424,291"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ac5dae214bed842b2b75e3dc777252fbf" title="Calculates the minor / determinant of the square submatrix." alt="" coords="1053,332,1215,388"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a81ee5f59b2eb010dfa8d2e645715421d" title="Returns a copy of the Matrix, with the row and column removed." alt="" coords="1263,332,1424,388"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#ad507851069381b6a2f8affd01fb79d0e" title="Calculates and returns the magnitude of the vector" alt="" coords="635,85,796,141"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6f80c73b5f18dcf3f8e36065bdc8b9e5" title="Constructs a Vector with components 0, 0, 0 Note that this has an undefined direction!" alt="" coords="635,5,796,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a2deeccee4c66e9a774aff36da5b309e6" title="Transposes the Matrix, changing its rows into columns, and columns into rows" alt="" coords="635,296,796,352"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aff93b7407d76055e3522e0f3826068c9_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aff93b7407d76055e3522e0f3826068c9_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aff93b7407d76055e3522e0f3826068c9_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aff93b7407d76055e3522e0f3826068c9_icgraph">
+<area shape="rect" title="Transforms a normal from object space to world space" alt="" coords="216,5,379,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a85b36b475d13437d84d6a99b40f76726" title=" " alt="" coords="5,5,168,61"/>
 </map>
 </div>
 
@@ -542,7 +631,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00091">91</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00128">128</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
 
 </div>
 </div>
@@ -562,7 +651,67 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00086">86</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00123">123</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aadf1fade7b1ef0e956158e5336f6f952"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadf1fade7b1ef0e956158e5336f6f952">&#9670;&nbsp;</a></span>parent() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::weak_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html">Group</a> &gt; Shape::parent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the parent group if it exists </p>
+<dl class="section return"><dt>Returns</dt><dd>Parent</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00028">28</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aadf1fade7b1ef0e956158e5336f6f952_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aadf1fade7b1ef0e956158e5336f6f952_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aadf1fade7b1ef0e956158e5336f6f952_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aadf1fade7b1ef0e956158e5336f6f952_icgraph">
+<area shape="rect" title="Returns the parent group if it exists" alt="" coords="216,39,379,95"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a85b36b475d13437d84d6a99b40f76726" title=" " alt="" coords="5,5,168,61"/>
+<area shape="rect" href="shape__test_8cpp.html#ac23545969b5fa619283521722884f254" title=" " alt="" coords="59,85,114,112"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="afc7a58728408375e0c4b00c309df9ecf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc7a58728408375e0c4b00c309df9ecf">&#9670;&nbsp;</a></span>parent() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Shape::parent </td>
+          <td>(</td>
+          <td class="paramtype">std::weak_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html">Group</a> &gt;&#160;</td>
+          <td class="paramname"><em>parent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the parent group </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>Parent group to set</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00033">33</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
 
 </div>
 </div>
@@ -636,6 +785,44 @@ Here is the caller graph for this function:</div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aa278451e9d8057425d6961e939716dc7_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_aa278451e9d8057425d6961e939716dc7_icgraph">
 <area shape="rect" title="Transforms the shape" alt="" coords="108,5,271,61"/>
 <area shape="rect" href="computed__values__test_8cpp.html#aca91c66630e763de77a97a16b9a0423e" title=" " alt="" coords="5,20,60,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adcfa356ac36fe6ddc98df628bcdf6e59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcfa356ac36fe6ddc98df628bcdf6e59">&#9670;&nbsp;</a></span>worldToObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a> Shape::worldToObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a>&#160;</td>
+          <td class="paramname"><em>worldPosition</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transforms a position from world space to object space </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPoint</td><td>The position in world space</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Transformed position in object space</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="renderer_2shape_8cpp_source.html#l00038">38</a> of file <a class="el" href="renderer_2shape_8cpp_source.html">shape.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_adcfa356ac36fe6ddc98df628bcdf6e59_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_adcfa356ac36fe6ddc98df628bcdf6e59_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_adcfa356ac36fe6ddc98df628bcdf6e59_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape_adcfa356ac36fe6ddc98df628bcdf6e59_icgraph">
+<area shape="rect" title="Transforms a position from world space to object space" alt="" coords="216,5,379,61"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a85b36b475d13437d84d6a99b40f76726" title=" " alt="" coords="5,5,168,61"/>
 </map>
 </div>
 

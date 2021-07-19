@@ -1,6 +1,7 @@
 <map id="CppRayTracerChallenge::Core::Math::Ray::transform" name="CppRayTracerChallenge::Core::Math::Ray::transform">
-<area shape="rect" id="node1" title="Creates a copy of this ray and transforms it" alt="" coords="317,46,504,87"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad81a13ce601592d252c6ce7f9ecb7a0b" title="Calculates if the ray intersects with the sphere." alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node4" href="$ray__test_8cpp.html#a32cb8f5fe90e650dcb9db4ec58e3f4df" title=" " alt="" coords="161,85,216,112"/>
-<area shape="rect" id="node3" href="$sphere__test_8cpp.html#a3d3c518a0ec1d96b253d671b311bc8b6" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node1" title="Creates a copy of this ray and transforms it" alt="" coords="317,93,504,134"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#ae16bfb1c735304b29b8341ab9341358b" title="Calculates if the world space ray intersects with the shape." alt="" coords="108,5,269,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad81a13ce601592d252c6ce7f9ecb7a0b" title="Calculates if the ray intersects with the sphere." alt="" coords="108,85,269,141"/>
+<area shape="rect" id="node5" href="$ray__test_8cpp.html#a32cb8f5fe90e650dcb9db4ec58e3f4df" title=" " alt="" coords="161,165,216,192"/>
+<area shape="rect" id="node4" href="$sphere__test_8cpp.html#a3d3c518a0ec1d96b253d671b311bc8b6" title=" " alt="" coords="5,100,60,127"/>
 </map>

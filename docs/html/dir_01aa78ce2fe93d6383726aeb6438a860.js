@@ -9,6 +9,10 @@ var dir_01aa78ce2fe93d6383726aeb6438a860 =
     [ "computed_values.h", "computed__values_8h.html", [
       [ "ComputedValues", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values" ]
     ] ],
+    [ "group.cpp", "group_8cpp.html", null ],
+    [ "group.h", "group_8h.html", [
+      [ "Group", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group" ]
+    ] ],
     [ "lighting.cpp", "lighting_8cpp.html", null ],
     [ "lighting.h", "lighting_8h.html", "lighting_8h" ],
     [ "material.cpp", "material_8cpp.html", null ],

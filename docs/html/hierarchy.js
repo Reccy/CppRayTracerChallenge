@@ -11,6 +11,9 @@ var hierarchy =
     [ "CppRayTracerChallenge::Core::Graphics::Color", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html", null ],
     [ "CppRayTracerChallenge::Core::Renderer::ComputedValues", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html", null ],
     [ "CubeNormalParam", "class_cube_normal_param.html", null ],
+    [ "std::enable_shared_from_this", null, [
+      [ "CppRayTracerChallenge::Core::Renderer::Group", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html", null ]
+    ] ],
     [ "std::exception", null, [
       [ "CppRayTracerChallenge::Core::Math::MatrixInitialDataSizeMismatch", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_initial_data_size_mismatch.html", null ],
       [ "CppRayTracerChallenge::Core::Math::MatrixNotInvertibleException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_not_invertible_exception.html", null ],
@@ -31,6 +34,7 @@ var hierarchy =
         [ "CppRayTracerChallenge::Core::Math::Plane", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html", null ],
         [ "CppRayTracerChallenge::Core::Math::Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", null ]
       ] ],
+      [ "CppRayTracerChallenge::Core::Renderer::Group", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html", null ],
       [ "CppRayTracerChallenge::Core::Renderer::Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html", null ]
     ] ],
     [ "CppRayTracerChallenge::Core::Renderer::Material", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html", null ],

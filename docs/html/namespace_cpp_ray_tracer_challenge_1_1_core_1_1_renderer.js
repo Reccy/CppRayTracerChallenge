@@ -6,6 +6,7 @@ var namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer =
     [ "Patterns", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns.html", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns" ],
     [ "Camera", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera" ],
     [ "ComputedValues", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values" ],
+    [ "Group", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group" ],
     [ "Material", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material" ],
     [ "Pattern", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern" ],
     [ "PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light" ],

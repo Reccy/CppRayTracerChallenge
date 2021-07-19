@@ -1,0 +1,6 @@
+<map id="CppRayTracerChallenge::Core::Renderer::Group::normalToWorld" name="CppRayTracerChallenge::Core::Renderer::Group::normalToWorld">
+<area shape="rect" id="node1" title=" " alt="" coords="5,45,167,101"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a339165be3900e10ed558402d68a1b750" title="Calculates and returns a normalized version of the vector" alt="" coords="215,45,376,101"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#ad507851069381b6a2f8affd01fb79d0e" title="Calculates and returns the magnitude of the vector" alt="" coords="424,5,585,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6f80c73b5f18dcf3f8e36065bdc8b9e5" title="Constructs a Vector with components 0, 0, 0 Note that this has an undefined direction!" alt="" coords="424,85,585,141"/>
+</map>
