@@ -1,25 +1,26 @@
 #include "bounding_box.h"
+#include "constants.h"
 
-using namespace CppRayTracerChallenge::Core::Renderer;
+using namespace CppRayTracerChallenge::Core::Math;
 using namespace CppRayTracerChallenge::Core;
 
 BoundingBox::BoundingBox() :
-	m_min({ INFINITY, INFINITY, INFINITY }), m_max({ -INFINITY, -INFINITY, -INFINITY }) {};
+	m_min({ INF, INF, INF }), m_max({ -INF, -INF, -INF }) {};
 
-BoundingBox::BoundingBox(Math::Point min, Math::Point max) :
+BoundingBox::BoundingBox(Point min, Point max) :
 	m_min(min), m_max(max) {};
 
-Math::Point BoundingBox::min() const
+Point BoundingBox::min() const
 {
 	return m_min;
 }
 
-Math::Point BoundingBox::max() const
+Point BoundingBox::max() const
 {
 	return m_max;
 }
 
-void BoundingBox::resizeToFit(Math::Point position)
+void BoundingBox::resizeToFit(Point position)
 {
 	double maxX = m_max.x();
 	double maxY = m_max.y();
@@ -58,6 +59,6 @@ void BoundingBox::resizeToFit(Math::Point position)
 		maxZ = position.z();
 	}
 
-	m_min = Math::Point(minX, minY, minZ);
-	m_max = Math::Point(maxX, maxY, maxZ);
+	m_min = Point(minX, minY, minZ);
+	m_max = Point(maxX, maxY, maxZ);
 }

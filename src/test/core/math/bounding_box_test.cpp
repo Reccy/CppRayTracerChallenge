@@ -1,12 +1,11 @@
 #include <gtest/gtest.h>
 #include <math/constants.h>
-#include <renderer/bounding_box.h>
+#include <math/bounding_box.h>
 
-using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core::Math;
 using namespace CppRayTracerChallenge::Core;
 
-TEST(CppRayTracerChallenge_Core_Renderer_BoundingBox, create_empty_bounding_box)
+TEST(CppRayTracerChallenge_Core_Math_BoundingBox, create_empty_bounding_box)
 {
 	BoundingBox box = BoundingBox();
 
@@ -17,7 +16,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_BoundingBox, create_empty_bounding_box)
 	EXPECT_EQ(box.max(), expectedMax);
 }
 
-TEST(CppRayTracerChallenge_Core_Renderer_BoundingBox, create_with_volume)
+TEST(CppRayTracerChallenge_Core_Math_BoundingBox, create_with_volume)
 {
 	BoundingBox box = BoundingBox({ -1, -2, -3 }, { 3,2,1 });
 
@@ -28,7 +27,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_BoundingBox, create_with_volume)
 	EXPECT_EQ(box.max(), expectedMax);
 }
 
-TEST(CppRayTracerChallenge_Core_Renderer_BoundingBox, add_points_to_empty_bounding_box)
+TEST(CppRayTracerChallenge_Core_Math_BoundingBox, add_points_to_empty_bounding_box)
 {
 	BoundingBox box = BoundingBox();
 
