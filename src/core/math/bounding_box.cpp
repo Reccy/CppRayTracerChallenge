@@ -20,7 +20,7 @@ Point BoundingBox::max() const
 	return m_max;
 }
 
-void BoundingBox::resizeToFit(Point position)
+void BoundingBox::add(Point position)
 {
 	double maxX = m_max.x();
 	double maxY = m_max.y();

@@ -34,8 +34,8 @@ TEST(CppRayTracerChallenge_Core_Math_BoundingBox, add_points_to_empty_bounding_b
 	Point p1 = Point(-5, 2, 0);
 	Point p2 = Point(7, 0, -3);
 
-	box.resizeToFit(p1);
-	box.resizeToFit(p2);
+	box.add(p1);
+	box.add(p2);
 
 	Point expectedMin = Point(-5, 0, -3);
 	Point expectedMax = Point(7, 2, 0);
