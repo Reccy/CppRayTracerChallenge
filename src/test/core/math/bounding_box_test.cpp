@@ -1,8 +1,11 @@
 #include <gtest/gtest.h>
 #include <math/constants.h>
+#include <math/transform.h>
 #include <math/bounding_box.h>
+#include <math/trig.h>
 
 using namespace CppRayTracerChallenge::Core::Math;
+using namespace CppRayTracerChallenge::Core::Math::Trig;
 using namespace CppRayTracerChallenge::Core;
 
 TEST(CppRayTracerChallenge_Core_Math_BoundingBox, create_empty_bounding_box)
@@ -123,4 +126,19 @@ TEST(CppRayTracerChallenge_Core_Math_BoundingBox, check_to_see_if_box_contains_o
 
 		EXPECT_EQ(result, param.result);
 	}
+}
+
+TEST(CppRayTracerChallenge_Core_Math_BoundingBox, transforming_a_bounding_box)
+{
+	BoundingBox box = BoundingBox({ -1,-1,-1 }, { 1,1,1 });
+	
+	box.transform(Transform()
+		.rotate(0, radians_to_degrees(PI / 4), 0)
+		.rotate(radians_to_degrees(PI / 4), 0, 0));
+
+	Point expectedMin = Point(-1.41421, -1.70711, -1.70711);
+	Point expectedMax = Point(1.41421, 1.70711, 1.70711);
+
+	EXPECT_EQ(box.min(), expectedMin);
+	EXPECT_EQ(box.max(), expectedMax);
 }

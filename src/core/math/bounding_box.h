@@ -2,6 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_BOUNDING_BOX
 
 #include "point.h"
+#include "transform.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
@@ -61,7 +62,22 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="other">The other bounding box to check</param>
 		/// <returns>If the box is within the bounds of this box</returns>
 		bool contains(const BoundingBox& other) const;
+
+		/// <summary>
+		/// Transforms the bounding box
+		/// </summary>
+		/// <param name="transform">The transform to apply to the bounding box</param>
+		void transform(Transform transform);
+
+		/// <summary>
+		/// Returns a copy of the Box's transform
+		/// </summary>
+		/// <returns>The Box's transform</returns>
+		const Transform transform() const;
 	private:
+		Transform m_transform;
+		const Point m_initialMin;
+		const Point m_initialMax;
 		Point m_min;
 		Point m_max;
 	};

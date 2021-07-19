@@ -1,14 +1,15 @@
 #include "bounding_box.h"
+#include "transform.h"
 #include "constants.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
 using namespace CppRayTracerChallenge::Core;
 
 BoundingBox::BoundingBox() :
-	m_min({ INF, INF, INF }), m_max({ -INF, -INF, -INF }) {};
+	m_initialMin({ INF, INF, INF }), m_initialMax({ -INF, -INF, -INF }), m_min(m_initialMin), m_max(m_initialMax) {};
 
 BoundingBox::BoundingBox(Point min, Point max) :
-	m_min(min), m_max(max) {};
+	m_initialMin(min), m_initialMax(max), m_min(m_initialMin), m_max(m_initialMax) {};
 
 Point BoundingBox::min() const
 {
@@ -79,4 +80,29 @@ bool BoundingBox::contains(const Point& position) const
 bool BoundingBox::contains(const BoundingBox& other) const
 {
 	return contains(other.min()) && contains(other.max());
+}
+
+void BoundingBox::transform(Transform transform)
+{
+	m_transform = transform;
+	
+	m_min = m_initialMin;
+	m_max = m_initialMax;
+
+	Point min = m_initialMin;
+	Point max = m_initialMax;
+
+	add(transform * min);
+	add(transform * Point(min.x(), min.y(), max.z()));
+	add(transform * Point(min.x(), max.y(), min.z()));
+	add(transform * Point(min.x(), max.y(), max.z()));
+	add(transform * Point(max.x(), min.y(), min.z()));
+	add(transform * Point(max.x(), min.y(), max.z()));
+	add(transform * Point(max.x(), max.y(), min.z()));
+	add(transform * max);
+}
+
+const Transform BoundingBox::transform() const
+{
+	return m_transform;
 }
