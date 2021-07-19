@@ -83,3 +83,8 @@ const Intersections Cube::intersectLocal(Ray ray) const
 	std::vector<Intersection> xs{ {tMin, *this}, {tMax, *this} };
 	return Intersections(xs);
 }
+
+const BoundingBox Cube::bounds() const
+{
+	return BoundingBox(); // Not implemented
+}

@@ -26,6 +26,12 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="ray">The local space ray to intersect with the cube</param>
 		/// <returns>The Intersections</returns>
 		const Intersections intersectLocal(Ray ray) const override;
+
+		/// <summary>
+		/// Returns the bounding box of the cube
+		/// </summary>
+		/// <returns>Bounding Box that contains the cube</returns>
+		const BoundingBox bounds() const override;
 	};
 }
 

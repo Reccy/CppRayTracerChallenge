@@ -42,6 +42,11 @@ const Intersections Group::intersectLocal(Ray ray) const
 	return result;
 }
 
+const BoundingBox Group::bounds() const
+{
+	return BoundingBox(); // Not implemented
+}
+
 void Group::addChild(std::shared_ptr<Shape> child)
 {
 	m_shapes.push_back(child);

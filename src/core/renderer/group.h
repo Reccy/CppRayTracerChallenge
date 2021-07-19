@@ -26,6 +26,8 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		const Math::Intersections intersectLocal(Math::Ray ray) const override;
 
+		const Math::BoundingBox bounds() const override;
+
 		void addChild(std::shared_ptr<Shape> child);
 
 		void addChild(std::shared_ptr<Group> child);

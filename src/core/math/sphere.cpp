@@ -28,3 +28,8 @@ const Intersections Sphere::intersectLocal(Ray ray) const
 
 	return Intersections({ Intersection(t1, *this), Intersection(t2, *this) });
 }
+
+const BoundingBox Sphere::bounds() const
+{
+	return BoundingBox(); // Not implemented
+}
