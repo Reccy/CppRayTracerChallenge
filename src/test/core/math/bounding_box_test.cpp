@@ -57,3 +57,40 @@ TEST(CppRayTracerChallenge_Core_Math_BoundingBox, add_bounding_box_to_another)
 	EXPECT_EQ(box1.min(), expectedMin);
 	EXPECT_EQ(box1.max(), expectedMax);
 }
+
+
+
+TEST(CppRayTracerChallenge_Core_Math_BoundingBox, check_to_see_if_bounding_box_contains_point)
+{
+	struct Param
+	{
+		Param(Point point, bool result)
+			: point(point), result(result) {};
+
+		Point point;
+		bool result;
+	};
+
+	std::vector<Param> paramsList = {
+		{ Point(5, -2, 0), true },
+		{ Point(11, 4, 7), true },
+		{ Point(8, 1, 3), true },
+		{ Point(3, 0, 3), false },
+		{ Point(8, -4, 3), false },
+		{ Point(8, 1, -1), false },
+		{ Point(13, 1, 3), false },
+		{ Point(8, 5, 3), false },
+		{ Point(8, 1, 8), false }
+	};
+
+	BoundingBox box = BoundingBox({ 5, -2, 0 }, { 11, 4, 7 });
+
+	for (int i = 0; i < paramsList.size(); ++i)
+	{
+		const Param& param = paramsList[i];
+
+		bool result = box.containsPoint(param.point);
+
+		EXPECT_EQ(result, param.result);
+	}
+}
