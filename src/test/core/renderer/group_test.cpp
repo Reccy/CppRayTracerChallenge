@@ -2,7 +2,9 @@
 #include <renderer/group.h>
 #include <renderer/shape.h>
 #include <math/transform.h>
+#include <math/bounding_box.h>
 #include <math/sphere.h>
+#include <math/cylinder.h>
 #include <math/ray.h>
 
 using namespace CppRayTracerChallenge::Core::Renderer;
@@ -86,4 +88,30 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, intersecting_transformed_group)
 	auto intersections = group->intersect(ray);
 
 	EXPECT_EQ(intersections.count(), 2);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, group_has_bounding_box_that_contains_children)
+{
+	auto mathSphere = std::make_shared<Math::Sphere>();
+	auto sphere = std::make_shared<Shape>(mathSphere);
+
+	sphere->transform(Math::Transform()
+		.scale(2, 2, 2)
+		.translate(2, 5, -3));
+
+	auto mathCylinder = std::make_shared<Math::Cylinder>(-2, 2);
+	auto cylinder = std::make_shared<Shape>(mathCylinder);
+
+	cylinder->transform(Math::Transform()
+		.scale(0.5, 1, 0.5)
+		.translate(-4, -1, 4));
+
+	auto group = Group();
+	group.addChild(sphere);
+	group.addChild(cylinder);
+
+	Math::BoundingBox box = group.bounds();
+
+	EXPECT_EQ(box.min(), Math::Point(-4.5, -3, -5));
+	EXPECT_EQ(box.max(), Math::Point(4, 7, 4.5));
 }

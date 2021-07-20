@@ -44,12 +44,26 @@ const Intersections Group::intersectLocal(Ray ray) const
 
 const BoundingBox Group::bounds() const
 {
-	return BoundingBox(); // Not implemented
+	BoundingBox box = BoundingBox();
+
+	for (int i = 0; i < m_groups.size(); ++i)
+	{
+		box.add(m_groups.at(i)->parentSpaceBounds());
+	}
+
+	for (int i = 0; i < m_shapes.size(); ++i)
+	{
+		box.add(m_shapes.at(i)->parentSpaceBounds());
+	}
+
+	return box;
 }
 
 const BoundingBox Group::parentSpaceBounds() const
 {
-	return BoundingBox(); // Not implemented
+	BoundingBox result = BoundingBox(bounds());
+	result.transform(m_transform);
+	return result;
 }
 
 void Group::addChild(std::shared_ptr<Shape> child)
