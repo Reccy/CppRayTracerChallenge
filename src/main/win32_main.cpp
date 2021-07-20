@@ -72,61 +72,31 @@ class WorldA
 public:
 	static World build()
 	{
-		log("Building Floor...");
-		Renderer::Shape floor = buildFloor();
-
-		log("Building Middle Sphere...");
-		Renderer::Shape middleSphere = buildMiddleSphere();
-
-		log("Building Right Sphere...");
-		Renderer::Shape rightSphere = buildRightSphere();
-
-		log("Building Left Sphere...");
-		Renderer::Shape leftSphere = buildLeftSphere();
-
-		log("Building Cube A...");
-		Renderer::Shape cubeA = buildCubeA();
-
-		log("Building Cube B...");
-		Renderer::Shape cubeB = buildCubeB();
-
-		log("Building Cylinder A...");
-		Renderer::Shape cylinderA = buildCylinderA();
-
-		log("Build Cone A...");
-		Renderer::Shape coneA = buildConeA();
-
-		log("Building Light...");
+		auto floor = buildFloor();
+		auto middleSphere = buildMiddleSphere();
+		auto rightSphere = buildRightSphere();
+		auto leftSphere = buildLeftSphere();
+		auto cubeA = buildCubeA();
+		auto cubeB = buildCubeB();
+		auto cylinderA = buildCylinderA();
+		auto coneA = buildConeA();
 		PointLight light = buildLight();
-
-		log("Setting up world...");
+		
 		World world = World();
 
-		log("Adding Floor to World...");
-		world.addObject(floor);
+		Group bvhGroup = Group();
+		bvhGroup.addChild(floor);
+		bvhGroup.addChild(middleSphere);
+		bvhGroup.addChild(rightSphere);
+		bvhGroup.addChild(leftSphere);
+		bvhGroup.addChild(cubeA);
+		bvhGroup.addChild(cubeB);
+		bvhGroup.addChild(cylinderA);
+		bvhGroup.addChild(coneA);
 
-		log("Adding Middle Sphere to World...");
-		world.addObject(middleSphere);
+		bvhGroup.divide(1);
 
-		log("Adding Right Sphere to World...");
-		world.addObject(rightSphere);
-
-		log("Adding Left Sphere to World...");
-		world.addObject(leftSphere);
-
-		log("Adding Cube A to World...");
-		world.addObject(cubeA);
-
-		log("Adding Cube B to World...");
-		world.addObject(cubeB);
-
-		log("Adding Cylinder A to World...");
-		world.addObject(cylinderA);
-
-		log("Adding Cone A to World...");
-		world.addObject(coneA);
-
-		log("Adding Light to World...");
+		world.addGroup(bvhGroup);
 		world.addLight(light);
 
 		return world;
@@ -147,7 +117,7 @@ private:
 		return pattern;
 	}
 
-	static Renderer::Shape buildFloor()
+	static std::shared_ptr<Renderer::Shape> buildFloor()
 	{
 		auto shape = std::make_shared<Plane>();
 		Renderer::Shape floor = Renderer::Shape(shape);
@@ -159,10 +129,10 @@ private:
 		bgMaterial.reflective = 0.95f;
 		floor.material(bgMaterial);
 		floor.transform(floorTransform);
-		return floor;
+		return std::make_shared<Renderer::Shape>(floor);
 	}
 
-	static Renderer::Shape buildMiddleSphere()
+	static std::shared_ptr<Renderer::Shape> buildMiddleSphere()
 	{
 		auto shape = std::make_shared<Sphere>();
 		Renderer::Shape sphere = Renderer::Shape(shape);
@@ -176,10 +146,10 @@ private:
 		sphere.material(material);
 		sphere.transform(transform);
 
-		return sphere;
+		return std::make_shared<Renderer::Shape>(sphere);
 	}
 
-	static Renderer::Shape buildRightSphere()
+	static std::shared_ptr<Renderer::Shape> buildRightSphere()
 	{
 		auto shape = std::make_shared<Sphere>(Sphere());
 		Renderer::Shape sphere = Renderer::Shape(shape);
@@ -195,10 +165,10 @@ private:
 		sphere.material(material);
 		sphere.transform(transform);
 
-		return sphere;
+		return std::make_shared<Renderer::Shape>(sphere);
 	}
 
-	static Renderer::Shape buildLeftSphere()
+	static std::shared_ptr<Renderer::Shape> buildLeftSphere()
 	{
 		auto shape = std::make_shared<Sphere>(Sphere());
 		Renderer::Shape sphere = Renderer::Shape(shape);
@@ -216,10 +186,10 @@ private:
 		sphere.material(material);
 		sphere.transform(transform);
 
-		return sphere;
+		return std::make_shared<Renderer::Shape>(sphere);
 	}
 
-	static Renderer::Shape buildCubeA()
+	static std::shared_ptr<Renderer::Shape> buildCubeA()
 	{
 		auto shape = std::make_shared<Cube>();
 		Renderer::Shape cube = Renderer::Shape(shape);
@@ -235,10 +205,10 @@ private:
 		cube.material(material);
 		cube.transform(transform);
 
-		return cube;
+		return std::make_shared<Renderer::Shape>(cube);
 	}
 
-	static Renderer::Shape buildCubeB()
+	static std::shared_ptr<Renderer::Shape> buildCubeB()
 	{
 		auto shape = std::make_shared<Cube>();
 		Renderer::Shape cube = Renderer::Shape(shape);
@@ -251,10 +221,10 @@ private:
 		cube.material(material);
 		cube.transform(transform);
 
-		return cube;
+		return std::make_shared<Renderer::Shape>(cube);
 	}
 
-	static Renderer::Shape buildCylinderA()
+	static std::shared_ptr<Renderer::Shape> buildCylinderA()
 	{
 		auto shape = std::make_shared<Cylinder>(1, 3, true);
 		Renderer::Shape cylinder = Renderer::Shape(shape);
@@ -266,10 +236,10 @@ private:
 		cylinder.material(material);
 		cylinder.transform(transform);
 
-		return cylinder;
+		return std::make_shared<Renderer::Shape>(cylinder);
 	}
 
-	static Renderer::Shape buildConeA()
+	static std::shared_ptr<Renderer::Shape> buildConeA()
 	{
 		auto shape = std::make_shared<Cone>(-1, 1, true);
 		Renderer::Shape cone = Renderer::Shape(shape);
@@ -281,14 +251,13 @@ private:
 		cone.material(material);
 		cone.transform(transform);
 
-		return cone;
+		return std::make_shared<Renderer::Shape>(cone);
 	}
 
 	static PointLight buildLight()
 	{
 		return PointLight({ -10, 10, -10 }, Color(1, 1, 1));
 	}
-
 };
 
 class WorldB
