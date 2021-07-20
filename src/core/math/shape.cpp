@@ -26,3 +26,10 @@ const Intersections Shape::intersect(Ray ray) const
 
 	return intersectLocal(ray);
 }
+
+const BoundingBox Shape::parentSpaceBounds() const
+{
+	BoundingBox result = BoundingBox(bounds());
+	result.transform(m_transform);
+	return result;
+}

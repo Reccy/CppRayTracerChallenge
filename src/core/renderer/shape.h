@@ -79,6 +79,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		const Math::Intersections intersect(Math::Ray ray) const override;
 		const Math::Intersections intersectLocal(Math::Ray ray) const override;
 		const Math::BoundingBox bounds() const override;
+		const Math::BoundingBox parentSpaceBounds() const override;
 
 		// Equality methods
 

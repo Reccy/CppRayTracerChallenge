@@ -61,6 +61,12 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <returns>Bounding Box that contains the shape</returns>
 		virtual const BoundingBox bounds() const = 0;
+
+		/// <summary>
+		/// Returns the bounding box of the shape in the space of the parent shape
+		/// </summary>
+		/// <returns>Bounding Box that contains the shape, in the space of the parent</returns>
+		virtual const BoundingBox parentSpaceBounds() const = 0;
 	};
 }
 

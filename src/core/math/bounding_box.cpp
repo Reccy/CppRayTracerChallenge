@@ -86,20 +86,20 @@ void BoundingBox::transform(Transform transform)
 {
 	m_transform = transform;
 	
-	m_min = m_initialMin;
-	m_max = m_initialMax;
+	m_min = Point(INF, INF, INF);
+	m_max = Point(-INF, -INF, -INF);
 
 	Point min = m_initialMin;
 	Point max = m_initialMax;
 
-	add(transform * min);
-	add(transform * Point(min.x(), min.y(), max.z()));
-	add(transform * Point(min.x(), max.y(), min.z()));
-	add(transform * Point(min.x(), max.y(), max.z()));
-	add(transform * Point(max.x(), min.y(), min.z()));
-	add(transform * Point(max.x(), min.y(), max.z()));
-	add(transform * Point(max.x(), max.y(), min.z()));
-	add(transform * max);
+	add(m_transform * min);
+	add(m_transform * Point(min.x(), min.y(), max.z()));
+	add(m_transform * Point(min.x(), max.y(), min.z()));
+	add(m_transform * Point(min.x(), max.y(), max.z()));
+	add(m_transform * Point(max.x(), min.y(), min.z()));
+	add(m_transform * Point(max.x(), min.y(), max.z()));
+	add(m_transform * Point(max.x(), max.y(), min.z()));
+	add(m_transform * max);
 }
 
 const Transform BoundingBox::transform() const
