@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <math/sphere.h>
 #include <math/constants.h>
 #include <math/transform.h>
 #include <math/bounding_box.h>

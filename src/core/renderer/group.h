@@ -34,7 +34,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		void addChild(std::shared_ptr<Group> child);
 
+		void makeSubgroup(std::vector<std::shared_ptr<Shape>> children);
+
+		std::shared_ptr<Group> subgroup(int index) const;
+
 		std::weak_ptr<Group> parent() const;
+
+		std::tuple<std::vector<std::shared_ptr<Shape>>, std::vector<std::shared_ptr<Shape>>> partitionChildren();
 
 		const Math::Point worldToObject(Math::Point worldPosition) const;
 

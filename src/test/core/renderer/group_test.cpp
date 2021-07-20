@@ -165,3 +165,50 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, intersecting_ray_tests_children_
 
 	group->intersect(ray);
 }
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, partitioning_groups_children)
+{
+	auto sphere1 = std::make_shared<Math::Sphere>();
+	auto sphere2 = std::make_shared<Math::Sphere>();
+	auto sphere3 = std::make_shared<Math::Sphere>();
+
+	auto shape1 = std::make_shared<Shape>(sphere1);
+	shape1->transform(Math::Transform().translate(-2, 0, 0));
+
+	auto shape2 = std::make_shared<Shape>(sphere2);
+	shape2->transform(Math::Transform().translate(2, 0, 0));
+
+	auto shape3 = std::make_shared<Shape>(sphere3);
+
+	Group group = Group();
+	group.addChild(shape1);
+	group.addChild(shape2);
+	group.addChild(shape3);
+
+	auto [left, right] = group.partitionChildren();
+
+	EXPECT_EQ(group.includes(shape1), false);
+	EXPECT_EQ(group.includes(shape2), false);
+	EXPECT_EQ(group.includes(shape3), true);
+
+	EXPECT_EQ(left.at(0), shape1);
+	EXPECT_EQ(right.at(0), shape2);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, create_subgroup_from_list_of_children)
+{
+	auto sphere1 = std::make_shared<Math::Sphere>();
+	auto sphere2 = std::make_shared<Math::Sphere>();
+
+	auto shape1 = std::make_shared<Shape>(sphere1);
+	auto shape2 = std::make_shared<Shape>(sphere2);
+
+	auto group = Group();
+	group.makeSubgroup({ shape1, shape2 });
+
+	EXPECT_EQ(group.count(), 1); // Count 1 is the subgroup
+
+	auto subgroup = group.subgroup(0);
+
+	EXPECT_EQ(subgroup->count(), 2); // Count 2 is the children in the subgroup
+}

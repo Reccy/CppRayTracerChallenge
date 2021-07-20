@@ -83,9 +83,60 @@ void Group::addChild(std::shared_ptr<Group> child)
 	child->m_parent = weak_from_this();
 }
 
+void Group::makeSubgroup(std::vector<std::shared_ptr<Shape>> children)
+{
+	auto subgroup = std::make_shared<Group>();
+
+	for (std::shared_ptr<Shape> ptr : children)
+	{
+		subgroup->addChild(ptr);
+	}
+
+	m_groups.push_back(subgroup);
+}
+
+std::shared_ptr<Group> Group::subgroup(int index) const
+{
+	return m_groups.at(index);
+}
+
 std::weak_ptr<Group> Group::parent() const
 {
 	return m_parent;
+}
+
+std::tuple<std::vector<std::shared_ptr<Shape>>, std::vector<std::shared_ptr<Shape>>> Group::partitionChildren()
+{
+	auto [leftBox, rightBox] = bounds().split();
+
+	std::vector<std::shared_ptr<Shape>> leftBucket;
+	std::vector<std::shared_ptr<Shape>> rightBucket;
+
+	for (int i = 0; i < m_shapes.size(); ++i)
+	{
+		auto shape = m_shapes[i];
+		auto shapeBounds = shape->parentSpaceBounds();
+
+		if (leftBox.contains(shapeBounds))
+		{
+			leftBucket.push_back(shape);
+
+			m_shapes[i] = m_shapes.back();
+			m_shapes.pop_back();
+			continue;
+		}
+
+		if (rightBox.contains(shapeBounds))
+		{
+			rightBucket.push_back(shape);
+
+			m_shapes[i] = m_shapes.back();
+			m_shapes.pop_back();
+			continue;
+		}
+	}
+
+	return std::tuple(leftBucket, rightBucket);
 }
 
 const Point Group::worldToObject(Point worldPosition) const
@@ -128,7 +179,7 @@ bool Group::includes(std::shared_ptr<Shape> child) const
 
 int Group::size() const
 {
-	return static_cast<int>(m_shapes.size());
+	return static_cast<int>(m_shapes.size() + m_groups.size());
 }
 
 int Group::count() const
