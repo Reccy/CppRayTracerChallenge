@@ -27,7 +27,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		const Math::Intersections intersectLocal(Math::Ray ray) const override;
 
 		const Math::BoundingBox bounds() const override;
-		
+
 		const Math::BoundingBox parentSpaceBounds() const override;
 
 		void addChild(std::shared_ptr<Shape> child);
@@ -61,9 +61,12 @@ namespace CppRayTracerChallenge::Core::Renderer
 		bool empty() const;
 	private:
 		Math::Transform m_transform;
+		Math::BoundingBox m_bounds;
 		std::weak_ptr<Group> m_parent;
 		std::vector<std::shared_ptr<Shape>> m_shapes;
 		std::vector<std::shared_ptr<Group>> m_groups;
+
+		void recalculateBounds();
 	};
 }
 

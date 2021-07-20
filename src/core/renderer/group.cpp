@@ -38,7 +38,12 @@ const Intersections Group::intersectLocal(Ray ray) const
 	{
 		return result;
 	}
-
+	
+	for (int i = 0; i < m_groups.size(); ++i)
+	{
+		result += m_groups[i]->intersect(ray);
+	}
+	
 	for (int i = 0; i < m_shapes.size(); ++i)
 	{
 		result += m_shapes[i]->intersect(ray);
@@ -48,6 +53,11 @@ const Intersections Group::intersectLocal(Ray ray) const
 }
 
 const BoundingBox Group::bounds() const
+{
+	return m_bounds;
+}
+
+void Group::recalculateBounds()
 {
 	BoundingBox box = BoundingBox();
 
@@ -61,7 +71,7 @@ const BoundingBox Group::bounds() const
 		box.add(m_shapes.at(i)->parentSpaceBounds());
 	}
 
-	return box;
+	m_bounds = box;
 }
 
 const BoundingBox Group::parentSpaceBounds() const
@@ -75,12 +85,14 @@ void Group::addChild(std::shared_ptr<Shape> child)
 {
 	m_shapes.push_back(child);
 	child->parent(weak_from_this());
+	recalculateBounds();
 }
 
 void Group::addChild(std::shared_ptr<Group> child)
 {
 	m_groups.push_back(child);
 	child->m_parent = weak_from_this();
+	recalculateBounds();
 }
 
 void Group::makeSubgroup(std::vector<std::shared_ptr<Shape>> children)
@@ -93,6 +105,7 @@ void Group::makeSubgroup(std::vector<std::shared_ptr<Shape>> children)
 	}
 
 	m_groups.push_back(subgroup);
+	recalculateBounds();
 }
 
 std::shared_ptr<Group> Group::subgroup(int index) const
@@ -143,8 +156,8 @@ std::tuple<std::vector<std::shared_ptr<Shape>>, std::vector<std::shared_ptr<Shap
 
 	for (int i = 0; i < m_shapes.size(); ++i)
 	{
-		auto shape = m_shapes[i];
-		auto shapeBounds = shape->parentSpaceBounds();
+		std::shared_ptr<Shape> shape = m_shapes[i];
+		const BoundingBox& shapeBounds = shape->parentSpaceBounds();
 
 		if (leftBox.contains(shapeBounds))
 		{

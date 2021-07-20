@@ -85,7 +85,6 @@ public:
 		World world = World();
 
 		Group bvhGroup = Group();
-		bvhGroup.addChild(floor);
 		bvhGroup.addChild(middleSphere);
 		bvhGroup.addChild(rightSphere);
 		bvhGroup.addChild(leftSphere);
@@ -94,10 +93,11 @@ public:
 		bvhGroup.addChild(cylinderA);
 		bvhGroup.addChild(coneA);
 
-		bvhGroup.divide(1);
+		bvhGroup.divide(3);
 
 		world.addGroup(bvhGroup);
 		world.addLight(light);
+		world.addObject(*floor);
 
 		return world;
 	}

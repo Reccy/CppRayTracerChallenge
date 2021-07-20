@@ -98,8 +98,8 @@ namespace CppRayTracerChallenge::Core::Math
 		CheckAxisResult checkAxis(double origin, double direction, double min, double max) const;
 
 		Transform m_transform;
-		const Point m_initialMin;
-		const Point m_initialMax;
+		Point m_initialMin;
+		Point m_initialMax;
 		Point m_min;
 		Point m_max;
 	};
