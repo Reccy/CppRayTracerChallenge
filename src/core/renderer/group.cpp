@@ -100,6 +100,34 @@ std::shared_ptr<Group> Group::subgroup(int index) const
 	return m_groups.at(index);
 }
 
+std::shared_ptr<Shape> Group::child(int index) const
+{
+	return m_shapes.at(index);
+}
+
+void Group::divide(int threshold)
+{
+	if (threshold <= m_shapes.size())
+	{
+		auto [left, right] = partitionChildren();
+
+		if (!left.empty())
+		{
+			makeSubgroup(left);
+		}
+
+		if (!right.empty())
+		{
+			makeSubgroup(right);
+		}
+	}
+
+	for (std::shared_ptr<Group> subgroup : m_groups)
+	{
+		subgroup->divide(threshold);
+	}
+}
+
 std::weak_ptr<Group> Group::parent() const
 {
 	return m_parent;
@@ -111,6 +139,7 @@ std::tuple<std::vector<std::shared_ptr<Shape>>, std::vector<std::shared_ptr<Shap
 
 	std::vector<std::shared_ptr<Shape>> leftBucket;
 	std::vector<std::shared_ptr<Shape>> rightBucket;
+	std::vector<std::shared_ptr<Shape>> thisBucket;
 
 	for (int i = 0; i < m_shapes.size(); ++i)
 	{
@@ -120,21 +149,19 @@ std::tuple<std::vector<std::shared_ptr<Shape>>, std::vector<std::shared_ptr<Shap
 		if (leftBox.contains(shapeBounds))
 		{
 			leftBucket.push_back(shape);
-
-			m_shapes[i] = m_shapes.back();
-			m_shapes.pop_back();
 			continue;
 		}
 
 		if (rightBox.contains(shapeBounds))
 		{
 			rightBucket.push_back(shape);
-
-			m_shapes[i] = m_shapes.back();
-			m_shapes.pop_back();
 			continue;
 		}
+
+		thisBucket.push_back(shape);
 	}
+
+	m_shapes = thisBucket;
 
 	return std::tuple(leftBucket, rightBucket);
 }

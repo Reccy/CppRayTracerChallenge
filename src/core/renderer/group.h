@@ -38,6 +38,10 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		std::shared_ptr<Group> subgroup(int index) const;
 
+		std::shared_ptr<Shape> child(int index) const;
+
+		void divide(int threshold);
+
 		std::weak_ptr<Group> parent() const;
 
 		std::tuple<std::vector<std::shared_ptr<Shape>>, std::vector<std::shared_ptr<Shape>>> partitionChildren();

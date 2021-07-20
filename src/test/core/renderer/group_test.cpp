@@ -212,3 +212,78 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, create_subgroup_from_list_of_chi
 
 	EXPECT_EQ(subgroup->count(), 2); // Count 2 is the children in the subgroup
 }
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, subdividing_group_partitions_its_children)
+{
+	auto sphere1 = std::make_shared<Math::Sphere>();
+	auto sphere2 = std::make_shared<Math::Sphere>();
+	auto sphere3 = std::make_shared<Math::Sphere>();
+
+	auto shape1 = std::make_shared<Shape>(sphere1);
+	shape1->transform(Math::Transform()
+		.translate(-2, -2, 0));
+
+	auto shape2 = std::make_shared<Shape>(sphere2);
+	shape2->transform(Math::Transform()
+		.translate(-2, 2, 0));
+
+	auto shape3 = std::make_shared<Shape>(sphere3);
+	shape3->transform(Math::Transform()
+		.scale(4, 4, 4));
+
+	auto group = std::make_shared<Group>();
+
+	group->addChild(shape1);
+	group->addChild(shape2);
+	group->addChild(shape3);
+
+	group->divide(1);
+
+	EXPECT_EQ(group->child(0), shape3);
+	
+	auto subgroup = group->subgroup(0);
+
+	EXPECT_EQ(subgroup->count(), 2);
+	EXPECT_EQ(subgroup->subgroup(0)->child(0), shape1);
+	EXPECT_EQ(subgroup->subgroup(1)->child(0), shape2);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, subdividing_group_with_too_few_children)
+{
+	auto sphere1 = std::make_shared<Math::Sphere>();
+	auto sphere2 = std::make_shared<Math::Sphere>();
+	auto sphere3 = std::make_shared<Math::Sphere>();
+	auto sphere4 = std::make_shared<Math::Sphere>();
+
+	auto shape1 = std::make_shared<Shape>(sphere1);
+	shape1->transform(Math::Transform()
+		.translate(-2, 0, 0));
+
+	auto shape2 = std::make_shared<Shape>(sphere2);
+	shape2->transform(Math::Transform()
+		.translate(2, 1, 0));
+
+	auto shape3 = std::make_shared<Shape>(sphere3);
+	shape3->transform(Math::Transform()
+		.translate(2, -1, 0));
+
+	auto shape4 = std::make_shared<Shape>(sphere4);
+
+	auto group = std::make_shared<Group>();
+
+	group->makeSubgroup({ shape1, shape2, shape3 });
+
+	group->addChild(shape4);
+
+	group->divide(3);
+
+	auto subgroup = group->subgroup(0);
+
+	EXPECT_EQ(group->child(0), shape4);
+
+	EXPECT_EQ(subgroup->count(), 2);
+
+	EXPECT_EQ(subgroup->subgroup(0)->child(0), shape1);
+	EXPECT_EQ(subgroup->subgroup(1)->child(0), shape2);
+	EXPECT_EQ(subgroup->subgroup(1)->child(1), shape3);
+}
