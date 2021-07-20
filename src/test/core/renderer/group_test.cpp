@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 #include <renderer/group.h>
 #include <renderer/shape.h>
 #include <math/transform.h>
@@ -9,6 +10,10 @@
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core;
+
+using ::testing::Exactly;
+using ::testing::AtLeast;
+using ::testing::_;
 
 TEST(CppRayTracerChallenge_Core_Renderer_Group, creating_new_group)
 {
@@ -114,4 +119,49 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, group_has_bounding_box_that_cont
 
 	EXPECT_EQ(box.min(), Math::Point(-4.5, -3, -5));
 	EXPECT_EQ(box.max(), Math::Point(4, 7, 4.5));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, intersecting_ray_doesnt_test_children_if_box_is_missed)
+{
+	class MockSphere : public Math::Sphere
+	{
+	public:
+		MOCK_METHOD(const Math::Intersections, intersect, (Math::Ray ray), (const, override));
+	};
+
+	auto mockSphere = std::make_shared<MockSphere>();
+	EXPECT_CALL(*mockSphere, intersect(_))
+		.Times(Exactly(0));
+
+	auto shape = std::make_shared<Shape>(mockSphere);
+
+	auto group = std::make_shared<Group>();
+	group->addChild(shape);
+
+	Math::Ray ray = Math::Ray({ 0, 0, -5 }, { 0, 1, 0 });
+
+	group->intersect(ray);
+	
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, intersecting_ray_tests_children_if_box_is_hit)
+{
+	class MockSphere : public Math::Sphere
+	{
+	public:
+		MOCK_METHOD(const Math::Intersections, intersect, (Math::Ray ray), (const, override));
+	};
+
+	auto mockSphere = std::make_shared<MockSphere>();
+	EXPECT_CALL(*mockSphere, intersect(_))
+		.Times(Exactly(1));
+
+	auto shape = std::make_shared<Shape>(mockSphere);
+
+	auto group = std::make_shared<Group>();
+	group->addChild(shape);
+
+	Math::Ray ray = Math::Ray({ 0, 0, -5 }, { 0, 0, 1 });
+
+	group->intersect(ray);
 }

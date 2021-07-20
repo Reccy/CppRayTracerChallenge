@@ -34,6 +34,11 @@ const Intersections Group::intersectLocal(Ray ray) const
 {
 	Intersections result = Intersections();
 
+	if (!bounds().intersects(ray))
+	{
+		return result;
+	}
+
 	for (int i = 0; i < m_shapes.size(); ++i)
 	{
 		result += m_shapes[i]->intersect(ray);
