@@ -21,3 +21,8 @@ const Intersections Plane::intersectLocal(const Ray ray) const
 
 	return Intersections({Intersection(t, *this)});
 }
+
+const BoundingBox Plane::bounds() const
+{
+	return BoundingBox({ -INF, 0, -INF }, { INF, 0, INF });
+}

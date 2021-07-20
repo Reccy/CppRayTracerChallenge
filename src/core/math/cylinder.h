@@ -43,6 +43,12 @@ namespace CppRayTracerChallenge::Core::Math
 		const Intersections intersectLocal(Ray ray) const override;
 
 		/// <summary>
+		/// Returns the bounding box of the cylinder
+		/// </summary>
+		/// <returns>Cylinder's bounding box</returns>
+		const BoundingBox bounds() const override;
+
+		/// <summary>
 		/// Returns the maximum bounds of the Cylinder
 		/// </summary>
 		/// <returns>Max length</returns>

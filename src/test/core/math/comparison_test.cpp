@@ -44,3 +44,12 @@ TEST(CppRayTracerChallenge_Core_Math_Comparison, compare_values_outside_epsilon_
 	float floatB = 1.00001f;
 	EXPECT_FALSE(Comparison::equal(floatA, floatB));
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Comparison, compare_infinity)
+{
+	EXPECT_TRUE(Comparison::equal(INF, INF));
+	EXPECT_TRUE(Comparison::equal(-INF, -INF));
+	EXPECT_FALSE(Comparison::equal(-INF, INF));
+	EXPECT_FALSE(Comparison::equal(INF, -INF));
+	EXPECT_FALSE(Comparison::equal(INF, 245123.123));
+}

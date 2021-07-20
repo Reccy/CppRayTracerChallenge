@@ -111,6 +111,15 @@ const Intersections Cone::intersectLocal(Ray ray) const
 	return Intersections(intersections);
 }
 
+const BoundingBox Cone::bounds() const
+{
+	double a = abs(m_minimum);
+	double b = abs(m_maximum);
+	double limit = std::max(a, b);
+
+	return BoundingBox({ -limit, m_minimum, -limit }, { limit, m_maximum, limit });
+}
+
 double Cone::maximum() const
 {
 	return m_maximum;

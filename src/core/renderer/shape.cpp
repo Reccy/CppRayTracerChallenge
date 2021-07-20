@@ -120,6 +120,16 @@ const Math::Intersections Shape::intersectLocal(Math::Ray ray) const
 	return Math::Intersections(newIntersections);
 }
 
+const Math::BoundingBox Shape::bounds() const
+{
+	return m_shape->bounds();
+}
+
+const Math::BoundingBox Shape::parentSpaceBounds() const
+{
+	return m_shape->parentSpaceBounds();
+}
+
 bool Shape::operator==(const Shape& other) const
 {
 	return (m_shape == other.m_shape) && (m_material == other.m_material);

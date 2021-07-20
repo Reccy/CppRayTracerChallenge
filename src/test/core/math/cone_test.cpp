@@ -130,3 +130,27 @@ TEST(CppRayTracerChallenge_Core_Math_Cone, computing_normal_vector_on_cone)
 		EXPECT_EQ(result, param.normal);
 	}
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Cone, unbound_cone_has_bounding_box)
+{
+	Cone cone = Cone();
+	BoundingBox box = cone.bounds();
+
+	Point expectedMin = Point(-INF, -INF, -INF);
+	Point expectedMax = Point(INF, INF, INF);
+
+	EXPECT_EQ(box.min(), expectedMin);
+	EXPECT_EQ(box.max(), expectedMax);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Cone, bound_cone_has_bounding_box)
+{
+	Cone cone = Cone(-5, 3);
+	BoundingBox box = cone.bounds();
+
+	Point expectedMin = Point(-5, -5, -5);
+	Point expectedMax = Point(5, 3, 5);
+
+	EXPECT_EQ(box.min(), expectedMin);
+	EXPECT_EQ(box.max(), expectedMax);
+}

@@ -67,6 +67,12 @@ World World::addObject(Shape obj)
 	return *this;
 }
 
+World World::addGroup(Group group)
+{
+	m_groups.push_back(group);
+	return *this;
+}
+
 const Shape& World::objectAt(int index) const
 {
 	return m_objects.at(index);
@@ -90,6 +96,11 @@ int World::lightCount() const
 Math::Intersections World::intersectRay(const Math::Ray ray) const
 {
 	Math::Intersections result = Math::Intersections();
+
+	for (const Group& group : m_groups)
+	{
+		result += group.intersect(ray);
+	}
 
 	for (const Shape& object : m_objects)
 	{

@@ -5,6 +5,7 @@
 #include "vector.h"
 #include "point.h"
 #include "intersections.h"
+#include "bounding_box.h"
 #include "ray.h"
 
 namespace CppRayTracerChallenge::Core::Math
@@ -54,6 +55,18 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="ray">The local space ray to intersect with the shape</param>
 		/// <returns>The Intersections</returns>
 		virtual const Intersections intersectLocal(Ray ray) const = 0;
+
+		/// <summary>
+		/// Returns the bounding box of the shape
+		/// </summary>
+		/// <returns>Bounding Box that contains the shape</returns>
+		virtual const BoundingBox bounds() const = 0;
+
+		/// <summary>
+		/// Returns the bounding box of the shape in the space of the parent shape
+		/// </summary>
+		/// <returns>Bounding Box that contains the shape, in the space of the parent</returns>
+		virtual const BoundingBox parentSpaceBounds() const = 0;
 	};
 }
 

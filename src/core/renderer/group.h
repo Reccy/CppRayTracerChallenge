@@ -14,7 +14,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 	class Group : public Math::IShape, public std::enable_shared_from_this<Group>
 	{
 	public:
-		void transform(Math::Transform transform) override;
+		void transform(Math::Transform transform);
 
 		const Math::Transform transform() const override;
 
@@ -26,11 +26,25 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		const Math::Intersections intersectLocal(Math::Ray ray) const override;
 
+		const Math::BoundingBox bounds() const override;
+
+		const Math::BoundingBox parentSpaceBounds() const override;
+
 		void addChild(std::shared_ptr<Shape> child);
 
 		void addChild(std::shared_ptr<Group> child);
 
+		void makeSubgroup(std::vector<std::shared_ptr<Shape>> children);
+
+		std::shared_ptr<Group> subgroup(int index) const;
+
+		std::shared_ptr<Shape> child(int index) const;
+
+		void divide(int threshold);
+
 		std::weak_ptr<Group> parent() const;
+
+		std::tuple<std::vector<std::shared_ptr<Shape>>, std::vector<std::shared_ptr<Shape>>> partitionChildren();
 
 		const Math::Point worldToObject(Math::Point worldPosition) const;
 
@@ -47,9 +61,12 @@ namespace CppRayTracerChallenge::Core::Renderer
 		bool empty() const;
 	private:
 		Math::Transform m_transform;
+		Math::BoundingBox m_bounds;
 		std::weak_ptr<Group> m_parent;
 		std::vector<std::shared_ptr<Shape>> m_shapes;
 		std::vector<std::shared_ptr<Group>> m_groups;
+
+		void recalculateBounds();
 	};
 }
 

@@ -33,6 +33,12 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="ray">The ray to intersect with the sphere</param>
 		/// <returns>The Intersections</returns>
 		const Intersections intersect(Ray ray) const override;
+
+		/// <summary>
+		/// Returns the bounding box of the shape in the space of the parent shape
+		/// </summary>
+		/// <returns>Bounding Box that contains the shape, in the space of the parent</returns>
+		const BoundingBox parentSpaceBounds() const override;
 	protected:
 		Transform m_transform;
 	};

@@ -44,23 +44,23 @@ const Transform Transform::rotate(const double x, const double y, const double z
 
 	Matrix<double> xRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
 		1, 0, 0, 0,
-			0, cos(xRad), -sin(xRad), 0,
-			0, sin(xRad), cos(xRad), 0,
-			0, 0, 0, 1
+		0, cos(xRad), -sin(xRad), 0,
+		0, sin(xRad), cos(xRad), 0,
+		0, 0, 0, 1
 	});
 
 	Matrix<double> yRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
 		cos(yRad), 0, sin(yRad), 0,
-			0, 1, 0, 0,
-			-sin(yRad), 0, cos(yRad), 0,
-			0, 0, 0, 1
+		0, 1, 0, 0,
+		-sin(yRad), 0, cos(yRad), 0,
+		0, 0, 0, 1
 	});
 
 	Matrix<double> zRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
 		cos(zRad), -sin(zRad), 0, 0,
-			sin(zRad), cos(zRad), 0, 0,
-			0, 0, 1, 0,
-			0, 0, 0, 1
+		sin(zRad), cos(zRad), 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 1
 	});
 
 	copy.m_matrices.push(xRotationMatrix);

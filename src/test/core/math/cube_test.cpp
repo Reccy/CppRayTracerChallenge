@@ -125,3 +125,15 @@ TEST(CppRayTracerChallenge_Core_Math_Cube, normal_on_surface_of_cube)
 		EXPECT_EQ(normal, param.normal);
 	}
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Cube, cube_has_bounding_box)
+{
+	Cube cube = Cube();
+	BoundingBox box = cube.bounds();
+
+	Point expectedMin = Point(-1, -1, -1);
+	Point expectedMax = Point(1, 1, 1);
+
+	EXPECT_EQ(box.min(), expectedMin);
+	EXPECT_EQ(box.max(), expectedMax);
+}

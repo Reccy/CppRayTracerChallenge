@@ -166,3 +166,15 @@ TEST(CppRayTracerChallenge_Core_Math_Sphere, intersecting_translated_sphere_with
 
 	EXPECT_EQ(intersections.count(), 0);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Sphere, sphere_has_bounding_box)
+{
+	Sphere sphere = Sphere();
+	BoundingBox box = sphere.bounds();
+
+	Point expectedMin = Point(-1, -1, -1);
+	Point expectedMax = Point(1, 1, 1);
+
+	EXPECT_EQ(box.min(), expectedMin);
+	EXPECT_EQ(box.max(), expectedMax);
+}

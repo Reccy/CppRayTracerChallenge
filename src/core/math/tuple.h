@@ -73,10 +73,30 @@ namespace CppRayTracerChallenge::Core::Math {
 			return Tuple(this->m_x + other.m_x, this->m_y + other.m_y, this->m_z + other.m_z, this->m_w + other.m_w);
 		};
 
+		Tuple& operator+=(const Tuple& other)
+		{
+			Tuple res = *this + other;
+			this->m_x = res.m_x;
+			this->m_y = res.m_y;
+			this->m_z = res.m_z;
+			this->m_w = res.m_w;
+			return *this;
+		}
+
 		Tuple operator-(const Tuple& other) const
 		{
 			return Tuple(this->m_x - other.m_x, this->m_y - other.m_y, this->m_z - other.m_z, this->m_w - other.m_w);
 		};
+
+		Tuple& operator-=(const Tuple& other)
+		{
+			Tuple res = *this - other;
+			this->m_x = res.m_x;
+			this->m_y = res.m_y;
+			this->m_z = res.m_z;
+			this->m_w = res.m_w;
+			return *this;
+		}
 
 		Tuple operator-() const
 		{
@@ -88,10 +108,30 @@ namespace CppRayTracerChallenge::Core::Math {
 			return Tuple(this->m_x * scalar, this->m_y * scalar, this->m_z * scalar, this->m_w * scalar);
 		};
 
+		Tuple& operator*=(const T scalar)
+		{
+			Tuple res = *this * scalar;
+			this->m_x = res.m_x;
+			this->m_y = res.m_y;
+			this->m_z = res.m_z;
+			this->m_w = res.m_w;
+			return *this;
+		}
+
 		Tuple operator/(const T scalar) const
 		{
 			return Tuple(this->m_x / scalar, this->m_y / scalar, this->m_z / scalar, this->m_w / scalar);
 		};
+
+		Tuple& operator/=(const T scalar)
+		{
+			Tuple res = *this / scalar;
+			this->m_x = res.m_x;
+			this->m_y = res.m_y;
+			this->m_z = res.m_z;
+			this->m_w = res.m_w;
+			return *this;
+		}
 
 		friend std::ostream& operator<<(std::ostream& os, const Tuple& tuple)
 		{

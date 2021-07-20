@@ -1,12 +1,19 @@
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 #include <renderer/group.h>
 #include <renderer/shape.h>
 #include <math/transform.h>
+#include <math/bounding_box.h>
 #include <math/sphere.h>
+#include <math/cylinder.h>
 #include <math/ray.h>
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core;
+
+using ::testing::Exactly;
+using ::testing::AtLeast;
+using ::testing::_;
 
 TEST(CppRayTracerChallenge_Core_Renderer_Group, creating_new_group)
 {
@@ -86,4 +93,197 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, intersecting_transformed_group)
 	auto intersections = group->intersect(ray);
 
 	EXPECT_EQ(intersections.count(), 2);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, group_has_bounding_box_that_contains_children)
+{
+	auto mathSphere = std::make_shared<Math::Sphere>();
+	auto sphere = std::make_shared<Shape>(mathSphere);
+
+	sphere->transform(Math::Transform()
+		.scale(2, 2, 2)
+		.translate(2, 5, -3));
+
+	auto mathCylinder = std::make_shared<Math::Cylinder>(-2, 2);
+	auto cylinder = std::make_shared<Shape>(mathCylinder);
+
+	cylinder->transform(Math::Transform()
+		.scale(0.5, 1, 0.5)
+		.translate(-4, -1, 4));
+
+	auto group = Group();
+	group.addChild(sphere);
+	group.addChild(cylinder);
+
+	Math::BoundingBox box = group.bounds();
+
+	EXPECT_EQ(box.min(), Math::Point(-4.5, -3, -5));
+	EXPECT_EQ(box.max(), Math::Point(4, 7, 4.5));
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, intersecting_ray_doesnt_test_children_if_box_is_missed)
+{
+	class MockSphere : public Math::Sphere
+	{
+	public:
+		MOCK_METHOD(const Math::Intersections, intersect, (Math::Ray ray), (const, override));
+	};
+
+	auto mockSphere = std::make_shared<MockSphere>();
+	EXPECT_CALL(*mockSphere, intersect(_))
+		.Times(Exactly(0));
+
+	auto shape = std::make_shared<Shape>(mockSphere);
+
+	auto group = std::make_shared<Group>();
+	group->addChild(shape);
+
+	Math::Ray ray = Math::Ray({ 0, 0, -5 }, { 0, 1, 0 });
+
+	group->intersect(ray);
+	
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, intersecting_ray_tests_children_if_box_is_hit)
+{
+	class MockSphere : public Math::Sphere
+	{
+	public:
+		MOCK_METHOD(const Math::Intersections, intersect, (Math::Ray ray), (const, override));
+	};
+
+	auto mockSphere = std::make_shared<MockSphere>();
+	EXPECT_CALL(*mockSphere, intersect(_))
+		.Times(Exactly(1));
+
+	auto shape = std::make_shared<Shape>(mockSphere);
+
+	auto group = std::make_shared<Group>();
+	group->addChild(shape);
+
+	Math::Ray ray = Math::Ray({ 0, 0, -5 }, { 0, 0, 1 });
+
+	group->intersect(ray);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, partitioning_groups_children)
+{
+	auto sphere1 = std::make_shared<Math::Sphere>();
+	auto sphere2 = std::make_shared<Math::Sphere>();
+	auto sphere3 = std::make_shared<Math::Sphere>();
+
+	auto shape1 = std::make_shared<Shape>(sphere1);
+	shape1->transform(Math::Transform().translate(-2, 0, 0));
+
+	auto shape2 = std::make_shared<Shape>(sphere2);
+	shape2->transform(Math::Transform().translate(2, 0, 0));
+
+	auto shape3 = std::make_shared<Shape>(sphere3);
+
+	Group group = Group();
+	group.addChild(shape1);
+	group.addChild(shape2);
+	group.addChild(shape3);
+
+	auto [left, right] = group.partitionChildren();
+
+	EXPECT_EQ(group.includes(shape1), false);
+	EXPECT_EQ(group.includes(shape2), false);
+	EXPECT_EQ(group.includes(shape3), true);
+
+	EXPECT_EQ(left.at(0), shape1);
+	EXPECT_EQ(right.at(0), shape2);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, create_subgroup_from_list_of_children)
+{
+	auto sphere1 = std::make_shared<Math::Sphere>();
+	auto sphere2 = std::make_shared<Math::Sphere>();
+
+	auto shape1 = std::make_shared<Shape>(sphere1);
+	auto shape2 = std::make_shared<Shape>(sphere2);
+
+	auto group = Group();
+	group.makeSubgroup({ shape1, shape2 });
+
+	EXPECT_EQ(group.count(), 1); // Count 1 is the subgroup
+
+	auto subgroup = group.subgroup(0);
+
+	EXPECT_EQ(subgroup->count(), 2); // Count 2 is the children in the subgroup
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, subdividing_group_partitions_its_children)
+{
+	auto sphere1 = std::make_shared<Math::Sphere>();
+	auto sphere2 = std::make_shared<Math::Sphere>();
+	auto sphere3 = std::make_shared<Math::Sphere>();
+
+	auto shape1 = std::make_shared<Shape>(sphere1);
+	shape1->transform(Math::Transform()
+		.translate(-2, -2, 0));
+
+	auto shape2 = std::make_shared<Shape>(sphere2);
+	shape2->transform(Math::Transform()
+		.translate(-2, 2, 0));
+
+	auto shape3 = std::make_shared<Shape>(sphere3);
+	shape3->transform(Math::Transform()
+		.scale(4, 4, 4));
+
+	auto group = std::make_shared<Group>();
+
+	group->addChild(shape1);
+	group->addChild(shape2);
+	group->addChild(shape3);
+
+	group->divide(1);
+
+	EXPECT_EQ(group->child(0), shape3);
+	
+	auto subgroup = group->subgroup(0);
+
+	EXPECT_EQ(subgroup->count(), 2);
+	EXPECT_EQ(subgroup->subgroup(0)->child(0), shape1);
+	EXPECT_EQ(subgroup->subgroup(1)->child(0), shape2);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Group, subdividing_group_with_too_few_children)
+{
+	auto sphere1 = std::make_shared<Math::Sphere>();
+	auto sphere2 = std::make_shared<Math::Sphere>();
+	auto sphere3 = std::make_shared<Math::Sphere>();
+	auto sphere4 = std::make_shared<Math::Sphere>();
+
+	auto shape1 = std::make_shared<Shape>(sphere1);
+	shape1->transform(Math::Transform()
+		.translate(-2, 0, 0));
+
+	auto shape2 = std::make_shared<Shape>(sphere2);
+	shape2->transform(Math::Transform()
+		.translate(2, 1, 0));
+
+	auto shape3 = std::make_shared<Shape>(sphere3);
+	shape3->transform(Math::Transform()
+		.translate(2, -1, 0));
+
+	auto shape4 = std::make_shared<Shape>(sphere4);
+
+	auto group = std::make_shared<Group>();
+
+	group->makeSubgroup({ shape1, shape2, shape3 });
+
+	group->addChild(shape4);
+
+	group->divide(3);
+
+	auto subgroup = group->subgroup(0);
+
+	EXPECT_EQ(group->child(0), shape4);
+
+	EXPECT_EQ(subgroup->count(), 2);
+
+	EXPECT_EQ(subgroup->subgroup(0)->child(0), shape1);
+	EXPECT_EQ(subgroup->subgroup(1)->child(0), shape2);
+	EXPECT_EQ(subgroup->subgroup(1)->child(1), shape3);
 }

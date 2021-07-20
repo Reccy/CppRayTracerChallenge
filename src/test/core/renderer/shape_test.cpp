@@ -5,6 +5,7 @@
 #include "renderer/patterns/solid_color.h"
 #include "renderer/patterns/test_pattern.h"
 #include "math/sphere.h"
+#include "math/bounding_box.h"
 #include "math/trig.h"
 #include "math/comparison.h"
 
@@ -21,6 +22,7 @@ using Math::Transform;
 using Math::Point;
 using Math::Vector;
 using Math::Tuple;
+using Math::BoundingBox;
 using Graphics::Color;
 
 TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_wraps_transform)
@@ -242,4 +244,21 @@ TEST(CppRayTracerChallenge_Core_Renderer_Shape, shape_inequality_material)
 
 	EXPECT_FALSE(shape1 == shape2);
 	EXPECT_TRUE(shape1 != shape2);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_Shape, querying_bounding_box_in_parents_space)
+{
+	auto sphere = std::make_shared<Sphere>();
+	
+	sphere->transform(Transform()
+		.scale(0.5, 2, 4)
+		.translate(1, -3, 5));
+
+	BoundingBox box = sphere->parentSpaceBounds();
+
+	Point expectedMin = Point(0.5, -5, 1);
+	Point expectedMax = Point(1.5, -1, 9);
+
+	EXPECT_EQ(box.min(), expectedMin);
+	EXPECT_EQ(box.max(), expectedMax);
 }

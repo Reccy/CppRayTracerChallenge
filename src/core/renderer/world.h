@@ -53,6 +53,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		World addObject(Shape obj);
 
 		/// <summary>
+		/// Adds a group to the world
+		/// </summary>
+		/// <param name="group">The group to add</param>
+		/// <returns>The world, after the group being added to it</returns>
+		World addGroup(Group group);
+
+		/// <summary>
 		/// Returns a const ref to the object at the index
 		/// </summary>
 		/// <param name="index">Index of the object</param>
@@ -155,6 +162,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 	private:
 		std::vector<PointLight> m_lights;
 		std::vector<Shape> m_objects;
+		std::vector<Group> m_groups;
 		int const static DEFAULT_REMAINING_CALLS = 16;
 	};
 }

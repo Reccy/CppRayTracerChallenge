@@ -208,3 +208,27 @@ TEST(CppRayTracerChallenge_Core_Math_Cylinder, normal_vector_on_caps)
 		EXPECT_EQ(result, param.normal);
 	}
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Cylinder, unbound_cylinder_has_bounding_box)
+{
+	Cylinder cylinder = Cylinder();
+	BoundingBox box = cylinder.bounds();
+
+	Point expectedMin = Point(-1, -INF, -1);
+	Point expectedMax = Point(1, INF, 1);
+
+	EXPECT_EQ(box.min(), expectedMin);
+	EXPECT_EQ(box.max(), expectedMax);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Cylinder, bound_cylinder_has_bounding_box)
+{
+	Cylinder cylinder = Cylinder(-5, 3);
+	BoundingBox box = cylinder.bounds();
+
+	Point expectedMin = Point(-1, -5, -1);
+	Point expectedMax = Point(1, 3, 1);
+
+	EXPECT_EQ(box.min(), expectedMin);
+	EXPECT_EQ(box.max(), expectedMax);
+}

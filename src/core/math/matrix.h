@@ -146,6 +146,9 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <returns>The determinant</returns>
 		T determinant() const
 		{
+			if (m_determinant != 0)
+				return m_determinant;
+
 			if (m_rows != m_columns)
 			{
 				throw MatrixUndefinedDeterminantException(m_rows, m_columns);
@@ -170,6 +173,7 @@ namespace CppRayTracerChallenge::Core::Math
 				result += cofactor(0, col) * m_data[indexAt(0, col)];
 			}
 
+			m_determinant = result;
 			return result;
 		}
 
@@ -337,6 +341,7 @@ namespace CppRayTracerChallenge::Core::Math
 		}
 	private:
 		int m_rows, m_columns;
+		mutable T m_determinant = 0;
 		std::vector<T> m_data;
 
 		int indexAt(const int row, const int column) const

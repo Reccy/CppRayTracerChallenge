@@ -3,6 +3,7 @@
 
 #include "material.h"
 #include "group.h"
+#include "../math/bounding_box.h"
 #include "../math/transform.h"
 #include "../math/vector.h"
 #include "../math/i_shape.h"
@@ -77,6 +78,8 @@ namespace CppRayTracerChallenge::Core::Renderer
 		const Math::Vector normalLocal(const Math::Point position) const override;
 		const Math::Intersections intersect(Math::Ray ray) const override;
 		const Math::Intersections intersectLocal(Math::Ray ray) const override;
+		const Math::BoundingBox bounds() const override;
+		const Math::BoundingBox parentSpaceBounds() const override;
 
 		// Equality methods
 
