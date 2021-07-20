@@ -5,13 +5,7 @@ using namespace CppRayTracerChallenge::Core::Math;
 
 Cube::Cube() {}
 
-struct CheckAxisResult
-{
-	double tMin;
-	double tMax;
-};
-
-CheckAxisResult checkAxis(double origin, double direction)
+Cube::CheckAxisResult Cube::checkAxis(double origin, double direction) const
 {
 	double tMinNumerator = (-1 - origin);
 	double tMaxNumerator = (1 - origin);
@@ -44,7 +38,7 @@ CheckAxisResult checkAxis(double origin, double direction)
 
 	return result;
 }
-
+ 
 const Vector Cube::normalLocal(const Point position) const
 {
 	double maxComponent = std::max({ abs(position.x()), abs(position.y()), abs(position.z()) });

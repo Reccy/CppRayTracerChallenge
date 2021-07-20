@@ -3,6 +3,7 @@
 #include <math/transform.h>
 #include <math/bounding_box.h>
 #include <math/trig.h>
+#include <math/ray.h>
 
 using namespace CppRayTracerChallenge::Core::Math;
 using namespace CppRayTracerChallenge::Core::Math::Trig;
@@ -141,4 +142,86 @@ TEST(CppRayTracerChallenge_Core_Math_BoundingBox, transforming_a_bounding_box)
 
 	EXPECT_EQ(box.min(), expectedMin);
 	EXPECT_EQ(box.max(), expectedMax);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Bounding_box, intersecting_ray_with_bounding_box_at_origin)
+{
+	struct Param
+	{
+		Param(Point origin, Vector direction, bool result)
+			: origin(origin), direction(direction), result(result) {};
+
+		Point origin;
+		Vector direction;
+		bool result;
+	};
+
+	std::vector<Param> paramsList = {
+		{{5, 0.5, 0}, {-1, 0, 0}, true},
+		{{-5, 0.5, 0}, {1, 0, 0}, true},
+		{{0.5, 5, 0}, {0, -1, 0}, true},
+		{{0.5, -5, 0}, {0, 1, 0}, true},
+		{{0.5, 0, 5}, {0, 0, -1}, true},
+		{{0.5, 0, -5}, {0, 0, 1}, true},
+		{{0, 0.5, 0}, {0, 0, 1}, true},
+		{{-2, 0, 0}, {2, 4, 6}, false},
+		{{0, -2, 0}, {6, 2, 4}, false},
+		{{0, 0, -2}, {4, 6, 2}, false},
+		{{2, 0, 2}, {0, 0, -1}, false},
+		{{0, 2, 2}, {0, -1, 0}, false},
+		{{2, 2, 0}, {-1, 0, 0}, false}
+	};
+
+	BoundingBox box = BoundingBox({ -1, -1, -1 }, { 1, 1, 1 });
+
+	for (int i = 0; i < paramsList.size(); ++i)
+	{
+		const Param& param = paramsList[i];
+
+		Vector dir = param.direction.normalize();
+		Ray ray = Ray(param.origin, dir);
+
+		EXPECT_EQ(box.intersects(ray), param.result);
+	}
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Bounding_box, intersecting_ray_with_non_cubic_bounding_box)
+{
+	struct Param
+	{
+		Param(Point origin, Vector direction, bool result)
+			: origin(origin), direction(direction), result(result) {};
+
+		Point origin;
+		Vector direction;
+		bool result;
+	};
+
+	std::vector<Param> paramsList = {
+		{{15, 1, 2}, {-1, 0, 0}, true},
+		{{-5, -1, 4}, {1, 0, 0}, true},
+		{{7, 6, 5}, {0, -1, 0}, true},
+		{{9, -5, 6}, {0, 1, 0}, true},
+		{{8, 2, 12}, {0, 0, -1}, true},
+		{{6, 0, -5}, {0, 0, 1}, true},
+		{{8, 1, 3.5}, {0, 0, 1}, true},
+		{{9, -1, -8}, {2, 4, 6}, false},
+		{{8, 3, -4}, {6, 2, 4}, false},
+		{{9, -1, -2}, {4, 6, 2}, false},
+		{{4, 0, 9}, {0, 0, -1}, false},
+		{{8, 6, -1}, {0, -1, 0}, false},
+		{{12, 5, 4}, {-1, 0, 0,}, false}
+	};
+
+	BoundingBox box = BoundingBox({ 5, -2, 0 }, { 11, 4, 7 });
+	
+	for (int i = 0; i < paramsList.size(); ++i)
+	{
+		const Param& param = paramsList[i];
+
+		Vector dir = param.direction.normalize();
+		Ray ray = Ray(param.origin, dir);
+
+		EXPECT_EQ(box.intersects(ray), param.result);
+	}
 }

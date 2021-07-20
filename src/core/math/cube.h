@@ -32,6 +32,14 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <returns>Bounding Box that contains the cube</returns>
 		const BoundingBox bounds() const override;
+	private:
+		struct CheckAxisResult
+		{
+			double tMin;
+			double tMax;
+		};
+
+		CheckAxisResult checkAxis(double origin, double direction) const;
 	};
 }
 

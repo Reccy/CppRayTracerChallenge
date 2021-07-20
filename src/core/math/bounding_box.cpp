@@ -11,6 +11,62 @@ BoundingBox::BoundingBox() :
 BoundingBox::BoundingBox(Point min, Point max) :
 	m_initialMin(min), m_initialMax(max), m_min(m_initialMin), m_max(m_initialMax) {};
 
+BoundingBox::CheckAxisResult BoundingBox::checkAxis(double origin, double direction, double min, double max) const
+{
+	double tMinNumerator = (min - origin);
+	double tMaxNumerator = (max - origin);
+
+	double tMin, tMax;
+
+	if (abs(direction) >= EPSILON)
+	{
+		tMin = tMinNumerator / direction;
+		tMax = tMaxNumerator / direction;
+	}
+	else
+	{
+		tMin = tMinNumerator * INFINITY;
+		tMax = tMaxNumerator * INFINITY;
+	}
+
+	BoundingBox::CheckAxisResult result;
+
+	if (tMin > tMax)
+	{
+		result.tMin = tMax;
+		result.tMax = tMin;
+	}
+	else
+	{
+		result.tMin = tMin;
+		result.tMax = tMax;
+	}
+
+	return result;
+}
+
+bool BoundingBox::intersects(Ray ray) const
+{
+	CheckAxisResult x = checkAxis(ray.origin().x(), ray.direction().x(), m_min.x(), m_max.x());
+	CheckAxisResult y = checkAxis(ray.origin().y(), ray.direction().y(), m_min.y(), m_max.y());
+	CheckAxisResult z = checkAxis(ray.origin().z(), ray.direction().z(), m_min.z(), m_max.z());
+
+	double tMin = std::max({ x.tMin, y.tMin, z.tMin });
+	double tMax = std::min({ x.tMax, y.tMax, z.tMax });
+
+	if (tMin > tMax)
+	{
+		return false;
+	}
+
+	if (tMax < 0)
+	{
+		return false;
+	}
+
+	return true;
+}
+
 Point BoundingBox::min() const
 {
 	return m_min;

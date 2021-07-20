@@ -3,6 +3,7 @@
 
 #include "point.h"
 #include "transform.h"
+#include "ray.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
@@ -24,6 +25,13 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <param name="min">Minimum bounds</param>
 		/// <param name="max">Maximum bounds</param>
 		BoundingBox(Point min, Point max);
+
+		/// <summary>
+		/// Calculates if the ray intersects with the Bounding Box.
+		/// </summary>
+		/// <param name="ray">The ray to intersect with the Bounding Box</param>
+		/// <returns>If the ray intersected or not</returns>
+		bool intersects(Ray ray) const;
 
 		/// <summary>
 		/// Returns the minimum bounds
@@ -75,6 +83,14 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <returns>The Box's transform</returns>
 		const Transform transform() const;
 	private:
+		struct CheckAxisResult
+		{
+			double tMin;
+			double tMax;
+		};
+
+		CheckAxisResult checkAxis(double origin, double direction, double min, double max) const;
+
 		Transform m_transform;
 		const Point m_initialMin;
 		const Point m_initialMax;
