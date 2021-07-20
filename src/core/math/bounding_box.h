@@ -72,6 +72,12 @@ namespace CppRayTracerChallenge::Core::Math
 		bool contains(const BoundingBox& other) const;
 
 		/// <summary>
+		/// Returns a pair of BoundingBoxes split in half, covering the same volume as this box.
+		/// </summary>
+		/// <returns>A pair of split Bounding Boxes</returns>
+		std::tuple<BoundingBox, BoundingBox> split() const;
+
+		/// <summary>
 		/// Transforms the bounding box
 		/// </summary>
 		/// <param name="transform">The transform to apply to the bounding box</param>

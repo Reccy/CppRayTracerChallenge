@@ -138,6 +138,43 @@ bool BoundingBox::contains(const BoundingBox& other) const
 	return contains(other.min()) && contains(other.max());
 }
 
+std::tuple<BoundingBox, BoundingBox> BoundingBox::split() const
+{
+	double xSize = m_max.x() - m_min.x();
+	double ySize = m_max.y() - m_min.y();
+	double zSize = m_max.z() - m_min.z();
+
+	double greatest = std::max({ xSize, ySize, zSize });
+
+	double x0 = m_min.x();
+	double y0 = m_min.y();
+	double z0 = m_min.z();
+	double x1 = m_max.x();
+	double y1 = m_max.y();
+	double z1 = m_max.z();
+
+	if (greatest == xSize)
+	{
+		x0 = x1 = x0 + xSize / 2.0;
+	}
+	else if (greatest == ySize)
+	{
+		y0 = y1 = y0 + ySize / 2.0;
+	}
+	else
+	{
+		z0 = z1 = z0 + zSize / 2.0;
+	}
+
+	Point midMin = Point(x0, y0, z0);
+	Point midMax = Point(x1, y1, z1);
+
+	BoundingBox left = BoundingBox(m_min, midMax);
+	BoundingBox right = BoundingBox(midMin, m_max);
+
+	return std::tuple(left, right);
+}
+
 void BoundingBox::transform(Transform transform)
 {
 	m_transform = transform;

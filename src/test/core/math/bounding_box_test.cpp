@@ -225,3 +225,47 @@ TEST(CppRayTracerChallenge_Core_Math_Bounding_box, intersecting_ray_with_non_cub
 		EXPECT_EQ(box.intersects(ray), param.result);
 	}
 }
+
+TEST(CppRayTracerChallenge_Core_Math_BoundingBox, splitting_perfect_cube)
+{
+	BoundingBox box = BoundingBox({ -1, -4, -5 }, { 9, 6, 5 });
+	auto [left, right] = box.split();
+
+	EXPECT_EQ(left.min(), Point(-1, -4, -5));
+	EXPECT_EQ(left.max(), Point(4, 6, 5));
+	EXPECT_EQ(right.min(), Point(4, -4, -5));
+	EXPECT_EQ(right.max(), Point(9, 6, 5));
+}
+
+TEST(CppRayTracerChallenge_Core_Math_BoundingBox, splitting_x_wide_box)
+{
+	BoundingBox box = BoundingBox({ -1, -2, -3 }, { 9, 5.5, 3 });
+	auto [left, right] = box.split();
+
+	EXPECT_EQ(left.min(), Point(-1, -2, -3));
+	EXPECT_EQ(left.max(), Point(4, 5.5, 3));
+	EXPECT_EQ(right.min(), Point(4, -2, -3));
+	EXPECT_EQ(right.max(), Point(9, 5.5, 3));
+}
+
+TEST(CppRayTracerChallenge_Core_Math_BoundingBox, splitting_y_wide_box)
+{
+	BoundingBox box = BoundingBox({ -1, -2, -3 }, { 5, 8, 3 });
+	auto [left, right] = box.split();
+
+	EXPECT_EQ(left.min(), Point(-1, -2, -3));
+	EXPECT_EQ(left.max(), Point(5, 3, 3));
+	EXPECT_EQ(right.min(), Point(-1, 3, -3));
+	EXPECT_EQ(right.max(), Point(5, 8, 3));
+}
+
+TEST(CppRayTracerChallenge_Core_Math_BoundingBox, splitting_z_wide_box)
+{
+	BoundingBox box = BoundingBox({ -1, -2, -3 }, { 5, 3, 7 });
+	auto [left, right] = box.split();
+
+	EXPECT_EQ(left.min(), Point(-1, -2, -3));
+	EXPECT_EQ(left.max(), Point(5, 3, 2));
+	EXPECT_EQ(right.min(), Point(-1, -2, 2));
+	EXPECT_EQ(right.max(), Point(5, 3, 7));
+}
