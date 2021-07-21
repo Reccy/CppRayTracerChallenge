@@ -19,3 +19,15 @@ TEST(CppRayTracerChallenge_Core_Math_Triangle, constructing_a_triangle)
 
 	EXPECT_EQ(triangle.normal(), Vector(0, 0, -1));
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Triangle, normal_on_triangle)
+{
+	Triangle triangle = Triangle({ 0, 1, 0 }, { -1, 0, 0 }, { 1, 0, 0 });
+	Vector n1 = triangle.normalLocal({ 0, 0.5, 0 });
+	Vector n2 = triangle.normalLocal({ -0.5, 0.75, 0 });
+	Vector n3 = triangle.normalLocal({ 0.5, 0.25, 0 });
+
+	EXPECT_EQ(n1, triangle.normal());
+	EXPECT_EQ(n2, triangle.normal());
+	EXPECT_EQ(n3, triangle.normal());
+}
