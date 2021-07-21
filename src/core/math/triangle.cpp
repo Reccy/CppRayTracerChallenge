@@ -45,8 +45,8 @@ const Intersections Triangle::intersectLocal(Ray ray) const
 		return Intersections();
 	}
 
-	// Intersection to prevent false positive in test
-	return Intersections({ { 1.0, *this } });
+	double t = f * Vector::dot(m_e2, originCrossE1);
+	return Intersections({ {t, *this} });
 }
 
 const BoundingBox Triangle::bounds() const
