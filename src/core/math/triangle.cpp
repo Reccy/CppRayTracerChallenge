@@ -37,6 +37,14 @@ const Intersections Triangle::intersectLocal(Ray ray) const
 		return Intersections();
 	}
 
+	Vector originCrossE1 = Vector::cross(p1ToOrigin, m_e1);
+	double v = f * Vector::dot(ray.direction(), originCrossE1);
+
+	if (v < 0 || (u + v) > 1)
+	{
+		return Intersections();
+	}
+
 	// Intersection to prevent false positive in test
 	return Intersections({ { 1.0, *this } });
 }
