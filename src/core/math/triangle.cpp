@@ -27,6 +27,16 @@ const Intersections Triangle::intersectLocal(Ray ray) const
 		return Intersections();
 	}
 
+	double f = 1.0 / determinant;
+
+	Vector p1ToOrigin = ray.origin() - m_p1;
+	double u = f * Vector::dot(p1ToOrigin, dirCrossE2);
+
+	if (u < 0 || u > 1)
+	{
+		return Intersections();
+	}
+
 	// Intersection to prevent false positive in test
 	return Intersections({ { 1.0, *this } });
 }
