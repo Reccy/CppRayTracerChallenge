@@ -221,6 +221,11 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <returns>The inverted Matrix</returns>
 		Matrix invert() const
 		{
+			if (!!m_inverted)
+			{
+				return *m_inverted.get();
+			}
+
 			if (!invertible())
 			{
 				throw MatrixNotInvertibleException();
@@ -237,6 +242,8 @@ namespace CppRayTracerChallenge::Core::Math
 					result(col, row) = c / determinant();
 				}
 			}
+
+			m_inverted = std::make_shared<Matrix<T>>(result);
 
 			return result;
 		}
@@ -342,6 +349,7 @@ namespace CppRayTracerChallenge::Core::Math
 	private:
 		int m_rows, m_columns;
 		mutable T m_determinant = 0;
+		mutable std::shared_ptr<Matrix<T>> m_inverted = nullptr;
 		std::vector<T> m_data;
 
 		int indexAt(const int row, const int column) const

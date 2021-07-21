@@ -53,14 +53,18 @@ using namespace CppRayTracerChallenge::Core::Serializer;
 using namespace Renderer;
 using namespace Renderer::Patterns;
 
+using Math::Trig::PI;
+
 using Graphics::Color;
 using Graphics::Image;
 using Graphics::Canvas;
 
-const int WINDOW_WIDTH = 1920;
-const int WINDOW_HEIGHT = 1080;
-const int RENDER_WIDTH = 1920/4;
-const int RENDER_HEIGHT = 1080/4;
+constexpr double RENDER_QUALITY = 1;
+
+constexpr int WINDOW_WIDTH = 1920;
+constexpr int WINDOW_HEIGHT = 1080;
+constexpr int RENDER_WIDTH = static_cast<int>(WINDOW_WIDTH * RENDER_QUALITY);
+constexpr int RENDER_HEIGHT = static_cast<int>(WINDOW_HEIGHT * RENDER_QUALITY);
 
 void log(std::string message)
 {
@@ -93,13 +97,31 @@ public:
 		bvhGroup.addChild(cylinderA);
 		bvhGroup.addChild(coneA);
 
-		bvhGroup.divide(3);
+		//bvhGroup.divide(3);
 
 		world.addGroup(bvhGroup);
 		world.addLight(light);
 		world.addObject(*floor);
 
 		return world;
+	}
+
+	static Matrix<double> cameraMatrix()
+	{
+		double camPosX = -3;
+		double camPosY = 10;
+		double camPosZ = 8;
+
+		double camLookX = 0;
+		double camLookY = 0;
+		double camLookZ = 0;
+
+		return Camera::viewMatrix({ camPosX, camPosY, camPosZ }, { camLookX, camLookY, camLookZ }, Vector::up());
+	}
+
+	static int fov()
+	{
+		return 30;
 	}
 private:
 	static std::shared_ptr<Renderer::Pattern> buildFloorPattern()
@@ -274,6 +296,24 @@ public:
 		world.addLight(buildLight(0, 4, 5));
 		return world;
 	}
+
+	static Matrix<double> cameraMatrix()
+	{
+		double camPosX = 0;
+		double camPosY = 3;
+		double camPosZ = -8;
+
+		double camLookX = 0;
+		double camLookY = 0;
+		double camLookZ = 0;
+
+		return Camera::viewMatrix({ camPosX, camPosY, camPosZ }, { camLookX, camLookY, camLookZ }, Vector::up());
+	}
+
+	static int fov()
+	{
+		return 30;
+	}
 private:
 	static Renderer::Shape buildFloor()
 	{
@@ -339,29 +379,147 @@ private:
 	}
 };
 
+class WorldC
+{
+public:
+	static World build()
+	{
+		World world = World();
+
+		Group root = Group();
+
+		constexpr int SPACING = 6;
+
+		for (int z = 0; z < 5; ++z)
+		{
+			for (int x = 0; x < 5; ++x)
+			{
+				for (int y = 0; y < 5; ++y)
+				{
+					auto hex = buildHexagon();
+					hex->transform(Transform()
+						.translate(x * SPACING, y * SPACING, z * SPACING)
+						.rotate(0, 25, 30));
+					root.addChild(hex);
+				}
+			}
+		}
+
+		root.divide(2);
+
+		world.addGroup(root);
+		world.addObject(*buildBackdrop());
+		world.addLight(buildLight(20, 60, -30));
+
+		return world;
+	}
+
+	static Matrix<double> cameraMatrix()
+	{
+		double camPosX = 10;
+		double camPosY = 60;
+		double camPosZ = -30;
+
+		double camLookX = 15;
+		double camLookY = 15;
+		double camLookZ = 15;
+
+		return Camera::viewMatrix({ camPosX, camPosY, camPosZ }, { camLookX, camLookY, camLookZ }, Vector::up());
+	}
+
+	static int fov()
+	{
+		return 60;
+	}
+private:
+	static std::shared_ptr<Renderer::Shape> buildBackdrop()
+	{
+		auto plane = std::make_shared<Plane>();
+		auto shape = std::make_shared<Renderer::Shape>(plane);
+
+		shape->transform(Transform().rotate(0, 90, 0));
+
+		auto mat = Material();
+		mat.pattern = std::make_shared<SolidColor>(Color::white());
+
+		shape->material(mat);
+
+		return shape;
+	}
+
+	static std::shared_ptr<Group> buildHexagon()
+	{
+		Group result = Group();
+
+		for (int i = 0; i < 6; ++i)
+		{
+			auto side = buildHexagonSide();
+			side->transform(Transform()
+				.rotate(0, Math::Trig::radians_to_degrees(i * PI / 3.0), 0));
+			result.addChild(side);
+		}
+
+		return std::make_shared<Group>(result);
+	}
+
+	static std::shared_ptr<Group> buildHexagonSide()
+	{
+		Group result = Group();
+
+		result.addChild(buildHexagonCorner());
+		result.addChild(buildHexagonEdge());
+
+		return std::make_shared<Group>(result);
+	}
+
+	static std::shared_ptr<Renderer::Shape> buildHexagonEdge()
+	{
+		auto cylinder = std::make_shared<Cylinder>(0, 1);
+		auto result = std::make_shared<Renderer::Shape>(cylinder);
+
+		result->transform(Transform()
+			.scale(0.25, 1, 0.25)
+			.rotate(0, 0, Math::Trig::radians_to_degrees(-PI / 2))
+			.rotate(0, Math::Trig::radians_to_degrees(-PI / 6), 0)
+			.translate(0, 0, -1));
+
+		return result;
+	}
+
+	static std::shared_ptr<Renderer::Shape> buildHexagonCorner()
+	{
+		auto sphere = std::make_shared<Sphere>();
+		auto result = std::make_shared<Renderer::Shape>(sphere);
+
+		result->transform(Transform()
+			.scale(0.25, 0.25, 0.25)
+			.translate(0, 0, -1));
+
+		return result;
+	}
+
+	static PointLight buildLight(double x, double y, double z)
+	{
+		return PointLight({ x, y, z }, Color(0.98f, 0.95f, 0.94f));
+	}
+};
+
 std::shared_ptr<Camera> camera = nullptr;
 
 Image doRealRender()
 {
 	log("Initializing...");
-	World world = WorldA::build();
+	using WorldBuilder = WorldC;
+	World world = WorldBuilder::build();
 
 	int width = RENDER_WIDTH;
 	int height = RENDER_HEIGHT;
 
-	double camPosX = 0;
-	double camPosY = 3;
-	double camPosZ = -8;
-
-	double camLookX = 0;
-	double camLookY = 1.5;
-	double camLookZ = 0;
-
-	int fov = 70;
+	int fov = WorldBuilder::fov();
 
 	log("Setting up camera: " + std::to_string(width) + ", " + std::to_string(height) + ", " + std::to_string(fov));
 	camera = std::make_shared<Camera>(width, height, fov);
-	auto cameraTransform = Camera::viewMatrix({ camPosX, camPosY, camPosZ }, { camLookX, camLookY, camLookZ }, Vector::up());
+	auto cameraTransform = WorldBuilder::cameraMatrix();
 	camera->transform(cameraTransform);
 
 	log("Initialization Done");
@@ -499,6 +657,11 @@ unsigned int indices[] = {  // note that we start from 0!
 std::vector<byte> renderData;
 byte* loadRenderData()
 {
+	if (!camera)
+	{
+		return renderData.data();
+	}
+
 	auto buffer = camera->renderedImage().toBuffer();
 
 	renderData.clear();
