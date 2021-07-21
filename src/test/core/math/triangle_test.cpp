@@ -31,3 +31,13 @@ TEST(CppRayTracerChallenge_Core_Math_Triangle, normal_on_triangle)
 	EXPECT_EQ(n2, triangle.normal());
 	EXPECT_EQ(n3, triangle.normal());
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Triangle, intersecting_ray_parallel_to_triangle)
+{
+	Triangle triangle = Triangle({ 0, 1, 0 }, { -1, 0, 0 }, { 1, 0, 0 });
+	Ray ray = Ray({ 0, -1, -2 }, { 0, 1, 0 });
+
+	Intersections intersections = triangle.intersectLocal(ray);
+
+	EXPECT_EQ(intersections.count(), 0);
+}
