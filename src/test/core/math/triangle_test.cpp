@@ -71,3 +71,14 @@ TEST(CppRayTracerChallenge_Core_Math_Triangle, ray_misses_p2_to_p3_edge)
 
 	EXPECT_EQ(intersections.count(), 0);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Triangle, ray_hits_triangle)
+{
+	Triangle triangle = Triangle({ 0, 1, 0 }, { -1, 0, 0 }, { 1, 0, 0 });
+	Ray ray = Ray({ 0, 0.5, -2 }, { 0, 0, 1 });
+
+	Intersections intersections = triangle.intersectLocal(ray);
+
+	EXPECT_EQ(intersections.count(), 1);
+	EXPECT_EQ(intersections.at(0).t(), 2);
+}
