@@ -30,6 +30,11 @@ std::weak_ptr<Group> Shape::parent() const
 	return m_parent;
 }
 
+std::shared_ptr<Math::IShape> Shape::shape() const
+{
+	return m_shape;
+}
+
 void Shape::parent(std::weak_ptr<Group> parent)
 {
 	m_parent = parent;
