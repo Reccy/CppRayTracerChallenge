@@ -44,6 +44,11 @@ namespace CppRayTracerChallenge::Core::Renderer
 		std::weak_ptr<Group> parent() const;
 
 		/// <summary>
+		/// Returns a pointer to the shape encapsulated by the Renderer::Shape
+		/// </summary>
+		std::shared_ptr<Math::IShape> shape() const;
+
+		/// <summary>
 		/// Sets the parent group
 		/// </summary>
 		/// <param name="parent">Parent group to set</param>
