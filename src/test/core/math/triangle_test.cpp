@@ -82,3 +82,16 @@ TEST(CppRayTracerChallenge_Core_Math_Triangle, ray_hits_triangle)
 	EXPECT_EQ(intersections.count(), 1);
 	EXPECT_EQ(intersections.at(0).t(), 2);
 }
+
+TEST(CppRayTracerChallenge_Core_Math_Triangle, bounding_box)
+{
+	Point p1 = Point(-3, 7, 2);
+	Point p2 = Point(6, 2, -4);
+	Point p3 = Point(2, -1, -1);
+	Triangle triangle = Triangle(p1, p2, p3);
+
+	BoundingBox box = triangle.bounds();
+
+	EXPECT_EQ(box.min(), Point(-3, -1, -4));
+	EXPECT_EQ(box.max(), Point(6, 7, 2));
+}
