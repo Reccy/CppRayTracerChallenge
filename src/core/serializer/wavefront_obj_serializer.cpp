@@ -13,7 +13,8 @@ void WavefrontOBJSerializer::deserialize(std::vector<char> input)
 {
 	m_buffer = input;
 	m_vertices = std::vector<Math::Point>();
-	m_group = Renderer::Group();
+	m_defaultGroup = Renderer::Group();
+	m_groups = std::map<std::string, Renderer::Group>();
 	m_ignoredLines = 0;
 
 	std::vector<std::string> lines;
@@ -52,17 +53,33 @@ void WavefrontOBJSerializer::deserialize(std::vector<char> input)
 			continue;
 		}
 
-		// Parse vertex instruction
 		if (line[0] == 'v')
 		{
 			parseVertex(line);
 			continue;
 		}
 
-		// Parse face instruction
 		if (line[0] == 'f')
 		{
 			parseFace(line);
+			continue;
+		}
+
+		if (line[0] == 'g')
+		{
+			parseGroup(line);
+			continue;
+		}
+
+		if (line[0] == '\n')
+		{
+			// Line is just newline, we'll ignore it but don't have to track it
+			continue;
+		}
+
+		if (line[0] == '#')
+		{
+			// Line is comment, but is still valid. So we ignore it but don't track it as ignored line
 			continue;
 		}
 
@@ -189,8 +206,54 @@ void WavefrontOBJSerializer::parseFace(std::string line)
  		auto triangle = std::make_shared<Math::Triangle>(m_vertices[0], m_vertices[indices.at(i) - 1], m_vertices[indices.at(i + 1) - 1]);
 		auto shape = std::make_shared<Renderer::Shape>(triangle);
 		
-		m_group.addChild(shape);
+		if (m_currentGroupName == "")
+		{
+			m_defaultGroup.addChild(shape);
+		}
+		else
+		{
+			m_groups.at(m_currentGroupName).addChild(shape);
+		}
 	}
+}
+
+void WavefrontOBJSerializer::parseGroup(std::string line)
+{
+	int stringBeginIndex = 1;
+	int stringEndIndex = (int)line.size() - 1;
+
+	// Find string begin
+	for (int i = 1; i < line.size(); ++i)
+	{
+		char byte = line[i];
+
+		// If the byte is not a space, set begin index and quit
+		if (std::isspace(byte) <= 0)
+		{
+			stringBeginIndex = i;
+			break;
+		}
+	}
+
+	// Find string end
+	for (int i = (int)line.size() - 1; i >= 0; --i)
+	{
+		char byte = line[i];
+
+		// If the byte is not a space, set end index and quit
+		if (std::isspace(byte) <= 0)
+		{
+			stringEndIndex = i + 1;
+			break;
+		}
+	}
+
+	std::string groupName = std::string({ line.begin() + stringBeginIndex, line.begin() + stringEndIndex });
+
+	m_groups.insert({ groupName, Renderer::Group() });
+	m_currentGroupName = groupName;
+
+	return;
 }
 
 std::vector<char> WavefrontOBJSerializer::buffer() const
@@ -200,7 +263,12 @@ std::vector<char> WavefrontOBJSerializer::buffer() const
 
 Renderer::Group WavefrontOBJSerializer::defaultGroup() const
 {
-	return m_group;
+	return m_defaultGroup;
+}
+
+Renderer::Group WavefrontOBJSerializer::group(std::string groupName) const
+{
+	return m_groups.at(groupName);
 }
 
 std::vector<Math::Point> WavefrontOBJSerializer::vertices() const
