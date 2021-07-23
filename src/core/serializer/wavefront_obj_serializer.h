@@ -32,7 +32,7 @@ namespace CppRayTracerChallenge::Core::Serializer
 		/// Returns the group specified by the string, otherwise throws an exception
 		/// </summary>
 		/// <returns>Group if found</returns>
-		Renderer::Group group(std::string groupName) const;
+		std::shared_ptr<Renderer::Group> group(std::string groupName) const;
 
 		/// <summary>
 		/// Returns the list of vertices
@@ -49,7 +49,7 @@ namespace CppRayTracerChallenge::Core::Serializer
 		std::vector<char> m_buffer;
 		std::vector<Math::Point> m_vertices;
 		Renderer::Group m_defaultGroup;
-		std::map<std::string, Renderer::Group> m_groups;
+		std::map<std::string, std::shared_ptr<Renderer::Group>> m_groups;
 		std::string m_currentGroupName;
 
 		int m_ignoredLines = 0;

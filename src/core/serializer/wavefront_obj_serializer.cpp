@@ -14,7 +14,7 @@ void WavefrontOBJSerializer::deserialize(std::vector<char> input)
 	m_buffer = input;
 	m_vertices = std::vector<Math::Point>();
 	m_defaultGroup = Renderer::Group();
-	m_groups = std::map<std::string, Renderer::Group>();
+	m_groups = std::map<std::string, std::shared_ptr<Renderer::Group>>();
 	m_ignoredLines = 0;
 
 	std::vector<std::string> lines;
@@ -212,7 +212,7 @@ void WavefrontOBJSerializer::parseFace(std::string line)
 		}
 		else
 		{
-			m_groups.at(m_currentGroupName).addChild(shape);
+			m_groups.at(m_currentGroupName)->addChild(shape);
 		}
 	}
 }
@@ -250,8 +250,12 @@ void WavefrontOBJSerializer::parseGroup(std::string line)
 
 	std::string groupName = std::string({ line.begin() + stringBeginIndex, line.begin() + stringEndIndex });
 
-	m_groups.insert({ groupName, Renderer::Group() });
+	auto group = std::make_shared<Renderer::Group>();
+
+	m_groups.insert({ groupName, group });
 	m_currentGroupName = groupName;
+
+	m_defaultGroup.addChild(group);
 
 	return;
 }
@@ -266,7 +270,7 @@ Renderer::Group WavefrontOBJSerializer::defaultGroup() const
 	return m_defaultGroup;
 }
 
-Renderer::Group WavefrontOBJSerializer::group(std::string groupName) const
+std::shared_ptr<Renderer::Group> WavefrontOBJSerializer::group(std::string groupName) const
 {
 	return m_groups.at(groupName);
 }
