@@ -132,8 +132,7 @@ void WavefrontOBJSerializer::parseVertex(std::string line)
 
 void WavefrontOBJSerializer::parseFace(std::string line)
 {
-	int indices[3] = { -1, -1, -1 };
-	int valueIndex = 0;
+	std::vector<int> indices;
 
 	int lastWhitespace = 0;
 	int tokenStart = 0;
@@ -141,13 +140,6 @@ void WavefrontOBJSerializer::parseFace(std::string line)
 	for (int j = 1; j < line.size(); ++j)
 	{
 		char byte = line[j];
-
-		// More than 3 indices in instruction which is not valid
-		if (valueIndex > 2)
-		{
-			m_ignoredLines++;
-			return;
-		}
 
 		// If current byte is a whitespace or we are at end of line
 		if (std::isspace(byte) > 0 || j == line.size() - 1)
@@ -161,8 +153,7 @@ void WavefrontOBJSerializer::parseFace(std::string line)
 			if (tokenStart > lastWhitespace)
 			{
 				std::string token = std::string(line.begin() + tokenStart, line.begin() + j + 1);
-				indices[valueIndex] = atoi(token.c_str());
-				++valueIndex;
+				indices.push_back(atoi(token.c_str()));
 			}
 
 			lastWhitespace = j;
@@ -175,26 +166,31 @@ void WavefrontOBJSerializer::parseFace(std::string line)
 		}
 	}
 
-	if (indices[0] == -1 || indices[1] == -1 || indices[2] == -1)
+	// We need at least 3 indices to create a face from 3 vertices
+	if (indices.size() < 3)
 	{
 		m_ignoredLines++;
 		return;
 	}
 
-	if (indices[0] > m_vertices.size() || indices[1] > m_vertices.size() || indices[2] > m_vertices.size())
+	for (int i = 0; i < indices.size(); ++i)
 	{
-		m_ignoredLines++;
-		return;
+		// If index is larger than vertex array size or points to negative number, this instruction is invalid
+		if (indices[i] > m_vertices.size() || indices[i] < 1)
+		{
+			m_ignoredLines++;
+			return;
+		}
 	}
-	
-	Math::Point v1 = m_vertices.at(indices[0] - 1);
-	Math::Point v2 = m_vertices.at(indices[1] - 1);
-	Math::Point v3 = m_vertices.at(indices[2] - 1);
 
-	auto triangle = std::make_shared<Math::Triangle>(v1, v2, v3);
-	auto shape = std::make_shared<Renderer::Shape>(triangle);
-
-	m_group.addChild(shape);
+	// Fan triangulation
+	for (int i = 1; i < indices.size() - 1; ++i)
+	{
+ 		auto triangle = std::make_shared<Math::Triangle>(m_vertices[0], m_vertices[indices.at(i) - 1], m_vertices[indices.at(i + 1) - 1]);
+		auto shape = std::make_shared<Renderer::Shape>(triangle);
+		
+		m_group.addChild(shape);
+	}
 }
 
 std::vector<char> WavefrontOBJSerializer::buffer() const
