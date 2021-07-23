@@ -51,7 +51,12 @@ const Intersections Triangle::intersectLocal(Ray ray) const
 
 const BoundingBox Triangle::bounds() const
 {
-	return BoundingBox();
+	BoundingBox box = BoundingBox();
+	box.add(p1());
+	box.add(p2());
+	box.add(p3());
+
+	return box;
 }
 
 Point Triangle::p1() const
