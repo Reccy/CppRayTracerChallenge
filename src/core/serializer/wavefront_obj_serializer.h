@@ -2,6 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_WAVEFRONT_OBJ_SERIALIZER
 
 #include <vector>
+#include <map>
 #include "../math/point.h"
 #include "../math/triangle.h"
 #include "../renderer/group.h"
@@ -28,6 +29,12 @@ namespace CppRayTracerChallenge::Core::Serializer
 		Renderer::Group defaultGroup() const;
 
 		/// <summary>
+		/// Returns the group specified by the string, otherwise throws an exception
+		/// </summary>
+		/// <returns>Group if found</returns>
+		Renderer::Group group(std::string groupName) const;
+
+		/// <summary>
 		/// Returns the list of vertices
 		/// </summary>
 		/// <returns></returns>
@@ -41,11 +48,15 @@ namespace CppRayTracerChallenge::Core::Serializer
 	private:
 		std::vector<char> m_buffer;
 		std::vector<Math::Point> m_vertices;
-		Renderer::Group m_group;
+		Renderer::Group m_defaultGroup;
+		std::map<std::string, Renderer::Group> m_groups;
+		std::string m_currentGroupName;
+
 		int m_ignoredLines = 0;
 
 		void parseVertex(std::string line);
 		void parseFace(std::string line);
+		void parseGroup(std::string line);
 	};
 }
 

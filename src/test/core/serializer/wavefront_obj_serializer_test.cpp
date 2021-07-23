@@ -119,3 +119,36 @@ TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, triangulate_p
 	EXPECT_EQ(t3->p2(), serializer.vertices().at(3));
 	EXPECT_EQ(t3->p3(), serializer.vertices().at(4));
 }
+
+TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, triangles_in_groups)
+{
+	WavefrontOBJSerializer serializer = WavefrontOBJSerializer();
+
+	std::stringstream ss;
+	ss << "v -1 1 0\n"
+		"v -1 0 0\n"
+		"v 1 0 0\n"
+		"v 1 1 0\n"
+		"\n"
+		"gFirstGroup\n"
+		"f 1 2 3\n"
+		"g Second Group \n"
+		"f 1 3 4";
+
+	std::string input = ss.str();
+
+	serializer.deserialize({ input.begin(), input.end() });
+
+	Group g1 = serializer.group("FirstGroup");
+	Group g2 = serializer.group("Second Group");
+
+	auto t1 = std::dynamic_pointer_cast<Triangle>(g1.child(0)->shape());
+	auto t2 = std::dynamic_pointer_cast<Triangle>(g2.child(0)->shape());
+
+	EXPECT_EQ(t1->p1(), serializer.vertices().at(0));
+	EXPECT_EQ(t1->p2(), serializer.vertices().at(1));
+	EXPECT_EQ(t1->p3(), serializer.vertices().at(2));
+	EXPECT_EQ(t2->p1(), serializer.vertices().at(0));
+	EXPECT_EQ(t2->p2(), serializer.vertices().at(2));
+	EXPECT_EQ(t2->p3(), serializer.vertices().at(3));
+}
