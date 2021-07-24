@@ -58,7 +58,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// Transforms the camera by the passed in transform matrix
 		/// </summary>
 		/// <param name="matrix">The transform matrix to apply to the camera</param>
-		void transform(const Math::Matrix<double>& matrix);
+		void transform(const Math::Matrix<double, 4, 4>& matrix);
 
 		/// <summary>
 		/// Transforms the camera by the passed in transform
@@ -78,7 +78,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// The underlying transform matrix for the camera
 		/// </summary>
 		/// <returns>The transform matrix</returns>
-		Matrix<double> transformMatrix() const;
+		Matrix<double, 4, 4> transformMatrix() const;
 
 		/// <summary>
 		/// Renders the world from the point of view of the camera. Returns an image
@@ -100,7 +100,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <param name="to">The point that the camera is looking at</param>
 		/// <param name="up">The up vector from the camera's point of view</param>
 		/// <returns>The Matrix used to transform the world around the camera</returns>
-		static Matrix<double> viewMatrix(const Point from, const Point to, const Vector up);
+		static Matrix<double, 4, 4> viewMatrix(const Point from, const Point to, const Vector up);
 	private:
 		int m_hSize;
 		int m_vSize;
@@ -108,7 +108,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		double m_halfWidth;
 		double m_halfHeight;
 		double m_pixelSize;
-		Matrix<double> m_transformMatrix;
+		Matrix<double, 4, 4> m_transformMatrix;
 		std::unique_ptr<Graphics::Canvas> m_renderCanvas;
 
 		void calculatePixelSize();

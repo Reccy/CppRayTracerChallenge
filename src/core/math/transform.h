@@ -72,7 +72,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// Returns the transform as an actual matrix
 		/// </summary>
 		/// <returns>The transform matrix</returns>
-		const Matrix<double> matrix() const;
+		const Matrix<double, 4, 4> matrix() const;
 
 		/// <summary>
 		/// Multiplies the Tuple by the Transform, and returns the transformed Tuple
@@ -84,8 +84,8 @@ namespace CppRayTracerChallenge::Core::Math
 		bool operator==(const Transform& other) const;
 		bool operator!=(const Transform& other) const;
 	private:
-		std::stack<Matrix<double>> m_matrices;
-		Matrix<double> m_matrix;
+		std::stack<Matrix<double, 4, 4>> m_matrices;
+		Matrix<double, 4, 4> m_matrix;
 
 		void calculateMatrix();
 	};

@@ -6,10 +6,10 @@ using namespace CppRayTracerChallenge::Core::Math;
 using namespace CppRayTracerChallenge::Core;
 
 BoundingBox::BoundingBox() :
-	m_initialMin({ INF, INF, INF }), m_initialMax({ -INF, -INF, -INF }), m_min(m_initialMin), m_max(m_initialMax) {};
+	m_min({ INF, INF, INF }), m_max({ -INF, -INF, -INF }) {};
 
 BoundingBox::BoundingBox(Point min, Point max) :
-	m_initialMin(min), m_initialMax(max), m_min(m_initialMin), m_max(m_initialMax) {};
+	m_min(min), m_max(max) {};
 
 BoundingBox::CheckAxisResult BoundingBox::checkAxis(double origin, double direction, double min, double max) const
 {
@@ -29,7 +29,7 @@ BoundingBox::CheckAxisResult BoundingBox::checkAxis(double origin, double direct
 		tMax = tMaxNumerator * INFINITY;
 	}
 
-	BoundingBox::CheckAxisResult result;
+	BoundingBox::CheckAxisResult result{};
 
 	if (tMin > tMax)
 	{
@@ -179,11 +179,11 @@ void BoundingBox::transform(Transform transform)
 {
 	m_transform = transform;
 	
+	Point min = m_min;
+	Point max = m_max;
+
 	m_min = Point(INF, INF, INF);
 	m_max = Point(-INF, -INF, -INF);
-
-	Point min = m_initialMin;
-	Point max = m_initialMax;
 
 	add(m_transform * min);
 	add(m_transform * Point(min.x(), min.y(), max.z()));

@@ -6,7 +6,7 @@ using namespace CppRayTracerChallenge::Core::Math;
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_blank_matrix_4x4)
 {
-	Matrix<float> matrix(4, 4);
+	Matrix<float, 4, 4> matrix;
 
 	EXPECT_EQ(matrix(0, 0), 0);
 	EXPECT_EQ(matrix(0, 1), 0);
@@ -28,7 +28,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_blank_matrix_4x4)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_4x4)
 {
-	Matrix<float> matrix(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> matrix({
 		1, 2, 3, 4,
 		5.5, 6.5, 7.5, 8.5,
 		9, 10, 11, 12,
@@ -55,7 +55,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_4x4)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_2x2)
 {
-	Matrix<float> matrix(2, 2, std::vector<float> {
+	Matrix<float, 2, 2> matrix({
 		-3, 5,
 		1, 2
 	});
@@ -68,7 +68,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_2x2)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_3x3)
 {
-	Matrix<float> matrix(3, 3, std::vector<float> {
+	Matrix<float, 3, 3> matrix({
 		-3, 5, 0,
 		1, -2, -7,
 		0, 1, 1
@@ -87,7 +87,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_3x3)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_2x5)
 {
-	Matrix<float> matrix(2, 5, std::vector<float> {
+	Matrix<float, 2, 5> matrix({
 		1, 2, 3, 4, 5,
 		6.5, 7.5, 8.5, 9.5, 10.5
 	});
@@ -106,7 +106,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_2x5)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_5x2)
 {
-	Matrix<float> matrix(5, 2, std::vector<float> {
+	Matrix<float, 5, 2> matrix({
 		1, 2,
 		3, 4,
 		5, 6,
@@ -126,94 +126,16 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_5x2)
 	EXPECT_EQ(matrix(4, 1), 10);
 }
 
-TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_0x1)
-{
-	try
-	{
-		Matrix<float> matrix(0, 1);
-		FAIL();
-	}
-	catch (const MatrixTooSmallException& err)
-	{
-		EXPECT_STREQ("Cannot create a Matrix with 0 or less rows / columns\n", err.what());
-	}
-}
-
-TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_1x0)
-{
-	try
-	{
-		Matrix<float> matrix(1, 0);
-		FAIL();
-	}
-	catch (const MatrixTooSmallException& err)
-	{
-		EXPECT_STREQ("Cannot create a Matrix with 0 or less rows / columns\n", err.what());
-	}
-}
-
-TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_0x1_with_data)
-{
-	try
-	{
-		Matrix<float> matrix(0, 1, std::vector<float> { 1 });
-		FAIL();
-	}
-	catch (const MatrixTooSmallException& err)
-	{
-		EXPECT_STREQ("Cannot create a Matrix with 0 or less rows / columns\n", err.what());
-	}
-}
-
-TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_1x0_with_data)
-{
-	try
-	{
-		Matrix<float> matrix(1, 0, std::vector<float> { 1 });
-		FAIL();
-	}
-	catch (const MatrixTooSmallException& err)
-	{
-		EXPECT_STREQ("Cannot create a Matrix with 0 or less rows / columns\n", err.what());
-	}
-}
-
-TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_1x1_with_too_much_data)
-{
-	try
-	{
-		Matrix<float> matrix(1, 1, std::vector<float> {0, 1});
-		FAIL();
-	}
-	catch (const MatrixInitialDataSizeMismatch& err)
-	{
-		EXPECT_STREQ("Failed to construct Matrix. Initial data size is 2. Expected: 1\n", err.what());
-	}
-}
-
-TEST(CppRayTracerChallenge_Core_Math_Matrix, construct_matrix_1x1_with_too_little_data)
-{
-	try
-	{
-		Matrix<float> matrix(2, 2, std::vector<float> {0, 1, 3});
-		FAIL();
-	}
-	catch (const MatrixInitialDataSizeMismatch& err)
-	{
-		EXPECT_STREQ("Failed to construct Matrix. Initial data size is 3. Expected: 4\n", err.what());
-	}
-}
-
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_identical_matrices_as_ints)
 {
-	Matrix<int> a(4, 4, std::vector<int> {
+	Matrix<int, 4, 4> a({
 		1,2,3,4,
 		5,6,7,8,
 		9,8,7,6,
 		5,4,3,2
 	});
 
-	Matrix<int> b(4, 4, std::vector<int> {
+	Matrix<int, 4, 4> b({
 		1, 2, 3, 4,
 		5, 6, 7, 8,
 		9, 8, 7, 6,
@@ -225,14 +147,14 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_identical_matr
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_different_matrices_as_ints)
 {
-	Matrix<int> a(4, 4, std::vector<int> {
+	Matrix<int, 4, 4> a({
 		1, 2, 3, 4,
 		5, 6, 7, 8,
 		9, 8, 7, 6,
 		5, 4, 3, 2
 	});
 
-	Matrix<int> b(4, 4, std::vector<int> {
+	Matrix<int, 4, 4> b({
 		2,3,4,5,
 		6,7,8,9,
 		8,7,6,5,
@@ -244,18 +166,18 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_different_matr
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_identical_matrices_as_floats)
 {
-	Matrix<float> a(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> a({
 		1.5, 2.5, 3.5, 4.5,
-			5.5, 6.5, 7.5, 8.5,
-			9.5, 8.5, 7.5, 6.5,
-			5.5, 4.5, 3.5, 2.5
+		5.5, 6.5, 7.5, 8.5,
+		9.5, 8.5, 7.5, 6.5,
+		5.5, 4.5, 3.5, 2.5
 	});
 
-	Matrix<float> b(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> b({
 		1.5, 2.5, 3.5, 4.5,
-			5.5, 6.5, 7.5, 8.5,
-			9.5, 8.5, 7.5, 6.5,
-			5.5, 4.5, 3.5, 2.5
+		5.5, 6.5, 7.5, 8.5,
+		9.5, 8.5, 7.5, 6.5,
+		5.5, 4.5, 3.5, 2.5
 	});
 
 	EXPECT_EQ(a, b);
@@ -263,14 +185,14 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_identical_matr
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_different_matrices_as_floats)
 {
-	Matrix<float> a(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> a({
 		1.5, 2.5, 3.5, 4.5,
 		5.5, 6.5, 7.5, 8.5,
 		9.5, 8.5, 7.5, 6.5,
 		5.5, 4.5, 3.5, 2.5
 	});
 
-	Matrix<float> b(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> b({
 		2.5, 3.5, 4.5, 5.5,
 		6.5, 7.5, 8.5, 9.5,
 		8.5, 7.5, 6.5, 5.5,
@@ -282,21 +204,21 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_equality_with_different_matr
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_4x4)
 {
-	Matrix<float> a(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> a({
 		1, 2, 3, 4,
 		5, 6, 7, 8,
 		9, 8, 7, 6,
 		5, 4, 3, 2
 	});
 
-	Matrix<float> b(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> b({
 		-2, 1, 2, 3,
 		3, 2, 1, -1,
 		4, 3, 6, 5,
 		1, 2, 7, 8
 	});
 
-	Matrix<float> expectedResult(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> expectedResult({
 		20, 22, 50, 48,
 		44, 54, 114, 108,
 		40, 58, 110, 102,
@@ -308,18 +230,18 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_4x4)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_3x2_2x4)
 {
-	Matrix<float> a(3, 2, std::vector<float> {
+	Matrix<float, 3, 2> a({
 		1, 3,
 		2, 4,
 		2, 5
 	});
 
-	Matrix<float> b(2, 4, std::vector<float> {
+	Matrix<float, 2, 4> b({
 		1, 3, 2, 2,
 		2, 4, 5, 1
 	});
 
-	Matrix<float> expectedResult(3, 4, std::vector<float> {
+	Matrix<float, 3, 4> expectedResult({
 		7, 15, 17, 5,
 		10, 22, 24, 8,
 		12, 26, 29, 9
@@ -330,14 +252,14 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_3x2_2x4)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_is_non_commutative)
 {
-	Matrix<float> a(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> a({
 		1, 2, 3, 4,
 		5, 6, 7, 8,
 		9, 8, 7, 6,
 		5, 4, 3, 2
 	});
 
-	Matrix<float> b(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> b({
 		-2, 1, 2, 3,
 		3, 2, 1, -1,
 		4, 3, 6, 5,
@@ -347,26 +269,9 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_is_non_commut
 	EXPECT_FALSE(a * b == b * a);
 }
 
-TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_undefined)
-{
-	Matrix<float> a(2, 5);
-
-	Matrix<float> b(2, 5);
-
-	try
-	{
-		a * b;
-		FAIL();
-	}
-	catch (const MatrixUndefinedProductException& err)
-	{
-		ASSERT_STREQ("Cannot multiply Matrix with 5 columns and Matrix with 2 rows.\n", err.what());
-	}
-}
-
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_with_tuple)
 {
-	Matrix<float> matrix(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> matrix({
 		1, 2, 3, 4,
 		2, 4, 4, 2,
 		8, 6, 4, 1,
@@ -380,43 +285,60 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_with_tuple)
 	EXPECT_EQ(matrix * tuple, expectedResult);
 }
 
+TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiplication_undefined)
+{
+	Matrix<float, 2, 5> a;
+
+	Matrix<float, 2, 5> b;
+
+	try
+	{
+		a* b;
+		FAIL();
+	}
+	catch (const MatrixUndefinedProductException& err)
+	{
+		ASSERT_STREQ("Cannot multiply Matrix with 5 columns and Matrix with 2 rows.\n", err.what());
+	}
+}
+
 TEST(CppRayTracerChallenge_Core_Math_Matrix, identity_matrix_3x3)
 {
-	Matrix<float> matrix(3, 3, std::vector<float> {
+	Matrix<float, 3, 3> matrix({
 		1, 2, 3,
 		4, 5, 6,
 		7, 8, 9
 	});
 
-	Matrix<float> identity = Matrix<float>::identity(3);
+	auto identity = Matrix<float, 3, 3>::identity();
 
 	EXPECT_EQ(matrix * identity, matrix);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, identity_matrix_4x4)
 {
-	Matrix<float> matrix(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> matrix({
 		1, 2, 3, 4,
 		2, 4, 4, 2,
 		8, 6, 4, 1,
 		0, 0, 0, 1
 	});
 
-	Matrix<float> identity = Matrix<float>::identity(4);
+	auto identity = Matrix<float, 4, 4>::identity();
 
 	EXPECT_EQ(matrix * identity, matrix);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_transpose_4x4)
 {
-	Matrix<float> matrix(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> matrix({
 		0, 9, 3, 0,
 		9, 8, 0, 8,
 		1, 8, 5, 3,
 		0, 0, 5, 8
 	});
 
-	Matrix<float> expectedResult(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> expectedResult({
 		0, 9, 1, 0,
 		9, 8, 8, 0,
 		3, 0, 5, 5,
@@ -428,12 +350,12 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_transpose_4x4)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_transpose_2x4)
 {
-	Matrix<float> matrix(2, 4, std::vector<float> {
+	Matrix<float, 2, 4> matrix({
 		1, 2, 3, 4,
 		5, 6, 7, 8
 	});
 
-	Matrix<float> expectedResult(4, 2, std::vector<float> {
+	Matrix<float, 4, 2> expectedResult({
 		1, 5,
 		2, 6,
 		3, 7,
@@ -445,14 +367,14 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_transpose_2x4)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_transpose_identity)
 {
-	Matrix<float> identity = Matrix<float>::identity(4);
+	auto identity = Matrix<float, 4, 4>::identity();
 
 	EXPECT_EQ(identity.transpose(), identity);
 }
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_non_square)
 {
-	Matrix<float> matrix(1, 2);
+	Matrix<float, 1, 2> matrix;
 
 	try
 	{
@@ -467,7 +389,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_non_square)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_1x1)
 {
-	Matrix<float> matrix(1, 1, std::vector<float> { 5 });
+	Matrix<float, 1, 1> matrix({ 5 });
 
 	float expectedResult = 5;
 
@@ -476,7 +398,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_1x1)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_2x2)
 {
-	Matrix<float> matrix(2, 2, std::vector<float> {
+	Matrix<float, 2, 2> matrix({
 		1, 5,
 		-3, 2
 	});
@@ -488,7 +410,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_2x2)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_3x3)
 {
-	Matrix<float> matrix(3, 3, std::vector<float> {
+	Matrix<float, 3, 3> matrix({
 		1, 2, 6,
 		-5, 8, -4,
 		2, 6, 4
@@ -502,7 +424,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_3x3)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_4x4)
 {
-	Matrix<float> matrix(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> matrix({
 		-2, -8, 3, 5,
 		-3, 1, 7, 3,
 		1, 2, -9, 6,
@@ -518,13 +440,13 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_determinant_4x4)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, submatrix_of_3x3_is_2x2)
 {
-	Matrix<float> matrix(3, 3, std::vector<float> {
+	Matrix<float, 3, 3> matrix({
 		1, 5, 0,
 		-3, 2, 7,
 		0, 6, -3
 	});
 
-	Matrix<float> expectedResult(2, 2, std::vector<float> {
+	Matrix<float, 2, 2> expectedResult({
 		-3, 2,
 		0, 6
 	});
@@ -534,14 +456,14 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, submatrix_of_3x3_is_2x2)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, submatrix_of_4x4_is_3x3)
 {
-	Matrix<float> matrix(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> matrix({
 		-6, 1, 1, 6,
 		-8, 5, 8, 6,
 		-1, 0, 8, 2,
 		-7, 1, -1, 1
 	});
 
-	Matrix<float> expectedResult(3, 3, std::vector<float> {
+	Matrix<float, 3, 3> expectedResult({
 		-6, 1, 6,
 		-8, 8, 6,
 		-7, -1, 1
@@ -552,7 +474,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, submatrix_of_4x4_is_3x3)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, submatrix_of_1x1_throws_exception)
 {
-	Matrix<float> matrix(1, 1);
+	Matrix<float, 1, 1> matrix;
 
 	try
 	{
@@ -567,13 +489,13 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, submatrix_of_1x1_throws_exception)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, minor_of_a_3x3_matrix)
 {
-	Matrix<float> matrix(3, 3, std::vector<float>{
+	Matrix<float, 3, 3> matrix({
 		3, 5, 0,
 		2, -1, -7,
 		6, -1, 5
 	});
 
-	Matrix<float> submatrix = matrix.submatrix(1, 0);
+	auto submatrix = matrix.submatrix(1, 0);
 
 	float expectedResult = 25;
 
@@ -583,7 +505,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, minor_of_a_3x3_matrix)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, cofactor_of_a_3x3_matrix)
 {
-	Matrix<float> matrix(3, 3, std::vector<float> {
+	Matrix<float, 3, 3> matrix({
 		3, 5, 0,
 		2, -1, -7,
 		6, -1, 5
@@ -597,7 +519,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, cofactor_of_a_3x3_matrix)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_is_invertible)
 {
-	Matrix<float> matrix(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> matrix({
 		6, 4, 4, 4,
 		5, 5, 7, 6,
 		4, -9, 3, -7,
@@ -610,7 +532,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_is_invertible)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_is_not_invertible)
 {
-	Matrix<float> matrix(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> matrix({
 		-4, 2, -2, -3,
 		9, 6, 2, 6,
 		0, -5, 1, -5,
@@ -633,7 +555,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_is_not_invertible)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion_1)
 {
-	Matrix<float> a(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> a({
 		-5, 2, 6, -8,
 		1, -5, 1, 8,
 		7, 7, -6, -7,
@@ -642,7 +564,7 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion_1)
 
 	Matrix b = a.invert();
 
-	Matrix<float> expectedResult(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> expectedResult({
 		0.21805f, 0.45113f, 0.24060f, -0.04511f,
 		-0.80827f, -1.45677f, -0.44361f, 0.52068f,
 		-0.07895f, -0.22368f, -0.05263f, 0.19737f,
@@ -659,14 +581,14 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion_1)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion_2)
 {
-	Matrix<float> matrix(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> matrix({
 		8, -5, 9, 2,
 		7, 5, 6, 1,
 		-6, 0, 9, 6,
 		-3, 0, -9, -4
 	});
 
-	Matrix<float> expectedResult(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> expectedResult({
 		-0.153846f, -0.153846f, -0.282051f, -0.538462f,
 		-0.0769231f, 0.123077f, 0.025641f, 0.0307692f,
 		0.358974f, 0.358974f, 0.435897f, 0.923077f,
@@ -678,14 +600,14 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion_2)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion_3)
 {
-	Matrix<float> matrix(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> matrix({
 		9, 3, 0, 9,
 		-5, -2, -6, -3,
 		-4, 9, 6, 4,
 		-7, 6, 6, 2
 	});
 
-	Matrix<float> expectedResult(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> expectedResult({
 		-0.0407407f, -0.0777778f, 0.144444f, -0.222222f,
 		- 0.0777778f, 0.0333333f, 0.366667f, -0.333333f,
 		- 0.0290123f, -0.146296f, -0.109259f, 0.12963f,
@@ -697,14 +619,14 @@ TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_inversion_3)
 
 TEST(CppRayTracerChallenge_Core_Math_Matrix, matrix_multiply_by_inverse)
 {
-	Matrix<float> a(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> a({
 		3, -9, 7, 3,
 		3, -8, 2, -9,
 		-4, 4, 4, 1,
 		-6, 5, -1, 1
 	});
 
-	Matrix<float> b(4, 4, std::vector<float> {
+	Matrix<float, 4, 4> b({
 		8, 2, 2, 2,
 		3, -1, 7, 0,
 		7, 0, 5, 4,

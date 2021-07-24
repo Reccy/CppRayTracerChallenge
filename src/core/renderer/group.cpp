@@ -92,16 +92,18 @@ void Group::addChild(std::shared_ptr<Group> child)
 {
 	m_groups.push_back(child);
 	child->m_parent = weak_from_this();
+
 	recalculateBounds();
 }
 
 void Group::makeSubgroup(std::vector<std::shared_ptr<Shape>> children)
 {
 	auto subgroup = std::make_shared<Group>();
-
+	
 	for (std::shared_ptr<Shape> ptr : children)
 	{
 		subgroup->addChild(ptr);
+		ptr->parent(weak_from_this());
 	}
 
 	m_groups.push_back(subgroup);

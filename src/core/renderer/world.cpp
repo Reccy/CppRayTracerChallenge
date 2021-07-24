@@ -112,7 +112,7 @@ Math::Intersections World::intersectRay(const Math::Ray ray) const
 
 Graphics::Color World::shadeHit(const ComputedValues& cv) const
 {
-	return shadeHit(cv, DEFAULT_REMAINING_CALLS);
+	return shadeHit(cv, defaultRemainingCalls);
 }
 
 Graphics::Color World::shadeHit(const ComputedValues& cv, int remainingCalls) const
@@ -140,7 +140,7 @@ Graphics::Color World::shadeHit(const ComputedValues& cv, int remainingCalls) co
 
 Graphics::Color World::reflectedColor(const ComputedValues& cv) const
 {
-	return reflectedColor(cv, DEFAULT_REMAINING_CALLS);
+	return reflectedColor(cv, defaultRemainingCalls);
 }
 
 Graphics::Color World::reflectedColor(const ComputedValues& cv, int remainingCalls) const
@@ -158,7 +158,7 @@ Graphics::Color World::reflectedColor(const ComputedValues& cv, int remainingCal
 
 Graphics::Color World::refractedColor(const ComputedValues& cv) const
 {
-	return refractedColor(cv, DEFAULT_REMAINING_CALLS);
+	return refractedColor(cv, defaultRemainingCalls);
 }
 
 Graphics::Color World::refractedColor(const ComputedValues& cv, int remainingCalls) const
@@ -231,7 +231,7 @@ bool World::isShadowed(const Math::Point& position, const PointLight& light) con
 
 Graphics::Color World::colorAt(const Math::Ray& ray) const
 {
-	return colorAt(ray, DEFAULT_REMAINING_CALLS);
+	return colorAt(ray, defaultRemainingCalls);
 }
 
 Graphics::Color World::colorAt(const Math::Ray& ray, int remainingCalls) const
