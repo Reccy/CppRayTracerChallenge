@@ -159,11 +159,12 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <param name="remainingCalls">The remaining calls when this method is used recursively</param>
 		/// <returns>The color from the traced ray</returns>
 		Graphics::Color colorAt(const Math::Ray& ray, int remainingCalls) const;
+		
+		int defaultRemainingCalls = 16;
 	private:
 		std::vector<PointLight> m_lights;
 		std::vector<Shape> m_objects;
 		std::vector<Group> m_groups;
-		int const static DEFAULT_REMAINING_CALLS = 16;
 	};
 }
 

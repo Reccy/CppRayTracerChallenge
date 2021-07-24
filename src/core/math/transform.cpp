@@ -4,13 +4,13 @@
 
 using namespace CppRayTracerChallenge::Core::Math;
 
-Transform::Transform() : m_matrix(Matrix<double>::identity(4)) {};
+Transform::Transform() : m_matrix(Matrix<double, 4, 4>::identity()) {};
 
 const Transform Transform::translate(const double x, const double y, const double z) const
 {
 	Transform copy = *this;
 
-	Matrix<double> translationMatrix = Matrix<double>::identity(4);
+	Matrix<double, 4, 4> translationMatrix = Matrix<double, 4, 4>::identity();
 	translationMatrix(0, 3) = x;
 	translationMatrix(1, 3) = y;
 	translationMatrix(2, 3) = z;
@@ -24,7 +24,7 @@ const Transform Transform::scale(const double x, const double y, const double z)
 {
 	Transform copy = *this;
 
-	Matrix<double> scaleMatrix = Matrix<double>::identity(4);
+	Matrix<double, 4, 4> scaleMatrix = Matrix<double, 4, 4>::identity();
 	scaleMatrix(0, 0) = x;
 	scaleMatrix(1, 1) = y;
 	scaleMatrix(2, 2) = z;
@@ -42,21 +42,21 @@ const Transform Transform::rotate(const double x, const double y, const double z
 	const double yRad = Trig::degrees_to_radians(y);
 	const double zRad = Trig::degrees_to_radians(z);
 
-	Matrix<double> xRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
+	Matrix<double, 4, 4> xRotationMatrix = Matrix<double, 4, 4>({
 		1, 0, 0, 0,
 		0, cos(xRad), -sin(xRad), 0,
 		0, sin(xRad), cos(xRad), 0,
 		0, 0, 0, 1
 	});
 
-	Matrix<double> yRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
+	Matrix<double, 4, 4> yRotationMatrix = Matrix<double, 4, 4>({
 		cos(yRad), 0, sin(yRad), 0,
 		0, 1, 0, 0,
 		-sin(yRad), 0, cos(yRad), 0,
 		0, 0, 0, 1
 	});
 
-	Matrix<double> zRotationMatrix = Matrix<double>(4, 4, std::vector<double> {
+	Matrix<double, 4, 4> zRotationMatrix = Matrix<double, 4, 4>({
 		cos(zRad), -sin(zRad), 0, 0,
 		sin(zRad), cos(zRad), 0, 0,
 		0, 0, 1, 0,
@@ -74,7 +74,7 @@ const Transform Transform::shear(const double xY, const double xZ, const double 
 {
 	Transform copy = *this;
 
-	Matrix<double> shearMatrix = Matrix<double>(4, 4, std::vector<double> {
+	Matrix<double, 4 , 4> shearMatrix = Matrix<double, 4, 4>({
 		1, xY, xZ, 0,
 		yX, 1, yZ, 0,
 		zX, zY, 1, 0,
@@ -111,7 +111,7 @@ const Transform Transform::invert() const
 	return copy;
 }
 
-const Matrix<double> Transform::matrix() const
+const Matrix<double, 4, 4> Transform::matrix() const
 {
 	Transform copy = *this;
 

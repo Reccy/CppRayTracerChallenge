@@ -10,7 +10,7 @@ using namespace CppRayTracerChallenge::Core::Math;
 using namespace CppRayTracerChallenge::Core;
 
 Camera::Camera(int hSize, int vSize, int fieldOfView) :
-	m_hSize(hSize), m_vSize(vSize), m_fieldOfView(fieldOfView), m_transformMatrix(Matrix<double>::identity(4)), m_renderCanvas(std::make_unique<Graphics::Canvas>(m_hSize, m_vSize))
+	m_hSize(hSize), m_vSize(vSize), m_fieldOfView(fieldOfView), m_transformMatrix(Matrix<double, 4, 4>::identity()), m_renderCanvas(std::make_unique<Graphics::Canvas>(m_hSize, m_vSize))
 {
 	calculatePixelSize();
 };
@@ -35,7 +35,7 @@ double Camera::pixelSize() const
 	return m_pixelSize;
 }
 
-void Camera::transform(const Math::Matrix<double>& matrix)
+void Camera::transform(const Math::Matrix<double, 4, 4>& matrix)
 {
 	m_transformMatrix = matrix;
 }
@@ -63,7 +63,7 @@ Ray Camera::rayForPixel(int xPixel, int yPixel) const
 	return Ray(origin, direction);
 }
 
-Matrix<double> Camera::transformMatrix() const
+Matrix<double, 4, 4> Camera::transformMatrix() const
 {
 	return m_transformMatrix;
 }
@@ -131,14 +131,14 @@ Graphics::Image Camera::renderedImage() const
 	return image;
 }
 
-Matrix<double> Camera::viewMatrix(const Point from, const Point to, const Vector up)
+Matrix<double, 4, 4> Camera::viewMatrix(const Point from, const Point to, const Vector up)
 {
 	Vector forward = (to - from).normalize();
 	Vector upNormalized = up.normalize();
 	Vector left = Vector::cross(forward, upNormalized);
 	Vector trueUp = Vector::cross(left, forward);
 
-	Matrix<double> orientation = Matrix<double>(4, 4, std::vector<double> {
+	Matrix<double, 4, 4> orientation = Matrix<double, 4, 4>({
 		left.x(), left.y(), left.z(), 0,
 		trueUp.x(), trueUp.y(), trueUp.z(), 0,
 		-forward.x(), -forward.y(), -forward.z(), 0,

@@ -208,6 +208,9 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, create_subgroup_from_list_of_chi
 
 	EXPECT_EQ(group.count(), 1); // Count 1 is the subgroup
 
+	EXPECT_EQ(shape1->parent().lock(), group.weak_from_this().lock());
+	EXPECT_EQ(shape2->parent().lock(), group.weak_from_this().lock());
+
 	auto subgroup = group.subgroup(0);
 
 	EXPECT_EQ(subgroup->count(), 2); // Count 2 is the children in the subgroup

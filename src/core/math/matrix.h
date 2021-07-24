@@ -1,7 +1,7 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_MATRIX
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_MATRIX
 
-#include <vector>
+#include <array>
 #include <sstream>
 #include "comparison.h"
 #include "tuple.h"
@@ -12,37 +12,32 @@ namespace CppRayTracerChallenge::Core::Math
 	/// A Matrix of numbers
 	/// </summary>
 	/// <typeparam name="T">The type of number to store, e.g. int, float, double...</typeparam>
-	template<typename T>
+	template<class T, int ROW, int COL>
 	class Matrix
 	{
 	public:
-		Matrix() = delete;
+		template<class T, int ROW2, int COL2>
+		friend class Matrix;
 
 		/// <summary>
-		/// Creates a Matrix of size rows x columns.
+		/// Creates a Matrix
 		/// Initializes all data to 0.
 		/// </summary>
-		/// <param name="rows">The amount of rows in the Matrix</param>
-		/// <param name="columns">The amount of columns in the Matrix</param>
-		Matrix(const int rows, const int columns) : m_rows(rows), m_columns(columns), m_data(std::vector<T>(rows * columns, 0)) {
-			if (m_rows <= 0 || m_columns <= 0)
-			{
-				throw MatrixTooSmallException();
-			}
+		Matrix() : m_rows(ROW), m_columns(COL), m_data(std::array<T, ROW * COL>()) {
+			static_assert(ROW > 0, "ROW is too small");
+			static_assert(COL > 0, "COL is too small");
 		};
 
 		/// <summary>
-		/// Creates a Matrix of size rows x columns.
+		/// Creates a Matrix
 		/// Initializes all data to the value of initialData
 		/// </summary>
 		/// <param name="rows">The amount of rows in the Matrix</param>
 		/// <param name="columns">The amount of columns in the Matrix</param>
 		/// <param name="initialData">List of data used to initialize the Matrix</param>
-		Matrix(const int rows, const int columns, std::vector<T> initialData) : m_rows(rows), m_columns(columns), m_data(initialData) {
-			if (m_rows <= 0 || m_columns <= 0)
-			{
-				throw MatrixTooSmallException();
-			}
+		Matrix(std::array<T, ROW * COL> initialData) : m_rows(ROW), m_columns(COL), m_data(initialData) {
+			static_assert(ROW > 0, "ROW is too small");
+			static_assert(COL > 0, "COL is too small");
 
 			if (m_data.size() != m_rows * m_columns)
 			{
@@ -55,13 +50,15 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="size">The size of the matrix</param>
 		/// <returns>A square Identity Matrix of n x n size</returns>
-		static Matrix<T> identity(const int size)
+		static Matrix<T, ROW, COL> identity()
 		{
-			Matrix matrix(size, size);
+			Matrix<T, ROW, COL> matrix;
 
-			for (int col = 0; col < size; ++col)
+			constexpr int size = ROW * COL;
+
+			for (int col = 0; col < COL; ++col)
 			{
-				for (int row = 0; row < size; ++row)
+				for (int row = 0; row < ROW; ++row)
 				{
 					if (row == col) matrix(row, col) = 1;
 				}
@@ -94,12 +91,12 @@ namespace CppRayTracerChallenge::Core::Math
 		/// Transposes the Matrix, changing its rows into columns, and columns into rows
 		/// </summary>
 		/// <returns>A Matrix with transposed elements</returns>
-		Matrix transpose() const
+		Matrix<T, COL, ROW> transpose() const
 		{
-			const int transposedColumns = this->m_rows;
-			const int transposedRows = this->m_columns;
+			constexpr int transposedColumns = ROW;
+			constexpr int transposedRows = COL;
 
-			Matrix result(transposedRows, transposedColumns);
+			Matrix<T, transposedRows, transposedColumns> result;
 
 			for (int row = 0; row < transposedRows; ++row)
 			{
@@ -112,33 +109,7 @@ namespace CppRayTracerChallenge::Core::Math
 			return result;
 		}
 
-		/// <summary>
-		/// Returns a copy of the Matrix, with the row and column removed.
-		/// </summary>
-		/// <param name="removeRow">The row to remove</param>
-		/// <param name="removeColumn">The column to remove</param>
-		/// <returns>The submatrix</returns>
-		Matrix submatrix(const int removeRow, const int removeColumn) const
-		{
-			int submatrixRows = m_rows - 1;
-			int submatrixColumns = m_columns - 1;
-
-			std::vector<T> data;
-
-			for (int row = 0; row < m_rows; ++row)
-			{
-				for (int col = 0; col < m_columns; ++col)
-				{
-					if (col == removeColumn || row == removeRow) continue;
-
-					data.push_back(m_data[indexAt(row, col)]);
-				}
-			}
-
-			Matrix result(submatrixRows, submatrixColumns, data);
-
-			return result;
-		}
+		auto submatrix(const int removeRow, const int removeColumn) const;
 
 		/// <summary>
 		/// Calculates the determinant of the square Matrix
@@ -149,32 +120,33 @@ namespace CppRayTracerChallenge::Core::Math
 			if (m_determinant != 0)
 				return m_determinant;
 
-			if (m_rows != m_columns)
+			if constexpr (ROW != COL)
 			{
 				throw MatrixUndefinedDeterminantException(m_rows, m_columns);
 			}
 
-			int matrixSize = m_rows;
+			constexpr int MATRIX_SIZE = ROW;
 
-			if (matrixSize == 1)
+			if constexpr (MATRIX_SIZE == 1)
 			{
 				return m_data[0];
 			}
-
-			if (matrixSize == 2)
+			else if constexpr (MATRIX_SIZE == 2)
 			{
 				return m_data[indexAt(0, 0)] * m_data[indexAt(1, 1)] - m_data[indexAt(1, 0)] * m_data[indexAt(0, 1)];
 			}
-
-			T result = 0;
-
-			for (int col = 0; col < m_columns; ++col)
+			else
 			{
-				result += cofactor(0, col) * m_data[indexAt(0, col)];
-			}
+				T result = 0;
 
-			m_determinant = result;
-			return result;
+				for (int col = 0; col < m_columns; ++col)
+				{
+					result += cofactor(0, col) * m_data[indexAt(0, col)];
+				}
+
+				m_determinant = result;
+				return result;
+			}
 		}
 
 		/// <summary>
@@ -231,7 +203,7 @@ namespace CppRayTracerChallenge::Core::Math
 				throw MatrixNotInvertibleException();
 			}
 
-			Matrix result(m_rows, m_columns);
+			Matrix<T, ROW, COL> result;
 
 			for (int row = 0; row < m_rows; ++row)
 			{
@@ -243,12 +215,13 @@ namespace CppRayTracerChallenge::Core::Math
 				}
 			}
 
-			m_inverted = std::make_shared<Matrix<T>>(result);
+			m_inverted = std::make_shared<Matrix<T, COL, ROW>>(result);
 
 			return result;
 		}
 
-		Matrix operator*(const Matrix& other) const
+		template<int ROW2, int COL2>
+		Matrix<T, ROW, COL2> operator*(const Matrix<T, ROW2, COL2> & other) const
 		{
 			if (this->m_columns != other.m_rows)
 			{
@@ -258,7 +231,7 @@ namespace CppRayTracerChallenge::Core::Math
 			const int newRows = m_rows;
 			const int newColumns = other.m_columns;
 
-			Matrix<T> result(newRows, newColumns);
+			Matrix<T, ROW, COL2> result;
 
 			for (int row = 0; row < newRows; ++row)
 			{
@@ -280,7 +253,7 @@ namespace CppRayTracerChallenge::Core::Math
 
 		Tuple<T> operator*(const Tuple<T>& tuple) const
 		{
-			Matrix matrix(4, 1, std::vector<T> {
+			Matrix<T, 4, 1> matrix({
 				tuple.x(),
 				tuple.y(),
 				tuple.z(),
@@ -299,7 +272,8 @@ namespace CppRayTracerChallenge::Core::Math
 			return result;
 		}
 
-		bool operator==(const Matrix& other) const
+		template<typename T, int ROW2, int COL2>
+		bool operator==(const Matrix<T, ROW2, COL2>& other) const
 		{
 			if (other.m_data.size() != this->m_data.size())
 			{
@@ -349,14 +323,53 @@ namespace CppRayTracerChallenge::Core::Math
 	private:
 		int m_rows, m_columns;
 		mutable T m_determinant = 0;
-		mutable std::shared_ptr<Matrix<T>> m_inverted = nullptr;
-		std::vector<T> m_data;
+		mutable std::shared_ptr<Matrix<T, ROW, COL>> m_inverted = nullptr;
+		std::array<T, ROW * COL> m_data;
 
 		int indexAt(const int row, const int column) const
 		{
 			return row * m_columns + column;
 		};
 	};
+
+	/// <summary>
+	/// Returns a copy of the Matrix, with the row and column removed.
+	/// </summary>
+	/// <param name="removeRow">The row to remove</param>
+	/// <param name="removeColumn">The column to remove</param>
+	/// <returns>The submatrix</returns>
+	template<typename T, int ROW, int COL>
+	auto Matrix<T, ROW, COL>::submatrix(const int removeRow, const int removeColumn) const
+	{
+		if constexpr (ROW <= 1 || COL <= 1)
+		{
+			throw MatrixTooSmallException();
+		}
+		else
+		{
+			constexpr int NEW_ROW = ROW - 1;
+			constexpr int NEW_COL = COL - 1;
+
+			std::array<T, NEW_ROW * NEW_COL> data{ -1 };
+
+			int i = 0;
+
+			for (int row = 0; row < m_rows; ++row)
+			{
+				for (int col = 0; col < m_columns; ++col)
+				{
+					if (col == removeColumn || row == removeRow) continue;
+
+					data.at(i) = m_data[indexAt(row, col)];
+					++i;
+				}
+			}
+
+			Matrix<T, NEW_ROW, NEW_COL> result(data);
+
+			return result;
+		}
+	}
 
 	class MatrixNotInvertibleException : public std::exception {
 	public:
