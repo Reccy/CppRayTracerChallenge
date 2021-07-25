@@ -96,9 +96,9 @@ void WavefrontOBJSerializer::parseVertex(std::string line)
 	int lastWhitespace = 0;
 	int tokenStart = 0;
 
-	for (int j = 1; j < line.size(); ++j)
+	for (int i = 1; i < line.size(); ++i)
 	{
-		char byte = line[j];
+		char byte = line[i];
 
 		// More than 3 vertices in instruction which is not valid
 		if (valueIndex > 2)
@@ -108,17 +108,17 @@ void WavefrontOBJSerializer::parseVertex(std::string line)
 		}
 
 		// If current byte is a whitespace or we are at end of line
-		if (std::isspace(byte) > 0 || j == line.size() - 1)
+		if (std::isspace(byte) > 0 || i == line.size() - 1)
 		{
-			if (j == line.size() - 1)
+			if (tokenStart < lastWhitespace && (i == line.size() - 1))
 			{
-				tokenStart = j;
+				tokenStart = i;
 			}
 
 			// tokenStart is greater than lastWhitespace only if we are currently parsing a token
 			if (tokenStart > lastWhitespace)
 			{
-				std::string token = std::string(line.begin() + tokenStart, line.begin() + j + 1);
+				std::string token = std::string(line.begin() + tokenStart, line.begin() + i + 1);
 
 				try
 				{
@@ -134,15 +134,20 @@ void WavefrontOBJSerializer::parseVertex(std::string line)
 				++valueIndex;
 			}
 
-			lastWhitespace = j;
+			lastWhitespace = i;
 			continue;
 		}
 
 		if (tokenStart < lastWhitespace)
 		{
-			tokenStart = j;
+			tokenStart = i;
 		}
 	}
+
+	std::stringstream ss;
+	ss << line;
+	ss << " Point(" << values[0] << ", " << values[1] << ", " << values[2] << ")\n";
+	std::cout << ss.str();
 
 	m_vertices.push_back(Math::Point(values[0], values[1], values[2]));
 }
@@ -161,7 +166,7 @@ void WavefrontOBJSerializer::parseFace(std::string line)
 		// If current byte is a whitespace or we are at end of line
 		if (std::isspace(byte) > 0 || j == line.size() - 1)
 		{
-			if (j == line.size() - 1)
+			if (tokenStart < lastWhitespace && (j == line.size() - 1))
 			{
 				tokenStart = j;
 			}
@@ -170,7 +175,17 @@ void WavefrontOBJSerializer::parseFace(std::string line)
 			if (tokenStart > lastWhitespace)
 			{
 				std::string token = std::string(line.begin() + tokenStart, line.begin() + j + 1);
-				indices.push_back(atoi(token.c_str()));
+
+				try
+				{
+					indices.push_back(std::stoi(token, nullptr));
+				}
+				catch (const std::invalid_argument& ia)
+				{
+					std::cerr << "Invalid argument when parsing OBJ file: " << ia.what() << "\n";
+					m_ignoredLines++;
+					return;
+				}
 			}
 
 			lastWhitespace = j;
@@ -203,9 +218,14 @@ void WavefrontOBJSerializer::parseFace(std::string line)
 	// Fan triangulation
 	for (int i = 1; i < indices.size() - 1; ++i)
 	{
- 		auto triangle = std::make_shared<Math::Triangle>(m_vertices[0], m_vertices[indices.at(i) - 1], m_vertices[indices.at(i + 1) - 1]);
+ 		auto triangle = std::make_shared<Math::Triangle>(m_vertices[indices.at(0) - 1], m_vertices[indices.at(i) - 1], m_vertices[indices.at(i + 1) - 1]);
 		auto shape = std::make_shared<Renderer::Shape>(triangle);
-		
+ 
+		std::stringstream ss;
+		ss << line;
+		ss << " Triangle([" << triangle->p1() << "], [" << triangle->p2() << "], [" << triangle->p3() << "])\n";
+		std::cout << ss.str();
+
 		if (m_currentGroupName == "")
 		{
 			m_defaultGroup.addChild(shape);

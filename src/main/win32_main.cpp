@@ -533,7 +533,7 @@ public:
 
 		World world = World();
 
-		world.defaultRemainingCalls = 2;
+		world.defaultRemainingCalls = 32;
 
 		Group bvhGroup = Group();
 		
@@ -550,8 +550,8 @@ public:
 	static Matrix<double, 4, 4> cameraMatrix()
 	{
 		double camPosX = 0;
-		double camPosY = 0;
-		double camPosZ = -10;
+		double camPosY = 0.5;
+		double camPosZ = -5;
 
 		double camLookX = 0;
 		double camLookY = 0;
@@ -567,14 +567,14 @@ public:
 private:
 	static std::shared_ptr<Renderer::Pattern> buildFloorPattern()
 	{
-		std::shared_ptr<Pattern> a = std::make_shared<Stripe>(Color(0.5f, 0, 0), Color(0.2f, 0, 0));
+		std::shared_ptr<Pattern> a = std::make_shared<Stripe>(Color(0.5f, 0.5f, 0), Color(0.2f, 0.5, 0.4f));
 		a->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
 
-		std::shared_ptr<Pattern> b = std::make_shared<Stripe>(Color(0, 0, 0.5f), Color(0, 0, 0.2f));
+		std::shared_ptr<Pattern> b = std::make_shared<Stripe>(Color(0.5f, 0.5f, 0.f), Color(0.5f, 0.3f, 0.5f));
 		b->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
 
 		std::shared_ptr<Pattern> masked = std::make_shared<Masked<Checker>>(a, b);
-		masked->transform(Math::Transform().rotate(0, 23, 0).translate(0, 0.01f, 0));
+		masked->transform(Math::Transform().rotate(0, 65, 0).translate(0, 0.01f, 0));
 
 		std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
 		return pattern;
@@ -585,7 +585,7 @@ private:
 		auto shape = std::make_shared<Plane>();
 		Renderer::Shape floor = Renderer::Shape(shape);
 		Transform floorTransform = Transform()
-			.scale(10, 0.01, 10);
+			.scale(2, 1, 10);
 		Material bgMaterial = Material();
 		bgMaterial.pattern = buildFloorPattern();
 		bgMaterial.specular = 0.1f;
@@ -620,12 +620,21 @@ private:
 
 		serializer.deserialize(buffer);
 
-		log("Model Instructions Ignored: " + serializer.ignoredLines());
+		log("===== Load results =====");
+		std::stringstream ss1;
+		ss1 << "> Model Instructions Ignored: " << serializer.ignoredLines();
+		log(ss1.str());
 
-		log("Load complete");
+		std::stringstream ss2;
+		ss2 << "> Model Size: " << serializer.buffer().size();
+		log(ss2.str());
+		log("========================\n");
 
+		log("== Subdividing Model ==");
 		auto subresult = std::make_shared<Renderer::Group>(serializer.defaultGroup());
 		subresult->divide(30);
+		log("Done");
+		log("=======================\n");
 
 		auto result = std::make_shared<Renderer::Group>();
 		result->addChild(subresult);
@@ -637,7 +646,7 @@ private:
 
 	static PointLight buildLight()
 	{
-		return PointLight({ -10, 10, -10 }, Color(1, 1, 1));
+		return PointLight({ 10, 10, -10 }, Color(1, 1, 1));
 	}
 };
 
