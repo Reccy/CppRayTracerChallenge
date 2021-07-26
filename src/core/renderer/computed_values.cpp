@@ -1,5 +1,6 @@
 #include "computed_values.h"
 #include "shape.h"
+#include "../math/smooth_triangle.h"
 #include "../math/point.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
@@ -57,7 +58,16 @@ void ComputedValues::calculateValues(Math::Intersection& hit, Math::Ray& ray)
 
 	m_position = ray.position(m_t);
 	m_eye = -ray.direction();
-	m_normal = m_shape.normal(m_position);
+
+	if (auto tri = dynamic_cast<SmoothTriangle*>(m_shape.shape().get()))
+	{
+		m_normal = tri->normal(hit.u(), hit.v());
+	}
+	else
+	{
+		m_normal = m_shape.normal(m_position);
+	}
+
 	m_reflect = Math::Vector::reflect(ray.direction(), m_normal);
 
 	if (Vector::dot(m_normal, m_eye) < 0)
@@ -144,7 +154,7 @@ float ComputedValues::reflectance() const
 	return m_reflectance;
 }
 
-const Shape& ComputedValues::shape() const
+const CppRayTracerChallenge::Core::Renderer::Shape& ComputedValues::shape() const
 {
 	return m_shape;
 }
