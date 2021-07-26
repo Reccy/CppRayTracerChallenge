@@ -3,6 +3,7 @@
 #include <renderer/group.h>
 #include <math/point.h>
 #include <math/triangle.h>
+#include <math/smooth_triangle.h>
 
 using namespace CppRayTracerChallenge::Core::Serializer;
 using namespace CppRayTracerChallenge::Core::Math;
@@ -194,4 +195,51 @@ TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, vertex_normal
 	EXPECT_EQ(serializer.normals().at(0), Vector(0, 0, 1));
 	EXPECT_EQ(serializer.normals().at(1), Vector(0.707, 0, -0.707));
 	EXPECT_EQ(serializer.normals().at(2), Vector(1, 2, 3));
+}
+
+TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, faces_with_normals)
+{
+	WavefrontOBJSerializer serializer = WavefrontOBJSerializer();
+
+	std::stringstream ss;
+	ss << "v 0 1 0\n"
+		"v -1 0 0\n"
+		"v 1 0 0\n"
+		"\n"
+		"vn -1 0 0\n"
+		"vn 1 0 0\n"
+		"vn 0 1 0\n"
+		"\n"
+		"f 1//3 2//1 3//2\n"
+		"f 1/0/3 2/102/1 3/14/2";
+
+	std::string input = ss.str();
+
+	serializer.deserialize({ input.begin(), input.end() });
+	
+	auto g = serializer.defaultGroup();
+
+	auto t1 = std::dynamic_pointer_cast<SmoothTriangle>(g.child(0)->shape());
+	auto t2 = std::dynamic_pointer_cast<SmoothTriangle>(g.child(1)->shape());
+
+	EXPECT_EQ(t1->p1(), serializer.vertices().at(0));
+	EXPECT_EQ(t1->p2(), serializer.vertices().at(1));
+	EXPECT_EQ(t1->p3(), serializer.vertices().at(2));
+	EXPECT_EQ(t1->n1(), serializer.normals().at(2));
+	EXPECT_EQ(t1->n2(), serializer.normals().at(0));
+	EXPECT_EQ(t1->n3(), serializer.normals().at(1));
+
+	EXPECT_EQ(t2->p1(), serializer.vertices().at(0));
+	EXPECT_EQ(t2->p2(), serializer.vertices().at(1));
+	EXPECT_EQ(t2->p3(), serializer.vertices().at(2));
+	EXPECT_EQ(t2->n1(), serializer.normals().at(2));
+	EXPECT_EQ(t2->n2(), serializer.normals().at(0));
+	EXPECT_EQ(t2->n3(), serializer.normals().at(1));
+
+	EXPECT_EQ(t1->p1(), t2->p1());
+	EXPECT_EQ(t1->p2(), t2->p2());
+	EXPECT_EQ(t1->p3(), t2->p3());
+	EXPECT_EQ(t1->n1(), t2->n1());
+	EXPECT_EQ(t1->n2(), t2->n2());
+	EXPECT_EQ(t1->n3(), t2->n3());
 }

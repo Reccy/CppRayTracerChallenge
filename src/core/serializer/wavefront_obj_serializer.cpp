@@ -1,4 +1,5 @@
 #include "wavefront_obj_serializer.h"
+#include "../math/smooth_triangle.h"
 #include <cstdlib>
 #include <cerrno>
 #include <string>
@@ -158,9 +159,76 @@ void WavefrontOBJSerializer::parseVertex(std::string line)
 	m_vertices.push_back(Math::Point(values[0], values[1], values[2]));
 }
 
+struct FaceParam
+{
+	int vertexIndex = -1;
+	int textureIndex = -1; // Not used
+	int normalIndex = -1;
+};
+
+FaceParam parseFaceParam(std::string line)
+{
+	int firstSlashIndex = -1;
+	int secondSlashIndex = -1;
+
+	for (int i = 0; i < line.size(); ++i)
+	{
+		char byte = line[i];
+
+		if (firstSlashIndex == -1 && byte == '/')
+		{
+			firstSlashIndex = i;
+			continue;
+		}
+
+		if (secondSlashIndex == -1 && byte == '/')
+		{
+			secondSlashIndex = i;
+			continue;
+		}
+
+		if (byte == '/')
+		{
+			throw std::invalid_argument("Too many slashes in face param");
+		}
+	}
+
+	if (firstSlashIndex != -1 && secondSlashIndex == -1)
+	{
+		throw std::invalid_argument("Only 1 slash in face param");
+	}
+
+	bool hasSlashes = firstSlashIndex != -1 && secondSlashIndex != 1;
+
+	std::string vertexIndexString;
+	std::string normalIndexString;
+
+	if (hasSlashes)
+	{
+		vertexIndexString = std::string(line.begin(), line.begin() + firstSlashIndex);
+		normalIndexString = std::string(line.begin() + secondSlashIndex + 1, line.end());
+	}
+	else
+	{
+		vertexIndexString = line;
+	}
+
+	FaceParam result;
+
+	result.vertexIndex = std::stoi(vertexIndexString, nullptr);
+
+	if (hasSlashes)
+	{
+		result.normalIndex = std::stoi(normalIndexString, nullptr);
+	}
+
+	return result;
+}
+
 void WavefrontOBJSerializer::parseFace(std::string line)
 {
-	std::vector<int> indices;
+	std::vector<int> vertexIndices;
+	std::vector<int> normalIndices;
 
 	int lastWhitespace = 0;
 	int tokenStart = 0;
@@ -184,7 +252,13 @@ void WavefrontOBJSerializer::parseFace(std::string line)
 
 				try
 				{
-					indices.push_back(std::stoi(token, nullptr));
+					FaceParam faceParam = parseFaceParam(token);
+					vertexIndices.push_back(faceParam.vertexIndex);
+
+					if (faceParam.normalIndex >= 0)
+					{
+						normalIndices.push_back(faceParam.normalIndex);
+					}
 				}
 				catch (const std::invalid_argument& ia)
 				{
@@ -204,17 +278,17 @@ void WavefrontOBJSerializer::parseFace(std::string line)
 		}
 	}
 
-	// We need at least 3 indices to create a face from 3 vertices
-	if (indices.size() < 3)
+	// We need at least 3 vertexIndices to create a face from 3 vertices
+	if (vertexIndices.size() < 3)
 	{
 		m_ignoredLines++;
 		return;
 	}
 
-	for (int i = 0; i < indices.size(); ++i)
+	for (int i = 0; i < vertexIndices.size(); ++i)
 	{
 		// If index is larger than vertex array size or points to negative number, this instruction is invalid
-		if (indices[i] > m_vertices.size() || indices[i] < 1)
+		if (vertexIndices[i] > m_vertices.size() || vertexIndices[i] < 1)
 		{
 			m_ignoredLines++;
 			return;
@@ -222,16 +296,32 @@ void WavefrontOBJSerializer::parseFace(std::string line)
 	}
 
 	// Fan triangulation
-	for (int i = 1; i < indices.size() - 1; ++i)
+	for (int i = 1; i < vertexIndices.size() - 1; ++i)
 	{
- 		auto triangle = std::make_shared<Math::Triangle>(m_vertices[indices.at(0) - 1], m_vertices[indices.at(i) - 1], m_vertices[indices.at(i + 1) - 1]);
+		std::shared_ptr<Math::Triangle> triangle;
+		
+		if (normalIndices.size() > 0)
+		{
+			triangle = std::make_shared<Math::SmoothTriangle>(
+				m_vertices[vertexIndices.at(0) - 1],
+				m_vertices[vertexIndices.at(i) - 1],
+				m_vertices[vertexIndices.at(i + 1) - 1],
+				m_normals[normalIndices.at(0) - 1],
+				m_normals[normalIndices.at(i) - 1],
+				m_normals[normalIndices.at(i + 1) - 1]
+				);
+		}
+		else
+		{
+			triangle = std::make_shared<Math::Triangle>(
+				m_vertices[vertexIndices.at(0) - 1],
+				m_vertices[vertexIndices.at(i) - 1],
+				m_vertices[vertexIndices.at(i + 1) - 1]
+				);
+		}
+
 		auto shape = std::make_shared<Renderer::Shape>(triangle);
  
-		std::stringstream ss;
-		ss << line;
-		ss << " Triangle([" << triangle->p1() << "], [" << triangle->p2() << "], [" << triangle->p3() << "])\n";
-		std::cout << ss.str();
-
 		if (m_currentGroupName == "")
 		{
 			m_defaultGroup.addChild(shape);
