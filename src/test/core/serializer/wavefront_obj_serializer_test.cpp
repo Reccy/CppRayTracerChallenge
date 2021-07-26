@@ -177,3 +177,21 @@ TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, group_for_sce
 
 	EXPECT_EQ(defaultGroup.size(), 2);
 }
+
+TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, vertex_normal_records)
+{
+	WavefrontOBJSerializer serializer = WavefrontOBJSerializer();
+
+	std::stringstream ss;
+	ss << "vn 0 0 1\n"
+		"vn 0.707 0 -0.707\n"
+		"vn 1 2 3";
+
+	std::string input = ss.str();
+
+	serializer.deserialize({ input.begin(), input.end() });
+
+	EXPECT_EQ(serializer.normals().at(0), Vector(0, 0, 1));
+	EXPECT_EQ(serializer.normals().at(1), Vector(0.707, 0, -0.707));
+	EXPECT_EQ(serializer.normals().at(2), Vector(1, 2, 3));
+}

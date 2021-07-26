@@ -53,12 +53,6 @@ void WavefrontOBJSerializer::deserialize(std::vector<char> input)
 			continue;
 		}
 
-		if (line[0] == 'v')
-		{
-			parseVertex(line);
-			continue;
-		}
-
 		if (line[0] == 'f')
 		{
 			parseFace(line);
@@ -68,6 +62,18 @@ void WavefrontOBJSerializer::deserialize(std::vector<char> input)
 		if (line[0] == 'g')
 		{
 			parseGroup(line);
+			continue;
+		}
+
+		if (line[0] == 'v' && line[1] == 'n')
+		{
+			parseNormal(line);
+			continue;
+		}
+
+		if (line[0] == 'v')
+		{
+			parseVertex(line);
 			continue;
 		}
 
@@ -280,6 +286,70 @@ void WavefrontOBJSerializer::parseGroup(std::string line)
 	return;
 }
 
+void WavefrontOBJSerializer::parseNormal(std::string line)
+{
+	double values[3] = { -123, -312, -231 };
+	int valueIndex = 0;
+
+	int lastWhitespace = 0;
+	int tokenStart = 0;
+
+	for (int i = 1; i < line.size(); ++i)
+	{
+		char byte = line[i];
+
+		// More than 3 vertices in instruction which is not valid
+		if (valueIndex > 2)
+		{
+			m_ignoredLines++;
+			return;
+		}
+
+		// If current byte is a whitespace or we are at end of line
+		if (std::isspace(byte) > 0 || i == line.size() - 1)
+		{
+			if (tokenStart < lastWhitespace && (i == line.size() - 1))
+			{
+				tokenStart = i;
+			}
+
+			// tokenStart is greater than lastWhitespace only if we are currently parsing a token
+			if (tokenStart > lastWhitespace)
+			{
+				std::string token = std::string(line.begin() + tokenStart, line.begin() + i + 1);
+
+				try
+				{
+					values[valueIndex] = std::stod(token, nullptr);
+				}
+				catch (const std::invalid_argument& ia)
+				{
+					std::cerr << "Invalid argument when parsing OBJ file: " << ia.what() << "\n";
+					m_ignoredLines++;
+					return;
+				}
+
+				++valueIndex;
+			}
+
+			lastWhitespace = i;
+			continue;
+		}
+
+		if (tokenStart < lastWhitespace)
+		{
+			tokenStart = i;
+		}
+	}
+
+	std::stringstream ss;
+	ss << line;
+	ss << " Vector(" << values[0] << ", " << values[1] << ", " << values[2] << ")\n";
+	std::cout << ss.str();
+
+	m_normals.push_back(Math::Vector(values[0], values[1], values[2]));
+}
+
 std::vector<char> WavefrontOBJSerializer::buffer() const
 {
 	return m_buffer;
@@ -298,6 +368,11 @@ std::shared_ptr<Renderer::Group> WavefrontOBJSerializer::group(std::string group
 std::vector<Math::Point> WavefrontOBJSerializer::vertices() const
 {
 	return m_vertices;
+}
+
+std::vector<Math::Vector> WavefrontOBJSerializer::normals() const
+{
+	return m_normals;
 }
 
 int WavefrontOBJSerializer::ignoredLines() const

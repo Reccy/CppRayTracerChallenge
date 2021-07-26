@@ -37,8 +37,14 @@ namespace CppRayTracerChallenge::Core::Serializer
 		/// <summary>
 		/// Returns the list of vertices
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Point normal list</returns>
 		std::vector<Math::Point> vertices() const;
+
+		/// <summary>
+		/// Returns the list of normals
+		/// </summary>
+		/// <returns>Vector normal list</returns>
+		std::vector<Math::Vector> normals() const;
 
 		/// <summary>
 		/// Returns the amount of lines that were ignored during deserialization
@@ -48,6 +54,7 @@ namespace CppRayTracerChallenge::Core::Serializer
 	private:
 		std::vector<char> m_buffer;
 		std::vector<Math::Point> m_vertices;
+		std::vector<Math::Vector> m_normals;
 		Renderer::Group m_defaultGroup;
 		std::map<std::string, std::shared_ptr<Renderer::Group>> m_groups;
 		std::string m_currentGroupName;
@@ -57,6 +64,7 @@ namespace CppRayTracerChallenge::Core::Serializer
 		void parseVertex(std::string line);
 		void parseFace(std::string line);
 		void parseGroup(std::string line);
+		void parseNormal(std::string line);
 	};
 }
 
