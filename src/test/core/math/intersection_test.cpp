@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "math/intersection.h"
 #include "math/sphere.h"
+#include "math/smooth_triangle.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
 
@@ -43,4 +44,13 @@ TEST(CppRayTracerChallenge_Core_Math_Intersection, inequality_intersectable)
 	Intersection i2 = Intersection(t, obj2);
 
 	EXPECT_TRUE(i1 != i2);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_Intersection, contains_u_and_v_for_triangles)
+{
+	auto tri = Triangle({ 0, 1, 0 }, { -1, 0, 0 }, { 1, 0, 0 });
+	Intersection i = Intersection(3.5, tri, 0.2, 0.4);
+
+	EXPECT_EQ(i.u, 0.2);
+	EXPECT_EQ(i.v, 0.4);
 }

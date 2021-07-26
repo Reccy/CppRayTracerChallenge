@@ -2,7 +2,11 @@
 
 using namespace CppRayTracerChallenge::Core::Math;
 
-Intersection::Intersection(const double t, const IShape& shape) : m_t(t), m_shape(shape) {};
+Intersection::Intersection(const double t, const IShape& shape)
+	: m_t(t), m_shape(shape), m_u(0), m_v(0) {};
+
+Intersection::Intersection(const double t, const IShape& shape, const double u, const double v)
+	: m_t(t), m_shape(shape), m_u(u), m_v(v) {};
 
 const double Intersection::t() const
 {
@@ -26,6 +30,6 @@ bool Intersection::operator!=(const Intersection& other) const
 
 std::ostream& CppRayTracerChallenge::Core::Math::operator<<(std::ostream& os, const Intersection& intersection)
 {
-	os << "t(" << intersection.t() << "), shape_ptr(" << &intersection.shape() << ")";
+	os << "t(" << intersection.t() << "), shape_ptr(" << &intersection.shape() << "), u(" << intersection.u() << "), v(" << intersection.v() << ")";
 	return os;
 }
