@@ -12,6 +12,10 @@ namespace CppRayTracerChallenge::Core::Math
 
 		SmoothTriangle(Point p1, Point p2, Point p3, Vector n1, Vector n2, Vector n3);
 
+		const Vector normalLocal(const double u, const double v) const;
+
+		const Vector normal(const double u, const double v) const;
+
 		Vector n1() const;
 
 		Vector n2() const;

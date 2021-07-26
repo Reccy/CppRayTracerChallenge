@@ -36,3 +36,14 @@ TEST(CppRayTracerChallenge_Core_Math_SmoothTriangle, intersection_with_smooth_tr
 	EXPECT_TRUE(Comparison::equal(intersections.at(0).u(), 0.45));
 	EXPECT_TRUE(Comparison::equal(intersections.at(0).v(), 0.25));
 }
+
+TEST(CppRayTracerChallenge_Core_Math_SmoothTriangle, smooth_triangle_uses_uv_to_calculate_normal)
+{
+	SmoothTriangleFixture f;
+
+	Vector normal = f.tri.normal(0.45, 0.25);
+
+	Vector expectedResult = Vector(-0.5547, 0.83205, 0);
+
+	EXPECT_EQ(normal, expectedResult);
+}
