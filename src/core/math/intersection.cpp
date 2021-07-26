@@ -18,6 +18,16 @@ const IShape& Intersection::shape() const
 	return m_shape;
 }
 
+const double Intersection::u() const
+{
+	return m_u;
+}
+
+const double Intersection::v() const
+{
+	return m_v;
+}
+
 bool Intersection::operator==(const Intersection& other) const
 {
 	return this->m_t == other.m_t && &this->m_shape == &other.m_shape;

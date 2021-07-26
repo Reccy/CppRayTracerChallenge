@@ -46,7 +46,7 @@ const Intersections Triangle::intersectLocal(Ray ray) const
 	}
 
 	double t = f * Vector::dot(m_e2, originCrossE1);
-	return Intersections({ {t, *this} });
+	return Intersections({ {t, *this, u, v} });
 }
 
 const BoundingBox Triangle::bounds() const

@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <math/smooth_triangle.h>
 #include <math/point.h>
+#include <math/comparison.h>
 
 using namespace CppRayTracerChallenge::Core::Math;
 
@@ -23,4 +24,15 @@ TEST(CppRayTracerChallenge_Core_Math_SmoothTriangle, constructing_smooth_triangl
 	EXPECT_EQ(f.tri.n1(), f.n1);
 	EXPECT_EQ(f.tri.n2(), f.n2);
 	EXPECT_EQ(f.tri.n3(), f.n3);
+}
+
+TEST(CppRayTracerChallenge_Core_Math_SmoothTriangle, intersection_with_smooth_triangle_stores_uv)
+{
+	SmoothTriangleFixture f;
+
+	Ray ray = Ray({ -0.2, 0.3, -2 }, { 0, 0, 1 });
+	Intersections intersections = f.tri.intersectLocal(ray);
+
+	EXPECT_TRUE(Comparison::equal(intersections.at(0).u(), 0.45));
+	EXPECT_TRUE(Comparison::equal(intersections.at(0).v(), 0.25));
 }

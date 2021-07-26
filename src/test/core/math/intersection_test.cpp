@@ -51,6 +51,6 @@ TEST(CppRayTracerChallenge_Core_Math_Intersection, contains_u_and_v_for_triangle
 	auto tri = Triangle({ 0, 1, 0 }, { -1, 0, 0 }, { 1, 0, 0 });
 	Intersection i = Intersection(3.5, tri, 0.2, 0.4);
 
-	EXPECT_EQ(i.u, 0.2);
-	EXPECT_EQ(i.v, 0.4);
+	EXPECT_EQ(i.u(), 0.2);
+	EXPECT_EQ(i.v(), 0.4);
 }
