@@ -60,7 +60,7 @@ using Graphics::Color;
 using Graphics::Image;
 using Graphics::Canvas;
 
-constexpr double RENDER_QUALITY = 1;
+constexpr double RENDER_QUALITY = 0.5;
 
 constexpr int WINDOW_WIDTH = 1920;
 constexpr int WINDOW_HEIGHT = 1080;

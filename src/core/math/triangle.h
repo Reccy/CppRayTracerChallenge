@@ -50,7 +50,7 @@ namespace CppRayTracerChallenge::Core::Math
 		Vector e1() const;
 
 		Vector e2() const;
-	private:
+	protected:
 		Point m_p1, m_p2, m_p3;
 		Vector m_e1, m_e2;
 		Vector m_normal;
