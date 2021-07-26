@@ -98,7 +98,7 @@ const Math::Intersections Shape::intersect(Math::Ray ray) const
 	for (int i = 0; i < originalResult.count(); ++i)
 	{
 		const Math::Intersection& newIntersection = originalResult.at(i);
-		Math::Intersection replacement = Math::Intersection(newIntersection.t(), *this);
+		Math::Intersection replacement = Math::Intersection(newIntersection.t(), *this, newIntersection.u(), newIntersection.v());
 
 		newIntersections.push_back(replacement);
 	}
@@ -117,7 +117,7 @@ const Math::Intersections Shape::intersectLocal(Math::Ray ray) const
 	for (int i = 0; i < originalResult.count(); ++i)
 	{
 		const Math::Intersection& newIntersection = originalResult.at(i);
-		Math::Intersection replacement = Math::Intersection(newIntersection.t(), *this);
+		Math::Intersection replacement = Math::Intersection(newIntersection.t(), *this, newIntersection.u(), newIntersection.v());
 
 		newIntersections.push_back(replacement);
 	}

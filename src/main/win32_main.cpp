@@ -60,7 +60,7 @@ using Graphics::Color;
 using Graphics::Image;
 using Graphics::Canvas;
 
-constexpr double RENDER_QUALITY = 0.5;
+constexpr double RENDER_QUALITY = 1;
 
 constexpr int WINDOW_WIDTH = 1920;
 constexpr int WINDOW_HEIGHT = 1080;
@@ -551,7 +551,7 @@ public:
 	{
 		double camPosX = 0;
 		double camPosY = 0.5;
-		double camPosZ = -5;
+		double camPosZ = -1;
 
 		double camLookX = 0;
 		double camLookY = 0;
@@ -562,7 +562,7 @@ public:
 
 	static int fov()
 	{
-		return 30;
+		return 90;
 	}
 private:
 	static std::shared_ptr<Renderer::Pattern> buildFloorPattern()
