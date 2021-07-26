@@ -7,6 +7,7 @@
 #include "math/intersection.h"
 #include "math/sphere.h"
 #include "math/plane.h"
+#include "math/smooth_triangle.h"
 
 using namespace CppRayTracerChallenge::Core;
 
@@ -188,4 +189,19 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, reflectance_with_small_
 	auto expectedResult = 0.488731f;
 
 	EXPECT_TRUE(Math::Comparison::equal(result, expectedResult));
+}
+
+TEST(CppRayTracerChallenge_Core_Math_SmoothTriangle, prepares_normal_on_smooth_triangle)
+{
+	auto tri = std::make_shared<Math::SmoothTriangle>(Math::SmoothTriangle({ 0,1,0 }, { -1,0,0 }, { 1,0,0 }, { 0,1,0 }, { -1,0,0 }, { 1,0,0 }));
+	auto shape = Renderer::Shape(tri);
+
+	auto intersections = Math::Intersections({ { 1, shape, 0.45, 0.25 } });
+	auto ray = Math::Ray({ -0.2, 0.3, -2 }, { 0, 0, 1 });
+
+	auto cv = Renderer::ComputedValues(intersections.at(0), ray, intersections);
+
+	auto expectedResult = Math::Vector(-0.5547, 0.83205, 0);
+
+	EXPECT_EQ(cv.normal(), expectedResult);
 }
