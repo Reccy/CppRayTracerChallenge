@@ -4,7 +4,6 @@
 #include <vector>
 #include <map>
 #include "../math/point.h"
-#include "../math/triangle.h"
 #include "../renderer/group.h"
 
 namespace CppRayTracerChallenge::Core::Serializer
