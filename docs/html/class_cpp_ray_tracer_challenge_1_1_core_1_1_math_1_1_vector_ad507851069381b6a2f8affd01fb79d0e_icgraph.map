@@ -1,15 +1,18 @@
 <map id="CppRayTracerChallenge::Core::Math::Vector::magnitude" name="CppRayTracerChallenge::Core::Math::Vector::magnitude">
-<area shape="rect" id="node1" title="Calculates and returns the magnitude of the vector" alt="" coords="855,136,1016,192"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9ee7e82e7caf361aef5c7ee510465130" title="Calculates if a position in world space is lit by a specific light" alt="" coords="431,5,593,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a339165be3900e10ed558402d68a1b750" title="Calculates and returns a normalized version of the vector" alt="" coords="645,136,807,192"/>
-<area shape="rect" id="node13" href="$point__test_8cpp.html#ad640c1ad28980c8a4d133e8ef21a73eb" title=" " alt="" coords="699,216,753,243"/>
-<area shape="rect" id="node3" href="$world__test_8cpp.html#a16c2344f855b1ef5d58b499b32749438" title=" " alt="" coords="270,20,325,47"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="431,136,593,192"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aff93b7407d76055e3522e0f3826068c9" title="Transforms a normal from object space to world space" alt="" coords="216,71,379,127"/>
-<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#ac4282dd6749f206c80469b3b54c61f25" title=" " alt="" coords="431,216,593,272"/>
-<area shape="rect" id="node10" href="$cone__test_8cpp.html#a14361435f32bfd4e234a68321686ccca" title=" " alt="" coords="485,296,539,323"/>
-<area shape="rect" id="node11" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a4db33858bd0ed84b50466a85221e15d2" title="Creates a matrix that can be used to transform the world around the camera, effectively changing came..." alt="" coords="427,347,597,403"/>
-<area shape="rect" id="node8" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="270,151,325,177"/>
+<area shape="rect" id="node1" title="Calculates and returns the magnitude of the vector" alt="" coords="905,176,1067,232"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9ee7e82e7caf361aef5c7ee510465130" title="Calculates if a position in world space is lit by a specific light" alt="" coords="471,5,633,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a339165be3900e10ed558402d68a1b750" title="Calculates and returns a normalized version of the vector" alt="" coords="696,176,857,232"/>
+<area shape="rect" id="node16" href="$point__test_8cpp.html#ad640c1ad28980c8a4d133e8ef21a73eb" title=" " alt="" coords="749,256,804,283"/>
+<area shape="rect" id="node3" href="$world__test_8cpp.html#a16c2344f855b1ef5d58b499b32749438" title=" " alt="" coords="285,20,339,47"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="471,136,633,192"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aff93b7407d76055e3522e0f3826068c9" title="Transforms a normal from object space to world space" alt="" coords="231,71,393,127"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html#a7cdc35fdcf7c942b0757a17ec6b9c2da" title=" " alt="" coords="456,216,648,272"/>
+<area shape="rect" id="node12" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#ac4282dd6749f206c80469b3b54c61f25" title=" " alt="" coords="471,296,633,352"/>
+<area shape="rect" id="node13" href="$bounding__box__test_8cpp.html#a1d7e83473072ead20296780b894ba882" title=" " alt="" coords="525,376,579,403"/>
+<area shape="rect" id="node14" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a25f436880962115695321f21c30b067e" title="Creates a matrix that can be used to transform the world around the camera, effectively changing came..." alt="" coords="467,427,637,483"/>
+<area shape="rect" id="node8" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="285,151,339,177"/>
 <area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a85b36b475d13437d84d6a99b40f76726" title=" " alt="" coords="5,71,168,127"/>
-<area shape="rect" id="node12" href="$camera__test_8cpp.html#aaeb4ccf47528badd6620dfdc13171c5b" title=" " alt="" coords="270,361,325,388"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html#a9b6cebf56e8e346d9a3f464495fb2541" title=" " alt="" coords="216,216,408,272"/>
+<area shape="rect" id="node11" href="$smooth__triangle__test_8cpp.html#aeee81f97d9a4c58c828a1848cbbbe24a" title=" " alt="" coords="59,231,114,257"/>
+<area shape="rect" id="node15" href="$camera__test_8cpp.html#aaeb4ccf47528badd6620dfdc13171c5b" title=" " alt="" coords="285,441,339,468"/>
 </map>

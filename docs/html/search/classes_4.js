@@ -1,12 +1,7 @@
 var searchData=
 [
-  ['masked_416',['Masked',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_masked.html',1,'CppRayTracerChallenge::Core::Renderer::Patterns']]],
-  ['material_417',['Material',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html',1,'CppRayTracerChallenge::Core::Renderer']]],
-  ['matrix_418',['Matrix',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html',1,'CppRayTracerChallenge::Core::Math']]],
-  ['matrix_3c_20double_20_3e_419',['Matrix&lt; double &gt;',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html',1,'CppRayTracerChallenge::Core::Math']]],
-  ['matrixinitialdatasizemismatch_420',['MatrixInitialDataSizeMismatch',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_initial_data_size_mismatch.html',1,'CppRayTracerChallenge::Core::Math']]],
-  ['matrixnotinvertibleexception_421',['MatrixNotInvertibleException',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_not_invertible_exception.html',1,'CppRayTracerChallenge::Core::Math']]],
-  ['matrixtoosmallexception_422',['MatrixTooSmallException',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_too_small_exception.html',1,'CppRayTracerChallenge::Core::Math']]],
-  ['matrixundefineddeterminantexception_423',['MatrixUndefinedDeterminantException',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception.html',1,'CppRayTracerChallenge::Core::Math']]],
-  ['matrixundefinedproductexception_424',['MatrixUndefinedProductException',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception.html',1,'CppRayTracerChallenge::Core::Math']]]
+  ['image_481',['Image',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html',1,'CppRayTracerChallenge::Core::Graphics']]],
+  ['intersection_482',['Intersection',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html',1,'CppRayTracerChallenge::Core::Math']]],
+  ['intersections_483',['Intersections',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html',1,'CppRayTracerChallenge::Core::Math']]],
+  ['ishape_484',['IShape',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html',1,'CppRayTracerChallenge::Core::Math']]]
 ];

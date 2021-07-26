@@ -1,7 +1,4 @@
 <map id="doRealRender" name="doRealRender">
-<area shape="rect" id="node1" title=" " alt="" coords="5,133,108,160"/>
-<area shape="rect" id="node2" href="$class_world_a.html#a993c27e1a6981144f65c92a28bd28656" title=" " alt="" coords="156,104,256,131"/>
-<area shape="rect" id="node5" href="$win32__main_8cpp.html#a897e3bec42575bc1c63e5d5b594be783" title=" " alt="" coords="365,165,404,192"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="304,5,465,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a427b35ad3e215434586001a185d1feee" title="Adds a object to the world" alt="" coords="304,85,465,141"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,108,32"/>
+<area shape="rect" id="node2" href="$win32__main_8cpp.html#a897e3bec42575bc1c63e5d5b594be783" title=" " alt="" coords="156,5,195,32"/>
 </map>

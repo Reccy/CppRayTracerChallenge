@@ -1,6 +1,8 @@
 <map id="WorldA::build" name="WorldA::build">
-<area shape="rect" id="node1" title=" " alt="" coords="5,100,105,127"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="153,5,315,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a427b35ad3e215434586001a185d1feee" title="Adds a object to the world" alt="" coords="153,85,315,141"/>
-<area shape="rect" id="node4" href="$win32__main_8cpp.html#a897e3bec42575bc1c63e5d5b594be783" title=" " alt="" coords="215,165,253,192"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,180,105,207"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a52524cba4ca3ae175753422e65d6278e" title=" " alt="" coords="153,5,315,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a36351c064646ef7ea95191ac0aa03f4a" title="Adds a group to the world" alt="" coords="153,85,315,141"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="153,165,315,221"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a427b35ad3e215434586001a185d1feee" title="Adds a object to the world" alt="" coords="153,245,315,301"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a739544886be6e641ff004b99237c901b" title=" " alt="" coords="153,325,315,381"/>
 </map>

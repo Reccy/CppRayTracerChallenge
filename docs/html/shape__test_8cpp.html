@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('shape__test_8cpp.html',''); initResiza
 <code>#include &quot;<a class="el" href="solid__color_8h_source.html">renderer/patterns/solid_color.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="test__pattern_8h_source.html">renderer/patterns/test_pattern.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="sphere_8h_source.html">math/sphere.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="bounding__box_8h_source.html">math/bounding_box.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="trig_8h_source.html">math/trig.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="comparison_8h_source.html">math/comparison.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -102,37 +103,41 @@ Include dependency graph for shape_test.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="shape__test_8cpp__incl.png" border="0" usemap="#asrc_2test_2core_2renderer_2shape__test_8cpp" alt=""/></div>
 <map name="asrc_2test_2core_2renderer_2shape__test_8cpp" id="asrc_2test_2core_2renderer_2shape__test_8cpp">
-<area shape="rect" title=" " alt="" coords="609,5,755,47"/>
-<area shape="rect" title=" " alt="" coords="243,95,337,121"/>
-<area shape="rect" href="renderer_2shape_8h.html" title=" " alt="" coords="623,95,741,121"/>
-<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="765,796,911,823"/>
-<area shape="rect" href="solid__color_8h.html" title=" " alt="" coords="34,401,181,427"/>
-<area shape="rect" href="group_8h.html" title=" " alt="" coords="747,169,812,196"/>
-<area shape="rect" href="stripe_8h.html" title=" " alt="" coords="376,401,543,427"/>
-<area shape="rect" href="test__pattern_8h.html" title=" " alt="" coords="205,393,351,435"/>
-<area shape="rect" href="sphere_8h.html" title=" " alt="" coords="1061,95,1167,121"/>
-<area shape="rect" href="trig_8h.html" title=" " alt="" coords="1485,95,1569,121"/>
-<area shape="rect" href="material_8h.html" title=" " alt="" coords="515,319,593,345"/>
-<area shape="rect" href="vector_8h.html" title=" " alt="" coords="779,647,846,673"/>
-<area shape="rect" href="transform_8h.html" title=" " alt="" coords="1024,572,1156,599"/>
-<area shape="rect" href="i__shape_8h.html" title=" " alt="" coords="823,401,946,427"/>
-<area shape="rect" href="color_8h.html" title=" " alt="" coords="220,572,347,599"/>
-<area shape="rect" href="pattern_8h.html" title=" " alt="" coords="423,490,496,517"/>
-<area shape="rect" title=" " alt="" coords="686,871,769,897"/>
-<area shape="rect" href="constants_8h.html" title=" " alt="" coords="793,871,883,897"/>
-<area shape="rect" title=" " alt="" coords="579,796,651,823"/>
-<area shape="rect" href="point_8h.html" title=" " alt="" coords="669,572,775,599"/>
-<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="723,721,785,748"/>
-<area shape="rect" title=" " alt="" coords="1063,647,1117,673"/>
-<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="875,647,945,673"/>
-<area shape="rect" title=" " alt="" coords="969,721,1025,748"/>
-<area shape="rect" title=" " alt="" coords="875,721,945,748"/>
-<area shape="rect" href="polymorphic__comparable_8h.html" title=" " alt="" coords="197,483,359,524"/>
-<area shape="rect" href="intersections_8h.html" title=" " alt="" coords="962,244,1069,271"/>
-<area shape="rect" href="ray_8h.html" title=" " alt="" coords="942,490,993,517"/>
-<area shape="rect" title=" " alt="" coords="946,319,1013,345"/>
-<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="821,319,921,345"/>
-<area shape="rect" href="math_2shape_8h.html" title=" " alt="" coords="1341,244,1409,271"/>
+<area shape="rect" title=" " alt="" coords="452,5,599,47"/>
+<area shape="rect" title=" " alt="" coords="190,95,285,121"/>
+<area shape="rect" href="renderer_2shape_8h.html" title=" " alt="" coords="718,95,837,121"/>
+<area shape="rect" href="comparison_8h.html" title=" " alt="" coords="760,871,905,897"/>
+<area shape="rect" href="solid__color_8h.html" title=" " alt="" coords="34,475,180,502"/>
+<area shape="rect" href="group_8h.html" title=" " alt="" coords="860,169,925,196"/>
+<area shape="rect" href="bounding__box_8h.html" title=" " alt="" coords="821,475,934,502"/>
+<area shape="rect" href="stripe_8h.html" title=" " alt="" coords="376,475,542,502"/>
+<area shape="rect" href="test__pattern_8h.html" title=" " alt="" coords="204,468,351,509"/>
+<area shape="rect" href="sphere_8h.html" title=" " alt="" coords="518,95,624,121"/>
+<area shape="rect" href="trig_8h.html" title=" " alt="" coords="1458,95,1542,121"/>
+<area shape="rect" href="material_8h.html" title=" " alt="" coords="462,393,541,420"/>
+<area shape="rect" href="vector_8h.html" title=" " alt="" coords="688,721,755,748"/>
+<area shape="rect" href="transform_8h.html" title=" " alt="" coords="1016,647,1148,673"/>
+<area shape="rect" href="i__shape_8h.html" title=" " alt="" coords="864,393,987,420"/>
+<area shape="rect" href="color_8h.html" title=" " alt="" coords="220,647,346,673"/>
+<area shape="rect" href="pattern_8h.html" title=" " alt="" coords="422,565,496,591"/>
+<area shape="rect" title=" " alt="" coords="688,945,771,972"/>
+<area shape="rect" title=" " alt="" coords="799,945,858,972"/>
+<area shape="rect" href="constants_8h.html" title=" " alt="" coords="882,945,972,972"/>
+<area shape="rect" title=" " alt="" coords="893,1020,961,1047"/>
+<area shape="rect" title=" " alt="" coords="588,871,660,897"/>
+<area shape="rect" href="point_8h.html" title=" " alt="" coords="566,647,672,673"/>
+<area shape="rect" href="tuple_8h.html" title=" " alt="" coords="691,796,752,823"/>
+<area shape="rect" title=" " alt="" coords="928,721,982,748"/>
+<area shape="rect" href="matrix_8h.html" title=" " alt="" coords="1007,721,1076,748"/>
+<area shape="rect" title=" " alt="" coords="974,796,1024,823"/>
+<area shape="rect" title=" " alt="" coords="1048,796,1118,823"/>
+<area shape="rect" href="polymorphic__comparable_8h.html" title=" " alt="" coords="196,557,359,599"/>
+<area shape="rect" href="intersections_8h.html" title=" " alt="" coords="1030,244,1136,271"/>
+<area shape="rect" href="ray_8h.html" title=" " alt="" coords="994,565,1044,591"/>
+<area shape="rect" title=" " alt="" coords="1207,647,1263,673"/>
+<area shape="rect" title=" " alt="" coords="1164,319,1231,345"/>
+<area shape="rect" href="intersection_8h.html" title=" " alt="" coords="989,319,1089,345"/>
+<area shape="rect" href="math_2shape_8h.html" title=" " alt="" coords="665,244,733,271"/>
 </map>
 </div>
 </div>
@@ -170,10 +175,12 @@ Functions</h2></td></tr>
 <tr class="separator:adbbb3f0b094ad0a80b8cc2df0e068c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99bc34082ce635f56553ba311eb9055d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shape__test_8cpp.html#a99bc34082ce635f56553ba311eb9055d">TEST</a> (CppRayTracerChallenge_Core_Renderer_Shape, shape_inequality_material)</td></tr>
 <tr class="separator:a99bc34082ce635f56553ba311eb9055d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26d91adae5135488e400b46f5bf37f62"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shape__test_8cpp.html#a26d91adae5135488e400b46f5bf37f62">TEST</a> (CppRayTracerChallenge_Core_Renderer_Shape, querying_bounding_box_in_parents_space)</td></tr>
+<tr class="separator:a26d91adae5135488e400b46f5bf37f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a582de66bdd8e37c5b95625ed843c24b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a582de66bdd8e37c5b95625ed843c24b6">&#9670;&nbsp;</a></span>TEST() <span class="overload">[1/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a582de66bdd8e37c5b95625ed843c24b6">&#9670;&nbsp;</a></span>TEST() <span class="overload">[1/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,7 +205,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00162">162</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00164">164</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -212,7 +219,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a14753bcf2c3a88bef628bd480a3227cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14753bcf2c3a88bef628bd480a3227cf">&#9670;&nbsp;</a></span>TEST() <span class="overload">[2/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a14753bcf2c3a88bef628bd480a3227cf">&#9670;&nbsp;</a></span>TEST() <span class="overload">[2/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -237,7 +244,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00138">138</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00140">140</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -251,7 +258,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="ab73cf9933482dbfa74c0844b1b9512b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab73cf9933482dbfa74c0844b1b9512b1">&#9670;&nbsp;</a></span>TEST() <span class="overload">[3/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab73cf9933482dbfa74c0844b1b9512b1">&#9670;&nbsp;</a></span>TEST() <span class="overload">[3/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -276,7 +283,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00186">186</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00188">188</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -289,8 +296,48 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a26d91adae5135488e400b46f5bf37f62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26d91adae5135488e400b46f5bf37f62">&#9670;&nbsp;</a></span>TEST() <span class="overload">[4/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CppRayTracerChallenge_Core_Renderer_Shape&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">querying_bounding_box_in_parents_space&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00249">249</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="shape__test_8cpp_a26d91adae5135488e400b46f5bf37f62_cgraph.png" border="0" usemap="#ashape__test_8cpp_a26d91adae5135488e400b46f5bf37f62_cgraph" alt=""/></div>
+<map name="ashape__test_8cpp_a26d91adae5135488e400b46f5bf37f62_cgraph" id="ashape__test_8cpp_a26d91adae5135488e400b46f5bf37f62_cgraph">
+<area shape="rect" title=" " alt="" coords="5,46,60,73"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a3ece9d35715a014d3961a5a23a2ac117" title="Returns the maximum bounds" alt="" coords="108,5,320,47"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#af36c7b6b7e322bd993cd6745f462b03f" title="Returns the minimum bounds" alt="" coords="110,71,318,112"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a31c96c9f45be0270399da50417bf1997"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31c96c9f45be0270399da50417bf1997">&#9670;&nbsp;</a></span>TEST() <span class="overload">[4/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a31c96c9f45be0270399da50417bf1997">&#9670;&nbsp;</a></span>TEST() <span class="overload">[5/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -315,7 +362,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00067">67</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00069">69</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -329,7 +376,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a87a0afb6db8f65485619340ea8298a9f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87a0afb6db8f65485619340ea8298a9f">&#9670;&nbsp;</a></span>TEST() <span class="overload">[5/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a87a0afb6db8f65485619340ea8298a9f">&#9670;&nbsp;</a></span>TEST() <span class="overload">[6/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -354,12 +401,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00210">210</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00212">212</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 
 </div>
 </div>
 <a id="a696ba2c55cceb054065ebee92ebd0d2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a696ba2c55cceb054065ebee92ebd0d2c">&#9670;&nbsp;</a></span>TEST() <span class="overload">[6/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a696ba2c55cceb054065ebee92ebd0d2c">&#9670;&nbsp;</a></span>TEST() <span class="overload">[7/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -384,7 +431,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00059">59</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00061">61</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -398,7 +445,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="ac23545969b5fa619283521722884f254"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac23545969b5fa619283521722884f254">&#9670;&nbsp;</a></span>TEST() <span class="overload">[7/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac23545969b5fa619283521722884f254">&#9670;&nbsp;</a></span>TEST() <span class="overload">[8/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -423,7 +470,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00080">80</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00082">82</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -437,7 +484,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a82143fc6cf58893d37c7c6e9c97abda3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82143fc6cf58893d37c7c6e9c97abda3">&#9670;&nbsp;</a></span>TEST() <span class="overload">[8/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a82143fc6cf58893d37c7c6e9c97abda3">&#9670;&nbsp;</a></span>TEST() <span class="overload">[9/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -462,7 +509,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00088">88</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00090">90</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -478,7 +525,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a6c8941ae786e1dc1ae82832d18371e90"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c8941ae786e1dc1ae82832d18371e90">&#9670;&nbsp;</a></span>TEST() <span class="overload">[9/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c8941ae786e1dc1ae82832d18371e90">&#9670;&nbsp;</a></span>TEST() <span class="overload">[10/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -503,7 +550,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00121">121</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00123">123</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -519,7 +566,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="ae71583fc7a50b9d28aeaaebea3421900"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae71583fc7a50b9d28aeaaebea3421900">&#9670;&nbsp;</a></span>TEST() <span class="overload">[10/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae71583fc7a50b9d28aeaaebea3421900">&#9670;&nbsp;</a></span>TEST() <span class="overload">[11/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -544,7 +591,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00105">105</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00107">107</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -559,7 +606,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a99bc34082ce635f56553ba311eb9055d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99bc34082ce635f56553ba311eb9055d">&#9670;&nbsp;</a></span>TEST() <span class="overload">[11/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a99bc34082ce635f56553ba311eb9055d">&#9670;&nbsp;</a></span>TEST() <span class="overload">[12/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -584,7 +631,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00232">232</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00234">234</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -598,7 +645,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="adbbb3f0b094ad0a80b8cc2df0e068c0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adbbb3f0b094ad0a80b8cc2df0e068c0d">&#9670;&nbsp;</a></span>TEST() <span class="overload">[12/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#adbbb3f0b094ad0a80b8cc2df0e068c0d">&#9670;&nbsp;</a></span>TEST() <span class="overload">[13/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -623,12 +670,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00220">220</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00222">222</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 
 </div>
 </div>
 <a id="a73b530e5f692816418c4a3f2e6cca573"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73b530e5f692816418c4a3f2e6cca573">&#9670;&nbsp;</a></span>TEST() <span class="overload">[13/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a73b530e5f692816418c4a3f2e6cca573">&#9670;&nbsp;</a></span>TEST() <span class="overload">[14/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -653,7 +700,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00039">39</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00041">41</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -667,7 +714,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="aa3df8e49ad278e4021f47e809ae072e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3df8e49ad278e4021f47e809ae072e8">&#9670;&nbsp;</a></span>TEST() <span class="overload">[14/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3df8e49ad278e4021f47e809ae072e8">&#9670;&nbsp;</a></span>TEST() <span class="overload">[15/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -692,7 +739,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00049">49</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00051">51</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -706,7 +753,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="aa33f3d3af78df8c672baf537ca697aca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa33f3d3af78df8c672baf537ca697aca">&#9670;&nbsp;</a></span>TEST() <span class="overload">[15/15]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa33f3d3af78df8c672baf537ca697aca">&#9670;&nbsp;</a></span>TEST() <span class="overload">[16/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -731,7 +778,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00026">26</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="shape__test_8cpp_source.html#l00028">28</a> of file <a class="el" href="shape__test_8cpp_source.html">shape_test.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -742,7 +789,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aa278451e9d8057425d6961e939716dc7" title="Transforms the shape" alt="" coords="108,85,271,141"/>
 <area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a2518b8aa2d8e95ca80f5c61817a2d33c" title="Translates the Transform along x, y, z co&#45;ordinates" alt="" coords="109,165,270,221"/>
 <area shape="rect" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#a712b1a452e58e36bf35ca3aa101f0745" title="Converts degrees to radians" alt="" coords="319,5,496,61"/>
-<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="327,165,488,221"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a318cccc5f57c9ee061562a84d3b35125" title="Creates a square Identity Matrix of a specific size" alt="" coords="327,165,488,221"/>
 </map>
 </div>
 

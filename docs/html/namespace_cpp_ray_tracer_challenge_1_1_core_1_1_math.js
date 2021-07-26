@@ -8,6 +8,7 @@ var namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math =
       [ "radians_to_degrees", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#aae5b6c25eeb2f02b255e45561e2a3b7e", null ],
       [ "PI", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_trig.html#a6405498f7e02c51f4f946db487de1c8f", null ]
     ] ],
+    [ "BoundingBox", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box" ],
     [ "Cone", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone" ],
     [ "Cube", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube" ],
     [ "Cylinder", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder" ],
@@ -25,9 +26,12 @@ var namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math =
     [ "Point", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point" ],
     [ "Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray" ],
     [ "Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape" ],
+    [ "SmoothTriangle", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle" ],
     [ "Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere" ],
     [ "Transform", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform" ],
+    [ "Triangle", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle" ],
     [ "Tuple", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple" ],
     [ "Vector", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector" ],
-    [ "EPSILON", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html#a001ec8d8dfcad4599b542701f8d44b23", null ]
+    [ "EPSILON", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html#a92845287b7b0ee2ed33d678998623277", null ],
+    [ "INF", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html#abc4e26608cdbe5dd2d8feef4ba4563fa", null ]
 ];

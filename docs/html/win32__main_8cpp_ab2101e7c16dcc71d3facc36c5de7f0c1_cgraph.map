@@ -1,11 +1,8 @@
 <map id="renderTask" name="renderTask">
-<area shape="rect" id="node1" title=" " alt="" coords="5,195,92,221"/>
-<area shape="rect" id="node2" href="$win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="140,161,243,188"/>
-<area shape="rect" id="node7" href="$win32__main_8cpp.html#aa93dbd63f280b50c4415de8a4fa50cf4" title=" " alt="" coords="149,227,233,253"/>
-<area shape="rect" id="node3" href="$class_world_a.html#a993c27e1a6981144f65c92a28bd28656" title=" " alt="" coords="337,104,437,131"/>
-<area shape="rect" id="node6" href="$win32__main_8cpp.html#a897e3bec42575bc1c63e5d5b594be783" title=" " alt="" coords="592,165,631,192"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="531,5,692,61"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a427b35ad3e215434586001a185d1feee" title="Adds a object to the world" alt="" coords="531,85,692,141"/>
-<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#ab1addd635673be34a1b4939587da91f8" title="Returns the serialized image as a buffer" alt="" coords="291,212,483,268"/>
-<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#a9e7ddf2da2c40d269dcc90f126efc66f" title="Serializes an Image, making it available to access via the buffer" alt="" coords="291,292,483,348"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,45,92,72"/>
+<area shape="rect" id="node2" href="$win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="140,13,243,40"/>
+<area shape="rect" id="node4" href="$win32__main_8cpp.html#aa93dbd63f280b50c4415de8a4fa50cf4" title=" " alt="" coords="149,71,233,97"/>
+<area shape="rect" id="node3" href="$win32__main_8cpp.html#a897e3bec42575bc1c63e5d5b594be783" title=" " alt="" coords="367,5,406,32"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#ab1addd635673be34a1b4939587da91f8" title="Returns the serialized image as a buffer" alt="" coords="291,56,483,112"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#a9e7ddf2da2c40d269dcc90f126efc66f" title="Serializes an Image, making it available to access via the buffer" alt="" coords="291,136,483,192"/>
 </map>

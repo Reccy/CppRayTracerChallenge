@@ -114,9 +114,9 @@ Collaboration diagram for CppRayTracerChallenge::Core::Renderer::Group:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a053a1d0c576ea5943147606fb570cb8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a053a1d0c576ea5943147606fb570cb8a">transform</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Math::Transform</a> transform) override</td></tr>
-<tr class="memdesc:a053a1d0c576ea5943147606fb570cb8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms the shape  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a053a1d0c576ea5943147606fb570cb8a">More...</a><br /></td></tr>
-<tr class="separator:a053a1d0c576ea5943147606fb570cb8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f12a2aeb6b9cec6fe3dce54631f2731"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a5f12a2aeb6b9cec6fe3dce54631f2731">transform</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Math::Transform</a> transform)</td></tr>
+<tr class="memdesc:a5f12a2aeb6b9cec6fe3dce54631f2731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms the shape  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a5f12a2aeb6b9cec6fe3dce54631f2731">More...</a><br /></td></tr>
+<tr class="separator:a5f12a2aeb6b9cec6fe3dce54631f2731"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4878a29c0f0aa4d541dce2537a0f2ad"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Math::Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#aa4878a29c0f0aa4d541dce2537a0f2ad">transform</a> () const override</td></tr>
 <tr class="memdesc:aa4878a29c0f0aa4d541dce2537a0f2ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a copy of the <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html" title="Represents a shape within the rendered world. This is a wrapper around a Math::IShape which adds mate...">Shape</a>'s transform  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#aa4878a29c0f0aa4d541dce2537a0f2ad">More...</a><br /></td></tr>
 <tr class="separator:aa4878a29c0f0aa4d541dce2537a0f2ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,19 +132,35 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a25d5e96d7266fd2f70ba4d27c1b0a749"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html">Math::Intersections</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a25d5e96d7266fd2f70ba4d27c1b0a749">intersectLocal</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html">Math::Ray</a> ray) const override</td></tr>
 <tr class="memdesc:a25d5e96d7266fd2f70ba4d27c1b0a749"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates if the local space ray intersects with the shape.  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a25d5e96d7266fd2f70ba4d27c1b0a749">More...</a><br /></td></tr>
 <tr class="separator:a25d5e96d7266fd2f70ba4d27c1b0a749"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52524cba4ca3ae175753422e65d6278e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a52524cba4ca3ae175753422e65d6278e">addChild</a> (std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> &gt; child)</td></tr>
+<tr class="memitem:a2cfc8dac2ac7f9e37879851ff5d76466"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html">Math::BoundingBox</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a2cfc8dac2ac7f9e37879851ff5d76466">bounds</a> () const override</td></tr>
+<tr class="memdesc:a2cfc8dac2ac7f9e37879851ff5d76466"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the bounding box of the shape  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a2cfc8dac2ac7f9e37879851ff5d76466">More...</a><br /></td></tr>
+<tr class="separator:a2cfc8dac2ac7f9e37879851ff5d76466"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd590ce142397ecf77f0c5072fc7f54b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html">Math::BoundingBox</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#afd590ce142397ecf77f0c5072fc7f54b">parentSpaceBounds</a> () const override</td></tr>
+<tr class="memdesc:afd590ce142397ecf77f0c5072fc7f54b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the bounding box of the shape in the space of the parent shape  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#afd590ce142397ecf77f0c5072fc7f54b">More...</a><br /></td></tr>
+<tr class="separator:afd590ce142397ecf77f0c5072fc7f54b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52524cba4ca3ae175753422e65d6278e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a52524cba4ca3ae175753422e65d6278e">addChild</a> (std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> &gt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a545022aaf44b2bfba5fcf22b0cc8cf0f">child</a>)</td></tr>
 <tr class="separator:a52524cba4ca3ae175753422e65d6278e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb36e3a6bb3b021d0ce335555bd76caf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#adb36e3a6bb3b021d0ce335555bd76caf">addChild</a> (std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html">Group</a> &gt; child)</td></tr>
+<tr class="memitem:adb36e3a6bb3b021d0ce335555bd76caf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#adb36e3a6bb3b021d0ce335555bd76caf">addChild</a> (std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html">Group</a> &gt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a545022aaf44b2bfba5fcf22b0cc8cf0f">child</a>)</td></tr>
 <tr class="separator:adb36e3a6bb3b021d0ce335555bd76caf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abad4eec302d466798a195176d9076b4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#abad4eec302d466798a195176d9076b4f">makeSubgroup</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> &gt;&gt; children)</td></tr>
+<tr class="separator:abad4eec302d466798a195176d9076b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedb4d9d069a8b50490fe88ad43f87163"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html">Group</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#aedb4d9d069a8b50490fe88ad43f87163">subgroup</a> (int index) const</td></tr>
+<tr class="separator:aedb4d9d069a8b50490fe88ad43f87163"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a545022aaf44b2bfba5fcf22b0cc8cf0f"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a545022aaf44b2bfba5fcf22b0cc8cf0f">child</a> (int index) const</td></tr>
+<tr class="separator:a545022aaf44b2bfba5fcf22b0cc8cf0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a739544886be6e641ff004b99237c901b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a739544886be6e641ff004b99237c901b">divide</a> (int threshold)</td></tr>
+<tr class="separator:a739544886be6e641ff004b99237c901b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3104bb06f009370b0d810bd1a4b57930"><td class="memItemLeft" align="right" valign="top">std::weak_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html">Group</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a3104bb06f009370b0d810bd1a4b57930">parent</a> () const</td></tr>
 <tr class="separator:a3104bb06f009370b0d810bd1a4b57930"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac81d78507a6ee71c7b4031f14fcd79c"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> &gt; &gt;, std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#aac81d78507a6ee71c7b4031f14fcd79c">partitionChildren</a> ()</td></tr>
+<tr class="separator:aac81d78507a6ee71c7b4031f14fcd79c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fc3d63ee8d19dbb8df2339e6c3d440f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a3fc3d63ee8d19dbb8df2339e6c3d440f">worldToObject</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html">Math::Point</a> worldPosition) const</td></tr>
 <tr class="separator:a3fc3d63ee8d19dbb8df2339e6c3d440f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4282dd6749f206c80469b3b54c61f25"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#ac4282dd6749f206c80469b3b54c61f25">normalToWorld</a> (<a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html">Math::Vector</a> objectNormal) const</td></tr>
 <tr class="separator:ac4282dd6749f206c80469b3b54c61f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90f79ed40e1f8f686627d97036bc1ffd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a90f79ed40e1f8f686627d97036bc1ffd">includes</a> (std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> &gt; child) const</td></tr>
+<tr class="memitem:a90f79ed40e1f8f686627d97036bc1ffd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a90f79ed40e1f8f686627d97036bc1ffd">includes</a> (std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> &gt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a545022aaf44b2bfba5fcf22b0cc8cf0f">child</a>) const</td></tr>
 <tr class="separator:a90f79ed40e1f8f686627d97036bc1ffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abee007721de1dff41af403867d2dc0ef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#abee007721de1dff41af403867d2dc0ef">includes</a> (std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html">Group</a> &gt; child) const</td></tr>
+<tr class="memitem:abee007721de1dff41af403867d2dc0ef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#abee007721de1dff41af403867d2dc0ef">includes</a> (std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html">Group</a> &gt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a545022aaf44b2bfba5fcf22b0cc8cf0f">child</a>) const</td></tr>
 <tr class="separator:abee007721de1dff41af403867d2dc0ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5f0e27145df90c81fe8f917af6b8641"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#ad5f0e27145df90c81fe8f917af6b8641">size</a> () const</td></tr>
 <tr class="separator:ad5f0e27145df90c81fe8f917af6b8641"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -176,7 +192,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00051">51</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00091">91</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
 
 </div>
 </div>
@@ -196,7 +212,80 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00045">45</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00084">84</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a52524cba4ca3ae175753422e65d6278e_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a52524cba4ca3ae175753422e65d6278e_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a52524cba4ca3ae175753422e65d6278e_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a52524cba4ca3ae175753422e65d6278e_icgraph">
+<area shape="rect" title=" " alt="" coords="153,67,315,123"/>
+<area shape="rect" href="class_world_a.html#a993c27e1a6981144f65c92a28bd28656" title=" " alt="" coords="5,5,105,32"/>
+<area shape="rect" href="class_world_c.html#a566b7fd2a04fafe2718747dffec6b065" title=" " alt="" coords="5,56,105,83"/>
+<area shape="rect" href="class_world_d.html#ad38e4fc140bacf80548a535b6fa7f6ca" title=" " alt="" coords="5,107,105,133"/>
+<area shape="rect" href="group__test_8cpp.html#a51974806ffc1cb76cbe28db1dfafde6b" title=" " alt="" coords="28,157,83,184"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2cfc8dac2ac7f9e37879851ff5d76466"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cfc8dac2ac7f9e37879851ff5d76466">&#9670;&nbsp;</a></span>bounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html">BoundingBox</a> Group::bounds </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the bounding box of the shape </p>
+<dl class="section return"><dt>Returns</dt><dd>Bounding Box that contains the shape</dd></dl>
+
+<p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a09cce83fc2ddff09f5cbfc508531cc9b">CppRayTracerChallenge::Core::Math::IShape</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00055">55</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a545022aaf44b2bfba5fcf22b0cc8cf0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a545022aaf44b2bfba5fcf22b0cc8cf0f">&#9670;&nbsp;</a></span>child()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> &gt; Group::child </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00118">118</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a545022aaf44b2bfba5fcf22b0cc8cf0f_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a545022aaf44b2bfba5fcf22b0cc8cf0f_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a545022aaf44b2bfba5fcf22b0cc8cf0f_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a545022aaf44b2bfba5fcf22b0cc8cf0f_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,269,61"/>
+<area shape="rect" href="wavefront__obj__serializer__test_8cpp.html#ab184fe9983f21418142bee7c2ba9343d" title=" " alt="" coords="5,20,60,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -215,7 +304,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00105">105</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00227">227</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -223,6 +312,35 @@ Here is the caller graph for this function:</div>
 <map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a2da6aca6d031d2481dc6cf2e413cd5fd_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a2da6aca6d031d2481dc6cf2e413cd5fd_icgraph">
 <area shape="rect" title=" " alt="" coords="108,5,269,61"/>
 <area shape="rect" href="group__test_8cpp.html#adde08e26868793174557c6efa6ae34f9" title=" " alt="" coords="5,20,60,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a739544886be6e641ff004b99237c901b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a739544886be6e641ff004b99237c901b">&#9670;&nbsp;</a></span>divide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Group::divide </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>threshold</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00123">123</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a739544886be6e641ff004b99237c901b_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a739544886be6e641ff004b99237c901b_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a739544886be6e641ff004b99237c901b_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a739544886be6e641ff004b99237c901b_icgraph">
+<area shape="rect" title=" " alt="" coords="153,5,315,61"/>
+<area shape="rect" href="class_world_a.html#a993c27e1a6981144f65c92a28bd28656" title=" " alt="" coords="5,20,105,47"/>
 </map>
 </div>
 
@@ -243,7 +361,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00110">110</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00232">232</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -290,7 +408,16 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00087">87</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00209">209</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a90f79ed40e1f8f686627d97036bc1ffd_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a90f79ed40e1f8f686627d97036bc1ffd_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a90f79ed40e1f8f686627d97036bc1ffd_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a90f79ed40e1f8f686627d97036bc1ffd_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,269,61"/>
+<area shape="rect" href="group__test_8cpp.html#a51974806ffc1cb76cbe28db1dfafde6b" title=" " alt="" coords="5,20,60,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -381,6 +508,26 @@ Here is the call graph for this function:</div>
 <p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#a35bc2672feaeb677145c00f584369cda">CppRayTracerChallenge::Core::Math::IShape</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00033">33</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+
+</div>
+</div>
+<a id="abad4eec302d466798a195176d9076b4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abad4eec302d466798a195176d9076b4f">&#9670;&nbsp;</a></span>makeSubgroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Group::makeSubgroup </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> &gt;&gt;&#160;</td>
+          <td class="paramname"><em>children</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00099">99</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
 
 </div>
 </div>
@@ -478,7 +625,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00074">74</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00196">196</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -508,7 +655,83 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00057">57</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00146">146</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+
+</div>
+</div>
+<a id="afd590ce142397ecf77f0c5072fc7f54b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd590ce142397ecf77f0c5072fc7f54b">&#9670;&nbsp;</a></span>parentSpaceBounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html">BoundingBox</a> Group::parentSpaceBounds </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the bounding box of the shape in the space of the parent shape </p>
+<dl class="section return"><dt>Returns</dt><dd>Bounding Box that contains the shape, in the space of the parent</dd></dl>
+
+<p>Implements <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html#ad39106339e843f120b0ef6f7e5d0a802">CppRayTracerChallenge::Core::Math::IShape</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00077">77</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_afd590ce142397ecf77f0c5072fc7f54b_cgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_afd590ce142397ecf77f0c5072fc7f54b_cgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_afd590ce142397ecf77f0c5072fc7f54b_cgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_afd590ce142397ecf77f0c5072fc7f54b_cgraph">
+<area shape="rect" title="Returns the bounding box of the shape in the space of the parent shape" alt="" coords="5,161,167,217"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a2ae072e639d8e8857496f623a54644be" title="Transforms the bounding box" alt="" coords="215,161,393,217"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a58069c381eae5b7c2eb22766a9e70582" title="Adds point to box and resizes it to include passed in point" alt="" coords="443,109,651,151"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a88cd3ab070137859ed4a413239c6414d" title="Returns a const X component" alt="" coords="701,5,863,47"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a67d5e1ca026ae045cfe5712d8613c552" title="Returns a const Y component" alt="" coords="701,75,863,116"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a8bbb8b2cf7a3e28be0de06ccec3ca7c7" title="Returns a const Z component" alt="" coords="701,149,863,191"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a3ece9d35715a014d3961a5a23a2ac117" title="Returns the maximum bounds" alt="" coords="441,227,653,268"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#af36c7b6b7e322bd993cd6745f462b03f" title="Returns the minimum bounds" alt="" coords="443,292,651,333"/>
+<area shape="rect" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a22ed0f617c828f55e1f46488d4fff152" title="Returns a copy of the Box&#39;s transform" alt="" coords="458,358,637,414"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aac81d78507a6ee71c7b4031f14fcd79c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac81d78507a6ee71c7b4031f14fcd79c">&#9670;&nbsp;</a></span>partitionChildren()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tuple&lt; std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> &gt; &gt;, std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a> &gt; &gt; &gt; Group::partitionChildren </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00151">151</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_aac81d78507a6ee71c7b4031f14fcd79c_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_aac81d78507a6ee71c7b4031f14fcd79c_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_aac81d78507a6ee71c7b4031f14fcd79c_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_aac81d78507a6ee71c7b4031f14fcd79c_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,269,61"/>
+<area shape="rect" href="group__test_8cpp.html#a51974806ffc1cb76cbe28db1dfafde6b" title=" " alt="" coords="5,20,60,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -527,7 +750,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00100">100</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00222">222</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -537,6 +760,26 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="group__test_8cpp.html#adde08e26868793174557c6efa6ae34f9" title=" " alt="" coords="5,13,60,39"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="aedb4d9d069a8b50490fe88ad43f87163"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedb4d9d069a8b50490fe88ad43f87163">&#9670;&nbsp;</a></span>subgroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html">Group</a> &gt; Group::subgroup </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00113">113</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
 
 </div>
 </div>
@@ -572,8 +815,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a053a1d0c576ea5943147606fb570cb8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a053a1d0c576ea5943147606fb570cb8a">&#9670;&nbsp;</a></span>transform() <span class="overload">[2/2]</span></h2>
+<a id="a5f12a2aeb6b9cec6fe3dce54631f2731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f12a2aeb6b9cec6fe3dce54631f2731">&#9670;&nbsp;</a></span>transform() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -591,7 +834,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -610,8 +853,8 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a053a1d0c576ea5943147606fb570cb8a_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a053a1d0c576ea5943147606fb570cb8a_icgraph" alt=""/></div>
-<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a053a1d0c576ea5943147606fb570cb8a_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a053a1d0c576ea5943147606fb570cb8a_icgraph">
+<div class="center"><img src="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a5f12a2aeb6b9cec6fe3dce54631f2731_icgraph.png" border="0" usemap="#aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a5f12a2aeb6b9cec6fe3dce54631f2731_icgraph" alt=""/></div>
+<map name="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a5f12a2aeb6b9cec6fe3dce54631f2731_icgraph" id="aclass_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group_a5f12a2aeb6b9cec6fe3dce54631f2731_icgraph">
 <area shape="rect" title="Transforms the shape" alt="" coords="108,5,269,61"/>
 <area shape="rect" href="group__test_8cpp.html#adde08e26868793174557c6efa6ae34f9" title=" " alt="" coords="5,20,60,47"/>
 </map>
@@ -635,7 +878,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00062">62</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="group_8cpp_source.html#l00184">184</a> of file <a class="el" href="group_8cpp_source.html">group.cpp</a>.</p>
 
 </div>
 </div>

@@ -9,6 +9,6 @@
 <area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a427b35ad3e215434586001a185d1feee" title="Adds a object to the world" alt="" coords="317,165,479,221"/>
 <area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="317,245,479,301"/>
 <area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#a8d578dcc370c20a2213430d0e87c7cc9" title="Transforms the shape" alt="" coords="317,325,479,381"/>
-<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="527,245,688,301"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a318cccc5f57c9ee061562a84d3b35125" title="Creates a square Identity Matrix of a specific size" alt="" coords="527,245,688,301"/>
 <area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#a2e3409c88f8955cfb90998d5ed37b1b5" title="Returns a copy of the Shape&#39;s transform" alt="" coords="527,325,688,381"/>
 </map>

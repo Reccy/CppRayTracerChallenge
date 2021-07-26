@@ -11,6 +11,7 @@ var annotated_dup =
           [ "PolymorphicComparable", "class_cpp_ray_tracer_challenge_1_1_core_1_1_helpers_1_1_polymorphic_comparable.html", null ]
         ] ],
         [ "Math", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html", [
+          [ "BoundingBox", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box" ],
           [ "Cone", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone" ],
           [ "Cube", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube" ],
           [ "Cylinder", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder" ],
@@ -28,8 +29,10 @@ var annotated_dup =
           [ "Point", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point" ],
           [ "Ray", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray" ],
           [ "Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape" ],
+          [ "SmoothTriangle", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle" ],
           [ "Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere" ],
           [ "Transform", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform" ],
+          [ "Triangle", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle" ],
           [ "Tuple", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple" ],
           [ "Vector", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector" ]
         ] ],
@@ -57,18 +60,22 @@ var annotated_dup =
         ] ],
         [ "Serializer", "namespace_cpp_ray_tracer_challenge_1_1_core_1_1_serializer.html", [
           [ "BaseImageSerializer", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer" ],
-          [ "PortablePixmapImageSerializer", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer" ]
+          [ "PortablePixmapImageSerializer", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer" ],
+          [ "WavefrontOBJSerializer", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_wavefront_o_b_j_serializer.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_wavefront_o_b_j_serializer" ]
         ] ]
       ] ]
     ] ],
-    [ "CheckAxisResult", "struct_check_axis_result.html", "struct_check_axis_result" ],
     [ "CppRayTracerChallenge_Core_Renderer_ComputedValues_Params", "class_cpp_ray_tracer_challenge___core___renderer___computed_values___params.html", null ],
     [ "CppRayTracerChallenge_Core_Renderer_LightingTest", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test" ],
     [ "CubeNormalParam", "class_cube_normal_param.html", "class_cube_normal_param" ],
+    [ "FaceParam", "struct_face_param.html", "struct_face_param" ],
     [ "N1N2", "class_n1_n2.html", "class_n1_n2" ],
     [ "RAIIglfw", "class_r_a_i_iglfw.html", "class_r_a_i_iglfw" ],
     [ "RayIntersectsCubeParam", "class_ray_intersects_cube_param.html", "class_ray_intersects_cube_param" ],
     [ "RayMissesCubeParam", "class_ray_misses_cube_param.html", "class_ray_misses_cube_param" ],
+    [ "SmoothTriangleFixture", "struct_smooth_triangle_fixture.html", "struct_smooth_triangle_fixture" ],
     [ "WorldA", "class_world_a.html", null ],
-    [ "WorldB", "class_world_b.html", null ]
+    [ "WorldB", "class_world_b.html", null ],
+    [ "WorldC", "class_world_c.html", null ],
+    [ "WorldD", "class_world_d.html", null ]
 ];

@@ -1,8 +1,13 @@
 <map id="v" name="v">
-<area shape="rect" id="node1" title=" " alt="" coords="565,85,604,112"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_perlin_noise.html#a80d231c3ee315950f5cff367367d1215" title="Gets the value of the noise at the passed in point" alt="" coords="331,78,517,119"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_perturbed.html#a205f76562e308da483f33e0729bf17a4" title=" " alt="" coords="108,5,283,61"/>
-<area shape="rect" id="node5" href="$win32__main_8cpp.html#acd243cc663bed9ad4b844377f97f3622" title=" " alt="" coords="143,85,248,112"/>
-<area shape="rect" id="node6" href="$perlin__noise__test_8cpp.html#a3b3be4eaeb23c55879ec99e14d29f57d" title=" " alt="" coords="168,136,223,163"/>
+<area shape="rect" id="node1" title=" " alt="" coords="588,212,627,239"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_perlin_noise.html#a80d231c3ee315950f5cff367367d1215" title="Gets the value of the noise at the passed in point" alt="" coords="351,85,537,126"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#a50f99f7a3e1e5d150d8e1cd2c8812abb" title="Calculates if the local space ray intersects with the triangle" alt="" coords="363,164,525,220"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html#a9b6cebf56e8e346d9a3f464495fb2541" title=" " alt="" coords="108,263,300,319"/>
+<area shape="rect" id="node11" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html#a7cdc35fdcf7c942b0757a17ec6b9c2da" title=" " alt="" coords="348,295,540,351"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_perturbed.html#a205f76562e308da483f33e0729bf17a4" title=" " alt="" coords="117,5,291,61"/>
+<area shape="rect" id="node5" href="$win32__main_8cpp.html#acd243cc663bed9ad4b844377f97f3622" title=" " alt="" coords="151,85,257,112"/>
+<area shape="rect" id="node6" href="$perlin__noise__test_8cpp.html#a3b3be4eaeb23c55879ec99e14d29f57d" title=" " alt="" coords="177,136,231,163"/>
 <area shape="rect" id="node4" href="$perturbed__test_8cpp.html#ae7e366250bc12b6ab520465771bcc3f6" title=" " alt="" coords="5,20,60,47"/>
+<area shape="rect" id="node8" href="$smooth__triangle__test_8cpp.html#a05f12b0d0580873509bf9616ff2d059e" title=" " alt="" coords="177,187,231,213"/>
+<area shape="rect" id="node10" href="$smooth__triangle__test_8cpp.html#aeee81f97d9a4c58c828a1848cbbbe24a" title=" " alt="" coords="5,277,60,304"/>
 </map>

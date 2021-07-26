@@ -1,7 +1,9 @@
 <map id="CppRayTracerChallenge::Core::Renderer::Shape::intersectLocal" name="CppRayTracerChallenge::Core::Renderer::Shape::intersectLocal">
-<area shape="rect" id="node1" title="Calculates if the local space ray intersects with the shape." alt="" coords="5,71,168,127"/>
+<area shape="rect" id="node1" title="Calculates if the local space ray intersects with the shape." alt="" coords="5,145,168,201"/>
 <area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="216,5,411,47"/>
 <area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#adc9777ea186e745c6bb6aa40aadd6f27" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="225,71,401,127"/>
 <area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html#a021399201b213e492e5d973ca80a7aa8" title="Returns the stored value t" alt="" coords="223,152,404,193"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html#a30b3744ff20a114668c2fe7e789d26b7" title="Returns the stored value u" alt="" coords="221,217,405,259"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html#a3351b2fc67a5a770ba962d155de2e2ea" title="Returns the stored value v" alt="" coords="222,283,405,324"/>
 <area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="459,79,667,120"/>
 </map>

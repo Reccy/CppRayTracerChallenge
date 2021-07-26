@@ -2,12 +2,6 @@ var matrix__test_8cpp =
 [
     [ "TEST", "matrix__test_8cpp.html#a8b97957571de10751e91d637f4803106", null ],
     [ "TEST", "matrix__test_8cpp.html#a2981fb7d924bfebc74b098bcee68e1bf", null ],
-    [ "TEST", "matrix__test_8cpp.html#a82b2e9b92ac2a4a77f7b18601795d37d", null ],
-    [ "TEST", "matrix__test_8cpp.html#a92e84703d06bcb5045b5db5d5d1d4cee", null ],
-    [ "TEST", "matrix__test_8cpp.html#aafc4a4337a152628930430e13e7f2e0f", null ],
-    [ "TEST", "matrix__test_8cpp.html#ae61a6e19e03a7ab7d9766968db916180", null ],
-    [ "TEST", "matrix__test_8cpp.html#a7f6dce2d665f4d015d33b6eda300ffcb", null ],
-    [ "TEST", "matrix__test_8cpp.html#adb4130d8ba64a77b6dbb8afe5200d032", null ],
     [ "TEST", "matrix__test_8cpp.html#adc7f49b439274001d42da30ac76acad4", null ],
     [ "TEST", "matrix__test_8cpp.html#a47bf926ce9691c6b7d2a9d43f2501b5b", null ],
     [ "TEST", "matrix__test_8cpp.html#ae0736bc458f4348a6fefb3f694dab21d", null ],

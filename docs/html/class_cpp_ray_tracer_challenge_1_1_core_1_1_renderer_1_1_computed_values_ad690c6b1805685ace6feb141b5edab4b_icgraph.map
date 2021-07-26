@@ -1,0 +1,5 @@
+<map id="CppRayTracerChallenge::Core::Renderer::ComputedValues::shape" name="CppRayTracerChallenge::Core::Renderer::ComputedValues::shape">
+<area shape="rect" id="node1" title="Returns the shape that was intersected" alt="" coords="215,45,439,101"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a0d39181f30db188c879df0aea1886912" title="Calculates the refracted color in the world from precomputed values" alt="" coords="5,5,167,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a8a4ae040ed58c5f57a39dff2b2708f5e" title="Calculates the color in the world from precomputed values" alt="" coords="5,85,167,141"/>
+</map>

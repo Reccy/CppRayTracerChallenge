@@ -1,0 +1,5 @@
+<map id="CppRayTracerChallenge::Core::Math::Matrix::cofactor" name="CppRayTracerChallenge::Core::Math::Matrix::cofactor">
+<area shape="rect" id="node1" title="Calculates the cofactor of the square Matrix" alt="" coords="5,5,167,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#af8d5b0e0e1e198a8524e5dff5f4d4dc9" title="Calculates the minor / determinant of the square submatrix." alt="" coords="215,5,376,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a0b97c3c0f3129507442cd92b728aa425" title="Returns a copy of the Matrix, with the row and column removed." alt="" coords="424,5,585,61"/>
+</map>

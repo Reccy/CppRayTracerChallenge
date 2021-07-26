@@ -1,0 +1,7 @@
+<map id="WorldD::build" name="WorldD::build">
+<area shape="rect" id="node1" title=" " alt="" coords="5,140,105,167"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#a52524cba4ca3ae175753422e65d6278e" title=" " alt="" coords="153,5,315,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a36351c064646ef7ea95191ac0aa03f4a" title="Adds a group to the world" alt="" coords="153,85,315,141"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="153,165,315,221"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a427b35ad3e215434586001a185d1feee" title="Adds a object to the world" alt="" coords="153,245,315,301"/>
+</map>

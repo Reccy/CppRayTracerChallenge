@@ -8,8 +8,8 @@ var class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera =
     [ "pixelSize", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a55a4a88227ff8755ea60cfa31376c283", null ],
     [ "render", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c", null ],
     [ "renderedImage", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a573849ce50a6e551df6f579d3f40d0ba", null ],
-    [ "transform", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a4a0bdf0c504c3b5ae4307b6f723fdc8d", null ],
+    [ "transform", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a97a1ba40d43a17acc0a22d6afcce78ff", null ],
     [ "transform", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#aa7a2ec0659510a60778272e65494a856", null ],
-    [ "transformMatrix", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#ab65835986ca17034ca092e9a6584d362", null ],
+    [ "transformMatrix", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a17ab3d895934152957fac0c86ee36ffa", null ],
     [ "vSize", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a3e30f9502e2ca31dff1b9aee8f624b6c", null ]
 ];

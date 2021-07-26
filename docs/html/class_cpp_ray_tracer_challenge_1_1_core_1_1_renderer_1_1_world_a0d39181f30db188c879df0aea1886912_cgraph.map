@@ -7,7 +7,7 @@
 <area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#acfde3353235fbd3399f1ebfcd1d5d881" title="Returns the refractive index of the material of the object that this intersection is exiting" alt="" coords="218,298,465,339"/>
 <area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a5ca12d32702b0fb0ceb6e864dbe14c75" title="Returns the refractive index of the material of the object that this intersection is entering" alt="" coords="218,363,465,405"/>
 <area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a1d400c7edc498808c9de5e35a436824a" title="Returns the normal vector" alt="" coords="229,429,453,485"/>
-<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a55c3c312a2b720d902d9ab5640947c9b" title="Returns the shape that was intersected" alt="" coords="229,509,453,565"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#ad690c6b1805685ace6feb141b5edab4b" title="Returns the shape that was intersected" alt="" coords="229,509,453,565"/>
 <area shape="rect" id="node11" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html#a7a84c3af77f922a1b69f106082d5c7fa" title="Returns the position of the intersection translated slightly behind the normal. This accounts for flo..." alt="" coords="229,589,453,645"/>
 <area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="516,5,677,61"/>
 </map>

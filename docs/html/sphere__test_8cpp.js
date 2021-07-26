@@ -16,5 +16,6 @@ var sphere__test_8cpp =
     [ "TEST", "sphere__test_8cpp.html#a0ae2a9f4a7d9169d27061335c0a5d097", null ],
     [ "TEST", "sphere__test_8cpp.html#a1e4c8c8af209cba88ded9a87700827b2", null ],
     [ "TEST", "sphere__test_8cpp.html#a964a207f322854596b5a4f4924eda9f7", null ],
+    [ "TEST", "sphere__test_8cpp.html#a1bf1c2503f460a68de2a737f162c0922", null ],
     [ "TEST", "sphere__test_8cpp.html#a2490ffae164d3a75e73d00c63902bed0", null ]
 ];

@@ -1,0 +1,4 @@
+<map id="CppRayTracerChallenge::Core::Renderer::Camera::transform" name="CppRayTracerChallenge::Core::Renderer::Camera::transform">
+<area shape="rect" id="node1" title="Transforms the camera by the passed in transform matrix" alt="" coords="224,5,395,61"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#aa7a2ec0659510a60778272e65494a856" title="Transforms the camera by the passed in transform" alt="" coords="5,5,176,61"/>
+</map>

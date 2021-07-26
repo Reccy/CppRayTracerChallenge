@@ -1,0 +1,9 @@
+<map id="CppRayTracerChallenge::Core::Math::BoundingBox::contains" name="CppRayTracerChallenge::Core::Math::BoundingBox::contains">
+<area shape="rect" id="node1" title="Checks if the passed in box fits within the volume of this bounding box." alt="" coords="5,137,184,193"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a50963ceafdd9d4513998396324ebd48c" title="Checks if the position is within the volume of the bounding box" alt="" coords="249,63,427,119"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a3ece9d35715a014d3961a5a23a2ac117" title="Returns the maximum bounds" alt="" coords="232,144,444,185"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#af36c7b6b7e322bd993cd6745f462b03f" title="Returns the minimum bounds" alt="" coords="234,209,442,251"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a88cd3ab070137859ed4a413239c6414d" title="Returns a const X component" alt="" coords="492,5,653,47"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a67d5e1ca026ae045cfe5712d8613c552" title="Returns a const Y component" alt="" coords="492,71,653,112"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a8bbb8b2cf7a3e28be0de06ccec3ca7c7" title="Returns a const Z component" alt="" coords="492,136,653,177"/>
+</map>

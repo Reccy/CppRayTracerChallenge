@@ -102,6 +102,9 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html">BoundingBox</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A bounding box used to optimise render times using the Bounding Volume Hierarchy method. <a href="http://raytracerchallenge.com/bonus/bounding-boxes.html">http://raytracerchallenge.com/bonus/bounding-boxes.html</a>  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html">Cone</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html">Cube</a></td></tr>
@@ -143,11 +146,16 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html">Shape</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html">SmoothTriangle</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html">Sphere</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 3D <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html" title="A 3D Sphere">Sphere</a>  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html">Transform</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a Transformation <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html" title="A Matrix of numbers">Matrix</a> that can be used to transform vectors and points  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html">Triangle</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A triangle primitive  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html">Tuple</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html" title="A Tuple with x, y, z and w components">Tuple</a> with x, y, z and w components  <a href="class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#details">More...</a><br /></td></tr>
@@ -158,23 +166,60 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a001ec8d8dfcad4599b542701f8d44b23"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html#a001ec8d8dfcad4599b542701f8d44b23">EPSILON</a> = 0.00001f</td></tr>
-<tr class="separator:a001ec8d8dfcad4599b542701f8d44b23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92845287b7b0ee2ed33d678998623277"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html#a92845287b7b0ee2ed33d678998623277">EPSILON</a> = 0.00001f</td></tr>
+<tr class="separator:a92845287b7b0ee2ed33d678998623277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc4e26608cdbe5dd2d8feef4ba4563fa"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html#abc4e26608cdbe5dd2d8feef4ba4563fa">INF</a> = std::numeric_limits&lt;double&gt;::infinity()</td></tr>
+<tr class="memdesc:abc4e26608cdbe5dd2d8feef4ba4563fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Positive Infinity  <a href="namespace_cpp_ray_tracer_challenge_1_1_core_1_1_math.html#abc4e26608cdbe5dd2d8feef4ba4563fa">More...</a><br /></td></tr>
+<tr class="separator:abc4e26608cdbe5dd2d8feef4ba4563fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a001ec8d8dfcad4599b542701f8d44b23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a001ec8d8dfcad4599b542701f8d44b23">&#9670;&nbsp;</a></span>EPSILON</h2>
+<a id="a92845287b7b0ee2ed33d678998623277"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92845287b7b0ee2ed33d678998623277">&#9670;&nbsp;</a></span>EPSILON</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const float CppRayTracerChallenge::Core::Math::EPSILON = 0.00001f</td>
+          <td class="memname">constexpr float CppRayTracerChallenge::Core::Math::EPSILON = 0.00001f</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="constants_8h_source.html#l00006">6</a> of file <a class="el" href="constants_8h_source.html">constants.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="constants_8h_source.html#l00008">8</a> of file <a class="el" href="constants_8h_source.html">constants.h</a>.</p>
+
+</div>
+</div>
+<a id="abc4e26608cdbe5dd2d8feef4ba4563fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc4e26608cdbe5dd2d8feef4ba4563fa">&#9670;&nbsp;</a></span>INF</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr double CppRayTracerChallenge::Core::Math::INF = std::numeric_limits&lt;double&gt;::infinity()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Positive Infinity </p>
+
+<p class="definition">Definition at line <a class="el" href="constants_8h_source.html#l00013">13</a> of file <a class="el" href="constants_8h_source.html">constants.h</a>.</p>
 
 </div>
 </div>

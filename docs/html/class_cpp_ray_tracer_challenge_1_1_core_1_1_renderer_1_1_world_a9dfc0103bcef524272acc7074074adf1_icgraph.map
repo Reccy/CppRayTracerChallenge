@@ -1,11 +1,10 @@
 <map id="CppRayTracerChallenge::Core::Renderer::World::addLight" name="CppRayTracerChallenge::Core::Renderer::World::addLight">
-<area shape="rect" id="node1" title="Adds a light to the world" alt="" coords="599,75,760,131"/>
-<area shape="rect" id="node2" href="$class_world_a.html#a993c27e1a6981144f65c92a28bd28656" title=" " alt="" coords="420,5,520,32"/>
-<area shape="rect" id="node6" href="$class_world_b.html#ac5c3a44f8c4d5cf19172a80653a2a168" title=" " alt="" coords="420,56,520,83"/>
-<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="389,107,551,163"/>
-<area shape="rect" id="node9" href="$world__test_8cpp.html#abce7f9f9428f0d1476240fc739ea15d4" title=" " alt="" coords="443,187,497,213"/>
-<area shape="rect" id="node3" href="$win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="239,5,341,32"/>
-<area shape="rect" id="node4" href="$win32__main_8cpp.html#ab2101e7c16dcc71d3facc36c5de7f0c1" title=" " alt="" coords="104,5,191,32"/>
-<area shape="rect" id="node5" href="$win32__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,56,32"/>
-<area shape="rect" id="node8" href="$camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="263,121,317,148"/>
+<area shape="rect" id="node1" title="Adds a light to the world" alt="" coords="317,117,479,173"/>
+<area shape="rect" id="node2" href="$class_world_a.html#a993c27e1a6981144f65c92a28bd28656" title=" " alt="" coords="139,5,239,32"/>
+<area shape="rect" id="node3" href="$class_world_b.html#ac5c3a44f8c4d5cf19172a80653a2a168" title=" " alt="" coords="139,56,239,83"/>
+<area shape="rect" id="node4" href="$class_world_c.html#a566b7fd2a04fafe2718747dffec6b065" title=" " alt="" coords="139,107,239,133"/>
+<area shape="rect" id="node5" href="$class_world_d.html#ad38e4fc140bacf80548a535b6fa7f6ca" title=" " alt="" coords="139,157,239,184"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,208,269,264"/>
+<area shape="rect" id="node8" href="$world__test_8cpp.html#abce7f9f9428f0d1476240fc739ea15d4" title=" " alt="" coords="161,288,216,315"/>
+<area shape="rect" id="node7" href="$camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="5,223,60,249"/>
 </map>

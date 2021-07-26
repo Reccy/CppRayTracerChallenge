@@ -2,10 +2,12 @@
 <area shape="rect" id="node1" title=" " alt="" coords="99,5,227,47"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,95,100,121"/>
 <area shape="rect" id="node3" href="$tuple_8h.html" title=" " alt="" coords="179,244,273,271"/>
-<area shape="rect" id="node8" href="$vector_8h.html" title=" " alt="" coords="176,169,276,196"/>
-<area shape="rect" id="node9" href="$point_8h.html" title=" " alt="" coords="227,95,321,121"/>
+<area shape="rect" id="node10" href="$vector_8h.html" title=" " alt="" coords="176,169,276,196"/>
+<area shape="rect" id="node11" href="$point_8h.html" title=" " alt="" coords="227,95,321,121"/>
 <area shape="rect" id="node4" title=" " alt="" coords="117,319,189,345"/>
-<area shape="rect" id="node5" title=" " alt="" coords="185,393,267,420"/>
-<area shape="rect" id="node6" href="$comparison_8h.html" title=" " alt="" coords="264,319,364,345"/>
-<area shape="rect" id="node7" href="$constants_8h.html" title=" " alt="" coords="291,393,382,420"/>
+<area shape="rect" id="node5" title=" " alt="" coords="183,393,266,420"/>
+<area shape="rect" id="node6" href="$comparison_8h.html" title=" " alt="" coords="267,319,367,345"/>
+<area shape="rect" id="node7" title=" " alt="" coords="290,393,349,420"/>
+<area shape="rect" id="node8" href="$constants_8h.html" title=" " alt="" coords="373,393,463,420"/>
+<area shape="rect" id="node9" title=" " alt="" coords="384,468,452,495"/>
 </map>

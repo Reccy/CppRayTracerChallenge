@@ -1,0 +1,9 @@
+<map id="CppRayTracerChallenge::Core::Math::Triangle" name="CppRayTracerChallenge::Core::Math::Triangle">
+<area shape="rect" id="node1" title="A triangle primitive" alt="" coords="559,119,720,160"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html" title=" " alt="" coords="292,55,453,96"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html" title=" " alt="" coords="5,5,167,47"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html" title="Represents a Transformation Matrix that can be used to transform vectors and points" alt="" coords="5,71,167,112"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_point.html" title="Point in Euclidean Space" alt="" coords="292,121,453,163"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html" title=" " alt="" coords="5,138,167,194"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html" title="A Vector in Euclidean Space" alt="" coords="292,189,453,231"/>
+</map>

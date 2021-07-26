@@ -1,0 +1,7 @@
+<map id="CppRayTracerChallenge::Core::Math::BoundingBox::split" name="CppRayTracerChallenge::Core::Math::BoundingBox::split">
+<area shape="rect" id="node1" title="Returns a pair of BoundingBoxes split in half, covering the same volume as this box." alt="" coords="5,112,184,168"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a6e401c4da5839950f1f30c8b8c4d1208" title="Creates a Bounding Box with no defined volume." alt="" coords="232,5,411,61"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a88cd3ab070137859ed4a413239c6414d" title="Returns a const X component" alt="" coords="241,86,402,127"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a67d5e1ca026ae045cfe5712d8613c552" title="Returns a const Y component" alt="" coords="241,151,402,193"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a8bbb8b2cf7a3e28be0de06ccec3ca7c7" title="Returns a const Z component" alt="" coords="241,217,402,258"/>
+</map>

@@ -2,7 +2,10 @@ var win32__main_8cpp =
 [
     [ "WorldA", "class_world_a.html", null ],
     [ "WorldB", "class_world_b.html", null ],
+    [ "WorldC", "class_world_c.html", null ],
+    [ "WorldD", "class_world_d.html", null ],
     [ "RAIIglfw", "class_r_a_i_iglfw.html", "class_r_a_i_iglfw" ],
+    [ "NOMINMAX", "win32__main_8cpp.html#a9f918755b601cf4bffca775992e6fb90", null ],
     [ "doRealRender", "win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06", null ],
     [ "endGLFW", "win32__main_8cpp.html#a0a252fa8374e3f4699f94142d7f454cf", null ],
     [ "generatePerlin", "win32__main_8cpp.html#acd243cc663bed9ad4b844377f97f3622", null ],
@@ -15,11 +18,12 @@ var win32__main_8cpp =
     [ "camera", "win32__main_8cpp.html#a0c3adc735d1625f935b88973b70ee666", null ],
     [ "fragmentShaderSource", "win32__main_8cpp.html#a64fbb08868038fa2dc1759b84fd3eb5c", null ],
     [ "indices", "win32__main_8cpp.html#a572f5d704a0dc85bc7d3d5f50b496ede", null ],
-    [ "RENDER_HEIGHT", "win32__main_8cpp.html#a92862ddc2cfdc94ba887a7fa2a97a5b5", null ],
-    [ "RENDER_WIDTH", "win32__main_8cpp.html#ab571bcdbe80d366c99f5333b5243bd72", null ],
+    [ "RENDER_HEIGHT", "win32__main_8cpp.html#a93e9ef188507d54551b4f40eee8b946d", null ],
+    [ "RENDER_QUALITY", "win32__main_8cpp.html#aea02056c6bc8d27126d92bb39bea784d", null ],
+    [ "RENDER_WIDTH", "win32__main_8cpp.html#a89cd48eb4709f5879e8de8f54fc21e1c", null ],
     [ "renderData", "win32__main_8cpp.html#a3b231681089e073fc4d3ba4755ee5fcf", null ],
     [ "vertexShaderSource", "win32__main_8cpp.html#a94affbdd2b20c61bcc4dfdd86e1ffea6", null ],
     [ "verts", "win32__main_8cpp.html#a7f37695c8c6084173b46346f69e9dc90", null ],
-    [ "WINDOW_HEIGHT", "win32__main_8cpp.html#ab76d138fa589df9a65fc05eb3bd56073", null ],
-    [ "WINDOW_WIDTH", "win32__main_8cpp.html#a5e6ce0dd58078611570510dc4b8d81f3", null ]
+    [ "WINDOW_HEIGHT", "win32__main_8cpp.html#a4653f29f655121ae7b57bc95ef27ad72", null ],
+    [ "WINDOW_WIDTH", "win32__main_8cpp.html#a1a4ea27f9b84f4c2a6577f80d51ea998", null ]
 ];

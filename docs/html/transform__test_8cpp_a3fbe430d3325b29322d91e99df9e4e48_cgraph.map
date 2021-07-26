@@ -1,12 +1,12 @@
 <map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,233,60,260"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a893ef7e6b4a9dbe27260cfb11ae50b76" title="Inverts the Transform" alt="" coords="108,179,269,235"/>
-<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a2518b8aa2d8e95ca80f5c61817a2d33c" title="Translates the Transform along x, y, z co&#45;ordinates" alt="" coords="108,259,269,315"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aa7feb564bed9f6347435713dc6b03f18" title="Creates a copy of the Matrix that is inverted" alt="" coords="317,121,479,177"/>
-<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aefe9fd335841e20c20c12311a0a3fb50" title="Checks if the Matrix can be inverted" alt="" coords="527,187,688,243"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ace02bb54a9415ffa260c84e50a6d94d3" title="Calculates the cofactor of the square Matrix" alt="" coords="527,56,688,112"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a87172940c17b94e7b20c0f15add2fe62" title="Calculates the determinant of the square Matrix" alt="" coords="945,103,1107,159"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ac5dae214bed842b2b75e3dc777252fbf" title="Calculates the minor / determinant of the square submatrix." alt="" coords="736,5,897,61"/>
-<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a81ee5f59b2eb010dfa8d2e645715421d" title="Returns a copy of the Matrix, with the row and column removed." alt="" coords="945,5,1107,61"/>
-<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a788618557bd3405a870ffe87d0cdd9f5" title="Creates a square Identity Matrix of a specific size" alt="" coords="317,259,479,315"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,135,60,161"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a893ef7e6b4a9dbe27260cfb11ae50b76" title="Inverts the Transform" alt="" coords="108,80,269,136"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a2518b8aa2d8e95ca80f5c61817a2d33c" title="Translates the Transform along x, y, z co&#45;ordinates" alt="" coords="108,160,269,216"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ae5457352f5f09e2c73db4a6498266489" title="Creates a copy of the Matrix that is inverted" alt="" coords="317,23,479,79"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aea6a3f40c453e7ed64c40ea9ffd010ae" title="Checks if the Matrix can be inverted" alt="" coords="527,88,688,144"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a44c0f150882230b55b5251e4aeb2c9d4" title="Calculates the cofactor of the square Matrix" alt="" coords="945,5,1107,61"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ac608d24a262cc405654092029e85062b" title="Calculates the determinant of the square Matrix" alt="" coords="736,37,897,93"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#af8d5b0e0e1e198a8524e5dff5f4d4dc9" title="Calculates the minor / determinant of the square submatrix." alt="" coords="1155,5,1316,61"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a0b97c3c0f3129507442cd92b728aa425" title="Returns a copy of the Matrix, with the row and column removed." alt="" coords="1364,5,1525,61"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a318cccc5f57c9ee061562a84d3b35125" title="Creates a square Identity Matrix of a specific size" alt="" coords="317,160,479,216"/>
 </map>

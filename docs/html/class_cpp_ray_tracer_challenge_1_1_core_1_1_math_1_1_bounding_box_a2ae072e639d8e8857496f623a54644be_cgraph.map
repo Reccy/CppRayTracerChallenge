@@ -1,0 +1,10 @@
+<map id="CppRayTracerChallenge::Core::Math::BoundingBox::transform" name="CppRayTracerChallenge::Core::Math::BoundingBox::transform">
+<area shape="rect" id="node1" title="Transforms the bounding box" alt="" coords="5,161,184,217"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a58069c381eae5b7c2eb22766a9e70582" title="Adds point to box and resizes it to include passed in point" alt="" coords="234,109,442,151"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a88cd3ab070137859ed4a413239c6414d" title="Returns a const X component" alt="" coords="492,5,653,47"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a67d5e1ca026ae045cfe5712d8613c552" title="Returns a const Y component" alt="" coords="492,75,653,116"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a8bbb8b2cf7a3e28be0de06ccec3ca7c7" title="Returns a const Z component" alt="" coords="492,149,653,191"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a3ece9d35715a014d3961a5a23a2ac117" title="Returns the maximum bounds" alt="" coords="232,227,444,268"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#af36c7b6b7e322bd993cd6745f462b03f" title="Returns the minimum bounds" alt="" coords="234,292,442,333"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a22ed0f617c828f55e1f46488d4fff152" title="Returns a copy of the Box&#39;s transform" alt="" coords="249,358,427,414"/>
+</map>

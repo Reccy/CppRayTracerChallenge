@@ -3,6 +3,7 @@ var class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone =
     [ "Cone", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#aec709e915b3271a750d420b14b215bfb", null ],
     [ "Cone", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#ad1453b9dc230f7e9b0e028fa7440ad4d", null ],
     [ "Cone", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#a3a73a56e20c1173ad26001c1bc5a2527", null ],
+    [ "bounds", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#a7851e74c12645a653d0a3f306c157764", null ],
     [ "closed", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#a01077e2261d99cf3568ba35bdd431ed9", null ],
     [ "closed", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#ab4189dc2a2d7a69ec282d4fdc4dd6f78", null ],
     [ "intersectLocal", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#a410356692212e5396d84c8c0edda3623", null ],

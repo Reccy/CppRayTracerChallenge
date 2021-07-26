@@ -50,7 +50,8 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", "globals_dup" ],
         [ "Functions", "globals_func.html", "globals_func" ],
-        [ "Variables", "globals_vars.html", null ]
+        [ "Variables", "globals_vars.html", null ],
+        [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]
@@ -59,10 +60,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a573849ce50a6e551df6f579d3f40d0ba",
-"cone__test_8cpp_source.html",
-"matrix__test_8cpp.html#a67e4910404b5979ecb44eb70648e7c25",
-"struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a01ed82b967742cd0c957ca5937cfbd3c"
+"class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html#acb78c704ef335773efc37998b4145451",
+"class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_wavefront_o_b_j_serializer.html#ada98d080b2cd3158feb20cb4a775d600",
+"group__test_8cpp.html#a4354cfe83bd8170e9edb6a5abdfb1ea1",
+"portable__pixmap__image__serializer_8cpp.html",
+"vector__test_8cpp.html#a06a10b97d9e64f5c7f7ab1daf8969344"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

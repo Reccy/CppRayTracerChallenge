@@ -1,8 +1,8 @@
 <map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,92,60,119"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a87172940c17b94e7b20c0f15add2fe62" title="Calculates the determinant of the square Matrix" alt="" coords="125,37,286,93"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception.html#a9deb36d436c38b15199d589388e85628" title=" " alt="" coords="108,117,303,173"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ace02bb54a9415ffa260c84e50a6d94d3" title="Calculates the cofactor of the square Matrix" alt="" coords="351,5,512,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ac5dae214bed842b2b75e3dc777252fbf" title="Calculates the minor / determinant of the square submatrix." alt="" coords="560,39,721,95"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a81ee5f59b2eb010dfa8d2e645715421d" title="Returns a copy of the Matrix, with the row and column removed." alt="" coords="769,39,931,95"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,60,60,87"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ac608d24a262cc405654092029e85062b" title="Calculates the determinant of the square Matrix" alt="" coords="125,5,286,61"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_determinant_exception.html#a9deb36d436c38b15199d589388e85628" title=" " alt="" coords="108,85,303,141"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a44c0f150882230b55b5251e4aeb2c9d4" title="Calculates the cofactor of the square Matrix" alt="" coords="351,5,512,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#af8d5b0e0e1e198a8524e5dff5f4d4dc9" title="Calculates the minor / determinant of the square submatrix." alt="" coords="560,5,721,61"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a0b97c3c0f3129507442cd92b728aa425" title="Returns a copy of the Matrix, with the row and column removed." alt="" coords="769,5,931,61"/>
 </map>

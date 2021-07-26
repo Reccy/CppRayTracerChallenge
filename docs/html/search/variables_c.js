@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['t1_824',['t1',['../class_ray_intersects_cube_param.html#a38de5232a5bd683ad0c9a6ac15087387',1,'RayIntersectsCubeParam']]],
-  ['t2_825',['t2',['../class_ray_intersects_cube_param.html#ad3200958ddc424299ec6683ea497b6c3',1,'RayIntersectsCubeParam']]],
-  ['tmax_826',['tMax',['../struct_check_axis_result.html#ad54f03ef5b139eab3b960c19f5b0411f',1,'CheckAxisResult']]],
-  ['tmin_827',['tMin',['../struct_check_axis_result.html#ace16cd89a4a021221ecba2c6fd9b2bf9',1,'CheckAxisResult']]],
-  ['transparency_828',['transparency',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a22f6bd0b5a1c75b1fc6322ca873e0411',1,'CppRayTracerChallenge::Core::Renderer::Material']]]
+  ['shadowcastmode_959',['shadowcastMode',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a1ac61307c678c029d6efd248788efa27',1,'CppRayTracerChallenge::Core::Renderer::Material']]],
+  ['shape_960',['shape',['../class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html#a90a36e07ae51880d24a58aac72c18309',1,'CppRayTracerChallenge_Core_Renderer_LightingTest']]],
+  ['shininess_961',['shininess',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a01ed82b967742cd0c957ca5937cfbd3c',1,'CppRayTracerChallenge::Core::Renderer::Material']]],
+  ['spacing_962',['SPACING',['../class_world_c.html#ac8ee588fe8244069e3f8e212006d361d',1,'WorldC']]],
+  ['specular_963',['specular',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a0d35cd848e5abf5400c1682b97313c04',1,'CppRayTracerChallenge::Core::Renderer::Material']]],
+  ['sphere_964',['sphere',['../class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html#a0acdbb376fb7b2c8460d290ca76304d0',1,'CppRayTracerChallenge_Core_Renderer_LightingTest']]]
 ];

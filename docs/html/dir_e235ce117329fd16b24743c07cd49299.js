@@ -1,12 +1,16 @@
 var dir_e235ce117329fd16b24743c07cd49299 =
 [
+    [ "bounding_box.cpp", "bounding__box_8cpp.html", null ],
+    [ "bounding_box.h", "bounding__box_8h.html", [
+      [ "BoundingBox", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box" ]
+    ] ],
     [ "comparison.h", "comparison_8h.html", "comparison_8h" ],
     [ "cone.cpp", "cone_8cpp.html", null ],
     [ "cone.h", "cone_8h.html", [
       [ "Cone", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone" ]
     ] ],
     [ "constants.h", "constants_8h.html", "constants_8h" ],
-    [ "cube.cpp", "cube_8cpp.html", "cube_8cpp" ],
+    [ "cube.cpp", "cube_8cpp.html", null ],
     [ "cube.h", "cube_8h.html", [
       [ "Cube", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube" ]
     ] ],
@@ -53,6 +57,10 @@ var dir_e235ce117329fd16b24743c07cd49299 =
     [ "shape.h", "math_2shape_8h.html", [
       [ "Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape" ]
     ] ],
+    [ "smooth_triangle.cpp", "smooth__triangle_8cpp.html", null ],
+    [ "smooth_triangle.h", "smooth__triangle_8h.html", [
+      [ "SmoothTriangle", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle" ]
+    ] ],
     [ "sphere.cpp", "sphere_8cpp.html", null ],
     [ "sphere.h", "sphere_8h.html", [
       [ "Sphere", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_sphere" ]
@@ -60,6 +68,10 @@ var dir_e235ce117329fd16b24743c07cd49299 =
     [ "transform.cpp", "transform_8cpp.html", null ],
     [ "transform.h", "transform_8h.html", [
       [ "Transform", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform" ]
+    ] ],
+    [ "triangle.cpp", "triangle_8cpp.html", null ],
+    [ "triangle.h", "triangle_8h.html", [
+      [ "Triangle", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle" ]
     ] ],
     [ "trig.cpp", "trig_8cpp.html", null ],
     [ "trig.h", "trig_8h.html", "trig_8h" ],
