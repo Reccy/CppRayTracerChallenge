@@ -124,28 +124,30 @@ namespace CppRayTracerChallenge::Core::Math
 			{
 				throw MatrixUndefinedDeterminantException(m_rows, m_columns);
 			}
-
-			constexpr int MATRIX_SIZE = ROW;
-
-			if constexpr (MATRIX_SIZE == 1)
-			{
-				return m_data[0];
-			}
-			else if constexpr (MATRIX_SIZE == 2)
-			{
-				return m_data[indexAt(0, 0)] * m_data[indexAt(1, 1)] - m_data[indexAt(1, 0)] * m_data[indexAt(0, 1)];
-			}
 			else
 			{
-				T result = 0;
+				constexpr int MATRIX_SIZE = ROW;
 
-				for (int col = 0; col < m_columns; ++col)
+				if constexpr (MATRIX_SIZE == 1)
 				{
-					result += cofactor(0, col) * m_data[indexAt(0, col)];
+					return m_data[0];
 				}
+				else if constexpr (MATRIX_SIZE == 2)
+				{
+					return m_data[indexAt(0, 0)] * m_data[indexAt(1, 1)] - m_data[indexAt(1, 0)] * m_data[indexAt(0, 1)];
+				}
+				else
+				{
+					T result = 0;
 
-				m_determinant = result;
-				return result;
+					for (int col = 0; col < m_columns; ++col)
+					{
+						result += cofactor(0, col) * m_data[indexAt(0, col)];
+					}
+
+					m_determinant = result;
+					return result;
+				}
 			}
 		}
 

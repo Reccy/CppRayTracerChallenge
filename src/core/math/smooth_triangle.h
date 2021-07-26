@@ -1,0 +1,25 @@
+#ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_SMOOTH_TRIANGLE
+#define _CPPRAYTRACERCHALLENGE_CORE_MATH_SMOOTH_TRIANGLE
+
+#include "triangle.h"
+
+namespace CppRayTracerChallenge::Core::Math
+{
+	class SmoothTriangle : public Triangle
+	{
+	public:
+		SmoothTriangle() = delete;
+
+		SmoothTriangle(Point p1, Point p2, Point p3, Vector n1, Vector n2, Vector n3);
+
+		Vector n1() const;
+
+		Vector n2() const;
+
+		Vector n3() const;
+	protected:
+		Vector m_n1, m_n2, m_n3;
+	};
+}
+
+#endif _CPPRAYTRACERCHALLENGE_CORE_MATH_SMOOTH_TRIANGLE
