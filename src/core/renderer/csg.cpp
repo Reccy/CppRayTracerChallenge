@@ -93,50 +93,53 @@ const Transform CSG::transform() const
 
 const Vector CSG::normal(const Math::Point position) const
 {
-	// TODO
-	return position;
+	(void)position;
+	throw std::logic_error("Method not implemented");
 }
 
 const Vector CSG::normalLocal(const Math::Point position) const
 {
-	// TODO
-	return position;
+	(void)position;
+	throw std::logic_error("Method not implemented");
 }
 
-const Intersections CSG::intersect(Math::Ray) const
+const Intersections CSG::intersect(Math::Ray ray) const
 {
-	// TODO
-	return Math::Intersections();
+	ray = ray.transform(m_transform.invert());
+
+	return intersectLocal(ray);
 }
 
-const Intersections CSG::intersectLocal(Math::Ray) const
+const Intersections CSG::intersectLocal(Math::Ray ray) const
 {
-	// TODO
-	return Math::Intersections();
+	auto leftIntersections = m_left->intersect(ray);
+	auto rightIntersections = m_right->intersect(ray);
+
+	auto result = leftIntersections + rightIntersections;
+
+	return filterIntersections(result);
 }
 
 const BoundingBox CSG::bounds() const
 {
-	// TODO
-	return Math::BoundingBox();
+	throw std::logic_error("Method not implemented");
 }
 
 const BoundingBox CSG::parentSpaceBounds() const
 {
-	// TODO
-	return Math::BoundingBox();
+	throw std::logic_error("Method not implemented");
 }
 
 const Point CSG::worldToObject(Point worldPosition) const
 {
-	// TODO
-	return worldPosition;
+	(void)worldPosition;
+	throw std::logic_error("Method not implemented");
 };
 
 const Vector CSG::normalToWorld(Vector objectNormal) const
 {
-	// TODO
-	return objectNormal;
+	(void)objectNormal;
+	throw std::logic_error("Method not implemented");
 };
 
 bool CSG::includes(const IShape& other) const
