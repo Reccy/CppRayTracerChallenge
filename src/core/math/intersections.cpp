@@ -112,6 +112,23 @@ Intersections Intersections::operator+=(const Intersections& other)
 	return *this;
 }
 
+Intersections Intersections::operator+(const Intersection& other) const
+{
+	Intersections wrapper = Intersections({other});
+
+	Intersections result = Intersections(*this);
+
+	result += wrapper;
+
+	return result;
+}
+
+Intersections Intersections::operator+=(const Intersection& other)
+{
+	*this = *this + other;
+	return *this;
+}
+
 bool Intersections::operator==(const Intersections& other) const
 {
 	if (other.count() != count())

@@ -1,12 +1,15 @@
 #include <gtest/gtest.h>
 #include <array>
 #include <renderer/csg.h>
+#include <math/intersections.h>
 #include <math/sphere.h>
 #include <math/cube.h>
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using CppRayTracerChallenge::Core::Math::Cube;
 using CppRayTracerChallenge::Core::Math::Sphere;
+using CppRayTracerChallenge::Core::Math::Intersections;
+using CppRayTracerChallenge::Core::Math::Intersection;
 
 constexpr CSG::Operation UNION = CSG::Operation::UNION;
 constexpr CSG::Operation INTERSECT = CSG::Operation::INTERSECT;
@@ -98,5 +101,42 @@ TEST(CppRayTracerChallenge_Core_Renderer_CSG, evaluation_for_csg_difference_rule
 	{
 		bool result = CSG::intersectionAllowed(eval.op, eval.lhit, eval.inl, eval.inr);
 		EXPECT_EQ(result, eval.result);
+	}
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_CSG, filters_list_of_intersections)
+{
+	struct Param
+	{
+		Param(CSG::Operation op, int x0, int x1)
+			: op(op), x0(x0), x1(x1) {};
+
+		CSG::Operation op;
+		int x0;
+		int x1;
+	};
+
+	std::array<Param, 3> params {{
+		{ UNION, 0, 3 },
+		{ INTERSECT, 1, 2 },
+		{ DIFFERENCE, 0, 1 }
+	}};
+
+	auto sphere = std::make_shared<Sphere>();
+	auto cube = std::make_shared<Cube>();
+
+	auto s1 = std::make_shared<Shape>(sphere);
+	auto s2 = std::make_shared<Shape>(cube);
+
+	for (auto& param : params)
+	{
+		auto csg = CSG::build(param.op, s1, s2);
+		auto xs = Intersections({ {1, *s1}, {2, *s2}, {3, *s1}, {4, *s2} });
+
+		auto result = csg->filterIntersections(xs);
+
+		EXPECT_EQ(result.count(), 2);
+		EXPECT_EQ(result.at(0), xs.at(param.x0));
+		EXPECT_EQ(result.at(1), xs.at(param.x1));
 	}
 }

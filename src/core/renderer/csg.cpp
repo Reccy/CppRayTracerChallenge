@@ -1,4 +1,5 @@
 #include "csg.h"
+#include "../math/shape.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core::Math;
@@ -38,6 +39,46 @@ bool CSG::intersectionAllowed(Operation op, bool lhit, bool inl, bool inr)
 	}
 
 	return false;
+}
+
+Intersections CSG::filterIntersections(Intersections intersections) const
+{
+	bool inl = false;
+	bool inr = false;
+
+	Intersections result = Intersections();
+
+	for (int i = 0; i < intersections.count(); ++i)
+	{
+		const Intersection& intersection = intersections.at(i);
+
+		bool lhit = false;
+
+		if (auto leftGroup = dynamic_cast<IGroup*>(m_left.get()))
+		{
+			lhit = leftGroup->includes(intersection.shape());
+		}
+		else if (auto leftShape = dynamic_cast<Shape*>(m_left.get()))
+		{
+			lhit = leftShape == &intersection.shape();
+		}
+
+		if (intersectionAllowed(m_operation, lhit, inl, inr))
+		{
+			result += intersection;
+		}
+
+		if (lhit)
+		{
+			inl = !inl;
+		}
+		else
+		{
+			inr = !inr;
+		}
+	}
+
+	return result;
 }
 
 void CSG::transform(Math::Transform transform)
@@ -98,17 +139,35 @@ const Vector CSG::normalToWorld(Vector objectNormal) const
 	return objectNormal;
 };
 
+bool CSG::includes(const IShape& other) const
+{
+	if (auto csg = dynamic_cast<const Renderer::CSG*>(&other))
+	{
+		return csg->includes(other);
+	}
+	else if (auto rShape = dynamic_cast<const Renderer::Shape*>(&other))
+	{
+		return m_left.get() == rShape || m_right.get() == rShape;
+	}
+	else if (auto mShape = dynamic_cast<const Math::Shape*>(&other))
+	{
+		return m_left->shape().get() == mShape || m_right->shape().get() == mShape;
+	}
+
+	return false;
+}
+
 CSG::Operation CSG::operation() const
 {
 	return m_operation;
 }
 
-std::shared_ptr<Shape> CSG::left() const
+std::shared_ptr<CppRayTracerChallenge::Core::Renderer::Shape> CSG::left() const
 {
 	return m_left;
 }
 
-std::shared_ptr<Shape> CSG::right() const
+std::shared_ptr <CppRayTracerChallenge::Core::Renderer::Shape> CSG::right() const
 {
 	return m_right;
 }
