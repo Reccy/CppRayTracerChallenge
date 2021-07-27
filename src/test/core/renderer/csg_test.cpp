@@ -4,12 +4,16 @@
 #include <math/intersections.h>
 #include <math/sphere.h>
 #include <math/cube.h>
+#include <math/ray.h>
+#include <math/transform.h>
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using CppRayTracerChallenge::Core::Math::Cube;
 using CppRayTracerChallenge::Core::Math::Sphere;
 using CppRayTracerChallenge::Core::Math::Intersections;
 using CppRayTracerChallenge::Core::Math::Intersection;
+using CppRayTracerChallenge::Core::Math::Ray;
+using CppRayTracerChallenge::Core::Math::Transform;
 
 constexpr CSG::Operation UNION = CSG::Operation::UNION;
 constexpr CSG::Operation INTERSECT = CSG::Operation::INTERSECT;
@@ -139,4 +143,45 @@ TEST(CppRayTracerChallenge_Core_Renderer_CSG, filters_list_of_intersections)
 		EXPECT_EQ(result.at(0), xs.at(param.x0));
 		EXPECT_EQ(result.at(1), xs.at(param.x1));
 	}
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_CSG, ray_misses_csg)
+{
+	auto sphere = std::make_shared<Sphere>();
+	auto cube = std::make_shared<Cube>();
+
+	auto s1 = std::make_shared<Shape>(sphere);
+	auto s2 = std::make_shared<Shape>(cube);
+
+	auto csg = CSG::build(UNION, s1, s2);
+
+	auto ray = Ray({ 0, 2, -5 }, { 0, 0, 1 });
+
+	auto xs = csg->intersectLocal(ray);
+
+	EXPECT_EQ(xs.size(), 0);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_CSG, ray_hits_csg)
+{
+	auto sphere1 = std::make_shared<Sphere>();
+	auto sphere2 = std::make_shared<Sphere>();
+
+	auto s1 = std::make_shared<Shape>(sphere1);
+	auto s2 = std::make_shared<Shape>(sphere2);
+
+	s2->transform(Transform().
+		translate(0, 0, 0.5));
+
+	auto csg = CSG::build(UNION, s1, s2);
+
+	auto ray = Ray({ 0, 0, -5 }, { 0, 0, 1 });
+
+	auto xs = csg->intersectLocal(ray);
+
+	EXPECT_EQ(xs.count(), 2);
+	EXPECT_EQ(&xs.at(0).shape(), s1.get());
+	EXPECT_EQ(xs.at(0).t(), 4);
+	EXPECT_EQ(&xs.at(1).shape(), s2.get());
+	EXPECT_EQ(xs.at(1).t(), 6.5);
 }
