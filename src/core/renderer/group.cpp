@@ -207,7 +207,19 @@ const Vector Group::normalToWorld(Vector objectNormal) const
 	return normal;
 }
 
-bool Group::includes(std::shared_ptr<Shape> child) const
+bool Group::includes(const IShape& other) const
+{
+	if (auto shape = dynamic_cast<const Shape*>(&other))
+	{
+		const auto ptr = std::shared_ptr<const Shape>(shape);
+
+		return includes(ptr);
+	}
+
+	return false;
+}
+
+bool Group::includes(std::shared_ptr<const Shape> child) const
 {
 	for (int i = 0; i < m_shapes.size(); ++i)
 	{

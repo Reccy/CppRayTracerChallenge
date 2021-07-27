@@ -55,6 +55,8 @@ namespace CppRayTracerChallenge::Core::Math
 
 		Intersections operator+(const Intersections& other) const;
 		Intersections operator+=(const Intersections& other);
+		Intersections operator+(const Intersection& other) const;
+		Intersections operator+=(const Intersection& other);
 		bool operator==(const Intersections& other) const;
 		bool operator!=(const Intersections& other) const;
 		friend std::ostream& operator<<(std::ostream& os, const Intersections& intersections);

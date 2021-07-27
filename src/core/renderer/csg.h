@@ -52,9 +52,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		const Math::Vector normalToWorld(Math::Vector objectNormal) const override;
 
+		bool includes(const IShape& other) const override;
+
 		static std::shared_ptr<CSG> build(Operation op, std::shared_ptr<Shape> left, std::shared_ptr<Shape> right);
 
 		static bool intersectionAllowed(Operation op, bool lhit, bool inl, bool inr);
+
+		Math::Intersections filterIntersections(Math::Intersections intersections) const;
 
 		Operation operation() const;
 

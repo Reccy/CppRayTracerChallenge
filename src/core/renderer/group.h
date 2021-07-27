@@ -51,9 +51,9 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		const Math::Vector normalToWorld(Math::Vector objectNormal) const override;
 
-		bool includes(std::shared_ptr<Shape> child) const;
+		bool includes(const IShape& other) const override;
 
-		bool includes(std::shared_ptr<Group> child) const;
+		bool includes(std::shared_ptr<const Shape> child) const;
 
 		int size() const;
 
