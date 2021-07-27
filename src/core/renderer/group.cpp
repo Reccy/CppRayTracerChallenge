@@ -85,6 +85,7 @@ void Group::addChild(std::shared_ptr<Shape> child)
 {
 	m_shapes.push_back(child);
 	child->parent(weak_from_this());
+
 	recalculateBounds();
 }
 

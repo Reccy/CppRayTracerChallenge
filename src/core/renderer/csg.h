@@ -3,10 +3,11 @@
 
 #include "../math/i_shape.h"
 #include "shape.h"
+#include "i_group.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
-	class CSG : public Math::IShape, public std::enable_shared_from_this<Group>
+	class CSG : public Math::IShape, public IGroup, public std::enable_shared_from_this<CSG>
 	{
 	public:
 		/// <summary>
@@ -47,12 +48,19 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		const Math::BoundingBox parentSpaceBounds() const override;
 
-		CSG(Operation op, std::shared_ptr<Shape> left, std::shared_ptr<Shape> right);
+		const Math::Point worldToObject(Math::Point worldPosition) const override;
+
+		const Math::Vector normalToWorld(Math::Vector objectNormal) const override;
+
+		static std::shared_ptr<CSG> build(Operation op, std::shared_ptr<Shape> left, std::shared_ptr<Shape> right);
 
 		Operation operation() const;
 
 		std::shared_ptr<Shape> left() const;
 		std::shared_ptr<Shape> right() const;
+
+	protected:
+		CSG(Operation op);
 	private:
 		Math::Transform m_transform;
 		std::shared_ptr<Shape> m_left, m_right;

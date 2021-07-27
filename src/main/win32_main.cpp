@@ -655,7 +655,7 @@ std::shared_ptr<Camera> camera = nullptr;
 Image doRealRender()
 {
 	log("Initializing...");
-	using WorldBuilder = WorldD;
+	using WorldBuilder = WorldA;
 	World world = WorldBuilder::build();
 
 	int width = RENDER_WIDTH;

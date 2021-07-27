@@ -15,11 +15,11 @@ TEST(CppRayTracerChallenge_Core_Renderer_CSG, csg_is_created_with_an_operation_a
 	auto s1 = std::make_shared<Shape>(sphere);
 	auto s2 = std::make_shared<Shape>(cube);
 
-	auto csg = CSG(CSG::Operation::UNION, s1, s2);
+	auto csg = CSG::build(CSG::Operation::UNION, s1, s2);
 
-	EXPECT_EQ(csg.operation(), CSG::Operation::UNION);
-	EXPECT_EQ(csg.left(), s1);
-	EXPECT_EQ(csg.right(), s2);
-	EXPECT_EQ(s1->parent(), csg);
-	EXPECT_EQ(s2->parent(), csg);
+	EXPECT_EQ(csg->operation(), CSG::Operation::UNION);
+	EXPECT_EQ(csg->left(), s1);
+	EXPECT_EQ(csg->right(), s2);
+	EXPECT_EQ(std::dynamic_pointer_cast<CSG>(s1->parent().lock()), csg);
+	EXPECT_EQ(std::dynamic_pointer_cast<CSG>(s2->parent().lock()), csg);
 }
