@@ -41,9 +41,9 @@ TEST(CppRayTracerChallenge_Core_Renderer_CSG, csg_is_created_with_an_operation_a
 	EXPECT_EQ(std::dynamic_pointer_cast<CSG>(s2->parent().lock()), csg);
 }
 
-TEST(CppRayTracerChallenge_Core_Renderer_CSG, evaluation_for_csg_rule)
+TEST(CppRayTracerChallenge_Core_Renderer_CSG, evaluation_for_csg_union_rule)
 {
-	std::array<CSGRuleEval, 8> ruleTable = {{
+	std::array<CSGRuleEval, 8> ruleTable {{
 		{ UNION, true, true, true, false },
 		{ UNION, true, true, false, true },
 		{ UNION, true, false, true, false },
@@ -54,7 +54,27 @@ TEST(CppRayTracerChallenge_Core_Renderer_CSG, evaluation_for_csg_rule)
 		{ UNION, false, false, false, true }
 	}};
 
-	for (auto eval : ruleTable)
+	for (auto& eval : ruleTable)
+	{
+		bool result = CSG::intersectionAllowed(eval.op, eval.lhit, eval.inl, eval.inr);
+		EXPECT_EQ(result, eval.result);
+	}
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_CSG, evaluation_for_csg_intersect_rule)
+{
+	std::array<CSGRuleEval, 8> ruleTable {{
+		{ INTERSECT, true, true, true, true },
+		{ INTERSECT, true, true, false, false },
+		{ INTERSECT, true, false, true, true },
+		{ INTERSECT, true, false, false, false },
+		{ INTERSECT, false, true, true, true },
+		{ INTERSECT, false, true, false, true },
+		{ INTERSECT, false, false, true, false },
+		{ INTERSECT, false, false, false, false }
+	}};
+
+	for (auto& eval : ruleTable)
 	{
 		bool result = CSG::intersectionAllowed(eval.op, eval.lhit, eval.inl, eval.inr);
 		EXPECT_EQ(result, eval.result);

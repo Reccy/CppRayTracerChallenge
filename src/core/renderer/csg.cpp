@@ -27,6 +27,11 @@ bool CSG::intersectionAllowed(Operation op, bool lhit, bool inl, bool inr)
 		return (lhit && !inr) || (!lhit && !inl);
 	}
 
+	if (op == Operation::INTERSECT)
+	{
+		return (lhit && inr) || (!lhit && inl);
+	}
+
 	return false;
 }
 
