@@ -14,7 +14,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 	class Group : public Math::IShape, public std::enable_shared_from_this<Group>
 	{
 	public:
-		void transform(Math::Transform transform);
+		void transform(Math::Transform transform) override;
 
 		const Math::Transform transform() const override;
 
