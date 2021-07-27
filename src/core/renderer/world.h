@@ -6,6 +6,7 @@
 #include "computed_values.h"
 #include "../math/ray.h"
 #include "../math/intersections.h"
+#include "../renderer/group.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {

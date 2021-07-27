@@ -55,6 +55,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/renderer/lighting.h"
 	"${CORE_LIBRARY_DIR}/renderer/world.h"
 	"${CORE_LIBRARY_DIR}/renderer/computed_values.h"
+	"${CORE_LIBRARY_DIR}/renderer/i_group.h"
 	"${CORE_LIBRARY_DIR}/renderer/shape.h"
 	"${CORE_LIBRARY_DIR}/renderer/group.h"
 	"${CORE_LIBRARY_DIR}/renderer/csg.h"

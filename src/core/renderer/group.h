@@ -6,12 +6,13 @@
 #include "../math/intersections.h"
 #include "../math/point.h"
 #include "shape.h"
+#include "i_group.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
 	class Shape;
 
-	class Group : public Math::IShape, public std::enable_shared_from_this<Group>
+	class Group : public Math::IShape, public IGroup, public std::enable_shared_from_this<Group>
 	{
 	public:
 		void transform(Math::Transform transform) override;
@@ -46,9 +47,9 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		std::tuple<std::vector<std::shared_ptr<Shape>>, std::vector<std::shared_ptr<Shape>>> partitionChildren();
 
-		const Math::Point worldToObject(Math::Point worldPosition) const;
+		const Math::Point worldToObject(Math::Point worldPosition) const override;
 
-		const Math::Vector normalToWorld(Math::Vector objectNormal) const;
+		const Math::Vector normalToWorld(Math::Vector objectNormal) const override;
 
 		bool includes(std::shared_ptr<Shape> child) const;
 

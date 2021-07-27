@@ -2,7 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_SHAPE
 
 #include "material.h"
-#include "group.h"
+#include "i_group.h"
 #include "../math/bounding_box.h"
 #include "../math/transform.h"
 #include "../math/vector.h"
@@ -10,8 +10,6 @@
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
-	class Group;
-
 	/// <summary>
 	/// Represents a shape within the rendered world.
 	/// This is a wrapper around a Math::IShape which adds materials
@@ -41,7 +39,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// Returns the parent group if it exists
 		/// </summary>
 		/// <returns>Parent</returns>
-		std::weak_ptr<Group> parent() const;
+		std::weak_ptr<IGroup> parent() const;
 
 		/// <summary>
 		/// Returns a pointer to the shape encapsulated by the Renderer::Shape
@@ -52,7 +50,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// Sets the parent group
 		/// </summary>
 		/// <param name="parent">Parent group to set</param>
-		void parent(std::weak_ptr<Group> parent);
+		void parent(std::weak_ptr<IGroup> parent);
 
 		/// <summary>
 		/// Transforms a position from world space to object space
@@ -92,7 +90,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		bool operator!=(const Shape& other) const;
 	private:
 		std::shared_ptr<IShape> m_shape;
-		std::weak_ptr<Group> m_parent;
+		std::weak_ptr<IGroup> m_parent;
 		Material m_material;
 	};
 }

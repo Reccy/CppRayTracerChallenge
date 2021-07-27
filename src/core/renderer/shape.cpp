@@ -25,7 +25,7 @@ Graphics::Color Shape::colorAt(Math::Point worldPosition) const
 	return m_material.pattern->colorAt(patternLocalPosition);
 }
 
-std::weak_ptr<Group> Shape::parent() const
+std::weak_ptr<IGroup> Shape::parent() const
 {
 	return m_parent;
 }
@@ -35,7 +35,7 @@ std::shared_ptr<Math::IShape> Shape::shape() const
 	return m_shape;
 }
 
-void Shape::parent(std::weak_ptr<Group> parent)
+void Shape::parent(std::weak_ptr<IGroup> parent)
 {
 	m_parent = parent;
 }
