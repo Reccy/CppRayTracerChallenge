@@ -20,6 +20,16 @@ std::shared_ptr<CSG> CSG::build(Operation op, std::shared_ptr<Shape> left, std::
 CSG::CSG(Operation op)
 	: m_operation(op) {};
 
+bool CSG::intersectionAllowed(Operation op, bool lhit, bool inl, bool inr)
+{
+	if (op == Operation::UNION)
+	{
+		return (lhit && !inr) || (!lhit && !inl);
+	}
+
+	return false;
+}
+
 void CSG::transform(Math::Transform transform)
 {
 	m_transform = transform;
