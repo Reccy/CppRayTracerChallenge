@@ -80,3 +80,23 @@ TEST(CppRayTracerChallenge_Core_Renderer_CSG, evaluation_for_csg_intersect_rule)
 		EXPECT_EQ(result, eval.result);
 	}
 }
+
+TEST(CppRayTracerChallenge_Core_Renderer_CSG, evaluation_for_csg_difference_rule)
+{
+	std::array<CSGRuleEval, 8> ruleTable {{
+		{ DIFFERENCE, true, true, true, false },
+		{ DIFFERENCE, true, true, false, true },
+		{ DIFFERENCE, true, false, true, false },
+		{ DIFFERENCE, true, false, false, true },
+		{ DIFFERENCE, false, true, true, true },
+		{ DIFFERENCE, false, true, false, true },
+		{ DIFFERENCE, false, false, true, false },
+		{ DIFFERENCE, false, false, false, false }
+	}};
+
+	for (auto& eval : ruleTable)
+	{
+		bool result = CSG::intersectionAllowed(eval.op, eval.lhit, eval.inl, eval.inr);
+		EXPECT_EQ(result, eval.result);
+	}
+}
