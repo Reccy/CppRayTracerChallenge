@@ -54,6 +54,8 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		static std::shared_ptr<CSG> build(Operation op, std::shared_ptr<Shape> left, std::shared_ptr<Shape> right);
 
+		static bool intersectionAllowed(Operation op, bool lhit, bool inl, bool inr);
+
 		Operation operation() const;
 
 		std::shared_ptr<Shape> left() const;
