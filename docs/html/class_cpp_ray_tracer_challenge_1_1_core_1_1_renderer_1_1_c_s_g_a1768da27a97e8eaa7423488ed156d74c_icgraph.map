@@ -1,0 +1,9 @@
+<map id="CppRayTracerChallenge::Core::Renderer::CSG::intersectionAllowed" name="CppRayTracerChallenge::Core::Renderer::CSG::intersectionAllowed">
+<area shape="rect" id="node1" title=" " alt="" coords="945,39,1107,95"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#ac4c1ce0855565ac5bd17849141ec80a2" title=" " alt="" coords="736,5,897,61"/>
+<area shape="rect" id="node7" href="$csg__test_8cpp.html#a0273d080b95ab1c84e06aaf638564dcd" title=" " alt="" coords="789,85,844,112"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#a6df213b85ae23113b751d81410538cc7" title="Calculates if the local space ray intersects with the shape." alt="" coords="527,5,688,61"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#a1c0a217529b381b558f020a6584db835" title="Calculates if the world space ray intersects with the shape." alt="" coords="317,5,479,61"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ab0cc8359a45545669b30dc1742b3e329" title="Returns the intersections between objects in the world and the ray" alt="" coords="108,5,269,61"/>
+<area shape="rect" id="node6" href="$world__test_8cpp.html#a4f2df99db83debc89a68c6952fb73e0f" title=" " alt="" coords="5,20,60,47"/>
+</map>

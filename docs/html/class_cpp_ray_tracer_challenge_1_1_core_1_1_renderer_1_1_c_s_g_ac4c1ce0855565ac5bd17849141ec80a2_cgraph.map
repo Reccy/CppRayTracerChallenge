@@ -1,0 +1,8 @@
+<map id="CppRayTracerChallenge::Core::Renderer::CSG::filterIntersections" name="CppRayTracerChallenge::Core::Renderer::CSG::filterIntersections">
+<area shape="rect" id="node1" title=" " alt="" coords="5,111,167,167"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="215,5,409,47"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#adc9777ea186e745c6bb6aa40aadd6f27" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="224,71,400,127"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#a1768da27a97e8eaa7423488ed156d74c" title=" " alt="" coords="231,151,393,207"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html#adf29e309fea0f9dd2929dc3feb6dd8d7" title="Returns a const reference to the intersectable object" alt="" coords="227,231,397,287"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="457,79,665,120"/>
+</map>

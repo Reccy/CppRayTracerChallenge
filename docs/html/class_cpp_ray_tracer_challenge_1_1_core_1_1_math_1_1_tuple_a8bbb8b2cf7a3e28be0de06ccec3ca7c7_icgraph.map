@@ -1,47 +1,49 @@
 <map id="CppRayTracerChallenge::Core::Math::Tuple::z" name="CppRayTracerChallenge::Core::Math::Tuple::z">
-<area shape="rect" id="node1" title="Returns a const Z component" alt="" coords="729,865,891,907"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a58069c381eae5b7c2eb22766a9e70582" title="Adds point to box and resizes it to include passed in point" alt="" coords="472,144,680,185"/>
-<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a2ae072e639d8e8857496f623a54644be" title="Transforms the bounding box" alt="" coords="229,202,408,258"/>
-<area shape="rect" id="node11" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_perlin_noise.html#a80d231c3ee315950f5cff367367d1215" title="Gets the value of the noise at the passed in point" alt="" coords="483,352,669,393"/>
-<area shape="rect" id="node12" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_perturbed.html#a205f76562e308da483f33e0729bf17a4" title=" " alt="" coords="231,282,406,338"/>
-<area shape="rect" id="node16" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_checker.html#a3cbdfa05a49ac921b69baae7136c6721" title=" " alt="" coords="489,418,663,474"/>
-<area shape="rect" id="node18" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_radial_gradient.html#a4c25fb5bd6945609f462852014e38616" title=" " alt="" coords="489,498,663,554"/>
-<area shape="rect" id="node20" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_ring.html#a7afc91450b337cf34879ca0de785bfe6" title=" " alt="" coords="489,578,663,634"/>
-<area shape="rect" id="node22" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_test_pattern.html#af098e6cecdaa07d8d76cd055554a7ddc" title=" " alt="" coords="489,658,663,714"/>
-<area shape="rect" id="node23" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a50963ceafdd9d4513998396324ebd48c" title="Checks if the position is within the volume of the bounding box" alt="" coords="487,738,665,794"/>
-<area shape="rect" id="node26" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#a410356692212e5396d84c8c0edda3623" title="Calculates if the local space ray intersects with the cone" alt="" coords="481,818,671,874"/>
-<area shape="rect" id="node28" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html#aa996d90abe1e7ec856054c92481bac42" title="Calculates if the local space ray intersects with the cube." alt="" coords="481,898,671,954"/>
-<area shape="rect" id="node30" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html#a0bd3c6b9ed154ba95f397da05bd222a7" title="Calculates if the local space ray intersects with the cylinder." alt="" coords="495,978,657,1034"/>
-<area shape="rect" id="node32" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a54e9d33d3ecb5045576a272678c8fcf9" title="Calculates if the ray intersects with the Bounding Box." alt="" coords="487,1058,665,1114"/>
-<area shape="rect" id="node34" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#a08bf13c5192aada84223ddfebf905b3b" title="Calculates and returns the normal at the passed in local space position for this cone" alt="" coords="471,1139,681,1180"/>
-<area shape="rect" id="node36" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html#af6215ec5b4a46e2ab50ef7c3d62ebc6e" title="Calculates and returns the normal at the passed in local space position for this cube" alt="" coords="471,1204,681,1245"/>
-<area shape="rect" id="node38" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html#aee1312d7d2ba2cc8eff926e6ee618c22" title="Calculates and returns the normal at the passed in local space position for this cylinder" alt="" coords="495,1270,657,1326"/>
-<area shape="rect" id="node40" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ae0bb2a3a3a5343251c3ee5d5b1c2f479" title=" " alt="" coords="495,1350,657,1406"/>
-<area shape="rect" id="node41" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a2f803ac07bc87249c03e025aa14bf5a4" title="Returns a pair of BoundingBoxes split in half, covering the same volume as this box." alt="" coords="487,1430,665,1486"/>
-<area shape="rect" id="node43" href="$point__test_8cpp.html#a2eac03845a26091eedcf484468b52af2" title=" " alt="" coords="549,1510,603,1537"/>
-<area shape="rect" id="node44" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a25f436880962115695321f21c30b067e" title="Creates a matrix that can be used to transform the world around the camera, effectively changing came..." alt="" coords="491,1561,661,1617"/>
+<area shape="rect" id="node1" title="Returns a const Z component" alt="" coords="729,945,891,987"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a58069c381eae5b7c2eb22766a9e70582" title="Adds point to box and resizes it to include passed in point" alt="" coords="472,191,680,232"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a2ae072e639d8e8857496f623a54644be" title="Transforms the bounding box" alt="" coords="229,282,408,338"/>
+<area shape="rect" id="node13" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_perlin_noise.html#a80d231c3ee315950f5cff367367d1215" title="Gets the value of the noise at the passed in point" alt="" coords="483,432,669,473"/>
+<area shape="rect" id="node14" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_perturbed.html#a205f76562e308da483f33e0729bf17a4" title=" " alt="" coords="231,362,406,418"/>
+<area shape="rect" id="node18" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_checker.html#a3cbdfa05a49ac921b69baae7136c6721" title=" " alt="" coords="489,498,663,554"/>
+<area shape="rect" id="node20" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_radial_gradient.html#a4c25fb5bd6945609f462852014e38616" title=" " alt="" coords="489,578,663,634"/>
+<area shape="rect" id="node22" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_ring.html#a7afc91450b337cf34879ca0de785bfe6" title=" " alt="" coords="489,658,663,714"/>
+<area shape="rect" id="node24" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_test_pattern.html#af098e6cecdaa07d8d76cd055554a7ddc" title=" " alt="" coords="489,738,663,794"/>
+<area shape="rect" id="node25" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a50963ceafdd9d4513998396324ebd48c" title="Checks if the position is within the volume of the bounding box" alt="" coords="487,818,665,874"/>
+<area shape="rect" id="node28" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#a410356692212e5396d84c8c0edda3623" title="Calculates if the local space ray intersects with the cone" alt="" coords="481,898,671,954"/>
+<area shape="rect" id="node30" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html#aa996d90abe1e7ec856054c92481bac42" title="Calculates if the local space ray intersects with the cube." alt="" coords="481,978,671,1034"/>
+<area shape="rect" id="node32" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html#a0bd3c6b9ed154ba95f397da05bd222a7" title="Calculates if the local space ray intersects with the cylinder." alt="" coords="495,1058,657,1114"/>
+<area shape="rect" id="node34" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a54e9d33d3ecb5045576a272678c8fcf9" title="Calculates if the ray intersects with the Bounding Box." alt="" coords="487,1138,665,1194"/>
+<area shape="rect" id="node36" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#a08bf13c5192aada84223ddfebf905b3b" title="Calculates and returns the normal at the passed in local space position for this cone" alt="" coords="471,1219,681,1260"/>
+<area shape="rect" id="node38" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cube.html#af6215ec5b4a46e2ab50ef7c3d62ebc6e" title="Calculates and returns the normal at the passed in local space position for this cube" alt="" coords="471,1284,681,1325"/>
+<area shape="rect" id="node40" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html#aee1312d7d2ba2cc8eff926e6ee618c22" title="Calculates and returns the normal at the passed in local space position for this cylinder" alt="" coords="495,1350,657,1406"/>
+<area shape="rect" id="node42" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ae0bb2a3a3a5343251c3ee5d5b1c2f479" title=" " alt="" coords="495,1430,657,1486"/>
+<area shape="rect" id="node43" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a2f803ac07bc87249c03e025aa14bf5a4" title="Returns a pair of BoundingBoxes split in half, covering the same volume as this box." alt="" coords="487,1510,665,1566"/>
+<area shape="rect" id="node45" href="$point__test_8cpp.html#a2eac03845a26091eedcf484468b52af2" title=" " alt="" coords="549,1590,603,1617"/>
+<area shape="rect" id="node46" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a25f436880962115695321f21c30b067e" title="Creates a matrix that can be used to transform the world around the camera, effectively changing came..." alt="" coords="491,1641,661,1697"/>
 <area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#afe74d983d2afdf4be68720af62a4ffd1" title="Combines other bounding box into this one" alt="" coords="215,5,423,47"/>
 <area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#a3ba437fea833678cd6b11d23a257ec4f" title="Returns the bounding box of the triangle" alt="" coords="238,71,399,127"/>
-<area shape="rect" id="node6" href="$bounding__box__test_8cpp.html#a719f93e461f1eb60e8fdedabbb5fdfc8" title=" " alt="" coords="291,151,346,178"/>
-<area shape="rect" id="node5" href="$triangle__test_8cpp.html#a12e01636e4c73e96bacfae43862f47ae" title=" " alt="" coords="59,71,113,98"/>
-<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#a4835df00353baa6119e976be31cfa91c" title="Returns the bounding box of the shape in the space of the parent shape" alt="" coords="5,122,167,178"/>
-<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#afd590ce142397ecf77f0c5072fc7f54b" title="Returns the bounding box of the shape in the space of the parent shape" alt="" coords="5,202,167,258"/>
-<area shape="rect" id="node10" href="$bounding__box__test_8cpp.html#af43cca5d6bbb382ec12ff88b89d69b7d" title=" " alt="" coords="59,282,113,309"/>
-<area shape="rect" id="node14" href="$win32__main_8cpp.html#acd243cc663bed9ad4b844377f97f3622" title=" " alt="" coords="266,362,371,389"/>
-<area shape="rect" id="node15" href="$perlin__noise__test_8cpp.html#a3b3be4eaeb23c55879ec99e14d29f57d" title=" " alt="" coords="291,413,346,439"/>
-<area shape="rect" id="node13" href="$perturbed__test_8cpp.html#ae7e366250bc12b6ab520465771bcc3f6" title=" " alt="" coords="59,333,113,359"/>
-<area shape="rect" id="node17" href="$checker__test_8cpp.html#a6e45a459efe88dc49d89002a59c4fe04" title=" " alt="" coords="291,463,346,490"/>
-<area shape="rect" id="node19" href="$radial__gradient__test_8cpp.html#aeefea0d2273ec748ea7a722fca18612a" title=" " alt="" coords="291,514,346,541"/>
-<area shape="rect" id="node21" href="$ring__test_8cpp.html#a199a000747d334aa225533978fe23224" title=" " alt="" coords="291,593,346,619"/>
-<area shape="rect" id="node24" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a96372432917aa5c92b8b668026e75fd3" title="Checks if the passed in box fits within the volume of this bounding box." alt="" coords="229,687,408,743"/>
-<area shape="rect" id="node25" href="$bounding__box__test_8cpp.html#a8b063051adf12cfd7d3463b1be637d97" title=" " alt="" coords="291,767,346,794"/>
-<area shape="rect" id="node27" href="$cone__test_8cpp.html#a3b72c0bbdbade38ed3c21eb79ba3938a" title=" " alt="" coords="291,833,346,859"/>
-<area shape="rect" id="node29" href="$cube__test_8cpp.html#abebbe34eae2cf95cd6e61e3549413f9d" title=" " alt="" coords="291,913,346,939"/>
-<area shape="rect" id="node31" href="$cylinder__test_8cpp.html#a5d9305d36fcdb82a9abe2bfe80d253e0" title=" " alt="" coords="291,993,346,1019"/>
-<area shape="rect" id="node33" href="$bounding__box__test_8cpp.html#a1d7e83473072ead20296780b894ba882" title=" " alt="" coords="291,1073,346,1099"/>
-<area shape="rect" id="node35" href="$cone__test_8cpp.html#a90ce278d4d26eaa049cee7acd5471d85" title=" " alt="" coords="291,1146,346,1173"/>
-<area shape="rect" id="node37" href="$cube__test_8cpp.html#ab45a9e1a69ec5418b922eee561b5e93e" title=" " alt="" coords="291,1211,346,1238"/>
-<area shape="rect" id="node39" href="$cylinder__test_8cpp.html#a7eaeb8a9167848033670f6a48ceb42a1" title=" " alt="" coords="291,1285,346,1311"/>
-<area shape="rect" id="node42" href="$bounding__box__test_8cpp.html#af5dcb3beea2264816ed8b1551c1267a3" title=" " alt="" coords="291,1445,346,1471"/>
-<area shape="rect" id="node45" href="$camera__test_8cpp.html#aaeb4ccf47528badd6620dfdc13171c5b" title=" " alt="" coords="291,1575,346,1602"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#a901b6404ef197d49caa9902cc98b640a" title="Returns the bounding box of the shape" alt="" coords="238,151,399,207"/>
+<area shape="rect" id="node8" href="$bounding__box__test_8cpp.html#a719f93e461f1eb60e8fdedabbb5fdfc8" title=" " alt="" coords="291,231,346,258"/>
+<area shape="rect" id="node5" href="$triangle__test_8cpp.html#a12e01636e4c73e96bacfae43862f47ae" title=" " alt="" coords="59,86,113,113"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#a1feede8e50fe6c82b611c1fda2bda3c1" title="Returns the bounding box of the shape in the space of the parent shape" alt="" coords="5,145,167,201"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#a4835df00353baa6119e976be31cfa91c" title="Returns the bounding box of the shape in the space of the parent shape" alt="" coords="5,225,167,281"/>
+<area shape="rect" id="node11" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#afd590ce142397ecf77f0c5072fc7f54b" title="Returns the bounding box of the shape in the space of the parent shape" alt="" coords="5,305,167,361"/>
+<area shape="rect" id="node12" href="$bounding__box__test_8cpp.html#af43cca5d6bbb382ec12ff88b89d69b7d" title=" " alt="" coords="59,385,113,411"/>
+<area shape="rect" id="node16" href="$win32__main_8cpp.html#acd243cc663bed9ad4b844377f97f3622" title=" " alt="" coords="266,442,371,469"/>
+<area shape="rect" id="node17" href="$perlin__noise__test_8cpp.html#a3b3be4eaeb23c55879ec99e14d29f57d" title=" " alt="" coords="291,493,346,519"/>
+<area shape="rect" id="node15" href="$perturbed__test_8cpp.html#ae7e366250bc12b6ab520465771bcc3f6" title=" " alt="" coords="59,435,113,462"/>
+<area shape="rect" id="node19" href="$checker__test_8cpp.html#a6e45a459efe88dc49d89002a59c4fe04" title=" " alt="" coords="291,543,346,570"/>
+<area shape="rect" id="node21" href="$radial__gradient__test_8cpp.html#aeefea0d2273ec748ea7a722fca18612a" title=" " alt="" coords="291,594,346,621"/>
+<area shape="rect" id="node23" href="$ring__test_8cpp.html#a199a000747d334aa225533978fe23224" title=" " alt="" coords="291,673,346,699"/>
+<area shape="rect" id="node26" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a96372432917aa5c92b8b668026e75fd3" title="Checks if the passed in box fits within the volume of this bounding box." alt="" coords="229,767,408,823"/>
+<area shape="rect" id="node27" href="$bounding__box__test_8cpp.html#a8b063051adf12cfd7d3463b1be637d97" title=" " alt="" coords="291,847,346,874"/>
+<area shape="rect" id="node29" href="$cone__test_8cpp.html#a3b72c0bbdbade38ed3c21eb79ba3938a" title=" " alt="" coords="291,913,346,939"/>
+<area shape="rect" id="node31" href="$cube__test_8cpp.html#abebbe34eae2cf95cd6e61e3549413f9d" title=" " alt="" coords="291,993,346,1019"/>
+<area shape="rect" id="node33" href="$cylinder__test_8cpp.html#a5d9305d36fcdb82a9abe2bfe80d253e0" title=" " alt="" coords="291,1073,346,1099"/>
+<area shape="rect" id="node35" href="$bounding__box__test_8cpp.html#a1d7e83473072ead20296780b894ba882" title=" " alt="" coords="291,1153,346,1179"/>
+<area shape="rect" id="node37" href="$cone__test_8cpp.html#a90ce278d4d26eaa049cee7acd5471d85" title=" " alt="" coords="291,1226,346,1253"/>
+<area shape="rect" id="node39" href="$cube__test_8cpp.html#ab45a9e1a69ec5418b922eee561b5e93e" title=" " alt="" coords="291,1291,346,1318"/>
+<area shape="rect" id="node41" href="$cylinder__test_8cpp.html#a7eaeb8a9167848033670f6a48ceb42a1" title=" " alt="" coords="291,1365,346,1391"/>
+<area shape="rect" id="node44" href="$bounding__box__test_8cpp.html#af5dcb3beea2264816ed8b1551c1267a3" title=" " alt="" coords="291,1525,346,1551"/>
+<area shape="rect" id="node47" href="$camera__test_8cpp.html#aaeb4ccf47528badd6620dfdc13171c5b" title=" " alt="" coords="291,1655,346,1682"/>
 </map>

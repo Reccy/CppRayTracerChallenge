@@ -1,13 +1,16 @@
 <map id="CppRayTracerChallenge::Core::Math::Matrix::invertible" name="CppRayTracerChallenge::Core::Math::Matrix::invertible">
-<area shape="rect" id="node1" title="Checks if the Matrix can be inverted" alt="" coords="1055,119,1216,175"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ae5457352f5f09e2c73db4a6498266489" title="Creates a copy of the Matrix that is inverted" alt="" coords="845,151,1007,207"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a893ef7e6b4a9dbe27260cfb11ae50b76" title="Inverts the Transform" alt="" coords="636,85,797,141"/>
-<area shape="rect" id="node11" href="$matrix__test_8cpp.html#a7ba758d76c1be60e3dd6ebccd73f8c6a" title=" " alt="" coords="689,165,744,192"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad81a13ce601592d252c6ce7f9ecb7a0b" title="Calculates if the ray intersects with the sphere." alt="" coords="427,5,588,61"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="427,85,588,141"/>
-<area shape="rect" id="node10" href="$transform__test_8cpp.html#a3fbe430d3325b29322d91e99df9e4e48" title=" " alt="" coords="480,165,535,192"/>
-<area shape="rect" id="node5" href="$sphere__test_8cpp.html#a3d3c518a0ec1d96b253d671b311bc8b6" title=" " alt="" coords="270,20,325,47"/>
-<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aff93b7407d76055e3522e0f3826068c9" title="Transforms a normal from object space to world space" alt="" coords="216,77,379,133"/>
-<area shape="rect" id="node9" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="270,157,325,184"/>
-<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a85b36b475d13437d84d6a99b40f76726" title=" " alt="" coords="5,77,168,133"/>
+<area shape="rect" id="node1" title="Checks if the Matrix can be inverted" alt="" coords="1055,159,1216,215"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ae5457352f5f09e2c73db4a6498266489" title="Creates a copy of the Matrix that is inverted" alt="" coords="845,191,1007,247"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a893ef7e6b4a9dbe27260cfb11ae50b76" title="Inverts the Transform" alt="" coords="636,125,797,181"/>
+<area shape="rect" id="node14" href="$matrix__test_8cpp.html#a7ba758d76c1be60e3dd6ebccd73f8c6a" title=" " alt="" coords="689,205,744,232"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#a1c0a217529b381b558f020a6584db835" title="Calculates if the world space ray intersects with the shape." alt="" coords="427,5,588,61"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad81a13ce601592d252c6ce7f9ecb7a0b" title="Calculates if the ray intersects with the sphere." alt="" coords="427,85,588,141"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="427,165,588,221"/>
+<area shape="rect" id="node13" href="$transform__test_8cpp.html#a3fbe430d3325b29322d91e99df9e4e48" title=" " alt="" coords="480,245,535,272"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ab0cc8359a45545669b30dc1742b3e329" title="Returns the intersections between objects in the world and the ray" alt="" coords="217,5,378,61"/>
+<area shape="rect" id="node6" href="$world__test_8cpp.html#a4f2df99db83debc89a68c6952fb73e0f" title=" " alt="" coords="59,20,114,47"/>
+<area shape="rect" id="node8" href="$sphere__test_8cpp.html#a3d3c518a0ec1d96b253d671b311bc8b6" title=" " alt="" coords="270,100,325,127"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aff93b7407d76055e3522e0f3826068c9" title="Transforms a normal from object space to world space" alt="" coords="216,157,379,213"/>
+<area shape="rect" id="node12" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="270,237,325,264"/>
+<area shape="rect" id="node11" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a85b36b475d13437d84d6a99b40f76726" title=" " alt="" coords="5,157,168,213"/>
 </map>

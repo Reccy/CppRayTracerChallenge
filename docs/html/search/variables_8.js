@@ -1,8 +1,24 @@
 var searchData=
 [
-  ['n1_940',['n1',['../struct_smooth_triangle_fixture.html#ac2bdfdd7d93f031d66b7b60da6d57b2d',1,'SmoothTriangleFixture::n1()'],['../class_n1_n2.html#a28cef14a41758caa97a7296c3adfa6ab',1,'N1N2::n1()']]],
-  ['n2_941',['n2',['../struct_smooth_triangle_fixture.html#ab7b9a592d8cbcce9ea3e59b12b4b9cd8',1,'SmoothTriangleFixture::n2()'],['../class_n1_n2.html#a47861e4c58f981a8c17bc618b4e341b5',1,'N1N2::n2()']]],
-  ['n3_942',['n3',['../struct_smooth_triangle_fixture.html#a4652db3e0b9b94316b611b73e9f2a814',1,'SmoothTriangleFixture']]],
-  ['normal_943',['normal',['../class_cube_normal_param.html#a01a440ac525217ed52571d3afe192dfe',1,'CubeNormalParam']]],
-  ['normalindex_944',['normalIndex',['../struct_face_param.html#a4bd72e3246a81cf889ae7d1efe446b4a',1,'FaceParam']]]
+  ['m_5fbuffer_961',['m_buffer',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#a121952cb0ff377876f23d3fdb2a7a00e',1,'CppRayTracerChallenge::Core::Serializer::BaseImageSerializer']]],
+  ['m_5fcolors_962',['m_colors',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a3c1584be7bc8a782c831bd0967094b2e',1,'CppRayTracerChallenge::Core::Graphics::Image']]],
+  ['m_5fe1_963',['m_e1',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#a0e2ecece3b4305da111db57f6c34a385',1,'CppRayTracerChallenge::Core::Math::Triangle']]],
+  ['m_5fe2_964',['m_e2',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#abeed57f6799153cac1a5c67ce23213e4',1,'CppRayTracerChallenge::Core::Math::Triangle']]],
+  ['m_5fheight_965',['m_height',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#ad866dab8464d57aa7ace221c141e2cd7',1,'CppRayTracerChallenge::Core::Graphics::Image']]],
+  ['m_5fimage_966',['m_image',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#a6dfd7c8c8f0c2bef62d961473e0c58b5',1,'CppRayTracerChallenge::Core::Serializer::BaseImageSerializer']]],
+  ['m_5fn1_967',['m_n1',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html#a4af47a703ad07c206d8986a2ed69985a',1,'CppRayTracerChallenge::Core::Math::SmoothTriangle']]],
+  ['m_5fn2_968',['m_n2',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html#abfac4cb3618a88d6ee00de4cee6b068e',1,'CppRayTracerChallenge::Core::Math::SmoothTriangle']]],
+  ['m_5fn3_969',['m_n3',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html#ab9ff67d9b741ba987da2c06320ba8dd9',1,'CppRayTracerChallenge::Core::Math::SmoothTriangle']]],
+  ['m_5fnormal_970',['m_normal',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#ad711303ae0b5bd8687c7bf8884e0f764',1,'CppRayTracerChallenge::Core::Math::Triangle']]],
+  ['m_5fp1_971',['m_p1',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#a6b14608d002d73e1ad683a2bc40117b2',1,'CppRayTracerChallenge::Core::Math::Triangle']]],
+  ['m_5fp2_972',['m_p2',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#abd86a09c4b47e216f3dcca798fe5d9be',1,'CppRayTracerChallenge::Core::Math::Triangle']]],
+  ['m_5fp3_973',['m_p3',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#a5ccb9178ec46aad5a3f429468060bcea',1,'CppRayTracerChallenge::Core::Math::Triangle']]],
+  ['m_5fsize_974',['m_size',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#af9ebeb8296f390aea2565b6a9b5d8403',1,'CppRayTracerChallenge::Core::Graphics::Image']]],
+  ['m_5ftransform_975',['m_transform',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ad7ccd1d96639de3f985aa4eaccf36fde',1,'CppRayTracerChallenge::Core::Math::Shape::m_transform()'],['../class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#a97b9071bcb1fa2a03a2bdf6496c279ff',1,'CppRayTracerChallenge::Core::Renderer::Pattern::m_transform()']]],
+  ['m_5fw_976',['m_w',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a61cd08986736cf517d49b019a14139ab',1,'CppRayTracerChallenge::Core::Math::Tuple']]],
+  ['m_5fwidth_977',['m_width',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a003ab2f2984b893b730a8a9f7805c1d7',1,'CppRayTracerChallenge::Core::Graphics::Image']]],
+  ['m_5fx_978',['m_x',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a1d6999dc9ae771f10a443b1427b1b0ae',1,'CppRayTracerChallenge::Core::Math::Tuple']]],
+  ['m_5fy_979',['m_y',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a7d8fe6b370f77e3ccf357861b8f52b65',1,'CppRayTracerChallenge::Core::Math::Tuple']]],
+  ['m_5fz_980',['m_z',['../class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a233748ed7b7557ce7c3defbf923ca4cc',1,'CppRayTracerChallenge::Core::Math::Tuple']]],
+  ['material_981',['material',['../class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html#adf5369883cf7b7b155bc46f5235c3201',1,'CppRayTracerChallenge_Core_Renderer_LightingTest']]]
 ];

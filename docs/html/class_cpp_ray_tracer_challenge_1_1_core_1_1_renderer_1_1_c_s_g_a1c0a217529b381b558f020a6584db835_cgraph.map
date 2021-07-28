@@ -1,0 +1,21 @@
+<map id="CppRayTracerChallenge::Core::Renderer::CSG::intersect" name="CppRayTracerChallenge::Core::Renderer::CSG::intersect">
+<area shape="rect" id="node1" title="Calculates if the world space ray intersects with the shape." alt="" coords="5,393,167,449"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#a6df213b85ae23113b751d81410538cc7" title="Calculates if the local space ray intersects with the shape." alt="" coords="227,222,389,278"/>
+<area shape="rect" id="node9" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a893ef7e6b4a9dbe27260cfb11ae50b76" title="Inverts the Transform" alt="" coords="227,393,389,449"/>
+<area shape="rect" id="node16" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6ea2dc7eb799cbfc36257150ab819b8b" title="Creates a copy of this ray and transforms it" alt="" coords="215,499,401,540"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#ac4c1ce0855565ac5bd17849141ec80a2" title=" " alt="" coords="460,151,621,207"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="680,5,875,47"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#adc9777ea186e745c6bb6aa40aadd6f27" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="689,71,865,127"/>
+<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#a1768da27a97e8eaa7423488ed156d74c" title=" " alt="" coords="697,151,858,207"/>
+<area shape="rect" id="node8" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersection.html#adf29e309fea0f9dd2929dc3feb6dd8d7" title="Returns a const reference to the intersectable object" alt="" coords="693,231,862,287"/>
+<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="923,79,1131,120"/>
+<area shape="rect" id="node10" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ae5457352f5f09e2c73db4a6498266489" title="Creates a copy of the Matrix that is inverted" alt="" coords="460,347,621,403"/>
+<area shape="rect" id="node15" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aea6a3f40c453e7ed64c40ea9ffd010ae" title="Checks if the Matrix can be inverted" alt="" coords="697,413,858,469"/>
+<area shape="rect" id="node11" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a44c0f150882230b55b5251e4aeb2c9d4" title="Calculates the cofactor of the square Matrix" alt="" coords="1179,330,1340,386"/>
+<area shape="rect" id="node14" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ac608d24a262cc405654092029e85062b" title="Calculates the determinant of the square Matrix" alt="" coords="946,362,1107,418"/>
+<area shape="rect" id="node12" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#af8d5b0e0e1e198a8524e5dff5f4d4dc9" title="Calculates the minor / determinant of the square submatrix." alt="" coords="1388,330,1549,386"/>
+<area shape="rect" id="node13" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a0b97c3c0f3129507442cd92b728aa425" title="Returns a copy of the Matrix, with the row and column removed." alt="" coords="1597,330,1759,386"/>
+<area shape="rect" id="node17" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#ab1a2219f0f4c3cc6b77e2b14de0c8231" title="Returns a copy of the Ray vector" alt="" coords="449,479,632,520"/>
+<area shape="rect" id="node18" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a6378fe49576cf543ffa17f5211dc921f" title="Returns a copy of the Ray origin" alt="" coords="459,544,623,585"/>
+<area shape="rect" id="node19" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_ray.html#a79ace12dde2c3fccca4520a043aa907f" title=" " alt="" coords="460,609,621,651"/>
+</map>

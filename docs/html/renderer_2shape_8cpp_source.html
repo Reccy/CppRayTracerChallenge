@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('renderer_2shape_8cpp_source.html','');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">return</span> m_material.pattern-&gt;colorAt(patternLocalPosition);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aadf1fade7b1ef0e956158e5336f6f952">   28</a></span>&#160;std::weak_ptr&lt;Group&gt; Shape::parent()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a06427a51f237a199b1315a413678bd24">   28</a></span>&#160;std::weak_ptr&lt;IGroup&gt; Shape::parent()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword"></span>{</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">return</span> m_parent;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
@@ -123,7 +123,7 @@ $(document).ready(function(){initNavTree('renderer_2shape_8cpp_source.html','');
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">return</span> m_shape;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#afc7a58728408375e0c4b00c309df9ecf">   38</a></span>&#160;<span class="keywordtype">void</span> Shape::parent(std::weak_ptr&lt;Group&gt; parent)</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a5aba92ff0574c49a9c2de05a669f7110">   38</a></span>&#160;<span class="keywordtype">void</span> Shape::parent(std::weak_ptr&lt;IGroup&gt; parent)</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    m_parent = parent;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>

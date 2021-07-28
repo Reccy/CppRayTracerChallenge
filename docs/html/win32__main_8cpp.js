@@ -4,6 +4,7 @@ var win32__main_8cpp =
     [ "WorldB", "class_world_b.html", null ],
     [ "WorldC", "class_world_c.html", null ],
     [ "WorldD", "class_world_d.html", null ],
+    [ "WorldE", "class_world_e.html", null ],
     [ "RAIIglfw", "class_r_a_i_iglfw.html", "class_r_a_i_iglfw" ],
     [ "NOMINMAX", "win32__main_8cpp.html#a9f918755b601cf4bffca775992e6fb90", null ],
     [ "doRealRender", "win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06", null ],

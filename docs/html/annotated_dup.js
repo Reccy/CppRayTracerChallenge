@@ -50,7 +50,9 @@ var annotated_dup =
           ] ],
           [ "Camera", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera" ],
           [ "ComputedValues", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values" ],
+          [ "CSG", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g" ],
           [ "Group", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group" ],
+          [ "IGroup", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_i_group.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_i_group" ],
           [ "Material", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html", "struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material" ],
           [ "Pattern", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern" ],
           [ "PointLight", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light" ],
@@ -67,6 +69,7 @@ var annotated_dup =
     ] ],
     [ "CppRayTracerChallenge_Core_Renderer_ComputedValues_Params", "class_cpp_ray_tracer_challenge___core___renderer___computed_values___params.html", null ],
     [ "CppRayTracerChallenge_Core_Renderer_LightingTest", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html", "class_cpp_ray_tracer_challenge___core___renderer___lighting_test" ],
+    [ "CSGRuleEval", "struct_c_s_g_rule_eval.html", "struct_c_s_g_rule_eval" ],
     [ "CubeNormalParam", "class_cube_normal_param.html", "class_cube_normal_param" ],
     [ "FaceParam", "struct_face_param.html", "struct_face_param" ],
     [ "N1N2", "class_n1_n2.html", "class_n1_n2" ],
@@ -77,5 +80,6 @@ var annotated_dup =
     [ "WorldA", "class_world_a.html", null ],
     [ "WorldB", "class_world_b.html", null ],
     [ "WorldC", "class_world_c.html", null ],
-    [ "WorldD", "class_world_d.html", null ]
+    [ "WorldD", "class_world_d.html", null ],
+    [ "WorldE", "class_world_e.html", null ]
 ];

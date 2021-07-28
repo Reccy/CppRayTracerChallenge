@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['shadowcastmode_959',['shadowcastMode',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a1ac61307c678c029d6efd248788efa27',1,'CppRayTracerChallenge::Core::Renderer::Material']]],
-  ['shape_960',['shape',['../class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html#a90a36e07ae51880d24a58aac72c18309',1,'CppRayTracerChallenge_Core_Renderer_LightingTest']]],
-  ['shininess_961',['shininess',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a01ed82b967742cd0c957ca5937cfbd3c',1,'CppRayTracerChallenge::Core::Renderer::Material']]],
-  ['spacing_962',['SPACING',['../class_world_c.html#ac8ee588fe8244069e3f8e212006d361d',1,'WorldC']]],
-  ['specular_963',['specular',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a0d35cd848e5abf5400c1682b97313c04',1,'CppRayTracerChallenge::Core::Renderer::Material']]],
-  ['sphere_964',['sphere',['../class_cpp_ray_tracer_challenge___core___renderer___lighting_test.html#a0acdbb376fb7b2c8460d290ca76304d0',1,'CppRayTracerChallenge_Core_Renderer_LightingTest']]]
+  ['reflective_996',['reflective',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a835b8622637756b5caace87b9cc63872',1,'CppRayTracerChallenge::Core::Renderer::Material']]],
+  ['refractiveindex_997',['refractiveIndex',['../struct_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_material.html#a16a880b076ac1d5f1df2937c8a9804aa',1,'CppRayTracerChallenge::Core::Renderer::Material']]],
+  ['render_5fheight_998',['RENDER_HEIGHT',['../win32__main_8cpp.html#a93e9ef188507d54551b4f40eee8b946d',1,'win32_main.cpp']]],
+  ['render_5fquality_999',['RENDER_QUALITY',['../win32__main_8cpp.html#aea02056c6bc8d27126d92bb39bea784d',1,'win32_main.cpp']]],
+  ['render_5fwidth_1000',['RENDER_WIDTH',['../win32__main_8cpp.html#a89cd48eb4709f5879e8de8f54fc21e1c',1,'win32_main.cpp']]],
+  ['renderdata_1001',['renderData',['../win32__main_8cpp.html#a3b231681089e073fc4d3ba4755ee5fcf',1,'win32_main.cpp']]],
+  ['result_1002',['result',['../struct_c_s_g_rule_eval.html#a2fa5c77b14a39ce0e7dcad4a71ca567d',1,'CSGRuleEval']]]
 ];

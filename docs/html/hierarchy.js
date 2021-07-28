@@ -10,8 +10,10 @@ var hierarchy =
     [ "CppRayTracerChallenge::Core::Renderer::Camera", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html", null ],
     [ "CppRayTracerChallenge::Core::Graphics::Color", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html", null ],
     [ "CppRayTracerChallenge::Core::Renderer::ComputedValues", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_computed_values.html", null ],
+    [ "CSGRuleEval", "struct_c_s_g_rule_eval.html", null ],
     [ "CubeNormalParam", "class_cube_normal_param.html", null ],
     [ "std::enable_shared_from_this", null, [
+      [ "CppRayTracerChallenge::Core::Renderer::CSG", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html", null ],
       [ "CppRayTracerChallenge::Core::Renderer::Group", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html", null ]
     ] ],
     [ "std::exception", null, [
@@ -22,6 +24,10 @@ var hierarchy =
       [ "CppRayTracerChallenge::Core::Math::MatrixUndefinedProductException", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_undefined_product_exception.html", null ]
     ] ],
     [ "FaceParam", "struct_face_param.html", null ],
+    [ "CppRayTracerChallenge::Core::Renderer::IGroup", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_i_group.html", [
+      [ "CppRayTracerChallenge::Core::Renderer::CSG", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html", null ],
+      [ "CppRayTracerChallenge::Core::Renderer::Group", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html", null ]
+    ] ],
     [ "CppRayTracerChallenge::Core::Graphics::Image", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html", [
       [ "CppRayTracerChallenge::Core::Graphics::Canvas", "class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html", null ]
     ] ],
@@ -38,6 +44,7 @@ var hierarchy =
           [ "CppRayTracerChallenge::Core::Math::SmoothTriangle", "class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html", null ]
         ] ]
       ] ],
+      [ "CppRayTracerChallenge::Core::Renderer::CSG", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html", null ],
       [ "CppRayTracerChallenge::Core::Renderer::Group", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html", null ],
       [ "CppRayTracerChallenge::Core::Renderer::Shape", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html", null ]
     ] ],
@@ -100,5 +107,6 @@ var hierarchy =
     [ "WorldA", "class_world_a.html", null ],
     [ "WorldB", "class_world_b.html", null ],
     [ "WorldC", "class_world_c.html", null ],
-    [ "WorldD", "class_world_d.html", null ]
+    [ "WorldD", "class_world_d.html", null ],
+    [ "WorldE", "class_world_e.html", null ]
 ];

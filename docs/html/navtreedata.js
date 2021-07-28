@@ -42,6 +42,7 @@ var NAVTREE =
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
+        [ "Enumerations", "functions_enum.html", null ],
         [ "Related Functions", "functions_rela.html", null ]
       ] ]
     ] ],
@@ -60,11 +61,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html#acb78c704ef335773efc37998b4145451",
-"class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_wavefront_o_b_j_serializer.html#ada98d080b2cd3158feb20cb4a775d600",
-"group__test_8cpp.html#a4354cfe83bd8170e9edb6a5abdfb1ea1",
-"portable__pixmap__image__serializer_8cpp.html",
-"vector__test_8cpp.html#a06a10b97d9e64f5c7f7ab1daf8969344"
+"class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_smooth_triangle.html#ab9ff67d9b741ba987da2c06320ba8dd9",
+"class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#aa25de95d6ebfdad9c64b57b4a28bf628",
+"globals.html",
+"perturbed_8h.html",
+"triangle__test_8cpp.html#a12e01636e4c73e96bacfae43862f47ae"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

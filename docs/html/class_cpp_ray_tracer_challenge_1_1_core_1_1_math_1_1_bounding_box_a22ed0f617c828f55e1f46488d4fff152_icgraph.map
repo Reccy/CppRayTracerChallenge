@@ -1,7 +1,8 @@
 <map id="CppRayTracerChallenge::Core::Math::BoundingBox::transform" name="CppRayTracerChallenge::Core::Math::BoundingBox::transform">
-<area shape="rect" id="node1" title="Returns a copy of the Box&#39;s transform" alt="" coords="441,85,620,141"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a2ae072e639d8e8857496f623a54644be" title="Transforms the bounding box" alt="" coords="215,85,393,141"/>
+<area shape="rect" id="node1" title="Returns a copy of the Box&#39;s transform" alt="" coords="441,125,620,181"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a2ae072e639d8e8857496f623a54644be" title="Transforms the bounding box" alt="" coords="215,125,393,181"/>
 <area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#a4835df00353baa6119e976be31cfa91c" title="Returns the bounding box of the shape in the space of the parent shape" alt="" coords="5,5,167,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#afd590ce142397ecf77f0c5072fc7f54b" title="Returns the bounding box of the shape in the space of the parent shape" alt="" coords="5,85,167,141"/>
-<area shape="rect" id="node5" href="$bounding__box__test_8cpp.html#af43cca5d6bbb382ec12ff88b89d69b7d" title=" " alt="" coords="59,165,113,192"/>
+<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#a1feede8e50fe6c82b611c1fda2bda3c1" title="Returns the bounding box of the shape in the space of the parent shape" alt="" coords="5,85,167,141"/>
+<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_group.html#afd590ce142397ecf77f0c5072fc7f54b" title="Returns the bounding box of the shape in the space of the parent shape" alt="" coords="5,165,167,221"/>
+<area shape="rect" id="node6" href="$bounding__box__test_8cpp.html#af43cca5d6bbb382ec12ff88b89d69b7d" title=" " alt="" coords="59,245,113,272"/>
 </map>

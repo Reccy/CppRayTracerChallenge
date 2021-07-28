@@ -20,5 +20,6 @@ var class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world =
     [ "refractedColor", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a0d39181f30db188c879df0aea1886912", null ],
     [ "shadeHit", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a4e9cabf5fcac31a9cd087d6ced265b41", null ],
     [ "shadeHit", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a8a4ae040ed58c5f57a39dff2b2708f5e", null ],
+    [ "World::addCSG", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a6e704ff8f6aa599bfa12b7eca1770842", null ],
     [ "defaultRemainingCalls", "class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#abd459bd35c77d98fdbb3d034f08a5010", null ]
 ];

@@ -1,5 +1,6 @@
 <map id="CppRayTracerChallenge::Core::Renderer::Group" name="CppRayTracerChallenge::Core::Renderer::Group">
-<area shape="rect" id="node1" title=" " alt="" coords="93,95,255,136"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html" title=" " alt="" coords="5,5,167,47"/>
-<area shape="rect" id="node3" title=" " alt="" coords="191,5,333,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="216,71,377,112"/>
+<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html" title=" " alt="" coords="6,5,167,47"/>
+<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_i_group.html" title=" " alt="" coords="5,71,168,112"/>
+<area shape="rect" id="node4" title=" " alt="" coords="16,136,157,177"/>
 </map>
