@@ -6,6 +6,7 @@
 #include <math/cube.h>
 #include <math/ray.h>
 #include <math/transform.h>
+#include <math/point.h>
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using CppRayTracerChallenge::Core::Math::Cube;
@@ -14,6 +15,7 @@ using CppRayTracerChallenge::Core::Math::Intersections;
 using CppRayTracerChallenge::Core::Math::Intersection;
 using CppRayTracerChallenge::Core::Math::Ray;
 using CppRayTracerChallenge::Core::Math::Transform;
+using CppRayTracerChallenge::Core::Math::Point;
 
 constexpr CSG::Operation UNION = CSG::Operation::UNION;
 constexpr CSG::Operation INTERSECT = CSG::Operation::INTERSECT;
@@ -184,4 +186,22 @@ TEST(CppRayTracerChallenge_Core_Renderer_CSG, ray_hits_csg)
 	EXPECT_EQ(xs.at(0).t(), 4);
 	EXPECT_EQ(&xs.at(1).shape(), s2.get());
 	EXPECT_EQ(xs.at(1).t(), 6.5);
+}
+
+TEST(CppRayTracerChallenge_Core_Renderer_CSG, csg_has_bounding_box_that_contains_children)
+{
+	auto sphere1 = std::make_shared<Sphere>();
+	auto sphere2 = std::make_shared<Sphere>();
+
+	auto left = std::make_shared<Shape>(sphere1);
+	auto right = std::make_shared<Shape>(sphere2);
+
+	right->transform(Transform().translate(2, 3, 4));
+
+	auto shape = CSG::build(DIFFERENCE, left, right);
+
+	auto box = shape->bounds();
+
+	EXPECT_EQ(box.min(), Point(-1, -1, -1));
+	EXPECT_EQ(box.max(), Point(3, 4, 5));
 }

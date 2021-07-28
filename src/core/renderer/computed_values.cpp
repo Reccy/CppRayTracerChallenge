@@ -1,5 +1,6 @@
 #include "computed_values.h"
 #include "shape.h"
+#include "csg.h"
 #include "../math/smooth_triangle.h"
 #include "../math/point.h"
 

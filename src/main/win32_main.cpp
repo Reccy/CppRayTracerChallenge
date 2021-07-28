@@ -12,6 +12,8 @@
 #include <chrono>
 #include <thread>
 
+#undef DIFFERENCE
+
 #include <glad.h>
 #include <GLFW/glfw3.h>
 
@@ -34,6 +36,8 @@
 #include "renderer/point_light.h"
 #include "renderer/lighting.h"
 #include "renderer/shape.h"
+#include "renderer/group.h"
+#include "renderer/csg.h"
 #include "renderer/camera.h"
 #include "renderer/patterns/solid_color.h"
 #include "renderer/patterns/stripe.h"
@@ -650,12 +654,160 @@ private:
 	}
 };
 
+class WorldE
+{
+public:
+	static World build()
+	{
+		auto floor = buildFloor();
+		auto csgObj = buildCSG();
+		auto csgObj2 = buildCSG();
+		auto room = buildRoom();
+		PointLight light = buildLight();
+
+		World world = World();
+
+		world.defaultRemainingCalls = 32;
+		
+		room->transform(room->transform().scale(0.5, 1, 1));
+
+		csgObj->transform(csgObj->transform().rotate(-30, 0, 0));
+		csgObj2->transform(csgObj2->transform().rotate(-30, 20, 40).scale(0.2, 0.2, 0.2).translate(0, 2, 1));
+
+		auto mat = Helpers::MaterialHelper::glassSphere().material();
+		mat.diffuse = 0.1f;
+		mat.transparency = 0.9f;
+
+		csgObj2->left()->material(mat);
+		csgObj2->right()->material(mat);
+
+		world.addCSG(*csgObj);
+		world.addCSG(*csgObj2);
+		world.addLight(light);
+		world.addObject(*room);
+		world.addObject(*floor);
+
+		return world;
+	}
+
+	static Matrix<double, 4, 4> cameraMatrix()
+	{
+		double camPosX = 1.2;
+		double camPosY = 9;
+		double camPosZ = -7;
+
+		double camLookX = 1.5;
+		double camLookY = 2;
+		double camLookZ = 0;
+
+		return Camera::viewMatrix({ camPosX, camPosY, camPosZ }, { camLookX, camLookY, camLookZ }, Vector::up());
+	}
+
+	static int fov()
+	{
+		return 60;
+	}
+private:
+	static std::shared_ptr<Renderer::Shape> buildFloor()
+	{
+		auto shape = std::make_shared<Plane>();
+		Renderer::Shape floor = Renderer::Shape(shape);
+		Transform floorTransform = Transform()
+			.scale(10, 0.01, 10);
+		Material bgMaterial = Material();
+		bgMaterial.pattern = std::make_shared<SolidColor>(Color(0.2f, 0.4f, 0.5f));
+		bgMaterial.specular = 0.1f;
+		bgMaterial.reflective = 0.95f;
+		floor.material(bgMaterial);
+		floor.transform(floorTransform);
+		return std::make_shared<Renderer::Shape>(floor);
+	}
+
+	static std::shared_ptr<Renderer::CSG> buildCSG()
+	{
+		auto sphere = buildCSGSphere();
+		auto cylinder = buildCSGCylinder();
+		
+		auto root = CSG::build(CSG::Operation::DIFFERENCE, sphere, cylinder);
+
+		root->transform(Transform().translate(0, 3, 2));
+
+		return root;
+	}
+
+	static std::shared_ptr<Renderer::Shape> buildCSGSphere()
+	{
+		auto sphere = std::make_shared<Sphere>();
+		auto result = std::make_shared<Renderer::Shape>(sphere);
+
+		auto mat = Material();
+		mat.pattern = std::make_shared<SolidColor>(Color(0.9f, 0.1f, 0.1f));
+
+		result->material(mat);
+
+		result->transform(Transform().scale(2, 2, 2));
+
+		return result;
+	}
+
+	static std::shared_ptr<Renderer::Shape> buildCSGCylinder()
+	{
+		auto sphere = std::make_shared<Cylinder>(-2, 2);
+		auto result = std::make_shared<Renderer::Shape>(sphere);
+
+		auto mat = Material();
+		mat.pattern = std::make_shared<SolidColor>(Color(0.8f, 0.2f, 0.2f));
+
+		result->material(mat);
+
+		result->transform(Transform().scale(0.75, 0, 0.75));
+
+		return result;
+	}
+
+	static std::shared_ptr<Renderer::Shape> buildConeA()
+	{
+		auto shape = std::make_shared<Cone>(-1, 1, true);
+		Renderer::Shape cone = Renderer::Shape(shape);
+		Transform transform = Transform()
+			.rotate(40, 30, 20)
+			.translate(-4.5, 2.5, 3);
+		Material material = Material();
+		material.pattern = std::make_shared<SolidColor>(Color(1, 1, 0));
+		cone.material(material);
+		cone.transform(transform);
+
+		return std::make_shared<Renderer::Shape>(cone);
+	}
+
+	static std::shared_ptr<Renderer::Shape> buildRoom()
+	{
+		auto shape = std::make_shared<Cube>();
+		auto cube = Renderer::Shape(shape);
+		Transform transform = Transform()
+			//.translate(0, 1, -1)
+			.scale(100, 100, 100);
+		Material material = Material();
+		material.pattern = std::make_shared<Stripe>(Color(0.2f, 0.3f, 0.7f), Color(0.2f, 0.4f, 0.8f));
+		material.pattern->transform(Transform().rotate(30, 30, 30).scale(0.25, 1, 0.25));
+		cube.material(material);
+		cube.transform(transform);
+
+		return std::make_shared<Renderer::Shape>(cube);
+	}
+
+	static PointLight buildLight()
+	{
+		return PointLight({ -3, 8, -5 }, Color(0.9f, 0.9f, 1));
+	}
+};
+
 std::shared_ptr<Camera> camera = nullptr;
 
 Image doRealRender()
 {
 	log("Initializing...");
-	using WorldBuilder = WorldA;
+	using WorldBuilder = WorldE;
 	World world = WorldBuilder::build();
 
 	int width = RENDER_WIDTH;

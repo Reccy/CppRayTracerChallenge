@@ -73,6 +73,12 @@ World World::addGroup(Group group)
 	return *this;
 }
 
+World World::addCSG(CSG csg)
+{
+	m_csgs.push_back(csg);
+	return *this;
+}
+
 const Shape& World::objectAt(int index) const
 {
 	return m_objects.at(index);
@@ -105,6 +111,11 @@ Math::Intersections World::intersectRay(const Math::Ray ray) const
 	for (const Shape& object : m_objects)
 	{
 		result += object.intersect(ray);
+	}
+
+	for (const CSG& csg : m_csgs)
+	{
+		result += csg.intersect(ray);
 	}
 
 	return result;

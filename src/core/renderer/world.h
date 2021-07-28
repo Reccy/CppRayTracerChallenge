@@ -3,6 +3,7 @@
 
 #include "point_light.h"
 #include "shape.h"
+#include "csg.h"
 #include "computed_values.h"
 #include "../math/ray.h"
 #include "../math/intersections.h"
@@ -59,6 +60,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <param name="group">The group to add</param>
 		/// <returns>The world, after the group being added to it</returns>
 		World addGroup(Group group);
+
+		/// <summary>
+		/// Adds a CSG object to the world
+		/// </summary>
+		/// <param name="group">The csg to add</param>
+		/// <returns>The world, after the csg being added to it</returns>
+		World World::addCSG(CSG csg);
 
 		/// <summary>
 		/// Returns a const ref to the object at the index
@@ -166,6 +174,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		std::vector<PointLight> m_lights;
 		std::vector<Shape> m_objects;
 		std::vector<Group> m_groups;
+		std::vector<CSG> m_csgs;
 	};
 }
 
