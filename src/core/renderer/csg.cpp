@@ -122,12 +122,19 @@ const Intersections CSG::intersectLocal(Math::Ray ray) const
 
 const BoundingBox CSG::bounds() const
 {
-	throw std::logic_error("Method not implemented");
+	BoundingBox result = BoundingBox();
+
+	result.add(m_left->parentSpaceBounds());
+	result.add(m_right->parentSpaceBounds());
+
+	return result;
 }
 
 const BoundingBox CSG::parentSpaceBounds() const
 {
-	throw std::logic_error("Method not implemented");
+	BoundingBox result = BoundingBox(bounds());
+	result.transform(m_transform);
+	return result;
 }
 
 const Point CSG::worldToObject(Point worldPosition) const
