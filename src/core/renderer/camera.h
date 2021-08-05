@@ -19,7 +19,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 	class Camera
 	{
 	public:
-		Camera() = delete;
+		Camera();
 
 		/// <summary>
 		/// Creates a Camera with a horizontal and vertical pixel image size.
@@ -29,6 +29,11 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <param name="vSize">Vertical size in pixels</param>
 		/// <param name="fieldOfView">Field of view in degrees</param>
 		Camera(int hSize, int vSize, int fieldOfView);
+
+		/// <summary>
+		/// Copy Constructor
+		/// </summary>
+		Camera(const Camera& camera);
 
 		/// <summary>
 		/// The horizontal size of the camera in pixels

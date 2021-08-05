@@ -51,6 +51,7 @@
 #include "serializer/base_image_serializer.h"
 #include "serializer/portable_pixmap_image_serializer.h"
 #include "serializer/wavefront_obj_serializer.h"
+#include "serializer/world_serializer.h"
 #include "helpers/material_helper.h"
 #include "io/args.h"
 
@@ -806,37 +807,6 @@ private:
 
 std::shared_ptr<Camera> camera = nullptr;
 
-Image doRealRender(unsigned int threads)
-{
-	log("Initializing...");
-	using WorldBuilder = WorldE;
-	World world = WorldBuilder::build();
-
-	int width = RENDER_WIDTH;
-	int height = RENDER_HEIGHT;
-
-	int fov = WorldBuilder::fov();
-
-	log("Setting up camera: " + std::to_string(width) + ", " + std::to_string(height) + ", " + std::to_string(fov));
-	camera = std::make_shared<Camera>(width, height, fov);
-	auto cameraTransform = WorldBuilder::cameraMatrix();
-	camera->transform(cameraTransform);
-
-	log("Initialization Done");
-
-	auto startTime = std::chrono::high_resolution_clock::now();
-
-	log("Rendering scene -> Start: " + std::to_string(startTime.time_since_epoch().count()));
-	auto result = camera->render(world, threads);
-
-	auto endTime = std::chrono::high_resolution_clock::now();
-	auto elapsed = endTime - startTime;
-
-	log("Render complete -> End: " + std::to_string(endTime.time_since_epoch().count()) + ", Elapsed: " + std::to_string(elapsed.count()));
-
-	return result;
-}
-
 std::string ISO8601Now()
 {
 	auto now = std::chrono::system_clock::now();
@@ -847,6 +817,43 @@ std::string ISO8601Now()
 	std::stringstream ss;
 	ss << std::put_time(&out, "%Y_%m_%d_%H_%M_%S%z");
 	return ss.str();
+}
+
+Image doRealRender(unsigned int threads, std::filesystem::path inputPath)
+{
+	log("Initializing...");
+
+	log("Loading file: " + inputPath.string());
+	std::ifstream file;
+	file.open(inputPath);
+
+	if (!file.is_open())
+	{
+		std::cerr << "FATAL ERROR: Could not open input file: " << inputPath << "\nAborting render!" << std::endl;
+		abort();
+	}
+
+	std::stringstream ss;
+	ss << file.rdbuf();
+	std::string inputFileContents = ss.str();
+	std::vector<char> inputFileContentsBuffer(inputFileContents.begin(), inputFileContents.end());
+	
+	log("Deserializing world");
+	WorldSerializer worldSerializer = WorldSerializer();
+	worldSerializer.deserialize(inputFileContentsBuffer);
+
+	auto world = std::make_shared<World>(worldSerializer.world());
+	camera = std::make_shared<Camera>(worldSerializer.camera());
+
+	log("Initialization Done");
+
+	log("Rendering scene -> Start: " + ISO8601Now());
+
+	auto result = camera->render(*world, threads);
+
+	log("Render complete -> End: " + ISO8601Now());
+
+	return result;
 }
 
 void writeImage(Image image, BaseImageSerializer& serializer, std::filesystem::path outputPath)
@@ -913,9 +920,9 @@ Image generatePerlin()
 	return static_cast<Image>(canvas);
 }
 
-void renderTask(std::atomic<bool>* threadProgress, std::atomic<unsigned int>* threads, std::filesystem::path* outputPath)
+void renderTask(std::atomic<bool>* threadProgress, std::atomic<unsigned int>* threads, std::filesystem::path* outputPath, std::filesystem::path* inputPath)
 {
-	Image image = doRealRender(threads->load());
+	Image image = doRealRender(threads->load(), *inputPath);
 	PortablePixmapImageSerializer serializer;
 	
 	writeImage(image, serializer, *outputPath);
@@ -1223,7 +1230,8 @@ int main(int argc, char* argv[])
 	std::atomic<bool> threadProgress(0);
 	std::atomic<unsigned int> threads(args.threads());
 	std::filesystem::path outputPath(args.outputPath());
-	std::thread renderThread(renderTask, &threadProgress, &threads, &outputPath);
+	std::filesystem::path inputPath(args.inputPath());
+	std::thread renderThread(renderTask, &threadProgress, &threads, &outputPath, &inputPath);
 
 	RAIIglfw glfw = RAIIglfw();
 

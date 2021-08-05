@@ -74,6 +74,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/serializer/base_image_serializer.h"
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.h"
 	"${CORE_LIBRARY_DIR}/serializer/wavefront_obj_serializer.h"
+	"${CORE_LIBRARY_DIR}/serializer/world_serializer.h"
 	"${CORE_LIBRARY_DIR}/helpers/polymorphic_comparable.h"
 	"${CORE_LIBRARY_DIR}/helpers/material_helper.h"
 	"${CORE_LIBRARY_DIR}/io/args.h"
@@ -122,6 +123,7 @@ set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/serializer/base_image_serializer.cpp"
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.cpp"
 	"${CORE_LIBRARY_DIR}/serializer/wavefront_obj_serializer.cpp"
+	"${CORE_LIBRARY_DIR}/serializer/world_serializer.cpp"
 	"${CORE_LIBRARY_DIR}/helpers/material_helper.cpp"
 	"${CORE_LIBRARY_DIR}/io/args.cpp"
 )
@@ -180,6 +182,7 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/renderer/patterns/solid_color_test.cpp"
 	"${TEST_SUITE_DIR}/core/serializer/portable_pixmap_image_serializer_test.cpp"
 	"${TEST_SUITE_DIR}/core/serializer/wavefront_obj_serializer_test.cpp"
+	"${TEST_SUITE_DIR}/core/serializer/world_serializer_test.cpp"
 	"${TEST_SUITE_DIR}/core/io/args_test.cpp"
 )
 list(APPEND TEST_INCLUDED_DIRS "${CORE_LIBRARY_NAME}")

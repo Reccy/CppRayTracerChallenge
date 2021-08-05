@@ -15,6 +15,19 @@ Camera::Camera(int hSize, int vSize, int fieldOfView) :
 	calculatePixelSize();
 };
 
+Camera::Camera(const Camera& camera) :
+	m_hSize(camera.m_hSize),
+	m_vSize(camera.m_vSize),
+	m_fieldOfView(camera.m_fieldOfView),
+	m_halfWidth(camera.m_halfWidth),
+	m_halfHeight(camera.m_halfHeight),
+	m_pixelSize(camera.m_pixelSize),
+	m_transformMatrix(camera.m_transformMatrix)
+{
+	m_renderCanvas = std::make_unique<Graphics::Canvas>();
+	m_renderCanvas->fromBuffer(camera.m_renderCanvas->toBuffer());
+}
+
 int Camera::hSize() const
 {
 	return m_hSize;
