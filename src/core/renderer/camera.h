@@ -84,8 +84,9 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// Renders the world from the point of view of the camera. Returns an image
 		/// </summary>
 		/// <param name="world">The world to render</param>
+		/// <param name="threads">The number of threads to use when rendering</param>
 		/// <returns>The image of the rendered world</returns>
-		Graphics::Image render(const Renderer::World& world) const;
+		Graphics::Image render(const Renderer::World& world, unsigned int threads) const;
 
 		/// <summary>
 		/// Returns the current rendered image, regardless of if it is finished or not

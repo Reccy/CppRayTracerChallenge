@@ -94,9 +94,9 @@ bool jobsComplete(const std::vector<std::unique_ptr<RenderJob>>& renderJobs)
 	return true;
 }
 
-Graphics::Image Camera::render(const World& world) const
+Graphics::Image Camera::render(const World& world, unsigned int threads = 1) const
 {
-	tf::Executor executor(12);
+	tf::Executor executor(threads);
 	tf::Taskflow taskflow;
 
 	std::vector<std::unique_ptr<RenderJob>> renderJobs;

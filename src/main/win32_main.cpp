@@ -51,6 +51,7 @@
 #include "serializer/portable_pixmap_image_serializer.h"
 #include "serializer/wavefront_obj_serializer.h"
 #include "helpers/material_helper.h"
+#include "io/args.h"
 
 using namespace CppRayTracerChallenge::Core;
 using namespace CppRayTracerChallenge::Core::Serializer;
@@ -804,7 +805,7 @@ private:
 
 std::shared_ptr<Camera> camera = nullptr;
 
-Image doRealRender()
+Image doRealRender(unsigned int threads)
 {
 	log("Initializing...");
 	using WorldBuilder = WorldE;
@@ -825,7 +826,7 @@ Image doRealRender()
 	auto startTime = std::chrono::high_resolution_clock::now();
 
 	log("Rendering scene -> Start: " + std::to_string(startTime.time_since_epoch().count()));
-	auto result = camera->render(world);
+	auto result = camera->render(world, threads);
 
 	auto endTime = std::chrono::high_resolution_clock::now();
 	auto elapsed = endTime - startTime;
@@ -896,9 +897,9 @@ Image generatePerlin()
 	return static_cast<Image>(canvas);
 }
 
-void renderTask(std::atomic<bool>* threadProgress)
+void renderTask(std::atomic<bool>* threadProgress, std::atomic<unsigned int>* threads)
 {
-	Image image = doRealRender();
+	Image image = doRealRender(threads->load());
 	PortablePixmapImageSerializer serializer;
 	
 	writeImage(image, serializer);
@@ -1180,16 +1181,32 @@ private:
 	}
 };
 
-int main()
+int main(int argc, char* argv[])
 {
+	const auto args = IO::Args(argc, argv);
+
+	if (args.isHelp())
+	{
+		return 0;
+	}
+
+	if (args.isInvalid())
+	{
+		std::cout << args.errorMessage() << std::endl;
+		return 1;
+	}
+
 	if (!glfwInit())
 	{
 		std::cout << "FATAL: GLFW init failed" << std::endl;
 		exit(EXIT_FAILURE);
 	}
 
+	std::cout << "Rendering with " << args.threads() << " threads\n";
+
 	std::atomic<bool> threadProgress(0);
-	std::thread renderThread(renderTask, &threadProgress);
+	std::atomic<unsigned int> threads(args.threads());
+	std::thread renderThread(renderTask, &threadProgress, &threads);
 
 	RAIIglfw glfw = RAIIglfw();
 

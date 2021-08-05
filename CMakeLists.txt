@@ -4,7 +4,7 @@ set(PROJECT_NAME CppRayTracerChallenge)
 project("${PROJECT_NAME}" LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED true)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 if(CMAKE_BUILD_TYPE EQUAL "DEBUG")
@@ -76,6 +76,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/serializer/wavefront_obj_serializer.h"
 	"${CORE_LIBRARY_DIR}/helpers/polymorphic_comparable.h"
 	"${CORE_LIBRARY_DIR}/helpers/material_helper.h"
+	"${CORE_LIBRARY_DIR}/io/args.h"
 )
 
 set(LIBRARY_SOURCES
@@ -122,6 +123,7 @@ set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.cpp"
 	"${CORE_LIBRARY_DIR}/serializer/wavefront_obj_serializer.cpp"
 	"${CORE_LIBRARY_DIR}/helpers/material_helper.cpp"
+	"${CORE_LIBRARY_DIR}/io/args.cpp"
 )
 
 add_library("${CORE_LIBRARY_NAME}" "${LIBRARY_SOURCES}" "${LIBRARY_HEADERS}")
@@ -178,6 +180,7 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/renderer/patterns/solid_color_test.cpp"
 	"${TEST_SUITE_DIR}/core/serializer/portable_pixmap_image_serializer_test.cpp"
 	"${TEST_SUITE_DIR}/core/serializer/wavefront_obj_serializer_test.cpp"
+	"${TEST_SUITE_DIR}/core/io/args_test.cpp"
 )
 list(APPEND TEST_INCLUDED_DIRS "${CORE_LIBRARY_NAME}")
 add_executable("${TEST_RUNNER_EXECUTABLE_NAME}" "${TEST_RUNNER_EXECUTABLE_SOURCES}")
@@ -234,3 +237,9 @@ set(TF_BUILD_CUDA OFF CACHE BOOL "" FORCE)
 
 add_subdirectory("src/lib/taskflow")
 target_link_libraries("${CORE_LIBRARY_NAME}" PRIVATE Taskflow)
+
+#
+# CLI11 Library
+#
+add_subdirectory("src/lib/CLI11")
+target_link_libraries("${CORE_LIBRARY_NAME}" PRIVATE CLI11::CLI11)
