@@ -11,6 +11,7 @@
 #include <tchar.h>
 #include <chrono>
 #include <thread>
+#include <mutex>
 
 #undef DIFFERENCE
 
@@ -836,35 +837,50 @@ Image doRealRender(unsigned int threads)
 	return result;
 }
 
-void writeImage(Image image, BaseImageSerializer& serializer)
+std::string ISO8601Now()
+{
+	auto now = std::chrono::system_clock::now();
+	auto in_time_t = std::chrono::system_clock::to_time_t(now);
+
+	struct tm out;
+	localtime_s(&out, &in_time_t);
+	std::stringstream ss;
+	ss << std::put_time(&out, "%Y_%m_%d_%H_%M_%S%z");
+	return ss.str();
+}
+
+void writeImage(Image image, BaseImageSerializer& serializer, std::filesystem::path outputPath)
 {
 	serializer.serialize(image);
 
 	std::vector<char> ppmBuffer = serializer.buffer();
-
 	std::string bufferData(ppmBuffer.begin(), ppmBuffer.end());
 
-	TCHAR appData[MAX_PATH];
-	if (SUCCEEDED(SHGetFolderPath(NULL,
-		CSIDL_DESKTOPDIRECTORY | CSIDL_FLAG_CREATE,
-		NULL,
-		SHGFP_TYPE_CURRENT,
-		appData))) {
-		std::basic_ostringstream<TCHAR> filePath;
-		filePath << appData << _TEXT("\\generated_image.ppm");
-
-		std::ofstream file;
-		file.open(filePath.str().c_str());
-
-		file << bufferData << std::endl;
-		file.close();
-
-		std::cout << "File written" << std::endl;
-	}
-	else
+	if (!std::filesystem::is_directory(outputPath))
 	{
-		std::cout << "Failed to write file" << std::endl;
+		std::cerr << "FATAL: Output path " << outputPath.lexically_normal() << " is not a directory" << std::endl;
+		abort();
 	}
+
+	std::stringstream ss;
+	ss << ISO8601Now() << "." << serializer.fileExtension();
+	std::string fileName = ss.str();
+
+	std::filesystem::path filePath = outputPath.append(fileName);
+
+	std::cout << "Writing result to: " << filePath.lexically_normal() << "\n";
+
+	std::ofstream file;	
+	file.open(filePath, std::ios::out);
+
+	if (!file.is_open())
+	{
+		std::cerr << "FATAL ERROR: Could not write to file " << filePath.lexically_normal() << "\n";
+		abort();
+	}
+
+	file << bufferData << std::endl;
+	file.close();
 }
 
 Image generatePerlin()
@@ -897,12 +913,12 @@ Image generatePerlin()
 	return static_cast<Image>(canvas);
 }
 
-void renderTask(std::atomic<bool>* threadProgress, std::atomic<unsigned int>* threads)
+void renderTask(std::atomic<bool>* threadProgress, std::atomic<unsigned int>* threads, std::filesystem::path* outputPath)
 {
 	Image image = doRealRender(threads->load());
 	PortablePixmapImageSerializer serializer;
 	
-	writeImage(image, serializer);
+	writeImage(image, serializer, *outputPath);
 
 	threadProgress->store(true);
 }
@@ -1206,7 +1222,8 @@ int main(int argc, char* argv[])
 
 	std::atomic<bool> threadProgress(0);
 	std::atomic<unsigned int> threads(args.threads());
-	std::thread renderThread(renderTask, &threadProgress, &threads);
+	std::filesystem::path outputPath(args.outputPath());
+	std::thread renderThread(renderTask, &threadProgress, &threads, &outputPath);
 
 	RAIIglfw glfw = RAIIglfw();
 

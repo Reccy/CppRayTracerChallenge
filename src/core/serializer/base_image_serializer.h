@@ -23,6 +23,12 @@ namespace CppRayTracerChallenge::Core::Serializer {
 		virtual void deserialize(std::vector<char> buffer) = 0;
 
 		/// <summary>
+		/// Returns the file extension for the type of file that is being serialized
+		/// </summary>
+		/// <returns>String representing file extension</returns>
+		virtual std::string fileExtension() const = 0;
+
+		/// <summary>
 		/// Returns the deserialized image
 		/// </summary>
 		CppRayTracerChallenge::Core::Graphics::Image image() const;

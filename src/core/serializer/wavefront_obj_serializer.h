@@ -12,7 +12,6 @@ namespace CppRayTracerChallenge::Core::Serializer
 	{
 	public:
 		void serialize();
-
 		void deserialize(std::vector<char> buffer);
 
 		/// <summary>
