@@ -31,6 +31,12 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		const Math::BoundingBox parentSpaceBounds() const override;
 
+		// alias of addChild
+		void addObject(std::shared_ptr<Shape> child);
+
+		// alias of addChild
+		void addObject(std::shared_ptr<Group> child);
+
 		void addChild(std::shared_ptr<Shape> child);
 
 		void addChild(std::shared_ptr<Group> child);

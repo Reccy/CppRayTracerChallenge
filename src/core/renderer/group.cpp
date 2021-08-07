@@ -81,6 +81,16 @@ const BoundingBox Group::parentSpaceBounds() const
 	return result;
 }
 
+void Group::addObject(std::shared_ptr<Shape> child)
+{
+	return addChild(child);
+}
+
+void Group::addObject(std::shared_ptr<Group> child)
+{
+	return addChild(child);
+}
+
 void Group::addChild(std::shared_ptr<Shape> child)
 {
 	m_shapes.push_back(child);

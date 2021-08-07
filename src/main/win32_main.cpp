@@ -64,7 +64,7 @@ using Graphics::Color;
 using Graphics::Image;
 using Graphics::Canvas;
 
-constexpr double RENDER_QUALITY = 1;
+constexpr double RENDER_QUALITY = 0.5;
 
 constexpr int WINDOW_WIDTH = 1920;
 constexpr int WINDOW_HEIGHT = 1080;
@@ -802,12 +802,255 @@ private:
 	}
 };
 
+class WorldF
+{
+public:
+	static World build()
+	{
+		World world = World();
+
+		// Build Light
+		auto light = PointLight({ 50, 100, -50 }, Graphics::Color::white());
+		world.addLight(light);
+
+		// Define Materials
+		auto whiteMaterial = Material();
+		auto whiteMaterialPattern = std::make_shared<Patterns::SolidColor>(Graphics::Color::white());
+		whiteMaterial.pattern = whiteMaterialPattern;
+		whiteMaterial.diffuse = 0.7f;
+		whiteMaterial.ambient = 0.1f;
+		whiteMaterial.specular = 0.0f;
+		whiteMaterial.reflective = 0.1f;
+
+		auto blueMaterial = whiteMaterial;
+		auto blueMaterialPattern = std::make_shared<Patterns::SolidColor>(Graphics::Color(0.537f, 0.831f, 0.914f));
+		blueMaterial.pattern = blueMaterialPattern;
+
+		auto redMaterial = whiteMaterial;
+		auto redMaterialPattern = std::make_shared<Patterns::SolidColor>(Graphics::Color(0.941f, 0.322f, 0.388f));
+		redMaterial.pattern = redMaterialPattern;
+
+		auto purpleMaterial = whiteMaterial;
+		auto purpleMaterialPattern = std::make_shared<Patterns::SolidColor>(Graphics::Color(0.373f, 0.404f, 0.550f));
+		purpleMaterial.pattern = purpleMaterialPattern;
+
+		auto baseTransform = TransformBuilder()
+			.translate(1, -1, 1)
+			.scale(0.5, 0.5, 0.5);
+
+		auto largeObject = baseTransform
+			.scale(3.5, 3.5, 3.5);
+
+		auto mediumObject = baseTransform
+			.scale(3, 3, 3);
+
+		auto smallObject = baseTransform
+			.scale(2, 2, 2);
+
+		// BG Plane
+		auto plane = Renderer::Shape::build<Plane>();
+		auto planeMat = Material();
+		planeMat.pattern = std::make_shared<SolidColor>(Graphics::Color { 1,1,1 });
+		planeMat.ambient = 2;
+		planeMat.diffuse = 0;
+		planeMat.specular = 0;
+		plane->material(planeMat);
+		plane->transform(TransformBuilder()
+			.rotate(100, 0, 90)
+			.translate(0, 0, 500)
+			.build());
+		world.addObject(plane);
+
+		// Scene Elements
+		auto group = Group();
+
+		auto s1 = Renderer::Shape::build<Sphere>();
+		auto s1Mat = Material();
+		s1Mat.pattern = std::make_shared<SolidColor>(Graphics::Color{0.373f, 0.404f, 0.550f});
+		s1Mat.diffuse = 0.2f;
+		s1Mat.ambient = 0;
+		s1Mat.specular = 1.0f;
+		s1Mat.shininess = 200;
+		s1Mat.reflective = 0.7f;
+		s1Mat.transparency = 0.7f;
+		s1Mat.refractiveIndex = 1.5f;
+		s1->material(s1Mat);
+		s1->transform(largeObject.build());
+		group.addObject(s1);
+
+		auto c1 = Renderer::Shape::build<Cube>();
+		c1->material(whiteMaterial);
+		c1->transform(mediumObject.translate(4, 0, 0).build());
+		group.addObject(c1);
+
+		auto c2 = Renderer::Shape::build<Cube>();
+		c2->material(blueMaterial);
+		c2->transform(largeObject.translate(8.5, 1.5, -0.5).build());
+		group.addObject(c2);
+
+		auto c3 = Renderer::Shape::build<Cube>();
+		c3->material(redMaterial);
+		c3->transform(largeObject.translate(0, 0, 4).build());
+		group.addObject(c3);
+
+		auto c4 = Renderer::Shape::build<Cube>();
+		c4->material(whiteMaterial);
+		c4->transform(smallObject.translate(4, 0, 4).build());
+		group.addObject(c4);
+
+		auto c5 = Renderer::Shape::build<Cube>();
+		c5->material(purpleMaterial);
+		c5->transform(mediumObject.translate(7.5, 0.5, 4).build());
+		group.addObject(c5);
+
+		auto c6 = Renderer::Shape::build<Cube>();
+		c6->material(whiteMaterial);
+		c6->transform(mediumObject.translate(-0.25, 0.25, 0).build());
+		group.addObject(c6);
+
+		auto c7 = Renderer::Shape::build<Cube>();
+		c7->material(blueMaterial);
+		c7->transform(largeObject.translate(4, 1, 7.5).build());
+
+		auto c8 = Renderer::Shape::build<Cube>();
+		c8->material(redMaterial);
+		c8->transform(mediumObject.translate(10, 2, 7.5).build());
+		group.addObject(c8);
+
+		auto c9 = Renderer::Shape::build<Cube>();
+		c9->material(whiteMaterial);
+		c9->transform(smallObject.translate(8, 2, 12).build());
+		group.addObject(c9);
+
+		auto c10 = Renderer::Shape::build<Cube>();
+		c10->material(whiteMaterial);
+		c10->transform(smallObject.translate(20, 1, 9).build());
+		group.addObject(c10);
+
+		auto c11 = Renderer::Shape::build<Cube>();
+		c11->material(blueMaterial);
+		c11->transform(largeObject.translate(-0.5, -5, 0.25).build());
+		group.addObject(c11);
+
+		auto c12 = Renderer::Shape::build<Cube>();
+		c12->material(redMaterial);
+		c12->transform(largeObject.translate(4, -4, 0).build());
+		group.addObject(c12);
+
+		auto c13 = Renderer::Shape::build<Cube>();
+		c13->material(whiteMaterial);
+		c13->transform(largeObject.translate(8.5, -4, 0).build());
+		group.addObject(c13);
+
+		auto c14 = Renderer::Shape::build<Cube>();
+		c14->material(whiteMaterial);
+		c14->transform(largeObject.translate(0, -4, 4).build());
+		group.addObject(c14);
+
+		auto c15 = Renderer::Shape::build<Cube>();
+		c15->material(purpleMaterial);
+		c15->transform(largeObject.translate(-0.5, -4.5, 8).build());
+		group.addObject(c15);
+
+		auto c16 = Renderer::Shape::build<Cube>();
+		c16->material(whiteMaterial);
+		c16->transform(largeObject.translate(0, -8, 4).build());
+		group.addObject(c16);
+
+		auto c17 = Renderer::Shape::build<Cube>();
+		c17->material(whiteMaterial);
+		c17->transform(largeObject.translate(-0.5, -8.5, 8).build());
+		group.addObject(c17);
+
+		group.divide(3);
+
+		world.addGroup(group);
+		
+		return world;
+	}
+
+	static Matrix<double, 4, 4> cameraMatrix()
+	{
+		double camPosX = -6;
+		double camPosY = 6;
+		double camPosZ = -10;
+
+		double camLookX = 6;
+		double camLookY = 0;
+		double camLookZ = 6;
+
+		double camUpX = -0.45;
+		double camUpY = 1;
+		double camUpZ = 0;
+
+		return Camera::viewMatrix({ camPosX, camPosY, camPosZ }, { camLookX, camLookY, camLookZ }, { camUpX, camUpY, camUpZ });
+	}
+
+	static int fov()
+	{
+		return 90;
+	}
+private:
+	class TransformBuilder
+	{
+	public:
+		TransformBuilder() :
+			m_translateX(0),
+			m_translateY(0),
+			m_translateZ(0),
+			m_scaleX(1),
+			m_scaleY(1),
+			m_scaleZ(1),
+			m_rotateX(0),
+			m_rotateY(0),
+			m_rotateZ(0)
+		{};
+
+		Transform build()
+		{
+			return Transform()
+				.rotate(m_rotateX, m_rotateY, m_rotateZ)
+				.translate(m_translateX, m_translateY, m_translateZ)
+				.scale(m_scaleX, m_scaleY, m_scaleZ)
+				;
+		}
+
+		TransformBuilder translate(double x, double y, double z)
+		{
+			m_translateX = x;
+			m_translateY = y;
+			m_translateZ = z;
+			return *this;
+		}
+
+		TransformBuilder scale(double x, double y, double z)
+		{
+			m_scaleX = x;
+			m_scaleY = y;
+			m_scaleZ = z;
+			return *this;
+		}
+
+		TransformBuilder rotate(double x, double y, double z)
+		{
+			m_rotateX = x;
+			m_rotateY = y;
+			m_rotateZ = z;
+			return *this;
+		}
+	private:
+		double m_translateX, m_translateY, m_translateZ;
+		double m_scaleX, m_scaleY, m_scaleZ;
+		double m_rotateX, m_rotateY, m_rotateZ;
+	};
+};
+
 std::shared_ptr<Camera> camera = nullptr;
 
 Image doRealRender()
 {
 	log("Initializing...");
-	using WorldBuilder = WorldE;
+	using WorldBuilder = WorldF;
 	World world = WorldBuilder::build();
 
 	int width = RENDER_WIDTH;

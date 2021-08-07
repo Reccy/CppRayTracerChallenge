@@ -23,6 +23,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		Shape(std::shared_ptr<Math::IShape>, Material material);
 
+		template <typename T>
+		static std::shared_ptr<Shape> build()
+		{
+			auto t = std::make_shared<T>();
+			return std::make_shared<Shape>(t);
+		}
+
 		/// <summary>
 		/// Returns the material assigned to the shape
 		/// </summary>

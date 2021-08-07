@@ -53,6 +53,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <param name="obj">The object to add</param>
 		/// <returns>The world, after the object being added to it</returns>
 		World addObject(Shape obj);
+		
+		/// <summary>
+		/// Adds a object to the world
+		/// </summary>
+		/// <param name="obj">Shared pointer to the object to add</param>
+		/// <returns>The world, after the object being added to it</returns>
+		World addObject(std::shared_ptr<Shape> obj);
 
 		/// <summary>
 		/// Adds a group to the world

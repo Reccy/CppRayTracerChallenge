@@ -67,6 +67,12 @@ World World::addObject(Shape obj)
 	return *this;
 }
 
+World World::addObject(std::shared_ptr<Shape> obj)
+{
+	m_objects.push_back(*obj);
+	return *this;
+}
+
 World World::addGroup(Group group)
 {
 	m_groups.push_back(group);
