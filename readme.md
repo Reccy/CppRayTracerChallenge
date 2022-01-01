@@ -4,6 +4,15 @@ This is my repo for implementing the Ray Tracer Challenge from: http://raytracer
 
 ![Cover Image](docs/cover.png)
 
-# Documentation
+# Auto-Generated Documentation
 
-Documentation is available here: https://reccy.github.io/CppRayTracerChallenge/html/index.html
+DoxyGen Documentation is available here: https://reccy.github.io/CppRayTracerChallenge/html/index.html
+
+# Setup Repo
+
+1. Clone the repo
+2. CD to the repo directory
+3. Run `git submodule init`
+4. Run `git submodule update`
+5. Run `cmake -S . -B build`
+6. Use the generated CMake files to compile and link the program
