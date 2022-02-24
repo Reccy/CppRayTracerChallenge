@@ -19,7 +19,7 @@ namespace CppRayTracerChallenge::Core::Serializer
 	{
 	public:
 		void serialize(Graphics::Image image) override;
-		void deserialize(std::vector<char> buffer) override;
+		void deserialize(std::vector<unsigned char> buffer) override;
 	private:
 		std::string buildHeader();
 		std::string buildBody();

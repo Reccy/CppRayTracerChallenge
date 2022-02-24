@@ -10,10 +10,10 @@ void PortableNetworkGraphicsSerializer::serialize(Graphics::Image image)
 	data << buildSignature();
 
 	std::string datastr = data.str();
-	this->m_buffer = std::vector<char>(datastr.begin(), datastr.end());
+	this->m_buffer = std::vector<unsigned char>(datastr.begin(), datastr.end());
 }
 
-void PortableNetworkGraphicsSerializer::deserialize(std::vector<char> buffer)
+void PortableNetworkGraphicsSerializer::deserialize(std::vector<unsigned char> buffer)
 {
 	this->m_buffer = buffer;
 
@@ -22,16 +22,10 @@ void PortableNetworkGraphicsSerializer::deserialize(std::vector<char> buffer)
 
 std::string PortableNetworkGraphicsSerializer::buildSignature()
 {
-	std::stringstream ss;
+	const unsigned char signature[] = { 137, 80, 78, 71, 13, 10, 26, 10 };
 
-	ss << (unsigned char)137;
-	ss << (unsigned char)80;
-	ss << (unsigned char)78;
-	ss << (unsigned char)71;
-	ss << (unsigned char)13;
-	ss << (unsigned char)10;
-	ss << (unsigned char)26;
-	ss << (unsigned char)10;
+	std::stringstream ss;
+	ss << signature;
 
 	return ss.str();
 }

@@ -20,7 +20,7 @@ namespace CppRayTracerChallenge::Core::Serializer {
 		/// <summary>
 		/// Deserializes a buffer, converting it into an Image
 		/// </summary>
-		virtual void deserialize(std::vector<char> buffer) = 0;
+		virtual void deserialize(std::vector<unsigned char> buffer) = 0;
 
 		/// <summary>
 		/// Returns the deserialized image
@@ -30,10 +30,10 @@ namespace CppRayTracerChallenge::Core::Serializer {
 		/// <summary>
 		/// Returns the serialized image as a buffer
 		/// </summary>
-		std::vector<char> buffer() const;
+		std::vector<unsigned char> buffer() const;
 	protected:
 		Graphics::Image m_image;
-		std::vector<char> m_buffer;
+		std::vector<unsigned char> m_buffer;
 	};
 }
 

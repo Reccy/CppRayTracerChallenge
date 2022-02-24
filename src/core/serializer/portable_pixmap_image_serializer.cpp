@@ -11,10 +11,10 @@ void PortablePixmapImageSerializer::serialize(Graphics::Image image)
 	data << buildBody();
 
 	std::string datastr = data.str();
-	this->m_buffer = std::vector<char>(datastr.begin(), datastr.end());
+	this->m_buffer = std::vector<unsigned char>(datastr.begin(), datastr.end());
 }
 
-void PortablePixmapImageSerializer::deserialize(std::vector<char> buffer)
+void PortablePixmapImageSerializer::deserialize(std::vector<unsigned char> buffer)
 {
 	this->m_buffer = buffer;
 

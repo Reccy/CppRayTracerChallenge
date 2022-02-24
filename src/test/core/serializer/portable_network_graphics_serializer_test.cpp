@@ -10,30 +10,10 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortableNetworkGraphicsSerializer, se
 	Serializer::PortableNetworkGraphicsSerializer png;
 	png.serialize(image);
 
-	std::stringstream expectedResultStream;
-	expectedResultStream << (unsigned char)137;
-	expectedResultStream << (unsigned char)80;
-	expectedResultStream << (unsigned char)78;
-	expectedResultStream << (unsigned char)71;
-	expectedResultStream << (unsigned char)13;
-	expectedResultStream << (unsigned char)10;
-	expectedResultStream << (unsigned char)26;
-	expectedResultStream << (unsigned char)10;
+	std::vector<unsigned char> expectedResult = { 137, 80, 78, 71, 13, 10, 26, 10 };
+	
+	std::vector<unsigned char> chars = std::vector<unsigned char>(png.buffer());
+	std::vector<unsigned char> result = std::vector(chars.begin(), chars.begin() + 8);
 
-	std::string expectedResult = expectedResultStream.str();
-
-	std::vector<char> chars = png.buffer();
-
-	std::stringstream data(std::string(chars.begin(), chars.end()));
-	std::stringstream signature;
-
-	// Read the first 8 bytes from the PNG file
-	std::string str = data.str();
-
-	for (int i = 0; i < 8; ++i)
-	{
-		signature << str[i];
-	}
-
-	EXPECT_EQ(signature.str(), expectedResult);
+	EXPECT_EQ(result, expectedResult);
 }

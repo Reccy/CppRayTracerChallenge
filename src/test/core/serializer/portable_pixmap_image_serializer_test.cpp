@@ -17,7 +17,7 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_c
 	expectedResult += "5 3\n";
 	expectedResult += "255\n";
 
-	std::vector<char> chars = ppm.buffer();
+	std::vector<unsigned char> chars = ppm.buffer();
 
 	std::stringstream data(std::string(chars.begin(), chars.end()));
 	std::stringstream header;
@@ -68,7 +68,7 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_c
 	Serializer::PortablePixmapImageSerializer ppm;
 	ppm.serialize(image);
 
-	std::vector<char> chars = ppm.buffer();
+	std::vector<unsigned char> chars = ppm.buffer();
 	std::stringstream data(std::string(chars.begin(), chars.end()));
 	std::stringstream body;
 
@@ -117,7 +117,7 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, split_
 	Serializer::PortablePixmapImageSerializer ppm;
 	ppm.serialize(image);
 
-	std::vector<char> chars = ppm.buffer();
+	std::vector<unsigned char> chars = ppm.buffer();
 	std::stringstream data(std::string(chars.begin(), chars.end()));
 	std::stringstream body;
 

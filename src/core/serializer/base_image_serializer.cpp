@@ -9,7 +9,7 @@ CppRayTracerChallenge::Core::Graphics::Image BaseImageSerializer::image() const
 	return this->m_image;
 }
 
-std::vector<char> BaseImageSerializer::buffer() const
+std::vector<unsigned char> BaseImageSerializer::buffer() const
 {
 	return this->m_buffer;
 }
