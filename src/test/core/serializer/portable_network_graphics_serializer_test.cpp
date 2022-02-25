@@ -24,7 +24,7 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortableNetworkGraphicsSerializer, se
 
 TEST(CppRayTracerChallenge_Core_Serializer_PortableNetworkGraphicsSerializer, sets_correct_ihdr_chunk)
 {
-	Graphics::Image image(5, 3);
+	Graphics::Image image(98, 98);
 
 	Serializer::PortableNetworkGraphicsSerializer png;
 	png.serialize(image);
@@ -32,14 +32,14 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortableNetworkGraphicsSerializer, se
 	std::vector<unsigned char> expectedResult = {
 		0, 0, 0, 13,		// Chunk Length: 13
 		73, 72, 68, 82,		// Chunk Type: IHDR
-		0, 0, 0, 5,			// Width: 5
-		0, 0, 0, 3,			// Height: 3
+		0, 0, 0, 98,		// Width: 98
+		0, 0, 0, 98,		// Height: 98
 		8,					// Bit Depth: 8
 		2,					// Color Mode: 2 (Truecolor)
 		0,					// Compression Method: 0 (Default Standard)
 		0,					// Filter: 0 (Default Standard)
 		0,					// Interlace: 0 (Default Interlace)
-		0, 0, 0, 0			// CRC (NOT IMPLEMENTED YET?)
+		36, 199, 145, 89	// CRC
 	};
 
 	std::vector<unsigned char> result = decodeResult(png.buffer(), 8, 25);
