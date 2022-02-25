@@ -133,11 +133,6 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildIHDRChunk()
 	append(chunk, 0);	// Filter
 	append(chunk, 0);	// Interlace
 
-	for (int i = 0; i < chunk.size(); ++i)
-	{
-		std::cout << (int)chunk[i];
-	}
-
 	// CRC
 	append(chunk, buildCRC(chunk, chunkLengthInt));
 
