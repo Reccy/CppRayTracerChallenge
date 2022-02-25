@@ -22,6 +22,7 @@ namespace CppRayTracerChallenge::Core::Serializer
 	private:
 		std::vector<unsigned char> buildSignature();
 		std::vector<unsigned char> buildIHDRChunk();
+		std::vector<unsigned char> buildIENDChunk();
 		std::vector<unsigned char> buildCRC(std::vector<unsigned char> chunk, int chunkLength);
 		void append(std::vector<unsigned char> &target, std::vector<unsigned char> source);
 		void append(std::vector<unsigned char>& target, unsigned char value);

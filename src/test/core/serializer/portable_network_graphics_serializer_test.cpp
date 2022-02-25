@@ -46,3 +46,21 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortableNetworkGraphicsSerializer, se
 
 	EXPECT_EQ(result, expectedResult);
 }
+
+TEST(CppRayTracerChallenge_Core_Serializer_PortableNetworkGraphicsSerializer, sets_correct_iend_chunk)
+{
+	Graphics::Image image(3, 3);
+
+	Serializer::PortableNetworkGraphicsSerializer png;
+	png.serialize(image);
+
+	std::vector<unsigned char> expectedResult = {
+		0, 0, 0, 0,			// Chunk Length: 0
+		73, 69, 78, 68,		// Chunk Type: IEND
+		174, 66, 96, 130	// CRC
+	};
+
+	std::vector<unsigned char> result = decodeResult(png.buffer(), (int)png.buffer().size() - 12, 12);
+
+	EXPECT_EQ(result, expectedResult);
+}

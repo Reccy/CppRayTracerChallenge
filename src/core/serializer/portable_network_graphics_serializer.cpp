@@ -92,6 +92,7 @@ void PortableNetworkGraphicsSerializer::serialize(Graphics::Image image)
 	this->m_buffer.clear();
 	append(this->m_buffer, buildSignature());
 	append(this->m_buffer, buildIHDRChunk());
+	append(this->m_buffer, buildIENDChunk());
 }
 
 void PortableNetworkGraphicsSerializer::deserialize(std::vector<unsigned char> buffer)
@@ -138,14 +139,37 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildIHDRChunk()
 	}
 
 	// CRC
-	append(chunk, buildCRC(chunk, chunkLengthInt)); // Not fully tested
+	append(chunk, buildCRC(chunk, chunkLengthInt));
 
 	return chunk;
 }
 
-std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildCRC(std::vector<unsigned char> chunk, int chunkLength)
+std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildIENDChunk()
 {
-	std::vector<unsigned char> track = std::vector(chunk.begin() + 4, chunk.begin() + chunkLength - 4);
+	std::vector<unsigned char> chunkLength;
+	int chunkLengthInt = 0;
+	append(chunkLength, intToBytes(chunkLengthInt));
+
+	std::vector<unsigned char> chunkType{ 73, 69, 78, 68 };
+
+	std::vector<unsigned char> chunk;
+
+	// Chunk Header
+	append(chunk, chunkLength);
+	append(chunk, chunkType);
+
+	// CRC
+	append(chunk, buildCRC(chunk, chunkLengthInt));
+
+	return chunk;
+}
+
+std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildCRC(std::vector<unsigned char> chunk, int chunkDataLength)
+{
+	int chunkLengthOffset = 4;
+	int chunkTypeOffset = 4;
+
+	std::vector<unsigned char> track = std::vector(chunk.begin() + chunkLengthOffset, chunk.begin() + chunkLengthOffset + chunkTypeOffset + chunkDataLength);
 
 	unsigned long resultLong = crc(track.data(), (int)track.size());
 
