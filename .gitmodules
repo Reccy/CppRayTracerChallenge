@@ -4,6 +4,3 @@
 [submodule "src/lib/taskflow"]
 	path = src/lib/taskflow
 	url = https://github.com/taskflow/taskflow.git
-[submodule "src/lib/zlib"]
-	path = src/lib/zlib
-	url = https://github.com/madler/zlib.git
