@@ -27,13 +27,6 @@ void PortableNetworkGraphicsSerializer::serialize(Graphics::Image image)
 	append(this->m_buffer, buildIENDChunk());
 }
 
-void PortableNetworkGraphicsSerializer::deserialize(std::vector<unsigned char> buffer)
-{
-	this->m_buffer = buffer;
-
-	// TODO: Implementation
-}
-
 std::string PortableNetworkGraphicsSerializer::fileExtension() const
 {
 	return std::string("png");

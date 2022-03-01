@@ -14,13 +14,6 @@ void PortablePixmapImageSerializer::serialize(Graphics::Image image)
 	this->m_buffer = std::vector<unsigned char>(datastr.begin(), datastr.end());
 }
 
-void PortablePixmapImageSerializer::deserialize(std::vector<unsigned char> buffer)
-{
-	this->m_buffer = buffer;
-
-	// TODO: Implementation
-}
-
 std::string PortablePixmapImageSerializer::fileExtension() const
 {
 	return std::string("ppm");
