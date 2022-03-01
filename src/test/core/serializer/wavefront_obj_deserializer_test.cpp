@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <serializer/wavefront_obj_serializer.h>
+#include <serializer/wavefront_obj_deserializer.h>
 #include <renderer/group.h>
 #include <math/point.h>
 #include <math/triangle.h>
@@ -9,9 +9,9 @@ using namespace CppRayTracerChallenge::Core::Serializer;
 using namespace CppRayTracerChallenge::Core::Math;
 using namespace CppRayTracerChallenge::Core::Renderer;
 
-TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, ignore_unrecognised_lines)
+TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJDeserializer, ignore_unrecognised_lines)
 {
-	WavefrontOBJSerializer serializer = WavefrontOBJSerializer();
+	WavefrontOBJDeserializer serializer = WavefrontOBJDeserializer();
 
 	std::stringstream ss;
 	ss << "There was a young lady named Bright\n"
@@ -27,9 +27,9 @@ TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, ignore_unreco
 	EXPECT_EQ(serializer.ignoredLines(), 5);
 }
 
-TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, vertex_records)
+TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJDeserializer, vertex_records)
 {
-	WavefrontOBJSerializer serializer = WavefrontOBJSerializer();
+	WavefrontOBJDeserializer serializer = WavefrontOBJDeserializer();
 
 	std::stringstream ss;
 	ss << "v -1 1 0\n"
@@ -55,9 +55,9 @@ TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, vertex_record
 	EXPECT_EQ(verts.at(4), Point(2.5, 1.25, 1));
 }
 
-TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, parsing_triangle_faces)
+TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJDeserializer, parsing_triangle_faces)
 {
-	WavefrontOBJSerializer serializer = WavefrontOBJSerializer();
+	WavefrontOBJDeserializer serializer = WavefrontOBJDeserializer();
 
 	std::stringstream ss;
 	ss << "v -1 1 0\n"
@@ -88,9 +88,9 @@ TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, parsing_trian
 	EXPECT_EQ(t2->p3(), serializer.vertices().at(3));
 }
 
-TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, triangulate_polygons)
+TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJDeserializer, triangulate_polygons)
 {
-	WavefrontOBJSerializer serializer = WavefrontOBJSerializer();
+	WavefrontOBJDeserializer serializer = WavefrontOBJDeserializer();
 
 	std::stringstream ss;
 	ss << "v -1 1 0\n"
@@ -121,9 +121,9 @@ TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, triangulate_p
 	EXPECT_EQ(t3->p3(), serializer.vertices().at(4));
 }
 
-TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, triangles_in_groups)
+TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJDeserializer, triangles_in_groups)
 {
-	WavefrontOBJSerializer serializer = WavefrontOBJSerializer();
+	WavefrontOBJDeserializer serializer = WavefrontOBJDeserializer();
 
 	std::stringstream ss;
 	ss << "v -1 1 0\n"
@@ -155,9 +155,9 @@ TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, triangles_in_
 }
 
 
-TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, group_for_scene)
+TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJDeserializer, group_for_scene)
 {
-	WavefrontOBJSerializer serializer = WavefrontOBJSerializer();
+	WavefrontOBJDeserializer serializer = WavefrontOBJDeserializer();
 
 	std::stringstream ss;
 	ss << "v -1 1 0\n"
@@ -179,9 +179,9 @@ TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, group_for_sce
 	EXPECT_EQ(defaultGroup.size(), 2);
 }
 
-TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, vertex_normal_records)
+TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJDeserializer, vertex_normal_records)
 {
-	WavefrontOBJSerializer serializer = WavefrontOBJSerializer();
+	WavefrontOBJDeserializer serializer = WavefrontOBJDeserializer();
 
 	std::stringstream ss;
 	ss << "vn 0 0 1\n"
@@ -197,9 +197,9 @@ TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, vertex_normal
 	EXPECT_EQ(serializer.normals().at(2), Vector(1, 2, 3));
 }
 
-TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJSerializer, faces_with_normals)
+TEST(CppRayTracerChallenge_Core_Serializer_WavefrontOBJDeserializer, faces_with_normals)
 {
-	WavefrontOBJSerializer serializer = WavefrontOBJSerializer();
+	WavefrontOBJDeserializer serializer = WavefrontOBJDeserializer();
 
 	std::stringstream ss;
 	ss << "v 0 1 0\n"

@@ -1,4 +1,4 @@
-#include "wavefront_obj_serializer.h"
+#include "wavefront_obj_deserializer.h"
 #include "../math/smooth_triangle.h"
 #include <cstdlib>
 #include <cerrno>
@@ -7,10 +7,7 @@
 using namespace CppRayTracerChallenge::Core::Serializer;
 using namespace CppRayTracerChallenge::Core;
 
-void WavefrontOBJSerializer::serialize()
-{}
-
-void WavefrontOBJSerializer::deserialize(std::vector<char> input)
+void WavefrontOBJDeserializer::deserialize(std::vector<char> input)
 {
 	m_buffer = input;
 	m_vertices = std::vector<Math::Point>();
@@ -95,7 +92,7 @@ void WavefrontOBJSerializer::deserialize(std::vector<char> input)
 	}
 }
 
-void WavefrontOBJSerializer::parseVertex(std::string line)
+void WavefrontOBJDeserializer::parseVertex(std::string line)
 {
 	double values[3] = { -123, -312, -231 };
 	int valueIndex = 0;
@@ -225,7 +222,7 @@ FaceParam parseFaceParam(std::string line)
 	return result;
 }
 
-void WavefrontOBJSerializer::parseFace(std::string line)
+void WavefrontOBJDeserializer::parseFace(std::string line)
 {
 	std::vector<int> vertexIndices;
 	std::vector<int> normalIndices;
@@ -333,7 +330,7 @@ void WavefrontOBJSerializer::parseFace(std::string line)
 	}
 }
 
-void WavefrontOBJSerializer::parseGroup(std::string line)
+void WavefrontOBJDeserializer::parseGroup(std::string line)
 {
 	int stringBeginIndex = 1;
 	int stringEndIndex = (int)line.size() - 1;
@@ -376,7 +373,7 @@ void WavefrontOBJSerializer::parseGroup(std::string line)
 	return;
 }
 
-void WavefrontOBJSerializer::parseNormal(std::string line)
+void WavefrontOBJDeserializer::parseNormal(std::string line)
 {
 	double values[3] = { -123, -312, -231 };
 	int valueIndex = 0;
@@ -440,32 +437,32 @@ void WavefrontOBJSerializer::parseNormal(std::string line)
 	m_normals.push_back(Math::Vector(values[0], values[1], values[2]));
 }
 
-std::vector<char> WavefrontOBJSerializer::buffer() const
+std::vector<char> WavefrontOBJDeserializer::buffer() const
 {
 	return m_buffer;
 }
 
-Renderer::Group WavefrontOBJSerializer::defaultGroup() const
+Renderer::Group WavefrontOBJDeserializer::defaultGroup() const
 {
 	return m_defaultGroup;
 }
 
-std::shared_ptr<Renderer::Group> WavefrontOBJSerializer::group(std::string groupName) const
+std::shared_ptr<Renderer::Group> WavefrontOBJDeserializer::group(std::string groupName) const
 {
 	return m_groups.at(groupName);
 }
 
-std::vector<Math::Point> WavefrontOBJSerializer::vertices() const
+std::vector<Math::Point> WavefrontOBJDeserializer::vertices() const
 {
 	return m_vertices;
 }
 
-std::vector<Math::Vector> WavefrontOBJSerializer::normals() const
+std::vector<Math::Vector> WavefrontOBJDeserializer::normals() const
 {
 	return m_normals;
 }
 
-int WavefrontOBJSerializer::ignoredLines() const
+int WavefrontOBJDeserializer::ignoredLines() const
 {
 	return m_ignoredLines;
 }

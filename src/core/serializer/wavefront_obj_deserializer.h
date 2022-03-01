@@ -1,5 +1,5 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_WAVEFRONT_OBJ_SERIALIZER
-#define _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_WAVEFRONT_OBJ_SERIALIZER
+#ifndef _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_WAVEFRONT_OBJ_DESERIALIZER
+#define _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_WAVEFRONT_OBJ_DESERIALIZER
 
 #include <vector>
 #include <map>
@@ -8,11 +8,9 @@
 
 namespace CppRayTracerChallenge::Core::Serializer
 {
-	class WavefrontOBJSerializer
+	class WavefrontOBJDeserializer
 	{
 	public:
-		void serialize();
-
 		void deserialize(std::vector<char> buffer);
 
 		/// <summary>
@@ -67,4 +65,4 @@ namespace CppRayTracerChallenge::Core::Serializer
 	};
 }
 
-#endif _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_WAVEFRONT_OBJ_SERIALIZER
+#endif _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_WAVEFRONT_OBJ_DESERIALIZER

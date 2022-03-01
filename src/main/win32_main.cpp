@@ -50,7 +50,7 @@
 #include "serializer/base_image_serializer.h"
 #include "serializer/portable_pixmap_image_serializer.h"
 #include "serializer/portable_network_graphics_serializer.h"
-#include "serializer/wavefront_obj_serializer.h"
+#include "serializer/wavefront_obj_deserializer.h"
 #include "helpers/material_helper.h"
 
 using namespace CppRayTracerChallenge::Core;
@@ -621,7 +621,7 @@ private:
 			exit(0);
 		}
 
-		WavefrontOBJSerializer serializer = WavefrontOBJSerializer();
+		WavefrontOBJDeserializer serializer = WavefrontOBJDeserializer();
 
 		serializer.deserialize(buffer);
 
