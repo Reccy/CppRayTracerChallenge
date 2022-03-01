@@ -8,6 +8,17 @@ std::vector<unsigned char> decodeResult(std::vector<unsigned char> vec, int star
 	return std::vector<unsigned char>(vec.begin() + start, vec.begin() + start + length);
 }
 
+TEST(CppRayTracerChallenge_Core_Serializer_PortableNetworkGraphicsSerializer, returns_correct_file_extension)
+{
+	Serializer::PortableNetworkGraphicsSerializer png;
+
+	std::string expectedResult = png.fileExtension();
+
+	std::string result = std::string("png");
+
+	EXPECT_EQ(result, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Serializer_PortableNetworkGraphicsSerializer, sets_correct_signature)
 {
 	Graphics::Image image(5, 3);

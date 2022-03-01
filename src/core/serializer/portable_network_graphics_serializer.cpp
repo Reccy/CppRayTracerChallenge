@@ -16,18 +16,6 @@ std::vector<unsigned char> intToBytes(int value)
 	return result;
 }
 
-std::vector<unsigned char> longToBytes(unsigned long value)
-{
-	std::vector<unsigned char> result;
-
-	result.push_back((unsigned char)(value >> 24) & 0xFF);
-	result.push_back((unsigned char)(value >> 16) & 0xFF);
-	result.push_back((unsigned char)(value >> 8) & 0xFF);
-	result.push_back((unsigned char)value & 0xFF);
-
-	return result;
-}
-
 void PortableNetworkGraphicsSerializer::serialize(Graphics::Image image)
 {
 	this->m_image = image;
@@ -45,6 +33,12 @@ void PortableNetworkGraphicsSerializer::deserialize(std::vector<unsigned char> b
 
 	// TODO: Implementation
 }
+
+std::string PortableNetworkGraphicsSerializer::fileExtension() const
+{
+	return std::string("png");
+}
+
 
 std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildSignature()
 {

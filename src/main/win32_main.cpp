@@ -1046,7 +1046,10 @@ void writeImage(Image image, BaseImageSerializer& serializer)
 		SHGFP_TYPE_CURRENT,
 		appData))) {
 		std::basic_ostringstream<TCHAR> filePath;
-		filePath << appData << _TEXT("\\generated_image.png");
+
+		std::string imageName = std::string("\\generated_image.") + std::string(serializer.fileExtension());
+
+		filePath << appData << _TEXT(imageName.c_str());
 
 		std::ofstream file;
 		file.open(filePath.str().c_str());
@@ -1095,8 +1098,7 @@ Image generatePerlin()
 void renderTask(std::atomic<bool>* threadProgress)
 {
 	Image image = doRealRender();
-	//PortablePixmapImageSerializer serializer;
-	PortableNetworkGraphicsSerializer serializer;
+	PortablePixmapImageSerializer serializer;
 	
 	writeImage(image, serializer);
 

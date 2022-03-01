@@ -21,6 +21,11 @@ void PortablePixmapImageSerializer::deserialize(std::vector<unsigned char> buffe
 	// TODO: Implementation
 }
 
+std::string PortablePixmapImageSerializer::fileExtension() const
+{
+	return std::string("ppm");
+}
+
 std::string PortablePixmapImageSerializer::buildHeader()
 {
 	std::stringstream ss;

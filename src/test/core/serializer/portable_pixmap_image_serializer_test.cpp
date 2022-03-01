@@ -5,6 +5,17 @@
 
 using namespace CppRayTracerChallenge::Core;
 
+TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, returns_correct_file_extension)
+{
+	Serializer::PortablePixmapImageSerializer ppm;
+
+	std::string expectedResult = ppm.fileExtension();
+
+	std::string result = std::string("ppm");
+
+	EXPECT_EQ(result, expectedResult);
+}
+
 TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_correct_header)
 {
 	Graphics::Image image(5,3);
