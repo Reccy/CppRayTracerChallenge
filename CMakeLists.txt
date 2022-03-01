@@ -75,6 +75,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.h"
 	"${CORE_LIBRARY_DIR}/serializer/portable_network_graphics_serializer.h"
 	"${CORE_LIBRARY_DIR}/serializer/wavefront_obj_serializer.h"
+	"${CORE_LIBRARY_DIR}/encryption/crc.h"
 	"${CORE_LIBRARY_DIR}/helpers/polymorphic_comparable.h"
 	"${CORE_LIBRARY_DIR}/helpers/material_helper.h"
 )
@@ -123,6 +124,7 @@ set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.cpp"
 	"${CORE_LIBRARY_DIR}/serializer/portable_network_graphics_serializer.cpp"
 	"${CORE_LIBRARY_DIR}/serializer/wavefront_obj_serializer.cpp"
+	"${CORE_LIBRARY_DIR}/encryption/crc.cpp"
 	"${CORE_LIBRARY_DIR}/helpers/material_helper.cpp"
 )
 
@@ -181,6 +183,7 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/serializer/portable_pixmap_image_serializer_test.cpp"
 	"${TEST_SUITE_DIR}/core/serializer/portable_network_graphics_serializer_test.cpp"
 	"${TEST_SUITE_DIR}/core/serializer/wavefront_obj_serializer_test.cpp"
+	"${TEST_SUITE_DIR}/core/encryption/crc_test.cpp"
 )
 list(APPEND TEST_INCLUDED_DIRS "${CORE_LIBRARY_NAME}")
 add_executable("${TEST_RUNNER_EXECUTABLE_NAME}" "${TEST_RUNNER_EXECUTABLE_SOURCES}")

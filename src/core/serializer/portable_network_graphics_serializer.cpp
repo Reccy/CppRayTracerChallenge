@@ -1,65 +1,8 @@
 #include "portable_network_graphics_serializer.h"
+#include "../graphics/color.h"
+#include "../encryption/crc.h"
 
 using namespace CppRayTracerChallenge::Core::Serializer;
-
-//
-// CRC Algorithm from https://www.w3.org/TR/PNG/#D-CRCAppendix
-//
-
-/* Table of CRCs of all 8-bit messages. */
-unsigned long crc_table[256];
-
-/* Flag: has the table been computed? Initially false. */
-int crc_table_computed = 0;
-
-/* Make the table for a fast CRC. */
-void make_crc_table(void)
-{
-	unsigned long c;
-	int n, k;
-
-	for (n = 0; n < 256; n++) {
-		c = (unsigned long)n;
-		for (k = 0; k < 8; k++) {
-			if (c & 1)
-				c = 0xedb88320L ^ (c >> 1);
-			else
-				c = c >> 1;
-		}
-		crc_table[n] = c;
-	}
-	crc_table_computed = 1;
-}
-
-
-/* Update a running CRC with the bytes buf[0..len-1]--the CRC
-   should be initialized to all 1's, and the transmitted value
-   is the 1's complement of the final running CRC (see the
-   crc() routine below). */
-
-unsigned long update_crc(unsigned long crc, unsigned char* buf,
-	int len)
-{
-	unsigned long c = crc;
-	int n;
-
-	if (!crc_table_computed)
-		make_crc_table();
-	for (n = 0; n < len; n++) {
-		c = crc_table[(c ^ buf[n]) & 0xff] ^ (c >> 8);
-	}
-	return c;
-}
-
-/* Return the CRC of the bytes buf[0..len-1]. */
-unsigned long crc(unsigned char* buf, int len)
-{
-	return update_crc(0xffffffffL, buf, len) ^ 0xffffffffL;
-}
-
-//
-// End of CRC algorithm
-//
 
 std::vector<unsigned char> intToBytes(int value)
 {
@@ -92,6 +35,7 @@ void PortableNetworkGraphicsSerializer::serialize(Graphics::Image image)
 	this->m_buffer.clear();
 	append(this->m_buffer, buildSignature());
 	append(this->m_buffer, buildIHDRChunk());
+	append(this->m_buffer, buildIDATChunk());
 	append(this->m_buffer, buildIENDChunk());
 }
 
@@ -139,6 +83,31 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildIHDRChunk()
 	return chunk;
 }
 
+std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildIDATChunk()
+{
+	std::vector<unsigned char> imageData = buildImageData();
+
+	std::vector<unsigned char> chunkLength;
+	int chunkLengthInt = (int)imageData.size();
+	append(chunkLength, intToBytes(chunkLengthInt));
+
+	std::vector<unsigned char> chunkType{ 73, 68, 65, 84 };
+
+	std::vector<unsigned char> chunk;
+
+	// Chunk Header
+	append(chunk, chunkLength);
+	append(chunk, chunkType);
+
+	// Image Data
+	append(chunk, imageData);
+
+	// CRC
+	append(chunk, buildCRC(chunk, chunkLengthInt));
+
+	return chunk;
+}
+
 std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildIENDChunk()
 {
 	std::vector<unsigned char> chunkLength;
@@ -159,6 +128,28 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildIENDChunk()
 	return chunk;
 }
 
+std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
+{
+	std::vector<unsigned char> imageData
+	{
+		0,	// zlib compression method/flags code
+		0	// Additional flags/check bits
+	};
+
+	append(imageData, 0);
+
+	std::vector<Graphics::Color> imageBuffer = this->m_image.toBuffer();
+
+	for (int i = 0; i < imageBuffer.size(); ++i)
+	{
+
+	}
+
+	//append(imageData, buildZLIPCheck(imageData));
+
+	return imageData;
+}
+
 std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildCRC(std::vector<unsigned char> chunk, int chunkDataLength)
 {
 	int chunkLengthOffset = 4;
@@ -166,9 +157,7 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildCRC(std::vect
 
 	std::vector<unsigned char> track = std::vector(chunk.begin() + chunkLengthOffset, chunk.begin() + chunkLengthOffset + chunkTypeOffset + chunkDataLength);
 
-	unsigned long resultLong = crc(track.data(), (int)track.size());
-
-	return longToBytes(resultLong);
+	return Encryption::CRC::run(track);
 }
 
 void PortableNetworkGraphicsSerializer::append(std::vector<unsigned char>& target, std::vector<unsigned char> source)

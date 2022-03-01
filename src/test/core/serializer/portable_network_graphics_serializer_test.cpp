@@ -46,7 +46,21 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortableNetworkGraphicsSerializer, se
 
 	EXPECT_EQ(result, expectedResult);
 }
+/*
+TEST(CppRayTracerChallenge_Core_Serializer_PortableNetworkGraphicsSerializer, sets_correct_idat_chunk)
+{
+	Graphics::Image image(5, 5);
 
+	Serializer::PortableNetworkGraphicsSerializer png;
+	png.serialize(image);
+
+	std::vector<unsigned char> expectedResult = {};
+
+	std::vector<unsigned char> result = decodeResult(png.buffer(), 26, (int)png.buffer().size() - 12);
+
+	EXPECT_EQ(result, expectedResult);
+}
+*/
 TEST(CppRayTracerChallenge_Core_Serializer_PortableNetworkGraphicsSerializer, sets_correct_iend_chunk)
 {
 	Graphics::Image image(3, 3);

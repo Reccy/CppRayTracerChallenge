@@ -49,6 +49,7 @@
 #include "renderer/patterns/masked.h"
 #include "serializer/base_image_serializer.h"
 #include "serializer/portable_pixmap_image_serializer.h"
+#include "serializer/portable_network_graphics_serializer.h"
 #include "serializer/wavefront_obj_serializer.h"
 #include "helpers/material_helper.h"
 
@@ -1034,7 +1035,7 @@ void writeImage(Image image, BaseImageSerializer& serializer)
 {
 	serializer.serialize(image);
 
-	std::vector<char> ppmBuffer = serializer.buffer();
+	std::vector<unsigned char> ppmBuffer = serializer.buffer();
 
 	std::string bufferData(ppmBuffer.begin(), ppmBuffer.end());
 
@@ -1045,7 +1046,7 @@ void writeImage(Image image, BaseImageSerializer& serializer)
 		SHGFP_TYPE_CURRENT,
 		appData))) {
 		std::basic_ostringstream<TCHAR> filePath;
-		filePath << appData << _TEXT("\\generated_image.ppm");
+		filePath << appData << _TEXT("\\generated_image.png");
 
 		std::ofstream file;
 		file.open(filePath.str().c_str());
@@ -1094,7 +1095,8 @@ Image generatePerlin()
 void renderTask(std::atomic<bool>* threadProgress)
 {
 	Image image = doRealRender();
-	PortablePixmapImageSerializer serializer;
+	//PortablePixmapImageSerializer serializer;
+	PortableNetworkGraphicsSerializer serializer;
 	
 	writeImage(image, serializer);
 
