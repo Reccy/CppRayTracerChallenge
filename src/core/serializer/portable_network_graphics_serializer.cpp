@@ -32,7 +32,6 @@ std::string PortableNetworkGraphicsSerializer::fileExtension() const
 	return std::string("png");
 }
 
-
 std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildSignature()
 {
 	std::vector<unsigned char> signature { 137, 80, 78, 71, 13, 10, 26, 10 };
@@ -115,15 +114,51 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildIENDChunk()
 	return chunk;
 }
 
+unsigned int convertBytesToUnsignedInt(std::vector<unsigned char> data)
+{
+	// data[0] stored as MSB
+	// data[1] stored as LSB
+	// Big Endian
+	return (data[0] * 256) + data[1];
+}
+
+std::vector<unsigned char> updateWithFCHECK(std::vector<unsigned char> data)
+{
+	// Data size is assumed to be 16 bits
+
+	unsigned char dataOriginal = data[1];
+
+	for (int i = 0b0000; i < 0b1111; ++i)
+	{
+		data[1] = (unsigned char)(i * 16) + dataOriginal;
+		
+		unsigned int value = convertBytesToUnsignedInt(data);
+
+		if (value % 31 == 0)
+			return data;
+	}
+
+	throw std::logic_error("Could not compute a valid FCHECK when encoding PNG file");
+}
+
 std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
 {
+	// zlib compression method/ flags code (CMF)
+	// CM (Compression Method) is "deflate" method for PNGs - 1000 (8)
+	// CINFO (Compression Info) is "32k window size for LZ77" - 0111 (7)
+	// Therefore the zlib compression method / flags code is 10000111 (135)
+	//
+	// Additional flags / check bits (FLG)
+	// FCHECK - Unset, will be assigned later
+	// FDICT - If a dictionary is present after the FLG bit - 0 (0)
+	// FLEVEL - Uses default algorithm - 010 (2)
 	std::vector<unsigned char> imageData
 	{
-		0,	// zlib compression method/flags code
-		0	// Additional flags/check bits
+		0b10000111,	// zlib compression method/flags code
+		0b00000010	// Additional flags/check bits
 	};
 
-	append(imageData, 0);
+	imageData = updateWithFCHECK(imageData);
 
 	std::vector<Graphics::Color> imageBuffer = this->m_image.toBuffer();
 
@@ -132,7 +167,7 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
 
 	}
 
-	//append(imageData, buildZLIPCheck(imageData));
+	append(imageData, buildZLIBCheck(imageData));
 
 	return imageData;
 }
@@ -145,6 +180,11 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildCRC(std::vect
 	std::vector<unsigned char> track = std::vector(chunk.begin() + chunkLengthOffset, chunk.begin() + chunkLengthOffset + chunkTypeOffset + chunkDataLength);
 
 	return Encryption::CRC::run(track);
+}
+
+std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildZLIBCheck(std::vector<unsigned char> data)
+{
+	return std::vector<unsigned char>();
 }
 
 void PortableNetworkGraphicsSerializer::append(std::vector<unsigned char>& target, std::vector<unsigned char> source)

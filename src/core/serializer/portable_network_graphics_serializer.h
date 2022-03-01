@@ -26,6 +26,7 @@ namespace CppRayTracerChallenge::Core::Serializer
 		std::vector<unsigned char> buildIENDChunk();
 		std::vector<unsigned char> buildImageData();
 		std::vector<unsigned char> buildCRC(std::vector<unsigned char> chunk, int chunkLength);
+		std::vector<unsigned char> buildZLIBCheck(std::vector<unsigned char> data);
 		void append(std::vector<unsigned char> &target, std::vector<unsigned char> source);
 		void append(std::vector<unsigned char>& target, unsigned char value);
 	};

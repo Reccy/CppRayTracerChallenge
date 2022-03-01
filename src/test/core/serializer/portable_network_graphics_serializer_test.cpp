@@ -65,7 +65,17 @@ TEST(CppRayTracerChallenge_Core_Serializer_PortableNetworkGraphicsSerializer, se
 	Serializer::PortableNetworkGraphicsSerializer png;
 	png.serialize(image);
 
-	std::vector<unsigned char> expectedResult = {};
+	std::vector<unsigned char> expectedResult = {
+		0, 0, 0, 0,			// Chunk Length: 0 (TODO: Set correct expected length)
+		73, 68, 65, 84,		// Chunk Type: IDAT
+		// DATA START
+		0b10000111,			// zlib compression method / flags code
+		0b01100010,			// Additional flags / check bits
+		0,					// Compressed data blocks
+		0, 0, 0, 0,			// zlib check value
+		// DATA END
+		0, 0, 0, 0			// CRC (TODO)
+	};
 
 	std::vector<unsigned char> result = decodeResult(png.buffer(), 26, (int)png.buffer().size() - 12);
 
