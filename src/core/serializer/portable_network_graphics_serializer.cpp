@@ -126,6 +126,8 @@ std::vector<unsigned char> updateWithFCHECK(std::vector<unsigned char> data)
 {
 	// Data size is assumed to be 16 bits
 
+	// TODO: Figure out algebraic formula for determining the FCHECK, without doing a for loop
+
 	unsigned char dataOriginal = data[1];
 
 	for (int i = 0b0000; i < 0b1111; ++i)
