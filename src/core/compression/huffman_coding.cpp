@@ -122,8 +122,11 @@ HuffmanCoding::HuffmanCoding(std::vector<unsigned char> bytes)
 		nodeA->parent = parent;
 		nodeB->parent = parent;
 
-		leafNodes.push_back(nodeA);
-		leafNodes.push_back(nodeB);
+		if (nodeA->type == LEAF)
+			leafNodes.push_back(nodeA);
+
+		if (nodeB->type == LEAF)
+			leafNodes.push_back(nodeB);
 
 		nodeQueue.push(parent);
 	}
