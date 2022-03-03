@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <memory>
+#include <map>
 
 namespace CppRayTracerChallenge::Core::Compression
 {
@@ -17,11 +18,14 @@ namespace CppRayTracerChallenge::Core::Compression
 		unsigned int frequency = 0;
 		unsigned char data = '\0';
 		HuffmanNodeType type = LEAF;
+		std::weak_ptr<HuffmanNode> parent;
 		std::weak_ptr<HuffmanNode> left;
 		std::weak_ptr<HuffmanNode> right;
 	};
 
 	bool operator<(const HuffmanNode& lhs, const HuffmanNode& rhs);
+
+	using CodeMap = std::vector<std::tuple<unsigned char, std::vector<int>>>;
 
 	class HuffmanCoding
 	{
@@ -37,8 +41,7 @@ namespace CppRayTracerChallenge::Core::Compression
 		/// </summary>
 		std::vector<int> lookupHuffman(unsigned char originalByte);
 	private:
-		std::vector<std::shared_ptr<HuffmanNode>> m_nodes;
-		std::shared_ptr<HuffmanNode> m_root;
+		CodeMap m_codes;
 	};
 }
 
