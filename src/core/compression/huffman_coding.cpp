@@ -130,9 +130,98 @@ BitlengthMap buildBitlengthMap(CodeMap codemap)
 	return bitlengthMap;
 }
 
+unsigned int convertVecIntToUnsignedInt(std::vector<int> number)
+{
+	unsigned int result = 0;
+
+	for (auto i = 0; i < number.size(); ++i)
+	{
+		auto value = number[i];
+
+		if (value == 1)
+			result |= 1U << (number.size() - 1 - i);
+	}
+
+	return result;
+}
+
+std::vector<int> convertUnsignedIntToVecInt(unsigned int number)
+{
+	std::vector<int> result;
+	auto lengthMax = sizeof(unsigned int) * 8;
+
+	bool inRange = false;
+
+	for (auto i = lengthMax; i >= 1; --i)
+	{
+		auto bit = (number >> (i - 1) & 1U);
+
+		if (!inRange && bit == 1)
+		{
+			inRange = true;
+		}
+
+		if (!inRange)
+			continue;
+
+		result.emplace_back(bit);
+	}
+
+	return result;
+}
+
+std::vector<int> incrementNumber(std::vector<int> vecInt)
+{
+	unsigned int number = convertVecIntToUnsignedInt(vecInt);
+	number++;
+	return convertUnsignedIntToVecInt(number);
+}
+
+std::vector<int> appendZeros(std::vector<int> vecInt, unsigned int zeroAmount)
+{
+	for (unsigned int i = 0; i < zeroAmount; ++i)
+	{
+		vecInt.push_back(0);
+	}
+
+	return vecInt;
+}
+
 CodeMap buildCanonicalCodemap(BitlengthMap lengthmap)
 {
-	return CodeMap();
+	CodeMap codemap;
+
+	unsigned char prevCharacter = (unsigned char)0;
+	unsigned int prevLength = 0;
+	std::vector<int> prevNumber { 0 };
+
+	for (auto it = lengthmap.begin(); it != lengthmap.end(); ++it)
+	{
+		auto character = std::get<0>(*it);
+		auto length = std::get<1>(*it);
+		std::vector<int> number {};
+
+		if (it == lengthmap.begin())
+		{
+			number = std::vector(length, 0);
+		}
+		else if (length == prevLength)
+		{
+			number = incrementNumber(prevNumber);
+		}
+		else
+		{
+			number = incrementNumber(prevNumber);
+			number = appendZeros(number, length - prevLength);
+		}
+
+		codemap.push_back({ character, number });
+		prevCharacter = character;
+		prevLength = length;
+		prevNumber = number;
+	}
+
+	return codemap;
 }
 
 HuffmanCoding::HuffmanCoding(std::vector<unsigned char> bytes)
@@ -179,7 +268,7 @@ HuffmanCoding::HuffmanCoding(std::vector<unsigned char> bytes)
 
 	BitlengthMap bitlengthMap = buildBitlengthMap(m_codes);
 
-	//m_codes = buildCanonicalCodemap(bitlengthMap);
+	m_codes = buildCanonicalCodemap(bitlengthMap);
 }
 
 std::vector<int> HuffmanCoding::lookupHuffman(unsigned char originalByte)

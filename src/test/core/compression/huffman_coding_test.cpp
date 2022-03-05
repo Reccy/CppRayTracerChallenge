@@ -33,10 +33,10 @@ TEST(CppRayTracerChallenge_Core_Compression_HuffmanCoding, generates_tree)
 
 	Compression::HuffmanCoding huffman(input);
 
-	auto aResult = std::vector<int>{ 1, 1 };
-	auto bResult = std::vector<int>{ 1, 0, 0 };
+	auto aResult = std::vector<int>{ 1, 0 };
+	auto bResult = std::vector<int>{ 1, 1, 0 };
 	auto cResult = std::vector<int>{ 0 };
-	auto dResult = std::vector<int>{ 1, 0, 1 };
+	auto dResult = std::vector<int>{ 1, 1, 1 };
 
 	EXPECT_EQ(huffman.lookupHuffman('a'), aResult);
 	EXPECT_EQ(huffman.lookupHuffman('b'), bResult);
