@@ -77,6 +77,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/serializer/wavefront_obj_deserializer.h"
 	"${CORE_LIBRARY_DIR}/encryption/crc.h"
 	"${CORE_LIBRARY_DIR}/compression/huffman_coding.h"
+	"${CORE_LIBRARY_DIR}/compression/deflate.h"
 	"${CORE_LIBRARY_DIR}/helpers/polymorphic_comparable.h"
 	"${CORE_LIBRARY_DIR}/helpers/material_helper.h"
 )
@@ -127,6 +128,7 @@ set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/serializer/wavefront_obj_deserializer.cpp"
 	"${CORE_LIBRARY_DIR}/encryption/crc.cpp"
 	"${CORE_LIBRARY_DIR}/compression/huffman_coding.cpp"
+	"${CORE_LIBRARY_DIR}/compression/deflate.cpp"
 	"${CORE_LIBRARY_DIR}/helpers/material_helper.cpp"
 )
 
@@ -187,6 +189,7 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/serializer/wavefront_obj_deserializer_test.cpp"
 	"${TEST_SUITE_DIR}/core/encryption/crc_test.cpp"
 	"${TEST_SUITE_DIR}/core/compression/huffman_coding_test.cpp"
+	"${TEST_SUITE_DIR}/core/compression/deflate_test.cpp"
 )
 list(APPEND TEST_INCLUDED_DIRS "${CORE_LIBRARY_NAME}")
 add_executable("${TEST_RUNNER_EXECUTABLE_NAME}" "${TEST_RUNNER_EXECUTABLE_SOURCES}")
