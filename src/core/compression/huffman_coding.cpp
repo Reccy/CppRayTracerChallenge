@@ -109,28 +109,23 @@ BitlengthMap buildBitlengthMap(CodeMap codemap)
 		bitlengthMap.push_back({ character, (unsigned int) huffmanCode.size() });
 	}
 
-	struct {
-		bool operator()(BitlengthTuple a, BitlengthTuple b) const
+	std::sort(bitlengthMap.begin(), bitlengthMap.end(), [](BitlengthTuple a, BitlengthTuple b) {
+		auto aCodeLength = std::get<1>(a);
+		auto bCodeLength = std::get<1>(b);
+
+		if (aCodeLength < bCodeLength)
+			return true;
+
+		if (aCodeLength == bCodeLength)
 		{
-			auto aCodeLength = std::get<1>(a);
-			auto bCodeLength = std::get<1>(b);
+			auto aChar = std::get<0>(a);
+			auto bChar = std::get<0>(b);
 
-			if (aCodeLength < bCodeLength)
-				return true;
-
-			if (aCodeLength == bCodeLength)
-			{
-				auto aChar = std::get<0>(a);
-				auto bChar = std::get<1>(b);
-
-				return (aChar < bChar);
-			}
-
-			return false;
+			return (aChar < bChar);
 		}
-	} Custom;
 
-	std::sort(bitlengthMap.begin(), bitlengthMap.end(), Custom);
+		return false;
+	});
 
 	return bitlengthMap;
 }
