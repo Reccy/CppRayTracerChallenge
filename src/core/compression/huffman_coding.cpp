@@ -94,6 +94,52 @@ CodeMap generateCodeMap(std::vector<std::weak_ptr<HuffmanNode>> const & leafNode
 	return codeMap;
 }
 
+using BitlengthTuple = std::tuple<unsigned char, unsigned int>;
+using BitlengthMap = std::vector<BitlengthTuple>;
+
+BitlengthMap buildBitlengthMap(CodeMap codemap)
+{
+	BitlengthMap bitlengthMap;
+
+	for (auto it = codemap.begin(); it != codemap.end(); ++it)
+	{
+		auto character = std::get<0>(*it);
+		auto huffmanCode = std::get<1>(*it);
+
+		bitlengthMap.push_back({ character, (unsigned int) huffmanCode.size() });
+	}
+
+	struct {
+		bool operator()(BitlengthTuple a, BitlengthTuple b) const
+		{
+			auto aCodeLength = std::get<1>(a);
+			auto bCodeLength = std::get<1>(b);
+
+			if (aCodeLength < bCodeLength)
+				return true;
+
+			if (aCodeLength == bCodeLength)
+			{
+				auto aChar = std::get<0>(a);
+				auto bChar = std::get<1>(b);
+
+				return (aChar < bChar);
+			}
+
+			return false;
+		}
+	} Custom;
+
+	std::sort(bitlengthMap.begin(), bitlengthMap.end(), Custom);
+
+	return bitlengthMap;
+}
+
+CodeMap buildCanonicalCodemap(BitlengthMap lengthmap)
+{
+	return CodeMap();
+}
+
 HuffmanCoding::HuffmanCoding(std::vector<unsigned char> bytes)
 {
 	std::map<unsigned char, unsigned int> frequencyMap = buildFrequencyMap(bytes);
@@ -135,6 +181,10 @@ HuffmanCoding::HuffmanCoding(std::vector<unsigned char> bytes)
 	nodes.push_back(root);
 
 	m_codes = generateCodeMap(leafNodes);
+
+	BitlengthMap bitlengthMap = buildBitlengthMap(m_codes);
+
+	//m_codes = buildCanonicalCodemap(bitlengthMap);
 }
 
 std::vector<int> HuffmanCoding::lookupHuffman(unsigned char originalByte)
