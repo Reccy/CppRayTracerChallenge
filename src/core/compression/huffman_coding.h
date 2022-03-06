@@ -40,6 +40,11 @@ namespace CppRayTracerChallenge::Core::Compression
 		/// Retrieves the huffman code for a byte
 		/// </summary>
 		std::vector<int> lookupHuffman(unsigned char originalByte);
+
+		/// <summary>
+		/// Retrieves the list of encoded characters
+		/// </summary>
+		std::vector<unsigned char> encodedCharacters();
 	private:
 		CodeMap m_codes;
 	};

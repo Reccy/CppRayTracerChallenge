@@ -286,3 +286,17 @@ std::vector<int> HuffmanCoding::lookupHuffman(unsigned char originalByte)
 	// Error: No byte found
 	return std::vector<int>();
 }
+
+std::vector<unsigned char> HuffmanCoding::encodedCharacters()
+{
+	std::vector<unsigned char> result;
+
+	for (auto i = 0; i < m_codes.size(); ++i)
+	{
+		auto const& code = m_codes[i];
+
+		result.push_back(std::get<0>(code));
+	}
+
+	return result;
+}
