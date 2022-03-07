@@ -67,8 +67,8 @@ using Graphics::Canvas;
 
 constexpr double RENDER_QUALITY = 1;
 
-constexpr int WINDOW_WIDTH = 1920;
-constexpr int WINDOW_HEIGHT = 1080;
+constexpr int WINDOW_WIDTH = 64;
+constexpr int WINDOW_HEIGHT = 64;
 constexpr int RENDER_WIDTH = static_cast<int>(WINDOW_WIDTH * RENDER_QUALITY);
 constexpr int RENDER_HEIGHT = static_cast<int>(WINDOW_HEIGHT * RENDER_QUALITY);
 
@@ -1003,7 +1003,7 @@ std::shared_ptr<Camera> camera = nullptr;
 Image doRealRender()
 {
 	log("Initializing...");
-	using WorldBuilder = WorldF;
+	using WorldBuilder = WorldA;
 	World world = WorldBuilder::build();
 
 	int width = RENDER_WIDTH;
@@ -1035,9 +1035,7 @@ void writeImage(Image image, BaseImageSerializer& serializer)
 {
 	serializer.serialize(image);
 
-	std::vector<unsigned char> ppmBuffer = serializer.buffer();
-
-	std::string bufferData(ppmBuffer.begin(), ppmBuffer.end());
+	const std::vector<unsigned char> ppmBuffer = serializer.buffer();
 
 	TCHAR appData[MAX_PATH];
 	if (SUCCEEDED(SHGetFolderPath(NULL,
@@ -1052,9 +1050,9 @@ void writeImage(Image image, BaseImageSerializer& serializer)
 		filePath << appData << _TEXT(imageName.c_str());
 
 		std::ofstream file;
-		file.open(filePath.str().c_str());
+		file.open(filePath.str().c_str(), std::ios_base::binary);
 
-		file << bufferData << std::endl;
+		file.write((const char *)&ppmBuffer[0], ppmBuffer.size());
 		file.close();
 
 		std::cout << "File written" << std::endl;
@@ -1098,7 +1096,7 @@ Image generatePerlin()
 void renderTask(std::atomic<bool>* threadProgress)
 {
 	Image image = doRealRender();
-	PortablePixmapImageSerializer serializer;
+	PortableNetworkGraphicsSerializer serializer;
 	
 	writeImage(image, serializer);
 
