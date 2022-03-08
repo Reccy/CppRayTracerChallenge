@@ -37,6 +37,6 @@ TEST(CppRayTracerChallange_Core_Compression_Deflate, deflate_block_sets_header_b
 
 	auto data = block.data();
 
-	EXPECT_EQ(data[1], 1);
-	EXPECT_EQ(data[2], 0);
+	EXPECT_EQ(data[1], 0);
+	EXPECT_EQ(data[2], 1);
 }
