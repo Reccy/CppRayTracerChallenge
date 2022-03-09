@@ -1,6 +1,7 @@
 #include "portable_network_graphics_serializer.h"
 #include "../graphics/color.h"
 #include "../encryption/crc.h"
+#include "../compression/deflate.h"
 
 using namespace CppRayTracerChallenge::Core::Serializer;
 
@@ -142,7 +143,7 @@ std::vector<unsigned char> updateWithFCHECK(std::vector<unsigned char> data)
 
 	throw std::logic_error("Could not compute a valid FCHECK when encoding PNG file");
 }
-
+/*
 std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
 {
 	// zlib compression method/ flags code (CMF)
@@ -172,6 +173,70 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
 	append(imageData, buildZLIBCheck(imageData));
 
 	return imageData;
+}
+*/
+
+bool inline getBit(CppRayTracerChallenge::Core::Compression::DeflateBlock::DeflateBitset const& bitset, unsigned int index)
+{
+	if (index >= bitset.size())
+		return false;
+
+	return bitset.test(index);
+}
+
+unsigned char convertColorValue(float colorValue) // TODO: Merge with PPM to base class or helper class
+{
+	float scaledColor = colorValue * 255;
+	scaledColor = std::ceil(scaledColor);
+	scaledColor = std::clamp(scaledColor, 0.0f, 255.0f);
+
+	return static_cast<unsigned char>(scaledColor);
+}
+
+std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
+{
+	std::vector<unsigned char> pixelData;
+
+	auto const& imageBuffer = m_image.toBuffer();
+
+	for (auto it = imageBuffer.begin(); it != imageBuffer.end(); ++it)
+	{
+		auto color = *it;
+
+		pixelData.push_back(convertColorValue(color.red()));
+		pixelData.push_back(convertColorValue(color.green()));
+		pixelData.push_back(convertColorValue(color.blue()));
+	}
+
+	auto deflate = Compression::DeflateBlock(pixelData, true, false);
+
+	auto deflateSize = deflate.size();
+	auto bitset = deflate.data();
+
+	unsigned int numBytes = static_cast<int>(ceil(deflateSize / 8));
+
+	std::vector<unsigned char> result;
+
+	// Convert bits to bytes
+	for (unsigned int i = 0; i < numBytes; ++i)
+	{
+		auto offset = i * 8;
+
+		std::bitset<8> bits;
+
+		bits[0] = getBit(bitset, 0 + offset);
+		bits[1] = getBit(bitset, 1 + offset);
+		bits[2] = getBit(bitset, 2 + offset);
+		bits[3] = getBit(bitset, 3 + offset);
+		bits[4] = getBit(bitset, 4 + offset);
+		bits[5] = getBit(bitset, 5 + offset);
+		bits[6] = getBit(bitset, 6 + offset);
+		bits[7] = getBit(bitset, 7 + offset);
+
+		result.push_back(static_cast<unsigned char>(bits.to_ulong()));
+	}
+
+	return result;
 }
 
 std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildCRC(std::vector<unsigned char> chunk, int chunkDataLength)

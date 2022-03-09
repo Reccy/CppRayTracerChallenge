@@ -1,11 +1,21 @@
 #include "deflate.h"
 #include "huffman_coding.h"
+#include <iostream>
 
 using namespace CppRayTracerChallenge::Core::Compression;
 
 DeflateBlock::DeflateBlock(std::vector<unsigned char> data, bool isFinal, bool isCompressed)
 	: m_isCompressed(isCompressed), m_writeIndex(0)
 {
+	unsigned short lengthBytes = static_cast<unsigned short>(data.size());
+
+	if (lengthBytes >= 65536)
+	{
+		std::string error("Cannot create DEFLATE Block with more than 65536 bytes!");
+		std::cerr << error << std::endl;
+		throw std::logic_error(error);
+	}
+
 	// Set BFINAL
 	writeBit(isFinal);
 
@@ -34,10 +44,8 @@ DeflateBlock::DeflateBlock(std::vector<unsigned char> data, bool isFinal, bool i
 			writeBit(0);
 		}
 
-		unsigned short length = static_cast<unsigned short>(data.size());
-
-		writeShort(length);
-		writeShort(~length); // Intentional use of bitwise NOT
+		writeShort(lengthBytes);
+		writeShort(~lengthBytes); // Intentional use of bitwise NOT
 
 		// Write uncompressed data
 		for (auto it = data.begin(); it != data.end(); ++it)
@@ -45,6 +53,11 @@ DeflateBlock::DeflateBlock(std::vector<unsigned char> data, bool isFinal, bool i
 			writeByte(*it);
 		}
 	}
+}
+
+unsigned int DeflateBlock::size() const
+{
+	return m_writeIndex;
 }
 
 DeflateBlock::DeflateBitset DeflateBlock::data() const

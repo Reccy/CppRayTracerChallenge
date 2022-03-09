@@ -1096,6 +1096,7 @@ Image generatePerlin()
 void renderTask(std::atomic<bool>* threadProgress)
 {
 	Image image = doRealRender();
+	//PortablePixmapImageSerializer serializer;
 	PortableNetworkGraphicsSerializer serializer;
 	
 	writeImage(image, serializer);
