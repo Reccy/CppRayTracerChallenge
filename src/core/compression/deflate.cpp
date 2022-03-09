@@ -5,7 +5,7 @@
 using namespace CppRayTracerChallenge::Core::Compression;
 
 DeflateBlock::DeflateBlock(std::vector<unsigned char> data, bool isFinal, bool isCompressed)
-	: m_isCompressed(isCompressed), m_writeIndex(0)
+	: m_isCompressed(isCompressed), m_writeIndex(0), m_data(std::make_unique<DeflateBitset>())
 {
 	unsigned short lengthBytes = static_cast<unsigned short>(data.size());
 
@@ -62,25 +62,25 @@ unsigned int DeflateBlock::size() const
 
 DeflateBlock::DeflateBitset DeflateBlock::data() const
 {
-	return m_data;
+	return *m_data;
 }
 
 void DeflateBlock::writeBit(bool bit)
 {
-	m_data[m_writeIndex] = bit;
+	(*m_data)[m_writeIndex] = bit;
 	m_writeIndex++;
 }
 
 void DeflateBlock::writeByte(unsigned char byte)
 {
-	m_data[m_writeIndex + 0] = (byte >> 0) & 1;
-	m_data[m_writeIndex + 1] = (byte >> 1) & 1;
-	m_data[m_writeIndex + 2] = (byte >> 2) & 1;
-	m_data[m_writeIndex + 3] = (byte >> 3) & 1;
-	m_data[m_writeIndex + 4] = (byte >> 4) & 1;
-	m_data[m_writeIndex + 5] = (byte >> 5) & 1;
-	m_data[m_writeIndex + 6] = (byte >> 6) & 1;
-	m_data[m_writeIndex + 7] = (byte >> 7) & 1;
+	(*m_data)[m_writeIndex + 0] = (byte >> 0) & 1;
+	(*m_data)[m_writeIndex + 1] = (byte >> 1) & 1;
+	(*m_data)[m_writeIndex + 2] = (byte >> 2) & 1;
+	(*m_data)[m_writeIndex + 3] = (byte >> 3) & 1;
+	(*m_data)[m_writeIndex + 4] = (byte >> 4) & 1;
+	(*m_data)[m_writeIndex + 5] = (byte >> 5) & 1;
+	(*m_data)[m_writeIndex + 6] = (byte >> 6) & 1;
+	(*m_data)[m_writeIndex + 7] = (byte >> 7) & 1;
 
 	m_writeIndex += 8;
 }
@@ -88,23 +88,23 @@ void DeflateBlock::writeByte(unsigned char byte)
 void DeflateBlock::writeShort(unsigned short integer)
 {
 	// Assuming the Int16 is already little endian
-	m_data[m_writeIndex + 0] = (integer >> 0) & 1;
-	m_data[m_writeIndex + 1] = (integer >> 1) & 1;
-	m_data[m_writeIndex + 2] = (integer >> 2) & 1;
-	m_data[m_writeIndex + 3] = (integer >> 3) & 1;
-	m_data[m_writeIndex + 4] = (integer >> 4) & 1;
-	m_data[m_writeIndex + 5] = (integer >> 5) & 1;
-	m_data[m_writeIndex + 6] = (integer >> 6) & 1;
-	m_data[m_writeIndex + 7] = (integer >> 7) & 1;
+	(*m_data)[m_writeIndex + 0] = (integer >> 0) & 1;
+	(*m_data)[m_writeIndex + 1] = (integer >> 1) & 1;
+	(*m_data)[m_writeIndex + 2] = (integer >> 2) & 1;
+	(*m_data)[m_writeIndex + 3] = (integer >> 3) & 1;
+	(*m_data)[m_writeIndex + 4] = (integer >> 4) & 1;
+	(*m_data)[m_writeIndex + 5] = (integer >> 5) & 1;
+	(*m_data)[m_writeIndex + 6] = (integer >> 6) & 1;
+	(*m_data)[m_writeIndex + 7] = (integer >> 7) & 1;
 
-	m_data[m_writeIndex + 8] = (integer >> 8) & 1;
-	m_data[m_writeIndex + 9] = (integer >> 9) & 1;
-	m_data[m_writeIndex + 10] = (integer >> 10) & 1;
-	m_data[m_writeIndex + 11] = (integer >> 11) & 1;
-	m_data[m_writeIndex + 12] = (integer >> 12) & 1;
-	m_data[m_writeIndex + 13] = (integer >> 13) & 1;
-	m_data[m_writeIndex + 14] = (integer >> 14) & 1;
-	m_data[m_writeIndex + 15] = (integer >> 15) & 1;
+	(*m_data)[m_writeIndex + 8] = (integer >> 8) & 1;
+	(*m_data)[m_writeIndex + 9] = (integer >> 9) & 1;
+	(*m_data)[m_writeIndex + 10] = (integer >> 10) & 1;
+	(*m_data)[m_writeIndex + 11] = (integer >> 11) & 1;
+	(*m_data)[m_writeIndex + 12] = (integer >> 12) & 1;
+	(*m_data)[m_writeIndex + 13] = (integer >> 13) & 1;
+	(*m_data)[m_writeIndex + 14] = (integer >> 14) & 1;
+	(*m_data)[m_writeIndex + 15] = (integer >> 15) & 1;
 
 	m_writeIndex += 16;
 }

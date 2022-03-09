@@ -21,7 +21,7 @@ namespace CppRayTracerChallenge::Core::Compression
 		DeflateBitset data() const;
 		unsigned int size() const;
 	private:
-		DeflateBitset m_data;
+		std::unique_ptr<DeflateBitset> m_data;
 		void writeByte(unsigned char byte);
 		void writeBit(bool bit);
 		void writeShort(unsigned short integer);
