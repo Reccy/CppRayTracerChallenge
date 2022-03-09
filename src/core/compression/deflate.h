@@ -18,7 +18,7 @@ namespace CppRayTracerChallenge::Core::Compression
 		using DeflateBitset = std::bitset<65535 * 8>;
 
 		DeflateBlock(std::vector<unsigned char> data, bool isFinal, bool isCompressed = true);
-		DeflateBitset data() const;
+		const DeflateBitset& data() const;
 		unsigned int size() const;
 	private:
 		std::unique_ptr<DeflateBitset> m_data;

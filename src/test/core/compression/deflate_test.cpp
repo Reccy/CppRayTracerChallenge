@@ -22,7 +22,7 @@ TEST(CppRayTracerChallange_Core_Compression_Deflate, deflate_block_sets_header_b
 {
 	auto block = testDeflateBlockFinal();
 
-	auto data = block.data();
+	auto const& data = block.data();
 
 	EXPECT_EQ(data[0], 1);
 }
@@ -31,7 +31,7 @@ TEST(CppRayTracerChallange_Core_Compression_Deflate, deflate_block_sets_header_b
 {
 	auto block = testDeflateBlock();
 
-	auto data = block.data();
+	auto const & data = block.data();
 
 	EXPECT_EQ(data[0], 0);
 }
@@ -40,7 +40,7 @@ TEST(CppRayTracerChallange_Core_Compression_Deflate, deflate_block_sets_header_b
 {
 	auto block = testDeflateBlock();
 
-	auto data = block.data();
+	auto const& data = block.data();
 
 	EXPECT_EQ(data[1], 0);
 	EXPECT_EQ(data[2], 1);
@@ -50,7 +50,7 @@ TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_writes_padding
 {
 	auto block = testUncompressedDeflateBlock();
 
-	auto data = block.data();
+	auto const& data = block.data();
 
 	EXPECT_EQ(data[3], 0);
 	EXPECT_EQ(data[4], 0);
@@ -63,7 +63,7 @@ TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_writes_length_
 {
 	auto block = testUncompressedDeflateBlock();
 
-	auto data = block.data();
+	auto const& data = block.data();
 
 	// Length (16 bit value)
 	int offset = 8;
@@ -126,7 +126,7 @@ TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_writes_bitstre
 {
 	auto block = testUncompressedDeflateBlock();
 
-	auto data = block.data();
+	auto const& data = block.data();
 
 	int offset = 40;
 
