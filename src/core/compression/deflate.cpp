@@ -60,7 +60,7 @@ unsigned int DeflateBlock::size() const
 	return m_writeIndex;
 }
 
-DeflateBlock::DeflateBitset DeflateBlock::data() const
+const DeflateBlock::DeflateBitset& DeflateBlock::data() const
 {
 	return *m_data;
 }

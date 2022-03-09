@@ -211,7 +211,7 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
 	auto deflate = Compression::DeflateBlock(pixelData, true, false);
 
 	auto deflateSize = deflate.size();
-	auto bitset = deflate.data();
+	auto const & bitset = deflate.data();
 
 	unsigned int numBytes = static_cast<int>(ceil(deflateSize / 8));
 
