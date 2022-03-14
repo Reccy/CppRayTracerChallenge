@@ -7,14 +7,14 @@ using namespace CppRayTracerChallenge::Core::Compression;
 DeflateBlock::DeflateBlock(std::vector<unsigned char> data, bool isFinal, bool isCompressed)
 	: m_isCompressed(isCompressed), m_writeIndex(0), m_data(std::make_unique<DeflateBitset>())
 {
-	unsigned short lengthBytes = static_cast<unsigned short>(data.size());
-
-	if (lengthBytes >= 65536)
+	if (data.size() >= 65536)
 	{
 		std::string error("Cannot create DEFLATE Block with more than 65536 bytes!");
 		std::cerr << error << std::endl;
 		throw std::logic_error(error);
 	}
+
+	unsigned short lengthBytes = static_cast<unsigned short>(data.size());
 
 	// Set BFINAL
 	writeBit(isFinal);
