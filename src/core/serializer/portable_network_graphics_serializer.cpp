@@ -116,45 +116,45 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildIENDChunk()
 	return chunk;
 }
 
-unsigned char setWithFCHECK(unsigned char cm, unsigned char cinfo)
+unsigned char setWithFCHECK(unsigned char cmf, unsigned char flg)
 {
 	// Data size is assumed to be 16 bits
 
 	// TODO: Figure out algebraic formula for determining the FCHECK, without doing a for loop
 
-	std::bitset<8> cmBits = cm;
-	std::bitset<8> cinfoBits = cinfo;
+	std::bitset<8> cmfBits = cmf;
+	std::bitset<8> flgBits = flg;
 
-	for (int i = 0; i < 16; ++i)
+	for (unsigned int i = 0b00000; i <= 0b11111; ++i)
 	{
 		std::bitset<16> checkBits;
-		std::bitset<4> indexBits = i;
+		std::bitset<5> indexBits = i;
 
 		// Set the iterated number
 		checkBits[0] = indexBits[0];
 		checkBits[1] = indexBits[1];
 		checkBits[2] = indexBits[2];
 		checkBits[3] = indexBits[3];
+		checkBits[4] = indexBits[4];
 
-		// Set the cinfo static data
-		checkBits[4] = cinfoBits[0];
-		checkBits[5] = cinfoBits[1];
-		checkBits[6] = cinfoBits[2];
-		checkBits[7] = cinfoBits[3];
+		// Set the flg
+		checkBits[5] = flgBits[5]; // FDICT
+		checkBits[6] = flgBits[6]; // FLEVEL
+		checkBits[7] = flgBits[7]; // FLEVEL
 
-		// Set the cm
-		checkBits[8] = cmBits[0];
-		checkBits[9] = cmBits[1];
-		checkBits[10] = cmBits[2];
-		checkBits[11] = cmBits[3];
-		checkBits[12] = cmBits[4];
-		checkBits[13] = cmBits[5];
-		checkBits[14] = cmBits[6];
-		checkBits[15] = cmBits[7];
+		// Set the cmf
+		checkBits[8] = cmfBits[0];
+		checkBits[9] = cmfBits[1];
+		checkBits[10] = cmfBits[2];
+		checkBits[11] = cmfBits[3];
+		checkBits[12] = cmfBits[4];
+		checkBits[13] = cmfBits[5];
+		checkBits[14] = cmfBits[6];
+		checkBits[15] = cmfBits[7];
 
 		auto check = static_cast<unsigned int>(checkBits.to_ulong());
 
-		if (check % 31 == 0 || check == 0)
+		if (check % 31 == 0)
 		{
 			std::bitset<8> resultBits;
 
@@ -224,11 +224,11 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
 	// FLEVEL - Uses default algorithm - 010 (2)
 	std::vector<unsigned char> result;
 
-	unsigned char cm = 0b01111000;
-	unsigned char cinfo = 0b11000000;
+	unsigned char cmf = 0b01111000;
+	unsigned char flg = 0b00000000;
 
-	result.push_back(cm); // zlib compression method/flags code
-	result.push_back(setWithFCHECK(cm, cinfo));
+	result.push_back(cmf); // zlib compression method/flags code
+	result.push_back(setWithFCHECK(cmf, flg));
 
 	// COMPRESSED DATA -> Convert bits to bytes
 	for (unsigned int i = 0; i < numBytes; ++i)

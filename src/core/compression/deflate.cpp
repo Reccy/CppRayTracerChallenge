@@ -36,7 +36,7 @@ DeflateBlock::DeflateBlock(std::vector<unsigned char> data, bool isFinal, bool i
 	{
 		// Set BTYPE to 0 (Uncompressed)
 		writeBit(0);
-		writeBit(1);
+		writeBit(0);
 
 		// Add 5 bits of padding to the byte boundary
 		for (int i = 0; i < 5; ++i)

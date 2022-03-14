@@ -18,7 +18,7 @@ DeflateBlock testUncompressedDeflateBlock()
 	return DeflateBlock({ 'h', 'e', 'l', 'l', 'o' }, true, false);
 }
 
-TEST(CppRayTracerChallange_Core_Compression_Deflate, deflate_block_sets_header_bfinal_true)
+TEST(CppRayTracerChallenge_Core_Compression_Deflate, deflate_block_sets_header_bfinal_true)
 {
 	auto block = testDeflateBlockFinal();
 
@@ -27,7 +27,7 @@ TEST(CppRayTracerChallange_Core_Compression_Deflate, deflate_block_sets_header_b
 	EXPECT_EQ(data[0], 1);
 }
 
-TEST(CppRayTracerChallange_Core_Compression_Deflate, deflate_block_sets_header_bfinal_false)
+TEST(CppRayTracerChallenge_Core_Compression_Deflate, deflate_block_sets_header_bfinal_false)
 {
 	auto block = testDeflateBlock();
 
@@ -36,7 +36,7 @@ TEST(CppRayTracerChallange_Core_Compression_Deflate, deflate_block_sets_header_b
 	EXPECT_EQ(data[0], 0);
 }
 
-TEST(CppRayTracerChallange_Core_Compression_Deflate, deflate_block_sets_header_btype_to_dynamic_huffman)
+TEST(CppRayTracerChallenge_Core_Compression_Deflate, deflate_block_sets_header_btype_to_dynamic_huffman)
 {
 	auto block = testDeflateBlock();
 
@@ -44,6 +44,16 @@ TEST(CppRayTracerChallange_Core_Compression_Deflate, deflate_block_sets_header_b
 
 	EXPECT_EQ(data[1], 0);
 	EXPECT_EQ(data[2], 1);
+}
+
+TEST(CppRayTracerChallenge_Core_Compression_Deflate, deflate_block_sets_header_btype_to_uncompressed_when_set)
+{
+	auto block = testUncompressedDeflateBlock();
+
+	auto const& data = block.data();
+
+	EXPECT_EQ(data[1], 0);
+	EXPECT_EQ(data[2], 0);
 }
 
 TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_writes_padding)
