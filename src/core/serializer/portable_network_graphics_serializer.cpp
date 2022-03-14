@@ -1,6 +1,7 @@
 #include "portable_network_graphics_serializer.h"
 #include "../graphics/color.h"
 #include "../encryption/crc.h"
+#include "../encryption/adler32.h"
 #include "../compression/deflate.h"
 
 using namespace CppRayTracerChallenge::Core::Serializer;
@@ -115,66 +116,63 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildIENDChunk()
 	return chunk;
 }
 
-unsigned int convertBytesToUnsignedInt(std::vector<unsigned char> data)
-{
-	// data[0] stored as MSB
-	// data[1] stored as LSB
-	// Big Endian
-	return (data[0] * 256) + data[1];
-}
-
-std::vector<unsigned char> updateWithFCHECK(std::vector<unsigned char> data)
+unsigned char setWithFCHECK(unsigned char cm, unsigned char cinfo)
 {
 	// Data size is assumed to be 16 bits
 
 	// TODO: Figure out algebraic formula for determining the FCHECK, without doing a for loop
 
-	unsigned char dataOriginal = data[1];
+	std::bitset<8> cmBits = cm;
+	std::bitset<8> cinfoBits = cinfo;
 
-	for (int i = 0b0000; i < 0b1111; ++i)
+	for (int i = 0; i < 16; ++i)
 	{
-		data[1] = (unsigned char)(i * 16) + dataOriginal;
-		
-		unsigned int value = convertBytesToUnsignedInt(data);
+		std::bitset<16> checkBits;
+		std::bitset<4> indexBits = i;
 
-		if (value % 31 == 0)
-			return data;
+		// Set the iterated number
+		checkBits[0] = indexBits[0];
+		checkBits[1] = indexBits[1];
+		checkBits[2] = indexBits[2];
+		checkBits[3] = indexBits[3];
+
+		// Set the cinfo static data
+		checkBits[4] = cinfoBits[0];
+		checkBits[5] = cinfoBits[1];
+		checkBits[6] = cinfoBits[2];
+		checkBits[7] = cinfoBits[3];
+
+		// Set the cm
+		checkBits[8] = cmBits[0];
+		checkBits[9] = cmBits[1];
+		checkBits[10] = cmBits[2];
+		checkBits[11] = cmBits[3];
+		checkBits[12] = cmBits[4];
+		checkBits[13] = cmBits[5];
+		checkBits[14] = cmBits[6];
+		checkBits[15] = cmBits[7];
+
+		auto check = static_cast<unsigned int>(checkBits.to_ulong());
+
+		if (check % 31 == 0 || check == 0)
+		{
+			std::bitset<8> resultBits;
+
+			resultBits[0] = checkBits[0];
+			resultBits[1] = checkBits[1];
+			resultBits[2] = checkBits[2];
+			resultBits[3] = checkBits[3];
+			resultBits[4] = checkBits[4];
+			resultBits[5] = checkBits[5];
+			resultBits[6] = checkBits[6];
+			resultBits[7] = checkBits[7];
+
+			return static_cast<unsigned char>(resultBits.to_ulong());
+		}
 	}
 
 	throw std::logic_error("Could not compute a valid FCHECK when encoding PNG file");
 }
-/*
-std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
-{
-	// zlib compression method/ flags code (CMF)
-	// CM (Compression Method) is "deflate" method for PNGs - 1000 (8)
-	// CINFO (Compression Info) is "32k window size for LZ77" - 0111 (7)
-	// Therefore the zlib compression method / flags code is 10000111 (135)
-	//
-	// Additional flags / check bits (FLG)
-	// FCHECK - Unset, will be assigned later
-	// FDICT - If a dictionary is present after the FLG bit - 0 (0)
-	// FLEVEL - Uses default algorithm - 010 (2)
-	std::vector<unsigned char> imageData
-	{
-		0b10000111,	// zlib compression method/flags code
-		0b00000010	// Additional flags/check bits
-	};
-
-	imageData = updateWithFCHECK(imageData);
-
-	std::vector<Graphics::Color> imageBuffer = this->m_image.toBuffer();
-
-	for (int i = 0; i < imageBuffer.size(); ++i)
-	{
-
-	}
-
-	append(imageData, buildZLIBCheck(imageData));
-
-	return imageData;
-}
-*/
 
 bool inline getBit(CppRayTracerChallenge::Core::Compression::DeflateBlock::DeflateBitset const& bitset, unsigned int index)
 {
@@ -215,9 +213,24 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
 
 	unsigned int numBytes = static_cast<int>(ceil(deflateSize / 8));
 
+	// zlib compression method/ flags code (CMF)
+	// CM (Compression Method) is "deflate" method for PNGs - 1000 (8)
+	// CINFO (Compression Info) is "32k window size for LZ77" - 0111 (7)
+	// Therefore the zlib compression method / flags code is 10000111 (135)
+	//
+	// Additional flags / check bits (FLG)
+	// FCHECK
+	// FDICT - If a dictionary is present after the FLG bit - 0 (0)
+	// FLEVEL - Uses default algorithm - 010 (2)
 	std::vector<unsigned char> result;
 
-	// Convert bits to bytes
+	unsigned char cm = 0b01111000;
+	unsigned char cinfo = 0b11000000;
+
+	result.push_back(cm); // zlib compression method/flags code
+	result.push_back(setWithFCHECK(cm, cinfo));
+
+	// COMPRESSED DATA -> Convert bits to bytes
 	for (unsigned int i = 0; i < numBytes; ++i)
 	{
 		auto offset = i * 8;
@@ -235,6 +248,13 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
 
 		result.push_back(static_cast<unsigned char>(bits.to_ulong()));
 	}
+
+	// Split adler32 into 4 bytes (MSB)
+	auto adler32 = Encryption::Adler32::run(pixelData);
+	append(result, ((unsigned char*)(&adler32))[3]);
+	append(result, ((unsigned char*)(&adler32))[2]);
+	append(result, ((unsigned char*)(&adler32))[1]);
+	append(result, ((unsigned char*)(&adler32))[0]);
 
 	return result;
 }

@@ -25,6 +25,7 @@ namespace CppRayTracerChallenge::Core::Compression
 		void writeByte(unsigned char byte);
 		void writeBit(bool bit);
 		void writeShort(unsigned short integer);
+		void writeInt(unsigned int integer);
 		unsigned int m_writeIndex;
 		bool m_isCompressed;
 	};
