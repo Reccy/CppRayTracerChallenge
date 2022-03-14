@@ -197,9 +197,14 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
 
 	auto const& imageBuffer = m_image.toBuffer();
 
-	for (auto it = imageBuffer.begin(); it != imageBuffer.end(); ++it)
+	for (unsigned int i = 0; i < imageBuffer.size(); ++i)
 	{
-		auto color = *it;
+		auto color = imageBuffer[i];
+
+		if (i % m_image.width() == 0)
+		{
+			pixelData.push_back(0);
+		}
 
 		pixelData.push_back(convertColorValue(color.red()));
 		pixelData.push_back(convertColorValue(color.green()));
