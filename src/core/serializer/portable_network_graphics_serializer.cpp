@@ -201,22 +201,25 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
 	{
 		auto color = imageBuffer[i];
 
+		// Insert filter byte at start of scanline
 		if (i % m_image.width() == 0)
 		{
+			//pixelData.push_back('S');
 			pixelData.push_back(0);
 		}
+
+		//pixelData.push_back('R');
+		//pixelData.push_back('G');
+		//pixelData.push_back('B');
 
 		pixelData.push_back(convertColorValue(color.red()));
 		pixelData.push_back(convertColorValue(color.green()));
 		pixelData.push_back(convertColorValue(color.blue()));
 	}
 
-	auto deflate = Compression::DeflateBlock(pixelData, true, false);
+	unsigned int deflateBlockCount = static_cast<unsigned int>(std::ceil((double)pixelData.size() / (double)Compression::DeflateBlock::MAX_BYTES));
 
-	auto deflateSize = deflate.size();
-	auto const & bitset = deflate.data();
-
-	unsigned int numBytes = static_cast<int>(ceil(deflateSize / 8));
+	std::vector<unsigned char> result;
 
 	// zlib compression method/ flags code (CMF)
 	// CM (Compression Method) is "deflate" method for PNGs - 1000 (8)
@@ -227,31 +230,58 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
 	// FCHECK
 	// FDICT - If a dictionary is present after the FLG bit - 0 (0)
 	// FLEVEL - Uses default algorithm - 010 (2)
-	std::vector<unsigned char> result;
-
 	unsigned char cmf = 0b01111000;
 	unsigned char flg = 0b00000000;
 
 	result.push_back(cmf); // zlib compression method/flags code
 	result.push_back(setWithFCHECK(cmf, flg));
 
-	// COMPRESSED DATA -> Convert bits to bytes
-	for (unsigned int i = 0; i < numBytes; ++i)
+	auto pixelDataSize = pixelData.size();
+	auto maxBytes = Compression::DeflateBlock::MAX_BYTES;
+
+	std::cout << "Deflate: Compressing with " << (deflateBlockCount + 1) << " chunks\n";
+
+	for (unsigned int deflateIndex = 0; deflateIndex < deflateBlockCount; ++deflateIndex)
 	{
-		auto offset = i * 8;
+		auto startIdx = maxBytes * deflateIndex;
+		auto endIdx = startIdx + maxBytes;
 
-		std::bitset<8> bits;
+		bool isFinal = deflateIndex == deflateBlockCount - 1;
 
-		bits[0] = getBit(bitset, 0 + offset);
-		bits[1] = getBit(bitset, 1 + offset);
-		bits[2] = getBit(bitset, 2 + offset);
-		bits[3] = getBit(bitset, 3 + offset);
-		bits[4] = getBit(bitset, 4 + offset);
-		bits[5] = getBit(bitset, 5 + offset);
-		bits[6] = getBit(bitset, 6 + offset);
-		bits[7] = getBit(bitset, 7 + offset);
+		if (isFinal)
+			endIdx = static_cast<unsigned int>(pixelDataSize);
 
-		result.push_back(static_cast<unsigned char>(bits.to_ulong()));
+		auto startIt = pixelData.begin() + startIdx;
+		auto endIt = pixelData.begin() + endIdx;
+
+		std::vector<unsigned char> pixelDataChunk(endIdx - startIdx);
+		std::copy(startIt, endIt, pixelDataChunk.begin());
+
+		auto deflate = Compression::DeflateBlock(pixelDataChunk, isFinal, false);
+
+		auto deflateSize = deflate.size();
+		auto const & bitset = deflate.data();
+
+		unsigned int numBytes = static_cast<unsigned int>(ceil(deflateSize / 8));
+
+		// COMPRESSED DATA -> Convert bits to bytes
+		for (unsigned int i = 0; i < numBytes; ++i)
+		{
+			auto offset = i * 8;
+
+			std::bitset<8> bits;
+
+			bits[0] = getBit(bitset, 0 + offset);
+			bits[1] = getBit(bitset, 1 + offset);
+			bits[2] = getBit(bitset, 2 + offset);
+			bits[3] = getBit(bitset, 3 + offset);
+			bits[4] = getBit(bitset, 4 + offset);
+			bits[5] = getBit(bitset, 5 + offset);
+			bits[6] = getBit(bitset, 6 + offset);
+			bits[7] = getBit(bitset, 7 + offset);
+
+			result.push_back(static_cast<unsigned char>(bits.to_ulong()));
+		}
 	}
 
 	// Split adler32 into 4 bytes (MSB)

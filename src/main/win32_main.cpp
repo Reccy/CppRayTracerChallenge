@@ -67,8 +67,8 @@ using Graphics::Canvas;
 
 constexpr double RENDER_QUALITY = 1;
 
-constexpr int WINDOW_WIDTH = 64;
-constexpr int WINDOW_HEIGHT = 64;
+constexpr int WINDOW_WIDTH = 1920;
+constexpr int WINDOW_HEIGHT = 1080;
 constexpr int RENDER_WIDTH = static_cast<int>(WINDOW_WIDTH * RENDER_QUALITY);
 constexpr int RENDER_HEIGHT = static_cast<int>(WINDOW_HEIGHT * RENDER_QUALITY);
 
@@ -998,6 +998,80 @@ public:
 	}
 };
 
+class WorldG
+{
+public:
+	static World build()
+	{
+		auto floor = buildFloor();
+		PointLight light = buildLight();
+
+		World world = World();
+
+		world.defaultRemainingCalls = 8;
+
+		world.addObject(*floor);
+		world.addLight(light);
+		world.addObject(*floor);
+
+		return world;
+	}
+
+	static Matrix<double, 4, 4> cameraMatrix()
+	{
+		double camPosX = 0;
+		double camPosY = 1.5;
+		double camPosZ = -10;
+
+		double camLookX = 0;
+		double camLookY = 1;
+		double camLookZ = 0;
+
+		return Camera::viewMatrix({ camPosX, camPosY, camPosZ }, { camLookX, camLookY, camLookZ }, Vector::up());
+	}
+
+	static int fov()
+	{
+		return 70;
+	}
+private:
+	static std::shared_ptr<Renderer::Pattern> buildFloorPattern()
+	{
+		std::shared_ptr<Pattern> a = std::make_shared<Stripe>(Color(0.5f, 0, 0), Color(0.2f, 0, 0));
+		a->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
+
+		std::shared_ptr<Pattern> b = std::make_shared<Stripe>(Color(0, 0, 0.5f), Color(0, 0, 0.2f));
+		b->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
+
+		std::shared_ptr<Pattern> masked = std::make_shared<Masked<Checker>>(a, b);
+		masked->transform(Math::Transform().rotate(0, 23, 0).translate(0, 0.01f, 0));
+
+		std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
+		return pattern;
+	}
+
+	static std::shared_ptr<Renderer::Shape> buildFloor()
+	{
+		auto shape = std::make_shared<Plane>();
+		Renderer::Shape floor = Renderer::Shape(shape);
+		Transform floorTransform = Transform()
+			.scale(10, 0.01, 10);
+		Material bgMaterial = Material();
+		bgMaterial.pattern = buildFloorPattern();
+		bgMaterial.specular = 0.1f;
+		bgMaterial.reflective = 0.95f;
+		floor.material(bgMaterial);
+		floor.transform(floorTransform);
+		return std::make_shared<Renderer::Shape>(floor);
+	}
+
+	static PointLight buildLight()
+	{
+		return PointLight({ -10, 10, -10 }, Color(1, 1, 1));
+	}
+};
+
+
 std::shared_ptr<Camera> camera = nullptr;
 
 Image doRealRender()
@@ -1096,8 +1170,8 @@ Image generatePerlin()
 void renderTask(std::atomic<bool>* threadProgress)
 {
 	Image image = doRealRender();
-	//PortablePixmapImageSerializer serializer;
-	PortableNetworkGraphicsSerializer serializer;
+	PortablePixmapImageSerializer serializer;
+	//PortableNetworkGraphicsSerializer serializer;
 	
 	writeImage(image, serializer);
 

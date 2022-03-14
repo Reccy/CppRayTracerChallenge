@@ -15,7 +15,8 @@ namespace CppRayTracerChallenge::Core::Compression
 	class DeflateBlock
 	{
 	public:
-		using DeflateBitset = std::bitset<65535 * 8>;
+		static const unsigned int MAX_BYTES = 65530;
+		using DeflateBitset = std::bitset<(MAX_BYTES * 8) + (5 * 8)>;
 
 		DeflateBlock(std::vector<unsigned char> data, bool isFinal, bool isCompressed = true);
 		const DeflateBitset& data() const;
