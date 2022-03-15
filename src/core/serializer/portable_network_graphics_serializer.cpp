@@ -304,11 +304,6 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildCRC(std::vect
 	return Encryption::CRC::run(track);
 }
 
-std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildZLIBCheck(std::vector<unsigned char> data)
-{
-	return std::vector<unsigned char>();
-}
-
 void PortableNetworkGraphicsSerializer::append(std::vector<unsigned char>& target, std::vector<unsigned char> source)
 {
 	target.insert(target.end(), source.begin(), source.end());
