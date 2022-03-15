@@ -1077,7 +1077,7 @@ std::shared_ptr<Camera> camera = nullptr;
 Image doRealRender()
 {
 	log("Initializing...");
-	using WorldBuilder = WorldA;
+	using WorldBuilder = WorldC;
 	World world = WorldBuilder::build();
 
 	int width = RENDER_WIDTH;
@@ -1170,8 +1170,8 @@ Image generatePerlin()
 void renderTask(std::atomic<bool>* threadProgress)
 {
 	Image image = doRealRender();
-	PortablePixmapImageSerializer serializer;
-	//PortableNetworkGraphicsSerializer serializer;
+	//PortablePixmapImageSerializer serializer;
+	PortableNetworkGraphicsSerializer serializer;
 	
 	writeImage(image, serializer);
 
