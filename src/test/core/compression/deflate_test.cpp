@@ -3,19 +3,19 @@
 
 using namespace CppRayTracerChallenge::Core::Compression;
 
-DeflateBlock testDeflateBlock()
+DeflateBlock testDeflateBlock(std::vector<unsigned char> data = { 'h', 'e', 'l', 'l', 'o'})
 {
-	return DeflateBlock({ 'h', 'e', 'l', 'l', 'o' }, false);
+	return DeflateBlock(data, false);
 }
 
-DeflateBlock testDeflateBlockFinal()
+DeflateBlock testDeflateBlockFinal(std::vector<unsigned char> data = { 'h', 'e', 'l', 'l', 'o' })
 {
-	return DeflateBlock({ 'h', 'e', 'l', 'l', 'o' }, true);
+	return DeflateBlock(data, true);
 }
 
-DeflateBlock testUncompressedDeflateBlock()
+DeflateBlock testUncompressedDeflateBlock(std::vector<unsigned char> data = { 'h', 'e', 'l', 'l', 'o' })
 {
-	return DeflateBlock({ 'h', 'e', 'l', 'l', 'o' }, true, false);
+	return DeflateBlock(data, true, false);
 }
 
 TEST(CppRayTracerChallenge_Core_Compression_Deflate, deflate_block_sets_header_bfinal_true)
@@ -145,4 +145,30 @@ TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_writes_bitstre
 	EXPECT_EQ(readByte(data, offset + 16), 'l');
 	EXPECT_EQ(readByte(data, offset + 24), 'l');
 	EXPECT_EQ(readByte(data, offset + 32), 'o');
+}
+
+TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_with_max_bytes_throws_no_error)
+{
+	std::vector<unsigned char> input;
+
+	// Fill input with MAX_BYTES for Deflate Block
+	for (unsigned int i = 0; i < DeflateBlock::MAX_BYTES; ++i)
+	{
+		input.push_back('A');
+	}
+
+	EXPECT_NO_THROW(testUncompressedDeflateBlock(input));
+}
+
+TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_with_more_than_max_bytes_throws_error)
+{
+	std::vector<unsigned char> input;
+
+	// Fill input with too much data for the Deflate Block
+	for (unsigned int i = 0; i < DeflateBlock::MAX_BYTES + 1; ++i)
+	{
+		input.push_back('A');
+	}
+
+	EXPECT_THROW(testUncompressedDeflateBlock(input), std::logic_error);
 }

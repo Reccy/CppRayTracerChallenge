@@ -1,6 +1,8 @@
 #include "deflate.h"
 #include "huffman_coding.h"
 #include <iostream>
+#include <sstream>
+#include <string>
 
 using namespace CppRayTracerChallenge::Core::Compression;
 
@@ -9,7 +11,9 @@ DeflateBlock::DeflateBlock(std::vector<unsigned char> data, bool isFinal, bool i
 {
 	if (data.size() > MAX_BYTES && !m_isCompressed)
 	{
-		std::string error("Cannot create uncompressed DEFLATE Block with more than 65530 bytes!");
+		std::stringstream ss;
+		ss << "Cannot create uncompressed DEFLATE block with more than " << MAX_BYTES << " bytes!";
+		std::string error = ss.str();
 		std::cerr << error << std::endl;
 		throw std::logic_error(error);
 	}
