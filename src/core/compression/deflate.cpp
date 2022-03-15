@@ -6,10 +6,10 @@
 
 using namespace CppRayTracerChallenge::Core::Compression;
 
-DeflateBlock::DeflateBlock(std::vector<unsigned char> data, bool isFinal, bool isCompressed)
-	: m_isCompressed(isCompressed), m_writeIndex(0), m_data(std::make_unique<DeflateBitset>())
+DeflateBlock::DeflateBlock(std::vector<unsigned char> data, bool isFinal)
+	: m_writeIndex(0), m_data(std::make_unique<DeflateBitset>())
 {
-	if (data.size() > MAX_BYTES && !m_isCompressed)
+	if (data.size() > MAX_BYTES)
 	{
 		std::stringstream ss;
 		ss << "Cannot create uncompressed DEFLATE block with more than " << MAX_BYTES << " bytes!";
@@ -23,39 +23,23 @@ DeflateBlock::DeflateBlock(std::vector<unsigned char> data, bool isFinal, bool i
 	// Set BFINAL
 	writeBit(isFinal);
 
-	if (m_isCompressed)
-	{
-		// Set BTYPE to 2 (10 LSB first) (Compressed with Dynamic Huffman Codes)
-		writeBit(0);
-		writeBit(1);
+	// Set BTYPE to 0 (Uncompressed)
+	writeBit(0);
+	writeBit(0);
 
-		// Set HLIT -  # of Literal/Length codes (5 bits)
-		// Set HDIST - # of Distance codes (5 bits)
-		// Set HCLEN - # of Code Length codes (4 bits)
-	
-		// Generate Huffman Codes
-		HuffmanCoding huffman(data);
+	// Add 5 bits of padding to the byte boundary
+	for (int i = 0; i < 5; ++i)
+	{
+		writeBit(0);
 	}
-	else
+
+	writeShort(lengthBytes);
+	writeShort(~lengthBytes); // Intentional use of bitwise NOT
+
+	// Write uncompressed data
+	for (auto it = data.begin(); it != data.end(); ++it)
 	{
-		// Set BTYPE to 0 (Uncompressed)
-		writeBit(0);
-		writeBit(0);
-
-		// Add 5 bits of padding to the byte boundary
-		for (int i = 0; i < 5; ++i)
-		{
-			writeBit(0);
-		}
-
-		writeShort(lengthBytes);
-		writeShort(~lengthBytes); // Intentional use of bitwise NOT
-
-		// Write uncompressed data
-		for (auto it = data.begin(); it != data.end(); ++it)
-		{
-			writeByte(*it);
-		}
+		writeByte(*it);
 	}
 }
 

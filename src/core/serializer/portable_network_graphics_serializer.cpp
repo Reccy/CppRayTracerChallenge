@@ -257,7 +257,7 @@ std::vector<unsigned char> PortableNetworkGraphicsSerializer::buildImageData()
 		std::vector<unsigned char> pixelDataChunk(endIdx - startIdx);
 		std::copy(startIt, endIt, pixelDataChunk.begin());
 
-		auto deflate = Compression::DeflateBlock(pixelDataChunk, isFinal, false);
+		auto deflate = Compression::DeflateBlock(pixelDataChunk, isFinal);
 
 		auto deflateSize = deflate.size();
 		auto const & bitset = deflate.data();

@@ -3,24 +3,40 @@
 
 using namespace CppRayTracerChallenge::Core::Compression;
 
-DeflateBlock testDeflateBlock(std::vector<unsigned char> data = { 'h', 'e', 'l', 'l', 'o'})
+struct Params
 {
-	return DeflateBlock(data, false);
-}
+	std::vector<unsigned char> data = { 'h', 'e', 'l', 'l' ,'o' };
+	bool isFinal = true;
 
-DeflateBlock testDeflateBlockFinal(std::vector<unsigned char> data = { 'h', 'e', 'l', 'l', 'o' })
-{
-	return DeflateBlock(data, true);
-}
+	Params()
+	{
+	}
 
-DeflateBlock testUncompressedDeflateBlock(std::vector<unsigned char> data = { 'h', 'e', 'l', 'l', 'o' })
+	Params(bool isFinal)
+	{
+		this->isFinal = isFinal;
+	}
+
+	Params(std::vector<unsigned char> data)
+	{
+		this->data = data;
+	}
+
+	Params(std::vector<unsigned char> data, bool isFinal)
+	{
+		this->data = data;
+		this->isFinal = isFinal;
+	}
+};
+
+DeflateBlock testDeflateBlock(Params params = Params())
 {
-	return DeflateBlock(data, true, false);
+	return DeflateBlock(params.data, params.isFinal);
 }
 
 TEST(CppRayTracerChallenge_Core_Compression_Deflate, deflate_block_sets_header_bfinal_true)
 {
-	auto block = testDeflateBlockFinal();
+	auto block = testDeflateBlock();
 
 	auto const& data = block.data();
 
@@ -29,26 +45,16 @@ TEST(CppRayTracerChallenge_Core_Compression_Deflate, deflate_block_sets_header_b
 
 TEST(CppRayTracerChallenge_Core_Compression_Deflate, deflate_block_sets_header_bfinal_false)
 {
-	auto block = testDeflateBlock();
+	auto block = testDeflateBlock(false);
 
 	auto const & data = block.data();
 
 	EXPECT_EQ(data[0], 0);
 }
 
-TEST(CppRayTracerChallenge_Core_Compression_Deflate, deflate_block_sets_header_btype_to_dynamic_huffman)
+TEST(CppRayTracerChallenge_Core_Compression_Deflate, deflate_block_sets_header_btype_to_uncompressed)
 {
 	auto block = testDeflateBlock();
-
-	auto const& data = block.data();
-
-	EXPECT_EQ(data[1], 0);
-	EXPECT_EQ(data[2], 1);
-}
-
-TEST(CppRayTracerChallenge_Core_Compression_Deflate, deflate_block_sets_header_btype_to_uncompressed_when_set)
-{
-	auto block = testUncompressedDeflateBlock();
 
 	auto const& data = block.data();
 
@@ -58,7 +64,7 @@ TEST(CppRayTracerChallenge_Core_Compression_Deflate, deflate_block_sets_header_b
 
 TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_writes_padding)
 {
-	auto block = testUncompressedDeflateBlock();
+	auto block = testDeflateBlock();
 
 	auto const& data = block.data();
 
@@ -71,7 +77,7 @@ TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_writes_padding
 
 TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_writes_length_and_complement)
 {
-	auto block = testUncompressedDeflateBlock();
+	auto block = testDeflateBlock();
 
 	auto const& data = block.data();
 
@@ -134,7 +140,7 @@ unsigned char readByte(DeflateBlock::DeflateBitset const & bitset, int offset)
 
 TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_writes_bitstream)
 {
-	auto block = testUncompressedDeflateBlock();
+	auto block = testDeflateBlock();
 
 	auto const& data = block.data();
 
@@ -157,7 +163,7 @@ TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_with_max_bytes
 		input.push_back('A');
 	}
 
-	EXPECT_NO_THROW(testUncompressedDeflateBlock(input));
+	EXPECT_NO_THROW(testDeflateBlock(input));
 }
 
 TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_with_more_than_max_bytes_throws_error)
@@ -170,5 +176,5 @@ TEST(CppRayTracerChallenge_Core_Compression_Deflate, uncompressed_with_more_than
 		input.push_back('A');
 	}
 
-	EXPECT_THROW(testUncompressedDeflateBlock(input), std::logic_error);
+	EXPECT_THROW(testDeflateBlock(input), std::logic_error);
 }
