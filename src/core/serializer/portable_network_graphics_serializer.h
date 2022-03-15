@@ -18,9 +18,16 @@ namespace CppRayTracerChallenge::Core::Serializer
 	{
 	public:
 		void serialize(Graphics::Image image) override;
-		void deserialize(std::vector<unsigned char> buffer) override;
+		std::string fileExtension() const override;
 	private:
-		std::string buildSignature();
+		std::vector<unsigned char> buildSignature();
+		std::vector<unsigned char> buildIHDRChunk();
+		std::vector<unsigned char> buildIDATChunk();
+		std::vector<unsigned char> buildIENDChunk();
+		std::vector<unsigned char> buildImageData();
+		std::vector<unsigned char> buildCRC(std::vector<unsigned char> chunk, int chunkLength);
+		void append(std::vector<unsigned char> &target, std::vector<unsigned char> source);
+		void append(std::vector<unsigned char>& target, unsigned char value);
 	};
 }
 

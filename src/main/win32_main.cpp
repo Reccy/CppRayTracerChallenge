@@ -49,7 +49,8 @@
 #include "renderer/patterns/masked.h"
 #include "serializer/base_image_serializer.h"
 #include "serializer/portable_pixmap_image_serializer.h"
-#include "serializer/wavefront_obj_serializer.h"
+#include "serializer/portable_network_graphics_serializer.h"
+#include "serializer/wavefront_obj_deserializer.h"
 #include "helpers/material_helper.h"
 
 using namespace CppRayTracerChallenge::Core;
@@ -620,7 +621,7 @@ private:
 			exit(0);
 		}
 
-		WavefrontOBJSerializer serializer = WavefrontOBJSerializer();
+		WavefrontOBJDeserializer serializer = WavefrontOBJDeserializer();
 
 		serializer.deserialize(buffer);
 
@@ -997,12 +998,86 @@ public:
 	}
 };
 
+class WorldG
+{
+public:
+	static World build()
+	{
+		auto floor = buildFloor();
+		PointLight light = buildLight();
+
+		World world = World();
+
+		world.defaultRemainingCalls = 8;
+
+		world.addObject(*floor);
+		world.addLight(light);
+		world.addObject(*floor);
+
+		return world;
+	}
+
+	static Matrix<double, 4, 4> cameraMatrix()
+	{
+		double camPosX = 0;
+		double camPosY = 1.5;
+		double camPosZ = -10;
+
+		double camLookX = 0;
+		double camLookY = 1;
+		double camLookZ = 0;
+
+		return Camera::viewMatrix({ camPosX, camPosY, camPosZ }, { camLookX, camLookY, camLookZ }, Vector::up());
+	}
+
+	static int fov()
+	{
+		return 70;
+	}
+private:
+	static std::shared_ptr<Renderer::Pattern> buildFloorPattern()
+	{
+		std::shared_ptr<Pattern> a = std::make_shared<Stripe>(Color(0.5f, 0, 0), Color(0.2f, 0, 0));
+		a->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
+
+		std::shared_ptr<Pattern> b = std::make_shared<Stripe>(Color(0, 0, 0.5f), Color(0, 0, 0.2f));
+		b->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
+
+		std::shared_ptr<Pattern> masked = std::make_shared<Masked<Checker>>(a, b);
+		masked->transform(Math::Transform().rotate(0, 23, 0).translate(0, 0.01f, 0));
+
+		std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
+		return pattern;
+	}
+
+	static std::shared_ptr<Renderer::Shape> buildFloor()
+	{
+		auto shape = std::make_shared<Plane>();
+		Renderer::Shape floor = Renderer::Shape(shape);
+		Transform floorTransform = Transform()
+			.scale(10, 0.01, 10);
+		Material bgMaterial = Material();
+		bgMaterial.pattern = buildFloorPattern();
+		bgMaterial.specular = 0.1f;
+		bgMaterial.reflective = 0.95f;
+		floor.material(bgMaterial);
+		floor.transform(floorTransform);
+		return std::make_shared<Renderer::Shape>(floor);
+	}
+
+	static PointLight buildLight()
+	{
+		return PointLight({ -10, 10, -10 }, Color(1, 1, 1));
+	}
+};
+
+
 std::shared_ptr<Camera> camera = nullptr;
 
 Image doRealRender()
 {
 	log("Initializing...");
-	using WorldBuilder = WorldF;
+	using WorldBuilder = WorldC;
 	World world = WorldBuilder::build();
 
 	int width = RENDER_WIDTH;
@@ -1034,9 +1109,7 @@ void writeImage(Image image, BaseImageSerializer& serializer)
 {
 	serializer.serialize(image);
 
-	std::vector<char> ppmBuffer = serializer.buffer();
-
-	std::string bufferData(ppmBuffer.begin(), ppmBuffer.end());
+	const std::vector<unsigned char> ppmBuffer = serializer.buffer();
 
 	TCHAR appData[MAX_PATH];
 	if (SUCCEEDED(SHGetFolderPath(NULL,
@@ -1045,12 +1118,15 @@ void writeImage(Image image, BaseImageSerializer& serializer)
 		SHGFP_TYPE_CURRENT,
 		appData))) {
 		std::basic_ostringstream<TCHAR> filePath;
-		filePath << appData << _TEXT("\\generated_image.ppm");
+
+		std::string imageName = std::string("\\generated_image.") + std::string(serializer.fileExtension());
+
+		filePath << appData << _TEXT(imageName.c_str());
 
 		std::ofstream file;
-		file.open(filePath.str().c_str());
+		file.open(filePath.str().c_str(), std::ios_base::binary);
 
-		file << bufferData << std::endl;
+		file.write((const char *)&ppmBuffer[0], ppmBuffer.size());
 		file.close();
 
 		std::cout << "File written" << std::endl;
@@ -1094,7 +1170,8 @@ Image generatePerlin()
 void renderTask(std::atomic<bool>* threadProgress)
 {
 	Image image = doRealRender();
-	PortablePixmapImageSerializer serializer;
+	//PortablePixmapImageSerializer serializer;
+	PortableNetworkGraphicsSerializer serializer;
 	
 	writeImage(image, serializer);
 

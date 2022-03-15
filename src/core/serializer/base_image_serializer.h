@@ -2,6 +2,8 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_BASE_IMAGE_SERIALIZER
 
 #include <fstream>
+#include <string>
+#include <vector>
 #include "../graphics/image.h"
 
 namespace CppRayTracerChallenge::Core::Serializer {
@@ -18,9 +20,9 @@ namespace CppRayTracerChallenge::Core::Serializer {
 		virtual void serialize(Graphics::Image image) = 0;
 
 		/// <summary>
-		/// Deserializes a buffer, converting it into an Image
+		/// Returns the name of the file extension
 		/// </summary>
-		virtual void deserialize(std::vector<unsigned char> buffer) = 0;
+		virtual std::string fileExtension() const = 0;
 
 		/// <summary>
 		/// Returns the deserialized image
