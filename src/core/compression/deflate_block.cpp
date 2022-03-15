@@ -1,5 +1,4 @@
-#include "deflate.h"
-#include "huffman_coding.h"
+#include "deflate_block.h"
 #include <iostream>
 #include <sstream>
 #include <string>

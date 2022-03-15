@@ -1,17 +1,12 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_COMPRESSION_DEFLATE
-#define _CPPRAYTRACERCHALLENGE_CORE_COMPRESSION_DEFLATE
+#ifndef _CPPRAYTRACERCHALLENGE_CORE_COMPRESSION_DEFLATE_BLOCK
+#define _CPPRAYTRACERCHALLENGE_CORE_COMPRESSION_DEFLATE_BLOCK
 
-#include "huffman_coding.h"
 #include <vector>
 #include <bitset>
+#include <memory>
 
 namespace CppRayTracerChallenge::Core::Compression
 {
-	class Deflate
-	{
-
-	};
-
 	class DeflateBlock
 	{
 	public:
@@ -31,4 +26,4 @@ namespace CppRayTracerChallenge::Core::Compression
 	};
 }
 
-#endif _CPPRAYTRACERCHALLENGE_CORE_COMPRESSION_DEFLATE
+#endif _CPPRAYTRACERCHALLENGE_CORE_COMPRESSION_DEFLATE_BLOCK

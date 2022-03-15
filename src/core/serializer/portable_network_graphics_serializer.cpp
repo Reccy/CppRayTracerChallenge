@@ -2,7 +2,7 @@
 #include "../graphics/color.h"
 #include "../encryption/crc.h"
 #include "../encryption/adler32.h"
-#include "../compression/deflate.h"
+#include "../compression/deflate_block.h"
 
 using namespace CppRayTracerChallenge::Core::Serializer;
 

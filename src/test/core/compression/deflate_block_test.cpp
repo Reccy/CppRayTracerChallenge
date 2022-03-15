@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "compression/deflate.h"
+#include "compression/deflate_block.h"
 
 using namespace CppRayTracerChallenge::Core::Compression;
 
