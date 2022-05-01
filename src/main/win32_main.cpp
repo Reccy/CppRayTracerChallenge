@@ -1452,8 +1452,172 @@ private:
 	}
 };
 
-int main()
+class Options
 {
+public:
+	Options(int argc, char* argv[])
+	{
+		m_exePath = std::string(argv[0]);
+
+		for (int i = 1; i < argc; ++i)
+		{
+			std::string str(argv[i]);
+
+			if (m_state == ParseState::NONE)
+			{
+				if (str == "--output" || str == "-o")
+				{
+					m_state = ParseState::READ_OUTPUT_PATH;
+					continue;
+				}
+				else if (str == "--input" || str == "-i")
+				{
+					m_state = ParseState::READ_INPUT_PATH;
+					continue;
+				}
+				else if (str == "--pipe" || str == "-p")
+				{
+					m_state = ParseState::READ_PIPED_INPUT;
+				}
+				else if (str == "--help" || str == "-h")
+				{
+					m_helpFlag = true;
+					continue;
+				}
+				else
+				{
+					std::cout << "Unrecognised argument: " << str << std::endl;
+					continue;
+				}
+			}
+			else if (m_state == ParseState::READ_OUTPUT_PATH)
+			{
+				m_outputPath = str;
+				m_outputSet = true;
+				m_state = ParseState::NONE;
+				continue;
+			}
+			else if (m_state == ParseState::READ_INPUT_PATH)
+			{
+				m_inputPath = str;
+				m_inputSet = true;
+				m_state = ParseState::NONE;
+				continue;
+			}
+			else if (m_state == ParseState::READ_PIPED_INPUT)
+			{
+				m_inputPiped = str;
+				m_inputSet = true;
+				m_state = ParseState::NONE;
+				continue;
+			}
+		}
+	}
+
+	const std::string path()
+	{
+		return m_exePath;
+	}
+
+	const std::string outputPath()
+	{
+		return m_outputPath;
+	}
+
+	const std::string inputPath()
+	{
+		return m_inputPath;
+	}
+
+	const std::string inputPiped()
+	{
+		return m_inputPiped;
+	}
+
+	const bool helpFlag()
+	{
+		return m_helpFlag;
+	}
+
+	const bool inputSet()
+	{
+		return m_inputSet;
+	}
+
+	const bool outputSet()
+	{
+		return m_outputSet;
+	}
+private:
+	enum ParseState { NONE, READ_OUTPUT_PATH, READ_INPUT_PATH, READ_PIPED_INPUT };
+	ParseState m_state = ParseState::NONE;
+
+	std::vector<std::string> m_argv;
+	std::string m_exePath;
+	std::string m_outputPath;
+	std::string m_inputPath;
+	std::string m_inputPiped;
+	bool m_helpFlag = false;
+	bool m_inputSet = false;
+	bool m_outputSet = false;
+};
+
+int main(int argc, char* argv[])
+{
+	Options options(argc, argv);
+
+	if (options.helpFlag())
+	{
+		std::cout << "=== MANDATORY OPTIONS ===" << "\n";
+		std::cout << "Set Output File" << "\n";
+		std::cout << "    Flag: --output / -o" << "\n";
+		std::cout << "    Argument: Absolute path to output file" << "\n";
+		std::cout << "    Optional? No" << "\n";
+		std::cout << "\n";
+		std::cout << "Set Input File" << "\n";
+		std::cout << "    Flag: --input / -i" << "\n";
+		std::cout << "    Argument: Absolute path to input file" << "\n";
+		std::cout << "    Optional? Either this or inline data must be set." << "\n";
+		std::cout << "\n";
+		std::cout << "Pass Input File as Inline Data" << "\n";
+		std::cout << "    Flag: --pipe / -p" << "\n";
+		std::cout << "    Argument: Content of input file" << "\n";
+		std::cout << "    Optional? Either this or input file must be set." << "\n";
+		std::cout << "\n";
+		std::cout << "Run this application again without the help flag to run." << "\n";
+		std::cout << "\n";
+		std::cout << "Exiting..." << std::endl;
+		return 0;
+	}
+	else
+	{
+		std::cout << "Ray Tracer by Aaron Meaney" << "\n";
+		std::cout << "\n";
+		std::cout << "Options:" << "\n";
+		std::cout << "Output File: " << options.outputPath() << "\n";
+		std::cout << "Input File: " << options.inputPath() << "\n";
+		std::cout << "Input Pipe: " << options.inputPiped() << "\n";
+		std::cout << "\n";
+	}
+
+	if (!options.inputSet() || !options.outputSet())
+	{
+		std::cout << "Error: Invalid Options" << "\n";
+
+		if (!options.inputSet())
+		{
+			std::cout << "> Please ensure a valid input is provided. A file or file contents is sufficient." << "\n";
+		}
+
+		if (!options.outputSet())
+		{
+			std::cout << "> Please ensure a valid output path is provided." << "\n";
+		}
+
+		std::cout << "Resolve issues and try again. Use --help for more information." << std::endl;
+		return 0;
+	}
+
 	if (!glfwInit())
 	{
 		std::cout << "FATAL: GLFW init failed" << std::endl;
