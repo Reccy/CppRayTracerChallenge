@@ -1,0 +1,77 @@
+version: 1
+
+settings:
+  default_remaining_calls: 32
+
+hierarchy:
+  lights:
+    - uuid: 7732482348
+      name: Point Light
+      light_type: point
+      transform:
+        x: 10.5
+        y: 12.4
+        z: 2.3
+      color:
+        r: 0.9
+        g: 0.95
+        b: 0.99
+  objects:
+    - uuid: 129230403923
+      name: Blue Cube
+      shape: cube
+      material: blue
+      transform:
+        translate:
+          x: 0
+          y: 0
+          z: 0
+        rotate:
+          x: 0
+          y: 0
+          z: 0
+        scale: 
+          x: 1
+          y: 1
+          z: 1
+    - uuid: 129230403924
+      name: Green Cube
+      shape: cube
+      material: green
+      transform:
+        translate:
+          x: 5
+          y: 0
+          z: 3
+        rotate:
+          x: 0
+          y: 0
+          z: 12
+        scale: 
+          x: 1
+          y: 1
+          z: 1
+
+materials:
+  - uuid: 2984744
+    name: Blue
+    pattern:
+      type: solid
+      color:
+        r: 0
+        g: 0
+        b: 0.9
+    reflective: 0.5
+    specular: 0.2
+    diffuse: 0.2
+  - uuid: 2984744
+    name: Green
+    pattern:
+      type: solid
+      color:
+        r: 0.05
+        g: 0.8
+        b: 0.1
+    reflective: 0.5
+    specular: 0.2
+    diffuse: 0.2

@@ -16,3 +16,7 @@ DoxyGen Documentation is available here: https://reccy.github.io/CppRayTracerCha
 4. Run `git submodule update`
 5. Run `cmake -S . -B build`
 6. Use the generated CMake files to compile and link the program
+
+# World File Format
+This is a YAML file describing the format for storing world files that can be read by the renderer.
+[Format Spec](docs/world_file_schema.yml)

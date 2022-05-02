@@ -1,0 +1,128 @@
+settings:
+  type: dictionary
+  keys:
+    default_remaining_calls:
+      type: integer
+      min_value: 1
+      max_value: 64
+
+hierarchy:
+  type: dictionary
+  keys:
+    lights:
+      type: list
+      keys:
+        uuid:
+          type: integer
+        name:
+          type: string
+        light_type:
+          type: string
+          strict_values: [ point ]
+        transform:
+          type: dictionary
+          keys:
+            x:
+              type: float
+            y:
+              type: float
+            z:
+              type: float
+        intensity:
+          type: dictionary
+          keys:
+            r:
+              type: float
+              min_value: 0
+              max_value: 1
+            g:
+              type: float
+              min_value: 0
+              max_value: 1
+            b:
+              type: float
+              min_value: 0
+              max_value: 1
+    objects:
+      type: list
+      keys:
+        uuid:
+          type: integer
+        name:
+          type: string
+        shape:
+          type: string
+          strict_values: [ cube ]
+        material:
+          type: string
+        transform:
+          type: dictionary
+          keys:
+            translate:
+              type: dictionary
+              keys:
+                x:
+                  type: float
+                y:
+                  type: float
+                z:
+                  type: float
+            rotate:
+              type: dictionary
+              keys:
+                x:
+                  type: float
+                y:
+                  type: float
+                z:
+                  type: float
+            scale:
+              type: dictionary
+              keys:
+                x:
+                  type: float
+                y:
+                  type: float
+                z:
+                  type: float
+
+materials:
+  type: list
+  keys:
+    uuid:
+      type: integer
+    name:
+      type: string
+    pattern:
+      type: dictionary
+      keys:
+        type:
+          type: string
+          strict_values: [ solid ]
+        color:
+          type: dictionary
+          keys:
+            r:
+              type: float
+              min_value: 0
+              max_value: 1
+            g:
+              type: float
+              min_value: 0
+              max_value: 1
+            b:
+              type: float
+              min_value: 0
+              max_value: 1
+    reflective:
+      type: float
+      min_value: 0
+      max_value: 1
+    specular:
+      type: float
+      min_value: 0
+      max_value: 1
+    diffuse:
+      type: float
+      min_value: 0
+      max_value: 1
