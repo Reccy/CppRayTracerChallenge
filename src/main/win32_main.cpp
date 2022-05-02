@@ -17,6 +17,9 @@
 #include <glad.h>
 #include <GLFW/glfw3.h>
 
+#include <ryml_std.hpp>
+#include <ryml.hpp>
+
 #include "math/vector.h"
 #include "math/point.h"
 #include "math/transform.h"
@@ -1564,6 +1567,10 @@ private:
 
 int main(int argc, char* argv[])
 {
+	// I know using comments instead of functions is """""bad code""""" but I just want to get this done for tooljam.
+	// Can always refactor later!
+
+	// Parse CLI args
 	Options options(argc, argv);
 
 	if (options.helpFlag())
@@ -1618,6 +1625,21 @@ int main(int argc, char* argv[])
 		return 0;
 	}
 
+	// Load the world file and validate it
+	
+	std::ifstream ymlfile(options.inputPath());
+	const std::string ymlstr((std::istreambuf_iterator<char>(ymlfile)),
+		(std::istreambuf_iterator<char>()));
+
+	ryml::Tree tree = ryml::parse_in_arena(ryml::to_csubstr(ymlstr));
+
+	std::cout << "Parsing file...\n";
+	std::cout << "File Version: " << tree["version"].val() << "\n";
+	std::cout << "Objects Count: " << tree["hierarchy"]["objects"].num_children() << "\n";
+	std::cout << "Lights Count: " << tree["hierarchy"]["lights"].num_children() << "\n";
+	std::cout << "Materials Count: " << tree["materials"].num_children() << "\n";
+
+	// Init GLFW and render the image
 	if (!glfwInit())
 	{
 		std::cout << "FATAL: GLFW init failed" << std::endl;
@@ -1634,6 +1656,7 @@ int main(int argc, char* argv[])
 		glfw.loop();
 	}
 
+	// Wait for render threads to finish before exiting the program
 	while (!threadProgress.load() && !renderThread.joinable()) {}
 
 	renderThread.join();

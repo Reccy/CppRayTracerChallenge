@@ -252,3 +252,10 @@ set(TF_BUILD_CUDA OFF CACHE BOOL "" FORCE)
 
 add_subdirectory("src/lib/taskflow")
 target_link_libraries("${CORE_LIBRARY_NAME}" PRIVATE Taskflow)
+
+#
+# YAML Library
+#
+
+add_subdirectory("src/lib/rapidyaml")
+target_link_libraries("${CORE_LIBRARY_NAME}" PUBLIC ryml::ryml)

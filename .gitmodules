@@ -4,6 +4,6 @@
 [submodule "src/lib/taskflow"]
 	path = src/lib/taskflow
 	url = https://github.com/taskflow/taskflow.git
-[submodule "src/lib/yaml-cpp"]
-	path = src/lib/yaml-cpp
-	url = https://github.com/jbeder/yaml-cpp.git
+[submodule "src/lib/rapidyaml"]
+	path = src/lib/rapidyaml
+	url = https://github.com/biojppm/rapidyaml.git
