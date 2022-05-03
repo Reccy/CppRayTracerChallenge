@@ -5,76 +5,80 @@
 #include <ryml.hpp>
 
 #include "../math/cube.h"
+#include "../renderer/camera.h"
 
 using namespace CppRayTracerChallenge::Core;
 
-std::string toStr(c4::yml::NodeRef node)
+namespace
 {
-	return std::string(node.val().begin(), node.val().end());
-}
-
-int toInt(c4::yml::NodeRef node)
-{
-	std::string str = toStr(node);
-	return std::stoi(toStr(node));
-}
-
-float toFloat(c4::yml::NodeRef node)
-{
-	return std::stof(toStr(node));
-}
-
-Graphics::Color toColor(c4::yml::NodeRef color)
-{
-	auto r = toFloat(color["r"]);
-	auto g = toFloat(color["g"]);
-	auto b = toFloat(color["b"]);
-
-	return Graphics::Color(r, g, b);
-}
-
-Math::Transform toTransform(c4::yml::NodeRef transformNode)
-{
-	float translateX = toFloat(transformNode["translate"]["x"]);
-	float translateY = toFloat(transformNode["translate"]["y"]);
-	float translateZ = toFloat(transformNode["translate"]["z"]);
-
-	float rotateX = toFloat(transformNode["rotate"]["x"]);
-	float rotateY = toFloat(transformNode["rotate"]["y"]);
-	float rotateZ = toFloat(transformNode["rotate"]["z"]);
-
-	float scaleX = toFloat(transformNode["scale"]["x"]);
-	float scaleY = toFloat(transformNode["scale"]["y"]);
-	float scaleZ = toFloat(transformNode["scale"]["z"]);
-
-	return Math::Transform()
-		.translate(translateX, translateY, translateZ)
-		.rotate(rotateX, rotateY, rotateZ)
-		.scale(scaleX, scaleY, scaleZ);
-}
-
-Math::Vector toVec3(c4::yml::NodeRef node)
-{
-	float x = toFloat(node["x"]);
-	float y = toFloat(node["y"]);
-	float z = toFloat(node["z"]);
-
-	return Math::Vector(x, y, z);
-}
-
-std::shared_ptr<Renderer::Pattern> buildPattern(c4::yml::NodeRef pattern)
-{
-	std::string type = toStr(pattern["type"]);
-
-	if (type != "solid") // todo: fix quick and dirty pattern type check here
+	std::string toStr(c4::yml::NodeRef node)
 	{
-		std::cerr << "Invalid Pattern type: " << type << std::endl;
-		abort();
+		return std::string(node.val().begin(), node.val().end());
 	}
 
-	Graphics::Color color = toColor(pattern["color"]);
+	int toInt(c4::yml::NodeRef node)
+	{
+		std::string str = toStr(node);
+		return std::stoi(toStr(node));
+	}
 
-	return std::make_shared<Renderer::Patterns::SolidColor>(Renderer::Patterns::SolidColor(color));
+	float toFloat(c4::yml::NodeRef node)
+	{
+		return std::stof(toStr(node));
+	}
+
+	Graphics::Color toColor(c4::yml::NodeRef color)
+	{
+		auto r = toFloat(color["r"]);
+		auto g = toFloat(color["g"]);
+		auto b = toFloat(color["b"]);
+
+		return Graphics::Color(r, g, b);
+	}
+
+	Math::Transform toTransform(c4::yml::NodeRef transformNode)
+	{
+		float translateX = toFloat(transformNode["translate"]["x"]);
+		float translateY = toFloat(transformNode["translate"]["y"]);
+		float translateZ = toFloat(transformNode["translate"]["z"]);
+
+		float rotateX = toFloat(transformNode["rotate"]["x"]);
+		float rotateY = toFloat(transformNode["rotate"]["y"]);
+		float rotateZ = toFloat(transformNode["rotate"]["z"]);
+
+		float scaleX = toFloat(transformNode["scale"]["x"]);
+		float scaleY = toFloat(transformNode["scale"]["y"]);
+		float scaleZ = toFloat(transformNode["scale"]["z"]);
+
+		return Math::Transform()
+			.translate(translateX, translateY, translateZ)
+			.rotate(rotateX, rotateY, rotateZ)
+			.scale(scaleX, scaleY, scaleZ);
+	}
+
+	Math::Vector toVec3(c4::yml::NodeRef node)
+	{
+		float x = toFloat(node["x"]);
+		float y = toFloat(node["y"]);
+		float z = toFloat(node["z"]);
+
+		return Math::Vector(x, y, z);
+	}
+
+	std::shared_ptr<Renderer::Pattern> buildPattern(c4::yml::NodeRef pattern)
+	{
+		std::string type = toStr(pattern["type"]);
+
+		if (type != "solid") // todo: fix quick and dirty pattern type check here
+		{
+			std::cerr << "Invalid Pattern type: " << type << std::endl;
+			abort();
+		}
+
+		Graphics::Color color = toColor(pattern["color"]);
+
+		return std::make_shared<Renderer::Patterns::SolidColor>(Renderer::Patterns::SolidColor(color));
+	}
 }
 
 Serializer::WorldDeserializer::WorldDeserializer(const std::string buffer)

@@ -1,5 +1,23 @@
 version: 1
 
+camera:
+  origin:
+    x: 0
+    y: 0
+    z: -10
+  target:
+    x: 0
+    y: 0
+    z: 0
+  up:
+    x: 0
+    y: 0
+    z: 0
+  fov: 70
+  resolution:
+    width: 1920
+    height: 1080
+
 settings:
   default_remaining_calls: 32
 

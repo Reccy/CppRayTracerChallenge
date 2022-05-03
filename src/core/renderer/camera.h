@@ -66,6 +66,10 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <param name="transform">The transform to apply to the camera</param>
 		void transform(const Math::Transform& transform);
 
+		const int resolutionWidth() const;
+
+		const int resolutionHeight() const;
+
 		/// <summary>
 		/// Calculates the Ray that will go from the camera origin through the pixel on the canvas
 		/// </summary>

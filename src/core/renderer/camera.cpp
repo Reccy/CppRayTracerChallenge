@@ -45,6 +45,16 @@ void Camera::transform(const Math::Transform& transform)
 	m_transformMatrix = transform.matrix();
 }
 
+const int Camera::resolutionWidth() const
+{
+	return m_hSize;
+}
+
+const int Camera::resolutionHeight() const
+{
+	return m_vSize;
+}
+
 Ray Camera::rayForPixel(int xPixel, int yPixel) const
 {
 	// Calculates the offsets from the edge of the canvas to the pixel's center
