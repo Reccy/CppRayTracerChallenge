@@ -54,6 +54,8 @@
 #include "serializer/portable_pixmap_image_serializer.h"
 #include "serializer/portable_network_graphics_serializer.h"
 #include "serializer/wavefront_obj_deserializer.h"
+#include "serializer/camera_deserializer.h"
+#include "serializer/world_deserializer.h"
 #include "helpers/material_helper.h"
 
 using namespace CppRayTracerChallenge::Core;
@@ -70,16 +72,14 @@ using Graphics::Canvas;
 
 constexpr double RENDER_QUALITY = 1;
 
-constexpr int WINDOW_WIDTH = 1920;
-constexpr int WINDOW_HEIGHT = 1080;
-constexpr int RENDER_WIDTH = static_cast<int>(WINDOW_WIDTH * RENDER_QUALITY);
-constexpr int RENDER_HEIGHT = static_cast<int>(WINDOW_HEIGHT * RENDER_QUALITY);
+std::shared_ptr<Renderer::World> world = nullptr;
+std::shared_ptr<Renderer::Camera> camera = nullptr;
 
 void log(std::string message)
 {
 	std::cout << message << std::endl;
 }
-
+/*
 class WorldA
 {
 public:
@@ -1074,31 +1074,14 @@ private:
 	}
 };
 
-
-std::shared_ptr<Camera> camera = nullptr;
+*/
 
 Image doRealRender()
 {
-	log("Initializing...");
-	using WorldBuilder = WorldC;
-	World world = WorldBuilder::build();
-
-	int width = RENDER_WIDTH;
-	int height = RENDER_HEIGHT;
-
-	int fov = WorldBuilder::fov();
-
-	log("Setting up camera: " + std::to_string(width) + ", " + std::to_string(height) + ", " + std::to_string(fov));
-	camera = std::make_shared<Camera>(width, height, fov);
-	auto cameraTransform = WorldBuilder::cameraMatrix();
-	camera->transform(cameraTransform);
-
-	log("Initialization Done");
-
 	auto startTime = std::chrono::high_resolution_clock::now();
 
 	log("Rendering scene -> Start: " + std::to_string(startTime.time_since_epoch().count()));
-	auto result = camera->render(world);
+	auto result = camera->render(*world);
 
 	auto endTime = std::chrono::high_resolution_clock::now();
 	auto elapsed = endTime - startTime;
@@ -1276,7 +1259,7 @@ class RAIIglfw
 public:
 	RAIIglfw()
 	{
-		m_window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Ray Tracer", NULL, NULL);
+		m_window = glfwCreateWindow(camera->resolutionWidth(), camera->resolutionHeight(), "Ray Tracer", NULL, NULL);
 		glfwMakeContextCurrent(m_window);
 		gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		glfwSetKeyCallback(m_window, keyCallback);
@@ -1398,7 +1381,7 @@ public:
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		glUseProgram(m_shaderProgram);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, RENDER_WIDTH, RENDER_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, loadRenderData());
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, camera->resolutionWidth(), camera->resolutionHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, loadRenderData());
 		glBindTexture(GL_TEXTURE_2D, m_texture);
 		glBindVertexArray(m_VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -1626,18 +1609,12 @@ int main(int argc, char* argv[])
 	}
 
 	// Load the world file and validate it
-	
 	std::ifstream ymlfile(options.inputPath());
 	const std::string ymlstr((std::istreambuf_iterator<char>(ymlfile)),
 		(std::istreambuf_iterator<char>()));
 
-	ryml::Tree tree = ryml::parse_in_arena(ryml::to_csubstr(ymlstr));
-
-	std::cout << "Parsing file...\n";
-	std::cout << "File Version: " << tree["version"].val() << "\n";
-	std::cout << "Objects Count: " << tree["hierarchy"]["objects"].num_children() << "\n";
-	std::cout << "Lights Count: " << tree["hierarchy"]["lights"].num_children() << "\n";
-	std::cout << "Materials Count: " << tree["materials"].num_children() << "\n";
+	camera = Serializer::CameraDeserializer(ymlstr).camera();
+	world = Serializer::WorldDeserializer(ymlstr).world();
 
 	// Init GLFW and render the image
 	if (!glfwInit())

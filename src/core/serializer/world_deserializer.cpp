@@ -50,10 +50,12 @@ namespace
 		float scaleY = toFloat(transformNode["scale"]["y"]);
 		float scaleZ = toFloat(transformNode["scale"]["z"]);
 
-		return Math::Transform()
+		Math::Transform transform = Math::Transform()
 			.translate(translateX, translateY, translateZ)
 			.rotate(rotateX, rotateY, rotateZ)
 			.scale(scaleX, scaleY, scaleZ);
+
+		return transform;
 	}
 
 	Math::Vector toVec3(c4::yml::NodeRef node)
