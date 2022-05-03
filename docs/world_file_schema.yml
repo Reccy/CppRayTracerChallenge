@@ -1,3 +1,6 @@
+version:
+  type: integer
+
 settings:
   type: dictionary
   keys:

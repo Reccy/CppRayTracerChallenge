@@ -75,6 +75,7 @@ set(LIBRARY_HEADERS
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.h"
 	"${CORE_LIBRARY_DIR}/serializer/portable_network_graphics_serializer.h"
 	"${CORE_LIBRARY_DIR}/serializer/wavefront_obj_deserializer.h"
+	"${CORE_LIBRARY_DIR}/serializer/world_deserializer.h"
 	"${CORE_LIBRARY_DIR}/encryption/crc.h"
 	"${CORE_LIBRARY_DIR}/encryption/adler32.h"
 	"${CORE_LIBRARY_DIR}/compression/huffman_coding.h"
@@ -128,6 +129,7 @@ set(LIBRARY_SOURCES
 	"${CORE_LIBRARY_DIR}/serializer/portable_pixmap_image_serializer.cpp"
 	"${CORE_LIBRARY_DIR}/serializer/portable_network_graphics_serializer.cpp"
 	"${CORE_LIBRARY_DIR}/serializer/wavefront_obj_deserializer.cpp"
+	"${CORE_LIBRARY_DIR}/serializer/world_deserializer.cpp"
 	"${CORE_LIBRARY_DIR}/encryption/crc.cpp"
 	"${CORE_LIBRARY_DIR}/encryption/adler32.cpp"
 	"${CORE_LIBRARY_DIR}/compression/huffman_coding.cpp"
@@ -191,6 +193,7 @@ set(TEST_RUNNER_EXECUTABLE_SOURCES
 	"${TEST_SUITE_DIR}/core/serializer/portable_pixmap_image_serializer_test.cpp"
 	"${TEST_SUITE_DIR}/core/serializer/portable_network_graphics_serializer_test.cpp"
 	"${TEST_SUITE_DIR}/core/serializer/wavefront_obj_deserializer_test.cpp"
+	"${TEST_SUITE_DIR}/core/serializer/world_deserializer_test.cpp"
 	"${TEST_SUITE_DIR}/core/encryption/crc_test.cpp"
 	"${TEST_SUITE_DIR}/core/encryption/adler32_test.cpp"
 	"${TEST_SUITE_DIR}/core/compression/huffman_coding_test.cpp"
@@ -205,6 +208,10 @@ target_compile_options("${TEST_RUNNER_EXECUTABLE_NAME}" PRIVATE "${CUSTOM_COMPIL
 
 enable_testing()
 gtest_discover_tests("${TEST_RUNNER_EXECUTABLE_NAME}")
+
+# Copy test file dependencies
+# todo: figure out a better copy that runs every time a build occurs
+file(COPY "${TEST_SUITE_DIR}/core/serializer/world_deserializer_test_file.yml" DESTINATION "${CMAKE_BINARY_DIR}")
 
 #
 # Executable Setup

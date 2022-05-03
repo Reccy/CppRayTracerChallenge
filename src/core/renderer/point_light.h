@@ -12,8 +12,8 @@ namespace CppRayTracerChallenge::Core::Renderer
 	class PointLight
 	{
 	public:
-		PointLight() = delete;
-
+		PointLight(); // todo: description and unit test
+		
 		/// <summary>
 		/// Creates a new point light at a position with the set intensity
 		/// </summary>

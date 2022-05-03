@@ -3,6 +3,8 @@
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core;
 
+Shape::Shape() : m_shape(nullptr) {}; // todo: get rid of this, this is such a dirty hack D:
+
 Shape::Shape(std::shared_ptr<Math::IShape> shape) : m_shape(shape) {};
 
 Shape::Shape(std::shared_ptr<Math::IShape> shape, Material material) : m_shape(shape), m_material(material) {};

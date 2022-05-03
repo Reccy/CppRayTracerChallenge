@@ -17,7 +17,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 	class Shape : public Math::IShape
 	{
 	public:
-		Shape() = delete;
+		Shape(); // todo: description and unit test
 
 		Shape(std::shared_ptr<Math::IShape> shape);
 
