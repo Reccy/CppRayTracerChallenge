@@ -1535,7 +1535,7 @@ public:
 		return m_outputSet;
 	}
 private:
-	enum ParseState { NONE, READ_OUTPUT_PATH, READ_INPUT_PATH, READ_PIPED_INPUT };
+	enum class ParseState { NONE, READ_OUTPUT_PATH, READ_INPUT_PATH, READ_PIPED_INPUT };
 	ParseState m_state = ParseState::NONE;
 
 	std::vector<std::string> m_argv;
