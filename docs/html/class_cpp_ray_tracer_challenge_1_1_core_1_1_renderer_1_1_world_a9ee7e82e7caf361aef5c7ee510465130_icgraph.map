@@ -1,4 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Renderer::World::isShadowed" name="CppRayTracerChallenge::Core::Renderer::World::isShadowed">
-<area shape="rect" id="node1" title="Calculates if a position in world space is lit by a specific light" alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node2" href="$world__test_8cpp.html#a16c2344f855b1ef5d58b499b32749438" title=" " alt="" coords="5,20,60,47"/>
-</map>

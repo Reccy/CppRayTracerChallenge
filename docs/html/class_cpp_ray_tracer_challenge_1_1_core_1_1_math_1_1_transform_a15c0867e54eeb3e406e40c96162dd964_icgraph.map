@@ -1,6 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Math::Transform::scale" name="CppRayTracerChallenge::Core::Math::Transform::scale">
-<area shape="rect" id="node1" title="Scales the Transform along x, y, z axes" alt="" coords="317,39,479,95"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a2ebf36405555513503a63d6a26ea966c" title="Constructs a World that has a single light source and two spheres" alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node4" href="$ray__test_8cpp.html#ad7cf2355e3d70227dbdfeaf26a66b26f" title=" " alt="" coords="161,85,216,112"/>
-<area shape="rect" id="node3" href="$camera__test_8cpp.html#a51ed1c82c3984fe8a8fb4176a845c350" title=" " alt="" coords="5,20,60,47"/>
-</map>

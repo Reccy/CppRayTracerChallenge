@@ -1,6 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Math::Transform::matrix" name="CppRayTracerChallenge::Core::Math::Transform::matrix">
-<area shape="rect" id="node1" title="Returns the transform as an actual matrix" alt="" coords="327,24,488,80"/>
-<area shape="rect" id="node2" href="$transform__test_8cpp.html#a4d0b692319726626b632ba74ae40e519" title=" " alt="" coords="166,5,221,32"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a4db33858bd0ed84b50466a85221e15d2" title="Creates a matrix that can be used to transform the world around the camera, effectively changing came..." alt="" coords="108,56,279,112"/>
-<area shape="rect" id="node4" href="$camera__test_8cpp.html#aaeb4ccf47528badd6620dfdc13171c5b" title=" " alt="" coords="5,71,60,97"/>
-</map>

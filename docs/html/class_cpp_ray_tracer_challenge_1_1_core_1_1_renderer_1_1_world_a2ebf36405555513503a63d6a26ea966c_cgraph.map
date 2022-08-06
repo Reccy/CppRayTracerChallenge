@@ -1,9 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Renderer::World::defaultWorld" name="CppRayTracerChallenge::Core::Renderer::World::defaultWorld">
-<area shape="rect" id="node1" title="Constructs a World that has a single light source and two spheres" alt="" coords="5,125,167,181"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a9dfc0103bcef524272acc7074074adf1" title="Adds a light to the world" alt="" coords="215,5,376,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a427b35ad3e215434586001a185d1feee" title="Adds a object to the world" alt="" coords="215,85,376,141"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a15c0867e54eeb3e406e40c96162dd964" title="Scales the Transform along x, y, z axes" alt="" coords="215,165,376,221"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#a8d578dcc370c20a2213430d0e87c7cc9" title="Transforms the shape" alt="" coords="215,245,376,301"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a318cccc5f57c9ee061562a84d3b35125" title="Creates a square Identity Matrix of a specific size" alt="" coords="424,165,585,221"/>
-<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#a2e3409c88f8955cfb90998d5ed37b1b5" title="Returns a copy of the Shape&#39;s transform" alt="" coords="424,245,585,301"/>
-</map>

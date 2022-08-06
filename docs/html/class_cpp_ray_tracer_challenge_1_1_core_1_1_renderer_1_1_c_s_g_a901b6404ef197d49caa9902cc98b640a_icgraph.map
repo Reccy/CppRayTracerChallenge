@@ -1,4 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Renderer::CSG::bounds" name="CppRayTracerChallenge::Core::Renderer::CSG::bounds">
-<area shape="rect" id="node1" title="Returns the bounding box of the shape" alt="" coords="215,5,376,61"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#a1feede8e50fe6c82b611c1fda2bda3c1" title="Returns the bounding box of the shape in the space of the parent shape" alt="" coords="5,5,167,61"/>
-</map>

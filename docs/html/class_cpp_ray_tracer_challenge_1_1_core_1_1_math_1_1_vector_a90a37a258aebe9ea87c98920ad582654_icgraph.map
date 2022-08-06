@@ -1,5 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Math::Vector::up" name="CppRayTracerChallenge::Core::Math::Vector::up">
-<area shape="rect" id="node1" title="Creates a vector pointing up along the y axis" alt="" coords="317,46,480,87"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_plane.html#a6da4442306a071dfed123678bae028f0" title="Calculates and returns the normal at the passed in local space position for this plane" alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node3" href="$plane__test_8cpp.html#a437ce3fc0e9f904ab4ecab2988464f1b" title=" " alt="" coords="5,53,60,80"/>
-</map>

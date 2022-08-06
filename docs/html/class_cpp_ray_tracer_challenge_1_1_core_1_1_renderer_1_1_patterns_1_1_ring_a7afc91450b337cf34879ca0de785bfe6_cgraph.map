@@ -1,5 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Renderer::Patterns::Ring::colorAt" name="CppRayTracerChallenge::Core::Renderer::Patterns::Ring::colorAt">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,180,87"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a88cd3ab070137859ed4a413239c6414d" title="Returns a const X component" alt="" coords="228,5,389,47"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a8bbb8b2cf7a3e28be0de06ccec3ca7c7" title="Returns a const Z component" alt="" coords="228,71,389,112"/>
-</map>

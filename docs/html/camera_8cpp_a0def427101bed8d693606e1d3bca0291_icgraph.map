@@ -1,4 +1,0 @@
-<map id="jobsComplete" name="jobsComplete">
-<area shape="rect" id="node1" title=" " alt="" coords="224,20,325,47"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a8ab64acecf3df50c6f024ba3be2d3e8c" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="5,5,176,61"/>
-</map>

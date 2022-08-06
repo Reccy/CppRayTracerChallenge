@@ -1,5 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Graphics::Canvas::writePixel" name="CppRayTracerChallenge::Core::Graphics::Canvas::writePixel">
-<area shape="rect" id="node1" title="Writes color data to the specified coordinate on the canvas (0,0) is the top&#45;left pixel" alt="" coords="240,39,407,95"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_render_job.html#a388946697630f55a38bfa3022a5e1460" title=" " alt="" coords="5,5,192,61"/>
-<area shape="rect" id="node3" href="$canvas__test_8cpp.html#a01d783f6e09b6b62b6745790d258d9d7" title=" " alt="" coords="71,85,126,112"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,60,60,87"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a0bf1d2cca1d67ddffd5381439efb3a4d" title="Returns the transform as an actual matrix" alt="" coords="108,5,269,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_transform.html#a2518b8aa2d8e95ca80f5c61817a2d33c" title="Translates the Transform along x, y, z co&#45;ordinates" alt="" coords="108,85,269,141"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a318cccc5f57c9ee061562a84d3b35125" title="Creates a square Identity Matrix of a specific size" alt="" coords="317,85,479,141"/>
-</map>

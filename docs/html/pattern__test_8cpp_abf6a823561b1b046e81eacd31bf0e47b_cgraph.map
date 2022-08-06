@@ -1,8 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,100,60,127"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="111,5,272,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_pattern.html#abe148d587e11f959c56d69d35f18a971" title="Returns the color of the pattern at a specific point in local space" alt="" coords="108,165,275,221"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a154c895b965e8aa00cc42e9ad53d8b75" title="Returns a white color" alt="" coords="111,85,272,141"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="323,45,484,101"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_tuple.html#a88cd3ab070137859ed4a413239c6414d" title="Returns a const X component" alt="" coords="323,173,484,214"/>
-</map>

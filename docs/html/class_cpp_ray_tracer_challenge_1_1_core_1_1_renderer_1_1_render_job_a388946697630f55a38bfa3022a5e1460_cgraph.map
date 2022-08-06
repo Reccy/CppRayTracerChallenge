@@ -1,6 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Renderer::RenderJob::doRender" name="CppRayTracerChallenge::Core::Renderer::RenderJob::doRender">
-<area shape="rect" id="node1" title=" " alt="" coords="5,45,192,101"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#ae527875e77f99cd42ea6f1bed1ebd5bf" title="Calculates the color from the point of view of the passed in ray" alt="" coords="243,5,404,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ae8f153c5b936b2c4229a80f9639ded31" title="Writes color data to the specified coordinate on the canvas (0,0) is the top&#45;left pixel" alt="" coords="240,85,407,141"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a042a834f5a144cc45600dfb1ced54284" title="Returns the index of the pixel at the x and y coordinates" alt="" coords="455,85,616,141"/>
-</map>

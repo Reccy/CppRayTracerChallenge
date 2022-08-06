@@ -1,9 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,140,60,167"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="111,5,272,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#af06b75218f6b14fa4435f0c2fa278fe8" title="Returns a buffer with all of the Colors in left&#45;right, top&#45;down order" alt="" coords="111,85,272,141"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a154c895b965e8aa00cc42e9ad53d8b75" title="Returns a white color" alt="" coords="111,165,272,221"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_canvas.html#ae8f153c5b936b2c4229a80f9639ded31" title="Writes color data to the specified coordinate on the canvas (0,0) is the top&#45;left pixel" alt="" coords="108,245,275,301"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="323,85,484,141"/>
-<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_image.html#a042a834f5a144cc45600dfb1ced54284" title="Returns the index of the pixel at the x and y coordinates" alt="" coords="323,245,484,301"/>
-</map>

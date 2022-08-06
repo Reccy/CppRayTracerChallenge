@@ -1,8 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Math::Matrix::invert" name="CppRayTracerChallenge::Core::Math::Matrix::invert">
-<area shape="rect" id="node1" title="Creates a copy of the Matrix that is inverted" alt="" coords="5,121,167,177"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ace02bb54a9415ffa260c84e50a6d94d3" title="Calculates the cofactor of the square Matrix" alt="" coords="215,56,376,112"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a87172940c17b94e7b20c0f15add2fe62" title="Calculates the determinant of the square Matrix" alt="" coords="633,103,795,159"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#aefe9fd335841e20c20c12311a0a3fb50" title="Checks if the Matrix can be inverted" alt="" coords="424,187,585,243"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#ac5dae214bed842b2b75e3dc777252fbf" title="Calculates the minor / determinant of the square submatrix." alt="" coords="424,5,585,61"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a81ee5f59b2eb010dfa8d2e645715421d" title="Returns a copy of the Matrix, with the row and column removed." alt="" coords="633,5,795,61"/>
-</map>

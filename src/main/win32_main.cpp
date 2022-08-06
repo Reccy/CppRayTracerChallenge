@@ -15,7 +15,7 @@
 #undef DIFFERENCE
 
 #include <glad.h>
-#include <GLFW/glfw3.h>
+#include <glfw3.h>
 
 #include "math/vector.h"
 #include "math/point.h"

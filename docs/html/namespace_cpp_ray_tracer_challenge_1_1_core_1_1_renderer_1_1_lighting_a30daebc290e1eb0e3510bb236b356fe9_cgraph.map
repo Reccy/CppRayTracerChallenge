@@ -1,9 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Renderer::Lighting::lighting" name="CppRayTracerChallenge::Core::Renderer::Lighting::lighting">
-<area shape="rect" id="node1" title="Computes the color at a given point with lighting" alt="" coords="5,136,176,192"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="235,5,396,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a6e8113f2c61704570b4277cf43b06e0d" title="Performs a dot product operation and returns the result" alt="" coords="455,194,621,235"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#af71682d38b6df30ca530d61743bd1727" title="Returns the intensity / color of the light" alt="" coords="224,136,407,192"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_point_light.html#a1e5accc8b122a9e71d54297698eab78b" title="Returns the position of the light" alt="" coords="224,216,407,272"/>
-<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_vector.html#a7dfd7f3387d4f9f61d8eb48e31be1e4f" title="Reflects the vector off the normal" alt="" coords="235,296,396,352"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="457,5,619,61"/>
-</map>

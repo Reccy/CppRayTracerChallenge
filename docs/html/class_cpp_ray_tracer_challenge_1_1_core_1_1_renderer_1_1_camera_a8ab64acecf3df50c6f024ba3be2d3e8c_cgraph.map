@@ -1,6 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Renderer::Camera::render" name="CppRayTracerChallenge::Core::Renderer::Camera::render">
-<area shape="rect" id="node1" title="Renders the world from the point of view of the camera. Returns an image" alt="" coords="5,41,176,97"/>
-<area shape="rect" id="node2" href="$camera_8cpp.html#ac60c240d73596d3465de31065a394b92" title=" " alt="" coords="268,5,351,32"/>
-<area shape="rect" id="node3" href="$camera_8cpp.html#a0def427101bed8d693606e1d3bca0291" title=" " alt="" coords="259,56,360,83"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a573849ce50a6e551df6f579d3f40d0ba" title="Returns the current rendered image, regardless of if it is finished or not" alt="" coords="224,107,395,163"/>
-</map>

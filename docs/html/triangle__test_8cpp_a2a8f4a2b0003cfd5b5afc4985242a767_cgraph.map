@@ -1,9 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,189,60,215"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#a6195a28a4d77e5093cb8be668972fc34" title=" " alt="" coords="108,5,277,47"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#a5ea82b5c384bcf21d7182f7287398645" title=" " alt="" coords="108,71,277,112"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#a3348aa6279079f1a58ab9ff2d4693331" title="Returns the normal vector for this triangle" alt="" coords="112,137,273,193"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#a8fce31fdcd73a4fd118d980975b48a45" title=" " alt="" coords="108,217,277,259"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#a47db27d7165b0e4aee2bd6432a59f544" title=" " alt="" coords="108,283,277,324"/>
-<area shape="rect" id="node7" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#a6b92e65f17c83f2b5476b684ccd99480" title=" " alt="" coords="108,348,277,389"/>
-</map>

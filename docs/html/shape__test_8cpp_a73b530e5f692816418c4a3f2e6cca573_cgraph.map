@@ -1,4 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,20,60,47"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a71ca82a05c21fdb5c78cff09e127f71c" title="Calculates and returns the normal at the passed in world space position for this shape" alt="" coords="108,5,271,61"/>
-</map>

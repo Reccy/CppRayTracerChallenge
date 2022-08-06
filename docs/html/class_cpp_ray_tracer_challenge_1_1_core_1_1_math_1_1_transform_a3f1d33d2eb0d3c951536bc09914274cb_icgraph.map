@@ -1,8 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Math::Transform::transpose" name="CppRayTracerChallenge::Core::Math::Transform::transpose">
-<area shape="rect" id="node1" title="Transposes the matrix" alt="" coords="636,71,797,127"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html#ac4617b8d0724caf7b92ef584762fc2b6" title="Calculates and returns the normal at the passed in position for this shape" alt="" coords="427,37,588,93"/>
-<area shape="rect" id="node6" href="$transform__test_8cpp.html#ad1bdf36f442a1197d9bd9e9de1530bac" title=" " alt="" coords="480,117,535,144"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#aff93b7407d76055e3522e0f3826068c9" title="Transforms a normal from object space to world space" alt="" coords="216,5,379,61"/>
-<area shape="rect" id="node5" href="$sphere__test_8cpp.html#ac1e740a86e788d36d9b73516e74243a1" title=" " alt="" coords="270,85,325,112"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_shape.html#a85b36b475d13437d84d6a99b40f76726" title=" " alt="" coords="5,5,168,61"/>
-</map>

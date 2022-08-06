@@ -1,5 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,60,60,87"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a0b97c3c0f3129507442cd92b728aa425" title="Returns a copy of the Matrix, with the row and column removed." alt="" coords="123,5,285,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix_too_small_exception.html#a94ea32e30459b24279eded83e9a30a71" title=" " alt="" coords="108,85,300,141"/>
-</map>

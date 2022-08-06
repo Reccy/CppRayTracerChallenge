@@ -1,6 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,78,60,105"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#a01077e2261d99cf3568ba35bdd431ed9" title="Returns true if the Cone is closed" alt="" coords="117,5,296,47"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#a31c5ef2513eda111a2d7620add6f2b03" title="Returns the maximum bounds of the Cone" alt="" coords="108,71,305,112"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cone.html#aa0d3edb6c0e7ed2333f52a9e0426293e" title="Returns the minimum bounds of the Cone" alt="" coords="110,136,303,177"/>
-</map>

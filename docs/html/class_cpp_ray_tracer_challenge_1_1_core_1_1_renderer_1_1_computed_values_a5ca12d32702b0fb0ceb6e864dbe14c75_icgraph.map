@@ -1,5 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Renderer::ComputedValues::n2" name="CppRayTracerChallenge::Core::Renderer::ComputedValues::n2">
-<area shape="rect" id="node1" title="Returns the refractive index of the material of the object that this intersection is entering" alt="" coords="215,46,461,87"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_world.html#a0d39181f30db188c879df0aea1886912" title="Calculates the refracted color in the world from precomputed values" alt="" coords="5,5,167,61"/>
-<area shape="rect" id="node3" href="$computed__values_8cpp.html#aaba06e6f4a8dc66b610f64784897431f" title=" " alt="" coords="55,85,117,112"/>
-</map>

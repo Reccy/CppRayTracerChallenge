@@ -1,4 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Math::Matrix::minor" name="CppRayTracerChallenge::Core::Math::Matrix::minor">
-<area shape="rect" id="node1" title="Calculates the minor / determinant of the square submatrix." alt="" coords="5,5,167,61"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_matrix.html#a0b97c3c0f3129507442cd92b728aa425" title="Returns a copy of the Matrix, with the row and column removed." alt="" coords="215,5,376,61"/>
-</map>

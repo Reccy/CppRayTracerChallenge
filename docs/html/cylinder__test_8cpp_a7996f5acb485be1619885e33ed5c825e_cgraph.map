@@ -1,6 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,93,60,120"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_cylinder.html#aa5115a75df8dcfe9ad15b34046391dce" title="Returns the bounding box of the cylinder" alt="" coords="133,5,295,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#a3ece9d35715a014d3961a5a23a2ac117" title="Returns the maximum bounds" alt="" coords="108,86,320,127"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_bounding_box.html#af36c7b6b7e322bd993cd6745f462b03f" title="Returns the minimum bounds" alt="" coords="110,151,318,193"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="TestingShape" name="TestingShape">
-<area shape="rect" id="node1" title="Shape only to be used in the test suite" alt="" coords="35,184,137,211"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_shape.html" title=" " alt="" coords="5,95,167,136"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_i_shape.html" title=" " alt="" coords="5,5,167,47"/>
-</map>

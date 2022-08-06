@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{51571A7D-1F87-4BFE-862E-B73A996ED69E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\CppPropertySheet.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\CppPropertySheet.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\CppPropertySheet.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\CppPropertySheet.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\taskflow\taskflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\taskflow\taskflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\taskflow\taskflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\taskflow\taskflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="compression\deflate_block.cpp" />
+    <ClCompile Include="compression\huffman_coding.cpp" />
+    <ClCompile Include="compression\zlib.cpp" />
+    <ClCompile Include="encryption\adler32.cpp" />
+    <ClCompile Include="encryption\crc.cpp" />
+    <ClCompile Include="graphics\canvas.cpp" />
+    <ClCompile Include="graphics\color.cpp" />
+    <ClCompile Include="graphics\image.cpp" />
+    <ClCompile Include="helpers\material_helper.cpp" />
+    <ClCompile Include="math\bounding_box.cpp" />
+    <ClCompile Include="math\cone.cpp" />
+    <ClCompile Include="math\cube.cpp" />
+    <ClCompile Include="math\cylinder.cpp" />
+    <ClCompile Include="math\intersection.cpp" />
+    <ClCompile Include="math\intersections.cpp" />
+    <ClCompile Include="math\perlin_noise.cpp" />
+    <ClCompile Include="math\plane.cpp" />
+    <ClCompile Include="math\point.cpp" />
+    <ClCompile Include="math\ray.cpp" />
+    <ClCompile Include="math\shape.cpp" />
+    <ClCompile Include="math\smooth_triangle.cpp" />
+    <ClCompile Include="math\sphere.cpp" />
+    <ClCompile Include="math\transform.cpp" />
+    <ClCompile Include="math\triangle.cpp" />
+    <ClCompile Include="math\trig.cpp" />
+    <ClCompile Include="math\vector.cpp" />
+    <ClCompile Include="renderer\camera.cpp" />
+    <ClCompile Include="renderer\computed_values.cpp" />
+    <ClCompile Include="renderer\csg.cpp" />
+    <ClCompile Include="renderer\group.cpp" />
+    <ClCompile Include="renderer\lighting.cpp" />
+    <ClCompile Include="renderer\material.cpp" />
+    <ClCompile Include="renderer\pattern.cpp" />
+    <ClCompile Include="renderer\patterns\checker.cpp" />
+    <ClCompile Include="renderer\patterns\gradient.cpp" />
+    <ClCompile Include="renderer\patterns\perturbed.cpp" />
+    <ClCompile Include="renderer\patterns\radial_gradient.cpp" />
+    <ClCompile Include="renderer\patterns\ring.cpp" />
+    <ClCompile Include="renderer\patterns\solid_color.cpp" />
+    <ClCompile Include="renderer\patterns\stripe.cpp" />
+    <ClCompile Include="renderer\patterns\test_pattern.cpp" />
+    <ClCompile Include="renderer\point_light.cpp" />
+    <ClCompile Include="renderer\render_job.cpp" />
+    <ClCompile Include="renderer\shape.cpp" />
+    <ClCompile Include="renderer\world.cpp" />
+    <ClCompile Include="serializer\base_image_serializer.cpp" />
+    <ClCompile Include="serializer\portable_network_graphics_serializer.cpp" />
+    <ClCompile Include="serializer\portable_pixmap_image_serializer.cpp" />
+    <ClCompile Include="serializer\wavefront_obj_deserializer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="compression\deflate_block.h" />
+    <ClInclude Include="compression\huffman_coding.h" />
+    <ClInclude Include="compression\zlib.h" />
+    <ClInclude Include="encryption\adler32.h" />
+    <ClInclude Include="encryption\crc.h" />
+    <ClInclude Include="graphics\canvas.h" />
+    <ClInclude Include="graphics\color.h" />
+    <ClInclude Include="graphics\image.h" />
+    <ClInclude Include="helpers\material_helper.h" />
+    <ClInclude Include="helpers\polymorphic_comparable.h" />
+    <ClInclude Include="math\bounding_box.h" />
+    <ClInclude Include="math\comparison.h" />
+    <ClInclude Include="math\cone.h" />
+    <ClInclude Include="math\constants.h" />
+    <ClInclude Include="math\cube.h" />
+    <ClInclude Include="math\cylinder.h" />
+    <ClInclude Include="math\intersection.h" />
+    <ClInclude Include="math\intersections.h" />
+    <ClInclude Include="math\i_shape.h" />
+    <ClInclude Include="math\matrix.h" />
+    <ClInclude Include="math\perlin_noise.h" />
+    <ClInclude Include="math\plane.h" />
+    <ClInclude Include="math\point.h" />
+    <ClInclude Include="math\ray.h" />
+    <ClInclude Include="math\shape.h" />
+    <ClInclude Include="math\smooth_triangle.h" />
+    <ClInclude Include="math\sphere.h" />
+    <ClInclude Include="math\transform.h" />
+    <ClInclude Include="math\triangle.h" />
+    <ClInclude Include="math\trig.h" />
+    <ClInclude Include="math\tuple.h" />
+    <ClInclude Include="math\vector.h" />
+    <ClInclude Include="renderer\camera.h" />
+    <ClInclude Include="renderer\computed_values.h" />
+    <ClInclude Include="renderer\csg.h" />
+    <ClInclude Include="renderer\group.h" />
+    <ClInclude Include="renderer\i_group.h" />
+    <ClInclude Include="renderer\lighting.h" />
+    <ClInclude Include="renderer\material.h" />
+    <ClInclude Include="renderer\pattern.h" />
+    <ClInclude Include="renderer\patterns\checker.h" />
+    <ClInclude Include="renderer\patterns\gradient.h" />
+    <ClInclude Include="renderer\patterns\masked.h" />
+    <ClInclude Include="renderer\patterns\perturbed.h" />
+    <ClInclude Include="renderer\patterns\radial_gradient.h" />
+    <ClInclude Include="renderer\patterns\ring.h" />
+    <ClInclude Include="renderer\patterns\solid_color.h" />
+    <ClInclude Include="renderer\patterns\stripe.h" />
+    <ClInclude Include="renderer\patterns\test_pattern.h" />
+    <ClInclude Include="renderer\point_light.h" />
+    <ClInclude Include="renderer\render_job.h" />
+    <ClInclude Include="renderer\shape.h" />
+    <ClInclude Include="renderer\world.h" />
+    <ClInclude Include="serializer\base_image_serializer.h" />
+    <ClInclude Include="serializer\portable_network_graphics_serializer.h" />
+    <ClInclude Include="serializer\portable_pixmap_image_serializer.h" />
+    <ClInclude Include="serializer\wavefront_obj_deserializer.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

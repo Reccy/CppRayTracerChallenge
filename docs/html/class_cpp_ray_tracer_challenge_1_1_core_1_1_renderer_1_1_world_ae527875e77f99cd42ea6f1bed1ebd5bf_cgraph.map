@@ -1,6 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Renderer::World::colorAt" name="CppRayTracerChallenge::Core::Renderer::World::colorAt">
-<area shape="rect" id="node1" title="Calculates the color from the point of view of the passed in ray" alt="" coords="5,43,167,99"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="233,5,395,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#af2ff355f45fc3b2100e116bc7955840b" title="Finds the intersection that the ray hits, if it exists." alt="" coords="215,86,413,127"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="461,5,623,61"/>
-</map>

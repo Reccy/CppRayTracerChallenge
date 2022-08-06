@@ -1,4 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Renderer::CSG::transform" name="CppRayTracerChallenge::Core::Renderer::CSG::transform">
-<area shape="rect" id="node1" title="Transforms the shape" alt="" coords="5,5,167,61"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#af9606f5647b917e94c53fbfca75c29a5" title="Returns a copy of the Shape&#39;s transform" alt="" coords="215,5,376,61"/>
-</map>

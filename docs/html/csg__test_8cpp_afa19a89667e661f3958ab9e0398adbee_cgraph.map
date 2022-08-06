@@ -1,7 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,86,60,113"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="108,5,303,47"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_c_s_g.html#a411d0271c0e6f2fbd77c04d1d4204810" title=" " alt="" coords="125,71,286,127"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#adc9777ea186e745c6bb6aa40aadd6f27" title="Returns how many intersections are in the collection. Alias of size();" alt="" coords="117,151,293,207"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#a008b241d384a87302b3a9c453a36d722" title="Returns how many intersections are in the collection" alt="" coords="351,159,559,200"/>
-</map>

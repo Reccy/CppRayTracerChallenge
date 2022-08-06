@@ -1,8 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Math::Vector::cross" name="CppRayTracerChallenge::Core::Math::Vector::cross">
-<area shape="rect" id="node1" title="Performs a cross product operation and returns the result" alt="" coords="327,71,488,127"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_triangle.html#a50f99f7a3e1e5d150d8e1cd2c8812abb" title="Calculates if the local space ray intersects with the triangle" alt="" coords="113,5,274,61"/>
-<area shape="rect" id="node4" href="$vector__test_8cpp.html#a4daa807a05950fbf326e0377f36c5721" title=" " alt="" coords="166,85,221,112"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_camera.html#a25f436880962115695321f21c30b067e" title="Creates a matrix that can be used to transform the world around the camera, effectively changing came..." alt="" coords="108,136,279,192"/>
-<area shape="rect" id="node3" href="$smooth__triangle__test_8cpp.html#a05f12b0d0580873509bf9616ff2d059e" title=" " alt="" coords="5,20,60,47"/>
-<area shape="rect" id="node6" href="$camera__test_8cpp.html#aaeb4ccf47528badd6620dfdc13171c5b" title=" " alt="" coords="5,151,60,177"/>
-</map>

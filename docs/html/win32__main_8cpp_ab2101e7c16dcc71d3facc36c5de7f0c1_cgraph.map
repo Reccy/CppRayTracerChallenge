@@ -1,8 +1,0 @@
-<map id="renderTask" name="renderTask">
-<area shape="rect" id="node1" title=" " alt="" coords="5,45,92,72"/>
-<area shape="rect" id="node2" href="$win32__main_8cpp.html#a3807ee21c4e8f41c78e629b76af94f06" title=" " alt="" coords="140,13,243,40"/>
-<area shape="rect" id="node4" href="$win32__main_8cpp.html#aa93dbd63f280b50c4415de8a4fa50cf4" title=" " alt="" coords="149,71,233,97"/>
-<area shape="rect" id="node3" href="$win32__main_8cpp.html#a897e3bec42575bc1c63e5d5b594be783" title=" " alt="" coords="367,5,406,32"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#ab1addd635673be34a1b4939587da91f8" title="Returns the serialized image as a buffer" alt="" coords="291,56,483,112"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#a9e7ddf2da2c40d269dcc90f126efc66f" title="Serializes an Image, making it available to access via the buffer" alt="" coords="291,136,483,192"/>
-</map>

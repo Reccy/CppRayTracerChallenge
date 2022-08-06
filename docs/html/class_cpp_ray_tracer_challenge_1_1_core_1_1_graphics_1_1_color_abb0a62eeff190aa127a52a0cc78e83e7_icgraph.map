@@ -1,8 +1,0 @@
-<map id="CppRayTracerChallenge::Core::Graphics::Color::blend" name="CppRayTracerChallenge::Core::Graphics::Color::blend">
-<area shape="rect" id="node1" title="Linearly interpolates between the two colors" alt="" coords="331,85,492,141"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_masked.html#a6be8c097d07ca648d993699ca3b9cfed" title=" " alt="" coords="108,5,283,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_renderer_1_1_patterns_1_1_radial_gradient.html#a4c25fb5bd6945609f462852014e38616" title=" " alt="" coords="108,85,283,141"/>
-<area shape="rect" id="node6" href="$color__test_8cpp.html#acf6472b129294261555b0c3ed5be6180" title=" " alt="" coords="168,165,223,192"/>
-<area shape="rect" id="node3" href="$masked__test_8cpp.html#a57ce4fe29fa5f2c04d9dfe6285336cf7" title=" " alt="" coords="5,20,60,47"/>
-<area shape="rect" id="node5" href="$radial__gradient__test_8cpp.html#aeefea0d2273ec748ea7a722fca18612a" title=" " alt="" coords="5,100,60,127"/>
-</map>

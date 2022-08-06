@@ -1,5 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,46,60,73"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#ade95035f99d9f24fb48c983387b6c909" title="Returns a const reference to the intersection at the index" alt="" coords="110,5,305,47"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_math_1_1_intersections.html#af2ff355f45fc3b2100e116bc7955840b" title="Finds the intersection that the ray hits, if it exists." alt="" coords="108,71,307,112"/>
-</map>

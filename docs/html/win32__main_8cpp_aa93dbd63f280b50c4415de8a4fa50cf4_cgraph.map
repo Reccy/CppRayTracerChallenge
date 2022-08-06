@@ -1,5 +1,0 @@
-<map id="writeImage" name="writeImage">
-<area shape="rect" id="node1" title=" " alt="" coords="5,60,89,87"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#ab1addd635673be34a1b4939587da91f8" title="Returns the serialized image as a buffer" alt="" coords="137,5,329,61"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#a9e7ddf2da2c40d269dcc90f126efc66f" title="Serializes an Image, making it available to access via the buffer" alt="" coords="137,85,329,141"/>
-</map>

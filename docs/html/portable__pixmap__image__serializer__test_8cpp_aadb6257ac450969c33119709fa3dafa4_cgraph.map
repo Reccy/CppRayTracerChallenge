@@ -1,8 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,100,60,127"/>
-<area shape="rect" id="node2" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#a1b6319cac62632b34adb7c268a368e4b" title="Returns a black color" alt="" coords="133,5,294,61"/>
-<area shape="rect" id="node4" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#ab1addd635673be34a1b4939587da91f8" title="Returns the serialized image as a buffer" alt="" coords="117,85,309,141"/>
-<area shape="rect" id="node5" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_portable_pixmap_image_serializer.html#a4a1a96db5d06e8ad687c3f07a1c74b14" title="Serializes an Image, making it available to access via the buffer" alt="" coords="108,165,319,221"/>
-<area shape="rect" id="node3" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_graphics_1_1_color.html#ad5f44c1fa19c0010b3546e0c72ed09c5" title=" " alt="" coords="382,5,543,61"/>
-<area shape="rect" id="node6" href="$class_cpp_ray_tracer_challenge_1_1_core_1_1_serializer_1_1_base_image_serializer.html#af1e477238ea4de6ca403b35dc8a9f75f" title="Returns the deserialized image" alt="" coords="367,165,559,221"/>
-</map>
