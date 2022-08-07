@@ -2,7 +2,7 @@
 #include "shape.h"
 #include "csg.h"
 #include "../math/smooth_triangle.h"
-#include "../math/point.h"
+#include "RML.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core::Math;
@@ -69,7 +69,7 @@ void ComputedValues::calculateValues(Math::Intersection& hit, Math::Ray& ray)
 		m_normal = m_shape.normal(m_position);
 	}
 
-	m_reflect = Math::Vector::reflect(ray.direction(), m_normal);
+	m_reflect = RML::Vector::reflect(ray.direction(), m_normal);
 
 	if (Vector::dot(m_normal, m_eye) < 0)
 	{
@@ -81,8 +81,8 @@ void ComputedValues::calculateValues(Math::Intersection& hit, Math::Ray& ray)
 		m_isInside = false;
 	}
 
-	m_overPosition = m_position + m_normal * Math::EPSILON;
-	m_underPosition = m_position + -m_normal * Math::EPSILON;
+	m_overPosition = m_position + m_normal * RML::EPSILON;
+	m_underPosition = m_position + -m_normal * RML::EPSILON;
 
 	// Calculating n1 and n2
 

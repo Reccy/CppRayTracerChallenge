@@ -159,7 +159,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// <param name="position">The position to check if it is shaded</param>
 		/// <param name="light">The light that is lighting the position</param>
 		/// <returns>True if in shade, False otherwise</returns>
-		bool isShadowed(const Math::Point& position, const PointLight& light) const;
+		bool isShadowed(const RML::Point& position, const PointLight& light) const;
 
 		/// <summary>
 		/// Calculates the color from the point of view of the passed in ray

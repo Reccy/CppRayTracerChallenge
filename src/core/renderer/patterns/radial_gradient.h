@@ -1,6 +1,7 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_RADIAL_GRADIENT
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_RADIAL_GRADIENT
 
+#include "RML.h"
 #include "../pattern.h"
 #include "../../helpers/polymorphic_comparable.h"
 
@@ -28,7 +29,7 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		/// <returns>Color B</returns>
 		Graphics::Color colorB() const;
 
-		Graphics::Color colorAt(Math::Point position) const override;
+		Graphics::Color colorAt(RML::Point position) const override;
 
 		bool operator==(const RadialGradient& other) const;
 	private:

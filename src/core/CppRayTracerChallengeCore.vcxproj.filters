@@ -66,9 +66,6 @@
     <ClCompile Include="math\plane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="math\point.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="math\ray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -81,16 +78,7 @@
     <ClCompile Include="math\sphere.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="math\transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="math\triangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="math\trig.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="math\vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="renderer\camera.cpp">
@@ -203,9 +191,6 @@
     <ClInclude Include="math\cone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="math\constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="math\cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -221,16 +206,10 @@
     <ClInclude Include="math\i_shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="math\matrix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="math\perlin_noise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="math\plane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="math\point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="math\ray.h">
@@ -245,19 +224,7 @@
     <ClInclude Include="math\sphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="math\transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="math\triangle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="math\trig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="math\tuple.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="math\vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="renderer\camera.h">

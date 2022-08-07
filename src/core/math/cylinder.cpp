@@ -13,12 +13,12 @@ const Vector Cylinder::normalLocal(const Point position) const
 {
 	double dist = pow(position.x(), 2) + pow(position.z(), 2);
 
-	if (dist < 1.0 && position.y() >= m_maximum - Math::EPSILON)
+	if (dist < 1.0 && position.y() >= m_maximum - RML::EPSILON)
 	{
 		return Vector(0, 1, 0);
 	}
 
-	if (dist < 1.0 && position.y() <= m_minimum + Math::EPSILON)
+	if (dist < 1.0 && position.y() <= m_minimum + RML::EPSILON)
 	{
 		return Vector(0, -1, 0);
 	}

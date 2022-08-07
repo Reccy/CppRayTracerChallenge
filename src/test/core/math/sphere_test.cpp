@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
+#include <RML.h>
 #include "math/sphere.h"
-#include "math/vector.h"
-#include "math/trig.h"
 #include "math/ray.h"
 #include "math/intersections.h"
 #include "renderer/material.h"
@@ -75,9 +74,11 @@ TEST(CppRayTracerChallenge_Core_Math_Sphere, normal_on_scaled_and_rotated_sphere
 	Sphere sphere = Sphere();
 	sphere.transform(Transform().rotate(0, 0, Trig::PI/5).scale(1, 0.5, 1));
 
-	EXPECT_EQ(sphere.normal({ 0, sqrt(2) / 2, -sqrt(2) / 2 }), Vector(0, 0.97014, -0.24254));
-}
+	auto result = sphere.normal({ 0, sqrt(2) / 2, -sqrt(2) / 2 });
+	auto expectedResult = Vector(0, 0.97014, -0.24254);
 
+	EXPECT_EQ(result, expectedResult);
+}
 
 TEST(CppRayTracerChallenge_Core_Math_Sphere, computing_a_ray_intersecting_a_sphere_at_two_points)
 {

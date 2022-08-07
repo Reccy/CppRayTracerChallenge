@@ -81,7 +81,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\taskflow\taskflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\RML\RML;$(SolutionDir)src\lib\taskflow\taskflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
@@ -97,7 +97,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\taskflow\taskflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\RML\RML;$(SolutionDir)src\lib\taskflow\taskflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
@@ -111,7 +111,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\taskflow\taskflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\RML\RML;$(SolutionDir)src\lib\taskflow\taskflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -119,7 +119,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\taskflow\taskflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\RML\RML;$(SolutionDir)src\lib\taskflow\taskflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Optimization>Disabled</Optimization>
@@ -143,15 +143,11 @@
     <ClCompile Include="math\intersections.cpp" />
     <ClCompile Include="math\perlin_noise.cpp" />
     <ClCompile Include="math\plane.cpp" />
-    <ClCompile Include="math\point.cpp" />
     <ClCompile Include="math\ray.cpp" />
     <ClCompile Include="math\shape.cpp" />
     <ClCompile Include="math\smooth_triangle.cpp" />
     <ClCompile Include="math\sphere.cpp" />
-    <ClCompile Include="math\transform.cpp" />
     <ClCompile Include="math\triangle.cpp" />
-    <ClCompile Include="math\trig.cpp" />
-    <ClCompile Include="math\vector.cpp" />
     <ClCompile Include="renderer\camera.cpp" />
     <ClCompile Include="renderer\computed_values.cpp" />
     <ClCompile Include="renderer\csg.cpp" />
@@ -190,25 +186,18 @@
     <ClInclude Include="math\bounding_box.h" />
     <ClInclude Include="math\comparison.h" />
     <ClInclude Include="math\cone.h" />
-    <ClInclude Include="math\constants.h" />
     <ClInclude Include="math\cube.h" />
     <ClInclude Include="math\cylinder.h" />
     <ClInclude Include="math\intersection.h" />
     <ClInclude Include="math\intersections.h" />
     <ClInclude Include="math\i_shape.h" />
-    <ClInclude Include="math\matrix.h" />
     <ClInclude Include="math\perlin_noise.h" />
     <ClInclude Include="math\plane.h" />
-    <ClInclude Include="math\point.h" />
     <ClInclude Include="math\ray.h" />
     <ClInclude Include="math\shape.h" />
     <ClInclude Include="math\smooth_triangle.h" />
     <ClInclude Include="math\sphere.h" />
-    <ClInclude Include="math\transform.h" />
     <ClInclude Include="math\triangle.h" />
-    <ClInclude Include="math\trig.h" />
-    <ClInclude Include="math\tuple.h" />
-    <ClInclude Include="math\vector.h" />
     <ClInclude Include="renderer\camera.h" />
     <ClInclude Include="renderer\computed_values.h" />
     <ClInclude Include="renderer\csg.h" />
@@ -234,6 +223,11 @@
     <ClInclude Include="serializer\portable_network_graphics_serializer.h" />
     <ClInclude Include="serializer\portable_pixmap_image_serializer.h" />
     <ClInclude Include="serializer\wavefront_obj_deserializer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\lib\RML\RML\RML.vcxproj">
+      <Project>{4984803f-6d2c-43d3-becd-19a54d488176}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

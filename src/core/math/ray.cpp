@@ -19,7 +19,7 @@ Point Ray::position(const double t) const
 	return m_origin + m_direction * t;
 }
 
-Ray Ray::transform(const Transform& transform) const
+Ray Ray::transform(const Matrix<double, 4, 4>& transform) const
 {
 	Vector direction = transform * m_direction;
 	Point origin = transform * m_origin;

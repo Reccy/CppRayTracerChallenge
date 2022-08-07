@@ -2,7 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_GRADIENT
 
 #include "../pattern.h"
-#include "../../math/point.h"
+#include "RML.h"
 #include "../../helpers/polymorphic_comparable.h"
 
 namespace CppRayTracerChallenge::Core::Renderer::Patterns
@@ -29,7 +29,7 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		/// <returns>Color B</returns>
 		Graphics::Color colorB() const;
 
-		Graphics::Color colorAt(Math::Point position) const override;
+		Graphics::Color colorAt(RML::Point position) const override;
 
 		bool operator==(const Gradient& other) const;
 	private:

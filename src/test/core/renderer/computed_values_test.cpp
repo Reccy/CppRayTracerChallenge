@@ -41,9 +41,9 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_from_inside)
 	EXPECT_TRUE(cv.isInside());
 
 	EXPECT_EQ(cv.t(), 1);
-	EXPECT_EQ(cv.position(), Math::Point(0, 0, 1));
-	EXPECT_EQ(cv.eye(), Math::Vector(0, 0, -1));
-	EXPECT_EQ(cv.normal(), Math::Vector(0, 0, -1));
+	EXPECT_EQ(cv.position(), RML::Point(0, 0, 1));
+	EXPECT_EQ(cv.eye(), RML::Vector(0, 0, -1));
+	EXPECT_EQ(cv.normal(), RML::Vector(0, 0, -1));
 }
 
 TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_offsets_point)
@@ -51,12 +51,12 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, hit_offsets_point)
 	Math::Ray ray = Math::Ray({ 0, 0, -5 }, { 0, 0, 1 });
 	auto sphere = std::make_shared<Math::Sphere>();
 	Renderer::Shape shape = Renderer::Shape(sphere, Renderer::Material());
-	shape.transform(Math::Transform().translate(0, 0, 1));
+	shape.transform(RML::Transform().translate(0, 0, 1));
 	Math::Intersection intersection = Math::Intersection(5, shape);
 
 	Renderer::ComputedValues cv = Renderer::ComputedValues(intersection, ray);
 
-	EXPECT_TRUE(cv.overPosition().z() < -Math::EPSILON / 2);
+	EXPECT_TRUE(cv.overPosition().z() < -RML::EPSILON / 2);
 	EXPECT_TRUE(cv.position().z() > cv.overPosition().z());
 }
 
@@ -69,7 +69,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, computes_reflection_vec
 
 	Renderer::ComputedValues cv = Renderer::ComputedValues(intersection, ray);
 
-	EXPECT_EQ(cv.reflect(), Math::Vector(0, sqrt(2) / 2, sqrt(2) / 2));
+	EXPECT_EQ(cv.reflect(), RML::Vector(0, sqrt(2) / 2, sqrt(2) / 2));
 }
 
 class N1N2
@@ -93,19 +93,19 @@ class CppRayTracerChallenge_Core_Renderer_ComputedValues_Params : public ::testi
 TEST_P(CppRayTracerChallenge_Core_Renderer_ComputedValues_Params, computes_n1_and_n2)
 {
 	auto a = Helpers::MaterialHelper::glassSphere();
-	a.transform(Math::Transform().scale(2, 2, 2));
+	a.transform(RML::Transform().scale(2, 2, 2));
 	auto aMat = a.material();
 	aMat.refractiveIndex = 1.5;
 	a.material(aMat);
 
 	auto b = Helpers::MaterialHelper::glassSphere();
-	a.transform(Math::Transform().translate(0, 0, -0.25f));
+	a.transform(RML::Transform().translate(0, 0, -0.25f));
 	auto bMat = b.material();
 	bMat.refractiveIndex = 2.0f;
 	b.material(bMat);
 
 	auto c = Helpers::MaterialHelper::glassSphere();
-	c.transform(Math::Transform().translate(0, 0, -0.25f));
+	c.transform(RML::Transform().translate(0, 0, -0.25f));
 	auto cMat = c.material();
 	cMat.refractiveIndex = 2.5f;
 	c.material(cMat);
@@ -142,13 +142,13 @@ TEST(CppRayTracerChallenge_Core_Renderer_ComputedValues, under_point_is_offset_b
 {
 	auto ray = Math::Ray({ 0, 0, -5 }, { 0, 0, 1 });
 	auto shape = Helpers::MaterialHelper::glassSphere();
-	shape.transform(Math::Transform().translate(0, 0, 1));
+	shape.transform(RML::Transform().translate(0, 0, 1));
 	auto intersection = Math::Intersection(5, shape);
 	auto intersections = Math::Intersections({ intersection });
 
 	auto cv = Renderer::ComputedValues(intersection, ray, intersections);
 
-	EXPECT_TRUE(cv.underPosition().z() > Math::EPSILON / 2);
+	EXPECT_TRUE(cv.underPosition().z() > RML::EPSILON / 2);
 	EXPECT_TRUE(cv.position().z() < cv.underPosition().z());
 }
 
@@ -201,7 +201,7 @@ TEST(CppRayTracerChallenge_Core_Math_SmoothTriangle, prepares_normal_on_smooth_t
 
 	auto cv = Renderer::ComputedValues(intersections.at(0), ray, intersections);
 
-	auto expectedResult = Math::Vector(-0.5547, 0.83205, 0);
+	auto expectedResult = RML::Vector(-0.5547, 0.83205, 0);
 
 	EXPECT_EQ(cv.normal(), expectedResult);
 }

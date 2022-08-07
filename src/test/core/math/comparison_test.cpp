@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+#include <RML.h>
 #include "math/comparison.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
@@ -47,9 +48,9 @@ TEST(CppRayTracerChallenge_Core_Math_Comparison, compare_values_outside_epsilon_
 
 TEST(CppRayTracerChallenge_Core_Math_Comparison, compare_infinity)
 {
-	EXPECT_TRUE(Comparison::equal(INF, INF));
-	EXPECT_TRUE(Comparison::equal(-INF, -INF));
-	EXPECT_FALSE(Comparison::equal(-INF, INF));
-	EXPECT_FALSE(Comparison::equal(INF, -INF));
-	EXPECT_FALSE(Comparison::equal(INF, 245123.123));
+	EXPECT_TRUE(Comparison::equal(RML::INF, RML::INF));
+	EXPECT_TRUE(Comparison::equal(-RML::INF, -RML::INF));
+	EXPECT_FALSE(Comparison::equal(-RML::INF, RML::INF));
+	EXPECT_FALSE(Comparison::equal(RML::INF, -RML::INF));
+	EXPECT_FALSE(Comparison::equal(RML::INF, 245123.123));
 }

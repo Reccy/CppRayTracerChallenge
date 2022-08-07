@@ -3,14 +3,13 @@
 #include <renderer/patterns/solid_color.h>
 #include <renderer/patterns/checker.h>
 #include <graphics/color.h>
-#include <math/transform.h>
-#include <math/constants.h>
+#include <RML.h>
 
 using CppRayTracerChallenge::Core::Renderer::Patterns::Masked;
 using CppRayTracerChallenge::Core::Renderer::Patterns::Checker;
 using CppRayTracerChallenge::Core::Renderer::Patterns::SolidColor;
 using CppRayTracerChallenge::Core::Graphics::Color;
-using namespace CppRayTracerChallenge::Core::Math;
+using namespace RML;
 
 TEST(CppRayTracerChallenge_Core_Renderer_Patterns_Masked, can_create_masked_pattern_with_default_transform)
 {

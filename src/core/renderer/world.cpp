@@ -5,12 +5,12 @@
 #include "lighting.h"
 #include "patterns/solid_color.h"
 #include "../math/sphere.h"
-#include "../math/transform.h"
 #include "../math/ray.h"
 #include "../math/intersection.h"
 #include "../math/intersections.h"
 #include "../graphics/color.h"
 #include "../renderer/shape.h"
+#include "RML.h"
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core;
@@ -29,7 +29,7 @@ World World::defaultWorld()
 	auto sphere1 = std::make_shared<Math::Sphere>(Math::Sphere());
 	Shape s1 = Shape(sphere1, mat);
 
-	Math::Transform transform = Math::Transform()
+	RML::Transform transform = RML::Transform()
 		.scale(0.5, 0.5, 0.5);
 
 	auto sphere2 = std::make_shared<Math::Sphere>(Math::Sphere());
@@ -192,7 +192,7 @@ Graphics::Color World::refractedColor(const ComputedValues& cv, int remainingCal
 
 	float nRatio = cv.n1() / cv.n2();
 
-	float cosI = static_cast<float>(Math::Vector::dot(cv.eye(), cv.normal()));
+	float cosI = static_cast<float>(RML::Vector::dot(cv.eye(), cv.normal()));
 	float sin2t = powf(nRatio, 2.0f) * (1 - powf(cosI, 2.0f));
 
 	if (sin2t > 1)
@@ -202,18 +202,18 @@ Graphics::Color World::refractedColor(const ComputedValues& cv, int remainingCal
 
 	float cosT = sqrtf(1.0f - sin2t);
 
-	Math::Vector direction = cv.normal() * (nRatio * cosI - cosT) - cv.eye() * nRatio;
+	RML::Vector direction = cv.normal() * (nRatio * cosI - cosT) - cv.eye() * nRatio;
 
 	Math::Ray refractedRay = Math::Ray(cv.underPosition(), direction);
 
 	return colorAt(refractedRay, remainingCalls - 1) * cv.material().transparency;
 }
 
-bool World::isShadowed(const Math::Point& position, const PointLight& light) const
+bool World::isShadowed(const RML::Point& position, const PointLight& light) const
 {
-	Math::Vector positionToLight = light.position() - position;
+	RML::Vector positionToLight = light.position() - position;
 	double distance = positionToLight.magnitude();
-	Math::Vector positionToLightDirection = positionToLight.normalize();
+	RML::Vector positionToLightDirection = positionToLight.normalize();
 
 	Math::Ray ray = Math::Ray(position, positionToLightDirection);
 	Math::Intersections intersections = intersectRay(ray);
@@ -236,7 +236,7 @@ bool World::isShadowed(const Math::Point& position, const PointLight& light) con
 		}
 		else
 		{
-			Math::Point rayPosition = ray.position(hit.t() + Math::EPSILON);
+			RML::Point rayPosition = ray.position(hit.t() + RML::EPSILON);
 			return isShadowed(rayPosition, light);
 		}
 	}

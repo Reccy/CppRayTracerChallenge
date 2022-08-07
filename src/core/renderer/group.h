@@ -1,10 +1,9 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_GROUP
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_GROUP
 
+#include "RML.h"
 #include "../math/i_shape.h"
-#include "../math/transform.h"
 #include "../math/intersections.h"
-#include "../math/point.h"
 #include "shape.h"
 #include "i_group.h"
 
@@ -15,13 +14,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 	class Group : public Math::IShape, public IGroup, public std::enable_shared_from_this<Group>
 	{
 	public:
-		void transform(Math::Transform transform) override;
+		void transform(RML::Transform transform) override;
 
-		const Math::Transform transform() const override;
+		RML::Transform& transform() override;
 
-		const Math::Vector normal(const Math::Point position) const override;
+		const RML::Vector normal(const RML::Point position) const override;
 
-		const Math::Vector normalLocal(const Math::Point position) const override;
+		const RML::Vector normalLocal(const RML::Point position) const override;
 
 		const Math::Intersections intersect(Math::Ray ray) const override;
 
@@ -53,9 +52,9 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		std::tuple<std::vector<std::shared_ptr<Shape>>, std::vector<std::shared_ptr<Shape>>> partitionChildren();
 
-		const Math::Point worldToObject(Math::Point worldPosition) const override;
+		const RML::Point worldToObject(RML::Point worldPosition) const override;
 
-		const Math::Vector normalToWorld(Math::Vector objectNormal) const override;
+		const RML::Vector normalToWorld(RML::Vector objectNormal) const override;
 
 		bool includes(const IShape& other) const override;
 
@@ -67,7 +66,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		bool empty() const;
 	private:
-		Math::Transform m_transform;
+		RML::Transform m_transform;
 		Math::BoundingBox m_bounds;
 		std::weak_ptr<Group> m_parent;
 		std::vector<std::shared_ptr<Shape>> m_shapes;

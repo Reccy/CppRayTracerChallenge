@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
+#include <RML.h>
 #include <math/smooth_triangle.h>
-#include <math/point.h>
 #include <math/comparison.h>
 
 using namespace CppRayTracerChallenge::Core::Math;
@@ -8,7 +8,12 @@ using namespace CppRayTracerChallenge::Core::Math;
 struct SmoothTriangleFixture
 {
 	SmoothTriangleFixture()
-		: p1({ 0,1,0 }), p2({ -1,0,0 }), p3({ 1,0,0 }), n1({ 0,1,0 }), n2({ -1,0,0 }), n3({ 1, 0, 0 }) {};
+		: p1(RML::Point(0, 1, 0)),
+		p2(RML::Point(-1, 0, 0)),
+		p3(RML::Point(1, 0, 0)),
+		n1(RML::Vector(0, 1, 0)),
+		n2(RML::Vector(-1, 0, 0)),
+		n3(RML::Vector(1, 0, 0)) {};
 	Point p1, p2, p3;
 	Vector n1, n2, n3;
 	SmoothTriangle tri = SmoothTriangle(p1, p2, p3, n1, n2, n3);

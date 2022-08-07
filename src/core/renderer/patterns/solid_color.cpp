@@ -10,7 +10,7 @@ Color SolidColor::color() const
 	return m_color;
 }
 
-Color SolidColor::colorAt(Math::Point) const
+Color SolidColor::colorAt(RML::Point) const
 {
 	return m_color;
 }

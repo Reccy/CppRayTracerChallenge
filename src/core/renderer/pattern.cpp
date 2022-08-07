@@ -1,7 +1,7 @@
 #include "pattern.h"
 
 using CppRayTracerChallenge::Core::Renderer::Pattern;
-using CppRayTracerChallenge::Core::Math::Transform;
+using RML::Transform;
 
 void Pattern::transform(Transform transform)
 {

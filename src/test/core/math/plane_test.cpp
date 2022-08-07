@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
+#include <RML.h>
 #include "math/plane.h"
-#include "math/vector.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
 

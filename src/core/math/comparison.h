@@ -3,7 +3,7 @@
 
 #include <type_traits>
 #include <cmath>
-#include "constants.h"
+#include "RML.h"
 
 /// <summary>
 /// Double point precision floating point helper functions
@@ -22,10 +22,10 @@ namespace CppRayTracerChallenge::Core::Math::Comparison {
 		{
 			if (std::isinf((double)lhs) && std::isinf((double)rhs))
 			{
-				return (lhs == INF && rhs == INF) || (lhs == -INF && rhs == -INF);
+				return (lhs == RML::INF && rhs == RML::INF) || (lhs == -RML::INF && rhs == -RML::INF);
 			}
 
-			return abs(lhs - rhs) < EPSILON;
+			return abs(lhs - rhs) < RML::EPSILON;
 		}
 		else
 		{

@@ -4,3 +4,6 @@
 [submodule "src/lib/taskflow"]
 	path = src/lib/taskflow/taskflow
 	url = https://github.com/taskflow/taskflow.git
+[submodule "src/lib/RML"]
+	path = src/lib/RML
+	url = https://github.com/Reccy/RML.git

@@ -3,7 +3,6 @@
 
 #include "../pattern.h"
 #include "../../graphics/color.h"
-#include "../../math/point.h"
 #include "../../helpers/polymorphic_comparable.h"
 
 namespace CppRayTracerChallenge::Core::Renderer::Patterns
@@ -26,7 +25,7 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		/// <returns></returns>
 		CppRayTracerChallenge::Core::Graphics::Color color() const;
 
-		CppRayTracerChallenge::Core::Graphics::Color colorAt(Math::Point _) const override;
+		CppRayTracerChallenge::Core::Graphics::Color colorAt(RML::Point _) const override;
 
 		bool operator==(const SolidColor& other) const;
 	private:

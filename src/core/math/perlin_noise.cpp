@@ -1,9 +1,10 @@
 #include "perlin_noise.h"
-#include "vector.h"
+#include "RML.h"
 #include <cmath>
 #include <string>
 
 using namespace CppRayTracerChallenge::Core::Math;
+using namespace RML;
 
 // Permutation Table
 const int P[] = {
@@ -85,7 +86,7 @@ double lerp(double t, double a, double b)
 
 PerlinNoise::PerlinNoise() {};
 
-double PerlinNoise::at(Math::Point position) const
+double PerlinNoise::at(Point position) const
 {
 	// Input values
 	double inX = position.x();

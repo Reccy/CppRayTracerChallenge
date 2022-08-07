@@ -2,9 +2,9 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_RAY
 
 #include <vector>
-#include "point.h"
-#include "vector.h"
-#include "transform.h"
+#include "RML.h"
+
+using namespace RML;
 
 namespace CppRayTracerChallenge::Core::Math
 {
@@ -44,11 +44,11 @@ namespace CppRayTracerChallenge::Core::Math
 		Point position(const double t) const;
 
 		/// <summary>
-		/// Creates a copy of this ray and transforms it
+		/// Creates a copy of this ray and transforms it by a matrix
 		/// </summary>
-		/// <param name="transform">The transform to apply to the new ray</param>
+		/// <param name="transform">The transform matrix to apply to the new ray</param>
 		/// <returns>A transformed ray</returns>
-		Ray transform(const Transform& transform) const;
+		Ray transform(const Matrix<double, 4, 4>& transform) const;
 	private:
 		Point m_origin;
 		Vector m_direction;

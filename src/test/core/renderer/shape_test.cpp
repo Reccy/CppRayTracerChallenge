@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <RML.h>
 #include "renderer/shape.h"
 #include "renderer/group.h"
 #include "renderer/patterns/stripe.h"
@@ -6,11 +7,10 @@
 #include "renderer/patterns/test_pattern.h"
 #include "math/sphere.h"
 #include "math/bounding_box.h"
-#include "math/trig.h"
 #include "math/comparison.h"
 
 using namespace CppRayTracerChallenge::Core;
-using namespace CppRayTracerChallenge::Core::Math::Trig;
+using namespace RML::Trig;
 using Renderer::Shape;
 using Renderer::Group;
 using Renderer::Material;
@@ -18,10 +18,9 @@ using Renderer::Patterns::SolidColor;
 using Renderer::Patterns::Stripe;
 using Renderer::Patterns::TestPattern;
 using Math::Sphere;
-using Math::Transform;
-using Math::Point;
-using Math::Vector;
-using Math::Tuple;
+using RML::Transform;
+using RML::Point;
+using RML::Vector;
 using Math::BoundingBox;
 using Graphics::Color;
 

@@ -32,13 +32,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 			DIFFERENCE
 		};
 
-		void transform(Math::Transform transform) override;
+		void transform(RML::Transform transform) override;
 
-		const Math::Transform transform() const override;
+		RML::Transform& transform() override;
 
-		const Math::Vector normal(const Math::Point position) const override;
+		const RML::Vector normal(const RML::Point position) const override;
 
-		const Math::Vector normalLocal(const Math::Point position) const override;
+		const RML::Vector normalLocal(const RML::Point position) const override;
 
 		const Math::Intersections intersect(Math::Ray ray) const override;
 
@@ -48,9 +48,9 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		const Math::BoundingBox parentSpaceBounds() const override;
 
-		const Math::Point worldToObject(Math::Point worldPosition) const override;
+		const RML::Point worldToObject(RML::Point worldPosition) const override;
 
-		const Math::Vector normalToWorld(Math::Vector objectNormal) const override;
+		const RML::Vector normalToWorld(RML::Vector objectNormal) const override;
 
 		bool includes(const IShape& other) const override;
 
@@ -68,7 +68,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 	protected:
 		CSG(Operation op);
 	private:
-		Math::Transform m_transform;
+		RML::Transform m_transform;
 		std::shared_ptr<Shape> m_left, m_right;
 		Operation m_operation;
 	};

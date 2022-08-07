@@ -17,10 +17,10 @@ void Shape::material(const Material material)
 	m_material = material;
 };
 
-Graphics::Color Shape::colorAt(Math::Point worldPosition) const
+Graphics::Color Shape::colorAt(RML::Point worldPosition) const
 {
-	Math::Point objectLocalPosition = worldToObject(worldPosition);
-	Math::Point patternLocalPosition = m_material.pattern->transform().invert() * objectLocalPosition;
+	RML::Point objectLocalPosition = worldToObject(worldPosition);
+	RML::Point patternLocalPosition = m_material.pattern->transform().get_inverted() * objectLocalPosition;
 
 	return m_material.pattern->colorAt(patternLocalPosition);
 }
@@ -40,21 +40,21 @@ void Shape::parent(std::weak_ptr<IGroup> parent)
 	m_parent = parent;
 }
 
-const Math::Point Shape::worldToObject(Math::Point worldPosition) const
+const RML::Point Shape::worldToObject(RML::Point worldPosition) const
 {
-	Math::Point result = worldPosition;
+	RML::Point result = worldPosition;
 
 	if (!m_parent.expired())
 	{
 		result = m_parent.lock()->worldToObject(worldPosition);
 	}
 
-	return m_shape->transform().invert() * result;
+	return m_shape->transform().get_inverted() * result;
 }
 
-const Math::Vector Shape::normalToWorld(Math::Vector objectNormal) const
+const RML::Vector Shape::normalToWorld(RML::Vector objectNormal) const
 {
-	Math::Vector normal = m_shape->transform().invert().transpose() * objectNormal;
+	RML::Vector normal = m_shape->transform().get_inverted().transpose() * objectNormal;
 	normal = normal.normalize();
 
 	if (!m_parent.expired())
@@ -65,24 +65,24 @@ const Math::Vector Shape::normalToWorld(Math::Vector objectNormal) const
 	return normal;
 }
 
-void Shape::transform(Math::Transform transform)
+void Shape::transform(RML::Transform transform)
 {
 	m_shape->transform(transform);
 }
 
-const Math::Transform Shape::transform() const
+RML::Transform& Shape::transform()
 {
 	return m_shape->transform();
 }
 
-const Math::Vector Shape::normal(const Math::Point position) const
+const RML::Vector Shape::normal(const RML::Point position) const
 {
-	const Math::Point localPosition = worldToObject(position);
-	const Math::Vector localNormal = normalLocal(localPosition);
+	const RML::Point localPosition = worldToObject(position);
+	const RML::Vector localNormal = normalLocal(localPosition);
 	return normalToWorld(localNormal);
 }
 
-const Math::Vector Shape::normalLocal(const Math::Point position) const
+const RML::Vector Shape::normalLocal(const RML::Point position) const
 {
 	return m_shape->normalLocal(position);
 }

@@ -1,7 +1,7 @@
 #include "camera.h"
 #include "render_job.h"
 #include "../graphics/canvas.h"
-#include "../math/trig.h"
+#include "RML.h"
 
 #include <taskflow/taskflow.hpp>
 
@@ -35,12 +35,12 @@ double Camera::pixelSize() const
 	return m_pixelSize;
 }
 
-void Camera::transform(const Math::Matrix<double, 4, 4>& matrix)
+void Camera::transform(const RML::Matrix<double, 4, 4>& matrix)
 {
 	m_transformMatrix = matrix;
 }
 
-void Camera::transform(const Math::Transform& transform)
+void Camera::transform(const RML::Transform& transform)
 {
 	m_transformMatrix = transform.matrix();
 }
@@ -134,7 +134,7 @@ Graphics::Image Camera::renderedImage() const
 Matrix<double, 4, 4> Camera::viewMatrix(const Point from, const Point to, const Vector up)
 {
 	Vector forward = (to - from).normalize();
-	Vector upNormalized = up.normalize();
+	Vector upNormalized = up.normalized();
 	Vector left = Vector::cross(forward, upNormalized);
 	Vector trueUp = Vector::cross(left, forward);
 
@@ -150,7 +150,7 @@ Matrix<double, 4, 4> Camera::viewMatrix(const Point from, const Point to, const 
 
 void Camera::calculatePixelSize()
 {
-	double halfView = tan(Math::Trig::degrees_to_radians(m_fieldOfView) / 2);
+	double halfView = tan(Trig::degrees_to_radians(m_fieldOfView) / 2);
 	double aspect = static_cast<double>(m_hSize) / static_cast<double>(m_vSize);
 
 	if (aspect >= 1)

@@ -81,13 +81,13 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\core\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\RML\RML\;$(SolutionDir)src\core\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>$(SolutionDir)bin\CppRayTracerChallengeCore\x64\$(Configuration)\CppRayTracerChallengeCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\CppRayTracerChallengeCore\x64\$(Configuration)\CppRayTracerChallengeCore.lib;$(SolutionDir)bin\RML\x64\$(Configuration)\RML.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -97,7 +97,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\core\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\RML\RML\;$(SolutionDir)src\core\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -105,25 +105,25 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>$(SolutionDir)bin\CppRayTracerChallengeCore\x64\$(Configuration)\CppRayTracerChallengeCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\CppRayTracerChallengeCore\x64\$(Configuration)\CppRayTracerChallengeCore.lib;$(SolutionDir)bin\RML\x64\$(Configuration)\RML.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\core\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\RML\RML\;$(SolutionDir)src\core\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\CppRayTracerChallengeCore\x64\$(Configuration)\CppRayTracerChallengeCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\CppRayTracerChallengeCore\x64\$(Configuration)\CppRayTracerChallengeCore.lib;$(SolutionDir)bin\RML\x64\$(Configuration)\RML.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\core\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\RML\RML\;$(SolutionDir)src\core\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\CppRayTracerChallengeCore\x64\$(Configuration)\CppRayTracerChallengeCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\CppRayTracerChallengeCore\x64\$(Configuration)\CppRayTracerChallengeCore.lib;$(SolutionDir)bin\RML\x64\$(Configuration)\RML.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -142,18 +142,12 @@
     <ClCompile Include="core\math\cylinder_test.cpp" />
     <ClCompile Include="core\math\intersections_test.cpp" />
     <ClCompile Include="core\math\intersection_test.cpp" />
-    <ClCompile Include="core\math\matrix_test.cpp" />
     <ClCompile Include="core\math\perlin_noise_test.cpp" />
     <ClCompile Include="core\math\plane_test.cpp" />
-    <ClCompile Include="core\math\point_test.cpp" />
     <ClCompile Include="core\math\ray_test.cpp" />
     <ClCompile Include="core\math\smooth_triangle_test.cpp" />
     <ClCompile Include="core\math\sphere_test.cpp" />
-    <ClCompile Include="core\math\transform_test.cpp" />
     <ClCompile Include="core\math\triangle_test.cpp" />
-    <ClCompile Include="core\math\trig_test.cpp" />
-    <ClCompile Include="core\math\tuple_test.cpp" />
-    <ClCompile Include="core\math\vector_test.cpp" />
     <ClCompile Include="core\renderer\camera_test.cpp" />
     <ClCompile Include="core\renderer\computed_values_test.cpp" />
     <ClCompile Include="core\renderer\csg_test.cpp" />
@@ -181,6 +175,9 @@
   <ItemGroup>
     <ProjectReference Include="..\core\CppRayTracerChallengeCore.vcxproj">
       <Project>{51571a7d-1f87-4bfe-862e-b73a996ed69e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\RML\RML\RML.vcxproj">
+      <Project>{4984803f-6d2c-43d3-becd-19a54d488176}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_PERLIN_NOISE
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_PERLIN_NOISE
 
-#include "point.h"
+#include "RML.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
@@ -21,7 +21,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// </summary>
 		/// <param name="position">The point at where to evaluate the noise</param>
 		/// <returns>A generated value between 0 and 1</returns>
-		double at(Point position) const;
+		double at(RML::Point position) const;
 	};
 }
 

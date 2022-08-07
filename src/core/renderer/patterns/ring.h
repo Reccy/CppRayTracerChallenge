@@ -28,7 +28,7 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		/// <returns>Color B</returns>
 		Graphics::Color colorB() const;
 
-		Graphics::Color colorAt(Math::Point position) const override;
+		Graphics::Color colorAt(RML::Point position) const override;
 
 		bool operator==(const Ring& other) const;
 	private:

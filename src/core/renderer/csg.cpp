@@ -81,23 +81,23 @@ Intersections CSG::filterIntersections(Intersections intersections) const
 	return result;
 }
 
-void CSG::transform(Math::Transform transform)
+void CSG::transform(RML::Transform transform)
 {
 	m_transform = transform;
 }
 
-const Transform CSG::transform() const
+Transform& CSG::transform()
 {
 	return m_transform;
 }
 
-const Vector CSG::normal(const Math::Point position) const
+const Vector CSG::normal(const RML::Point position) const
 {
 	(void)position;
 	throw std::logic_error("Method not implemented");
 }
 
-const Vector CSG::normalLocal(const Math::Point position) const
+const Vector CSG::normalLocal(const RML::Point position) const
 {
 	(void)position;
 	throw std::logic_error("Method not implemented");
@@ -105,7 +105,7 @@ const Vector CSG::normalLocal(const Math::Point position) const
 
 const Intersections CSG::intersect(Math::Ray ray) const
 {
-	ray = ray.transform(m_transform.invert());
+	ray = ray.transform(m_transform.get_inverted());
 
 	return intersectLocal(ray);
 }

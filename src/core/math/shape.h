@@ -1,6 +1,7 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_SHAPE
 #define _CPPRAYTRACERCHALLENGE_CORE_MATH_SHAPE
 
+#include "RML.h"
 #include "i_shape.h"
 
 namespace CppRayTracerChallenge::Core::Math
@@ -12,20 +13,20 @@ namespace CppRayTracerChallenge::Core::Math
 		/// Transforms the shape
 		/// </summary>
 		/// <param name="transform">The transform to apply to the shape</param>
-		void transform(Transform transform);
+		void transform(RML::Transform transform);
 
 		/// <summary>
-		/// Returns a copy of the Shape's transform
+		/// Returns a reference to the Shape's transform
 		/// </summary>
 		/// <returns>The Shape's transform</returns>
-		const Transform transform() const;
+		RML::Transform& transform();
 
 		/// <summary>
 		/// Calculates and returns the normal at the passed in position for this shape
 		/// </summary>
 		/// <param name="position">The position of the normal vector</param>
 		/// <returns>The normal vector at the position</returns>
-		const Vector normal(const Point position) const override;
+		const RML::Vector normal(const RML::Point position) const override;
 
 		/// <summary>
 		/// Calculates if the ray intersects with the sphere.
@@ -40,7 +41,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <returns>Bounding Box that contains the shape, in the space of the parent</returns>
 		const BoundingBox parentSpaceBounds() const override;
 	protected:
-		Transform m_transform;
+		RML::Transform m_transform;
 	};
 }
 

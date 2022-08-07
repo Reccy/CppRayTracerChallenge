@@ -1,9 +1,7 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_CAMERA
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_CAMERA
 
-#include "../math/point.h"
-#include "../math/vector.h"
-#include "../math/transform.h"
+#include "RML.h"
 #include "../math/ray.h"
 #include "../renderer/world.h"
 #include "../graphics/image.h"
@@ -58,13 +56,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// Transforms the camera by the passed in transform matrix
 		/// </summary>
 		/// <param name="matrix">The transform matrix to apply to the camera</param>
-		void transform(const Math::Matrix<double, 4, 4>& matrix);
+		void transform(const RML::Matrix<double, 4, 4>& matrix);
 
 		/// <summary>
 		/// Transforms the camera by the passed in transform
 		/// </summary>
 		/// <param name="transform">The transform to apply to the camera</param>
-		void transform(const Math::Transform& transform);
+		void transform(const RML::Transform& transform);
 
 		/// <summary>
 		/// Calculates the Ray that will go from the camera origin through the pixel on the canvas

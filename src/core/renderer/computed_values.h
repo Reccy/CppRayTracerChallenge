@@ -54,7 +54,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// Returns the reflect vector
 		/// </summary>
 		/// <returns>The reflect vector</returns>
-		Math::Vector reflect() const;
+		RML::Vector reflect() const;
 
 		/// <summary>
 		/// Returns the shape that was intersected
@@ -72,33 +72,33 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// Returns the position of the intersection
 		/// </summary>
 		/// <returns>Where the intersection occurred</returns>
-		Math::Point position() const;
+		RML::Point position() const;
 
 		/// <summary>
 		/// Returns the position of the intersection translated slightly in front of the normal.
 		/// This accounts for floating point imprecision errors.
 		/// </summary>
 		/// <returns>Where the intersection occurred, translated in the positive normal direction</returns>
-		Math::Point overPosition() const;
+		RML::Point overPosition() const;
 
 		/// <summary>
 		/// Returns the position of the intersection translated slightly behind the normal.
 		/// This accounts for floating point imprecision errors and is used when calculating refraction.
 		/// </summary>
 		/// <returns>Where the intersection occurred, translated in the negative normal direction</returns>
-		Math::Point underPosition() const;
+		RML::Point underPosition() const;
 
 		/// <summary>
 		/// Returns the eye vector
 		/// </summary>
 		/// <returns>The eye vector</returns>
-		Math::Vector eye() const;
+		RML::Vector eye() const;
 
 		/// <summary>
 		/// Returns the normal vector
 		/// </summary>
 		/// <returns>The normal vector</returns>
-		Math::Vector normal() const;
+		RML::Vector normal() const;
 
 		/// <summary>
 		/// If the intersection occurred inside or outside of the intersectable object
@@ -111,12 +111,12 @@ namespace CppRayTracerChallenge::Core::Renderer
 		float m_n2;
 		float m_reflectance;
 		Renderer::Shape m_shape;
-		Math::Point m_position;
-		Math::Point m_overPosition;
-		Math::Point m_underPosition;
-		Math::Vector m_eye;
-		Math::Vector m_normal;
-		Math::Vector m_reflect;
+		RML::Point m_position;
+		RML::Point m_overPosition;
+		RML::Point m_underPosition;
+		RML::Vector m_eye;
+		RML::Vector m_normal;
+		RML::Vector m_reflect;
 		Math::Intersections m_intersections;
 		bool m_isInside;
 

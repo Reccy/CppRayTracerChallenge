@@ -5,8 +5,7 @@
 #include <math/sphere.h>
 #include <math/cube.h>
 #include <math/ray.h>
-#include <math/transform.h>
-#include <math/point.h>
+#include <RML.h>
 
 using namespace CppRayTracerChallenge::Core::Renderer;
 using CppRayTracerChallenge::Core::Math::Cube;
@@ -14,8 +13,8 @@ using CppRayTracerChallenge::Core::Math::Sphere;
 using CppRayTracerChallenge::Core::Math::Intersections;
 using CppRayTracerChallenge::Core::Math::Intersection;
 using CppRayTracerChallenge::Core::Math::Ray;
-using CppRayTracerChallenge::Core::Math::Transform;
-using CppRayTracerChallenge::Core::Math::Point;
+using RML::Transform;
+using RML::Point;
 
 constexpr CSG::Operation UNION = CSG::Operation::UNION;
 constexpr CSG::Operation INTERSECT = CSG::Operation::INTERSECT;

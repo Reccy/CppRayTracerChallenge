@@ -10,7 +10,7 @@ using namespace CppRayTracerChallenge::Core;
 void WavefrontOBJDeserializer::deserialize(std::vector<char> input)
 {
 	m_buffer = input;
-	m_vertices = std::vector<Math::Point>();
+	m_vertices = std::vector<RML::Point>();
 	m_defaultGroup = Renderer::Group();
 	m_groups = std::map<std::string, std::shared_ptr<Renderer::Group>>();
 	m_ignoredLines = 0;
@@ -153,7 +153,7 @@ void WavefrontOBJDeserializer::parseVertex(std::string line)
 	ss << " Point(" << values[0] << ", " << values[1] << ", " << values[2] << ")\n";
 	std::cout << ss.str();
 
-	m_vertices.push_back(Math::Point(values[0], values[1], values[2]));
+	m_vertices.push_back(RML::Point(values[0], values[1], values[2]));
 }
 
 struct FaceParam
@@ -434,7 +434,7 @@ void WavefrontOBJDeserializer::parseNormal(std::string line)
 	ss << " Vector(" << values[0] << ", " << values[1] << ", " << values[2] << ")\n";
 	std::cout << ss.str();
 
-	m_normals.push_back(Math::Vector(values[0], values[1], values[2]));
+	m_normals.push_back(RML::Vector(values[0], values[1], values[2]));
 }
 
 std::vector<char> WavefrontOBJDeserializer::buffer() const
@@ -452,12 +452,12 @@ std::shared_ptr<Renderer::Group> WavefrontOBJDeserializer::group(std::string gro
 	return m_groups.at(groupName);
 }
 
-std::vector<Math::Point> WavefrontOBJDeserializer::vertices() const
+std::vector<RML::Point> WavefrontOBJDeserializer::vertices() const
 {
 	return m_vertices;
 }
 
-std::vector<Math::Vector> WavefrontOBJDeserializer::normals() const
+std::vector<RML::Vector> WavefrontOBJDeserializer::normals() const
 {
 	return m_normals;
 }

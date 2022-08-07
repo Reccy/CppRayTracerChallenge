@@ -60,16 +60,10 @@
     <ClCompile Include="core\math\intersection_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\math\matrix_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="core\math\perlin_noise_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\math\plane_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="core\math\point_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\math\ray_test.cpp">
@@ -81,19 +75,7 @@
     <ClCompile Include="core\math\sphere_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\math\transform_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="core\math\triangle_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="core\math\trig_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="core\math\tuple_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="core\math\vector_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\renderer\camera_test.cpp">
@@ -163,6 +145,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

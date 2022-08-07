@@ -2,11 +2,11 @@
 
 using namespace CppRayTracerChallenge::Core;
 
-Graphics::Color CppRayTracerChallenge::Core::Renderer::Lighting::lighting(const Shape& shape, const PointLight& light, const Math::Point& worldPosition, const Math::Vector& eyev, const Math::Vector& normalv, const bool isShadowed)
+Graphics::Color CppRayTracerChallenge::Core::Renderer::Lighting::lighting(const Shape& shape, const PointLight& light, const RML::Point& worldPosition, const RML::Vector& eyev, const RML::Vector& normalv, const bool isShadowed)
 {
 	const Renderer::Material& material = shape.material();
 	Graphics::Color effectiveColor = shape.colorAt(worldPosition) * light.intensity();
-	Math::Vector lightv = (light.position() - worldPosition).normalize();
+	RML::Vector lightv = (light.position() - worldPosition).normalize();
 	Graphics::Color ambient = effectiveColor * material.ambient;
 
 	if (isShadowed)
@@ -14,7 +14,7 @@ Graphics::Color CppRayTracerChallenge::Core::Renderer::Lighting::lighting(const 
 		return ambient;
 	}
 
-	float lightDotNormal = static_cast<float>(Math::Vector::dot(lightv, normalv));
+	float lightDotNormal = static_cast<float>(RML::Vector::dot(lightv, normalv));
 
 	Graphics::Color diffuse = Graphics::Color::black();
 	Graphics::Color specular = Graphics::Color::black();
@@ -23,8 +23,8 @@ Graphics::Color CppRayTracerChallenge::Core::Renderer::Lighting::lighting(const 
 	{
 		diffuse = effectiveColor * material.diffuse * lightDotNormal;
 
-		Math::Vector reflectv = Math::Vector::reflect(-lightv, normalv);
-		double reflectDotEye = Math::Vector::dot(reflectv, eyev);
+		RML::Vector reflectv = RML::Vector::reflect(-lightv, normalv);
+		double reflectDotEye = RML::Vector::dot(reflectv, eyev);
 
 		if (reflectDotEye > 0)
 		{

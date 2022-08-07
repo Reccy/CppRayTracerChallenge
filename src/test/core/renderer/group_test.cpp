@@ -2,7 +2,7 @@
 #include <gmock/gmock.h>
 #include <renderer/group.h>
 #include <renderer/shape.h>
-#include <math/transform.h>
+#include <RML.h>
 #include <math/bounding_box.h>
 #include <math/sphere.h>
 #include <math/cylinder.h>
@@ -19,7 +19,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, creating_new_group)
 {
 	Group group = Group();
 
-	EXPECT_EQ(group.transform(), Math::Transform());
+	EXPECT_EQ(group.transform(), RML::Transform());
 	EXPECT_EQ(group.empty(), true);
 	EXPECT_EQ(group.size(), 0);
 	EXPECT_EQ(group.count(), 0);
@@ -57,8 +57,8 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, intersecting_ray_with_nonempty_g
 	auto s2 = std::make_shared<Math::Sphere>();
 	auto s3 = std::make_shared<Math::Sphere>();
 
-	s2->transform(Math::Transform().translate(0, 0, -3));
-	s3->transform(Math::Transform().translate(5, 0, 0));
+	s2->transform(RML::Transform().translate(0, 0, -3));
+	s3->transform(RML::Transform().translate(5, 0, 0));
 
 	auto s1R = std::make_shared<Renderer::Shape>(s1);
 	auto s2R = std::make_shared<Renderer::Shape>(s2);
@@ -81,11 +81,11 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, intersecting_ray_with_nonempty_g
 TEST(CppRayTracerChallenge_Core_Renderer_Group, intersecting_transformed_group)
 {
 	auto group = std::make_shared<Group>();
-	group->transform(Math::Transform().scale(2, 2, 2));
+	group->transform(RML::Transform().scale(2, 2, 2));
 
 	auto sphere = std::make_shared<Math::Sphere>();
 	auto shape = std::make_shared<Shape>(sphere);
-	shape->transform(Math::Transform().translate(5, 0, 0));
+	shape->transform(RML::Transform().translate(5, 0, 0));
 
 	group->addChild(shape);
 
@@ -100,14 +100,14 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, group_has_bounding_box_that_cont
 	auto mathSphere = std::make_shared<Math::Sphere>();
 	auto sphere = std::make_shared<Shape>(mathSphere);
 
-	sphere->transform(Math::Transform()
+	sphere->transform(RML::Transform()
 		.scale(2, 2, 2)
 		.translate(2, 5, -3));
 
 	auto mathCylinder = std::make_shared<Math::Cylinder>(-2, 2);
 	auto cylinder = std::make_shared<Shape>(mathCylinder);
 
-	cylinder->transform(Math::Transform()
+	cylinder->transform(RML::Transform()
 		.scale(0.5, 1, 0.5)
 		.translate(-4, -1, 4));
 
@@ -117,8 +117,8 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, group_has_bounding_box_that_cont
 
 	Math::BoundingBox box = group.bounds();
 
-	EXPECT_EQ(box.min(), Math::Point(-4.5, -3, -5));
-	EXPECT_EQ(box.max(), Math::Point(4, 7, 4.5));
+	EXPECT_EQ(box.min(), RML::Point(-4.5, -3, -5));
+	EXPECT_EQ(box.max(), RML::Point(4, 7, 4.5));
 }
 
 TEST(CppRayTracerChallenge_Core_Renderer_Group, intersecting_ray_doesnt_test_children_if_box_is_missed)
@@ -173,10 +173,10 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, partitioning_groups_children)
 	auto sphere3 = std::make_shared<Math::Sphere>();
 
 	auto shape1 = std::make_shared<Shape>(sphere1);
-	shape1->transform(Math::Transform().translate(-2, 0, 0));
+	shape1->transform(RML::Transform().translate(-2, 0, 0));
 
 	auto shape2 = std::make_shared<Shape>(sphere2);
-	shape2->transform(Math::Transform().translate(2, 0, 0));
+	shape2->transform(RML::Transform().translate(2, 0, 0));
 
 	auto shape3 = std::make_shared<Shape>(sphere3);
 
@@ -223,15 +223,15 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, subdividing_group_partitions_its
 	auto sphere3 = std::make_shared<Math::Sphere>();
 
 	auto shape1 = std::make_shared<Shape>(sphere1);
-	shape1->transform(Math::Transform()
+	shape1->transform(RML::Transform()
 		.translate(-2, -2, 0));
 
 	auto shape2 = std::make_shared<Shape>(sphere2);
-	shape2->transform(Math::Transform()
+	shape2->transform(RML::Transform()
 		.translate(-2, 2, 0));
 
 	auto shape3 = std::make_shared<Shape>(sphere3);
-	shape3->transform(Math::Transform()
+	shape3->transform(RML::Transform()
 		.scale(4, 4, 4));
 
 	auto group = std::make_shared<Group>();
@@ -259,15 +259,15 @@ TEST(CppRayTracerChallenge_Core_Renderer_Group, subdividing_group_with_too_few_c
 	auto sphere4 = std::make_shared<Math::Sphere>();
 
 	auto shape1 = std::make_shared<Shape>(sphere1);
-	shape1->transform(Math::Transform()
+	shape1->transform(RML::Transform()
 		.translate(-2, 0, 0));
 
 	auto shape2 = std::make_shared<Shape>(sphere2);
-	shape2->transform(Math::Transform()
+	shape2->transform(RML::Transform()
 		.translate(2, 1, 0));
 
 	auto shape3 = std::make_shared<Shape>(sphere3);
-	shape3->transform(Math::Transform()
+	shape3->transform(RML::Transform()
 		.translate(2, -1, 0));
 
 	auto shape4 = std::make_shared<Shape>(sphere4);

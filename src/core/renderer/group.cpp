@@ -8,7 +8,7 @@ void Group::transform(Transform transform)
 	m_transform = transform;
 }
 
-const Transform Group::transform() const
+Transform& Group::transform()
 {
 	return m_transform;
 }
@@ -25,7 +25,7 @@ const Vector Group::normalLocal(const Point) const
 
 const Intersections Group::intersect(Ray ray) const
 {
-	ray = ray.transform(m_transform.invert());
+	ray = ray.transform(m_transform.get_inverted());
 
 	return intersectLocal(ray);
 }
@@ -201,12 +201,12 @@ const Point Group::worldToObject(Point worldPosition) const
 		result = m_parent.lock()->worldToObject(worldPosition);
 	}
 
-	return m_transform.invert() * result;
+	return m_transform.get_inverted() * result;
 }
 
 const Vector Group::normalToWorld(Vector objectNormal) const
 {
-	Math::Vector normal = m_transform.invert().transpose() * objectNormal;
+	RML::Vector normal = m_transform.get_inverted().transpose() * objectNormal;
 	normal = normal.normalize();
 
 	if (!m_parent.expired())

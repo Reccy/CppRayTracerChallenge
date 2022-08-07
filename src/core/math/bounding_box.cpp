@@ -1,9 +1,9 @@
 #include "bounding_box.h"
-#include "transform.h"
-#include "constants.h"
+#include "RML.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
 using namespace CppRayTracerChallenge::Core;
+using namespace RML;
 
 BoundingBox::BoundingBox() :
 	m_min({ INF, INF, INF }), m_max({ -INF, -INF, -INF }) {};
@@ -175,7 +175,7 @@ std::tuple<BoundingBox, BoundingBox> BoundingBox::split() const
 	return std::tuple(left, right);
 }
 
-void BoundingBox::transform(Transform transform)
+void BoundingBox::transform(RML::Transform transform)
 {
 	m_transform = transform;
 	
@@ -195,7 +195,7 @@ void BoundingBox::transform(Transform transform)
 	add(m_transform * max);
 }
 
-const Transform BoundingBox::transform() const
+const RML::Transform BoundingBox::transform() const
 {
 	return m_transform;
 }

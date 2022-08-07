@@ -16,9 +16,9 @@ Color Stripe::colorB() const
 	return m_colorB;
 }
 
-Color Stripe::colorAt(Math::Point position) const
+Color Stripe::colorAt(RML::Point position) const
 {
-	if (static_cast<int>(floor(position.x() + Math::EPSILON)) % 2 == 0)
+	if (static_cast<int>(floor(position.x() + RML::EPSILON)) % 2 == 0)
 	{
 		return m_colorA;
 	}

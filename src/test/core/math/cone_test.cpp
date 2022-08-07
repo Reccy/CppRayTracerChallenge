@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <math/cone.h>
+#include <math/comparison.h>
 
 using namespace CppRayTracerChallenge::Core::Math;
 

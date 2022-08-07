@@ -2,7 +2,7 @@
 
 using CppRayTracerChallenge::Core::Renderer::Patterns::Gradient;
 using CppRayTracerChallenge::Core::Graphics::Color;
-using CppRayTracerChallenge::Core::Math::Point;
+using RML::Point;
 
 Gradient::Gradient(Color colorA, Color colorB) : m_colorA(colorA), m_colorB(colorB) {};
 

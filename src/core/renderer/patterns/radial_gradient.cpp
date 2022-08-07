@@ -16,11 +16,11 @@ Graphics::Color RadialGradient::colorB() const
 	return m_colorB;
 }
 
-Graphics::Color RadialGradient::colorAt(Math::Point position) const
+Graphics::Color RadialGradient::colorAt(RML::Point position) const
 {
-	Math::Point realPos = Math::Point(position.x(), 0, position.z());
+	RML::Point realPos = RML::Point(position.x(), 0, position.z());
 
-	double distance = (realPos - Math::Point(0, 0, 0)).magnitude();
+	double distance = (realPos - RML::Point(0, 0, 0)).magnitude();
 	float fraction = static_cast<float>(std::fmod(distance, 1));
 
 	return Graphics::Color::blend(m_colorA, m_colorB, fraction);

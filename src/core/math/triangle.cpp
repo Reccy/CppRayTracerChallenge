@@ -1,5 +1,5 @@
 #include "triangle.h"
-#include "vector.h"
+#include "RML.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
 
@@ -22,7 +22,7 @@ const Intersections Triangle::intersectLocal(Ray ray) const
 
 	double determinant = Vector::dot(m_e1, dirCrossE2);
 
-	if (abs(determinant) < Math::EPSILON)
+	if (abs(determinant) < RML::EPSILON)
 	{
 		return Intersections();
 	}

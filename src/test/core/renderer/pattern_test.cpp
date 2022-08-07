@@ -8,7 +8,7 @@ using CppRayTracerChallenge::Core::Renderer::Pattern;
 using CppRayTracerChallenge::Core::Renderer::Patterns::SolidColor;
 using CppRayTracerChallenge::Core::Renderer::Patterns::Stripe;
 using CppRayTracerChallenge::Core::Renderer::Patterns::TestPattern;
-using CppRayTracerChallenge::Core::Math::Transform;
+using RML::Transform;
 
 TEST(CppRayTracerChallenge_Core_Renderer_Pattern, pattern_has_default_identity_matrix_as_transform)
 {
@@ -19,7 +19,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_Pattern, pattern_has_default_identity_m
 
 TEST(CppRayTracerChallenge_Core_Renderer_Pattern, pattern_transform_can_be_changed)
 {
-	auto newTransform = Transform().translate(5, 10, -5).rotate(1,2,3).invert();
+	auto newTransform = Transform().translate(5, 10, -5).rotate(1,2,3).get_inverted();
 	auto pattern = std::make_shared<TestPattern>();
 
 	pattern->transform(newTransform);

@@ -1,5 +1,6 @@
 #include "cube.h"
 #include <algorithm>
+#include "comparison.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
 

@@ -1,10 +1,8 @@
 #include <gtest/gtest.h>
+#include <RML.h>
 #include "math/ray.h"
-#include "math/point.h"
-#include "math/vector.h"
 #include "math/sphere.h"
 #include "math/intersections.h"
-#include "math/transform.h"
 
 using namespace CppRayTracerChallenge::Core::Math;
 
@@ -34,7 +32,7 @@ TEST(CppRayTracerChallenge_Core_Math_Ray, ray_translation)
 	Ray ray = Ray(Point(1, 2, 3), Vector(0, 1, 0));
 	Transform transform = Transform()
 		.translate(3, 4, 5);
-	Ray transformedRay = ray.transform(transform);
+	Ray transformedRay = ray.transform(transform.matrix());
 
 	EXPECT_EQ(transformedRay.origin(), Point(4, 6, 8));
 	EXPECT_EQ(transformedRay.direction(), Vector(0, 1, 0));
@@ -45,7 +43,7 @@ TEST(CppRayTracerChallenge_Core_Math_Ray, ray_scaling)
 	Ray ray = Ray(Point(1, 2, 3), Vector(0, 1, 0));
 	Transform transform = Transform()
 		.scale(2, 3, 4);
-	Ray transformedRay = ray.transform(transform);
+	Ray transformedRay = ray.transform(transform.matrix());
 
 	EXPECT_EQ(transformedRay.origin(), Point(2, 6, 12));
 	EXPECT_EQ(transformedRay.direction(), Vector(0, 3, 0));

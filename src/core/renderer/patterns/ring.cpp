@@ -15,7 +15,7 @@ Graphics::Color Ring::colorB() const
 	return m_colorB;
 }
 
-Graphics::Color Ring::colorAt(Math::Point position) const
+Graphics::Color Ring::colorAt(RML::Point position) const
 {
 	if (static_cast<int>(floor(sqrt(pow(position.x(), 2) + pow(position.z(), 2)))) % 2 == 0)
 	{

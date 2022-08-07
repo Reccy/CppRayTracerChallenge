@@ -2,8 +2,7 @@
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERN
 
 #include "../graphics/color.h"
-#include "../math/point.h"
-#include "../math/transform.h"
+#include "RML.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
@@ -20,19 +19,19 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// </summary>
 		/// <param name="position">The position in local space</param>
 		/// <returns>The pattern color at the position in local space</returns>
-		virtual ::CppRayTracerChallenge::Core::Graphics::Color colorAt(const Math::Point position) const = 0;
+		virtual ::CppRayTracerChallenge::Core::Graphics::Color colorAt(const RML::Point position) const = 0;
 
 		/// <summary>
 		/// Transforms the pattern
 		/// </summary>
 		/// <param name="transform">The transform to apply to the pattern</param>
-		void transform(Math::Transform transform);
+		void transform(RML::Transform transform);
 
 		/// <summary>
 		/// Returns a copy of the pattern's transform
 		/// </summary>
 		/// <returns></returns>
-		const Math::Transform transform() const;
+		const RML::Transform transform() const;
 
 		virtual bool operator==(const Pattern& other) const = 0;
 
@@ -41,7 +40,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 			return !(*this == other);
 		};
 	protected:
-		Math::Transform m_transform;
+		RML::Transform m_transform;
 	};
 }
 

@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <serializer/wavefront_obj_deserializer.h>
 #include <renderer/group.h>
-#include <math/point.h>
+#include <RML.h>
 #include <math/triangle.h>
 #include <math/smooth_triangle.h>
 

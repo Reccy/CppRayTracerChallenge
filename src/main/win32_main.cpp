@@ -17,10 +17,8 @@
 #include <glad.h>
 #include <glfw3.h>
 
-#include "math/vector.h"
-#include "math/point.h"
-#include "math/transform.h"
-#include "math/trig.h"
+#include "RML.h"
+
 #include "math/sphere.h"
 #include "math/plane.h"
 #include "math/cube.h"
@@ -28,7 +26,6 @@
 #include "math/cone.h"
 #include "math/intersections.h"
 #include "math/ray.h"
-#include "math/transform.h"
 #include "graphics/canvas.h"
 #include "graphics/color.h"
 #include "renderer/world.h"
@@ -59,7 +56,7 @@ using namespace CppRayTracerChallenge::Core::Serializer;
 using namespace Renderer;
 using namespace Renderer::Patterns;
 
-using Math::Trig::PI;
+using RML::Trig::PI;
 
 using Graphics::Color;
 using Graphics::Image;
@@ -141,7 +138,7 @@ private:
 		b->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
 
 		std::shared_ptr<Pattern> masked = std::make_shared<Masked<Checker>>(a, b);
-		masked->transform(Math::Transform().rotate(0, 23, 0).translate(0, 0.01f, 0));
+		masked->transform(RML::Transform().rotate(0, 23, 0).translate(0, 0.01f, 0));
 
 		std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
 		return pattern;
@@ -166,7 +163,7 @@ private:
 	{
 		auto shape = std::make_shared<Sphere>();
 		Renderer::Shape sphere = Renderer::Shape(shape);
-		Math::Transform transform = Math::Transform()
+		RML::Transform transform = RML::Transform()
 			.translate(-0.5, 1, 0.5);
 		Renderer::Material material = Material();
 		material.pattern = std::make_shared<SolidColor>(Color(0.1f, 1.0f, 0.5f));
@@ -337,7 +334,7 @@ private:
 		auto floorShape = std::make_shared<Math::Plane>();
 		
 		Renderer::Shape floor = Renderer::Shape(floorShape, floorMat);
-		floor.transform(Math::Transform().translate(0, 0, 0));
+		floor.transform(RML::Transform().translate(0, 0, 0));
 		return floor;
 	}
 
@@ -350,7 +347,7 @@ private:
 		floorMat.diffuse = 0.001f;
 
 		Renderer::Shape floor = Renderer::Shape(floorShape, floorMat);
-		floor.transform(Math::Transform().translate(0, 0.5f + Math::EPSILON * 2, 0));
+		floor.transform(RML::Transform().translate(0, 0.5f + RML::EPSILON * 2, 0));
 		return floor;
 	}
 
@@ -367,7 +364,7 @@ private:
 		auto wallShape = std::make_shared<Math::Plane>();
 
 		Renderer::Shape wall = Renderer::Shape(wallShape, wallMat);
-		wall.transform(Math::Transform().rotate(82, 3, 180).translate(0,0,10));
+		wall.transform(RML::Transform().rotate(82, 3, 180).translate(0,0,10));
 
 		return wall;
 	}
@@ -379,7 +376,7 @@ private:
 		auto ballShape = std::make_shared<Math::Sphere>();
 
 		Renderer::Shape ball = Renderer::Shape(ballShape, ballMat);
-		ball.transform(Math::Transform().scale(2, 2, 2).translate(0, 4, 5));
+		ball.transform(RML::Transform().scale(2, 2, 2).translate(0, 4, 5));
 
 		return ball;
 	}
@@ -479,7 +476,7 @@ private:
 		{
 			auto side = buildHexagonSide();
 			side->transform(Transform()
-				.rotate(0, Math::Trig::radians_to_degrees(i * PI / 3.0), 0));
+				.rotate(0, RML::Trig::radians_to_degrees(i * PI / 3.0), 0));
 			result->addChild(side);
 		}
 
@@ -503,8 +500,8 @@ private:
 
 		result->transform(Transform()
 			.scale(0.25, 1, 0.25)
-			.rotate(0, 0, Math::Trig::radians_to_degrees(-PI / 2))
-			.rotate(0, Math::Trig::radians_to_degrees(-PI / 6), 0)
+			.rotate(0, 0, RML::Trig::radians_to_degrees(-PI / 2))
+			.rotate(0, RML::Trig::radians_to_degrees(-PI / 6), 0)
 			.translate(0, 0, -1));
 
 		return result;
@@ -579,7 +576,7 @@ private:
 		b->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
 
 		std::shared_ptr<Pattern> masked = std::make_shared<Masked<Checker>>(a, b);
-		masked->transform(Math::Transform().rotate(0, 65, 0).translate(0, 0.01f, 0));
+		masked->transform(RML::Transform().rotate(0, 65, 0).translate(0, 0.01f, 0));
 
 		std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
 		return pattern;
@@ -644,7 +641,7 @@ private:
 		auto result = std::make_shared<Renderer::Group>();
 		result->addChild(subresult);
 
-		result->transform(result->transform().scale(0.1, 0.1, 0.1));
+		result->transform().scale(0.1, 0.1, 0.1);
 
 		return result;
 	}
@@ -670,10 +667,10 @@ public:
 
 		world.defaultRemainingCalls = 32;
 		
-		room->transform(room->transform().scale(0.5, 1, 1));
+		room->transform().scale(0.5, 1, 1);
 
-		csgObj->transform(csgObj->transform().rotate(-30, 0, 0));
-		csgObj2->transform(csgObj2->transform().rotate(-30, 20, 40).scale(0.2, 0.2, 0.2).translate(0, 2, 1));
+		csgObj->transform().rotate(-30, 0, 0);
+		csgObj2->transform().rotate(-30, 20, 40).scale(0.2, 0.2, 0.2).translate(0, 2, 1);
 
 		auto mat = Helpers::MaterialHelper::glassSphere().material();
 		mat.diffuse = 0.1f;
@@ -1044,7 +1041,7 @@ private:
 		b->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
 
 		std::shared_ptr<Pattern> masked = std::make_shared<Masked<Checker>>(a, b);
-		masked->transform(Math::Transform().rotate(0, 23, 0).translate(0, 0.01f, 0));
+		masked->transform(RML::Transform().rotate(0, 23, 0).translate(0, 0.01f, 0));
 
 		std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
 		return pattern;

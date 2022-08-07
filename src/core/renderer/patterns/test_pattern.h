@@ -17,7 +17,7 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		/// </summary>
 		TestPattern() = default;
 
-		Graphics::Color colorAt(Math::Point position) const override;
+		Graphics::Color colorAt(RML::Point position) const override;
 
 		bool operator==(const TestPattern& other) const;
 	};

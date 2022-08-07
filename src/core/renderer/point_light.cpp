@@ -3,9 +3,9 @@
 using namespace CppRayTracerChallenge::Core::Renderer;
 using namespace CppRayTracerChallenge::Core;
 
-PointLight::PointLight(const Math::Point position, const Graphics::Color intensity) : m_position(position), m_intensity(intensity) {};
+PointLight::PointLight(const RML::Point position, const Graphics::Color intensity) : m_position(position), m_intensity(intensity) {};
 
-const Math::Point PointLight::position() const
+const RML::Point PointLight::position() const
 {
 	return m_position;
 }

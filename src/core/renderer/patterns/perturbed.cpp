@@ -5,9 +5,9 @@ using namespace CppRayTracerChallenge::Core;
 
 Perturbed::Perturbed(const std::shared_ptr<Pattern> pattern) : m_pattern(pattern), m_perlin(Math::PerlinNoise()) {};
 
-Graphics::Color Perturbed::colorAt(Math::Point position) const
+Graphics::Color Perturbed::colorAt(RML::Point position) const
 {
-	Math::Point patternLocal = m_pattern->transform().invert() * position;
+	RML::Point patternLocal = m_pattern->transform().get_inverted() * position;
 
 	double xIn = patternLocal.x();
 	double yIn = patternLocal.y();

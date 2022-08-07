@@ -1,21 +1,18 @@
 #include <gtest/gtest.h>
 #include <math/sphere.h>
-#include <math/constants.h>
-#include <math/transform.h>
 #include <math/bounding_box.h>
-#include <math/trig.h>
 #include <math/ray.h>
+#include <RML.h>
 
 using namespace CppRayTracerChallenge::Core::Math;
-using namespace CppRayTracerChallenge::Core::Math::Trig;
 using namespace CppRayTracerChallenge::Core;
 
 TEST(CppRayTracerChallenge_Core_Math_BoundingBox, create_empty_bounding_box)
 {
 	BoundingBox box = BoundingBox();
 
-	Point expectedMin = Point({ INF, INF, INF });
-	Point expectedMax = Point({ -INF, -INF, -INF });
+	Point expectedMin = Point(INF, INF, INF);
+	Point expectedMax = Point(-INF, -INF, -INF);
 
 	EXPECT_EQ(box.min(), expectedMin);
 	EXPECT_EQ(box.max(), expectedMax);
@@ -135,8 +132,8 @@ TEST(CppRayTracerChallenge_Core_Math_BoundingBox, transforming_a_bounding_box)
 	BoundingBox box = BoundingBox({ -1,-1,-1 }, { 1,1,1 });
 	
 	box.transform(Transform()
-		.rotate(0, radians_to_degrees(PI / 4), 0)
-		.rotate(radians_to_degrees(PI / 4), 0, 0));
+		.rotate(0, Trig::radians_to_degrees(Trig::PI / 4), 0)
+		.rotate(Trig::radians_to_degrees(Trig::PI / 4), 0, 0));
 
 	Point expectedMin = Point(-1.41421, -1.70711, -1.70711);
 	Point expectedMax = Point(1.41421, 1.70711, 1.70711);
@@ -179,7 +176,7 @@ TEST(CppRayTracerChallenge_Core_Math_Bounding_box, intersecting_ray_with_boundin
 	{
 		const Param& param = paramsList[i];
 
-		Vector dir = param.direction.normalize();
+		Vector dir = param.direction.normalized();
 		Ray ray = Ray(param.origin, dir);
 
 		EXPECT_EQ(box.intersects(ray), param.result);
@@ -220,7 +217,7 @@ TEST(CppRayTracerChallenge_Core_Math_Bounding_box, intersecting_ray_with_non_cub
 	{
 		const Param& param = paramsList[i];
 
-		Vector dir = param.direction.normalize();
+		Vector dir = param.direction.normalized();
 		Ray ray = Ray(param.origin, dir);
 
 		EXPECT_EQ(box.intersects(ray), param.result);

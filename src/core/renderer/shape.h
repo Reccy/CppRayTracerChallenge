@@ -1,11 +1,10 @@
 #ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_SHAPE
 #define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_SHAPE
 
+#include "RML.h"
 #include "material.h"
 #include "i_group.h"
 #include "../math/bounding_box.h"
-#include "../math/transform.h"
-#include "../math/vector.h"
 #include "../math/i_shape.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
@@ -64,28 +63,28 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// </summary>
 		/// <param name="worldPoint">The position in world space</param>
 		/// <returns>Transformed position in object space</returns>
-		const Math::Point worldToObject(Math::Point worldPosition) const;
+		const RML::Point worldToObject(RML::Point worldPosition) const;
 
 		/// <summary>
 		/// Transforms a normal from object space to world space
 		/// </summary>
 		/// <param name="objectNormal">The normal in object space</param>
 		/// <returns>Transformed normal in world space</returns>
-		const Math::Vector normalToWorld(Math::Vector objectNormal) const;
+		const RML::Vector normalToWorld(RML::Vector objectNormal) const;
 
 		/// <summary>
 		/// Returns the color of the shape at the world position, taking into account the material and lighting
 		/// </summary>
 		/// <param name="worldPosition">The position in the world of the surface of the shape to render</param>
 		/// <returns>The color of the fragment</returns>
-		Graphics::Color colorAt(Math::Point worldPosition) const;
+		Graphics::Color colorAt(RML::Point worldPosition) const;
 
 		// Delegating methods
 
-		void transform(Math::Transform transform) override;
-		const Math::Transform transform() const override;
-		const Math::Vector normal(const Math::Point position) const override;
-		const Math::Vector normalLocal(const Math::Point position) const override;
+		void transform(RML::Transform transform) override;
+		RML::Transform& transform() override;
+		const RML::Vector normal(const RML::Point position) const override;
+		const RML::Vector normalLocal(const RML::Point position) const override;
 		const Math::Intersections intersect(Math::Ray ray) const override;
 		const Math::Intersections intersectLocal(Math::Ray ray) const override;
 		const Math::BoundingBox bounds() const override;

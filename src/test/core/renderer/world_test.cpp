@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <RML.h>
 #include "renderer/world.h"
 #include "renderer/computed_values.h"
 #include "renderer/patterns/solid_color.h"
@@ -23,8 +24,8 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, default_world)
 {
 	World world = World::defaultWorld();
 
-	const Shape& obj1 = world.objectAt(0);
-	const Shape& obj2 = world.objectAt(1);
+	Shape obj1 = world.objectAt(0);
+	Shape obj2 = world.objectAt(1);
 	const PointLight& light1 = world.lightAt(0);
 
 	Material s1mat = Material();
@@ -34,12 +35,12 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, default_world)
 
 	EXPECT_EQ(obj1.material(), s1mat);
 
-	Math::Transform s2transform = Math::Transform()
+	RML::Transform s2transform = RML::Transform()
 		.scale(0.5, 0.5, 0.5);
 
 	EXPECT_EQ(obj2.transform(), s2transform);
 
-	EXPECT_EQ(light1.position(), Math::Point(-10, 10, -10));
+	EXPECT_EQ(light1.position(), RML::Point(-10, 10, -10));
 	EXPECT_EQ(light1.intensity(), Graphics::Color::white());
 
 	EXPECT_EQ(world.lightCount(), 1);
@@ -113,7 +114,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, shade_hit_given_shadowed_interse
 
 	auto sphere2 = std::make_shared<Math::Sphere>(Math::Sphere());
 	Renderer::Shape s = Renderer::Shape(sphere2);
-	s.transform(Math::Transform().translate(0, 0, 10));
+	s.transform(RML::Transform().translate(0, 0, 10));
 	world.addObject(s);
 
 	Math::Ray ray = Math::Ray({ 0, 0, 5 }, { 0, 0, 1 });
@@ -130,7 +131,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, shade_hit_for_reflected_material
 	Renderer::Material mat = Renderer::Material();
 	mat.reflective = 0.5f;
 	Renderer::Shape shape = Renderer::Shape(plane, mat);
-	shape.transform(Math::Transform().translate(0, -1, 0));
+	shape.transform(RML::Transform().translate(0, -1, 0));
 
 	world.addObject(shape);
 	Math::Ray ray = Math::Ray({ 0, 0, -3 }, { 0, -sqrt(2) / 2, sqrt(2) / 2 });
@@ -153,14 +154,14 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, shade_hit_for_refraction)
 	floorMat.refractiveIndex = 1.5f;
 	floorMat.shadowcastMode = ShadowcastMode::ALWAYS;
 	Renderer::Shape floor = Renderer::Shape(std::make_shared<Math::Plane>(), floorMat);
-	floor.transform(Math::Transform().translate(0, -1, 0));
+	floor.transform(RML::Transform().translate(0, -1, 0));
 	world.addObject(floor);
 
 	Renderer::Material ballMat;
 	ballMat.pattern = std::make_shared<Patterns::SolidColor>(Graphics::Color(1, 0, 0));
 	ballMat.ambient = 0.5f;
 	Renderer::Shape ball = Renderer::Shape(std::make_shared<Math::Sphere>(), ballMat);
-	ball.transform(Math::Transform().translate(0, -3.5f, -0.5f));
+	ball.transform(RML::Transform().translate(0, -3.5f, -0.5f));
 	world.addObject(ball);
 
 	auto ray = Math::Ray({ 0,0,-3 }, { 0, -sqrt(2) / 2, sqrt(2) / 2 });
@@ -198,7 +199,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_color_for_reflected_ma
 	Renderer::Material mat = Renderer::Material();
 	mat.reflective = 0.5f;
 	Renderer::Shape shape = Renderer::Shape(plane, mat);
-	shape.transform(Math::Transform().translate(0, -1, 0));
+	shape.transform(RML::Transform().translate(0, -1, 0));
 
 	world.addObject(shape);
 	Math::Ray ray = Math::Ray({ 0, 0, -3 }, { 0, -sqrt(2) / 2, sqrt(2) / 2 });
@@ -219,7 +220,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_color_at_max_recursion
 	Renderer::Material mat = Renderer::Material();
 	mat.reflective = 0.5f;
 	Renderer::Shape shape = Renderer::Shape(plane, mat);
-	shape.transform(Math::Transform().translate(0, -1, 0));
+	shape.transform(RML::Transform().translate(0, -1, 0));
 
 	world.addObject(shape);
 	Math::Ray ray = Math::Ray({ 0, 0, -3 }, { 0, -sqrt(2) / 2, sqrt(2) / 2 });
@@ -314,7 +315,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_and_refracted_rays)
 	floorMaterial.refractiveIndex = 1.5f;
 	floorMaterial.shadowcastMode = ShadowcastMode::ALWAYS;
 	auto floor = Renderer::Shape(floorShape, floorMaterial);
-	floor.transform(Math::Transform().translate(0, -1, 0));
+	floor.transform(RML::Transform().translate(0, -1, 0));
 	world.addObject(floor);
 
 	auto ballShape = std::make_shared<Math::Sphere>();
@@ -322,7 +323,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, reflected_and_refracted_rays)
 	ballMaterial.pattern = std::make_shared<Patterns::SolidColor>(Graphics::Color(1, 0, 0));
 	ballMaterial.ambient = 0.5f;
 	auto ball = Renderer::Shape(ballShape, ballMaterial);
-	ball.transform(Math::Transform().translate(0, -3.5f, -0.5f));
+	ball.transform(RML::Transform().translate(0, -3.5f, -0.5f));
 	world.addObject(ball);
 
 	auto intersections = Math::Intersections({ {sqrt(2), floor} });
@@ -370,10 +371,10 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_with_mutually_reflectiv
 	reflectiveMaterial.reflective = 1;
 
 	auto lower = std::make_shared<Math::Plane>();
-	lower->transform(Math::Transform().translate(0, -1, 0));
+	lower->transform(RML::Transform().translate(0, -1, 0));
 
 	auto upper = std::make_shared<Math::Plane>();
-	upper->transform(Math::Transform().translate(0, 1, 0));
+	upper->transform(RML::Transform().translate(0, 1, 0));
 
 	Renderer::Shape upperShape = Renderer::Shape(upper, reflectiveMaterial);
 	Renderer::Shape lowerShape = Renderer::Shape(lower, reflectiveMaterial);
@@ -390,7 +391,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, color_at_with_mutually_reflectiv
 TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_nothing_is_colinear_with_point_and_light)
 {
 	World world = World::defaultWorld();
-	Math::Point position = Math::Point(0, 10, 0);
+	RML::Point position = RML::Point(0, 10, 0);
 	const PointLight& light = world.lightAt(0);
 
 	EXPECT_FALSE(world.isShadowed(position, light));
@@ -399,7 +400,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_nothing_is_coli
 TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_object_between_point_and_light)
 {
 	World world = World::defaultWorld();
-	Math::Point position = Math::Point(10, -10, 10);
+	RML::Point position = RML::Point(10, -10, 10);
 	const PointLight& light = world.lightAt(0);
 
 	EXPECT_TRUE(world.isShadowed(position, light));
@@ -422,7 +423,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_transparent_obj
 	b.material(bMat);
 	world.objectAt(1, b);
 
-	Math::Point position = Math::Point(10, -10, 10);
+	RML::Point position = RML::Point(10, -10, 10);
 	const PointLight& light = world.lightAt(0);
 
 	EXPECT_FALSE(world.isShadowed(position, light));
@@ -431,7 +432,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_transparent_obj
 TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_object_behind_light)
 {
 	World world = World::defaultWorld();
-	Math::Point position = Math::Point(-20, 20, -20);
+	RML::Point position = RML::Point(-20, 20, -20);
 	const PointLight& light = world.lightAt(0);
 
 	EXPECT_FALSE(world.isShadowed(position, light));
@@ -440,7 +441,7 @@ TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_with_object_behind_l
 TEST(CppRayTracerChallenge_Core_Renderer_World, is_shadowed_when_object_behind_point)
 {
 	World world = World::defaultWorld();
-	Math::Point position = Math::Point(-2, 2, -2);
+	RML::Point position = RML::Point(-2, 2, -2);
 	const PointLight& light = world.lightAt(0);
 
 	EXPECT_FALSE(world.isShadowed(position, light));
