@@ -1,6 +1,6 @@
-[submodule "src/lib/glfw"]
+[submodule "src/lib/glfw/glfw"]
 	path = src/lib/glfw/glfw/
 	url = https://github.com/glfw/glfw.git
-[submodule "src/lib/taskflow"]
+[submodule "src/lib/taskflow/taskflow"]
 	path = src/lib/taskflow/taskflow/
 	url = https://github.com/taskflow/taskflow.git
