@@ -1,5 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_HELPERS_POLYMORPHIC_COMPARABLE
-#define _CPPRAYTRACERCHALLENGE_CORE_HELPERS_POLYMORPHIC_COMPARABLE
+#pragma once
 
 namespace CppRayTracerChallenge::Core::Helpers
 {
@@ -18,5 +17,3 @@ namespace CppRayTracerChallenge::Core::Helpers
 		}
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_HELPERS_POLYMORPHIC_COMPARABLE

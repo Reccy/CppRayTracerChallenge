@@ -1,37 +1,38 @@
 #include "lighting.h"
 
-using namespace CppRayTracerChallenge::Core;
-
-Graphics::Color CppRayTracerChallenge::Core::Renderer::Lighting::lighting(const Shape& shape, const PointLight& light, const RML::Point& worldPosition, const RML::Vector& eyev, const RML::Vector& normalv, const bool isShadowed)
+namespace CppRayTracerChallenge::Core::Renderer
 {
-	const Renderer::Material& material = shape.material();
-	Graphics::Color effectiveColor = shape.colorAt(worldPosition) * light.intensity();
-	RML::Vector lightv = (light.position() - worldPosition).normalize();
-	Graphics::Color ambient = effectiveColor * material.ambient;
-
-	if (isShadowed)
+	Graphics::Color Lighting::lighting(const Shape& shape, const PointLight& light, const RML::Point& worldPosition, const RML::Vector& eyev, const RML::Vector& normalv, const bool isShadowed)
 	{
-		return ambient;
-	}
+		const Renderer::Material& material = shape.material();
+		Graphics::Color effectiveColor = shape.colorAt(worldPosition) * light.intensity();
+		RML::Vector lightv = (light.position() - worldPosition).normalize();
+		Graphics::Color ambient = effectiveColor * material.ambient;
 
-	float lightDotNormal = static_cast<float>(RML::Vector::dot(lightv, normalv));
-
-	Graphics::Color diffuse = Graphics::Color::black();
-	Graphics::Color specular = Graphics::Color::black();
-
-	if (lightDotNormal >= 0)
-	{
-		diffuse = effectiveColor * material.diffuse * lightDotNormal;
-
-		RML::Vector reflectv = RML::Vector::reflect(-lightv, normalv);
-		double reflectDotEye = RML::Vector::dot(reflectv, eyev);
-
-		if (reflectDotEye > 0)
+		if (isShadowed)
 		{
-			float factor = static_cast<float>(pow(reflectDotEye, material.shininess));
-			specular = light.intensity() * material.specular * factor;
+			return ambient;
 		}
-	}
 
-	return ambient + diffuse + specular;
+		float lightDotNormal = static_cast<float>(RML::Vector::dot(lightv, normalv));
+
+		Graphics::Color diffuse = Graphics::Color::black();
+		Graphics::Color specular = Graphics::Color::black();
+
+		if (lightDotNormal >= 0)
+		{
+			diffuse = effectiveColor * material.diffuse * lightDotNormal;
+
+			RML::Vector reflectv = RML::Vector::reflect(-lightv, normalv);
+			double reflectDotEye = RML::Vector::dot(reflectv, eyev);
+
+			if (reflectDotEye > 0)
+			{
+				float factor = static_cast<float>(pow(reflectDotEye, material.shininess));
+				specular = light.intensity() * material.specular * factor;
+			}
+		}
+
+		return ambient + diffuse + specular;
+	}
 }

@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_COMPRESSION_HUFFMAN_CODING
-#define _CPPRAYTRACERCHALLENGE_CORE_COMPRESSION_HUFFMAN_CODING
-
+#pragma once
 #include <vector>
 #include <memory>
 #include <map>
@@ -49,5 +47,3 @@ namespace CppRayTracerChallenge::Core::Compression
 		CodeMap m_codes;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_COMPRESSION_HUFFMAN_CODING

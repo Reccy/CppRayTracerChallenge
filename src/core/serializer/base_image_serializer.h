@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_BASE_IMAGE_SERIALIZER
-#define _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_BASE_IMAGE_SERIALIZER
-
+#pragma once
 #include <fstream>
 #include <string>
 #include <vector>
@@ -38,5 +36,3 @@ namespace CppRayTracerChallenge::Core::Serializer {
 		std::vector<unsigned char> m_buffer;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_BASE_IMAGE_SERIALIZER

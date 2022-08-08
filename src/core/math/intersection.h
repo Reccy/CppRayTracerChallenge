@@ -1,6 +1,5 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_INTERSECTION
-#define _CPPRAYTRACERCHALLENGE_CORE_MATH_INTERSECTION
-
+#pragma once
+#include <iostream>
 #include "i_shape.h"
 
 namespace CppRayTracerChallenge::Core::Math
@@ -62,5 +61,3 @@ namespace CppRayTracerChallenge::Core::Math
 		const IShape& m_shape;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_MATH_INTERSECTION

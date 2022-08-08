@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_GRAPHICS_IMAGE
-#define _CPPRAYTRACERCHALLENGE_CORE_GRAPHICS_IMAGE
-
+#pragma once
 #include "color.h"
 #include <vector>
 
@@ -85,5 +83,3 @@ namespace CppRayTracerChallenge::Core::Graphics
 		void destroyImage();
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_GRAPHICS_IMAGE

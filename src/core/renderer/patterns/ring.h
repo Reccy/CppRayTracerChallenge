@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_RING
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_RING
-
+#pragma once
 #include "../pattern.h"
 #include "../../helpers/polymorphic_comparable.h"
 
@@ -36,5 +34,3 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		Graphics::Color m_colorB;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_RING

@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_PORTABLE_PIXMAP_IMAGE_SERIALIZER
-#define _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_PORTABLE_PIXMAP_IMAGE_SERIALIZER
-
+#pragma once
 #include "base_image_serializer.h"
 
 #include <fstream>
@@ -26,5 +24,3 @@ namespace CppRayTracerChallenge::Core::Serializer
 		std::string convertColorValue(float colorValue);
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_PORTABLE_PIXMAP_IMAGE_SERIALIZER

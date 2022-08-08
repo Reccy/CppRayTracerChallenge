@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_COMPUTED_VALUES
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_COMPUTED_VALUES
-
+#pragma once
 #include "shape.h"
 #include "../math/intersection.h"
 #include "../math/ray.h"
@@ -123,5 +121,3 @@ namespace CppRayTracerChallenge::Core::Renderer
 		void calculateValues(Math::Intersection& hit, Math::Ray& ray);
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_COMPUTED_VALUES

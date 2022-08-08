@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_GROUP
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_GROUP
-
+#pragma once
 #include "RML.h"
 #include "../math/i_shape.h"
 #include "../math/intersections.h"
@@ -14,9 +12,9 @@ namespace CppRayTracerChallenge::Core::Renderer
 	class Group : public Math::IShape, public IGroup, public std::enable_shared_from_this<Group>
 	{
 	public:
-		void transform(RML::Transform transform) override;
+		void transform(Transform transform) override;
 
-		RML::Transform& transform() override;
+		Transform& transform() override;
 
 		const RML::Vector normal(const RML::Point position) const override;
 
@@ -66,7 +64,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		bool empty() const;
 	private:
-		RML::Transform m_transform;
+		Transform m_transform;
 		Math::BoundingBox m_bounds;
 		std::weak_ptr<Group> m_parent;
 		std::vector<std::shared_ptr<Shape>> m_shapes;
@@ -75,5 +73,3 @@ namespace CppRayTracerChallenge::Core::Renderer
 		void recalculateBounds();
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_GROUP

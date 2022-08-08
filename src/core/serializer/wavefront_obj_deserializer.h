@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_WAVEFRONT_OBJ_DESERIALIZER
-#define _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_WAVEFRONT_OBJ_DESERIALIZER
-
+#pragma once
 #include <vector>
 #include <map>
 #include "RML.h"
@@ -64,5 +62,3 @@ namespace CppRayTracerChallenge::Core::Serializer
 		void parseNormal(std::string line);
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_WAVEFRONT_OBJ_DESERIALIZER

@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_POINT_LIGHT
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_POINT_LIGHT
-
+#pragma once
 #include "RML.h"
 #include "../graphics/color.h"
 
@@ -37,5 +35,3 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Graphics::Color m_intensity;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_POINT_LIGHT

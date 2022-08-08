@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_COMPRESSION_DEFLATE_BLOCK
-#define _CPPRAYTRACERCHALLENGE_CORE_COMPRESSION_DEFLATE_BLOCK
-
+#pragma once
 #include <vector>
 #include <bitset>
 #include <memory>
@@ -25,5 +23,3 @@ namespace CppRayTracerChallenge::Core::Compression
 		unsigned int m_writeIndex;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_COMPRESSION_DEFLATE_BLOCK

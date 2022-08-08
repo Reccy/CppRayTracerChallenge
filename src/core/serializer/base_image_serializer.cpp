@@ -1,15 +1,16 @@
 #include "base_image_serializer.h"
 
-using namespace CppRayTracerChallenge::Core::Serializer;
-
-BaseImageSerializer::BaseImageSerializer() : m_image(CppRayTracerChallenge::Core::Graphics::Image(0, 0)) {};
-
-CppRayTracerChallenge::Core::Graphics::Image BaseImageSerializer::image() const
+namespace CppRayTracerChallenge::Core::Serializer
 {
-	return this->m_image;
-}
+	BaseImageSerializer::BaseImageSerializer() : m_image(CppRayTracerChallenge::Core::Graphics::Image(0, 0)) {};
 
-std::vector<unsigned char> BaseImageSerializer::buffer() const
-{
-	return this->m_buffer;
+	CppRayTracerChallenge::Core::Graphics::Image BaseImageSerializer::image() const
+	{
+		return this->m_image;
+	}
+
+	std::vector<unsigned char> BaseImageSerializer::buffer() const
+	{
+		return this->m_buffer;
+	}
 }

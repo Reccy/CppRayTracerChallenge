@@ -18,7 +18,7 @@ using Renderer::Patterns::SolidColor;
 using Renderer::Patterns::Stripe;
 using Renderer::Patterns::TestPattern;
 using Math::Sphere;
-using RML::Transform;
+using Math::Transform;
 using RML::Point;
 using RML::Vector;
 using Math::BoundingBox;

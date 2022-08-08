@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_PERTURBED
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_PERTURBED
-
+#pragma once
 #include "RML.h"
 #include "../pattern.h"
 #include "../../math/perlin_noise.h"
@@ -32,5 +30,3 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		float m_intensity = 0.08f;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_PERTURBED

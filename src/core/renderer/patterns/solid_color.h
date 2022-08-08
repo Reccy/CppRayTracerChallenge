@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_SOLIDCOLOR
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_SOLIDCOLOR
-
+#pragma once
 #include "../pattern.h"
 #include "../../graphics/color.h"
 #include "../../helpers/polymorphic_comparable.h"
@@ -32,5 +30,3 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		CppRayTracerChallenge::Core::Graphics::Color m_color;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_SOLIDCOLOR

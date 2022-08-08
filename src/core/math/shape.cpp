@@ -1,39 +1,41 @@
 #include "shape.h"
+#include "transform.h"
 
-using namespace CppRayTracerChallenge::Core::Math;
-
-void Shape::transform(const RML::Transform transform)
+namespace CppRayTracerChallenge::Core::Math
 {
-	m_transform = transform;
-}
+	void Shape::transform(const Transform transform)
+	{
+		m_transform = transform;
+	}
 
-RML::Transform& Shape::transform()
-{
-	return m_transform;
-}
+	Transform& Shape::transform()
+	{
+		return m_transform;
+	}
 
-const Vector Shape::normal(const RML::Point position) const
-{
-	auto ti1 = m_transform.get_inverted();
-	RML::Point localPoint = ti1 * position;
-	RML::Vector localNormal = normalLocal(localPoint);
+	const Vector Shape::normal(const RML::Point position) const
+	{
+		auto ti1 = m_transform.invert();
+		RML::Point localPoint = ti1 * position;
+		RML::Vector localNormal = normalLocal(localPoint);
 
-	auto ti2 = m_transform.get_transposed();
-	auto ti3 = ti2.invert();
-	RML::Vector worldNormal = ti3 * localNormal;
-	return worldNormal.normalize();
-}
+		auto ti2 = m_transform.transpose();
+		auto ti3 = ti2.invert();
+		RML::Vector worldNormal = ti3 * localNormal;
+		return worldNormal.normalize();
+	}
 
-const Intersections Shape::intersect(Ray ray) const
-{
-	ray = ray.transform(m_transform.get_inverted());
+	const Intersections Shape::intersect(Ray ray) const
+	{
+		ray = ray.transform(m_transform.invert().matrix());
 
-	return intersectLocal(ray);
-}
+		return intersectLocal(ray);
+	}
 
-const BoundingBox Shape::parentSpaceBounds() const
-{
-	BoundingBox result = BoundingBox(bounds());
-	result.transform(m_transform);
-	return result;
+	const BoundingBox Shape::parentSpaceBounds() const
+	{
+		BoundingBox result = BoundingBox(bounds());
+		result.transform(m_transform);
+		return result;
+	}
 }

@@ -3,168 +3,169 @@
 
 #include <vector>
 
-using namespace CppRayTracerChallenge::Core;
-
-TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, returns_correct_file_extension)
+namespace CppRayTracerChallenge::Core::Serializer
 {
-	Serializer::PortablePixmapImageSerializer ppm;
-
-	std::string expectedResult = ppm.fileExtension();
-
-	std::string result = std::string("ppm");
-
-	EXPECT_EQ(result, expectedResult);
-}
-
-TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_correct_header)
-{
-	Graphics::Image image(5,3);
-
-	Serializer::PortablePixmapImageSerializer ppm;
-	ppm.serialize(image);
-
-	std::string expectedResult = "";
-	expectedResult += "P3\n";
-	expectedResult += "5 3\n";
-	expectedResult += "255\n";
-
-	std::vector<unsigned char> chars = ppm.buffer();
-
-	std::stringstream data(std::string(chars.begin(), chars.end()));
-	std::stringstream header;
-
-	// Read the first 3 lines of the header from the PPM file
-	std::string str;
-	int count = 0;
-	while (getline(data, str) && count < 3)
+	TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, returns_correct_file_extension)
 	{
-		header << str;
-		if (data.peek() != EOF)
-		{
-			header << "\n";
-		}
+		Serializer::PortablePixmapImageSerializer ppm;
 
-		count++;
+		std::string expectedResult = ppm.fileExtension();
+
+		std::string result = std::string("ppm");
+
+		EXPECT_EQ(result, expectedResult);
 	}
 
-	EXPECT_EQ(header.str(), expectedResult);
-}
-
-TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_correct_image_data)
-{
-	// Setup color palette
-	Graphics::Color c1 = Graphics::Color(1.5, 0, 0);
-	Graphics::Color c2 = Graphics::Color(0, 0.5, 0);
-	Graphics::Color c3 = Graphics::Color(-0.5, 0, 1);
-	Graphics::Color b = Graphics::Color::black();
-
-	// Setup image
-	std::vector<Graphics::Color> colors {
-		c1, b, b, b, b,
-		b, b, c2, b, b,
-		b, b, b, b, c3,
-	};
-
-	Graphics::Image image(5, 3, colors);
-
-	// Setup expected result
-	std::stringstream ss;
-	ss << "255 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n";
-	ss << "0 0 0 0 0 0 0 128 0 0 0 0 0 0 0\n";
-	ss << "0 0 0 0 0 0 0 0 0 0 0 0 0 0 255";
-
-	std::string expectedResult = ss.str();
-
-	// Get actual result
-	Serializer::PortablePixmapImageSerializer ppm;
-	ppm.serialize(image);
-
-	std::vector<unsigned char> chars = ppm.buffer();
-	std::stringstream data(std::string(chars.begin(), chars.end()));
-	std::stringstream body;
-
-	std::string str;
-	int count = 0;
-	while (getline(data, str) && count < 6)
+	TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_correct_header)
 	{
-		if (count < 3) {
+		Graphics::Image image(5, 3);
+
+		Serializer::PortablePixmapImageSerializer ppm;
+		ppm.serialize(image);
+
+		std::string expectedResult = "";
+		expectedResult += "P3\n";
+		expectedResult += "5 3\n";
+		expectedResult += "255\n";
+
+		std::vector<unsigned char> chars = ppm.buffer();
+
+		std::stringstream data(std::string(chars.begin(), chars.end()));
+		std::stringstream header;
+
+		// Read the first 3 lines of the header from the PPM file
+		std::string str;
+		int count = 0;
+		while (getline(data, str) && count < 3)
+		{
+			header << str;
+			if (data.peek() != EOF)
+			{
+				header << "\n";
+			}
+
 			count++;
-			continue;
 		}
 
-		body << str;
-
-		if (data.peek() != EOF)
-		{
-			body << "\n";
-		}
-
-		count++;
+		EXPECT_EQ(header.str(), expectedResult);
 	}
 
-	std::string result = body.str();
-
-	EXPECT_EQ(result, expectedResult);
-}
-
-TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, split_long_lines_over_70_chars)
-{
-	// Setup color palette
-	Graphics::Color c = Graphics::Color(1.0f, 0.8f, 0.6f);
-
-	// Setup image
-	Graphics::Image image = Graphics::Image(10, 2, c);
-
-	// Setup expected result
-	std::stringstream ss;
-	ss << "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n";
-	ss << "153 255 204 153 255 204 153 255 204 153 255 204 153\n";
-	ss << "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n";
-	ss << "153 255 204 153 255 204 153 255 204 153 255 204 153";
-
-	std::string expectedResult = ss.str();
-
-	// Get actual result
-	Serializer::PortablePixmapImageSerializer ppm;
-	ppm.serialize(image);
-
-	std::vector<unsigned char> chars = ppm.buffer();
-	std::stringstream data(std::string(chars.begin(), chars.end()));
-	std::stringstream body;
-
-	std::string str;
-	int count = 0;
-	while (getline(data, str) && count < 7)
+	TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, sets_correct_image_data)
 	{
-		if (count < 3) {
-			count++;
-			continue;
-		}
+		// Setup color palette
+		Graphics::Color c1 = Graphics::Color(1.5, 0, 0);
+		Graphics::Color c2 = Graphics::Color(0, 0.5, 0);
+		Graphics::Color c3 = Graphics::Color(-0.5, 0, 1);
+		Graphics::Color b = Graphics::Color::black();
 
-		body << str;
+		// Setup image
+		std::vector<Graphics::Color> colors{
+			c1, b, b, b, b,
+			b, b, c2, b, b,
+			b, b, b, b, c3,
+		};
 
-		if (data.peek() != EOF)
+		Graphics::Image image(5, 3, colors);
+
+		// Setup expected result
+		std::stringstream ss;
+		ss << "255 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n";
+		ss << "0 0 0 0 0 0 0 128 0 0 0 0 0 0 0\n";
+		ss << "0 0 0 0 0 0 0 0 0 0 0 0 0 0 255";
+
+		std::string expectedResult = ss.str();
+
+		// Get actual result
+		Serializer::PortablePixmapImageSerializer ppm;
+		ppm.serialize(image);
+
+		std::vector<unsigned char> chars = ppm.buffer();
+		std::stringstream data(std::string(chars.begin(), chars.end()));
+		std::stringstream body;
+
+		std::string str;
+		int count = 0;
+		while (getline(data, str) && count < 6)
 		{
-			body << "\n";
+			if (count < 3) {
+				count++;
+				continue;
+			}
+
+			body << str;
+
+			if (data.peek() != EOF)
+			{
+				body << "\n";
+			}
+
+			count++;
 		}
 
-		count++;
+		std::string result = body.str();
+
+		EXPECT_EQ(result, expectedResult);
 	}
 
-	std::string result = body.str();
+	TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, split_long_lines_over_70_chars)
+	{
+		// Setup color palette
+		Graphics::Color c = Graphics::Color(1.0f, 0.8f, 0.6f);
 
-	EXPECT_EQ(result, expectedResult);
-}
+		// Setup image
+		Graphics::Image image = Graphics::Image(10, 2, c);
 
-TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, file_is_terminated_with_a_newline)
-{
-	Graphics::Image image(10, 10);
+		// Setup expected result
+		std::stringstream ss;
+		ss << "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n";
+		ss << "153 255 204 153 255 204 153 255 204 153 255 204 153\n";
+		ss << "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n";
+		ss << "153 255 204 153 255 204 153 255 204 153 255 204 153";
 
-	Serializer::PortablePixmapImageSerializer ppm;
-	ppm.serialize(image);
+		std::string expectedResult = ss.str();
 
-	char result = ppm.buffer().back();
-	char expectedResult = '\n';
+		// Get actual result
+		Serializer::PortablePixmapImageSerializer ppm;
+		ppm.serialize(image);
 
-	EXPECT_EQ(result, expectedResult);
+		std::vector<unsigned char> chars = ppm.buffer();
+		std::stringstream data(std::string(chars.begin(), chars.end()));
+		std::stringstream body;
+
+		std::string str;
+		int count = 0;
+		while (getline(data, str) && count < 7)
+		{
+			if (count < 3) {
+				count++;
+				continue;
+			}
+
+			body << str;
+
+			if (data.peek() != EOF)
+			{
+				body << "\n";
+			}
+
+			count++;
+		}
+
+		std::string result = body.str();
+
+		EXPECT_EQ(result, expectedResult);
+	}
+
+	TEST(CppRayTracerChallenge_Core_Serializer_PortablePixmapImageSerializer, file_is_terminated_with_a_newline)
+	{
+		Graphics::Image image(10, 10);
+
+		Serializer::PortablePixmapImageSerializer ppm;
+		ppm.serialize(image);
+
+		char result = ppm.buffer().back();
+		char expectedResult = '\n';
+
+		EXPECT_EQ(result, expectedResult);
+	}
 }

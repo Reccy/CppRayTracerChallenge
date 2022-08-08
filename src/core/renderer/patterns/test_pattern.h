@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_TEST_PATTERN
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_TEST_PATTERN
-
+#pragma once
 #include "../../helpers/polymorphic_comparable.h"
 #include "../pattern.h"
 
@@ -22,5 +20,3 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		bool operator==(const TestPattern& other) const;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_TEST_PATTERN

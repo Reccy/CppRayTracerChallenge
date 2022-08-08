@@ -2,84 +2,88 @@
 #include <algorithm>
 #include "comparison.h"
 
-using namespace CppRayTracerChallenge::Core::Math;
-
-Cube::Cube() {}
-
-Cube::CheckAxisResult Cube::checkAxis(double origin, double direction) const
+namespace CppRayTracerChallenge::Core::Math
 {
-	double tMinNumerator = (-1 - origin);
-	double tMaxNumerator = (1 - origin);
+	using RML::INF;
+	using RML::EPSILON;
 
-	double tMin, tMax;
+	Cube::Cube() {}
 
-	if (abs(direction) >= EPSILON)
+	Cube::CheckAxisResult Cube::checkAxis(double origin, double direction) const
 	{
-		tMin = tMinNumerator / direction;
-		tMax = tMaxNumerator / direction;
-	}
-	else
-	{
-		tMin = tMinNumerator * INFINITY;
-		tMax = tMaxNumerator * INFINITY;
-	}
+		double tMinNumerator = (-1 - origin);
+		double tMaxNumerator = (1 - origin);
 
-	CheckAxisResult result;
+		double tMin, tMax;
 
-	if (tMin > tMax)
-	{
-		result.tMin = tMax;
-		result.tMax = tMin;
-	}
-	else
-	{
-		result.tMin = tMin;
-		result.tMax = tMax;
-	}
+		if (abs(direction) >= EPSILON)
+		{
+			tMin = tMinNumerator / direction;
+			tMax = tMaxNumerator / direction;
+		}
+		else
+		{
+			tMin = tMinNumerator * INFINITY;
+			tMax = tMaxNumerator * INFINITY;
+		}
 
-	return result;
-}
- 
-const Vector Cube::normalLocal(const Point position) const
-{
-	double maxComponent = std::max({ abs(position.x()), abs(position.y()), abs(position.z()) });
+		CheckAxisResult result;
 
-	if (Math::Comparison::equal(maxComponent, abs(position.x())))
-	{
-		return Vector(position.x(), 0, 0);
-	}
-	else if (Math::Comparison::equal(maxComponent, abs(position.y())))
-	{
-		return Vector(0, position.y(), 0);
+		if (tMin > tMax)
+		{
+			result.tMin = tMax;
+			result.tMax = tMin;
+		}
+		else
+		{
+			result.tMin = tMin;
+			result.tMax = tMax;
+		}
+
+		return result;
 	}
 
-	return Vector(0, 0, position.z());
-}
-
-const Intersections Cube::intersectLocal(Ray ray) const
-{
-	auto x = checkAxis(ray.origin().x(), ray.direction().x());
-	auto y = checkAxis(ray.origin().y(), ray.direction().y());
-	auto z = checkAxis(ray.origin().z(), ray.direction().z());
-
-	double tMin = std::max({ x.tMin, y.tMin, z.tMin });
-	double tMax = std::min({ x.tMax, y.tMax, z.tMax });
-
-	if (tMin > tMax)
+	const Vector Cube::normalLocal(const Point position) const
 	{
-		return Intersections();
+		double maxComponent = std::max({ abs(position.x()), abs(position.y()), abs(position.z()) });
+
+		if (Math::Comparison::equal(maxComponent, abs(position.x())))
+		{
+			return Vector(position.x(), 0, 0);
+		}
+		else if (Math::Comparison::equal(maxComponent, abs(position.y())))
+		{
+			return Vector(0, position.y(), 0);
+		}
+
+		return Vector(0, 0, position.z());
 	}
 
-	if (tMax < 0)
+	const Intersections Cube::intersectLocal(Ray ray) const
 	{
-		return Intersections();
+		auto x = checkAxis(ray.origin().x(), ray.direction().x());
+		auto y = checkAxis(ray.origin().y(), ray.direction().y());
+		auto z = checkAxis(ray.origin().z(), ray.direction().z());
+
+		double tMin = std::max({ x.tMin, y.tMin, z.tMin });
+		double tMax = std::min({ x.tMax, y.tMax, z.tMax });
+
+		if (tMin > tMax)
+		{
+			return Intersections();
+		}
+
+		if (tMax < 0)
+		{
+			return Intersections();
+		}
+
+		std::vector<Intersection> xs{ {tMin, *this}, {tMax, *this} };
+		return Intersections(xs);
 	}
 
-	std::vector<Intersection> xs{ {tMin, *this}, {tMax, *this} };
-	return Intersections(xs);
-}
-
-const BoundingBox Cube::bounds() const
-{
-	return BoundingBox({ -1,-1,-1 }, { 1,1,1 });
+	const BoundingBox Cube::bounds() const
+	{
+		return BoundingBox({ -1,-1,-1 }, { 1,1,1 });
+	}
 }

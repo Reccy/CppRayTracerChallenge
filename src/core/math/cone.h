@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_CONE
-#define _CPPRAYTRACERCHALLENGE_CORE_MATH_CONE
-
+#pragma once
 #include "shape.h"
 
 namespace CppRayTracerChallenge::Core::Math
@@ -92,5 +90,3 @@ namespace CppRayTracerChallenge::Core::Math
 		std::vector<Intersection> intersectCaps(Ray ray) const;
 	};
 };
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_MATH_CONE

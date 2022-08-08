@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_WORLD
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_WORLD
-
+#pragma once
 #include "point_light.h"
 #include "shape.h"
 #include "csg.h"
@@ -184,5 +182,3 @@ namespace CppRayTracerChallenge::Core::Renderer
 		std::vector<CSG> m_csgs;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_WORLD

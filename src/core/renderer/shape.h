@@ -1,14 +1,15 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_SHAPE
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_SHAPE
-
+#pragma once
 #include "RML.h"
 #include "material.h"
 #include "i_group.h"
 #include "../math/bounding_box.h"
 #include "../math/i_shape.h"
+#include "../math/transform.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
+	using Math::Transform;
+
 	/// <summary>
 	/// Represents a shape within the rendered world.
 	/// This is a wrapper around a Math::IShape which adds materials
@@ -81,8 +82,8 @@ namespace CppRayTracerChallenge::Core::Renderer
 
 		// Delegating methods
 
-		void transform(RML::Transform transform) override;
-		RML::Transform& transform() override;
+		void transform(Transform transform) override;
+		Transform& transform() override;
 		const RML::Vector normal(const RML::Point position) const override;
 		const RML::Vector normalLocal(const RML::Point position) const override;
 		const Math::Intersections intersect(Math::Ray ray) const override;
@@ -100,5 +101,3 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Material m_material;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_SHAPE

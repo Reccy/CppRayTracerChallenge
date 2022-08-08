@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_PNG_IMAGE_SERIALIZER
-#define _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_PNG_IMAGE_SERIALIZER
-
+#pragma once
 #include "base_image_serializer.h"
 
 #include <fstream>
@@ -30,5 +28,3 @@ namespace CppRayTracerChallenge::Core::Serializer
 		void append(std::vector<unsigned char>& target, unsigned char value);
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_SERIALIZER_PNG_IMAGE_SERIALIZER

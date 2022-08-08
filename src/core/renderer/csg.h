@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_CSG
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_CSG
-
+#pragma once
 #include "../math/i_shape.h"
 #include "shape.h"
 #include "i_group.h"
@@ -11,7 +9,7 @@ namespace CppRayTracerChallenge::Core::Renderer
 	{
 	public:
 		/// <summary>
-		/// Opereration that a CSG takes on its left and right child shapes
+		/// Operation that a CSG takes on its left and right child shapes
 		/// </summary>
 		enum class Operation
 		{
@@ -32,9 +30,9 @@ namespace CppRayTracerChallenge::Core::Renderer
 			DIFFERENCE
 		};
 
-		void transform(RML::Transform transform) override;
+		void transform(Transform transform) override;
 
-		RML::Transform& transform() override;
+		Transform& transform() override;
 
 		const RML::Vector normal(const RML::Point position) const override;
 
@@ -68,10 +66,8 @@ namespace CppRayTracerChallenge::Core::Renderer
 	protected:
 		CSG(Operation op);
 	private:
-		RML::Transform m_transform;
+		Transform m_transform;
 		std::shared_ptr<Shape> m_left, m_right;
 		Operation m_operation;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_CSG

@@ -50,8 +50,11 @@
 #include "serializer/wavefront_obj_deserializer.h"
 #include "helpers/material_helper.h"
 
+#include "RML.h"
+
 using namespace CppRayTracerChallenge::Core;
 using namespace CppRayTracerChallenge::Core::Serializer;
+using namespace CppRayTracerChallenge::Core::Math;
 
 using namespace Renderer;
 using namespace Renderer::Patterns;
@@ -62,7 +65,7 @@ using Graphics::Color;
 using Graphics::Image;
 using Graphics::Canvas;
 
-constexpr double RENDER_QUALITY = 1;
+constexpr double RENDER_QUALITY = 0.2;
 
 constexpr int WINDOW_WIDTH = 1920;
 constexpr int WINDOW_HEIGHT = 1080;
@@ -138,7 +141,7 @@ private:
 		b->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
 
 		std::shared_ptr<Pattern> masked = std::make_shared<Masked<Checker>>(a, b);
-		masked->transform(RML::Transform().rotate(0, 23, 0).translate(0, 0.01f, 0));
+		masked->transform(Math::Transform().rotate(0, 23, 0).translate(0, 0.01f, 0));
 
 		std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
 		return pattern;
@@ -163,7 +166,7 @@ private:
 	{
 		auto shape = std::make_shared<Sphere>();
 		Renderer::Shape sphere = Renderer::Shape(shape);
-		RML::Transform transform = RML::Transform()
+		Math::Transform transform = Math::Transform()
 			.translate(-0.5, 1, 0.5);
 		Renderer::Material material = Material();
 		material.pattern = std::make_shared<SolidColor>(Color(0.1f, 1.0f, 0.5f));
@@ -334,7 +337,7 @@ private:
 		auto floorShape = std::make_shared<Math::Plane>();
 		
 		Renderer::Shape floor = Renderer::Shape(floorShape, floorMat);
-		floor.transform(RML::Transform().translate(0, 0, 0));
+		floor.transform(Math::Transform().translate(0, 0, 0));
 		return floor;
 	}
 
@@ -347,7 +350,7 @@ private:
 		floorMat.diffuse = 0.001f;
 
 		Renderer::Shape floor = Renderer::Shape(floorShape, floorMat);
-		floor.transform(RML::Transform().translate(0, 0.5f + RML::EPSILON * 2, 0));
+		floor.transform(Math::Transform().translate(0, 0.5f + RML::EPSILON * 2, 0));
 		return floor;
 	}
 
@@ -364,7 +367,7 @@ private:
 		auto wallShape = std::make_shared<Math::Plane>();
 
 		Renderer::Shape wall = Renderer::Shape(wallShape, wallMat);
-		wall.transform(RML::Transform().rotate(82, 3, 180).translate(0,0,10));
+		wall.transform(Math::Transform().rotate(82, 3, 180).translate(0,0,10));
 
 		return wall;
 	}
@@ -376,7 +379,7 @@ private:
 		auto ballShape = std::make_shared<Math::Sphere>();
 
 		Renderer::Shape ball = Renderer::Shape(ballShape, ballMat);
-		ball.transform(RML::Transform().scale(2, 2, 2).translate(0, 4, 5));
+		ball.transform(Math::Transform().scale(2, 2, 2).translate(0, 4, 5));
 
 		return ball;
 	}
@@ -576,7 +579,7 @@ private:
 		b->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
 
 		std::shared_ptr<Pattern> masked = std::make_shared<Masked<Checker>>(a, b);
-		masked->transform(RML::Transform().rotate(0, 65, 0).translate(0, 0.01f, 0));
+		masked->transform(Math::Transform().rotate(0, 65, 0).translate(0, 0.01f, 0));
 
 		std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
 		return pattern;
@@ -857,7 +860,7 @@ public:
 		planeMat.specular = 0;
 		plane->material(planeMat);
 		plane->transform(Transform()
-			.rotate(Trig::radians_to_degrees(PI / 2), 0, 0)
+			.rotate(RML::Trig::radians_to_degrees(PI / 2), 0, 0)
 			.translate(0, 0, 500)
 		);
 		world.addObject(plane);
@@ -1041,7 +1044,7 @@ private:
 		b->transform(Transform().scale(0.05f, 1.0f, 0.05f).rotate(0, 45, 0));
 
 		std::shared_ptr<Pattern> masked = std::make_shared<Masked<Checker>>(a, b);
-		masked->transform(RML::Transform().rotate(0, 23, 0).translate(0, 0.01f, 0));
+		masked->transform(Math::Transform().rotate(0, 23, 0).translate(0, 0.01f, 0));
 
 		std::shared_ptr<Pattern> pattern = std::make_shared<Perturbed>(masked);
 		return pattern;
@@ -1074,7 +1077,7 @@ std::shared_ptr<Camera> camera = nullptr;
 Image doRealRender()
 {
 	log("Initializing...");
-	using WorldBuilder = WorldC;
+	using WorldBuilder = WorldA;
 	World world = WorldBuilder::build();
 
 	int width = RENDER_WIDTH;

@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_PERLIN_NOISE
-#define _CPPRAYTRACERCHALLENGE_CORE_MATH_PERLIN_NOISE
-
+#pragma once
 #include "RML.h"
 
 namespace CppRayTracerChallenge::Core::Math
@@ -24,5 +22,3 @@ namespace CppRayTracerChallenge::Core::Math
 		double at(RML::Point position) const;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_MATH_PERLIN_NOISE

@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_TRIANGLE
-#define _CPPRAYTRACERCHALLENGE_CORE_MATH_TRIANGLE
-
+#pragma once
 #include "shape.h"
 
 namespace CppRayTracerChallenge::Core::Math
@@ -56,5 +54,3 @@ namespace CppRayTracerChallenge::Core::Math
 		Vector m_normal;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_MATH_TRIANGLE

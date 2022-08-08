@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_SMOOTH_TRIANGLE
-#define _CPPRAYTRACERCHALLENGE_CORE_MATH_SMOOTH_TRIANGLE
-
+#pragma once
 #include "triangle.h"
 
 namespace CppRayTracerChallenge::Core::Math
@@ -25,5 +23,3 @@ namespace CppRayTracerChallenge::Core::Math
 		Vector m_n1, m_n2, m_n3;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_MATH_SMOOTH_TRIANGLE

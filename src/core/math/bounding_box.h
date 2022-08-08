@@ -1,10 +1,7 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_BOUNDING_BOX
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_BOUNDING_BOX
-
+#pragma once
 #include "ray.h"
 #include "RML.h"
-
-using namespace RML;
+#include "transform.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
@@ -82,13 +79,13 @@ namespace CppRayTracerChallenge::Core::Math
 		/// Transforms the bounding box
 		/// </summary>
 		/// <param name="transform">The transform to apply to the bounding box</param>
-		void transform(RML::Transform transform);
+		void transform(Transform transform);
 
 		/// <summary>
 		/// Returns a copy of the Box's transform
 		/// </summary>
 		/// <returns>The Box's transform</returns>
-		const RML::Transform transform() const;
+		const Transform transform() const;
 	private:
 		struct CheckAxisResult
 		{
@@ -98,10 +95,8 @@ namespace CppRayTracerChallenge::Core::Math
 
 		CheckAxisResult checkAxis(double origin, double direction, double min, double max) const;
 
-		RML::Transform m_transform;
+		Transform m_transform;
 		Point m_min;
 		Point m_max;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_BOUNDING_BOX

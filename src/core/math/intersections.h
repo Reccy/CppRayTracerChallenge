@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_INTERSECTIONS
-#define _CPPRAYTRACERCHALLENGE_CORE_MATH_INTERSECTIONS
-
+#pragma once
 #include <vector>
 #include <optional>
 #include "intersection.h"
@@ -67,5 +65,3 @@ namespace CppRayTracerChallenge::Core::Math
 		void calculateHitindex();
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_MATH_INTERSECTIONS

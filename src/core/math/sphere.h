@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_SPHERE
-#define _CPPRAYTRACERCHALLENGE_CORE_MATH_SPHERE
-
+#pragma once
 #include "shape.h"
 
 namespace CppRayTracerChallenge::Core::Math
@@ -37,5 +35,3 @@ namespace CppRayTracerChallenge::Core::Math
 		const BoundingBox bounds() const override;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_MATH_SPHERE

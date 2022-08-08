@@ -1,13 +1,13 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_RAY
-#define _CPPRAYTRACERCHALLENGE_CORE_MATH_RAY
-
+#pragma once
 #include <vector>
 #include "RML.h"
 
-using namespace RML;
-
 namespace CppRayTracerChallenge::Core::Math
 {
+	using RML::Point;
+	using RML::Vector;
+	using RML::Matrix;
+
 	/// <summary>
 	/// Represents a Ray composed of an origin point and a direction vector.
 	/// The direction vector can also be used to represent the "speed" of the ray.
@@ -54,5 +54,3 @@ namespace CppRayTracerChallenge::Core::Math
 		Vector m_direction;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_MATH_RAY

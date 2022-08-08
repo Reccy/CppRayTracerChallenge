@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_RENDER_JOB
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_RENDER_JOB
-
+#pragma once
 #include "world.h"
 #include "camera.h"
 #include "../graphics/canvas.h"
@@ -30,5 +28,3 @@ namespace CppRayTracerChallenge::Core::Renderer
 		bool m_isComplete = false;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_RENDER_JOB

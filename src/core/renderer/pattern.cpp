@@ -1,14 +1,16 @@
 #include "pattern.h"
 
-using CppRayTracerChallenge::Core::Renderer::Pattern;
-using RML::Transform;
-
-void Pattern::transform(Transform transform)
+namespace CppRayTracerChallenge::Core::Renderer
 {
-	m_transform = transform;
-}
+	using Math::Transform;
 
-const Transform Pattern::transform() const
-{
-	return m_transform;
+	void Pattern::transform(Transform transform)
+	{
+		m_transform = transform;
+	}
+
+	const Transform Pattern::transform() const
+	{
+		return m_transform;
+	}
 }

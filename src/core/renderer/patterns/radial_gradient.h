@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_RADIAL_GRADIENT
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_RADIAL_GRADIENT
-
+#pragma once
 #include "RML.h"
 #include "../pattern.h"
 #include "../../helpers/polymorphic_comparable.h"
@@ -37,5 +35,3 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		Graphics::Color m_colorB;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_RADIAL_GRADIENT

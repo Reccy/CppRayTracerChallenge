@@ -13,13 +13,13 @@ namespace CppRayTracerChallenge::Core::Math
 		/// Transforms the shape
 		/// </summary>
 		/// <param name="transform">The transform to apply to the shape</param>
-		void transform(RML::Transform transform);
+		void transform(Transform transform);
 
 		/// <summary>
 		/// Returns a reference to the Shape's transform
 		/// </summary>
 		/// <returns>The Shape's transform</returns>
-		RML::Transform& transform();
+		Transform& transform();
 
 		/// <summary>
 		/// Calculates and returns the normal at the passed in position for this shape
@@ -41,7 +41,7 @@ namespace CppRayTracerChallenge::Core::Math
 		/// <returns>Bounding Box that contains the shape, in the space of the parent</returns>
 		const BoundingBox parentSpaceBounds() const override;
 	protected:
-		RML::Transform m_transform;
+		Transform m_transform;
 	};
 }
 

@@ -1,10 +1,8 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_I_SHAPE
-#define _CPPRAYTRACERCHALLENGE_CORE_MATH_I_SHAPE
-
-#include "RML.h"
+#pragma once
 #include "intersections.h"
 #include "bounding_box.h"
 #include "ray.h"
+#include "transform.h"
 
 namespace CppRayTracerChallenge::Core::Math
 {
@@ -18,13 +16,13 @@ namespace CppRayTracerChallenge::Core::Math
 		/// Transforms the shape
 		/// </summary>
 		/// <param name="transform">The transform to apply to the shape</param>
-		virtual void transform(RML::Transform transform) = 0;
+		virtual void transform(Transform transform) = 0;
 
 		/// <summary>
 		/// Returns a reference to the Shape's transform
 		/// </summary>
 		/// <returns>The Shape's transform</returns>
-		virtual RML::Transform& transform() = 0;
+		virtual Transform& transform() = 0;
 
 		/// <summary>
 		/// Calculates and returns the normal at the passed in world space position for this shape
@@ -67,5 +65,3 @@ namespace CppRayTracerChallenge::Core::Math
 		virtual const BoundingBox parentSpaceBounds() const = 0;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_MATH_I_SHAPE

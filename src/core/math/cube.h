@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_CUBE
-#define _CPPRAYTRACERCHALLENGE_CORE_MATH_CUBE
-
+#pragma once
 #include "shape.h"
 
 namespace CppRayTracerChallenge::Core::Math
@@ -42,5 +40,3 @@ namespace CppRayTracerChallenge::Core::Math
 		CheckAxisResult checkAxis(double origin, double direction) const;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_MATH_CUBE

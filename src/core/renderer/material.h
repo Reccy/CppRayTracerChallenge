@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_MATERIAL
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_MATERIAL
-
+#pragma once
 #include "../math/comparison.h"
 #include "../graphics/color.h"
 #include "pattern.h"
@@ -35,5 +33,3 @@ namespace CppRayTracerChallenge::Core::Renderer
 	bool operator!=(const Material& lhs, const Material& rhs);
 	std::ostream& operator<<(std::ostream& os, const Material& material);
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_MATERIAL

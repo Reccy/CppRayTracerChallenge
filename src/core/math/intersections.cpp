@@ -4,181 +4,182 @@
 #include "intersections.h"
 #include "intersection.h"
 
-using namespace CppRayTracerChallenge::Core::Math;
-
-Intersections::Intersections() : m_intersections(std::vector<Intersection> {}), m_hitIndex(-1) {};
-
-Intersections::Intersections(const std::vector<Intersection> intersections) : m_hitIndex(-1)
+namespace CppRayTracerChallenge::Core::Math
 {
-	// Copy the intersection references into a vector of pointers so we can sort them
-	std::vector<std::shared_ptr<Intersection>> intersectionsCopy;
-	for (auto i = 0; i < intersections.size(); ++i)
-	{
-		intersectionsCopy.push_back(std::make_shared<Intersection>(intersections[i]));
-	}
+	Intersections::Intersections() : m_intersections(std::vector<Intersection> {}), m_hitIndex(-1) {};
 
-	std::sort(std::begin(intersectionsCopy), std::end(intersectionsCopy),
-		[](const std::shared_ptr<Intersection> a, const std::shared_ptr<Intersection> b) -> bool
+	Intersections::Intersections(const std::vector<Intersection> intersections) : m_hitIndex(-1)
+	{
+		// Copy the intersection references into a vector of pointers so we can sort them
+		std::vector<std::shared_ptr<Intersection>> intersectionsCopy;
+		for (auto i = 0; i < intersections.size(); ++i)
 		{
-			return a->t() < b->t();
+			intersectionsCopy.push_back(std::make_shared<Intersection>(intersections[i]));
 		}
-	);
 
-	// Copy the sorted intersections back into m_intersections
-	for (auto i = 0; i < intersectionsCopy.size(); ++i)
-	{
-		m_intersections.push_back(*intersectionsCopy[i]);
-	}
+		std::sort(std::begin(intersectionsCopy), std::end(intersectionsCopy),
+			[](const std::shared_ptr<Intersection> a, const std::shared_ptr<Intersection> b) -> bool
+			{
+				return a->t() < b->t();
+			}
+		);
 
-	calculateHitindex();
-};
+		// Copy the sorted intersections back into m_intersections
+		for (auto i = 0; i < intersectionsCopy.size(); ++i)
+		{
+			m_intersections.push_back(*intersectionsCopy[i]);
+		}
 
-const Intersection& Intersections::at(unsigned int index) const
-{
-	return m_intersections.at(static_cast<size_t>(index));
-}
-
-const int Intersections::size() const
-{
-	return static_cast<int>(m_intersections.size());
-}
-
-const int Intersections::count() const
-{
-	return size();
-}
-
-const std::optional<const Intersection> Intersections::hit() const
-{
-	if (m_hitIndex < 0)
-	{
-		return std::nullopt;
-	}
-
-	return m_intersections.at(m_hitIndex);
-}
-
-Intersections Intersections::operator+(const Intersections& other) const
-{
-	Intersections result = Intersections();
-
-	int thisIndex = 0;
-	int otherIndex = 0;
-
-	std::vector<Intersection>& resultCollection = result.m_intersections;
-
-	auto thisIntersection = [this, &thisIndex]() -> const Intersection& {
-		return this->m_intersections.at(thisIndex);
+		calculateHitindex();
 	};
 
-	auto otherIntersection = [&other, &otherIndex]() -> const Intersection& {
-		return other.m_intersections.at(otherIndex);
-	};
-
-	while (thisIndex < this->size() && otherIndex < other.size())
+	const Intersection& Intersections::at(unsigned int index) const
 	{
-		if (thisIntersection().t() < otherIntersection().t())
+		return m_intersections.at(static_cast<size_t>(index));
+	}
+
+	const int Intersections::size() const
+	{
+		return static_cast<int>(m_intersections.size());
+	}
+
+	const int Intersections::count() const
+	{
+		return size();
+	}
+
+	const std::optional<const Intersection> Intersections::hit() const
+	{
+		if (m_hitIndex < 0)
+		{
+			return std::nullopt;
+		}
+
+		return m_intersections.at(m_hitIndex);
+	}
+
+	Intersections Intersections::operator+(const Intersections& other) const
+	{
+		Intersections result = Intersections();
+
+		int thisIndex = 0;
+		int otherIndex = 0;
+
+		std::vector<Intersection>& resultCollection = result.m_intersections;
+
+		auto thisIntersection = [this, &thisIndex]() -> const Intersection& {
+			return this->m_intersections.at(thisIndex);
+		};
+
+		auto otherIntersection = [&other, &otherIndex]() -> const Intersection& {
+			return other.m_intersections.at(otherIndex);
+		};
+
+		while (thisIndex < this->size() && otherIndex < other.size())
+		{
+			if (thisIntersection().t() < otherIntersection().t())
+			{
+				resultCollection.push_back(thisIntersection());
+				++thisIndex;
+			}
+			else
+			{
+				resultCollection.push_back(otherIntersection());
+				++otherIndex;
+			}
+		}
+
+		while (thisIndex < this->size())
 		{
 			resultCollection.push_back(thisIntersection());
 			++thisIndex;
 		}
-		else
+
+		while (otherIndex < other.size())
 		{
 			resultCollection.push_back(otherIntersection());
 			++otherIndex;
 		}
+
+		result.calculateHitindex();
+
+		return result;
 	}
 
-	while (thisIndex < this->size())
+	Intersections Intersections::operator+=(const Intersections& other)
 	{
-		resultCollection.push_back(thisIntersection());
-		++thisIndex;
+		*this = *this + other;
+		return *this;
 	}
 
-	while (otherIndex < other.size())
+	Intersections Intersections::operator+(const Intersection& other) const
 	{
-		resultCollection.push_back(otherIntersection());
-		++otherIndex;
+		Intersections wrapper = Intersections({ other });
+
+		Intersections result = Intersections(*this);
+
+		result += wrapper;
+
+		return result;
 	}
 
-	result.calculateHitindex();
-
-	return result;
-}
-
-Intersections Intersections::operator+=(const Intersections& other)
-{
-	*this = *this + other;
-	return *this;
-}
-
-Intersections Intersections::operator+(const Intersection& other) const
-{
-	Intersections wrapper = Intersections({other});
-
-	Intersections result = Intersections(*this);
-
-	result += wrapper;
-
-	return result;
-}
-
-Intersections Intersections::operator+=(const Intersection& other)
-{
-	*this = *this + other;
-	return *this;
-}
-
-bool Intersections::operator==(const Intersections& other) const
-{
-	if (other.count() != count())
+	Intersections Intersections::operator+=(const Intersection& other)
 	{
-		return false;
+		*this = *this + other;
+		return *this;
 	}
 
-	for (int i = 0; i < count(); ++i)
+	bool Intersections::operator==(const Intersections& other) const
 	{
-		const Intersection& thisIntersection = at(i);
-		const Intersection& otherIntersection = other.at(i);
-
-		if (thisIntersection != otherIntersection)
+		if (other.count() != count())
 		{
 			return false;
 		}
+
+		for (int i = 0; i < count(); ++i)
+		{
+			const Intersection& thisIntersection = at(i);
+			const Intersection& otherIntersection = other.at(i);
+
+			if (thisIntersection != otherIntersection)
+			{
+				return false;
+			}
+		}
+
+		return true;
 	}
 
-	return true;
-}
-
-bool Intersections::operator!=(const Intersections& other) const
-{
-	return !(*this == other);
-}
-
-std::ostream& CppRayTracerChallenge::Core::Math::operator<<(std::ostream& os, const Intersections& intersections)
-{
-	for (int i = 0; i < intersections.count(); ++i)
+	bool Intersections::operator!=(const Intersections& other) const
 	{
-		os << intersections.at(i);
-		os << std::endl;
+		return !(*this == other);
 	}
 
-	return os;
-}
-
-void Intersections::calculateHitindex()
-{
-	double tSmallest = std::numeric_limits<double>::max();
-
-	for (unsigned int i = 0; i < m_intersections.size(); ++i)
+	std::ostream& CppRayTracerChallenge::Core::Math::operator<<(std::ostream& os, const Intersections& intersections)
 	{
-		const Intersection& intersection = m_intersections.at(i);
+		for (int i = 0; i < intersections.count(); ++i)
+		{
+			os << intersections.at(i);
+			os << std::endl;
+		}
 
-		if (intersection.t() < 0) continue;
+		return os;
+	}
 
-		if (intersection.t() >= tSmallest) continue;
+	void Intersections::calculateHitindex()
+	{
+		double tSmallest = std::numeric_limits<double>::max();
 
-		tSmallest = intersection.t();
-		m_hitIndex = i;
+		for (unsigned int i = 0; i < m_intersections.size(); ++i)
+		{
+			const Intersection& intersection = m_intersections.at(i);
+
+			if (intersection.t() < 0) continue;
+
+			if (intersection.t() >= tSmallest) continue;
+
+			tSmallest = intersection.t();
+			m_hitIndex = i;
+		}
 	}
 }

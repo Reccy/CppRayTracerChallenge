@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_I_GROUP
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_I_GROUP
-
+#pragma once
 #include "../math/i_shape.h"
 #include "RML.h"
 
@@ -14,5 +12,3 @@ namespace CppRayTracerChallenge::Core::Renderer
 		virtual bool includes(const Math::IShape& other) const = 0;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_I_GROUP

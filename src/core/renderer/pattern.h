@@ -1,8 +1,6 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERN
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERN
-
+#pragma once
 #include "../graphics/color.h"
-#include "RML.h"
+#include "../math/transform.h"
 
 namespace CppRayTracerChallenge::Core::Renderer
 {
@@ -25,13 +23,13 @@ namespace CppRayTracerChallenge::Core::Renderer
 		/// Transforms the pattern
 		/// </summary>
 		/// <param name="transform">The transform to apply to the pattern</param>
-		void transform(RML::Transform transform);
+		void transform(Math::Transform transform);
 
 		/// <summary>
 		/// Returns a copy of the pattern's transform
 		/// </summary>
 		/// <returns></returns>
-		const RML::Transform transform() const;
+		const Math::Transform transform() const;
 
 		virtual bool operator==(const Pattern& other) const = 0;
 
@@ -40,8 +38,6 @@ namespace CppRayTracerChallenge::Core::Renderer
 			return !(*this == other);
 		};
 	protected:
-		RML::Transform m_transform;
+		Math::Transform m_transform;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERN

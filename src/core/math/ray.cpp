@@ -1,28 +1,29 @@
 #include "ray.h"
 
-using namespace CppRayTracerChallenge::Core::Math;
-
-Ray::Ray(Point origin, Vector direction) : m_origin(origin), m_direction(direction) {}
-
-Point Ray::origin() const
+namespace CppRayTracerChallenge::Core::Math
 {
-	return m_origin;
-}
+	Ray::Ray(Point origin, Vector direction) : m_origin(origin), m_direction(direction) {}
 
-Vector Ray::direction() const
-{
-	return m_direction;
-}
+	Point Ray::origin() const
+	{
+		return m_origin;
+	}
 
-Point Ray::position(const double t) const
-{
-	return m_origin + m_direction * t;
-}
+	Vector Ray::direction() const
+	{
+		return m_direction;
+	}
 
-Ray Ray::transform(const Matrix<double, 4, 4>& transform) const
-{
-	Vector direction = transform * m_direction;
-	Point origin = transform * m_origin;
+	Point Ray::position(const double t) const
+	{
+		return m_origin + m_direction * t;
+	}
 
-	return Ray(origin, direction);
+	Ray Ray::transform(const Matrix<double, 4, 4>& transform) const
+	{
+		Vector direction = transform * m_direction;
+		Point origin = transform * m_origin;
+
+		return Ray(origin, direction);
+	}
 }

@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_GRAPHICS_CANVAS
-#define _CPPRAYTRACERCHALLENGE_CORE_GRAPHICS_CANVAS
-
+#pragma once
 #include <vector>
 #include "image.h"
 #include "color.h"
@@ -27,5 +25,3 @@ namespace CppRayTracerChallenge::Core::Graphics
 		void writePixel(int x, int y, const Color color);
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_GRAPHICS_CANVAS

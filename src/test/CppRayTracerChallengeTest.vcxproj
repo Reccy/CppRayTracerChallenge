@@ -164,7 +164,6 @@
     <ClCompile Include="core\renderer\patterns\stripe_test.cpp" />
     <ClCompile Include="core\renderer\pattern_test.cpp" />
     <ClCompile Include="core\renderer\point_light_test.cpp" />
-    <ClCompile Include="core\renderer\render_job_test.cpp" />
     <ClCompile Include="core\renderer\shape_test.cpp" />
     <ClCompile Include="core\renderer\world_test.cpp" />
     <ClCompile Include="core\serializer\portable_network_graphics_serializer_test.cpp" />
@@ -182,6 +181,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="core\math\transform_test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

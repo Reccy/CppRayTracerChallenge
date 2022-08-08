@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_GRAPHICS_COLOR
-#define _CPPRAYTRACERCHALLENGE_CORE_GRAPHICS_COLOR
-
+#pragma once
 #include <iostream>
 
 namespace CppRayTracerChallenge::Core::Graphics
@@ -64,5 +62,3 @@ namespace CppRayTracerChallenge::Core::Graphics
 		float m_red, m_green, m_blue;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_GRAPHICS_COLOR

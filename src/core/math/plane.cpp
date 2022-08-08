@@ -1,28 +1,33 @@
 #include "plane.h"
 
-using namespace CppRayTracerChallenge::Core::Math;
-
-Plane::Plane() : Shape() {};
-
-const Vector Plane::normalLocal(const Point) const
+namespace CppRayTracerChallenge::Core::Math
 {
-	return Vector::up();
-}
+	using RML::INF;
+	using RML::EPSILON;
 
-const Intersections Plane::intersectLocal(const Ray ray) const
-{
-	// If the ray is parallel to the plane
-	if (abs(ray.direction().y()) < EPSILON)
+	Plane::Plane() : Shape() {};
+
+	const Vector Plane::normalLocal(const Point) const
 	{
-		return Intersections();
+		return Vector::up();
 	}
 
-	double t = -ray.origin().y() / ray.direction().y();
+	const Intersections Plane::intersectLocal(const Ray ray) const
+	{
+		// If the ray is parallel to the plane
+		if (abs(ray.direction().y()) < EPSILON)
+		{
+			return Intersections();
+		}
 
-	return Intersections({Intersection(t, *this)});
-}
+		double t = -ray.origin().y() / ray.direction().y();
 
-const BoundingBox Plane::bounds() const
-{
-	return BoundingBox({ -INF, 0, -INF }, { INF, 0, INF });
+		return Intersections({ Intersection(t, *this) });
+	}
+
+	const BoundingBox Plane::bounds() const
+	{
+		return BoundingBox({ -INF, 0, -INF }, { INF, 0, INF });
+	}
+
 }

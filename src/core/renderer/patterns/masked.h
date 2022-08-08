@@ -1,8 +1,7 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_MASKED
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_MASKED
-
+#pragma once
 #include "../pattern.h"
 #include "../../helpers/polymorphic_comparable.h"
+#include "../../math/transform.h"
 
 namespace CppRayTracerChallenge::Core::Renderer::Patterns
 {
@@ -16,7 +15,7 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 			m_mask(PATTERN_MASK(Graphics::Color::black(), Graphics::Color::white()))
 		{};
 
-		Masked(const std::shared_ptr<Pattern> a, const std::shared_ptr<Pattern> b, const RML::Transform maskTransform) :
+		Masked(const std::shared_ptr<Pattern> a, const std::shared_ptr<Pattern> b, const Math::Transform maskTransform) :
 			m_a(a),
 			m_b(b),
 			m_mask(PATTERN_MASK(Graphics::Color::black(), Graphics::Color::white()))
@@ -29,8 +28,8 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 			// Since we have a black to white image, the rgb values are all equal.
 			float blend = m_mask.colorAt(position).red();
 
-			RML::Point positionA = m_a->transform().get_inverted() * position;
-			RML::Point positionB = m_b->transform().get_inverted() * position;
+			RML::Point positionA = m_a->transform().invert() * position;
+			RML::Point positionB = m_b->transform().invert() * position;
 
 			Graphics::Color a = m_a->colorAt(positionA);
 			Graphics::Color b = m_b->colorAt(positionB);
@@ -48,5 +47,3 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		PATTERN_MASK m_mask;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_MASKED

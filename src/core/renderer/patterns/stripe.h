@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_STRIPE
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_STRIPE
-
+#pragma once
 #include "RML.h"
 #include "../pattern.h"
 #include "../../helpers/polymorphic_comparable.h"
@@ -40,5 +38,3 @@ namespace CppRayTracerChallenge::Core::Renderer::Patterns
 		Graphics::Color m_colorB;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_PATTERNS_STRIPE

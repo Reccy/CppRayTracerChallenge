@@ -1,32 +1,32 @@
 #include "radial_gradient.h"
 #include <cmath>
 
-using CppRayTracerChallenge::Core::Renderer::Patterns::RadialGradient;
-using namespace CppRayTracerChallenge::Core;
-
-RadialGradient::RadialGradient(Graphics::Color a, Graphics::Color b) : m_colorA(a), m_colorB(b) {};
-
-Graphics::Color RadialGradient::colorA() const
+namespace CppRayTracerChallenge::Core::Renderer::Patterns
 {
-	return m_colorA;
-}
+	RadialGradient::RadialGradient(Graphics::Color a, Graphics::Color b) : m_colorA(a), m_colorB(b) {};
 
-Graphics::Color RadialGradient::colorB() const
-{
-	return m_colorB;
-}
+	Graphics::Color RadialGradient::colorA() const
+	{
+		return m_colorA;
+	}
 
-Graphics::Color RadialGradient::colorAt(RML::Point position) const
-{
-	RML::Point realPos = RML::Point(position.x(), 0, position.z());
+	Graphics::Color RadialGradient::colorB() const
+	{
+		return m_colorB;
+	}
 
-	double distance = (realPos - RML::Point(0, 0, 0)).magnitude();
-	float fraction = static_cast<float>(std::fmod(distance, 1));
+	Graphics::Color RadialGradient::colorAt(RML::Point position) const
+	{
+		RML::Point realPos = RML::Point(position.x(), 0, position.z());
 
-	return Graphics::Color::blend(m_colorA, m_colorB, fraction);
-}
+		double distance = (realPos - RML::Point(0, 0, 0)).magnitude();
+		float fraction = static_cast<float>(std::fmod(distance, 1));
 
-bool RadialGradient::operator==(const RadialGradient& other) const
-{
-	return m_colorA == other.m_colorA && m_colorB == other.m_colorB;
+		return Graphics::Color::blend(m_colorA, m_colorB, fraction);
+	}
+
+	bool RadialGradient::operator==(const RadialGradient& other) const
+	{
+		return m_colorA == other.m_colorA && m_colorB == other.m_colorB;
+	}
 }

@@ -1,6 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_RENDERER_LIGHTING
-#define _CPPRAYTRACERCHALLENGE_CORE_RENDERER_LIGHTING
-
+#pragma once
 #include "../graphics/color.h"
 #include "RML.h"
 #include "material.h"
@@ -21,5 +19,3 @@ namespace CppRayTracerChallenge::Core::Renderer::Lighting
 	/// <returns>The color at the position</returns>
 	Graphics::Color lighting(const Shape& shape, const PointLight& light, const RML::Point& position, const RML::Vector& eyev, const RML::Vector& normalv, const bool isShadowed);
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_RENDERER_LIGHTING

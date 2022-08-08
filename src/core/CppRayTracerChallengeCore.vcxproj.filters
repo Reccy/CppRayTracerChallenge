@@ -150,6 +150,9 @@
     <ClCompile Include="serializer\wavefront_obj_deserializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="math\transform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="compression\deflate_block.h">
@@ -300,6 +303,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="serializer\wavefront_obj_deserializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="math\transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
