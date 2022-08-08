@@ -2,8 +2,6 @@
 
 This is my repo for implementing the Ray Tracer Challenge from: http://raytracerchallenge.com/
 
-![Cover Image](docs/cover.png)
-
 # Setup Repo
 
 1. Clone the repo
