@@ -23,6 +23,7 @@
     <ProjectGuid>{768B67A5-71A4-4CDB-9A47-C26B7F6D4925}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>CppRayTracerChallengeMain</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -127,15 +128,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="win32_main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\lib\glad\glad.vcxproj">
       <Project>{841ea22a-dfe4-4a34-8b71-37507121a26c}</Project>
     </ProjectReference>
     <ProjectReference Include="..\lib\glfw\glfw.vcxproj">
       <Project>{5612d798-948c-4c3b-bc95-5a30c6f38d36}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="rogll\camera.cpp" />
+    <ClCompile Include="rogll\index_buffer.cpp" />
+    <ClCompile Include="rogll\material.cpp" />
+    <ClCompile Include="rogll\renderer.cpp" />
+    <ClCompile Include="rogll\shader.cpp" />
+    <ClCompile Include="rogll\vertex_array.cpp" />
+    <ClCompile Include="rogll\vertex_attributes.cpp" />
+    <ClCompile Include="rogll\vertex_buffer.cpp" />
+    <ClCompile Include="rogll\window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="rogll\camera.h" />
+    <ClInclude Include="rogll\index_buffer.h" />
+    <ClInclude Include="rogll\material.h" />
+    <ClInclude Include="rogll\renderer.h" />
+    <ClInclude Include="rogll\include.h" />
+    <ClInclude Include="rogll\shader.h" />
+    <ClInclude Include="rogll\types.h" />
+    <ClInclude Include="rogll\vertex_array.h" />
+    <ClInclude Include="rogll\vertex_attributes.h" />
+    <ClInclude Include="rogll\vertex_buffer.h" />
+    <ClInclude Include="rogll\window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
