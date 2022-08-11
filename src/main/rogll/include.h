@@ -7,5 +7,4 @@
 #include "shader.h"
 #include "material.h"
 #include "window.h"
-#include "renderer.h"
 #include "camera.h"

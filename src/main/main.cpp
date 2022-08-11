@@ -83,6 +83,34 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 		glfwSetWindowShouldClose(window, true);
 }
 
+void _UpdateCamera(ROGLL::Camera& cam) {
+	constexpr double speedFactor = 0.25;
+
+	cam.SetPerspective(WIDTH, HEIGHT, RML::Trig::degrees_to_radians(Fov));
+	cam.transform.position += cam.transform.rotation.inverse()
+		* RML::Vector(HMove * speedFactor,
+			VMove * speedFactor,
+			DMove * speedFactor);
+
+	CamXRot += RotX;
+	CamYRot += RotY;
+
+	cam.transform.rotation = RML::Quaternion::euler_angles(CamXRot, CamYRot, 0);
+}
+
+void _Draw(const ROGLL::VertexArray& vertexArray, const ROGLL::IndexBuffer& indexBuffer, const ROGLL::Material& material)
+{
+	vertexArray.Bind();
+	indexBuffer.Bind();
+	material.Bind();
+
+	glDrawElements(GL_TRIANGLES, indexBuffer.GetCount(), GL_UNSIGNED_INT, (void*)0);
+
+	material.Unbind();
+	indexBuffer.Unbind();
+	vertexArray.Unbind();
+}
+
 struct VertexLayout
 {
 	RML::Tuple3<float> pos;
@@ -194,39 +222,26 @@ int main(void)
 	ROGLL::Material groundMaterial(shader);
 	groundMaterial.Set4("uColor", Green);
 
-	ROGLL::Renderer renderer;
-
+	RML::Matrix<double, 4, 4> vp;
 	RML::Matrix<double, 4, 4> mvp;
 
 	RML::Transform model;
 	ROGLL::Camera cam(WIDTH, HEIGHT, 60);
-	cam.transform.translate(0, 0, -10);
-
-	double speedFactor = 0.25;
+	cam.transform.translate(0, 0, -10); // Initial cam position
 
 	while (!window.ShouldClose())
 	{
 		_ProcessInput(window);
-
-		cam.SetPerspective(WIDTH, HEIGHT, RML::Trig::degrees_to_radians(Fov));
-		cam.transform.position += cam.transform.rotation.inverse()
-			* RML::Vector(HMove * speedFactor,
-				VMove * speedFactor,
-				DMove * speedFactor);
-
-		CamXRot += RotX;
-		CamYRot += RotY;
-
-		cam.transform.rotation = RML::Quaternion::euler_angles(CamXRot, CamYRot, 0);
-
-		mvp = cam.GetProjectionMatrix() * cam.GetViewMatrix() * model.matrix();
+		_UpdateCamera(cam);
+		
+		vp = cam.GetProjectionMatrix() * cam.GetViewMatrix();
+		mvp = vp * model.matrix();
 		cubeMaterial.Set4x4("uMVP", mvp);
 
-		renderer.SetClearColor(*ClearColor);
-		renderer.Clear();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		renderer.Draw(cubeVertexArray, cubeIndexLayout, cubeMaterial);
-		renderer.Draw(groundVertexArray, groundIndexLayout, groundMaterial);
+		_Draw(cubeVertexArray, cubeIndexLayout, cubeMaterial);
+		_Draw(groundVertexArray, groundIndexLayout, groundMaterial);
 
 		window.SwapBuffers();
 		window.PollEvents();

@@ -140,7 +140,6 @@
     <ClCompile Include="rogll\camera.cpp" />
     <ClCompile Include="rogll\index_buffer.cpp" />
     <ClCompile Include="rogll\material.cpp" />
-    <ClCompile Include="rogll\renderer.cpp" />
     <ClCompile Include="rogll\shader.cpp" />
     <ClCompile Include="rogll\vertex_array.cpp" />
     <ClCompile Include="rogll\vertex_attributes.cpp" />
@@ -151,7 +150,6 @@
     <ClInclude Include="rogll\camera.h" />
     <ClInclude Include="rogll\index_buffer.h" />
     <ClInclude Include="rogll\material.h" />
-    <ClInclude Include="rogll\renderer.h" />
     <ClInclude Include="rogll\include.h" />
     <ClInclude Include="rogll\shader.h" />
     <ClInclude Include="rogll\types.h" />
