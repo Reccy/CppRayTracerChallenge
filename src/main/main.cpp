@@ -19,7 +19,7 @@ static RML::Tuple4<float> Blue{ 0.0f, 0.0f, 1.0f, 1.0f };
 static RML::Tuple4<float> White{ 1.0f, 1.0f, 1.0f, 1.0f };
 static RML::Tuple4<float> Black{ 0.0f, 0.0f, 0.0f, 0.0f };
 
-static RML::Tuple4<float>* ClearColor = &White;
+static RML::Tuple4<float>* ClearColor = &Black;
 
 static bool MoveDown = false;
 static bool MoveUp = false;
@@ -116,6 +116,7 @@ void _Draw(const ROGLL::VertexArray& vertexArray, const ROGLL::VertexBuffer& ver
 struct VertexLayout
 {
 	RML::Tuple3<float> pos;
+	RML::Tuple3<float> normal;
 };
 
 int main(void)
@@ -132,43 +133,51 @@ int main(void)
 	RML::Tuple3<float> XyZ(0.5, -0.5, 0.5);
 	RML::Tuple3<float> XYZ(0.5, 0.5, 0.5);
 
+	RML::Tuple3<float> Up(0, 1, 0);
+	RML::Tuple3<float> Down(0, -1, 0);
+	RML::Tuple3<float> Left(-1, 0, 0);
+	RML::Tuple3<float> Right(1, 0, 0);
+	RML::Tuple3<float> Forward(0, 0, 1);
+	RML::Tuple3<float> Backward(0, 0, -1);
+
 	RML::Tuple3<float> UP(2.0, 2.0, 2.0);
 
 	ROGLL::VertexAttributes layout;
 	layout.Add<float>(ROGLL::VertexAttributes::POSITION, 3); // XYZ Position
+	layout.Add<float>(ROGLL::VertexAttributes::NORMAL, 3);
 
 	VertexLayout cubeVertsLayout[]
 	{
 		// FRONT
-		{ xyz },
-		{ Xyz },
-		{ XYz },
-		{ xYz },
+		{ xyz, Backward },
+		{ Xyz, Backward },
+		{ XYz, Backward },
+		{ xYz, Backward },
 		//BACK
-		{ xYZ }, // idx 4
-		{ XYZ },
-		{ XyZ },
-		{ xyZ },
+		{ xYZ, Forward }, // idx 4
+		{ XYZ, Forward },
+		{ XyZ, Forward },
+		{ xyZ, Forward },
 		//TOP
-		{ xYz }, // idx 8
-		{ XYz },
-		{ XYZ },
-		{ xYZ },
+		{ xYz, Up }, // idx 8
+		{ XYz, Up },
+		{ XYZ, Up },
+		{ xYZ, Up },
 		//BOTTOM
-		{ xyZ }, // idx 12
-		{ XyZ },
-		{ Xyz },
-		{ xyz },
+		{ xyZ, Down }, // idx 12
+		{ XyZ, Down },
+		{ Xyz, Down },
+		{ xyz, Down },
 		//LEFT
-		{ xyZ }, // idx 16
-		{ xyz },
-		{ xYz },
-		{ xYZ },
+		{ xyZ, Left }, // idx 16
+		{ xyz, Left },
+		{ xYz, Left },
+		{ xYZ, Left },
 		//RIGHT
-		{ XyZ, }, // idx 20
-		{ XYZ },
-		{ XYz },
-		{ Xyz },
+		{ XyZ, Right }, // idx 20
+		{ XYZ, Right },
+		{ XYz, Right },
+		{ Xyz, Right },
 	};
 
 	std::vector<float> cubeVertsFloats;
@@ -178,6 +187,9 @@ int main(void)
 		cubeVertsFloats.push_back(vertex.pos.x());
 		cubeVertsFloats.push_back(vertex.pos.y());
 		cubeVertsFloats.push_back(vertex.pos.z());
+		cubeVertsFloats.push_back(vertex.normal.x());
+		cubeVertsFloats.push_back(vertex.normal.y());
+		cubeVertsFloats.push_back(vertex.normal.z());
 	}
 
 	ROGLL::Mesh cubeMesh(
@@ -210,12 +222,16 @@ int main(void)
 	cubeB.transform.translate(3, 3, 3);
 	cubeB.transform.scale(1.5, 2, 2.5);
 
+	ROGLL::MeshInstance lightCube(cubeMesh);
+	lightCube.transform.scaling = { 0.5, 0.5, 0.5 };
+	lightCube.transform.position = { 0, 10, 0 };
+
 	std::vector<float> groundVertFloats
 	{
-		-100, -0.5, -100,
-		 100, -0.5, -100,
-		 100, -0.5,  100,
-		-100, -0.5,  100,
+		-100, -0.5, -100, 0, 1, 0,
+		 100, -0.5, -100, 0, 1, 0,
+		 100, -0.5,  100, 0, 1, 0,
+		-100, -0.5,  100, 0, 1, 0
 	};
 
 	ROGLL::Mesh groundMesh(
@@ -227,22 +243,29 @@ int main(void)
 		layout
 	);
 
-	ROGLL::MeshInstance cubeC(groundMesh);
+	ROGLL::MeshInstance groundMeshInstance(groundMesh);
+	groundMeshInstance.transform.scale(100, 1, 100);
 
 	ROGLL::Shader shader("res/shaders/Default.shader");
 
 	ROGLL::Material cubeMaterial(shader);
-	cubeMaterial.Set4("uColor", Blue);
+	cubeMaterial.Set4("objectColor", Blue);
 
 	ROGLL::Material groundMaterial(shader);
-	groundMaterial.Set4("uColor", Green);
+	groundMaterial.Set4("objectColor", Green);
+
+	ROGLL::Material lightCubeMaterial(shader);
+	lightCubeMaterial.Set4("objectColor", White);
 
 	ROGLL::RenderBatch cubeBatch(&layout, &cubeMaterial);
 	cubeBatch.AddInstance(&cubeA);
 	cubeBatch.AddInstance(&cubeB);
 
 	ROGLL::RenderBatch groundBatch(&layout, &groundMaterial);
-	groundBatch.AddInstance(&cubeC);
+	groundBatch.AddInstance(&groundMeshInstance);
+
+	ROGLL::RenderBatch lightCubeBatch(&layout, &lightCubeMaterial);
+	lightCubeBatch.AddInstance(&lightCube);
 
 	RML::Matrix<double, 4, 4> vp;
 	RML::Matrix<double, 4, 4> mvp;
@@ -251,19 +274,26 @@ int main(void)
 	ROGLL::Camera cam(WIDTH, HEIGHT, 60);
 	cam.transform.translate(0, 0, -10); // Initial cam position
 
+	RML::Tuple3<float> lightPosition {
+		1,
+		9,
+		0
+	};
+
 	while (!window.ShouldClose())
 	{
 		_ProcessInput(window);
 		_UpdateCamera(cam);
 		
 		cubeA.transform.rotate(0, 0.2, 0);
-		cubeB.transform.translate(0, 0.01, 0);
+		cubeB.transform.rotate(0.2, 0.3, 0.5);
 
 		glClearColor(ClearColor->x(), ClearColor->y(), ClearColor->z(), ClearColor->w());
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		cubeBatch.Render(cam);
-		groundBatch.Render(cam);
+		cubeBatch.Render(cam, lightPosition);
+		groundBatch.Render(cam, lightPosition);
+		lightCubeBatch.Render(cam, lightPosition);
 
 		window.SwapBuffers();
 		window.PollEvents();

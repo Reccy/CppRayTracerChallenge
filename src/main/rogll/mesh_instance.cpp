@@ -28,34 +28,53 @@ namespace ROGLL
 		std::vector<float> result = m_mesh.vertexData();
 
 		const VertexAttributes& attributes = m_mesh.attributes();
-		VertexAttributes::VertexAttribute attribute;
-		unsigned int attributeOffset;
-		if (!m_mesh.attributes().GetTaggedAttribute(VertexAttributes::POSITION, attribute, attributeOffset))
-		{
-			std::cout << "ERROR: Could not find POSITION attribute" << std::endl;
-			std::cout << "ERROR: Returning empty array" << std::endl;
-			return result;
-		}
-
 		unsigned int stride = attributes.GetStride();
 		unsigned int vertCount = (result.size() / (stride / 4));
-
-		for (size_t i = 0; i < vertCount; i++)
+		
+		VertexAttributes::VertexAttribute positionAttribute;
+		unsigned int positionAttributeOffset;
+		if (m_mesh.attributes().GetTaggedAttribute(VertexAttributes::POSITION, positionAttribute, positionAttributeOffset))
 		{
-			unsigned int offset = i * (stride / 4) + attributeOffset;
+			for (size_t i = 0; i < vertCount; i++)
+			{
+				unsigned int offset = i * (stride / positionAttribute.size) + positionAttributeOffset;
 
-			RML::Matrix<double, 4, 1> positionMatrix({
-				result[offset],
-				result[offset + 1],
-				result[offset + 2],
-				1
-			});
+				RML::Matrix<double, 4, 1> positionMatrix({
+					result[offset],
+					result[offset + 1],
+					result[offset + 2],
+					1
+					});
 
-			auto positionResult = transform.matrix() * positionMatrix;
+				auto positionResult = transform.matrix() * positionMatrix;
 
-			result[offset] = positionResult(0, 0);
-			result[offset + 1] = positionResult(0, 1);
-			result[offset + 2] = positionResult(0, 2);
+				result[offset] = positionResult(0, 0);
+				result[offset + 1] = positionResult(0, 1);
+				result[offset + 2] = positionResult(0, 2);
+			}
+		}
+
+		VertexAttributes::VertexAttribute normalAttribute;
+		unsigned int normalAttributeOffset;
+		if (m_mesh.attributes().GetTaggedAttribute(VertexAttributes::NORMAL, normalAttribute, normalAttributeOffset))
+		{
+			for (size_t i = 0; i < vertCount; i++)
+			{
+				unsigned int offset = i * (stride / normalAttribute.size) + normalAttributeOffset;
+
+				RML::Matrix<double, 4, 1> positionMatrix({
+					result[offset],
+					result[offset + 1],
+					result[offset + 2],
+					0
+				});
+
+				auto positionResult = transform.matrix() * positionMatrix;
+
+				result[offset] = positionResult(0, 0);
+				result[offset + 1] = positionResult(0, 1);
+				result[offset + 2] = positionResult(0, 2);
+			}
 		}
 
 		return result;

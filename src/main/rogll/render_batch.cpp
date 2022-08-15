@@ -20,7 +20,7 @@ namespace ROGLL
 		m_meshInstances.erase(instance);
 	}
 
-	void RenderBatch::Render(const Camera& cam) const
+	void RenderBatch::Render(const Camera& cam, const RML::Tuple3<float>& lightPosition) const
 	{
 		std::vector<unsigned int> indexBuffer;
 		std::vector<float> vertexBuffer;
@@ -55,6 +55,9 @@ namespace ROGLL
 
 		m_material->Bind();
 		m_material->Set4x4("uVP", cam.GetProjectionMatrix() * cam.GetViewMatrix());
+		m_material->Set3("lightPos", lightPosition);
+		m_material->Set3("lightColor", RML::Tuple3<float>(1.0, 1.0, 1.0));
+		m_material->Set3("viewPos", RML::Tuple3<float>(cam.transform.position.x(), cam.transform.position.y(), cam.transform.position.z()));
 
 		glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, (void*)0);
 	}

@@ -9,7 +9,8 @@ namespace ROGLL
 	public:
 		enum VertexAttributeTag {
 			NONE,
-			POSITION
+			POSITION,
+			NORMAL
 		};
 
 		struct VertexAttribute
@@ -36,11 +37,11 @@ namespace ROGLL
 				if (attribute.tag == tag)
 				{
 					outResult = attribute;
-					outOffset = offset;
+					outOffset = offset / attribute.size;
 					return true;
 				}
 
-				offset += attribute.size;
+				offset += attribute.size * attribute.count;
 			}
 
 			return false;
