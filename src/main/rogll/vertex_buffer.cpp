@@ -4,11 +4,11 @@
 
 namespace ROGLL
 {
-	VertexBuffer::VertexBuffer(const void* data, const int size)
+	VertexBuffer::VertexBuffer(const void* data, const int count)
 	{
 		glGenBuffers(1, &m_bufferId);
 		glBindBuffer(GL_ARRAY_BUFFER, m_bufferId);
-		glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, count * sizeof(int), data, GL_DYNAMIC_DRAW);
 	}
 
 	VertexBuffer::~VertexBuffer()

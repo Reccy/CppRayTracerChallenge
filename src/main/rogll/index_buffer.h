@@ -8,7 +8,7 @@ namespace ROGLL
 		unsigned int m_bufferId;
 		unsigned int m_count;
 	public:
-		IndexBuffer(unsigned int* data, const int size);
+		IndexBuffer(unsigned int* data, const int count);
 		~IndexBuffer();
 
 		void Bind() const;

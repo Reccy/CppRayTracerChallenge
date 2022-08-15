@@ -1,6 +1,8 @@
 #include "vertex_array.h"
 #include <glad.h>
 
+#include <iostream>
+
 namespace ROGLL
 {
 	VertexArray::VertexArray()

@@ -1,14 +1,17 @@
 #include "index_buffer.h"
 #include <glad.h>
 
+#include <iostream>
+
 namespace ROGLL
 {
-	IndexBuffer::IndexBuffer(unsigned int* data, const int size)
-		: m_count(size / sizeof(unsigned int))
+	IndexBuffer::IndexBuffer(unsigned int* data, const int count)
+		: m_count(count)
 	{
 		glGenBuffers(1, &m_bufferId);
+
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_bufferId);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(unsigned int), data, GL_DYNAMIC_DRAW);
 	}
 
 	IndexBuffer::~IndexBuffer()

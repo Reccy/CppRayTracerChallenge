@@ -42,6 +42,15 @@
     <ClCompile Include="rogll\window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="rogll\mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rogll\mesh_instance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rogll\render_batch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rogll\camera.h">
@@ -72,6 +81,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="rogll\include.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rogll\mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rogll\mesh_instance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rogll\render_batch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
