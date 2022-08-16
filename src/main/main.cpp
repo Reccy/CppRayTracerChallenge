@@ -3,6 +3,7 @@
 
 #include "glad.h"
 #include "glfw3.h"
+#include <RPly.h>
 
 #include "rogll/include.h"
 #include <RML.h>
@@ -46,6 +47,39 @@ static float CamYRot = 0;
 
 static int WIDTH = 1024;
 static int HEIGHT = 768;
+
+static int _PlyVertexCb(p_ply_argument argument)
+{
+	long attribute;
+	std::vector<float>* vertexBuffer;
+	ply_get_argument_user_data(argument, (void**)&vertexBuffer, &attribute);
+
+	double data = ply_get_argument_value(argument);
+
+	vertexBuffer->push_back(data);
+
+	return 1;
+}
+
+static int faceParseIdx = 0;
+static int _PlyFaceCb(p_ply_argument argument)
+{
+	if (faceParseIdx % 4 == 0)
+	{
+		faceParseIdx++;
+		return 1;
+	}
+
+	faceParseIdx++;
+
+	std::vector<unsigned int>* indexBuffer;
+	ply_get_argument_user_data(argument, (void**)&indexBuffer, NULL);
+	double data = ply_get_argument_value(argument);
+
+	indexBuffer->push_back(data);
+
+	return 1;
+}
 
 static void _ProcessInput(const ROGLL::Window& windowRef)
 {
@@ -143,8 +177,12 @@ int main(void)
 	RML::Tuple3<float> UP(2.0, 2.0, 2.0);
 
 	ROGLL::VertexAttributes layout;
-	layout.Add<float>(ROGLL::VertexAttributes::POSITION, 3); // XYZ Position
+	layout.Add<float>(ROGLL::VertexAttributes::POSITION, 3);
 	layout.Add<float>(ROGLL::VertexAttributes::NORMAL, 3);
+
+	ROGLL::VertexAttributes gizmoLayout;
+	gizmoLayout.Add<float>(ROGLL::VertexAttributes::POSITION, 3);
+	gizmoLayout.Add<float>(ROGLL::VertexAttributes::COLOR, 3);
 
 	VertexLayout cubeVertsLayout[]
 	{
@@ -246,7 +284,74 @@ int main(void)
 	ROGLL::MeshInstance groundMeshInstance(groundMesh);
 	groundMeshInstance.transform.scale(100, 1, 100);
 
+	// BEGIN GIZMO LOAD
+	std::cout << "Loading gizmo3d file... ";
+
+	p_ply gizmoPlyFile = ply_open("res/models/gizmo3d.ply", NULL, 0, NULL);
+	if (!gizmoPlyFile || !ply_read_header(gizmoPlyFile))
+	{
+		std::cout << "ERROR: Could not read gizmo3d file" << std::endl;
+		glfwTerminate();
+		std::cin.get();
+		return -1;
+	}
+
+	std::vector<float> gizmoPositions;
+	std::vector<float> gizmoNormals;
+	std::vector<float> gizmoColors;
+	std::vector<unsigned int> gizmoIndices;
+
+	long nvertices, ntriangles;
+	nvertices = ply_set_read_cb(gizmoPlyFile, "vertex", "x", _PlyVertexCb, &gizmoPositions, 0);
+	ply_set_read_cb(gizmoPlyFile, "vertex", "y", _PlyVertexCb, &gizmoPositions, 1);
+	ply_set_read_cb(gizmoPlyFile, "vertex", "z", _PlyVertexCb, &gizmoPositions, 2);
+	ply_set_read_cb(gizmoPlyFile, "vertex", "nx", _PlyVertexCb, &gizmoNormals, 3);
+	ply_set_read_cb(gizmoPlyFile, "vertex", "ny", _PlyVertexCb, &gizmoNormals, 4);
+	ply_set_read_cb(gizmoPlyFile, "vertex", "nz", _PlyVertexCb, &gizmoNormals, 5);
+	ply_set_read_cb(gizmoPlyFile, "vertex", "red", _PlyVertexCb, &gizmoColors, 6);
+	ply_set_read_cb(gizmoPlyFile, "vertex", "green", _PlyVertexCb, &gizmoColors, 7);
+	ply_set_read_cb(gizmoPlyFile, "vertex", "blue", _PlyVertexCb, &gizmoColors, 8);
+	
+	ntriangles = ply_set_read_cb(gizmoPlyFile, "face", "vertex_indices", _PlyFaceCb, &gizmoIndices, NULL);
+	
+	if (!ply_read(gizmoPlyFile))
+	{
+		std::cout << "ERROR: Could not read gizmo3d file" << std::endl;
+		glfwTerminate();
+		std::cin.get();
+		return -1;
+	}
+
+	ply_close(gizmoPlyFile);
+
+	std::cout << "Successfully loaded gizmo3d file" << std::endl;
+	// END GIZMO LOAD
+
+	std::vector<float> gizmoVerts;
+
+	for (long i = 0; i < nvertices; i++)
+	{
+		float offset = i * 3;
+		gizmoVerts.push_back(gizmoPositions.at(offset));
+		gizmoVerts.push_back(gizmoPositions.at(offset + 1));
+		gizmoVerts.push_back(gizmoPositions.at(offset + 2));
+
+		gizmoVerts.push_back(gizmoColors.at(offset) / 255);
+		gizmoVerts.push_back(gizmoColors.at(offset + 1) / 255);
+		gizmoVerts.push_back(gizmoColors.at(offset + 2) / 255);
+	}
+
+	ROGLL::Mesh gizmoMesh(gizmoVerts, gizmoIndices, gizmoLayout);
+
+	ROGLL::MeshInstance gizmoMeshInstance(gizmoMesh);
+	gizmoMeshInstance.transform.translate(0, 10, 0);
+	gizmoMeshInstance.transform.scale(0.1, 0.1, 0.1);
+
 	ROGLL::Shader shader("res/shaders/Default.shader");
+	ROGLL::Shader gizmoShader("res/shaders/VertexColor.shader");
+
+	ROGLL::Material gizmoMaterial(gizmoShader);
+	gizmoMaterial.Set4("objectColor", White);
 
 	ROGLL::Material cubeMaterial(shader);
 	cubeMaterial.Set4("objectColor", Blue);
@@ -260,6 +365,9 @@ int main(void)
 	ROGLL::RenderBatch cubeBatch(&layout, &cubeMaterial);
 	cubeBatch.AddInstance(&cubeA);
 	cubeBatch.AddInstance(&cubeB);
+
+	ROGLL::RenderBatch gizmoBatch(&gizmoLayout, &gizmoMaterial);
+	gizmoBatch.AddInstance(&gizmoMeshInstance);
 
 	ROGLL::RenderBatch groundBatch(&layout, &groundMaterial);
 	groundBatch.AddInstance(&groundMeshInstance);
@@ -293,7 +401,8 @@ int main(void)
 
 		cubeBatch.Render(cam, lightPosition);
 		groundBatch.Render(cam, lightPosition);
-		lightCubeBatch.Render(cam, lightPosition);
+		//lightCubeBatch.Render(cam, lightPosition);
+		gizmoBatch.Render(cam, lightPosition);
 
 		window.SwapBuffers();
 		window.PollEvents();

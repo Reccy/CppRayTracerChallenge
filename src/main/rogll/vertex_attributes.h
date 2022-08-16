@@ -10,7 +10,8 @@ namespace ROGLL
 		enum VertexAttributeTag {
 			NONE,
 			POSITION,
-			NORMAL
+			NORMAL,
+			COLOR
 		};
 
 		struct VertexAttribute
