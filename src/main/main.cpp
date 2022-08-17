@@ -4,6 +4,9 @@
 #include "glad.h"
 #include "glfw3.h"
 #include <RPly.h>
+#include <imgui.h>
+#include <imgui_impl_opengl3.h>
+#include <imgui_impl_glfw.h>
 
 #include "rogll/include.h"
 #include <RML.h>
@@ -155,7 +158,7 @@ struct VertexLayout
 
 int main(void)
 {
-	ROGLL::Window window("OpenGL Sandbox", WIDTH, HEIGHT);
+	ROGLL::Window window("Reccy's Ray Tracer", WIDTH, HEIGHT);
 
 	RML::Tuple3<float> xyz(-0.5, -0.5, -0.5);
 	RML::Tuple3<float> xYz(-0.5, 0.5, -0.5);
@@ -253,7 +256,7 @@ int main(void)
 			22, 23, 20,
 		},
 		layout
-	);
+		);
 
 	ROGLL::MeshInstance cubeA(cubeMesh);
 	ROGLL::MeshInstance cubeB(cubeMesh);
@@ -279,7 +282,7 @@ int main(void)
 			2, 3, 0,
 		},
 		layout
-	);
+		);
 
 	ROGLL::MeshInstance groundMeshInstance(groundMesh);
 	groundMeshInstance.transform.scale(100, 1, 100);
@@ -311,9 +314,9 @@ int main(void)
 	ply_set_read_cb(gizmoPlyFile, "vertex", "red", _PlyVertexCb, &gizmoColors, 6);
 	ply_set_read_cb(gizmoPlyFile, "vertex", "green", _PlyVertexCb, &gizmoColors, 7);
 	ply_set_read_cb(gizmoPlyFile, "vertex", "blue", _PlyVertexCb, &gizmoColors, 8);
-	
+
 	ntriangles = ply_set_read_cb(gizmoPlyFile, "face", "vertex_indices", _PlyFaceCb, &gizmoIndices, NULL);
-	
+
 	if (!ply_read(gizmoPlyFile))
 	{
 		std::cout << "ERROR: Could not read gizmo3d file" << std::endl;
@@ -384,32 +387,74 @@ int main(void)
 	ROGLL::Camera gizmoCam(32, 32, 1); // Psuedo orthograpic projection
 	gizmoCam.transform.translate(0, 0, -10);
 
-	RML::Tuple3<float> lightPosition {
+	RML::Tuple3<float> lightPosition{
 		1,
 		9,
 		0
 	};
 
+	// IMGUI BEGIN
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+
+	ImGui::StyleColorsDark();
+
+	ImGui_ImplGlfw_InitForOpenGL(window.GetHandle(), true);
+	ImGui_ImplOpenGL3_Init("#version 330 core");
+	// IMGUI END
+
 	while (!window.ShouldClose())
 	{
 		_ProcessInput(window);
 		_UpdateCamera(cam);
-		
+
 		cubeA.transform.rotate(0, 0.2, 0);
 		cubeB.transform.rotate(0.2, 0.3, 0.5);
 
 		glClearColor(ClearColor->x(), ClearColor->y(), ClearColor->z(), ClearColor->w());
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
 		cubeBatch.Render(cam, lightPosition);
 		groundBatch.Render(cam, lightPosition);
-		//lightCubeBatch.Render(cam, lightPosition);
+		lightCubeBatch.Render(cam, lightPosition);
 
 		glClear(GL_DEPTH_BUFFER_BIT);
 		gizmoMeshInstance.transform.rotation = cam.transform.rotation.inverse();
-		//gizmoMeshInstance.transform.rotate(0, 180, 0);
 		gizmoBatch.Render(gizmoCam, lightPosition);
+
+		//IMGUI TEST BEGIN
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
+		{
+			if (ImGui::BeginMainMenuBar())
+			{
+				if (ImGui::BeginMenu("File"))
+				{
+					if (ImGui::MenuItem("Close")) {
+						glfwSetWindowShouldClose(window.GetHandle(), 1);
+					}
+					
+					ImGui::EndMenu();
+				}
+				if (ImGui::BeginMenu("About"))
+				{
+					ImGui::MenuItem("Reccy's Ray Tracer", nullptr, nullptr, false);
+					ImGui::MenuItem("By Aaron Meaney", nullptr, nullptr, false);
+					ImGui::MenuItem("Build date: 17/08/22", nullptr, nullptr, false);
+					
+					ImGui::EndMenu();
+				}
+				ImGui::EndMainMenuBar();
+			}
+		}
+
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		//IMGUI TEST END
 
 		window.SwapBuffers();
 		window.PollEvents();

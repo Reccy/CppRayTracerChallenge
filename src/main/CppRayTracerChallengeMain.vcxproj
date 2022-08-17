@@ -82,13 +82,13 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\RPly\;$(SolutionDir)src\lib\RML\RML\;$(SolutionDir)src\core;$(SolutionDir)src\lib\glad\glad;$(SolutionDir)src\lib\glfw\glfw\include\GLFW\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\DearImGui\;$(SolutionDir)src\lib\RPly\;$(SolutionDir)src\lib\RML\RML\;$(SolutionDir)src\core;$(SolutionDir)src\lib\glad\glad;$(SolutionDir)src\lib\glfw\glfw\include\GLFW\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>$(SolutionDir)bin\RPly\$(Platform)\$(Configuration)\RPly.lib;$(SolutionDir)bin\RML\$(Platform)\$(Configuration)\RML.lib;$(SolutionDir)bin\glad\$(Platform)\$(Configuration)\glad.lib;$(SolutionDir)bin\glfw\$(Platform)\$(Configuration)\glfw.lib;$(SolutionDir)bin\CppRayTracerChallengeCore\$(Platform)\$(Configuration)\CppRayTracerChallengeCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\DearImGui\$(Platform)\$(Configuration)\DearImGui.lib;$(SolutionDir)bin\RPly\$(Platform)\$(Configuration)\RPly.lib;$(SolutionDir)bin\RML\$(Platform)\$(Configuration)\RML.lib;$(SolutionDir)bin\glad\$(Platform)\$(Configuration)\glad.lib;$(SolutionDir)bin\glfw\$(Platform)\$(Configuration)\glfw.lib;$(SolutionDir)bin\CppRayTracerChallengeCore\$(Platform)\$(Configuration)\CppRayTracerChallengeCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -98,7 +98,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\RPly\;$(SolutionDir)src\lib\RML\RML\;$(SolutionDir)src\core;$(SolutionDir)src\lib\glad\glad;$(SolutionDir)src\lib\glfw\glfw\include\GLFW\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\DearImGui\;$(SolutionDir)src\lib\RPly\;$(SolutionDir)src\lib\RML\RML\;$(SolutionDir)src\core;$(SolutionDir)src\lib\glad\glad;$(SolutionDir)src\lib\glfw\glfw\include\GLFW\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -106,28 +106,31 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>$(SolutionDir)bin\RPly\$(Platform)\$(Configuration)\RPly.lib;$(SolutionDir)bin\RML\$(Platform)\$(Configuration)\RML.lib;$(SolutionDir)bin\glad\$(Platform)\$(Configuration)\glad.lib;$(SolutionDir)bin\glfw\$(Platform)\$(Configuration)\glfw.lib;$(SolutionDir)bin\CppRayTracerChallengeCore\$(Platform)\$(Configuration)\CppRayTracerChallengeCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\DearImGui\$(Platform)\$(Configuration)\DearImGui.lib;$(SolutionDir)bin\RPly\$(Platform)\$(Configuration)\RPly.lib;$(SolutionDir)bin\RML\$(Platform)\$(Configuration)\RML.lib;$(SolutionDir)bin\glad\$(Platform)\$(Configuration)\glad.lib;$(SolutionDir)bin\glfw\$(Platform)\$(Configuration)\glfw.lib;$(SolutionDir)bin\CppRayTracerChallengeCore\$(Platform)\$(Configuration)\CppRayTracerChallengeCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\RPly\;$(SolutionDir)src\lib\RML\RML\;$(SolutionDir)src\core;$(SolutionDir)src\lib\glad\glad;$(SolutionDir)src\lib\glfw\glfw\include\GLFW\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\DearImGui\;$(SolutionDir)src\lib\RPly\;$(SolutionDir)src\lib\RML\RML\;$(SolutionDir)src\core;$(SolutionDir)src\lib\glad\glad;$(SolutionDir)src\lib\glfw\glfw\include\GLFW\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\RPly\$(Platform)\$(Configuration)\RPly.lib;$(SolutionDir)bin\RML\$(Platform)\$(Configuration)\RML.lib;$(SolutionDir)bin\glad\$(Platform)\$(Configuration)\glad.lib;$(SolutionDir)bin\glfw\$(Platform)\$(Configuration)\glfw.lib;$(SolutionDir)bin\CppRayTracerChallengeCore\$(Platform)\$(Configuration)\CppRayTracerChallengeCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\DearImGui\$(Platform)\$(Configuration)\DearImGui.lib;$(SolutionDir)bin\RPly\$(Platform)\$(Configuration)\RPly.lib;$(SolutionDir)bin\RML\$(Platform)\$(Configuration)\RML.lib;$(SolutionDir)bin\glad\$(Platform)\$(Configuration)\glad.lib;$(SolutionDir)bin\glfw\$(Platform)\$(Configuration)\glfw.lib;$(SolutionDir)bin\CppRayTracerChallengeCore\$(Platform)\$(Configuration)\CppRayTracerChallengeCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\RPly\;$(SolutionDir)src\lib\RML\RML\;$(SolutionDir)src\core;$(SolutionDir)src\lib\glad\glad;$(SolutionDir)src\lib\glfw\glfw\include\GLFW\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\lib\DearImGui\;$(SolutionDir)src\lib\RPly\;$(SolutionDir)src\lib\RML\RML\;$(SolutionDir)src\core;$(SolutionDir)src\lib\glad\glad;$(SolutionDir)src\lib\glfw\glfw\include\GLFW\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\RPly\$(Platform)\$(Configuration)\RPly.lib;$(SolutionDir)bin\RML\$(Platform)\$(Configuration)\RML.lib;$(SolutionDir)bin\glad\$(Platform)\$(Configuration)\glad.lib;$(SolutionDir)bin\glfw\$(Platform)\$(Configuration)\glfw.lib;$(SolutionDir)bin\CppRayTracerChallengeCore\$(Platform)\$(Configuration)\CppRayTracerChallengeCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\DearImGui\$(Platform)\$(Configuration)\DearImGui.lib;$(SolutionDir)bin\RPly\$(Platform)\$(Configuration)\RPly.lib;$(SolutionDir)bin\RML\$(Platform)\$(Configuration)\RML.lib;$(SolutionDir)bin\glad\$(Platform)\$(Configuration)\glad.lib;$(SolutionDir)bin\glfw\$(Platform)\$(Configuration)\glfw.lib;$(SolutionDir)bin\CppRayTracerChallengeCore\$(Platform)\$(Configuration)\CppRayTracerChallengeCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\lib\DearImGui\DearImGui.vcxproj">
+      <Project>{59058496-7b35-437f-b318-e300427ba8c6}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\lib\glad\glad.vcxproj">
       <Project>{841ea22a-dfe4-4a34-8b71-37507121a26c}</Project>
     </ProjectReference>
