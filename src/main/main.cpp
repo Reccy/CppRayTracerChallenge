@@ -344,7 +344,6 @@ int main(void)
 	ROGLL::Mesh gizmoMesh(gizmoVerts, gizmoIndices, gizmoLayout);
 
 	ROGLL::MeshInstance gizmoMeshInstance(gizmoMesh);
-	gizmoMeshInstance.transform.translate(0, 10, 0);
 	gizmoMeshInstance.transform.scale(0.1, 0.1, 0.1);
 
 	ROGLL::Shader shader("res/shaders/Default.shader");
@@ -382,6 +381,9 @@ int main(void)
 	ROGLL::Camera cam(WIDTH, HEIGHT, 60);
 	cam.transform.translate(0, 0, -10); // Initial cam position
 
+	ROGLL::Camera gizmoCam(32, 32, 1); // Psuedo orthograpic projection
+	gizmoCam.transform.translate(0, 0, -10);
+
 	RML::Tuple3<float> lightPosition {
 		1,
 		9,
@@ -399,10 +401,15 @@ int main(void)
 		glClearColor(ClearColor->x(), ClearColor->y(), ClearColor->z(), ClearColor->w());
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+
 		cubeBatch.Render(cam, lightPosition);
 		groundBatch.Render(cam, lightPosition);
 		//lightCubeBatch.Render(cam, lightPosition);
-		gizmoBatch.Render(cam, lightPosition);
+
+		glClear(GL_DEPTH_BUFFER_BIT);
+		gizmoMeshInstance.transform.rotation = cam.transform.rotation.inverse();
+		//gizmoMeshInstance.transform.rotate(0, 180, 0);
+		gizmoBatch.Render(gizmoCam, lightPosition);
 
 		window.SwapBuffers();
 		window.PollEvents();
