@@ -5,6 +5,7 @@
 #include "glfw3.h"
 #include <RPly.h>
 #include <imgui.h>
+#include <imgui_internal.h>
 #include <imgui_impl_opengl3.h>
 #include <imgui_impl_glfw.h>
 
@@ -50,6 +51,47 @@ static float CamYRot = 0;
 
 static int WIDTH = 1024;
 static int HEIGHT = 768;
+
+IMGUI_API bool _DearImGui_BeginStatusBar()
+{
+	using namespace ImGui;
+
+	ImGuiContext& g = *GImGui;
+	ImGuiViewportP* viewport = (ImGuiViewportP*)(void*)GetMainViewport();
+
+	// Notify of viewport change so GetFrameHeight() can be accurate in case of DPI change
+	SetCurrentViewport(NULL, viewport);
+
+	// For the main menu bar, which cannot be moved, we honor g.Style.DisplaySafeAreaPadding to ensure text can be visible on a TV set.
+	// FIXME: This could be generalized as an opt-in way to clamp window->DC.CursorStartPos to avoid SafeArea?
+	// FIXME: Consider removing support for safe area down the line... it's messy. Nowadays consoles have support for TV calibration in OS settings.
+	g.NextWindowData.MenuBarOffsetMinVal = ImVec2(g.Style.DisplaySafeAreaPadding.x, ImMax(g.Style.DisplaySafeAreaPadding.y - g.Style.FramePadding.y, 0.0f));
+	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_MenuBar;
+	float height = GetFrameHeight();
+	bool is_open = BeginViewportSideBar("##StatusMenuBar", viewport, ImGuiDir_Down, height, window_flags);
+	g.NextWindowData.MenuBarOffsetMinVal = ImVec2(0.0f, 0.0f);
+
+	if (is_open)
+		BeginMenuBar();
+	else
+		End();
+	return is_open;
+}
+
+void _DearImGui_EndStatusBar()
+{
+	using namespace ImGui;
+
+	EndMenuBar();
+
+	// When the user has left the menu layer (typically: closed menus through activation of an item), we restore focus to the previous window
+	// FIXME: With this strategy we won't be able to restore a NULL focus.
+	ImGuiContext& g = *GImGui;
+	if (g.CurrentWindow == g.NavWindow && g.NavLayer == ImGuiNavLayer_Main && !g.NavAnyRequest)
+		FocusTopMostWindowUnderOne(g.NavWindow, NULL);
+
+	End();
+}
 
 static int _PlyVertexCb(p_ply_argument argument)
 {
@@ -397,13 +439,17 @@ int main(void)
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO();
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
 	ImGui::StyleColorsDark();
 
 	ImGui_ImplGlfw_InitForOpenGL(window.GetHandle(), true);
 	ImGui_ImplOpenGL3_Init("#version 330 core");
 	// IMGUI END
+
+	bool guiShowDearImGuiDemo = false;
+	bool guiShowStatsOverlay = false;
 
 	while (!window.ShouldClose())
 	{
@@ -425,21 +471,38 @@ int main(void)
 		gizmoBatch.Render(gizmoCam, lightPosition);
 
 		//IMGUI TEST BEGIN
+
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
+		// Render Main Menu Bar
 		{
 			if (ImGui::BeginMainMenuBar())
 			{
 				if (ImGui::BeginMenu("File"))
 				{
-					if (ImGui::MenuItem("Close")) {
+					if (ImGui::MenuItem("Exit")) {
 						glfwSetWindowShouldClose(window.GetHandle(), 1);
 					}
 					
 					ImGui::EndMenu();
 				}
+
+				if (ImGui::BeginMenu("Debug"))
+				{
+					ImGui::MenuItem("Dear ImGui Demo", nullptr, &guiShowDearImGuiDemo);
+
+					ImGui::EndMenu();
+				}
+
+				if (ImGui::BeginMenu("View"))
+				{
+					ImGui::MenuItem("Stats Overlay", nullptr, &guiShowStatsOverlay);
+
+					ImGui::EndMenu();
+				}
+
 				if (ImGui::BeginMenu("About"))
 				{
 					ImGui::MenuItem("Reccy's Ray Tracer", nullptr, nullptr, false);
@@ -452,9 +515,55 @@ int main(void)
 			}
 		}
 
+		// Render Footer Bar
+		{
+			if (_DearImGui_BeginStatusBar())
+			{
+				std::stringstream camPosSS;
+				camPosSS << "Camera Position: " << cam.transform.position.x() << "x " << cam.transform.position.y() << "y " << cam.transform.position.z() << "z";
+				camPosSS << " | ";
+				camPosSS << "FOV: " << Fov << " degrees";
+				ImGui::MenuItem(camPosSS.str().c_str(), nullptr, nullptr, false);
+
+				_DearImGui_EndStatusBar();
+			}
+		}
+
+		// Render FPS Window
+		{
+			if (guiShowDearImGuiDemo)
+				ImGui::ShowDemoWindow();
+		}
+
+		// Render Stats Overlay
+		{
+			if (guiShowStatsOverlay)
+			{
+				ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav;
+
+				if (ImGui::Begin("Stats Overlay", &guiShowStatsOverlay, windowFlags))
+				{
+					std::stringstream ss;
+					ss << "StatsOverlay\nFPS: ";
+					ss << ImGui::GetIO().Framerate;
+					ss << " ms";
+					ImGui::Text(ss.str().c_str());
+				}
+				ImGui::End();
+			}
+		}
+
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		//IMGUI TEST END
+
+		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		{
+			GLFWwindow* backupCurrentContext = glfwGetCurrentContext();
+			ImGui::UpdatePlatformWindows();
+			ImGui::RenderPlatformWindowsDefault();
+			glfwMakeContextCurrent(backupCurrentContext);
+		}
 
 		window.SwapBuffers();
 		window.PollEvents();
