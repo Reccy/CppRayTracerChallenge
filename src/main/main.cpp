@@ -93,6 +93,11 @@ void _DearImGui_EndStatusBar()
 	End();
 }
 
+void _DearImGui_SetNextWindowPosRelative(const ImVec2& vec)
+{
+	ImGui::SetNextWindowPos(ImVec2(ImGui::GetMainViewport()->Pos.x + vec.x, ImGui::GetMainViewport()->Pos.y + vec.y));
+}
+
 static int _PlyVertexCb(p_ply_argument argument)
 {
 	long attribute;
@@ -198,9 +203,19 @@ struct VertexLayout
 	RML::Tuple3<float> normal;
 };
 
+static void _WindowResized(GLFWwindow* window, int width, int height)
+{
+	glViewport(0, 0, width, height);
+
+	WIDTH = width;
+	HEIGHT = height;
+}
+
 int main(void)
 {
 	ROGLL::Window window("Reccy's Ray Tracer", WIDTH, HEIGHT);
+
+	glfwSetWindowSizeCallback(window.GetHandle(), _WindowResized);
 
 	RML::Tuple3<float> xyz(-0.5, -0.5, -0.5);
 	RML::Tuple3<float> xYz(-0.5, 0.5, -0.5);
@@ -419,10 +434,6 @@ int main(void)
 	ROGLL::RenderBatch lightCubeBatch(&layout, &lightCubeMaterial);
 	lightCubeBatch.AddInstance(&lightCube);
 
-	RML::Matrix<double, 4, 4> vp;
-	RML::Matrix<double, 4, 4> mvp;
-
-	RML::Transform model;
 	ROGLL::Camera cam(WIDTH, HEIGHT, 60);
 	cam.transform.translate(0, 0, -10); // Initial cam position
 
@@ -539,14 +550,16 @@ int main(void)
 		{
 			if (guiShowStatsOverlay)
 			{
-				ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav;
+				ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav | ImGuiWindowFlags_NoMove;
 
+				_DearImGui_SetNextWindowPosRelative(ImVec2(0, 20));
 				if (ImGui::Begin("Stats Overlay", &guiShowStatsOverlay, windowFlags))
 				{
 					std::stringstream ss;
-					ss << "StatsOverlay\nFPS: ";
-					ss << ImGui::GetIO().Framerate;
-					ss << " ms";
+					ss << "StatsOverlay\n";
+					ss << "FPS: " << ImGui::GetIO().Framerate << " ms\n";
+					ss << "Window Width: " << ImGui::GetIO().DisplaySize.x << "\n";
+					ss << "Window Height: " << ImGui::GetIO().DisplaySize.y << "\n";
 					ImGui::Text(ss.str().c_str());
 				}
 				ImGui::End();

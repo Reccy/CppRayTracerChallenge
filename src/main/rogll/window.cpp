@@ -2,12 +2,6 @@
 #include <iostream>
 #include <sstream>
 
-static void _FramebufferResized(GLFWwindow* window, int width, int height)
-{
-	std::cout << "Framebuffer resized (" << width << "x, " << height << "y)" << std::endl;
-	glViewport(0, 0, width, height);
-}
-
 namespace ROGLL
 {
 	Window::Window(std::string title, int width, int height)
@@ -45,8 +39,7 @@ namespace ROGLL
 		std::string titleNew = ss.str();
 
 		glfwSetWindowTitle(m_windowPtr, titleNew.c_str());
-
-		glfwSetFramebufferSizeCallback(m_windowPtr, _FramebufferResized);
+		glfwSetWindowSizeLimits(m_windowPtr, 640, 480, GLFW_DONT_CARE, GLFW_DONT_CARE);
 	}
 
 	Window::~Window()
