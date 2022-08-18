@@ -33,7 +33,7 @@ namespace ROGLL
 		
 		VertexAttributes::VertexAttribute positionAttribute;
 		unsigned int positionAttributeOffset;
-		if (m_mesh.attributes().GetTaggedAttribute(VertexAttributes::POSITION, positionAttribute, positionAttributeOffset))
+		if (m_mesh.attributes().GetTaggedAttribute(VertexAttributes::POSITION3, positionAttribute, positionAttributeOffset))
 		{
 			for (size_t i = 0; i < vertCount; i++)
 			{
@@ -56,7 +56,7 @@ namespace ROGLL
 
 		VertexAttributes::VertexAttribute normalAttribute;
 		unsigned int normalAttributeOffset;
-		if (m_mesh.attributes().GetTaggedAttribute(VertexAttributes::NORMAL, normalAttribute, normalAttributeOffset))
+		if (m_mesh.attributes().GetTaggedAttribute(VertexAttributes::NORMAL3, normalAttribute, normalAttributeOffset))
 		{
 			for (size_t i = 0; i < vertCount; i++)
 			{

@@ -9,9 +9,10 @@ namespace ROGLL
 	public:
 		enum VertexAttributeTag {
 			NONE,
-			POSITION,
-			NORMAL,
-			COLOR
+			POSITION3,
+			NORMAL3,
+			COLOR3,
+			UV2
 		};
 
 		struct VertexAttribute

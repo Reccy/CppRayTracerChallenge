@@ -182,25 +182,16 @@ void _UpdateCamera(ROGLL::Camera& cam) {
 	cam.transform.rotation = RML::Quaternion::euler_angles(CamXRot, CamYRot, 0);
 }
 
-void _Draw(const ROGLL::VertexArray& vertexArray, const ROGLL::VertexBuffer& vertexBuffer, const ROGLL::IndexBuffer& indexBuffer, const ROGLL::Material& material)
-{
-	vertexArray.Bind();
-	vertexBuffer.Bind();
-	indexBuffer.Bind();
-	material.Bind();
-
-	glDrawElements(GL_TRIANGLES, indexBuffer.GetCount(), GL_UNSIGNED_INT, (void*)0);
-
-	material.Unbind();
-	indexBuffer.Unbind();
-	vertexBuffer.Unbind();
-	vertexArray.Unbind();
-}
-
 struct VertexLayout
 {
 	RML::Tuple3<float> pos;
 	RML::Tuple3<float> normal;
+};
+
+struct UiTextureVertexLayout
+{
+	RML::Tuple3<float> pos;
+	RML::Tuple2<float> uv;
 };
 
 static void _WindowResized(GLFWwindow* window, int width, int height)
@@ -237,12 +228,12 @@ int main(void)
 	RML::Tuple3<float> UP(2.0, 2.0, 2.0);
 
 	ROGLL::VertexAttributes layout;
-	layout.Add<float>(ROGLL::VertexAttributes::POSITION, 3);
-	layout.Add<float>(ROGLL::VertexAttributes::NORMAL, 3);
+	layout.Add<float>(ROGLL::VertexAttributes::POSITION3, 3);
+	layout.Add<float>(ROGLL::VertexAttributes::NORMAL3, 3);
 
 	ROGLL::VertexAttributes gizmoLayout;
-	gizmoLayout.Add<float>(ROGLL::VertexAttributes::POSITION, 3);
-	gizmoLayout.Add<float>(ROGLL::VertexAttributes::COLOR, 3);
+	gizmoLayout.Add<float>(ROGLL::VertexAttributes::POSITION3, 3);
+	gizmoLayout.Add<float>(ROGLL::VertexAttributes::COLOR3, 3);
 
 	VertexLayout cubeVertsLayout[]
 	{
@@ -406,6 +397,43 @@ int main(void)
 	ROGLL::MeshInstance gizmoMeshInstance(gizmoMesh);
 	gizmoMeshInstance.transform.scale(0.1, 0.1, 0.1);
 
+	RML::Tuple3<float> xy(-0.5, -0.5, 0);
+	RML::Tuple3<float> Xy(0.5, -0.5, 0);
+	RML::Tuple3<float> XY(0.5, 0.5, 0);
+	RML::Tuple3<float> xY(-0.5, 0.5, 0);
+
+	UiTextureVertexLayout uiTextureVerts[] = {
+		xy, { 0, 0 },
+		Xy, { 1, 0 },
+		XY, { 1, 1 },
+		xY, { 0, 1 }
+	};
+
+	std::vector<float> uiTextureFloats;
+
+	for (const auto& vert : uiTextureVerts)
+	{
+		uiTextureFloats.push_back(vert.pos.x());
+		uiTextureFloats.push_back(vert.pos.y());
+		uiTextureFloats.push_back(vert.pos.z());
+
+		uiTextureFloats.push_back(vert.uv.x());
+		uiTextureFloats.push_back(vert.uv.y());
+	}
+
+	ROGLL::VertexAttributes uiTextureLayout;
+	uiTextureLayout.Add<float>(ROGLL::VertexAttributes::POSITION3, 3);
+	uiTextureLayout.Add<float>(ROGLL::VertexAttributes::UV2, 2);
+
+	ROGLL::Mesh uiTextureMesh(
+		uiTextureFloats,
+		{
+			0, 1, 2,
+			0, 2, 3
+		},
+		uiTextureLayout);
+	ROGLL::MeshInstance gizmoUiInstance(uiTextureMesh);
+
 	ROGLL::Shader shader("res/shaders/Default.shader");
 	ROGLL::Shader gizmoShader("res/shaders/VertexColor.shader");
 
@@ -438,7 +466,7 @@ int main(void)
 	cam.transform.translate(0, 0, -10); // Initial cam position
 
 	ROGLL::Camera gizmoCam(32, 32, 1); // Psuedo orthograpic projection
-	gizmoCam.transform.translate(0, 0, -10);
+	gizmoCam.transform.translate(0, 0, -3.2);
 
 	RML::Tuple3<float> lightPosition{
 		1,
@@ -459,27 +487,66 @@ int main(void)
 	ImGui_ImplOpenGL3_Init("#version 330 core");
 	// IMGUI END
 
+	// New Render Target Begin
+	GLuint framebufferId = 0;
+	glGenFramebuffers(1, &framebufferId);
+	glBindFramebuffer(GL_FRAMEBUFFER, framebufferId);
+
+	GLuint renderTextureId;
+	glGenTextures(1, &renderTextureId);
+	glBindTexture(GL_TEXTURE_2D, renderTextureId);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 512, 512, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+	GLuint depthRenderbuffer;
+	glGenRenderbuffers(1, &depthRenderbuffer);
+	glBindRenderbuffer(GL_RENDERBUFFER, depthRenderbuffer);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 512, 512);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderbuffer);
+
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, renderTextureId, 0);
+
+	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
+	glDrawBuffers(1, drawBuffers);
+
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+	{
+		std::cout << "ERROR: Could not create framebuffer" << std::endl;
+		glfwTerminate();
+		std::cin.get();
+		return -1;
+	}
+
+	// New Render Target End
+
 	bool guiShowDearImGuiDemo = false;
-	bool guiShowStatsOverlay = false;
+	bool guiShowGizmo = true;
 
 	while (!window.ShouldClose())
 	{
 		_ProcessInput(window);
 		_UpdateCamera(cam);
-
+		
 		cubeA.transform.rotate(0, 0.2, 0);
 		cubeB.transform.rotate(0.2, 0.3, 0.5);
 
+		// UI - Pre Pass
+		glBindFramebuffer(GL_FRAMEBUFFER, framebufferId);
+		glViewport(0, 0, 512, 512);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		gizmoMeshInstance.transform.rotation = cam.transform.rotation.inverse();
+		gizmoBatch.Render(gizmoCam, lightPosition);
+
+		// Geometry Pass
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glViewport(0, 0, WIDTH, HEIGHT);
 		glClearColor(ClearColor->x(), ClearColor->y(), ClearColor->z(), ClearColor->w());
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		cubeBatch.Render(cam, lightPosition);
 		groundBatch.Render(cam, lightPosition);
 		lightCubeBatch.Render(cam, lightPosition);
-
-		glClear(GL_DEPTH_BUFFER_BIT);
-		gizmoMeshInstance.transform.rotation = cam.transform.rotation.inverse();
-		gizmoBatch.Render(gizmoCam, lightPosition);
 
 		//IMGUI TEST BEGIN
 
@@ -509,7 +576,7 @@ int main(void)
 
 				if (ImGui::BeginMenu("View"))
 				{
-					ImGui::MenuItem("Stats Overlay", nullptr, &guiShowStatsOverlay);
+					ImGui::MenuItem("Gizmo", nullptr, &guiShowGizmo);
 
 					ImGui::EndMenu();
 				}
@@ -518,7 +585,7 @@ int main(void)
 				{
 					ImGui::MenuItem("Reccy's Ray Tracer", nullptr, nullptr, false);
 					ImGui::MenuItem("By Aaron Meaney", nullptr, nullptr, false);
-					ImGui::MenuItem("Build date: 17/08/22", nullptr, nullptr, false);
+					ImGui::MenuItem("Build date: 18/08/2022", nullptr, nullptr, false); // TODO: Replace with compile time variable
 					
 					ImGui::EndMenu();
 				}
@@ -534,6 +601,7 @@ int main(void)
 				camPosSS << "Camera Position: " << cam.transform.position.x() << "x " << cam.transform.position.y() << "y " << cam.transform.position.z() << "z";
 				camPosSS << " | ";
 				camPosSS << "FOV: " << Fov << " degrees";
+
 				ImGui::MenuItem(camPosSS.str().c_str(), nullptr, nullptr, false);
 
 				_DearImGui_EndStatusBar();
@@ -546,22 +614,16 @@ int main(void)
 				ImGui::ShowDemoWindow();
 		}
 
-		// Render Stats Overlay
+		// Render Gizmo
 		{
-			if (guiShowStatsOverlay)
+			if (guiShowGizmo)
 			{
-				ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav | ImGuiWindowFlags_NoMove;
+				ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoBringToFrontOnFocus;
 
 				_DearImGui_SetNextWindowPosRelative(ImVec2(0, 20));
-				if (ImGui::Begin("Stats Overlay", &guiShowStatsOverlay, windowFlags))
-				{
-					std::stringstream ss;
-					ss << "StatsOverlay\n";
-					ss << "FPS: " << ImGui::GetIO().Framerate << " ms\n";
-					ss << "Window Width: " << ImGui::GetIO().DisplaySize.x << "\n";
-					ss << "Window Height: " << ImGui::GetIO().DisplaySize.y << "\n";
-					ImGui::Text(ss.str().c_str());
-				}
+
+				ImGui::Begin("Gizmo3D", &guiShowGizmo, windowFlags);
+				ImGui::Image((void*)framebufferId, ImVec2(128, 128), ImVec2(0,1), ImVec2(1,0));
 				ImGui::End();
 			}
 		}

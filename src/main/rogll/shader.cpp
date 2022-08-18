@@ -8,6 +8,7 @@ struct ShaderProgramSource
 {
 	std::string vertex;
 	std::string fragment;
+	bool success = false;
 };
 
 enum class ShaderType { NONE = -1, VERTEX = 0, FRAGMENT = 1 };
@@ -23,7 +24,7 @@ static ShaderProgramSource LoadShaderSource(std::string filepath)
 
 	if (!infile.is_open())
 	{
-		std::cout << "[File Load Error] Failed to load file at " << filepath << std::endl;
+		std::cout << "\n[File Load Error] Failed to load file at " << filepath << std::endl;
 		return result;
 	}
 
@@ -54,6 +55,7 @@ static ShaderProgramSource LoadShaderSource(std::string filepath)
 
 	result.vertex = sourceStream[(int)ShaderType::VERTEX].str();
 	result.fragment = sourceStream[(int)ShaderType::FRAGMENT].str();
+	result.success = true;
 
 	return result;
 }
@@ -69,7 +71,7 @@ static bool ValidateShaderCompiled(unsigned int shader)
 		char* infoLog = (char*)_malloca(sizeof(char*) * size);
 		glGetShaderInfoLog(shader, size, &size, infoLog);
 
-		std::cout << "[OpenGL Shader Compile Error] " << infoLog << std::endl;
+		std::cout << "\n[OpenGL Shader Compile Error] " << infoLog << std::endl;
 
 		_freea(infoLog);
 	}
@@ -88,7 +90,7 @@ static bool ValidateShaderProgramLinked(unsigned int program)
 		char* infoLog = (char*)_malloca(sizeof(char*) * size);
 		glGetProgramInfoLog(program, size, &size, infoLog);
 
-		std::cout << "[OpenGL Program Link Error] " << infoLog << std::endl;
+		std::cout << "\n[OpenGL Program Link Error] " << infoLog << std::endl;
 
 		_freea(infoLog);
 	}
@@ -106,11 +108,10 @@ static unsigned int CompileShader(const std::string& source, ShaderType type)
 
 	if (!ValidateShaderCompiled(shader))
 	{
-		std::cout << "Failed to compile shader (Type: " << ShaderTypeStrings[(int)type] << ")" << std::endl;
+		std::cout << "\nFailed to compile shader (Type: " << ShaderTypeStrings[(int)type] << ")" << std::endl;
 		return -1;
 	}
 
-	std::cout << "Successfully compiled shader (Type: " << ShaderTypeStrings[(int)type] << ")" << std::endl;
 	return shader;
 }
 
@@ -118,6 +119,11 @@ static unsigned int CreateShaderProgram(const std::string& vertexShaderSource, c
 {
 	unsigned int vertexShader = CompileShader(vertexShaderSource, ShaderType::VERTEX);
 	unsigned int fragmentShader = CompileShader(fragmentShaderSource, ShaderType::FRAGMENT);
+
+	if (vertexShader == -1 || fragmentShader == -1)
+	{
+		return -1;
+	}
 
 	unsigned int shaderProgram = glCreateProgram();
 	glAttachShader(shaderProgram, vertexShader);
@@ -127,12 +133,8 @@ static unsigned int CreateShaderProgram(const std::string& vertexShaderSource, c
 
 	if (!ValidateShaderProgramLinked(shaderProgram))
 	{
-		std::cout << "Failed to link shader program" << std::endl;
+		std::cout << "\nFailed to link shader program" << std::endl;
 		return -1;
-	}
-	else
-	{
-		std::cout << "Successfully linked shader program" << std::endl;
 	}
 
 	glUseProgram(shaderProgram);
@@ -148,8 +150,24 @@ namespace ROGLL
 	Shader::Shader(const std::string& sourceFilepath)
 		: m_shaderId(0)
 	{
+		std::cout << "Loading Shader " << sourceFilepath << "... ";
 		ShaderProgramSource shaderSource = LoadShaderSource(sourceFilepath);
+
+		if (!shaderSource.success)
+		{
+			std::cout << "Failed to load shader!" << std::endl;
+			return;
+		}
+
 		m_shaderId = CreateShaderProgram(shaderSource.vertex, shaderSource.fragment);
+
+		if (m_shaderId == -1)
+		{
+			std::cout << "Failed to create shader program!" << std::endl;
+			return;
+		}
+
+		std::cout << "Done" << std::endl;
 	}
 
 	void Shader::Bind() const
