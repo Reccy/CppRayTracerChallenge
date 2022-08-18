@@ -49,6 +49,9 @@ static float Fov = 90;
 static float CamXRot = 0;
 static float CamYRot = 0;
 
+static int RENDER_WIDTH = 1024;
+static int RENDER_HEIGHT = 768;
+
 static int WIDTH = 1024;
 static int HEIGHT = 768;
 
@@ -487,28 +490,28 @@ int main(void)
 	ImGui_ImplOpenGL3_Init("#version 330 core");
 	// IMGUI END
 
-	// New Render Target Begin
-	GLuint framebufferId = 0;
-	glGenFramebuffers(1, &framebufferId);
-	glBindFramebuffer(GL_FRAMEBUFFER, framebufferId);
+	// New Render Target Begin (For Gizmo)
+	GLuint gizmoFramebufferId;
+	glGenFramebuffers(1, &gizmoFramebufferId);
+	glBindFramebuffer(GL_FRAMEBUFFER, gizmoFramebufferId);
 
-	GLuint renderTextureId;
-	glGenTextures(1, &renderTextureId);
-	glBindTexture(GL_TEXTURE_2D, renderTextureId);
+	GLuint gizmoRenderTextureId;
+	glGenTextures(1, &gizmoRenderTextureId);
+	glBindTexture(GL_TEXTURE_2D, gizmoRenderTextureId);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 512, 512, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	GLuint depthRenderbuffer;
-	glGenRenderbuffers(1, &depthRenderbuffer);
-	glBindRenderbuffer(GL_RENDERBUFFER, depthRenderbuffer);
+	GLuint gizmoRenderBufferId;
+	glGenRenderbuffers(1, &gizmoRenderBufferId);
+	glBindRenderbuffer(GL_RENDERBUFFER, gizmoRenderBufferId);
 	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 512, 512);
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderbuffer);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, gizmoRenderBufferId);
 
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, renderTextureId, 0);
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, gizmoRenderTextureId, 0);
 
-	GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
-	glDrawBuffers(1, drawBuffers);
+	GLenum gizmoDrawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
+	glDrawBuffers(1, gizmoDrawBuffers);
 
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 	{
@@ -520,8 +523,22 @@ int main(void)
 
 	// New Render Target End
 
+	// New Render Target Begin (For Render)
+	GLuint raytracerRenderTextureId;
+	glGenTextures(1, &raytracerRenderTextureId);
+	glBindTexture(GL_TEXTURE_2D, raytracerRenderTextureId);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+	// New Render Target End
+
 	bool guiShowDearImGuiDemo = false;
 	bool guiShowGizmo = true;
+	bool guiIsRendering = false;
+	bool guiShowRenderSettings = false;
+	bool guiShowRenderPreview = false;
+
+	bool renderIsInProgress = false;
 
 	while (!window.ShouldClose())
 	{
@@ -532,7 +549,7 @@ int main(void)
 		cubeB.transform.rotate(0.2, 0.3, 0.5);
 
 		// UI - Pre Pass
-		glBindFramebuffer(GL_FRAMEBUFFER, framebufferId);
+		glBindFramebuffer(GL_FRAMEBUFFER, gizmoFramebufferId);
 		glViewport(0, 0, 512, 512);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		gizmoMeshInstance.transform.rotation = cam.transform.rotation.inverse();
@@ -567,6 +584,31 @@ int main(void)
 					ImGui::EndMenu();
 				}
 
+				if (ImGui::BeginMenu("Render"))
+				{
+					ImGui::MenuItem("Settings", nullptr, &guiShowRenderSettings);
+					ImGui::MenuItem("Preview", nullptr, &guiShowRenderPreview);
+					
+					if (renderIsInProgress)
+					{
+						if (ImGui::MenuItem("Cancel Render"))
+						{
+							std::cout << "Cancel Render" << std::endl;
+							renderIsInProgress = false;
+						}
+					}
+					else
+					{
+						if (ImGui::MenuItem("Start Render"))
+						{
+							std::cout << "Start Render" << std::endl;
+							renderIsInProgress = true;
+						}
+					}
+
+					ImGui::EndMenu();
+				}
+
 				if (ImGui::BeginMenu("Debug"))
 				{
 					ImGui::MenuItem("Dear ImGui Demo", nullptr, &guiShowDearImGuiDemo);
@@ -590,6 +632,33 @@ int main(void)
 					ImGui::EndMenu();
 				}
 				ImGui::EndMainMenuBar();
+			}
+		}
+
+		// Render Ray Tracer Settings
+		{
+			if (guiShowRenderSettings)
+			{
+				ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoDocking;
+
+				ImGui::Begin("Render Settings", nullptr, windowFlags);
+				int renderDimensions[2] { RENDER_WIDTH, RENDER_HEIGHT };
+				ImGui::InputInt2("Render Dimensions", renderDimensions);
+				RENDER_WIDTH = renderDimensions[0];
+				RENDER_HEIGHT = renderDimensions[1];
+				ImGui::End();
+			}
+		}
+
+		// Render Ray Tracer Preview
+		{
+			if (guiShowRenderPreview)
+			{
+				ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoDocking;
+
+				ImGui::Begin("Render Preview", nullptr, windowFlags);
+				ImGui::Image((void*)raytracerRenderTextureId, ImVec2(1024, 767));
+				ImGui::End();
 			}
 		}
 
@@ -623,7 +692,7 @@ int main(void)
 				_DearImGui_SetNextWindowPosRelative(ImVec2(0, 20));
 
 				ImGui::Begin("Gizmo3D", &guiShowGizmo, windowFlags);
-				ImGui::Image((void*)framebufferId, ImVec2(128, 128), ImVec2(0,1), ImVec2(1,0));
+				ImGui::Image((void*)gizmoFramebufferId, ImVec2(128, 128), ImVec2(0,1), ImVec2(1,0));
 				ImGui::End();
 			}
 		}
