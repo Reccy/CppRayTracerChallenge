@@ -1,8 +1,15 @@
 #include <iostream>
 #include <sstream>
+#include <thread>
+
+#define NOMINMAX
+#include <windows.h>
+#include <ShlObj.h>
+#include <tchar.h>
 
 #include "glad.h"
 #include "glfw3.h"
+
 #include <RPly.h>
 #include <imgui.h>
 #include <imgui_internal.h>
@@ -10,13 +17,27 @@
 #include <imgui_impl_glfw.h>
 
 #include "rogll/include.h"
+
 #include <RML.h>
+
+#undef DIFFERENCE
+#include <graphics/image.h>
+#include <serializer/portable_network_graphics_serializer.h>
+#include <renderer/camera.h>
+#include <renderer/patterns/checker.h>
+#include <renderer/patterns/stripe.h>
+#include <math/plane.h>
+#include <helpers/material_helper.h>
 
 // === Learning Resources ===
 // Learn OpenGL: https://learnopengl.com/
 // The Cherno's OpenGL Playlist: https://youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2
 // Documentation: https://docs.gl/
 // Open.GL: https://open.gl/
+
+using namespace CppRayTracerChallenge::Core;
+
+static Renderer::Camera* RaytraceCamera;
 
 static RML::Tuple4<float> Red{ 1.0f, 0.0f, 0.0f, 1.0f };
 static RML::Tuple4<float> Green{ 0.0f, 1.0f, 0.0f, 1.0f };
@@ -54,6 +75,245 @@ static int RENDER_HEIGHT = 768;
 
 static int WIDTH = 1024;
 static int HEIGHT = 768;
+
+//
+// ===================================================================================================================================================================================================================
+// ===================================================================================================================================================================================================================
+// ===================================================================================================================================================================================================================
+//
+
+
+class WorldA
+{
+public:
+	static Renderer::World build()
+	{
+		Renderer::World world = Renderer::World();
+
+		world.addObject(buildFloor());
+		world.addObject(buildWaterPlane());
+		world.addObject(buildBackWall());
+		world.addObject(buildMarble());
+		world.addLight(buildLight(0, 4, 5));
+
+		world.defaultRemainingCalls = 8;
+
+		return world;
+	}
+
+	static Math::Matrix<double, 4, 4> cameraMatrix()
+	{
+		double camPosX = 0;
+		double camPosY = 3;
+		double camPosZ = -8;
+
+		double camLookX = 0;
+		double camLookY = 3;
+		double camLookZ = 0;
+
+		return Renderer::Camera::viewMatrix({ camPosX, camPosY, camPosZ }, { camLookX, camLookY, camLookZ }, Math::Vector::up());
+	}
+
+	static int fov()
+	{
+		return 50;
+	}
+private:
+	static Renderer::Shape buildFloor()
+	{
+		auto floorMat = Renderer::Material();
+		floorMat.pattern = std::make_shared<Renderer::Patterns::Checker>(Graphics::Color::black(), Graphics::Color::white());
+		floorMat.shininess = 0.98f;
+		floorMat.reflective = 0.74f;
+		floorMat.specular = 0.3f;
+
+		auto floorShape = std::make_shared<Math::Plane>();
+
+		Renderer::Shape floor = Renderer::Shape(floorShape, floorMat);
+		floor.transform(Math::Transform().translate(0, 0, 0));
+		return floor;
+	}
+
+	static Renderer::Shape buildWaterPlane()
+	{
+		auto floorMat = Helpers::MaterialHelper::glassSphere().material();
+		auto floorShape = std::make_shared<Math::Plane>();
+		floorMat.pattern = std::make_shared<Renderer::Patterns::SolidColor>(Graphics::Color(0.1f, 0.1f, 0.1f));
+		floorMat.reflective = 1.2f;
+		floorMat.diffuse = 0.001f;
+
+		Renderer::Shape floor = Renderer::Shape(floorShape, floorMat);
+		floor.transform(Math::Transform().translate(0, 0.5f + RML::EPSILON * 2, 0));
+		return floor;
+	}
+
+	static Renderer::Shape buildBackWall()
+	{
+		auto stripePattern = std::make_shared<Renderer::Patterns::Stripe>(Graphics::Color(25.0f / 255.0f, 158.0f / 255.0f, 170.0f / 255.0f), Graphics::Color(166.0f / 255.0f, 228.0f / 255.0f, 234.0f / 255.0f));
+
+		auto wallMat = Renderer::Material();
+		wallMat.pattern = stripePattern;
+		wallMat.reflective = 0.05f;
+		wallMat.refractiveIndex = 1.23f;
+		wallMat.diffuse = 0.84f;
+
+		auto wallShape = std::make_shared<Math::Plane>();
+
+		Renderer::Shape wall = Renderer::Shape(wallShape, wallMat);
+		wall.transform(Math::Transform().rotate(82, 3, 180).translate(0, 0, 10));
+
+		return wall;
+	}
+
+	static Renderer::Shape buildMarble()
+	{
+		auto ballMat = Helpers::MaterialHelper::glassSphere().material();
+		ballMat.diffuse = 0.0005f;
+		auto ballShape = std::make_shared<Math::Sphere>();
+
+		Renderer::Shape ball = Renderer::Shape(ballShape, ballMat);
+		ball.transform(Math::Transform().scale(2, 2, 2).translate(0, 4, 5));
+
+		return ball;
+	}
+
+	static Renderer::PointLight buildLight(double x, double y, double z)
+	{
+		return Renderer::PointLight({ x, y, z }, Graphics::Color(0.98f, 0.95f, 0.94f));
+	}
+};
+
+
+//
+// ===================================================================================================================================================================================================================
+// ===================================================================================================================================================================================================================
+// ===================================================================================================================================================================================================================
+//
+
+static std::atomic<bool> RenderThreadInProgress(false);
+std::thread* RenderThread;
+
+std::vector<byte> renderData;
+byte* _GetRenderPixels()
+{
+	if (!RaytraceCamera)
+	{
+		return renderData.data();
+	}
+
+	auto buffer = RaytraceCamera->renderedImage().toBuffer();
+
+	renderData.clear();
+	renderData.reserve(buffer.size() * 4);
+
+	for (int colorIndex = 0; colorIndex < buffer.size(); ++colorIndex)
+	{
+		for (int componentIndex = 0; componentIndex < 4; ++componentIndex)
+		{
+			byte b = 0x0b;
+			Graphics::Color& color = buffer.at(colorIndex);
+
+			if (componentIndex == 0)
+			{
+				b = static_cast<byte>(std::clamp((int)std::ceil(color.red() * 255), 0, 255));
+			}
+			else if (componentIndex == 1)
+			{
+				b = static_cast<byte>(std::clamp((int)std::ceil(color.green() * 255), 0, 255));
+			}
+			else if (componentIndex == 2)
+			{
+				b = static_cast<byte>(std::clamp((int)std::ceil(color.blue() * 255), 0, 255));
+			}
+			else if (componentIndex == 3)
+			{
+				b = static_cast<byte>(0xFFb); // Alpha 1
+			}
+
+			renderData.push_back(b);
+		}
+	}
+
+	return renderData.data();
+}
+
+void _WriteImage(Graphics::Image image, Serializer::BaseImageSerializer& serializer)
+{
+	std::cout << "Writing Image to Desktop... ";
+
+	serializer.serialize(image);
+
+	const std::vector<unsigned char> ppmBuffer = serializer.buffer();
+
+	TCHAR appData[MAX_PATH];
+	if (SUCCEEDED(SHGetFolderPath(NULL,
+		CSIDL_DESKTOPDIRECTORY | CSIDL_FLAG_CREATE,
+		NULL,
+		SHGFP_TYPE_CURRENT,
+		appData))) {
+		std::basic_ostringstream<TCHAR> filePath;
+
+		std::string imageName = std::string("\\generated_image.") + std::string(serializer.fileExtension());
+
+		filePath << appData << _TEXT(imageName.c_str());
+
+		std::ofstream file;
+		file.open(filePath.str().c_str(), std::ios_base::binary);
+
+		file.write((const char*)&ppmBuffer[0], ppmBuffer.size());
+		file.close();
+
+		std::cout << "Success" << std::endl;
+	}
+	else
+	{
+		std::cout << "Failed!" << std::endl;
+	}
+}
+
+Graphics::Image _RenderToImage()
+{
+	std::cout << "Initializing RayTracer... ";
+	Renderer::World world = WorldA::build();
+
+	int fov = WorldA::fov();
+
+	std::cout << "Configuring Camera... ";
+	auto cameraTransform = WorldA::cameraMatrix();
+	RaytraceCamera->transform(cameraTransform);
+
+	std::cout << "Done" << std::endl;
+
+	std::cout << "Starting Render... ";
+
+	RaytraceCamera->render(world);
+
+	std::cout << "Done" << std::endl;
+
+	return RaytraceCamera->renderedImage();
+}
+
+void _RenderWorkerThreadFn(std::atomic<bool>* threadComplete)
+{
+	Graphics::Image image = _RenderToImage();
+	Serializer::PortableNetworkGraphicsSerializer serializer;
+
+	_WriteImage(image, serializer);
+
+	threadComplete->store(false);
+
+	std::cout << "Render Complete" << std::endl;
+}
+
+void _StartFullRender()
+{
+	std::cout << "Render Started" << std::endl;
+
+	RaytraceCamera = new Renderer::Camera(RENDER_WIDTH, RENDER_HEIGHT, 90);
+
+	RenderThreadInProgress.store(true);
+	RenderThread = new std::thread(_RenderWorkerThreadFn, &RenderThreadInProgress);
+}
 
 IMGUI_API bool _DearImGui_BeginStatusBar()
 {
@@ -538,8 +798,6 @@ int main(void)
 	bool guiShowRenderSettings = false;
 	bool guiShowRenderPreview = false;
 
-	bool renderIsInProgress = false;
-
 	while (!window.ShouldClose())
 	{
 		_ProcessInput(window);
@@ -554,6 +812,12 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		gizmoMeshInstance.transform.rotation = cam.transform.rotation.inverse();
 		gizmoBatch.Render(gizmoCam, lightPosition);
+
+		if (RenderThreadInProgress.load())
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, RENDER_WIDTH, RENDER_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, _GetRenderPixels());
+			glBindTexture(GL_TEXTURE_2D, raytracerRenderTextureId);
+		}
 
 		// Geometry Pass
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -589,21 +853,9 @@ int main(void)
 					ImGui::MenuItem("Settings", nullptr, &guiShowRenderSettings);
 					ImGui::MenuItem("Preview", nullptr, &guiShowRenderPreview);
 					
-					if (renderIsInProgress)
+					if (ImGui::MenuItem("Start Render", nullptr, nullptr, !RenderThreadInProgress.load()))
 					{
-						if (ImGui::MenuItem("Cancel Render"))
-						{
-							std::cout << "Cancel Render" << std::endl;
-							renderIsInProgress = false;
-						}
-					}
-					else
-					{
-						if (ImGui::MenuItem("Start Render"))
-						{
-							std::cout << "Start Render" << std::endl;
-							renderIsInProgress = true;
-						}
+						_StartFullRender();
 					}
 
 					ImGui::EndMenu();
@@ -641,11 +893,22 @@ int main(void)
 			{
 				ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoDocking;
 
+
 				ImGui::Begin("Render Settings", nullptr, windowFlags);
+
+				bool renderThreadComplete = RenderThreadInProgress.load();
+
+				if (renderThreadComplete)
+				{
+					ImGui::Text("Render is in progress. Cannot update settings.");
+				}
+
+				ImGui::BeginDisabled(renderThreadComplete);
 				int renderDimensions[2] { RENDER_WIDTH, RENDER_HEIGHT };
 				ImGui::InputInt2("Render Dimensions", renderDimensions);
 				RENDER_WIDTH = renderDimensions[0];
 				RENDER_HEIGHT = renderDimensions[1];
+				ImGui::EndDisabled();
 				ImGui::End();
 			}
 		}

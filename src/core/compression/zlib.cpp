@@ -92,8 +92,6 @@ std::vector<unsigned char> CppRayTracerChallenge::Core::Compression::ZLIB::compr
 
 	unsigned int deflateBlockCount = static_cast<unsigned int>(std::ceil((double)input.size() / (double)DeflateBlock::MAX_BYTES));
 
-	std::cout << "ZLIB: Compressing with " << (deflateBlockCount + 1) << " DEFLATE blocks\n";
-
 	for (unsigned int deflateIndex = 0; deflateIndex < deflateBlockCount; ++deflateIndex)
 	{
 		auto startIdx = maxBytes * deflateIndex;
