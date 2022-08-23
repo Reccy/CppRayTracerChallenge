@@ -59,6 +59,7 @@ static bool RotateYClockwise = false;
 static bool RotateYCounterClockwise = false;
 static bool RotateZClockwise = false;
 static bool RotateZCounterClockwise = false;
+static bool PerformRender = false;
 static float VMove = 0;
 static float HMove = 0;
 static float DMove = 0;
@@ -75,6 +76,8 @@ static int RENDER_HEIGHT = 768;
 
 static int WIDTH = 1024;
 static int HEIGHT = 768;
+
+static ROGLL::Camera* MainCamera;
 
 //
 // ===================================================================================================================================================================================================================
@@ -276,11 +279,15 @@ Graphics::Image _RenderToImage()
 	std::cout << "Initializing RayTracer... ";
 	Renderer::World world = WorldA::build();
 
-	int fov = WorldA::fov();
-
 	std::cout << "Configuring Camera... ";
-	auto cameraTransform = WorldA::cameraMatrix();
-	RaytraceCamera->transform(cameraTransform);
+
+	auto raytraceCameraViewMatrix = Renderer::Camera::viewMatrix(
+		MainCamera->transform.position,
+		MainCamera->transform.position + MainCamera->transform.rotation.inverse() * RML::Vector::forward(),
+		RML::Vector::up()
+	);
+
+	RaytraceCamera->transform(raytraceCameraViewMatrix);
 
 	std::cout << "Done" << std::endl;
 
@@ -293,14 +300,14 @@ Graphics::Image _RenderToImage()
 	return RaytraceCamera->renderedImage();
 }
 
-void _RenderWorkerThreadFn(std::atomic<bool>* threadComplete)
+void _RenderWorkerThreadFn()
 {
 	Graphics::Image image = _RenderToImage();
 	Serializer::PortableNetworkGraphicsSerializer serializer;
 
 	_WriteImage(image, serializer);
 
-	threadComplete->store(false);
+	RenderThreadInProgress.store(false);
 
 	std::cout << "Render Complete" << std::endl;
 }
@@ -309,10 +316,10 @@ void _StartFullRender()
 {
 	std::cout << "Render Started" << std::endl;
 
-	RaytraceCamera = new Renderer::Camera(RENDER_WIDTH, RENDER_HEIGHT, 90);
+	RaytraceCamera = new Renderer::Camera(RENDER_WIDTH, RENDER_HEIGHT, Fov);
 
 	RenderThreadInProgress.store(true);
-	RenderThread = new std::thread(_RenderWorkerThreadFn, &RenderThreadInProgress);
+	RenderThread = new std::thread(_RenderWorkerThreadFn);
 }
 
 IMGUI_API bool _DearImGui_BeginStatusBar()
@@ -412,6 +419,8 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 	RotateZClockwise = glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS;
 	RotateZCounterClockwise = glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS;
 
+	PerformRender = glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS;
+
 	VMove = (MoveUp * 1) - (MoveDown * 1);
 	HMove = (MoveRight * 1) - (MoveLeft * 1);
 	DMove = (MoveForward * 1) - (MoveBackward * 1);
@@ -487,8 +496,6 @@ int main(void)
 	RML::Tuple3<float> Right(1, 0, 0);
 	RML::Tuple3<float> Forward(0, 0, 1);
 	RML::Tuple3<float> Backward(0, 0, -1);
-
-	RML::Tuple3<float> UP(2.0, 2.0, 2.0);
 
 	ROGLL::VertexAttributes layout;
 	layout.Add<float>(ROGLL::VertexAttributes::POSITION3, 3);
@@ -728,6 +735,8 @@ int main(void)
 	ROGLL::Camera cam(WIDTH, HEIGHT, 60);
 	cam.transform.translate(0, 0, -10); // Initial cam position
 
+	MainCamera = &cam;
+
 	ROGLL::Camera gizmoCam(32, 32, 1); // Psuedo orthograpic projection
 	gizmoCam.transform.translate(0, 0, -3.2);
 
@@ -802,6 +811,11 @@ int main(void)
 	{
 		_ProcessInput(window);
 		_UpdateCamera(cam);
+
+		if (PerformRender && !RenderThreadInProgress.load())
+		{
+			_StartFullRender();
+		}
 		
 		cubeA.transform.rotate(0, 0.2, 0);
 		cubeB.transform.rotate(0.2, 0.3, 0.5);
@@ -841,7 +855,7 @@ int main(void)
 			{
 				if (ImGui::BeginMenu("File"))
 				{
-					if (ImGui::MenuItem("Exit")) {
+					if (ImGui::MenuItem("Exit", "Alt + F4")) {
 						glfwSetWindowShouldClose(window.GetHandle(), 1);
 					}
 					
@@ -853,7 +867,7 @@ int main(void)
 					ImGui::MenuItem("Settings", nullptr, &guiShowRenderSettings);
 					ImGui::MenuItem("Preview", nullptr, &guiShowRenderPreview);
 					
-					if (ImGui::MenuItem("Start Render", nullptr, nullptr, !RenderThreadInProgress.load()))
+					if (ImGui::MenuItem("Start Render", "F5", nullptr, !RenderThreadInProgress.load()))
 					{
 						_StartFullRender();
 					}
