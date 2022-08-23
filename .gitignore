@@ -412,3 +412,6 @@ CTestTestfile.cmake
 _deps
 out/
 build/
+
+# Dear ImGui settings
+imgui.ini
