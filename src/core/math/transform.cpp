@@ -6,6 +6,8 @@ namespace CppRayTracerChallenge::Core::Math
 {
 	Transform::Transform() : m_matrix(RML::Matrix<double, 4, 4>::identity()) {};
 
+	Transform::Transform(RML::Matrix<double, 4, 4> matrix) : m_matrix(matrix) {};
+
 	const Transform Transform::translate(const double x, const double y, const double z) const
 	{
 		Transform copy = *this;

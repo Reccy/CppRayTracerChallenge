@@ -27,6 +27,8 @@
 #include <renderer/patterns/checker.h>
 #include <renderer/patterns/stripe.h>
 #include <math/plane.h>
+#include <math/cube.h>
+#include <math/plane.h>
 #include <helpers/material_helper.h>
 
 // === Learning Resources ===
@@ -79,119 +81,29 @@ static int HEIGHT = 768;
 
 static ROGLL::Camera* MainCamera;
 
-//
-// ===================================================================================================================================================================================================================
-// ===================================================================================================================================================================================================================
-// ===================================================================================================================================================================================================================
-//
-
-
-class WorldA
+enum class EditorObjectType
 {
-public:
-	static Renderer::World build()
-	{
-		Renderer::World world = Renderer::World();
-
-		world.addObject(buildFloor());
-		world.addObject(buildWaterPlane());
-		world.addObject(buildBackWall());
-		world.addObject(buildMarble());
-		world.addLight(buildLight(0, 4, 5));
-
-		world.defaultRemainingCalls = 8;
-
-		return world;
-	}
-
-	static Math::Matrix<double, 4, 4> cameraMatrix()
-	{
-		double camPosX = 0;
-		double camPosY = 3;
-		double camPosZ = -8;
-
-		double camLookX = 0;
-		double camLookY = 3;
-		double camLookZ = 0;
-
-		return Renderer::Camera::viewMatrix({ camPosX, camPosY, camPosZ }, { camLookX, camLookY, camLookZ }, Math::Vector::up());
-	}
-
-	static int fov()
-	{
-		return 50;
-	}
-private:
-	static Renderer::Shape buildFloor()
-	{
-		auto floorMat = Renderer::Material();
-		floorMat.pattern = std::make_shared<Renderer::Patterns::Checker>(Graphics::Color::black(), Graphics::Color::white());
-		floorMat.shininess = 0.98f;
-		floorMat.reflective = 0.74f;
-		floorMat.specular = 0.3f;
-
-		auto floorShape = std::make_shared<Math::Plane>();
-
-		Renderer::Shape floor = Renderer::Shape(floorShape, floorMat);
-		floor.transform(Math::Transform().translate(0, 0, 0));
-		return floor;
-	}
-
-	static Renderer::Shape buildWaterPlane()
-	{
-		auto floorMat = Helpers::MaterialHelper::glassSphere().material();
-		auto floorShape = std::make_shared<Math::Plane>();
-		floorMat.pattern = std::make_shared<Renderer::Patterns::SolidColor>(Graphics::Color(0.1f, 0.1f, 0.1f));
-		floorMat.reflective = 1.2f;
-		floorMat.diffuse = 0.001f;
-
-		Renderer::Shape floor = Renderer::Shape(floorShape, floorMat);
-		floor.transform(Math::Transform().translate(0, 0.5f + RML::EPSILON * 2, 0));
-		return floor;
-	}
-
-	static Renderer::Shape buildBackWall()
-	{
-		auto stripePattern = std::make_shared<Renderer::Patterns::Stripe>(Graphics::Color(25.0f / 255.0f, 158.0f / 255.0f, 170.0f / 255.0f), Graphics::Color(166.0f / 255.0f, 228.0f / 255.0f, 234.0f / 255.0f));
-
-		auto wallMat = Renderer::Material();
-		wallMat.pattern = stripePattern;
-		wallMat.reflective = 0.05f;
-		wallMat.refractiveIndex = 1.23f;
-		wallMat.diffuse = 0.84f;
-
-		auto wallShape = std::make_shared<Math::Plane>();
-
-		Renderer::Shape wall = Renderer::Shape(wallShape, wallMat);
-		wall.transform(Math::Transform().rotate(82, 3, 180).translate(0, 0, 10));
-
-		return wall;
-	}
-
-	static Renderer::Shape buildMarble()
-	{
-		auto ballMat = Helpers::MaterialHelper::glassSphere().material();
-		ballMat.diffuse = 0.0005f;
-		auto ballShape = std::make_shared<Math::Sphere>();
-
-		Renderer::Shape ball = Renderer::Shape(ballShape, ballMat);
-		ball.transform(Math::Transform().scale(2, 2, 2).translate(0, 4, 5));
-
-		return ball;
-	}
-
-	static Renderer::PointLight buildLight(double x, double y, double z)
-	{
-		return Renderer::PointLight({ x, y, z }, Graphics::Color(0.98f, 0.95f, 0.94f));
-	}
+	CUBE,
+	PLANE,
+	LIGHT
 };
 
+struct EditorObject
+{
+	unsigned int id;
+	RML::Transform transform;
+	EditorObjectType objectType;
+	void* ptrProperties;
+};
 
-//
-// ===================================================================================================================================================================================================================
-// ===================================================================================================================================================================================================================
-// ===================================================================================================================================================================================================================
-//
+static unsigned int _GenerateEditorObjectId()
+{
+	static unsigned int id = 0;
+	id++;
+	return id;
+}
+
+static std::vector<EditorObject> EditorObjects;
 
 static std::atomic<bool> RenderThreadInProgress(false);
 std::thread* RenderThread;
@@ -274,10 +186,46 @@ void _WriteImage(Graphics::Image image, Serializer::BaseImageSerializer& seriali
 	}
 }
 
+Renderer::World _CreateWorld()
+{
+	Renderer::World world;
+
+	for (const auto& editorObject : EditorObjects)
+	{
+		RML::Point pos(editorObject.transform.position.x(), editorObject.transform.position.y(), editorObject.transform.position.z()); // TODO: Convert point to vector in RML
+
+		if (editorObject.objectType == EditorObjectType::LIGHT)
+		{
+			Renderer::PointLight light(pos, Graphics::Color::white());
+			world.addLight(light);
+		}
+		else if (editorObject.objectType == EditorObjectType::CUBE)
+		{
+			auto cube = std::make_shared<Math::Cube>();
+			Renderer::Shape shape(cube);
+
+			RML::Transform t = editorObject.transform;
+
+			t.scaling = RML::Vector(t.scaling.x() * 0.5, t.scaling.y() * 0.5, t.scaling.z() * 0.5);
+			shape.transform(t.matrix());
+			world.addObject(shape);
+		}
+		else if (editorObject.objectType == EditorObjectType::PLANE)
+		{
+			auto plane = std::make_shared<Math::Plane>();
+			Renderer::Shape shape(plane);
+			shape.transform(editorObject.transform.matrix());
+			world.addObject(shape);
+		}
+	}
+
+	return world;
+}
+
 Graphics::Image _RenderToImage()
 {
 	std::cout << "Initializing RayTracer... ";
-	Renderer::World world = WorldA::build();
+	Renderer::World world = _CreateWorld();
 
 	std::cout << "Configuring Camera... ";
 
@@ -576,15 +524,6 @@ int main(void)
 		layout
 		);
 
-	ROGLL::MeshInstance cubeA(cubeMesh);
-	ROGLL::MeshInstance cubeB(cubeMesh);
-	cubeB.transform.translate(3, 3, 3);
-	cubeB.transform.scale(1.5, 2, 2.5);
-
-	ROGLL::MeshInstance lightCube(cubeMesh);
-	lightCube.transform.scaling = { 0.5, 0.5, 0.5 };
-	lightCube.transform.position = { 0, 10, 0 };
-
 	std::vector<float> groundVertFloats
 	{
 		-100, -0.5, -100, 0, 1, 0,
@@ -720,17 +659,12 @@ int main(void)
 	lightCubeMaterial.Set4("objectColor", White);
 
 	ROGLL::RenderBatch cubeBatch(&layout, &cubeMaterial);
-	cubeBatch.AddInstance(&cubeA);
-	cubeBatch.AddInstance(&cubeB);
 
 	ROGLL::RenderBatch gizmoBatch(&gizmoLayout, &gizmoMaterial);
 	gizmoBatch.AddInstance(&gizmoMeshInstance);
 
 	ROGLL::RenderBatch groundBatch(&layout, &groundMaterial);
 	groundBatch.AddInstance(&groundMeshInstance);
-
-	ROGLL::RenderBatch lightCubeBatch(&layout, &lightCubeMaterial);
-	lightCubeBatch.AddInstance(&lightCube);
 
 	ROGLL::Camera cam(WIDTH, HEIGHT, 60);
 	cam.transform.translate(0, 0, -10); // Initial cam position
@@ -799,6 +733,38 @@ int main(void)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
+	{
+		EditorObject light;
+		light.id = _GenerateEditorObjectId();
+		light.transform.translate(0, 10, 0);
+		light.objectType = EditorObjectType::LIGHT;
+		EditorObjects.push_back(light);
+	}
+
+	{
+		EditorObject cube;
+		cube.id = _GenerateEditorObjectId();
+		cube.transform.translate(0, 0.5, 0);
+		cube.objectType = EditorObjectType::CUBE;
+		EditorObjects.push_back(cube);
+	}
+
+	{
+		EditorObject cube;
+		cube.id = _GenerateEditorObjectId();
+		cube.transform.translate(1, 1.5, 0);
+		cube.objectType = EditorObjectType::CUBE;
+		EditorObjects.push_back(cube);
+	}
+
+	{
+		EditorObject plane;
+		plane.id = _GenerateEditorObjectId();
+		plane.transform.translate(0, 0, 0);
+		plane.objectType = EditorObjectType::PLANE;
+		EditorObjects.push_back(plane);
+	}
+
 	// New Render Target End
 
 	bool guiShowDearImGuiDemo = false;
@@ -817,9 +783,6 @@ int main(void)
 			_StartFullRender();
 		}
 		
-		cubeA.transform.rotate(0, 0.2, 0);
-		cubeB.transform.rotate(0.2, 0.3, 0.5);
-
 		// UI - Pre Pass
 		glBindFramebuffer(GL_FRAMEBUFFER, gizmoFramebufferId);
 		glViewport(0, 0, 512, 512);
@@ -839,15 +802,53 @@ int main(void)
 		glClearColor(ClearColor->x(), ClearColor->y(), ClearColor->z(), ClearColor->w());
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		// Not a great way to setup mesh instances but saves me dealing with memory management for the moment
+		std::stack<ROGLL::MeshInstance*> cubeMeshInstances;
+		std::stack<ROGLL::MeshInstance*> groundMeshInstances;
+
+		for (const auto& obj : EditorObjects)
+		{
+			if (obj.objectType == EditorObjectType::CUBE)
+			{
+				ROGLL::MeshInstance* cubeMeshInstance = new ROGLL::MeshInstance(cubeMesh);
+				cubeMeshInstance->transform = obj.transform;
+				cubeMeshInstances.push(cubeMeshInstance);
+				cubeBatch.AddInstance(cubeMeshInstance);
+			}
+			else if (obj.objectType == EditorObjectType::PLANE)
+			{
+				ROGLL::MeshInstance* planeMeshInstance = new ROGLL::MeshInstance(groundMesh);
+				planeMeshInstance->transform = obj.transform;
+				groundMeshInstances.push(planeMeshInstance);
+				groundBatch.AddInstance(planeMeshInstance);
+			}
+		}
+
 		cubeBatch.Render(cam, lightPosition);
 		groundBatch.Render(cam, lightPosition);
-		lightCubeBatch.Render(cam, lightPosition);
+
+		while (!cubeMeshInstances.empty())
+		{
+			auto ptr = cubeMeshInstances.top();
+			cubeBatch.RemoveInstance(ptr);
+			delete ptr;
+			cubeMeshInstances.pop();
+		}
+
+		while (!groundMeshInstances.empty())
+		{
+			auto ptr = groundMeshInstances.top();
+			groundBatch.RemoveInstance(ptr);
+			delete ptr;
+			groundMeshInstances.pop();
+		}
 
 		//IMGUI TEST BEGIN
 
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
+
 
 		// Render Main Menu Bar
 		{
