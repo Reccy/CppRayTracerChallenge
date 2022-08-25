@@ -62,6 +62,9 @@ static bool RotateYCounterClockwise = false;
 static bool RotateZClockwise = false;
 static bool RotateZCounterClockwise = false;
 static bool PerformRender = false;
+static double MousePosX = 0;
+static double MousePosY = 0;
+static bool MouseLeftButtonDown = false;
 static float VMove = 0;
 static float HMove = 0;
 static float DMove = 0;
@@ -76,8 +79,8 @@ static float CamYRot = 0;
 static int RENDER_WIDTH = 1024;
 static int RENDER_HEIGHT = 768;
 
-static int WIDTH = 1024;
-static int HEIGHT = 768;
+static int WINDOW_WIDTH = 1024;
+static int WINDOW_HEIGHT = 768;
 
 static ROGLL::Camera* MainCamera;
 
@@ -91,6 +94,7 @@ enum class EditorObjectType
 struct EditorObject
 {
 	unsigned int id;
+	std::string name;
 	RML::Transform transform;
 	EditorObjectType objectType;
 	void* ptrProperties;
@@ -104,6 +108,76 @@ static unsigned int _GenerateEditorObjectId()
 }
 
 static std::vector<EditorObject> EditorObjects;
+static EditorObject* SelectedObject = nullptr;
+
+static ROGLL::MeshInstance* DebugMeshInstance = nullptr;
+static std::stringstream DebugStringStream;
+
+static Math::Cube SharedCube;
+static Math::Plane SharedPlane;
+
+Math::IShape* _GetMathShapeForEditorObject(const EditorObject& editorObject)
+{
+	if (editorObject.objectType == EditorObjectType::CUBE || editorObject.objectType == EditorObjectType::LIGHT)
+	{
+		RML::Transform t = editorObject.transform;
+		t.scale(0.5, 0.5, 0.5);
+		SharedCube.transform(t.matrix());
+		return &SharedCube;
+	}
+
+	if (editorObject.objectType == EditorObjectType::PLANE)
+	{
+		SharedPlane.transform(editorObject.transform.matrix());
+		return &SharedPlane;
+	}
+
+	assert(false); // This line should never be hit
+
+	return nullptr;
+}
+
+double _IntersectRayWithEditorObject(Math::Ray ray, const EditorObject& editorObject)
+{
+	Math::IShape* shape = _GetMathShapeForEditorObject(editorObject);
+	auto i = shape->intersect(ray);
+
+	auto hit = i.hit();
+
+	if (!hit.has_value()) return RML::INF;
+
+	DebugStringStream << "Hit Location: " << ray.origin() + ray.direction() * hit.value().t() << "\n";
+
+	RML::Transform t;
+	t.position = (ray.origin() + ray.direction() * hit.value().t());
+	DebugMeshInstance->transform = t;
+
+	return hit.value().t();
+}
+
+static EditorObject* _SelectObjectUnderCursor(ROGLL::Camera* camera)
+{
+	if (MousePosX < 0 || MousePosX > WINDOW_WIDTH || MousePosY < 0 || MousePosY > WINDOW_HEIGHT)
+		return nullptr;
+
+	Math::Ray ray = camera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, Fov);
+
+	double closest = RML::INF;
+	EditorObject* closestPtr = nullptr;
+
+	for (auto& editorObject : EditorObjects)
+	{
+		double currentClosest = _IntersectRayWithEditorObject(ray, editorObject);
+
+		if (currentClosest < closest)
+		{
+			closest = currentClosest;
+			closestPtr = &editorObject;
+		}
+	}
+
+	return closestPtr;
+}
 
 static std::atomic<bool> RenderThreadInProgress(false);
 std::thread* RenderThread;
@@ -369,6 +443,9 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 
 	PerformRender = glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS;
 
+	MouseLeftButtonDown = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+	glfwGetCursorPos(window, &MousePosX, &MousePosY);
+
 	VMove = (MoveUp * 1) - (MoveDown * 1);
 	HMove = (MoveRight * 1) - (MoveLeft * 1);
 	DMove = (MoveForward * 1) - (MoveBackward * 1);
@@ -390,7 +467,7 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 void _UpdateCamera(ROGLL::Camera& cam) {
 	constexpr double speedFactor = 0.25;
 
-	cam.SetPerspective(WIDTH, HEIGHT, RML::Trig::degrees_to_radians(Fov));
+	cam.SetPerspective(WINDOW_WIDTH, WINDOW_HEIGHT, RML::Trig::degrees_to_radians(Fov));
 	cam.transform.position += cam.transform.rotation.inverse()
 		* RML::Vector(HMove * speedFactor,
 			VMove * speedFactor,
@@ -418,13 +495,13 @@ static void _WindowResized(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
 
-	WIDTH = width;
-	HEIGHT = height;
+	WINDOW_WIDTH = width;
+	WINDOW_HEIGHT = height;
 }
 
 int main(void)
 {
-	ROGLL::Window window("Reccy's Ray Tracer", WIDTH, HEIGHT);
+	ROGLL::Window window("Reccy's Ray Tracer", WINDOW_WIDTH, WINDOW_HEIGHT);
 
 	glfwSetWindowSizeCallback(window.GetHandle(), _WindowResized);
 
@@ -524,25 +601,24 @@ int main(void)
 		layout
 		);
 
-	std::vector<float> groundVertFloats
+	auto fM = 1000.0f;
+
+	std::vector<float> planeVertFloats
 	{
-		-100, -0.5, -100, 0, 1, 0,
-		 100, -0.5, -100, 0, 1, 0,
-		 100, -0.5,  100, 0, 1, 0,
-		-100, -0.5,  100, 0, 1, 0
+		-fM, 0, -fM, 0, 1, 0,
+		 fM, 0, -fM, 0, 1, 0,
+		 fM, 0,  fM, 0, 1, 0,
+		-fM, 0,  fM, 0, 1, 0
 	};
 
-	ROGLL::Mesh groundMesh(
-		groundVertFloats,
+	ROGLL::Mesh planeMesh(
+		planeVertFloats,
 		{
 			0, 1, 2,
 			2, 3, 0,
 		},
 		layout
 		);
-
-	ROGLL::MeshInstance groundMeshInstance(groundMesh);
-	groundMeshInstance.transform.scale(100, 1, 100);
 
 	// BEGIN GIZMO LOAD
 	std::cout << "Loading gizmo3d file... ";
@@ -652,8 +728,8 @@ int main(void)
 	ROGLL::Material cubeMaterial(shader);
 	cubeMaterial.Set4("objectColor", Blue);
 
-	ROGLL::Material groundMaterial(shader);
-	groundMaterial.Set4("objectColor", Green);
+	ROGLL::Material planeMaterial(shader);
+	planeMaterial.Set4("objectColor", Green);
 
 	ROGLL::Material lightCubeMaterial(shader);
 	lightCubeMaterial.Set4("objectColor", White);
@@ -663,10 +739,9 @@ int main(void)
 	ROGLL::RenderBatch gizmoBatch(&gizmoLayout, &gizmoMaterial);
 	gizmoBatch.AddInstance(&gizmoMeshInstance);
 
-	ROGLL::RenderBatch groundBatch(&layout, &groundMaterial);
-	groundBatch.AddInstance(&groundMeshInstance);
+	ROGLL::RenderBatch planeBatch(&layout, &planeMaterial);
 
-	ROGLL::Camera cam(WIDTH, HEIGHT, 60);
+	ROGLL::Camera cam(WINDOW_WIDTH, WINDOW_HEIGHT, 60);
 	cam.transform.translate(0, 0, -10); // Initial cam position
 
 	MainCamera = &cam;
@@ -736,6 +811,7 @@ int main(void)
 	{
 		EditorObject light;
 		light.id = _GenerateEditorObjectId();
+		light.name = "Light";
 		light.transform.translate(0, 10, 0);
 		light.objectType = EditorObjectType::LIGHT;
 		EditorObjects.push_back(light);
@@ -744,6 +820,7 @@ int main(void)
 	{
 		EditorObject cube;
 		cube.id = _GenerateEditorObjectId();
+		cube.name = "Cube A";
 		cube.transform.translate(0, 0.5, 0);
 		cube.objectType = EditorObjectType::CUBE;
 		EditorObjects.push_back(cube);
@@ -752,6 +829,7 @@ int main(void)
 	{
 		EditorObject cube;
 		cube.id = _GenerateEditorObjectId();
+		cube.name = "Cube B";
 		cube.transform.translate(1, 1.5, 0);
 		cube.objectType = EditorObjectType::CUBE;
 		EditorObjects.push_back(cube);
@@ -760,6 +838,7 @@ int main(void)
 	{
 		EditorObject plane;
 		plane.id = _GenerateEditorObjectId();
+		plane.name = "Ground Plane";
 		plane.transform.translate(0, 0, 0);
 		plane.objectType = EditorObjectType::PLANE;
 		EditorObjects.push_back(plane);
@@ -772,6 +851,11 @@ int main(void)
 	bool guiIsRendering = false;
 	bool guiShowRenderSettings = false;
 	bool guiShowRenderPreview = false;
+	bool guiShowDevDebugConsole = false;
+
+	ROGLL::MeshInstance debugMeshInstance(cubeMesh);
+	DebugMeshInstance = &debugMeshInstance;
+	EditorObject* selectedObject = nullptr;
 
 	while (!window.ShouldClose())
 	{
@@ -781,6 +865,11 @@ int main(void)
 		if (PerformRender && !RenderThreadInProgress.load())
 		{
 			_StartFullRender();
+		}
+
+		if (MouseLeftButtonDown)
+		{
+			selectedObject = _SelectObjectUnderCursor(MainCamera);
 		}
 		
 		// UI - Pre Pass
@@ -798,13 +887,13 @@ int main(void)
 
 		// Geometry Pass
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		glViewport(0, 0, WIDTH, HEIGHT);
+		glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 		glClearColor(ClearColor->x(), ClearColor->y(), ClearColor->z(), ClearColor->w());
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// Not a great way to setup mesh instances but saves me dealing with memory management for the moment
 		std::stack<ROGLL::MeshInstance*> cubeMeshInstances;
-		std::stack<ROGLL::MeshInstance*> groundMeshInstances;
+		std::stack<ROGLL::MeshInstance*> planeMeshInstances;
 
 		for (const auto& obj : EditorObjects)
 		{
@@ -817,15 +906,19 @@ int main(void)
 			}
 			else if (obj.objectType == EditorObjectType::PLANE)
 			{
-				ROGLL::MeshInstance* planeMeshInstance = new ROGLL::MeshInstance(groundMesh);
+				ROGLL::MeshInstance* planeMeshInstance = new ROGLL::MeshInstance(planeMesh);
 				planeMeshInstance->transform = obj.transform;
-				groundMeshInstances.push(planeMeshInstance);
-				groundBatch.AddInstance(planeMeshInstance);
+				planeMeshInstances.push(planeMeshInstance);
+				planeBatch.AddInstance(planeMeshInstance);
+			}
+			else if (obj.objectType == EditorObjectType::LIGHT)
+			{
+				lightPosition = RML::Tuple3<float>(obj.transform.position.x(), obj.transform.position.y(), obj.transform.position.z());
 			}
 		}
 
 		cubeBatch.Render(cam, lightPosition);
-		groundBatch.Render(cam, lightPosition);
+		planeBatch.Render(cam, lightPosition);
 
 		while (!cubeMeshInstances.empty())
 		{
@@ -835,12 +928,12 @@ int main(void)
 			cubeMeshInstances.pop();
 		}
 
-		while (!groundMeshInstances.empty())
+		while (!planeMeshInstances.empty())
 		{
-			auto ptr = groundMeshInstances.top();
-			groundBatch.RemoveInstance(ptr);
+			auto ptr = planeMeshInstances.top();
+			planeBatch.RemoveInstance(ptr);
 			delete ptr;
-			groundMeshInstances.pop();
+			planeMeshInstances.pop();
 		}
 
 		//IMGUI TEST BEGIN
@@ -848,7 +941,6 @@ int main(void)
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
-
 
 		// Render Main Menu Bar
 		{
@@ -878,6 +970,7 @@ int main(void)
 
 				if (ImGui::BeginMenu("Debug"))
 				{
+					ImGui::MenuItem("Dev Debug Console", nullptr, &guiShowDevDebugConsole);
 					ImGui::MenuItem("Dear ImGui Demo", nullptr, &guiShowDearImGuiDemo);
 
 					ImGui::EndMenu();
@@ -899,6 +992,25 @@ int main(void)
 					ImGui::EndMenu();
 				}
 				ImGui::EndMainMenuBar();
+			}
+		}
+
+		// Render Dev Debug Settings
+		{
+			static std::string Cached = "";
+
+			if (DebugStringStream.str().length() > 1)
+			{
+				Cached = DebugStringStream.str();
+			}
+			DebugStringStream.str("");
+
+			if (guiShowDevDebugConsole)
+			{
+				ImGui::Begin("Dev Debug Console");
+
+				ImGui::Text(Cached.c_str());
+				ImGui::End();
 			}
 		}
 
@@ -948,6 +1060,18 @@ int main(void)
 				camPosSS << "Camera Position: " << cam.transform.position.x() << "x " << cam.transform.position.y() << "y " << cam.transform.position.z() << "z";
 				camPosSS << " | ";
 				camPosSS << "FOV: " << Fov << " degrees";
+				camPosSS << " | ";
+				camPosSS << "Mouse Pos: " << MousePosX << ", " << MousePosY;
+				camPosSS << " | ";
+
+				if (selectedObject == nullptr)
+				{
+					camPosSS << "No Object Selected";
+				}
+				else
+				{
+					camPosSS << "Selected Object: " << selectedObject->name;
+				}
 
 				ImGui::MenuItem(camPosSS.str().c_str(), nullptr, nullptr, false);
 

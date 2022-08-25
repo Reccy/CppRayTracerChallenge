@@ -1,4 +1,26 @@
 #include "camera.h"
+#include <assert.h>
+#include <string>
+#include <sstream>
+
+static double _CalculatePixelSize(double& outHalfWidth, double& outHalfHeight, double hSize, double vSize, double fovDegrees)
+{
+	double halfView = tan(RML::Trig::degrees_to_radians(fovDegrees) / 2);
+	double aspect = static_cast<double>(hSize) / static_cast<double>(vSize);
+
+	if (aspect >= 1)
+	{
+		outHalfWidth = halfView;
+		outHalfHeight = halfView / aspect;
+	}
+	else
+	{
+		outHalfWidth = halfView * aspect;
+		outHalfHeight = halfView;
+	}
+
+	return (outHalfWidth * 2) / hSize;
+}
 
 namespace ROGLL
 {
@@ -42,6 +64,29 @@ namespace ROGLL
 			0, 0, c, d,
 			0, 0, 1, 0
 		});
+	}
+
+	const CppRayTracerChallenge::Core::Math::Ray Camera::RayForPixel(const double x, const double y, const double renderWidth, const double renderHeight, const double fov) const
+	{
+		double xPixel = renderWidth - x; // OpenGL space positive X is opposite to world space positive X
+		double yPixel = y;
+
+		double halfWidth;
+		double halfHeight;
+		double pixelSize = _CalculatePixelSize(halfWidth, halfHeight, renderWidth, renderHeight, fov);
+
+		double xOffset = (xPixel) * pixelSize;
+		double yOffset = (yPixel) * pixelSize;
+
+		double xWorld = halfWidth - xOffset;
+		double yWorld = halfHeight - yOffset;
+
+		RML::Point worldPosition = transform.matrix() * RML::Point(xWorld, yWorld, 0.75);
+		RML::Point origin = transform.matrix() * RML::Point(0, 0, 0);
+
+		RML::Vector direction = RML::Vector(worldPosition - origin).normalized();
+
+		return CppRayTracerChallenge::Core::Math::Ray(origin, direction);
 	}
 
 	const RML::Matrix<double, 4, 4> Camera::GetViewMatrix() const
