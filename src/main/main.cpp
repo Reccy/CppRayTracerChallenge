@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <thread>
+#include <algorithm>
 
 #define NOMINMAX
 #include <windows.h>
@@ -12,6 +13,7 @@
 
 #include <RPly.h>
 #include <imgui.h>
+#include <imgui_stdlib.h>
 #include <imgui_internal.h>
 #include <imgui_impl_opengl3.h>
 #include <imgui_impl_glfw.h>
@@ -65,6 +67,8 @@ static bool PerformRender = false;
 static double MousePosX = 0;
 static double MousePosY = 0;
 static bool MouseLeftButtonDown = false;
+static bool MouseLeftButtonHeld = false;
+static bool MouseLeftButtonUp = false;
 static float VMove = 0;
 static float HMove = 0;
 static float DMove = 0;
@@ -96,8 +100,9 @@ struct EditorObject
 	unsigned int id;
 	std::string name;
 	RML::Transform transform;
+	RML::Vector eulerRotation; // store euler rotation for more stable behaviour
 	EditorObjectType objectType;
-	void* ptrProperties;
+	ROGLL::MeshInstance* meshInstance;
 };
 
 static unsigned int _GenerateEditorObjectId()
@@ -108,7 +113,6 @@ static unsigned int _GenerateEditorObjectId()
 }
 
 static std::vector<EditorObject> EditorObjects;
-static EditorObject* SelectedObject = nullptr;
 
 static ROGLL::MeshInstance* DebugMeshInstance = nullptr;
 static std::stringstream DebugStringStream;
@@ -443,7 +447,14 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 
 	PerformRender = glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS;
 
-	MouseLeftButtonDown = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+	bool prevMouseLeftButtonHeld = MouseLeftButtonHeld;
+	MouseLeftButtonHeld = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) && !GImGui->IO.WantCaptureMouse;
+	MouseLeftButtonDown = MouseLeftButtonHeld && !prevMouseLeftButtonHeld;
+	MouseLeftButtonUp = !MouseLeftButtonHeld && prevMouseLeftButtonHeld;
+
+	// IMGUI hack: We need to unfoces any fields if the user interacts with the 3D scene.
+	if (MouseLeftButtonHeld) ImGui::FocusWindow(nullptr);
+
 	glfwGetCursorPos(window, &MousePosX, &MousePosY);
 
 	VMove = (MoveUp * 1) - (MoveDown * 1);
@@ -454,14 +465,11 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 	RotY = (RotateYClockwise * 1) - (RotateYCounterClockwise * 1);
 	RotZ = (RotateZClockwise * 1) - (RotateZCounterClockwise * 1);
 
-	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
 		Fov += 0.5;
 
-	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
 		Fov -= 0.5;
-
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
 }
 
 void _UpdateCamera(ROGLL::Camera& cam) {
@@ -721,6 +729,7 @@ int main(void)
 
 	ROGLL::Shader shader("res/shaders/Default.shader");
 	ROGLL::Shader gizmoShader("res/shaders/VertexColor.shader");
+	ROGLL::Shader outlineShader("res/shaders/OutlineShader.shader");
 
 	ROGLL::Material gizmoMaterial(gizmoShader);
 	gizmoMaterial.Set4("objectColor", White);
@@ -731,10 +740,12 @@ int main(void)
 	ROGLL::Material planeMaterial(shader);
 	planeMaterial.Set4("objectColor", Green);
 
-	ROGLL::Material lightCubeMaterial(shader);
-	lightCubeMaterial.Set4("objectColor", White);
+	ROGLL::Material outlineMaterial(outlineShader);
+	outlineMaterial.Set4("outlineColor", White);
 
 	ROGLL::RenderBatch cubeBatch(&layout, &cubeMaterial);
+
+	ROGLL::RenderBatch outlineBatchUnlit(&layout, &outlineMaterial);
 
 	ROGLL::RenderBatch gizmoBatch(&gizmoLayout, &gizmoMaterial);
 	gizmoBatch.AddInstance(&gizmoMeshInstance);
@@ -823,6 +834,7 @@ int main(void)
 		cube.name = "Cube A";
 		cube.transform.translate(0, 0.5, 0);
 		cube.objectType = EditorObjectType::CUBE;
+		cube.meshInstance = new ROGLL::MeshInstance(cubeMesh);
 		EditorObjects.push_back(cube);
 	}
 
@@ -832,6 +844,7 @@ int main(void)
 		cube.name = "Cube B";
 		cube.transform.translate(1, 1.5, 0);
 		cube.objectType = EditorObjectType::CUBE;
+		cube.meshInstance = new ROGLL::MeshInstance(cubeMesh);
 		EditorObjects.push_back(cube);
 	}
 
@@ -841,6 +854,7 @@ int main(void)
 		plane.name = "Ground Plane";
 		plane.transform.translate(0, 0, 0);
 		plane.objectType = EditorObjectType::PLANE;
+		plane.meshInstance = new ROGLL::MeshInstance(planeMesh);
 		EditorObjects.push_back(plane);
 	}
 
@@ -871,7 +885,7 @@ int main(void)
 		{
 			selectedObject = _SelectObjectUnderCursor(MainCamera);
 		}
-		
+
 		// UI - Pre Pass
 		glBindFramebuffer(GL_FRAMEBUFFER, gizmoFramebufferId);
 		glViewport(0, 0, 512, 512);
@@ -889,52 +903,81 @@ int main(void)
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 		glClearColor(ClearColor->x(), ClearColor->y(), ClearColor->z(), ClearColor->w());
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-		// Not a great way to setup mesh instances but saves me dealing with memory management for the moment
-		std::stack<ROGLL::MeshInstance*> cubeMeshInstances;
-		std::stack<ROGLL::MeshInstance*> planeMeshInstances;
+		ROGLL::RenderBatch* outlineBatch = nullptr;
 
+		// Update the mesh instance transforms and set up render batches (since they are different to the editor object transform)
 		for (const auto& obj : EditorObjects)
 		{
-			if (obj.objectType == EditorObjectType::CUBE)
-			{
-				ROGLL::MeshInstance* cubeMeshInstance = new ROGLL::MeshInstance(cubeMesh);
-				cubeMeshInstance->transform = obj.transform;
-				cubeMeshInstances.push(cubeMeshInstance);
-				cubeBatch.AddInstance(cubeMeshInstance);
-			}
-			else if (obj.objectType == EditorObjectType::PLANE)
-			{
-				ROGLL::MeshInstance* planeMeshInstance = new ROGLL::MeshInstance(planeMesh);
-				planeMeshInstance->transform = obj.transform;
-				planeMeshInstances.push(planeMeshInstance);
-				planeBatch.AddInstance(planeMeshInstance);
-			}
-			else if (obj.objectType == EditorObjectType::LIGHT)
+			if (obj.objectType == EditorObjectType::LIGHT)
 			{
 				lightPosition = RML::Tuple3<float>(obj.transform.position.x(), obj.transform.position.y(), obj.transform.position.z());
+				continue;
+			}
+
+			obj.meshInstance->transform = obj.transform;
+
+			if (selectedObject == &obj)
+			{
+				if (obj.objectType == EditorObjectType::CUBE)
+				{
+					outlineBatch = new ROGLL::RenderBatch(&layout, &cubeMaterial);
+				}
+				else if (obj.objectType == EditorObjectType::PLANE)
+				{
+					outlineBatch = new ROGLL::RenderBatch(&layout, &planeMaterial);
+				}
+
+				outlineBatch->AddInstance(obj.meshInstance);
+				outlineBatchUnlit.AddInstance(obj.meshInstance);
+			}
+			else
+			{
+				if (obj.objectType == EditorObjectType::CUBE)
+				{
+					cubeBatch.AddInstance(obj.meshInstance);
+				}
+				else if (obj.objectType == EditorObjectType::PLANE)
+				{
+					planeBatch.AddInstance(obj.meshInstance);
+				}
 			}
 		}
 
 		cubeBatch.Render(cam, lightPosition);
 		planeBatch.Render(cam, lightPosition);
 
-		while (!cubeMeshInstances.empty())
+		if (outlineBatch != nullptr)
 		{
-			auto ptr = cubeMeshInstances.top();
-			cubeBatch.RemoveInstance(ptr);
-			delete ptr;
-			cubeMeshInstances.pop();
+			glEnable(GL_STENCIL_TEST);
+			glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+			glStencilFunc(GL_ALWAYS, 1, 0xFF);
+			glStencilMask(0xFF);
+			outlineBatch->Render(cam, lightPosition);
+
+			glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+			glStencilMask(0x00);
+			glDisable(GL_DEPTH_TEST);
+
+			float dist = RML::Vector(selectedObject->transform.position - MainCamera->transform.position).magnitude();
+			float factor = 0.1;
+			float d = std::max(1.1f, dist * factor);
+
+			selectedObject->meshInstance->transform.scale(d, d, d);
+			outlineBatchUnlit.Render(cam, lightPosition);
+
+			glStencilMask(0xFF);
+			glStencilFunc(GL_ALWAYS, 1, 0xFF);
+			glEnable(GL_DEPTH_TEST);
+			glDisable(GL_STENCIL_TEST);
 		}
 
-		while (!planeMeshInstances.empty())
-		{
-			auto ptr = planeMeshInstances.top();
-			planeBatch.RemoveInstance(ptr);
-			delete ptr;
-			planeMeshInstances.pop();
-		}
+		cubeBatch.Clear();
+		planeBatch.Clear();
+		outlineBatchUnlit.Clear();
+
+		if (outlineBatch != nullptr) delete outlineBatch;
 
 		//IMGUI TEST BEGIN
 
@@ -995,6 +1038,72 @@ int main(void)
 			}
 		}
 
+		// Object Properties
+		{
+			ImGui::Begin("Object Properties");
+
+			if (selectedObject == nullptr)
+			{
+				ImGui::Text("No object selected");
+			}
+			else
+			{
+				ImGui::Text(("ID: " + std::to_string(selectedObject->id)).c_str()); // Inefficient string but eh it's a prototype
+				
+				static bool showTransform;
+				ImGui::InputText("Name", &selectedObject->name);
+				ImGui::Text("Transform");
+
+				if (ImGui::BeginTable("Position", 3))
+				{
+					const RML::Vector& pos = selectedObject->transform.position;
+					double posVec[3]{ pos.x(), pos.y(), pos.z() };
+
+					ImGui::Text("Position");
+					ImGui::TableNextColumn(); ImGui::InputDouble("x##Position", &posVec[0]);
+					ImGui::TableNextColumn(); ImGui::InputDouble("y##Position", &posVec[1]);
+					ImGui::TableNextColumn(); ImGui::InputDouble("z##Position", &posVec[2]);
+
+					selectedObject->transform.position = RML::Vector(posVec[0], posVec[1], posVec[2]);
+
+					ImGui::EndTable();
+				}
+
+				if (ImGui::BeginTable("Rotation", 3))
+				{
+					const RML::Vector& rot = selectedObject->eulerRotation;
+					double rotVec[3]{ rot.x(), rot.y(), rot.z() };
+
+					ImGui::Text("Rotation");
+					ImGui::TableNextColumn(); ImGui::InputDouble("x##Rotation", &rotVec[0]);
+					ImGui::TableNextColumn(); ImGui::InputDouble("y##Rotation", &rotVec[1]);
+					ImGui::TableNextColumn(); ImGui::InputDouble("z##Rotation", &rotVec[2]);
+
+					selectedObject->eulerRotation = RML::Vector(rotVec[0], rotVec[1], rotVec[2]);
+					selectedObject->transform.rotation = RML::Quaternion::euler_angles(rotVec[0], rotVec[1], rotVec[2]);
+
+					ImGui::EndTable();
+				}
+
+				if (ImGui::BeginTable("Scale", 3))
+				{
+					const RML::Vector& scale = selectedObject->transform.scaling;
+					double scaleVec[3]{ scale.x(), scale.y(), scale.z() };
+
+					ImGui::Text("Scale");
+					ImGui::TableNextColumn(); ImGui::InputDouble("x##Scale", &scaleVec[0]);
+					ImGui::TableNextColumn(); ImGui::InputDouble("y##Scale", &scaleVec[1]);
+					ImGui::TableNextColumn(); ImGui::InputDouble("z##Scale", &scaleVec[2]);
+
+					selectedObject->transform.scaling = RML::Vector(scaleVec[0], scaleVec[1], scaleVec[2]);
+
+					ImGui::EndTable();
+				}
+			}
+
+			ImGui::End();
+		}
+
 		// Render Dev Debug Settings
 		{
 			static std::string Cached = "";
@@ -1019,7 +1128,6 @@ int main(void)
 			if (guiShowRenderSettings)
 			{
 				ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoDocking;
-
 
 				ImGui::Begin("Render Settings", nullptr, windowFlags);
 

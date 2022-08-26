@@ -14,6 +14,7 @@ namespace ROGLL
 
 		void AddInstance(const MeshInstance* instance);
 		void RemoveInstance(const MeshInstance* instance);
+		void Clear();
 
 		void Render(const Camera& cam, const RML::Tuple3<float>& lightPosition) const;
 	private:

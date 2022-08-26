@@ -20,6 +20,11 @@ namespace ROGLL
 		m_meshInstances.erase(instance);
 	}
 
+	void RenderBatch::Clear()
+	{
+		m_meshInstances.clear();
+	}
+
 	void RenderBatch::Render(const Camera& cam, const RML::Tuple3<float>& lightPosition) const
 	{
 		std::vector<unsigned int> indexBuffer;
