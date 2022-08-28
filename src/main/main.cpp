@@ -96,6 +96,13 @@ enum class EditorObjectType
 	LIGHT
 };
 
+static unsigned int _GenerateEditorObjectId()
+{
+	static unsigned int id = 0;
+	id++;
+	return id;
+}
+
 struct EditorObject
 {
 	unsigned int id;
@@ -104,16 +111,33 @@ struct EditorObject
 	RML::Vector eulerRotation; // store euler rotation for more stable behaviour
 	EditorObjectType objectType;
 	ROGLL::MeshInstance* meshInstance;
+
+	EditorObject() :
+		id(0),
+		name(""),
+		transform(),
+		eulerRotation(),
+		objectType(),
+		meshInstance(nullptr)
+	{}
+
+	EditorObject(const EditorObject& other) :
+		id(_GenerateEditorObjectId()),
+		name(other.name),
+		transform(other.transform),
+		eulerRotation(other.eulerRotation),
+		objectType(other.objectType)
+	{
+		meshInstance = new ROGLL::MeshInstance(*other.meshInstance);
+	}
+
+	~EditorObject()
+	{
+		delete meshInstance;
+	}
 };
 
-static unsigned int _GenerateEditorObjectId()
-{
-	static unsigned int id = 0;
-	id++;
-	return id;
-}
-
-static std::vector<EditorObject> EditorObjects;
+static std::vector<EditorObject*> EditorObjects;
 
 static ROGLL::MeshInstance* DebugMeshInstance = nullptr;
 static std::stringstream DebugStringStream;
@@ -181,12 +205,12 @@ static EditorObject* _SelectObjectUnderCursor(ROGLL::Camera* camera)
 
 	for (auto& editorObject : EditorObjects)
 	{
-		double currentClosest = _IntersectRayWithEditorObject(ray, editorObject);
+		double currentClosest = _IntersectRayWithEditorObject(ray, *editorObject);
 
 		if (currentClosest < closest)
 		{
 			closest = currentClosest;
-			closestPtr = &editorObject;
+			closestPtr = editorObject;
 		}
 	}
 
@@ -278,8 +302,10 @@ Renderer::World _CreateWorld()
 {
 	Renderer::World world;
 
-	for (const auto& editorObject : EditorObjects)
+	for (const auto& editorObjectPtr : EditorObjects)
 	{
+		const auto& editorObject = *editorObjectPtr;
+
 		RML::Point pos(editorObject.transform.position.x(), editorObject.transform.position.y(), editorObject.transform.position.z()); // TODO: Convert point to vector in RML
 
 		if (editorObject.objectType == EditorObjectType::LIGHT)
@@ -520,36 +546,37 @@ static void _WindowResized(GLFWwindow* window, int width, int height)
 
 static EditorObject* _CreateLight(RML::Vector position)
 {
-	EditorObject light;
-	light.id = _GenerateEditorObjectId();
-	light.name = "Light";
-	light.transform.position = position;
-	light.objectType = EditorObjectType::LIGHT;
+	EditorObject* light = new EditorObject();
+	light->id = _GenerateEditorObjectId();
+	light->name = "Light";
+	light->transform.position = position;
+	light->objectType = EditorObjectType::LIGHT;
 	EditorObjects.push_back(light);
-	return &EditorObjects[EditorObjects.size() - 1];
+	return EditorObjects[EditorObjects.size() - 1];
 }
 
 static EditorObject* _CreateCube(RML::Vector position, ROGLL::Mesh* mesh)
 {
-	EditorObject cube;
-	cube.id = _GenerateEditorObjectId();
-	cube.name = "Cube";
-	cube.transform.position = position;
-	cube.objectType = EditorObjectType::CUBE;
-	cube.meshInstance = new ROGLL::MeshInstance(*mesh);
+	EditorObject* cube = new EditorObject();
+	cube->id = _GenerateEditorObjectId();
+	cube->name = "Cube";
+	cube->transform.position = position;
+	cube->objectType = EditorObjectType::CUBE;
+	cube->meshInstance = new ROGLL::MeshInstance(*mesh);
 	EditorObjects.push_back(cube);
-	return &EditorObjects[EditorObjects.size() - 1];
+	return EditorObjects[EditorObjects.size() - 1];
 }
 
 static EditorObject* _CreatePlane(RML::Vector position, ROGLL::Mesh* mesh)
 {
-	EditorObject plane;
-	plane.id = _GenerateEditorObjectId();
-	plane.name = "Ground Plane";
-	plane.transform.position = position;
-	plane.objectType = EditorObjectType::PLANE;
-	plane.meshInstance = new ROGLL::MeshInstance(*mesh);
+	EditorObject* plane = new EditorObject();
+	plane->id = _GenerateEditorObjectId();
+	plane->name = "Ground Plane";
+	plane->transform.position = position;
+	plane->objectType = EditorObjectType::PLANE;
+	plane->meshInstance = new ROGLL::MeshInstance(*mesh);
 	EditorObjects.push_back(plane);
+	return EditorObjects[EditorObjects.size() - 1];
 }
 
 int main(void)
@@ -929,8 +956,10 @@ int main(void)
 		ROGLL::RenderBatch* outlineBatch = nullptr;
 
 		// Update the mesh instance transforms and set up render batches (since they are different to the editor object transform)
-		for (const auto& obj : EditorObjects)
+		for (const auto& objPtr : EditorObjects)
 		{
+			const auto& obj = *objPtr;
+
 			if (obj.objectType == EditorObjectType::LIGHT)
 			{
 				lightPosition = RML::Tuple3<float>(obj.transform.position.x(), obj.transform.position.y(), obj.transform.position.z());
@@ -1080,6 +1109,9 @@ int main(void)
 		{
 			ImGui::Begin("Object Properties");
 
+			bool deleteObject = false;
+			bool duplicateObject = false;
+
 			if (selectedObject == nullptr)
 			{
 				ImGui::Text("No object selected");
@@ -1087,6 +1119,12 @@ int main(void)
 			else
 			{
 				ImGui::Text(("ID: " + std::to_string(selectedObject->id)).c_str()); // Inefficient string but eh it's a prototype
+
+				if (selectedObject->objectType != EditorObjectType::LIGHT)
+				{
+					deleteObject = ImGui::Button("Delete");
+					duplicateObject = ImGui::Button("Duplicate");
+				}
 				
 				ImGui::Separator();
 
@@ -1144,6 +1182,23 @@ int main(void)
 			}
 
 			ImGui::End();
+
+			if (deleteObject)
+			{
+				auto it = std::find(EditorObjects.begin(), EditorObjects.end(), selectedObject);
+				delete *it;
+				EditorObjects.erase(it);
+
+				selectedObject = nullptr;
+			}
+
+			if (duplicateObject)
+			{
+				EditorObject* copiedObj = new EditorObject(*selectedObject);
+				copiedObj->name = copiedObj->name + " (Clone)";
+				EditorObjects.push_back(copiedObj);
+				selectedObject = copiedObj;
+			}
 		}
 
 		// Scene Objects
@@ -1157,14 +1212,16 @@ int main(void)
 				ImGui::TableSetupColumn("ID");
 				ImGui::TableHeadersRow();
 
-				for (const auto& obj : EditorObjects)
+				for (const auto& objPtr : EditorObjects)
 				{
+					const auto& obj = *objPtr;
+
 					bool selected = selectedObject != nullptr && obj.id == selectedObject->id;
 
 					ImGui::TableNextRow();
-					ImGui::TableNextColumn(); ImGui::Selectable(obj.name.c_str(), &selected);
-					ImGui::TableNextColumn(); ImGui::Selectable(_GetTypeName(obj.objectType).c_str(), &selected);
-					ImGui::TableNextColumn(); ImGui::Selectable(std::to_string(obj.id).c_str(), &selected);
+					ImGui::TableNextColumn(); ImGui::Selectable(obj.name.c_str(), &selected, ImGuiSelectableFlags_SelectOnClick);
+					ImGui::TableNextColumn(); ImGui::Selectable(_GetTypeName(obj.objectType).c_str(), &selected, ImGuiSelectableFlags_SelectOnClick);
+					ImGui::TableNextColumn(); ImGui::Selectable(std::to_string(obj.id).c_str(), &selected, ImGuiSelectableFlags_SelectOnClick);
 
 					if (selected)
 					{
