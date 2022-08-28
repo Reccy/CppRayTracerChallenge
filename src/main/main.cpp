@@ -64,6 +64,7 @@ static bool RotateYCounterClockwise = false;
 static bool RotateZClockwise = false;
 static bool RotateZCounterClockwise = false;
 static bool PerformRender = false;
+static bool UnselectObject = false;
 static double MousePosX = 0;
 static double MousePosY = 0;
 static bool MouseLeftButtonDown = false;
@@ -119,6 +120,15 @@ static std::stringstream DebugStringStream;
 
 static Math::Cube SharedCube;
 static Math::Plane SharedPlane;
+
+static std::string _GetTypeName(EditorObjectType objectType)
+{
+	if (objectType == EditorObjectType::CUBE) return "Cube";
+	if (objectType == EditorObjectType::LIGHT) return "Light";
+	if (objectType == EditorObjectType::PLANE) return "Plane";
+
+	return "Unknown";
+}
 
 Math::IShape* _GetMathShapeForEditorObject(const EditorObject& editorObject)
 {
@@ -446,6 +456,7 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 	RotateZCounterClockwise = glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS;
 
 	PerformRender = glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS;
+	UnselectObject = glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS;
 
 	bool prevMouseLeftButtonHeld = MouseLeftButtonHeld;
 	MouseLeftButtonHeld = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) && !GImGui->IO.WantCaptureMouse;
@@ -505,6 +516,40 @@ static void _WindowResized(GLFWwindow* window, int width, int height)
 
 	WINDOW_WIDTH = width;
 	WINDOW_HEIGHT = height;
+}
+
+static EditorObject* _CreateLight(RML::Vector position)
+{
+	EditorObject light;
+	light.id = _GenerateEditorObjectId();
+	light.name = "Light";
+	light.transform.position = position;
+	light.objectType = EditorObjectType::LIGHT;
+	EditorObjects.push_back(light);
+	return &EditorObjects[EditorObjects.size() - 1];
+}
+
+static EditorObject* _CreateCube(RML::Vector position, ROGLL::Mesh* mesh)
+{
+	EditorObject cube;
+	cube.id = _GenerateEditorObjectId();
+	cube.name = "Cube";
+	cube.transform.position = position;
+	cube.objectType = EditorObjectType::CUBE;
+	cube.meshInstance = new ROGLL::MeshInstance(*mesh);
+	EditorObjects.push_back(cube);
+	return &EditorObjects[EditorObjects.size() - 1];
+}
+
+static EditorObject* _CreatePlane(RML::Vector position, ROGLL::Mesh* mesh)
+{
+	EditorObject plane;
+	plane.id = _GenerateEditorObjectId();
+	plane.name = "Ground Plane";
+	plane.transform.position = position;
+	plane.objectType = EditorObjectType::PLANE;
+	plane.meshInstance = new ROGLL::MeshInstance(*mesh);
+	EditorObjects.push_back(plane);
 }
 
 int main(void)
@@ -819,44 +864,15 @@ int main(void)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	{
-		EditorObject light;
-		light.id = _GenerateEditorObjectId();
-		light.name = "Light";
-		light.transform.translate(0, 10, 0);
-		light.objectType = EditorObjectType::LIGHT;
-		EditorObjects.push_back(light);
-	}
+	auto light = _CreateLight({ 0, 10, 0 });
+	auto cubeA = _CreateCube({0, 0.5, 0}, &cubeMesh);
+	cubeA->name = "Cube A";
 
-	{
-		EditorObject cube;
-		cube.id = _GenerateEditorObjectId();
-		cube.name = "Cube A";
-		cube.transform.translate(0, 0.5, 0);
-		cube.objectType = EditorObjectType::CUBE;
-		cube.meshInstance = new ROGLL::MeshInstance(cubeMesh);
-		EditorObjects.push_back(cube);
-	}
+	auto cubeB = _CreateCube({ 1, 1.5, 0 }, &cubeMesh);
+	cubeB->name = "Cube B";
 
-	{
-		EditorObject cube;
-		cube.id = _GenerateEditorObjectId();
-		cube.name = "Cube B";
-		cube.transform.translate(1, 1.5, 0);
-		cube.objectType = EditorObjectType::CUBE;
-		cube.meshInstance = new ROGLL::MeshInstance(cubeMesh);
-		EditorObjects.push_back(cube);
-	}
-
-	{
-		EditorObject plane;
-		plane.id = _GenerateEditorObjectId();
-		plane.name = "Ground Plane";
-		plane.transform.translate(0, 0, 0);
-		plane.objectType = EditorObjectType::PLANE;
-		plane.meshInstance = new ROGLL::MeshInstance(planeMesh);
-		EditorObjects.push_back(plane);
-	}
+	auto ground = _CreatePlane({ 0,0,0 }, &planeMesh);
+	ground->name = "Ground Plane";
 
 	// New Render Target End
 
@@ -884,6 +900,11 @@ int main(void)
 		if (MouseLeftButtonDown)
 		{
 			selectedObject = _SelectObjectUnderCursor(MainCamera);
+		}
+
+		if (UnselectObject)
+		{
+			selectedObject = nullptr;
 		}
 
 		// UI - Pre Pass
@@ -998,6 +1019,23 @@ int main(void)
 					ImGui::EndMenu();
 				}
 
+				if (ImGui::BeginMenu("Add"))
+				{
+					if (ImGui::MenuItem("Cube")) {
+						auto obj = _CreateCube({ 0,0,0 }, &cubeMesh);
+						obj->name = "New Cube";
+						selectedObject = obj;
+					}
+
+					if (ImGui::MenuItem("Plane")) {
+						auto obj = _CreatePlane({ 0, 0, 0 }, &planeMesh);
+						obj->name = "New Plane";
+						selectedObject = obj;
+					}
+
+					ImGui::EndMenu();
+				}
+
 				if (ImGui::BeginMenu("Render"))
 				{
 					ImGui::MenuItem("Settings", nullptr, &guiShowRenderSettings);
@@ -1050,16 +1088,20 @@ int main(void)
 			{
 				ImGui::Text(("ID: " + std::to_string(selectedObject->id)).c_str()); // Inefficient string but eh it's a prototype
 				
-				static bool showTransform;
+				ImGui::Separator();
+
 				ImGui::InputText("Name", &selectedObject->name);
+
+				ImGui::Separator();
+
 				ImGui::Text("Transform");
 
+				ImGui::Text("Position");
 				if (ImGui::BeginTable("Position", 3))
 				{
 					const RML::Vector& pos = selectedObject->transform.position;
 					double posVec[3]{ pos.x(), pos.y(), pos.z() };
 
-					ImGui::Text("Position");
 					ImGui::TableNextColumn(); ImGui::InputDouble("x##Position", &posVec[0]);
 					ImGui::TableNextColumn(); ImGui::InputDouble("y##Position", &posVec[1]);
 					ImGui::TableNextColumn(); ImGui::InputDouble("z##Position", &posVec[2]);
@@ -1069,12 +1111,12 @@ int main(void)
 					ImGui::EndTable();
 				}
 
+				ImGui::Text("Rotation");
 				if (ImGui::BeginTable("Rotation", 3))
 				{
 					const RML::Vector& rot = selectedObject->eulerRotation;
 					double rotVec[3]{ rot.x(), rot.y(), rot.z() };
 
-					ImGui::Text("Rotation");
 					ImGui::TableNextColumn(); ImGui::InputDouble("x##Rotation", &rotVec[0]);
 					ImGui::TableNextColumn(); ImGui::InputDouble("y##Rotation", &rotVec[1]);
 					ImGui::TableNextColumn(); ImGui::InputDouble("z##Rotation", &rotVec[2]);
@@ -1085,12 +1127,12 @@ int main(void)
 					ImGui::EndTable();
 				}
 
+				ImGui::Text("Scale");
 				if (ImGui::BeginTable("Scale", 3))
 				{
 					const RML::Vector& scale = selectedObject->transform.scaling;
 					double scaleVec[3]{ scale.x(), scale.y(), scale.z() };
 
-					ImGui::Text("Scale");
 					ImGui::TableNextColumn(); ImGui::InputDouble("x##Scale", &scaleVec[0]);
 					ImGui::TableNextColumn(); ImGui::InputDouble("y##Scale", &scaleVec[1]);
 					ImGui::TableNextColumn(); ImGui::InputDouble("z##Scale", &scaleVec[2]);
@@ -1099,6 +1141,38 @@ int main(void)
 
 					ImGui::EndTable();
 				}
+			}
+
+			ImGui::End();
+		}
+
+		// Scene Objects
+		{
+			ImGui::Begin("Scene Objects");
+
+			if (ImGui::BeginTable("Scene Objects", 3, ImGuiTableFlags_Borders | ImGuiTableFlags_Resizable))
+			{
+				ImGui::TableSetupColumn("Name");
+				ImGui::TableSetupColumn("Type");
+				ImGui::TableSetupColumn("ID");
+				ImGui::TableHeadersRow();
+
+				for (const auto& obj : EditorObjects)
+				{
+					bool selected = selectedObject != nullptr && obj.id == selectedObject->id;
+
+					ImGui::TableNextRow();
+					ImGui::TableNextColumn(); ImGui::Selectable(obj.name.c_str(), &selected);
+					ImGui::TableNextColumn(); ImGui::Selectable(_GetTypeName(obj.objectType).c_str(), &selected);
+					ImGui::TableNextColumn(); ImGui::Selectable(std::to_string(obj.id).c_str(), &selected);
+
+					if (selected)
+					{
+						selectedObject = const_cast<EditorObject*>(&obj);
+					}
+				}
+
+				ImGui::EndTable();
 			}
 
 			ImGui::End();
