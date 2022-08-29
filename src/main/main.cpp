@@ -89,6 +89,20 @@ static int WINDOW_HEIGHT = 768;
 
 static ROGLL::Camera* MainCamera;
 
+static struct PlyFaceStruct {
+	std::vector<unsigned int>* indices = nullptr;
+	unsigned int faceParseIdx = 0;
+};
+
+static enum class EditorHandleType
+{
+	POSITION,
+	ROTATION,
+	SCALE
+};
+
+static EditorHandleType CurrentHandleType = EditorHandleType::POSITION;
+
 enum class EditorObjectType
 {
 	CUBE,
@@ -188,7 +202,6 @@ double _IntersectRayWithEditorObject(Math::Ray ray, const EditorObject& editorOb
 
 	RML::Transform t;
 	t.position = (ray.origin() + ray.direction() * hit.value().t());
-	DebugMeshInstance->transform = t;
 
 	return hit.value().t();
 }
@@ -443,24 +456,93 @@ static int _PlyVertexCb(p_ply_argument argument)
 	return 1;
 }
 
-static int faceParseIdx = 0;
 static int _PlyFaceCb(p_ply_argument argument)
 {
-	if (faceParseIdx % 4 == 0)
-	{
-		faceParseIdx++;
-		return 1;
-	}
-
-	faceParseIdx++;
-
-	std::vector<unsigned int>* indexBuffer;
-	ply_get_argument_user_data(argument, (void**)&indexBuffer, NULL);
+	PlyFaceStruct* plyFaceData;
+	ply_get_argument_user_data(argument, (void**)&plyFaceData, NULL);
 	double data = ply_get_argument_value(argument);
 
-	indexBuffer->push_back(data);
+	if (plyFaceData->faceParseIdx % 4 == 0)
+	{
+		if (data == 3)
+		{
+			plyFaceData->faceParseIdx++;
+			return 1;
+		}
+
+		std::cout << "PLY LOAD ERROR: Non Triangle face found in element list. Face size: " << data << std::endl;
+		return 0;
+	}
+
+	plyFaceData->faceParseIdx++;
+
+	plyFaceData->indices->push_back(data);
 
 	return 1;
+}
+
+ROGLL::Mesh _LoadPlyFile(std::string filepath, const ROGLL::VertexAttributes& layout)
+{
+	// BEGIN GIZMO LOAD
+	std::cout << "Loading ply model at [" << filepath << "]...";
+
+	p_ply plyFile = ply_open(filepath.c_str(), NULL, 0, NULL);
+	if (!plyFile || !ply_read_header(plyFile))
+	{
+		std::cout << "ERROR: Could not read ply file [" << filepath << "]" << std::endl;
+		glfwTerminate();
+		std::cin.get();
+		abort();
+	}
+
+	std::vector<float> vertexPositions;
+	std::vector<float> vertexNormals;
+	std::vector<float> vertexColors;
+	std::vector<unsigned int> indices;
+
+	long nvertices, ntriangles;
+	nvertices = ply_set_read_cb(plyFile, "vertex", "x", _PlyVertexCb, &vertexPositions, 0);
+	ply_set_read_cb(plyFile, "vertex", "y", _PlyVertexCb, &vertexPositions, 1);
+	ply_set_read_cb(plyFile, "vertex", "z", _PlyVertexCb, &vertexPositions, 2);
+	ply_set_read_cb(plyFile, "vertex", "nx", _PlyVertexCb, &vertexNormals, 3);
+	ply_set_read_cb(plyFile, "vertex", "ny", _PlyVertexCb, &vertexNormals, 4);
+	ply_set_read_cb(plyFile, "vertex", "nz", _PlyVertexCb, &vertexNormals, 5);
+	ply_set_read_cb(plyFile, "vertex", "red", _PlyVertexCb, &vertexColors, 6);
+	ply_set_read_cb(plyFile, "vertex", "green", _PlyVertexCb, &vertexColors, 7);
+	ply_set_read_cb(plyFile, "vertex", "blue", _PlyVertexCb, &vertexColors, 8);
+
+	PlyFaceStruct pfs;
+	pfs.indices = &indices;
+
+	ntriangles = ply_set_read_cb(plyFile, "face", "vertex_indices", _PlyFaceCb, &pfs, 0);
+
+	if (!ply_read(plyFile))
+	{
+		std::cout << "ERROR: Could not read ply model file" << std::endl;
+		glfwTerminate();
+		std::cin.get();
+		abort();
+	}
+
+	ply_close(plyFile);
+
+	std::cout << "Successfully loaded ply model file" << std::endl;
+
+	std::vector<float> vertices;
+
+	for (long i = 0; i < nvertices; i++)
+	{
+		float offset = i * 3;
+		vertices.push_back(vertexPositions.at(offset));
+		vertices.push_back(vertexPositions.at(offset + 1));
+		vertices.push_back(vertexPositions.at(offset + 2));
+
+		vertices.push_back(vertexColors.at(offset) / 255);
+		vertices.push_back(vertexColors.at(offset + 1) / 255);
+		vertices.push_back(vertexColors.at(offset + 2) / 255);
+	}
+
+	return ROGLL::Mesh(vertices, indices, layout);
 }
 
 static void _ProcessInput(const ROGLL::Window& windowRef)
@@ -488,6 +570,19 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 	MouseLeftButtonHeld = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) && !GImGui->IO.WantCaptureMouse;
 	MouseLeftButtonDown = MouseLeftButtonHeld && !prevMouseLeftButtonHeld;
 	MouseLeftButtonUp = !MouseLeftButtonHeld && prevMouseLeftButtonHeld;
+
+	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+	{
+		CurrentHandleType = EditorHandleType::POSITION;
+	}
+	else if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+	{
+		CurrentHandleType = EditorHandleType::ROTATION;
+	}
+	else if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
+	{
+		CurrentHandleType = EditorHandleType::SCALE;
+	}
 
 	// IMGUI hack: We need to unfoces any fields if the user interacts with the 3D scene.
 	if (MouseLeftButtonHeld) ImGui::FocusWindow(nullptr);
@@ -700,67 +795,14 @@ int main(void)
 		layout
 		);
 
-	// BEGIN GIZMO LOAD
-	std::cout << "Loading gizmo3d file... ";
+	ROGLL::Mesh gizmoPositionMesh = _LoadPlyFile("res/models/gizmo3d_position.ply", gizmoLayout);
+	ROGLL::Mesh gizmoRotationMesh = _LoadPlyFile("res/models/gizmo3D_rotation.ply", gizmoLayout);
+	ROGLL::Mesh gizmoScaleMesh = _LoadPlyFile("res/models/gizmo3d_scale.ply", gizmoLayout);
 
-	p_ply gizmoPlyFile = ply_open("res/models/gizmo3d.ply", NULL, 0, NULL);
-	if (!gizmoPlyFile || !ply_read_header(gizmoPlyFile))
-	{
-		std::cout << "ERROR: Could not read gizmo3d file" << std::endl;
-		glfwTerminate();
-		std::cin.get();
-		return -1;
-	}
-
-	std::vector<float> gizmoPositions;
-	std::vector<float> gizmoNormals;
-	std::vector<float> gizmoColors;
-	std::vector<unsigned int> gizmoIndices;
-
-	long nvertices, ntriangles;
-	nvertices = ply_set_read_cb(gizmoPlyFile, "vertex", "x", _PlyVertexCb, &gizmoPositions, 0);
-	ply_set_read_cb(gizmoPlyFile, "vertex", "y", _PlyVertexCb, &gizmoPositions, 1);
-	ply_set_read_cb(gizmoPlyFile, "vertex", "z", _PlyVertexCb, &gizmoPositions, 2);
-	ply_set_read_cb(gizmoPlyFile, "vertex", "nx", _PlyVertexCb, &gizmoNormals, 3);
-	ply_set_read_cb(gizmoPlyFile, "vertex", "ny", _PlyVertexCb, &gizmoNormals, 4);
-	ply_set_read_cb(gizmoPlyFile, "vertex", "nz", _PlyVertexCb, &gizmoNormals, 5);
-	ply_set_read_cb(gizmoPlyFile, "vertex", "red", _PlyVertexCb, &gizmoColors, 6);
-	ply_set_read_cb(gizmoPlyFile, "vertex", "green", _PlyVertexCb, &gizmoColors, 7);
-	ply_set_read_cb(gizmoPlyFile, "vertex", "blue", _PlyVertexCb, &gizmoColors, 8);
-
-	ntriangles = ply_set_read_cb(gizmoPlyFile, "face", "vertex_indices", _PlyFaceCb, &gizmoIndices, NULL);
-
-	if (!ply_read(gizmoPlyFile))
-	{
-		std::cout << "ERROR: Could not read gizmo3d file" << std::endl;
-		glfwTerminate();
-		std::cin.get();
-		return -1;
-	}
-
-	ply_close(gizmoPlyFile);
-
-	std::cout << "Successfully loaded gizmo3d file" << std::endl;
-	// END GIZMO LOAD
-
-	std::vector<float> gizmoVerts;
-
-	for (long i = 0; i < nvertices; i++)
-	{
-		float offset = i * 3;
-		gizmoVerts.push_back(gizmoPositions.at(offset));
-		gizmoVerts.push_back(gizmoPositions.at(offset + 1));
-		gizmoVerts.push_back(gizmoPositions.at(offset + 2));
-
-		gizmoVerts.push_back(gizmoColors.at(offset) / 255);
-		gizmoVerts.push_back(gizmoColors.at(offset + 1) / 255);
-		gizmoVerts.push_back(gizmoColors.at(offset + 2) / 255);
-	}
-
-	ROGLL::Mesh gizmoMesh(gizmoVerts, gizmoIndices, gizmoLayout);
-
-	ROGLL::MeshInstance gizmoMeshInstance(gizmoMesh);
-	gizmoMeshInstance.transform.scale(0.1, 0.1, 0.1);
+	ROGLL::MeshInstance gizmoMeshInstance(gizmoPositionMesh);
+	ROGLL::MeshInstance positionHandleMeshInstance(gizmoPositionMesh);
+	ROGLL::MeshInstance rotationHandleMeshInstance(gizmoRotationMesh);
+	ROGLL::MeshInstance scaleHandleMeshInstance(gizmoScaleMesh);
 
 	RML::Tuple3<float> xy(-0.5, -0.5, 0);
 	RML::Tuple3<float> Xy(0.5, -0.5, 0);
@@ -799,17 +841,17 @@ int main(void)
 		uiTextureLayout);
 	ROGLL::MeshInstance gizmoUiInstance(uiTextureMesh);
 
-	ROGLL::Shader shader("res/shaders/Default.shader");
+	ROGLL::Shader defaultShader("res/shaders/Default.shader");
 	ROGLL::Shader gizmoShader("res/shaders/VertexColor.shader");
 	ROGLL::Shader outlineShader("res/shaders/OutlineShader.shader");
 
 	ROGLL::Material gizmoMaterial(gizmoShader);
 	gizmoMaterial.Set4("objectColor", White);
 
-	ROGLL::Material cubeMaterial(shader);
+	ROGLL::Material cubeMaterial(defaultShader);
 	cubeMaterial.Set4("objectColor", Blue);
 
-	ROGLL::Material planeMaterial(shader);
+	ROGLL::Material planeMaterial(defaultShader);
 	planeMaterial.Set4("objectColor", Green);
 
 	ROGLL::Material outlineMaterial(outlineShader);
@@ -821,6 +863,10 @@ int main(void)
 
 	ROGLL::RenderBatch gizmoBatch(&gizmoLayout, &gizmoMaterial);
 	gizmoBatch.AddInstance(&gizmoMeshInstance);
+
+	ROGLL::MeshInstance* currentHandleMeshInstance = &positionHandleMeshInstance;
+
+	ROGLL::RenderBatch handleBatch(&gizmoLayout, &gizmoMaterial);
 
 	ROGLL::RenderBatch planeBatch(&layout, &planeMaterial);
 
@@ -910,14 +956,27 @@ int main(void)
 	bool guiShowRenderPreview = false;
 	bool guiShowDevDebugConsole = false;
 
-	ROGLL::MeshInstance debugMeshInstance(cubeMesh);
-	DebugMeshInstance = &debugMeshInstance;
 	EditorObject* selectedObject = nullptr;
 
 	while (!window.ShouldClose())
 	{
 		_ProcessInput(window);
 		_UpdateCamera(cam);
+
+		if (CurrentHandleType == EditorHandleType::POSITION)
+		{
+			currentHandleMeshInstance = &positionHandleMeshInstance;
+		}
+		else if (CurrentHandleType == EditorHandleType::ROTATION)
+		{
+			currentHandleMeshInstance = &rotationHandleMeshInstance;
+		}
+		else if (CurrentHandleType == EditorHandleType::SCALE)
+		{
+			currentHandleMeshInstance = &scaleHandleMeshInstance;
+		}
+
+		handleBatch.AddInstance(currentHandleMeshInstance);
 
 		if (PerformRender && !RenderThreadInProgress.load())
 		{
@@ -998,6 +1057,16 @@ int main(void)
 		cubeBatch.Render(cam, lightPosition);
 		planeBatch.Render(cam, lightPosition);
 
+		if (selectedObject != nullptr)
+		{
+			currentHandleMeshInstance->transform.position = selectedObject->transform.position;
+			currentHandleMeshInstance->transform.rotation = selectedObject->transform.rotation;
+			float dist = RML::Vector(selectedObject->transform.position - MainCamera->transform.position).magnitude();
+			float scaling = dist * 0.2f;
+			currentHandleMeshInstance->transform.scaling = RML::Vector(scaling, scaling, scaling);
+			handleBatch.Render(cam, lightPosition);
+		}
+
 		if (outlineBatch != nullptr)
 		{
 			glEnable(GL_STENCIL_TEST);
@@ -1011,23 +1080,25 @@ int main(void)
 			glDisable(GL_DEPTH_TEST);
 
 			float dist = RML::Vector(selectedObject->transform.position - MainCamera->transform.position).magnitude();
-			float factor = 0.1;
-			float d = std::max(1.1f, dist * factor);
+			float minFactor = 1.05;
+			float maxFactor = 1.1;
+			float d = std::max(std::min(maxFactor, dist), minFactor);
 
 			selectedObject->meshInstance->transform.scale(d, d, d);
-			outlineBatchUnlit.Render(cam, lightPosition);
+			//outlineBatchUnlit.Render(cam, lightPosition);
 
 			glStencilMask(0xFF);
 			glStencilFunc(GL_ALWAYS, 1, 0xFF);
 			glEnable(GL_DEPTH_TEST);
 			glDisable(GL_STENCIL_TEST);
+
+			delete outlineBatch;
 		}
 
 		cubeBatch.Clear();
 		planeBatch.Clear();
+		handleBatch.Clear();
 		outlineBatchUnlit.Clear();
-
-		if (outlineBatch != nullptr) delete outlineBatch;
 
 		//IMGUI TEST BEGIN
 

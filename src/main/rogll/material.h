@@ -27,7 +27,7 @@ namespace ROGLL
 	public:
 		Material(const Shader& shader);
 
-		void Bind() const;
+		void BindAndApplyUniforms() const;
 		void Unbind() const;
 
 		void Set4x4(const std::string& name, Matrix4x4<float> value);

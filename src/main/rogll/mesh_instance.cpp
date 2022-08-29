@@ -3,12 +3,14 @@
 namespace ROGLL
 {
 	MeshInstance::MeshInstance(const Mesh& mesh) :
-		m_mesh(mesh)
+		m_mesh(mesh),
+		m_validCache(false)
 	{}
 
 	MeshInstance::MeshInstance(const Mesh& mesh, RML::Transform transform) :
 		m_mesh(mesh),
-		transform(transform)
+		transform(transform),
+		m_validCache(false)
 	{}
 
 	unsigned int MeshInstance::vertexCount() const
@@ -25,6 +27,12 @@ namespace ROGLL
 
 	std::vector<float> MeshInstance::vertexData() const
 	{
+		if (m_lastTransform != transform) m_validCache = false;
+
+		m_lastTransform = transform;
+
+		if (m_validCache) return m_cachedVertexData;
+
 		std::vector<float> result = m_mesh.vertexData();
 
 		const VertexAttributes& attributes = m_mesh.attributes();
@@ -76,6 +84,9 @@ namespace ROGLL
 				result[offset + 2] = positionResult(0, 2);
 			}
 		}
+
+		m_validCache = true;
+		m_cachedVertexData = result;
 
 		return result;
 	}

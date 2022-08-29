@@ -15,6 +15,9 @@ namespace ROGLL
 		std::vector<float> vertexData() const;
 	private:
 		const Mesh& m_mesh;
+		mutable bool m_validCache;
+		mutable std::vector<float> m_cachedVertexData;
+		mutable RML::Transform m_lastTransform;
 	public:
 		RML::Transform transform;
 	};

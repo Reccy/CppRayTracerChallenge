@@ -70,7 +70,7 @@ namespace ROGLL
 		}
 	}
 
-	void Material::Bind() const
+	void Material::BindAndApplyUniforms() const
 	{
 		m_shader.Bind();
 

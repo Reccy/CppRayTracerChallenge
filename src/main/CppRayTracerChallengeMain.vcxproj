@@ -207,14 +207,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
-      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</PreprocessToFile>
-      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='ReleaseWithAsserts|Win32'">false</PreprocessToFile>
-      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</PreprocessToFile>
-      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</PreprocessToFile>
-      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='ReleaseWithAsserts|x64'">false</PreprocessToFile>
-    </ClCompile>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="rogll\camera.cpp" />
     <ClCompile Include="rogll\index_buffer.cpp" />
     <ClCompile Include="rogll\material.cpp" />

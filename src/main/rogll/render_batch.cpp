@@ -34,8 +34,8 @@ namespace ROGLL
 		
 		for (const MeshInstance* const instance : m_meshInstances)
 		{
-			auto verts = instance->vertexData();
-			auto indices = instance->indexData();
+			const auto& verts = instance->vertexData();
+			const auto& indices = instance->indexData();
 
 			for (const unsigned int index : indices)
 			{
@@ -58,11 +58,11 @@ namespace ROGLL
 		vbo.Bind();
 		ibo.Bind();
 
-		m_material->Bind();
 		m_material->Set4x4("uVP", cam.GetProjectionMatrix() * cam.GetViewMatrix());
 		m_material->Set3("lightPos", lightPosition);
 		m_material->Set3("lightColor", RML::Tuple3<float>(1.0, 1.0, 1.0));
 		m_material->Set3("viewPos", RML::Tuple3<float>(cam.transform.position.x(), cam.transform.position.y(), cam.transform.position.z()));
+		m_material->BindAndApplyUniforms();
 
 		glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, (void*)0);
 	}
