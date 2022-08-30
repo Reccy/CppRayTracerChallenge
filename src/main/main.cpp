@@ -206,28 +206,169 @@ double _IntersectRayWithEditorObject(Math::Ray ray, const EditorObject& editorOb
 	return hit.value().t();
 }
 
-static EditorObject* _SelectObjectUnderCursor(ROGLL::Camera* camera)
+struct Collider
 {
+	RML::Transform localTransform;
+	Math::IShape* sharedShapePtr;
+};
+
+enum class Axis
+{
+	NONE,
+	X,
+	Y,
+	Z
+};
+
+std::string _GetAxisString(Axis axis)
+{
+	if (axis == Axis::NONE) return "NONE";
+	if (axis == Axis::X) return "X";
+	if (axis == Axis::Y) return "Y";
+	if (axis == Axis::Z) return "Z";
+
+	assert(false); // This should never hit
+
+	return "NONE";
+}
+
+class Gizmo
+{
+public:
+	RML::Transform transform;
+public:
+	Gizmo(
+		const ROGLL::Mesh& mesh,
+		Collider colliderA,
+		Collider colliderB,
+		Collider colliderC
+	)
+		:
+		m_meshInstance(new ROGLL::MeshInstance(mesh)),
+		m_colliderX(colliderA),
+		m_colliderY(colliderB),
+		m_colliderZ(colliderC)
+	{}
+
+	~Gizmo()
+	{
+		delete m_meshInstance;
+	}
+
+	Axis GetAxisForIntersectedRay(const Math::Ray& ray) const
+	{
+		Axis result = Axis::NONE;
+
+		double closestHit = RML::INF;
+
+		m_colliderX.sharedShapePtr->transform(transform.matrix() * m_colliderX.localTransform.matrix());
+		auto xIntersect = m_colliderX.sharedShapePtr->intersect(ray);
+		if (xIntersect.hit())
+		{
+			RML::Vector hitPoint = ray.origin() + ray.direction() * xIntersect.hit().value().t();
+			double hitDistance = RML::Vector(hitPoint - ray.origin()).magnitude();
+			if (hitDistance < closestHit)
+			{
+				closestHit = hitDistance;
+				result = Axis::X;
+			}
+		}
+
+		m_colliderY.sharedShapePtr->transform(transform.matrix() * m_colliderY.localTransform.matrix());
+		auto yIntersect = m_colliderY.sharedShapePtr->intersect(ray);
+		if (m_colliderY.sharedShapePtr->intersect(ray).hit())
+		{
+			RML::Vector hitPoint = ray.origin() + ray.direction() * yIntersect.hit().value().t();
+			double hitDistance = RML::Vector(hitPoint - ray.origin()).magnitude();
+			if (hitDistance < closestHit)
+			{
+				closestHit = hitDistance;
+				result = Axis::Y;
+			}
+		}
+
+		m_colliderZ.sharedShapePtr->transform(transform.matrix() * m_colliderZ.localTransform.matrix());
+		auto zIntersect = m_colliderZ.sharedShapePtr->intersect(ray);
+		if (m_colliderZ.sharedShapePtr->intersect(ray).hit())
+		{
+			RML::Vector hitPoint = ray.origin() + ray.direction() * zIntersect.hit().value().t();
+			double hitDistance = RML::Vector(hitPoint - ray.origin()).magnitude();
+			if (hitDistance < closestHit)
+			{
+				closestHit = hitDistance;
+				result = Axis::Z;
+			}
+		}
+
+		return result;
+	}
+
+	const Collider GetColliderX() const { return m_colliderX; }
+	const Collider GetColliderY() const { return m_colliderY; }
+	const Collider GetColliderZ() const { return m_colliderZ; }
+
+	Gizmo(const Gizmo& other) = delete;
+private:
+	ROGLL::MeshInstance* m_meshInstance;
+	Collider m_colliderX;
+	Collider m_colliderY;
+	Collider m_colliderZ;
+};
+
+static Gizmo* PositionGizmo;
+static Gizmo* RotationGizmo;
+static Gizmo* ScaleGizmo;
+
+enum class ObjectPickerType
+{
+	NONE,
+	EDITOR_OBJECT,
+	GIZMO_HANDLE
+};
+
+struct ObjectPickerHit
+{
+	ObjectPickerType type = ObjectPickerType::NONE;
+	Axis axis = Axis::NONE;
+	void* ptr = nullptr;
+};
+
+static ObjectPickerHit _SelectObjectUnderCursor(ROGLL::Camera* camera)
+{
+	ObjectPickerHit result;
+
 	if (MousePosX < 0 || MousePosX > WINDOW_WIDTH || MousePosY < 0 || MousePosY > WINDOW_HEIGHT)
-		return nullptr;
+	{
+		return result;
+	}
 
 	Math::Ray ray = camera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, Fov);
 
-	double closest = RML::INF;
-	EditorObject* closestPtr = nullptr;
+	Axis hitAxis = PositionGizmo->GetAxisForIntersectedRay(ray);
 
-	for (auto& editorObject : EditorObjects)
+	if (hitAxis != Axis::NONE)
+	{
+		result.type = ObjectPickerType::GIZMO_HANDLE;
+		result.axis = hitAxis;
+		result.ptr = PositionGizmo;
+		return result;
+	};
+
+	result.type = ObjectPickerType::EDITOR_OBJECT;
+	double closestEditorObject = RML::INF;
+
+	for (const auto& editorObject : EditorObjects)
 	{
 		double currentClosest = _IntersectRayWithEditorObject(ray, *editorObject);
 
-		if (currentClosest < closest)
+		if (currentClosest < closestEditorObject)
 		{
-			closest = currentClosest;
-			closestPtr = editorObject;
+			closestEditorObject = currentClosest;
+			result.ptr = editorObject;
 		}
 	}
 
-	return closestPtr;
+	return result;
 }
 
 static std::atomic<bool> RenderThreadInProgress(false);
@@ -804,6 +945,25 @@ int main(void)
 	ROGLL::MeshInstance rotationHandleMeshInstance(gizmoRotationMesh);
 	ROGLL::MeshInstance scaleHandleMeshInstance(gizmoScaleMesh);
 
+	double offsetFromOrigin = 0.8;
+	double width = 0.12;
+	double length = 0.8;
+
+	PositionGizmo = new Gizmo(gizmoPositionMesh,
+		{ RML::Transform().translate(offsetFromOrigin, 0, 0).scale(length, width, width), &SharedCube},
+		{ RML::Transform().translate(0, offsetFromOrigin, 0).scale(width, length, width), &SharedCube},
+		{ RML::Transform().translate(0, 0, offsetFromOrigin).scale(width, width, length), &SharedCube});
+	
+	RotationGizmo = new Gizmo(gizmoRotationMesh,
+		{ RML::Transform(), &SharedCube},
+		{ RML::Transform(), &SharedCube },
+		{ RML::Transform(), &SharedCube });
+
+	ScaleGizmo = new Gizmo(gizmoScaleMesh,
+		{ RML::Transform().translate(offsetFromOrigin, 0, 0).scale(length, width, width), &SharedCube},
+		{ RML::Transform().translate(0, offsetFromOrigin, 0).scale(width, length, width), &SharedCube},
+		{ RML::Transform().translate(0, 0, offsetFromOrigin).scale(width, width, length), &SharedCube});
+
 	RML::Tuple3<float> xy(-0.5, -0.5, 0);
 	RML::Tuple3<float> Xy(0.5, -0.5, 0);
 	RML::Tuple3<float> XY(0.5, 0.5, 0);
@@ -869,6 +1029,15 @@ int main(void)
 	ROGLL::RenderBatch handleBatch(&gizmoLayout, &gizmoMaterial);
 
 	ROGLL::RenderBatch planeBatch(&layout, &planeMaterial);
+
+	ROGLL::RenderBatch debugBatch(&layout, &planeMaterial);
+	ROGLL::MeshInstance debugCubeX(cubeMesh);
+	ROGLL::MeshInstance debugCubeY(cubeMesh);
+	ROGLL::MeshInstance debugCubeZ(cubeMesh);
+
+	debugBatch.AddInstance(&debugCubeX);
+	debugBatch.AddInstance(&debugCubeY);
+	debugBatch.AddInstance(&debugCubeZ);
 
 	ROGLL::Camera cam(WINDOW_WIDTH, WINDOW_HEIGHT, 60);
 	cam.transform.translate(0, 0, -10); // Initial cam position
@@ -985,7 +1154,20 @@ int main(void)
 
 		if (MouseLeftButtonDown)
 		{
-			selectedObject = _SelectObjectUnderCursor(MainCamera);
+			ObjectPickerHit hitResult = _SelectObjectUnderCursor(MainCamera);
+			
+			if (hitResult.type == ObjectPickerType::EDITOR_OBJECT)
+			{
+				selectedObject = static_cast<EditorObject*>(hitResult.ptr);
+			}
+			else if (hitResult.type == ObjectPickerType::GIZMO_HANDLE)
+			{
+				std::cout << "Selected axis " << _GetAxisString(hitResult.axis) << std::endl;
+			}
+			else
+			{
+				selectedObject = nullptr;
+			}
 		}
 
 		if (UnselectObject)
@@ -1012,7 +1194,7 @@ int main(void)
 		glClearColor(ClearColor->x(), ClearColor->y(), ClearColor->z(), ClearColor->w());
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-		ROGLL::RenderBatch* outlineBatch = nullptr;
+		ROGLL::RenderBatch* outlinedObjectBatch = nullptr;
 
 		// Update the mesh instance transforms and set up render batches (since they are different to the editor object transform)
 		for (const auto& objPtr : EditorObjects)
@@ -1031,14 +1213,14 @@ int main(void)
 			{
 				if (obj.objectType == EditorObjectType::CUBE)
 				{
-					outlineBatch = new ROGLL::RenderBatch(&layout, &cubeMaterial);
+					outlinedObjectBatch = new ROGLL::RenderBatch(&layout, &cubeMaterial);
 				}
 				else if (obj.objectType == EditorObjectType::PLANE)
 				{
-					outlineBatch = new ROGLL::RenderBatch(&layout, &planeMaterial);
+					outlinedObjectBatch = new ROGLL::RenderBatch(&layout, &planeMaterial);
 				}
 
-				outlineBatch->AddInstance(obj.meshInstance);
+				outlinedObjectBatch->AddInstance(obj.meshInstance);
 				outlineBatchUnlit.AddInstance(obj.meshInstance);
 			}
 			else
@@ -1059,21 +1241,57 @@ int main(void)
 
 		if (selectedObject != nullptr)
 		{
+
 			currentHandleMeshInstance->transform.position = selectedObject->transform.position;
 			currentHandleMeshInstance->transform.rotation = selectedObject->transform.rotation;
+			
 			float dist = RML::Vector(selectedObject->transform.position - MainCamera->transform.position).magnitude();
 			float scaling = dist * 0.2f;
-			currentHandleMeshInstance->transform.scaling = RML::Vector(scaling, scaling, scaling);
+			RML::Vector scalingVector(scaling, scaling, scaling);
+			
+			currentHandleMeshInstance->transform.scaling = scalingVector;
+			PositionGizmo->transform = selectedObject->transform;
+			PositionGizmo->transform.scaling = scalingVector;
+			
 			handleBatch.Render(cam, lightPosition);
+
+			// DEBUG BATCH RENDERING BEGIN
+			/*
+			RML::Transform originalXTransform = debugCubeX.transform;
+			RML::Transform originalYTransform = debugCubeY.transform;
+			RML::Transform originalZTransform = debugCubeZ.transform;
+
+			debugCubeX.transform.position = PositionGizmo->transform.position + PositionGizmo->GetColliderX().localTransform.position * PositionGizmo->transform.scaling.x();
+			debugCubeX.transform.scaling = PositionGizmo->transform.scaling * PositionGizmo->GetColliderX().localTransform.scaling * 2;
+			debugCubeX.transform.rotate_around(PositionGizmo->transform.position, RML::Vector::up(), selectedObject->eulerRotation.y());
+			debugCubeX.transform.rotate_around(PositionGizmo->transform.position, RML::Vector::forward(), selectedObject->eulerRotation.z());
+
+			debugCubeY.transform.position = PositionGizmo->transform.position + PositionGizmo->GetColliderY().localTransform.position * PositionGizmo->transform.scaling.y();
+			debugCubeY.transform.scaling = PositionGizmo->transform.scaling * PositionGizmo->GetColliderY().localTransform.scaling * 2;
+			debugCubeY.transform.rotate_around(PositionGizmo->transform.position, RML::Vector::right(), selectedObject->eulerRotation.x());
+			debugCubeY.transform.rotate_around(PositionGizmo->transform.position, RML::Vector::forward(), selectedObject->eulerRotation.z());
+
+			debugCubeZ.transform.position = PositionGizmo->transform.position + PositionGizmo->GetColliderZ().localTransform.position * PositionGizmo->transform.scaling.z();
+			debugCubeZ.transform.scaling = PositionGizmo->transform.scaling * PositionGizmo->GetColliderZ().localTransform.scaling * 2;
+			debugCubeZ.transform.rotate_around(PositionGizmo->transform.position, RML::Vector::up(), selectedObject->eulerRotation.y());
+			debugCubeZ.transform.rotate_around(PositionGizmo->transform.position, RML::Vector::right(), selectedObject->eulerRotation.z());
+
+			debugBatch.Render(cam, lightPosition);
+			
+			debugCubeX.transform = originalXTransform;
+			debugCubeY.transform = originalYTransform;
+			debugCubeZ.transform = originalZTransform;
+			*/
+			// DEBUG BATCH RENDERING END
 		}
 
-		if (outlineBatch != nullptr)
+		if (outlinedObjectBatch != nullptr)
 		{
 			glEnable(GL_STENCIL_TEST);
 			glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 			glStencilFunc(GL_ALWAYS, 1, 0xFF);
 			glStencilMask(0xFF);
-			outlineBatch->Render(cam, lightPosition);
+			outlinedObjectBatch->Render(cam, lightPosition);
 
 			glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
 			glStencilMask(0x00);
@@ -1092,7 +1310,7 @@ int main(void)
 			glEnable(GL_DEPTH_TEST);
 			glDisable(GL_STENCIL_TEST);
 
-			delete outlineBatch;
+			delete outlinedObjectBatch;
 		}
 
 		cubeBatch.Clear();
@@ -1183,12 +1401,20 @@ int main(void)
 			bool deleteObject = false;
 			bool duplicateObject = false;
 
+			bool renderThreadInProgress = RenderThreadInProgress.load();
+
+			if (renderThreadInProgress)
+			{
+				ImGui::Text("Render is in progress.\nCannot update properties.");
+			}
+
 			if (selectedObject == nullptr)
 			{
 				ImGui::Text("No object selected");
 			}
 			else
 			{
+				ImGui::BeginDisabled(renderThreadInProgress);
 				ImGui::Text(("ID: " + std::to_string(selectedObject->id)).c_str()); // Inefficient string but eh it's a prototype
 
 				if (selectedObject->objectType != EditorObjectType::LIGHT)
@@ -1250,6 +1476,8 @@ int main(void)
 
 					ImGui::EndTable();
 				}
+
+				ImGui::EndDisabled();
 			}
 
 			ImGui::End();
@@ -1333,14 +1561,14 @@ int main(void)
 
 				ImGui::Begin("Render Settings", nullptr, windowFlags);
 
-				bool renderThreadComplete = RenderThreadInProgress.load();
+				bool renderThreadInProgress = RenderThreadInProgress.load();
 
-				if (renderThreadComplete)
+				if (renderThreadInProgress)
 				{
-					ImGui::Text("Render is in progress. Cannot update settings.");
+					ImGui::Text("Render is in progress.\nCannot update settings.");
 				}
 
-				ImGui::BeginDisabled(renderThreadComplete);
+				ImGui::BeginDisabled(renderThreadInProgress);
 				int renderDimensions[2] { RENDER_WIDTH, RENDER_HEIGHT };
 				ImGui::InputInt2("Render Dimensions", renderDimensions);
 				RENDER_WIDTH = renderDimensions[0];
@@ -1373,15 +1601,6 @@ int main(void)
 				camPosSS << " | ";
 				camPosSS << "Mouse Pos: " << MousePosX << ", " << MousePosY;
 				camPosSS << " | ";
-
-				if (selectedObject == nullptr)
-				{
-					camPosSS << "No Object Selected";
-				}
-				else
-				{
-					camPosSS << "Selected Object: " << selectedObject->name;
-				}
 
 				ImGui::MenuItem(camPosSS.str().c_str(), nullptr, nullptr, false);
 
@@ -1424,6 +1643,10 @@ int main(void)
 		window.SwapBuffers();
 		window.PollEvents();
 	}
+
+	delete PositionGizmo;
+	delete RotationGizmo;
+	delete ScaleGizmo;
 
 	return 0;
 }
