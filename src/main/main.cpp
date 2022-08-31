@@ -1010,11 +1010,16 @@ int main(void)
 	ROGLL::MeshInstance gizmoUiInstance(uiTextureMesh);
 
 	ROGLL::Shader defaultShader("res/shaders/Default.shader");
-	ROGLL::Shader gizmoShader("res/shaders/VertexColor.shader");
+	ROGLL::Shader gizmoShader("res/shaders/Gizmo.shader");
 	ROGLL::Shader outlineShader("res/shaders/OutlineShader.shader");
 
 	ROGLL::Material gizmoMaterial(gizmoShader);
 	gizmoMaterial.Set4("objectColor", White);
+	gizmoMaterial.Set3("handleActive", RML::Tuple3<float>( 1, 1, 1 ));
+
+	ROGLL::Material handleMaterial(gizmoShader);
+	handleMaterial.Set4("objectColor", White);
+	handleMaterial.Set3("handleActive", RML::Tuple3<float>( 0, 0, 0 ));
 
 	ROGLL::Material cubeMaterial(defaultShader);
 	cubeMaterial.Set4("objectColor", Blue);
@@ -1034,7 +1039,7 @@ int main(void)
 
 	ROGLL::MeshInstance* currentHandleMeshInstance = &positionHandleMeshInstance;
 
-	ROGLL::RenderBatch handleBatch(&gizmoLayout, &gizmoMaterial);
+	ROGLL::RenderBatch handleBatch(&gizmoLayout, &handleMaterial);
 
 	ROGLL::RenderBatch planeBatch(&layout, &planeMaterial);
 
@@ -1161,10 +1166,36 @@ int main(void)
 			_StartFullRender();
 		}
 
+		ObjectPickerHit hitResult = _SelectObjectUnderCursor(MainCamera, selectedObject != nullptr);
+
+		if (hitResult.type == ObjectPickerType::GIZMO_HANDLE)
+		{
+			if (hitResult.axis == Axis::X)
+			{
+				handleMaterial.Set3("handleActive", RML::Tuple3<float>(1, 0, 0));
+			}
+			else if (hitResult.axis == Axis::Y)
+			{
+				handleMaterial.Set3("handleActive", RML::Tuple3<float>(0, 1, 0));
+			}
+			else if (hitResult.axis == Axis::Z)
+			{
+				handleMaterial.Set3("handleActive", RML::Tuple3<float>(0, 0, 1));
+			}
+#ifndef NDEBUG
+			else
+			{
+				assert(false); // this should not be hit
+			}
+#endif
+		}
+		else
+		{
+			handleMaterial.Set3("handleActive", RML::Tuple3<float>(0, 0, 0));
+		}
+
 		if (MouseLeftButtonDown)
 		{
-			ObjectPickerHit hitResult = _SelectObjectUnderCursor(MainCamera, selectedObject != nullptr);
-			
 			if (hitResult.type == ObjectPickerType::EDITOR_OBJECT)
 			{
 				selectedObject = static_cast<EditorObject*>(hitResult.ptr);
