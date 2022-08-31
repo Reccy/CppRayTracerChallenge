@@ -94,14 +94,14 @@ static struct PlyFaceStruct {
 	unsigned int faceParseIdx = 0;
 };
 
-static enum class EditorHandleType
+static enum class GizmoType
 {
 	POSITION,
 	ROTATION,
 	SCALE
 };
 
-static EditorHandleType CurrentHandleType = EditorHandleType::POSITION;
+static GizmoType CurrentGizmoType = GizmoType::POSITION;
 
 enum class EditorObjectType
 {
@@ -318,6 +318,7 @@ private:
 static Gizmo* PositionGizmo;
 static Gizmo* RotationGizmo;
 static Gizmo* ScaleGizmo;
+static Gizmo** CurrentGizmoPtr = &PositionGizmo;
 
 enum class ObjectPickerType
 {
@@ -333,7 +334,7 @@ struct ObjectPickerHit
 	void* ptr = nullptr;
 };
 
-static ObjectPickerHit _SelectObjectUnderCursor(ROGLL::Camera* camera)
+static ObjectPickerHit _SelectObjectUnderCursor(ROGLL::Camera* camera, bool anObjectIsCurrentlySelected)
 {
 	ObjectPickerHit result;
 
@@ -344,15 +345,19 @@ static ObjectPickerHit _SelectObjectUnderCursor(ROGLL::Camera* camera)
 
 	Math::Ray ray = camera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, Fov);
 
-	Axis hitAxis = PositionGizmo->GetAxisForIntersectedRay(ray);
-
-	if (hitAxis != Axis::NONE)
+	if (anObjectIsCurrentlySelected)
 	{
-		result.type = ObjectPickerType::GIZMO_HANDLE;
-		result.axis = hitAxis;
-		result.ptr = PositionGizmo;
-		return result;
-	};
+		auto& CurrentGizmo = *CurrentGizmoPtr;
+		Axis hitAxis = CurrentGizmo->GetAxisForIntersectedRay(ray);
+
+		if (hitAxis != Axis::NONE)
+		{
+			result.type = ObjectPickerType::GIZMO_HANDLE;
+			result.axis = hitAxis;
+			result.ptr = CurrentGizmo;
+			return result;
+		};
+	}
 
 	result.type = ObjectPickerType::EDITOR_OBJECT;
 	double closestEditorObject = RML::INF;
@@ -714,15 +719,18 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 
 	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
 	{
-		CurrentHandleType = EditorHandleType::POSITION;
+		CurrentGizmoType = GizmoType::POSITION;
+		CurrentGizmoPtr = &PositionGizmo;
 	}
 	else if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
 	{
-		CurrentHandleType = EditorHandleType::ROTATION;
+		CurrentGizmoType = GizmoType::ROTATION;
+		CurrentGizmoPtr = &RotationGizmo;
 	}
 	else if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
 	{
-		CurrentHandleType = EditorHandleType::SCALE;
+		CurrentGizmoType = GizmoType::SCALE;
+		CurrentGizmoPtr = &ScaleGizmo;
 	}
 
 	// IMGUI hack: We need to unfoces any fields if the user interacts with the 3D scene.
@@ -945,9 +953,9 @@ int main(void)
 	ROGLL::MeshInstance rotationHandleMeshInstance(gizmoRotationMesh);
 	ROGLL::MeshInstance scaleHandleMeshInstance(gizmoScaleMesh);
 
-	double offsetFromOrigin = 0.8;
-	double width = 0.12;
-	double length = 0.8;
+	double offsetFromOrigin = 0.73;
+	double width = 0.1;
+	double length = 0.73;
 
 	PositionGizmo = new Gizmo(gizmoPositionMesh,
 		{ RML::Transform().translate(offsetFromOrigin, 0, 0).scale(length, width, width), &SharedCube},
@@ -1124,6 +1132,7 @@ int main(void)
 	bool guiShowRenderSettings = false;
 	bool guiShowRenderPreview = false;
 	bool guiShowDevDebugConsole = false;
+	bool guiPaulMode = false;
 
 	EditorObject* selectedObject = nullptr;
 
@@ -1132,15 +1141,15 @@ int main(void)
 		_ProcessInput(window);
 		_UpdateCamera(cam);
 
-		if (CurrentHandleType == EditorHandleType::POSITION)
+		if (CurrentGizmoType == GizmoType::POSITION)
 		{
 			currentHandleMeshInstance = &positionHandleMeshInstance;
 		}
-		else if (CurrentHandleType == EditorHandleType::ROTATION)
+		else if (CurrentGizmoType == GizmoType::ROTATION)
 		{
 			currentHandleMeshInstance = &rotationHandleMeshInstance;
 		}
-		else if (CurrentHandleType == EditorHandleType::SCALE)
+		else if (CurrentGizmoType == GizmoType::SCALE)
 		{
 			currentHandleMeshInstance = &scaleHandleMeshInstance;
 		}
@@ -1154,7 +1163,7 @@ int main(void)
 
 		if (MouseLeftButtonDown)
 		{
-			ObjectPickerHit hitResult = _SelectObjectUnderCursor(MainCamera);
+			ObjectPickerHit hitResult = _SelectObjectUnderCursor(MainCamera, selectedObject != nullptr);
 			
 			if (hitResult.type == ObjectPickerType::EDITOR_OBJECT)
 			{
@@ -1239,52 +1248,6 @@ int main(void)
 		cubeBatch.Render(cam, lightPosition);
 		planeBatch.Render(cam, lightPosition);
 
-		if (selectedObject != nullptr)
-		{
-
-			currentHandleMeshInstance->transform.position = selectedObject->transform.position;
-			currentHandleMeshInstance->transform.rotation = selectedObject->transform.rotation;
-			
-			float dist = RML::Vector(selectedObject->transform.position - MainCamera->transform.position).magnitude();
-			float scaling = dist * 0.2f;
-			RML::Vector scalingVector(scaling, scaling, scaling);
-			
-			currentHandleMeshInstance->transform.scaling = scalingVector;
-			PositionGizmo->transform = selectedObject->transform;
-			PositionGizmo->transform.scaling = scalingVector;
-			
-			handleBatch.Render(cam, lightPosition);
-
-			// DEBUG BATCH RENDERING BEGIN
-			/*
-			RML::Transform originalXTransform = debugCubeX.transform;
-			RML::Transform originalYTransform = debugCubeY.transform;
-			RML::Transform originalZTransform = debugCubeZ.transform;
-
-			debugCubeX.transform.position = PositionGizmo->transform.position + PositionGizmo->GetColliderX().localTransform.position * PositionGizmo->transform.scaling.x();
-			debugCubeX.transform.scaling = PositionGizmo->transform.scaling * PositionGizmo->GetColliderX().localTransform.scaling * 2;
-			debugCubeX.transform.rotate_around(PositionGizmo->transform.position, RML::Vector::up(), selectedObject->eulerRotation.y());
-			debugCubeX.transform.rotate_around(PositionGizmo->transform.position, RML::Vector::forward(), selectedObject->eulerRotation.z());
-
-			debugCubeY.transform.position = PositionGizmo->transform.position + PositionGizmo->GetColliderY().localTransform.position * PositionGizmo->transform.scaling.y();
-			debugCubeY.transform.scaling = PositionGizmo->transform.scaling * PositionGizmo->GetColliderY().localTransform.scaling * 2;
-			debugCubeY.transform.rotate_around(PositionGizmo->transform.position, RML::Vector::right(), selectedObject->eulerRotation.x());
-			debugCubeY.transform.rotate_around(PositionGizmo->transform.position, RML::Vector::forward(), selectedObject->eulerRotation.z());
-
-			debugCubeZ.transform.position = PositionGizmo->transform.position + PositionGizmo->GetColliderZ().localTransform.position * PositionGizmo->transform.scaling.z();
-			debugCubeZ.transform.scaling = PositionGizmo->transform.scaling * PositionGizmo->GetColliderZ().localTransform.scaling * 2;
-			debugCubeZ.transform.rotate_around(PositionGizmo->transform.position, RML::Vector::up(), selectedObject->eulerRotation.y());
-			debugCubeZ.transform.rotate_around(PositionGizmo->transform.position, RML::Vector::right(), selectedObject->eulerRotation.z());
-
-			debugBatch.Render(cam, lightPosition);
-			
-			debugCubeX.transform = originalXTransform;
-			debugCubeY.transform = originalYTransform;
-			debugCubeZ.transform = originalZTransform;
-			*/
-			// DEBUG BATCH RENDERING END
-		}
-
 		if (outlinedObjectBatch != nullptr)
 		{
 			glEnable(GL_STENCIL_TEST);
@@ -1313,10 +1276,61 @@ int main(void)
 			delete outlinedObjectBatch;
 		}
 
+		// Finished World 3D Render
+		glClear(GL_DEPTH_BUFFER_BIT);
+
+		auto& CurrentGizmo = *CurrentGizmoPtr;
+
+		if (selectedObject != nullptr)
+		{
+			currentHandleMeshInstance->transform.position = selectedObject->transform.position;
+			currentHandleMeshInstance->transform.rotation = selectedObject->transform.rotation;
+			
+			float dist = RML::Vector(selectedObject->transform.position - MainCamera->transform.position).magnitude();
+			float scaling = dist * 0.2f;
+			RML::Vector scalingVector(scaling, scaling, scaling);
+			
+			currentHandleMeshInstance->transform.scaling = scalingVector;
+			CurrentGizmo->transform = selectedObject->transform;
+			CurrentGizmo->transform.scaling = scalingVector;
+			
+			handleBatch.Render(cam, lightPosition);
+		}
+
+		// DEBUG BATCH RENDERING BEGIN
+		if (false && selectedObject != nullptr)
+		{
+			RML::Transform originalXTransform = debugCubeX.transform;
+			RML::Transform originalYTransform = debugCubeY.transform;
+			RML::Transform originalZTransform = debugCubeZ.transform;
+
+			debugCubeX.transform.position = CurrentGizmo->transform.position + CurrentGizmo->GetColliderX().localTransform.position * CurrentGizmo->transform.scaling.x();
+			debugCubeX.transform.scaling = CurrentGizmo->transform.scaling * CurrentGizmo->GetColliderX().localTransform.scaling * 2;
+			debugCubeX.transform.rotate_around(CurrentGizmo->transform.position, RML::Vector::up(), selectedObject->eulerRotation.y());
+			debugCubeX.transform.rotate_around(CurrentGizmo->transform.position, RML::Vector::forward(), selectedObject->eulerRotation.z());
+
+			debugCubeY.transform.position = CurrentGizmo->transform.position + CurrentGizmo->GetColliderY().localTransform.position * CurrentGizmo->transform.scaling.y();
+			debugCubeY.transform.scaling = CurrentGizmo->transform.scaling * CurrentGizmo->GetColliderY().localTransform.scaling * 2;
+			debugCubeY.transform.rotate_around(CurrentGizmo->transform.position, RML::Vector::right(), selectedObject->eulerRotation.x());
+			debugCubeY.transform.rotate_around(CurrentGizmo->transform.position, RML::Vector::forward(), selectedObject->eulerRotation.z());
+
+			debugCubeZ.transform.position = CurrentGizmo->transform.position + CurrentGizmo->GetColliderZ().localTransform.position * CurrentGizmo->transform.scaling.z();
+			debugCubeZ.transform.scaling = CurrentGizmo->transform.scaling * CurrentGizmo->GetColliderZ().localTransform.scaling * 2;
+			debugCubeZ.transform.rotate_around(CurrentGizmo->transform.position, RML::Vector::up(), selectedObject->eulerRotation.y());
+			debugCubeZ.transform.rotate_around(CurrentGizmo->transform.position, RML::Vector::right(), selectedObject->eulerRotation.z());
+
+			debugBatch.Render(cam, lightPosition);
+
+			debugCubeX.transform = originalXTransform;
+			debugCubeY.transform = originalYTransform;
+			debugCubeZ.transform = originalZTransform;
+		}
+		// DEBUG BATCH RENDERING END
+
 		cubeBatch.Clear();
 		planeBatch.Clear();
-		handleBatch.Clear();
 		outlineBatchUnlit.Clear();
+		handleBatch.Clear();
 
 		//IMGUI TEST BEGIN
 
@@ -1371,6 +1385,7 @@ int main(void)
 				{
 					ImGui::MenuItem("Dev Debug Console", nullptr, &guiShowDevDebugConsole);
 					ImGui::MenuItem("Dear ImGui Demo", nullptr, &guiShowDearImGuiDemo);
+					ImGui::MenuItem("Enable Paul Mode", nullptr, &guiPaulMode);
 
 					ImGui::EndMenu();
 				}
@@ -1595,7 +1610,16 @@ int main(void)
 			if (_DearImGui_BeginStatusBar())
 			{
 				std::stringstream camPosSS;
-				camPosSS << "Camera Position: " << cam.transform.position.x() << "x " << cam.transform.position.y() << "y " << cam.transform.position.z() << "z";
+
+				if (guiPaulMode)
+				{
+					camPosSS << "Camera Position: X: " << cam.transform.position.x() << " Y: " << cam.transform.position.y() << " Z: " << cam.transform.position.z();
+				}
+				else
+				{
+					camPosSS << "Camera Position: " << cam.transform.position.x() << "x " << cam.transform.position.y() << "y " << cam.transform.position.z() << "z";
+				}
+
 				camPosSS << " | ";
 				camPosSS << "FOV: " << Fov << " degrees";
 				camPosSS << " | ";
