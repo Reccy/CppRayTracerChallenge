@@ -31,6 +31,7 @@
 #include <math/plane.h>
 #include <math/cube.h>
 #include <math/plane.h>
+#include <math/torus.h>
 #include <helpers/material_helper.h>
 
 // === Learning Resources ===
@@ -158,12 +159,15 @@ static std::stringstream DebugStringStream;
 
 static Math::Cube SharedCube;
 static Math::Plane SharedPlane;
+static Math::Torus SharedTorus(0.1, 1.25);
 
 static std::string _GetTypeName(EditorObjectType objectType)
 {
 	if (objectType == EditorObjectType::CUBE) return "Cube";
 	if (objectType == EditorObjectType::LIGHT) return "Light";
 	if (objectType == EditorObjectType::PLANE) return "Plane";
+
+	assert(false); // Should never return unknown
 
 	return "Unknown";
 }
@@ -963,9 +967,9 @@ int main(void)
 		{ RML::Transform().translate(0, 0, offsetFromOrigin).scale(width, width, length), &SharedCube});
 	
 	RotationGizmo = new Gizmo(gizmoRotationMesh,
-		{ RML::Transform(), &SharedCube},
-		{ RML::Transform(), &SharedCube },
-		{ RML::Transform(), &SharedCube });
+		{ RML::Transform().rotate(90, 90, 0), &SharedTorus},
+		{ RML::Transform(), &SharedTorus},
+		{ RML::Transform().rotate(90, 0, 0), &SharedTorus});
 
 	ScaleGizmo = new Gizmo(gizmoScaleMesh,
 		{ RML::Transform().translate(offsetFromOrigin, 0, 0).scale(length, width, width), &SharedCube},
@@ -1182,12 +1186,10 @@ int main(void)
 			{
 				handleMaterial.Set3("handleActive", RML::Tuple3<float>(0, 0, 1));
 			}
-#ifndef NDEBUG
 			else
 			{
 				assert(false); // this should not be hit
 			}
-#endif
 		}
 		else
 		{

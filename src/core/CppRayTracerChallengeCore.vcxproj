@@ -209,6 +209,7 @@
     <ClCompile Include="math\shape.cpp" />
     <ClCompile Include="math\smooth_triangle.cpp" />
     <ClCompile Include="math\sphere.cpp" />
+    <ClCompile Include="math\torus.cpp" />
     <ClCompile Include="math\transform.cpp" />
     <ClCompile Include="math\triangle.cpp" />
     <ClCompile Include="renderer\camera.cpp" />
@@ -260,6 +261,7 @@
     <ClInclude Include="math\shape.h" />
     <ClInclude Include="math\smooth_triangle.h" />
     <ClInclude Include="math\sphere.h" />
+    <ClInclude Include="math\torus.h" />
     <ClInclude Include="math\transform.h" />
     <ClInclude Include="math\triangle.h" />
     <ClInclude Include="renderer\camera.h" />
