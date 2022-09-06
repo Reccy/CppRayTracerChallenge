@@ -179,7 +179,7 @@ static RML::Vector _ProjectVector(RML::Vector p, RML::Vector dir)
 	RML::Vector ap = p - a;
 	RML::Vector ab = b - a;
 
-	return ab * (RML::Vector::dot(ap, ab) / RML::Vector::dot(ab, ab));
+	return a + ab * (RML::Vector::dot(ap, ab) / RML::Vector::dot(ab, ab));
 }
 
 static std::string _GetTypeName(EditorObjectType objectType)
@@ -245,8 +245,10 @@ enum class Axis
 	Z
 };
 
-static Math::Plane _GetPlane(Axis axis, RML::Vector observerViewDirToPlane)
+static RML::Transform _GetPlaneTransform(Axis axis, RML::Vector observerViewDirToPlane)
 {
+	RML::Transform t;
+
 	Math::Plane xzPlane;
 
 	Math::Plane xyPlane;
@@ -259,58 +261,45 @@ static Math::Plane _GetPlane(Axis axis, RML::Vector observerViewDirToPlane)
 	double xzDot = abs(RML::Vector::dot(xzPlane.normal(RML::Point(0, 0, 0)), observerViewDirToPlane));
 	double yzDot = abs(RML::Vector::dot(yzPlane.normal(RML::Point(0, 0, 0)), observerViewDirToPlane));
 
-	/*
-	std::cout << "=====" << std::endl;
-	std::cout << "xyDot(" << xyDot << ")" << std::endl;
-	std::cout << "xzDot(" << xzDot << ")" << std::endl;
-	std::cout << "yzDot(" << yzDot << ")" << std::endl;
-	*/
-
 	if (axis == Axis::X)
 	{
 		if (xyDot > xzDot)
 		{
 			std::cout << "Returning XY" << std::endl;
-			return xyPlane;
+			t.rotate(-90, 0, 0);
 		}
 		else
 		{
 			std::cout << "Returning XZ" << std::endl;
-			return xzPlane;
 		}
 	}
-
-	if (axis == Axis::Y)
+	else if (axis == Axis::Y)
 	{
 		if (xyDot > yzDot)
 		{
 			std::cout << "Returning XY" << std::endl;
-			return xyPlane;
+			t.rotate(-90, 0, 0);
 		}
 		else
 		{
 			std::cout << "Returning YZ" << std::endl;
-			return yzPlane;
+			t.rotate(-90, -90, 0);
 		}
 	}
-
-	if (axis == Axis::Z)
+	else if (axis == Axis::Z)
 	{
 		if (xzDot > yzDot)
 		{
 			std::cout << "Returning XZ" << std::endl;
-			return xzPlane;
 		}
 		else
 		{
 			std::cout << "Returning YZ" << std::endl;
-			return yzPlane;
+			t.rotate(-90, -90, 0);
 		}
 	}
 
-	assert(false);
-
-	return Math::Plane();
+	return t;
 }
 
 static RML::Vector _GetAxisVector(const Axis axis, const EditorObject& obj)
@@ -1249,10 +1238,10 @@ int main(void)
 	EditorObject* selectedObject = nullptr;
 	Axis selectedAxis = Axis::NONE;
 
-	RML::Tuple2<int> mouseDragScreenStart;
 	RML::Vector mouseDragWorldPosStart;
 	RML::Vector mouseDragObjectPosStart;
 	Math::Plane mouseDragAxisPlane;
+	RML::Transform mouseDragAxisPlaneTransform;
 
 	while (!window.ShouldClose())
 	{
@@ -1313,11 +1302,11 @@ int main(void)
 			else if (hitResult.type == ObjectPickerType::GIZMO_HANDLE)
 			{
 				selectedAxis = hitResult.axis;
-				mouseDragScreenStart = RML::Tuple2<int>(MousePosX, -MousePosY);
 				mouseDragWorldPosStart = hitResult.worldPositionHit;
 				mouseDragObjectPosStart = selectedObject->transform.position;
-				mouseDragAxisPlane = _GetPlane(selectedAxis, hitResult.ray.direction());
-				mouseDragAxisPlane.transform(mouseDragAxisPlane.transform().translate(mouseDragWorldPosStart.x(), mouseDragWorldPosStart.y(), mouseDragWorldPosStart.z()));
+				mouseDragAxisPlane = Math::Plane();
+				mouseDragAxisPlaneTransform = _GetPlaneTransform(selectedAxis, hitResult.ray.direction());
+				mouseDragAxisPlaneTransform.translate(mouseDragWorldPosStart.x(), mouseDragWorldPosStart.y(), mouseDragWorldPosStart.z());
 			}
 			else
 			{
@@ -1327,11 +1316,10 @@ int main(void)
 
 		if (selectedAxis != Axis::NONE)
 		{
-			RML::Tuple2<int> mouseDragScreenCurrent(MousePosX, -MousePosY);
-			RML::Tuple2<int> mouseDragScreenDiff = mouseDragScreenCurrent - mouseDragScreenStart;
-
+			RML::Transform t = mouseDragAxisPlaneTransform;
+			t.rotate(selectedObject->eulerRotation.x(), selectedObject->eulerRotation.y(), selectedObject->eulerRotation.z());
 			Math::Plane axisPlane = mouseDragAxisPlane;
-			axisPlane.transform(axisPlane.transform().rotate(selectedObject->eulerRotation.x(), selectedObject->eulerRotation.y(), selectedObject->eulerRotation.z()));
+			axisPlane.transform(t.matrix());
 
 			Math::Ray ray = MainCamera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, Fov);
 			auto intersections = axisPlane.intersect(ray);
@@ -1350,17 +1338,24 @@ int main(void)
 
 					RML::Vector axisVector = _GetAxisVector(selectedAxis, *selectedObject);
 
-					std::cout << "================" << std::endl;
-					std::cout << "Mouse Start is " << mouseDragWorldPosStart << std::endl;
-					std::cout << "Mouse End is " << hitPosition << std::endl;
-					std::cout << "Axis Vector is " << axisVector << std::endl;
+					if (mouseWorldPosDelta.magnitude() > 0)
+					{
+						std::cout << "================" << std::endl;
+						std::cout << "Mouse Start is " << mouseDragWorldPosStart << std::endl;
+						std::cout << "Mouse End is " << hitPosition << std::endl;
+						std::cout << "Axis Vector is " << axisVector << std::endl;
 					
-					auto normal = _VectorClearNearZero(axisPlane.normal(RML::Point(0, 0, 0)));
+						auto normal = _VectorClearNearZero(axisPlane.normal(RML::Point(0, 0, 0)));
 
-					std::cout << "Axis Plane normal is " << normal << std::endl;
-					std::cout << "Mouse World Pos Delta is " << mouseWorldPosDelta << std::endl;
+						std::cout << "Axis Plane normal is " << normal << std::endl;
+						std::cout << "Mouse World Pos Delta is " << mouseWorldPosDelta << std::endl;
+					}
 
 					mouseWorldPosDelta = _ProjectVector(mouseWorldPosDelta, axisVector);
+
+					//debugMeshInstance.transform.position = mouseDragWorldPosStart;
+					//debugMeshInstance.transform.position = mouseDragWorldPosStart + mouseWorldPosDelta;
+					debugMeshInstance.transform.position = hitPosition;
 
 					selectedObject->transform.position = mouseDragObjectPosStart + mouseWorldPosDelta;
 				}
