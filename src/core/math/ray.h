@@ -15,8 +15,6 @@ namespace CppRayTracerChallenge::Core::Math
 	class Ray
 	{
 	public:
-		Ray() = delete;
-
 		/// <summary>
 		/// Creates a new way at origin pointing in direction
 		/// </summary>

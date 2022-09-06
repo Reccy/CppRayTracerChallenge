@@ -25,6 +25,7 @@
 #undef DIFFERENCE
 #include <graphics/image.h>
 #include <serializer/portable_network_graphics_serializer.h>
+#include <math/comparison.h>
 #include <renderer/camera.h>
 #include <renderer/patterns/checker.h>
 #include <renderer/patterns/stripe.h>
@@ -114,7 +115,7 @@ enum class EditorObjectType
 static unsigned int _GenerateEditorObjectId()
 {
 	static unsigned int id = 0;
-	id++;
+	id += 1;
 	return id;
 }
 
@@ -160,6 +161,26 @@ static std::stringstream DebugStringStream;
 static Math::Cube SharedCube;
 static Math::Plane SharedPlane;
 static Math::Torus SharedTorus(0.1, 1.25);
+
+static RML::Vector _VectorClearNearZero(const RML::Vector& v)
+{
+	return RML::Vector(
+		Math::Comparison::equal(v.x(), 0.0) ? 0.0 : v.x(),
+		Math::Comparison::equal(v.y(), 0.0) ? 0.0 : v.y(),
+		Math::Comparison::equal(v.z(), 0.0) ? 0.0 : v.z()
+	);
+}
+
+static RML::Vector _ProjectVector(RML::Vector p, RML::Vector dir)
+{
+	RML::Point a = -dir;
+	RML::Point b = dir;
+
+	RML::Vector ap = p - a;
+	RML::Vector ab = b - a;
+
+	return ab * (RML::Vector::dot(ap, ab) / RML::Vector::dot(ab, ab));
+}
 
 static std::string _GetTypeName(EditorObjectType objectType)
 {
@@ -224,6 +245,87 @@ enum class Axis
 	Z
 };
 
+static Math::Plane _GetPlane(Axis axis, RML::Vector observerViewDirToPlane)
+{
+	Math::Plane xzPlane;
+
+	Math::Plane xyPlane;
+	xyPlane.transform(xyPlane.transform().rotate(-90, 0, 0));
+
+	Math::Plane yzPlane;
+	yzPlane.transform(yzPlane.transform().rotate(-90, -90, 0));
+
+	double xyDot = abs(RML::Vector::dot(xyPlane.normal(RML::Point(0, 0, 0)), observerViewDirToPlane));
+	double xzDot = abs(RML::Vector::dot(xzPlane.normal(RML::Point(0, 0, 0)), observerViewDirToPlane));
+	double yzDot = abs(RML::Vector::dot(yzPlane.normal(RML::Point(0, 0, 0)), observerViewDirToPlane));
+
+	/*
+	std::cout << "=====" << std::endl;
+	std::cout << "xyDot(" << xyDot << ")" << std::endl;
+	std::cout << "xzDot(" << xzDot << ")" << std::endl;
+	std::cout << "yzDot(" << yzDot << ")" << std::endl;
+	*/
+
+	if (axis == Axis::X)
+	{
+		if (xyDot > xzDot)
+		{
+			std::cout << "Returning XY" << std::endl;
+			return xyPlane;
+		}
+		else
+		{
+			std::cout << "Returning XZ" << std::endl;
+			return xzPlane;
+		}
+	}
+
+	if (axis == Axis::Y)
+	{
+		if (xyDot > yzDot)
+		{
+			std::cout << "Returning XY" << std::endl;
+			return xyPlane;
+		}
+		else
+		{
+			std::cout << "Returning YZ" << std::endl;
+			return yzPlane;
+		}
+	}
+
+	if (axis == Axis::Z)
+	{
+		if (xzDot > yzDot)
+		{
+			std::cout << "Returning XZ" << std::endl;
+			return xzPlane;
+		}
+		else
+		{
+			std::cout << "Returning YZ" << std::endl;
+			return yzPlane;
+		}
+	}
+
+	assert(false);
+
+	return Math::Plane();
+}
+
+static RML::Vector _GetAxisVector(const Axis axis, const EditorObject& obj)
+{
+	if (axis == Axis::X) return obj.transform.right();
+
+	if (axis == Axis::Y) return obj.transform.up();
+
+	if (axis == Axis::Z) return obj.transform.forward();
+
+	assert(false);
+
+	return RML::Vector::forward();
+}
+
 std::string _GetAxisString(Axis axis)
 {
 	if (axis == Axis::NONE) return "NONE";
@@ -259,7 +361,7 @@ public:
 		delete m_meshInstance;
 	}
 
-	Axis GetAxisForIntersectedRay(const Math::Ray& ray) const
+	Axis GetAxisForIntersectedRay(const Math::Ray& ray, RML::Vector& outHitPoint) const
 	{
 		Axis result = Axis::NONE;
 
@@ -269,8 +371,8 @@ public:
 		auto xIntersect = m_colliderX.sharedShapePtr->intersect(ray);
 		if (xIntersect.hit())
 		{
-			RML::Vector hitPoint = ray.origin() + ray.direction() * xIntersect.hit().value().t();
-			double hitDistance = RML::Vector(hitPoint - ray.origin()).magnitude();
+			outHitPoint = ray.origin() + ray.direction() * xIntersect.hit().value().t();
+			double hitDistance = RML::Vector(outHitPoint - ray.origin()).magnitude();
 			if (hitDistance < closestHit)
 			{
 				closestHit = hitDistance;
@@ -282,8 +384,8 @@ public:
 		auto yIntersect = m_colliderY.sharedShapePtr->intersect(ray);
 		if (m_colliderY.sharedShapePtr->intersect(ray).hit())
 		{
-			RML::Vector hitPoint = ray.origin() + ray.direction() * yIntersect.hit().value().t();
-			double hitDistance = RML::Vector(hitPoint - ray.origin()).magnitude();
+			outHitPoint = ray.origin() + ray.direction() * yIntersect.hit().value().t();
+			double hitDistance = RML::Vector(outHitPoint - ray.origin()).magnitude();
 			if (hitDistance < closestHit)
 			{
 				closestHit = hitDistance;
@@ -295,8 +397,8 @@ public:
 		auto zIntersect = m_colliderZ.sharedShapePtr->intersect(ray);
 		if (m_colliderZ.sharedShapePtr->intersect(ray).hit())
 		{
-			RML::Vector hitPoint = ray.origin() + ray.direction() * zIntersect.hit().value().t();
-			double hitDistance = RML::Vector(hitPoint - ray.origin()).magnitude();
+			outHitPoint = ray.origin() + ray.direction() * zIntersect.hit().value().t();
+			double hitDistance = RML::Vector(outHitPoint - ray.origin()).magnitude();
 			if (hitDistance < closestHit)
 			{
 				closestHit = hitDistance;
@@ -335,6 +437,8 @@ struct ObjectPickerHit
 {
 	ObjectPickerType type = ObjectPickerType::NONE;
 	Axis axis = Axis::NONE;
+	RML::Vector worldPositionHit;
+	Math::Ray ray = Math::Ray(RML::Point(), RML::Vector());
 	void* ptr = nullptr;
 };
 
@@ -348,15 +452,18 @@ static ObjectPickerHit _SelectObjectUnderCursor(ROGLL::Camera* camera, bool anOb
 	}
 
 	Math::Ray ray = camera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, Fov);
+	result.ray = ray;
 
 	if (anObjectIsCurrentlySelected)
 	{
 		auto& CurrentGizmo = *CurrentGizmoPtr;
-		Axis hitAxis = CurrentGizmo->GetAxisForIntersectedRay(ray);
+		RML::Vector worldPositionHit;
+		Axis hitAxis = CurrentGizmo->GetAxisForIntersectedRay(ray, worldPositionHit);
 
 		if (hitAxis != Axis::NONE)
 		{
 			result.type = ObjectPickerType::GIZMO_HANDLE;
+			result.worldPositionHit = worldPositionHit;
 			result.axis = hitAxis;
 			result.ptr = CurrentGizmo;
 			return result;
@@ -373,6 +480,7 @@ static ObjectPickerHit _SelectObjectUnderCursor(ROGLL::Camera* camera, bool anOb
 		if (currentClosest < closestEditorObject)
 		{
 			closestEditorObject = currentClosest;
+			result.worldPositionHit = ray.origin() + ray.direction() * currentClosest;
 			result.ptr = editorObject;
 		}
 	}
@@ -1048,13 +1156,8 @@ int main(void)
 	ROGLL::RenderBatch planeBatch(&layout, &planeMaterial);
 
 	ROGLL::RenderBatch debugBatch(&layout, &planeMaterial);
-	ROGLL::MeshInstance debugCubeX(cubeMesh);
-	ROGLL::MeshInstance debugCubeY(cubeMesh);
-	ROGLL::MeshInstance debugCubeZ(cubeMesh);
-
-	debugBatch.AddInstance(&debugCubeX);
-	debugBatch.AddInstance(&debugCubeY);
-	debugBatch.AddInstance(&debugCubeZ);
+	ROGLL::MeshInstance debugMeshInstance(cubeMesh);
+	debugBatch.AddInstance(&debugMeshInstance);
 
 	ROGLL::Camera cam(WINDOW_WIDTH, WINDOW_HEIGHT, 60);
 	cam.transform.translate(0, 0, -10); // Initial cam position
@@ -1144,11 +1247,16 @@ int main(void)
 	bool guiPaulMode = false;
 
 	EditorObject* selectedObject = nullptr;
+	Axis selectedAxis = Axis::NONE;
+
+	RML::Tuple2<int> mouseDragScreenStart;
+	RML::Vector mouseDragWorldPosStart;
+	RML::Vector mouseDragObjectPosStart;
+	Math::Plane mouseDragAxisPlane;
 
 	while (!window.ShouldClose())
 	{
 		_ProcessInput(window);
-		_UpdateCamera(cam);
 
 		if (CurrentGizmoType == GizmoType::POSITION)
 		{
@@ -1204,7 +1312,12 @@ int main(void)
 			}
 			else if (hitResult.type == ObjectPickerType::GIZMO_HANDLE)
 			{
-				std::cout << "Selected axis " << _GetAxisString(hitResult.axis) << std::endl;
+				selectedAxis = hitResult.axis;
+				mouseDragScreenStart = RML::Tuple2<int>(MousePosX, -MousePosY);
+				mouseDragWorldPosStart = hitResult.worldPositionHit;
+				mouseDragObjectPosStart = selectedObject->transform.position;
+				mouseDragAxisPlane = _GetPlane(selectedAxis, hitResult.ray.direction());
+				mouseDragAxisPlane.transform(mouseDragAxisPlane.transform().translate(mouseDragWorldPosStart.x(), mouseDragWorldPosStart.y(), mouseDragWorldPosStart.z()));
 			}
 			else
 			{
@@ -1212,9 +1325,78 @@ int main(void)
 			}
 		}
 
+		if (selectedAxis != Axis::NONE)
+		{
+			RML::Tuple2<int> mouseDragScreenCurrent(MousePosX, -MousePosY);
+			RML::Tuple2<int> mouseDragScreenDiff = mouseDragScreenCurrent - mouseDragScreenStart;
+
+			Math::Plane axisPlane = mouseDragAxisPlane;
+			axisPlane.transform(axisPlane.transform().rotate(selectedObject->eulerRotation.x(), selectedObject->eulerRotation.y(), selectedObject->eulerRotation.z()));
+
+			Math::Ray ray = MainCamera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, Fov);
+			auto intersections = axisPlane.intersect(ray);
+
+			if (intersections.hit().has_value())
+			{
+				if (CurrentGizmoType == GizmoType::POSITION)
+				{
+					auto hit = intersections.hit().value();
+
+					RML::Vector hitPosition = ray.origin() + ray.direction() * hit.t();
+
+					RML::Vector mouseWorldPosDelta = hitPosition - mouseDragWorldPosStart;
+
+					mouseWorldPosDelta = _VectorClearNearZero(mouseWorldPosDelta);
+
+					RML::Vector axisVector = _GetAxisVector(selectedAxis, *selectedObject);
+
+					std::cout << "================" << std::endl;
+					std::cout << "Mouse Start is " << mouseDragWorldPosStart << std::endl;
+					std::cout << "Mouse End is " << hitPosition << std::endl;
+					std::cout << "Axis Vector is " << axisVector << std::endl;
+					
+					auto normal = _VectorClearNearZero(axisPlane.normal(RML::Point(0, 0, 0)));
+
+					std::cout << "Axis Plane normal is " << normal << std::endl;
+					std::cout << "Mouse World Pos Delta is " << mouseWorldPosDelta << std::endl;
+
+					mouseWorldPosDelta = _ProjectVector(mouseWorldPosDelta, axisVector);
+
+					selectedObject->transform.position = mouseDragObjectPosStart + mouseWorldPosDelta;
+				}
+				else if (CurrentGizmoType == GizmoType::ROTATION)
+				{
+					// TODO
+				}
+				else if (CurrentGizmoType == GizmoType::SCALE)
+				{
+					// TODO
+				}
+				else
+				{
+					assert(false);
+				}
+			}
+		}
+
+		if (MouseLeftButtonUp)
+		{
+			if (selectedAxis != Axis::NONE)
+			{
+				selectedAxis = Axis::NONE;
+			}
+		}
+
 		if (UnselectObject)
 		{
 			selectedObject = nullptr;
+		}
+
+		// Only update the camera if the user has not selected a handle axis
+		// This is to prevent the camera moving during drag and breaking the cursor delta calculation
+		if (selectedAxis == Axis::NONE)
+		{
+			_UpdateCamera(cam);
 		}
 
 		// UI - Pre Pass
@@ -1280,6 +1462,7 @@ int main(void)
 
 		cubeBatch.Render(cam, lightPosition);
 		planeBatch.Render(cam, lightPosition);
+		debugBatch.Render(cam, lightPosition);
 
 		if (outlinedObjectBatch != nullptr)
 		{
@@ -1329,36 +1512,6 @@ int main(void)
 			
 			handleBatch.Render(cam, lightPosition);
 		}
-
-		// DEBUG BATCH RENDERING BEGIN
-		if (false && selectedObject != nullptr)
-		{
-			RML::Transform originalXTransform = debugCubeX.transform;
-			RML::Transform originalYTransform = debugCubeY.transform;
-			RML::Transform originalZTransform = debugCubeZ.transform;
-
-			debugCubeX.transform.position = CurrentGizmo->transform.position + CurrentGizmo->GetColliderX().localTransform.position * CurrentGizmo->transform.scaling.x();
-			debugCubeX.transform.scaling = CurrentGizmo->transform.scaling * CurrentGizmo->GetColliderX().localTransform.scaling * 2;
-			debugCubeX.transform.rotate_around(CurrentGizmo->transform.position, RML::Vector::up(), selectedObject->eulerRotation.y());
-			debugCubeX.transform.rotate_around(CurrentGizmo->transform.position, RML::Vector::forward(), selectedObject->eulerRotation.z());
-
-			debugCubeY.transform.position = CurrentGizmo->transform.position + CurrentGizmo->GetColliderY().localTransform.position * CurrentGizmo->transform.scaling.y();
-			debugCubeY.transform.scaling = CurrentGizmo->transform.scaling * CurrentGizmo->GetColliderY().localTransform.scaling * 2;
-			debugCubeY.transform.rotate_around(CurrentGizmo->transform.position, RML::Vector::right(), selectedObject->eulerRotation.x());
-			debugCubeY.transform.rotate_around(CurrentGizmo->transform.position, RML::Vector::forward(), selectedObject->eulerRotation.z());
-
-			debugCubeZ.transform.position = CurrentGizmo->transform.position + CurrentGizmo->GetColliderZ().localTransform.position * CurrentGizmo->transform.scaling.z();
-			debugCubeZ.transform.scaling = CurrentGizmo->transform.scaling * CurrentGizmo->GetColliderZ().localTransform.scaling * 2;
-			debugCubeZ.transform.rotate_around(CurrentGizmo->transform.position, RML::Vector::up(), selectedObject->eulerRotation.y());
-			debugCubeZ.transform.rotate_around(CurrentGizmo->transform.position, RML::Vector::right(), selectedObject->eulerRotation.z());
-
-			debugBatch.Render(cam, lightPosition);
-
-			debugCubeX.transform = originalXTransform;
-			debugCubeY.transform = originalYTransform;
-			debugCubeZ.transform = originalZTransform;
-		}
-		// DEBUG BATCH RENDERING END
 
 		cubeBatch.Clear();
 		planeBatch.Clear();
