@@ -245,18 +245,42 @@ enum class Axis
 	Z
 };
 
-static RML::Transform _GetPlaneTransform(Axis axis, RML::Vector observerViewDirToPlane)
+static RML::Transform _GetPlaneTransform(Axis axis, RML::Vector observerViewDirToPlane, GizmoType currentGizmoType)
 {
-	RML::Transform t;
-
 	Math::Plane xzPlane;
+	RML::Transform xzTransform;
 
 	Math::Plane xyPlane;
+	RML::Transform xyTransform;
+	xyTransform.rotate(-90, 0, 0);
 	xyPlane.transform(xyPlane.transform().rotate(-90, 0, 0));
 
 	Math::Plane yzPlane;
+	RML::Transform yzTransform;
+	yzTransform.rotate(-90, -90, 0);
 	yzPlane.transform(yzPlane.transform().rotate(-90, -90, 0));
 
+	if (currentGizmoType == GizmoType::ROTATION)
+	{
+		if (axis == Axis::X)
+		{
+			return yzTransform;
+		}
+		else if (axis == Axis::Y)
+		{
+			return xzTransform;
+		}
+		else if (axis == Axis::Z)
+		{
+			return xyTransform;
+		}
+		else
+		{
+			assert(false);
+		}
+	}
+
+	RML::Transform result;
 	double xyDot = abs(RML::Vector::dot(xyPlane.normal(RML::Point(0, 0, 0)), observerViewDirToPlane));
 	double xzDot = abs(RML::Vector::dot(xzPlane.normal(RML::Point(0, 0, 0)), observerViewDirToPlane));
 	double yzDot = abs(RML::Vector::dot(yzPlane.normal(RML::Point(0, 0, 0)), observerViewDirToPlane));
@@ -266,11 +290,12 @@ static RML::Transform _GetPlaneTransform(Axis axis, RML::Vector observerViewDirT
 		if (xyDot > xzDot)
 		{
 			std::cout << "Returning XY" << std::endl;
-			t.rotate(-90, 0, 0);
+			return xyTransform;
 		}
 		else
 		{
 			std::cout << "Returning XZ" << std::endl;
+			return xzTransform;
 		}
 	}
 	else if (axis == Axis::Y)
@@ -278,12 +303,12 @@ static RML::Transform _GetPlaneTransform(Axis axis, RML::Vector observerViewDirT
 		if (xyDot > yzDot)
 		{
 			std::cout << "Returning XY" << std::endl;
-			t.rotate(-90, 0, 0);
+			return xyTransform;
 		}
 		else
 		{
 			std::cout << "Returning YZ" << std::endl;
-			t.rotate(-90, -90, 0);
+			return yzTransform;
 		}
 	}
 	else if (axis == Axis::Z)
@@ -291,15 +316,18 @@ static RML::Transform _GetPlaneTransform(Axis axis, RML::Vector observerViewDirT
 		if (xzDot > yzDot)
 		{
 			std::cout << "Returning XZ" << std::endl;
+			return xzTransform;
 		}
 		else
 		{
 			std::cout << "Returning YZ" << std::endl;
-			t.rotate(-90, -90, 0);
+			return yzTransform;
 		}
 	}
 
-	return t;
+	assert(false);
+	
+	return RML::Transform();
 }
 
 static RML::Vector _GetTransformDirectionByAxisAndObject(const Axis axis, const EditorObject& obj)
@@ -1131,6 +1159,9 @@ int main(void)
 	ROGLL::Material outlineMaterial(outlineShader);
 	outlineMaterial.Set4("outlineColor", White);
 
+	ROGLL::Material debugMeshMaterial(defaultShader);
+	debugMeshMaterial.Set4("objectColor", Red + Green);
+
 	ROGLL::RenderBatch cubeBatch(&layout, &cubeMaterial);
 
 	ROGLL::RenderBatch outlineBatchUnlit(&layout, &outlineMaterial);
@@ -1144,9 +1175,11 @@ int main(void)
 
 	ROGLL::RenderBatch planeBatch(&layout, &planeMaterial);
 
-	ROGLL::RenderBatch debugBatch(&layout, &planeMaterial);
+	ROGLL::RenderBatch debugBatch(&layout, &debugMeshMaterial);
 	ROGLL::MeshInstance debugMeshInstance(cubeMesh);
+	debugMeshInstance.transform.scale(0.2, 0.2, 0.2);
 	debugBatch.AddInstance(&debugMeshInstance);
+	DebugMeshInstance = &debugMeshInstance;
 
 	ROGLL::Camera cam(WINDOW_WIDTH, WINDOW_HEIGHT, 60);
 	cam.transform.translate(0, 0, -10); // Initial cam position
@@ -1236,13 +1269,16 @@ int main(void)
 	bool guiPaulMode = false;
 
 	EditorObject* selectedObject = nullptr;
-	Axis selectedAxis = Axis::NONE;
+	Axis selectedObjectHitAxis = Axis::NONE;
 
-	RML::Vector objectScaleStart;
-	RML::Vector mouseDragWorldPosStart;
-	RML::Vector mouseDragObjectPosStart;
-	Math::Plane mouseDragAxisPlane;
-	RML::Transform mouseDragAxisPlaneTransform;
+	RML::Vector selectedObjectScalingStart;
+	RML::Vector selectedObjectAngleAxisRotationStart;
+	RML::Quaternion selectedObjectQuaternionRotationStart = RML::Quaternion::euler_angles(1,0,0);
+	RML::Vector dirSelectedObjectToMouseDragWorldPosStart;
+	RML::Vector selectedObjectHitWorldPosStart;
+	RML::Vector selectedObjectPositionStart;
+	Math::Plane selectedObjectGizmoAxisPlane;
+	RML::Transform selectedObjectGizmoAxisPlaneTransform;
 
 	while (!window.ShouldClose())
 	{
@@ -1268,19 +1304,19 @@ int main(void)
 			_StartFullRender();
 		}
 
-		ObjectPickerHit hitResult = _SelectObjectUnderCursor(MainCamera, selectedObject != nullptr);
+		ObjectPickerHit selectedObjectHit = _SelectObjectUnderCursor(MainCamera, selectedObject != nullptr);
 
-		if (hitResult.type == ObjectPickerType::GIZMO_HANDLE)
+		if (selectedObjectHit.type == ObjectPickerType::GIZMO_HANDLE)
 		{
-			if (hitResult.axis == Axis::X)
+			if (selectedObjectHit.axis == Axis::X)
 			{
 				handleMaterial.Set3("handleActive", RML::Tuple3<float>(1, 0, 0));
 			}
-			else if (hitResult.axis == Axis::Y)
+			else if (selectedObjectHit.axis == Axis::Y)
 			{
 				handleMaterial.Set3("handleActive", RML::Tuple3<float>(0, 1, 0));
 			}
-			else if (hitResult.axis == Axis::Z)
+			else if (selectedObjectHit.axis == Axis::Z)
 			{
 				handleMaterial.Set3("handleActive", RML::Tuple3<float>(0, 0, 1));
 			}
@@ -1296,19 +1332,22 @@ int main(void)
 
 		if (MouseLeftButtonDown)
 		{
-			if (hitResult.type == ObjectPickerType::EDITOR_OBJECT)
+			if (selectedObjectHit.type == ObjectPickerType::EDITOR_OBJECT)
 			{
-				selectedObject = static_cast<EditorObject*>(hitResult.ptr);
+				selectedObject = static_cast<EditorObject*>(selectedObjectHit.ptr);
 			}
-			else if (hitResult.type == ObjectPickerType::GIZMO_HANDLE)
+			else if (selectedObjectHit.type == ObjectPickerType::GIZMO_HANDLE)
 			{
-				selectedAxis = hitResult.axis;
-				mouseDragWorldPosStart = hitResult.worldPositionHit;
-				mouseDragObjectPosStart = selectedObject->transform.position;
-				objectScaleStart = selectedObject->transform.scaling;
-				mouseDragAxisPlane = Math::Plane();
-				mouseDragAxisPlaneTransform = _GetPlaneTransform(selectedAxis, hitResult.ray.direction());
-				mouseDragAxisPlaneTransform.translate(mouseDragWorldPosStart.x(), mouseDragWorldPosStart.y(), mouseDragWorldPosStart.z());
+				selectedObjectHitAxis = selectedObjectHit.axis;
+				selectedObjectHitWorldPosStart = selectedObjectHit.worldPositionHit;
+				selectedObjectPositionStart = selectedObject->transform.position;
+				selectedObjectScalingStart = selectedObject->transform.scaling;
+				selectedObjectAngleAxisRotationStart = selectedObject->eulerRotation;
+				selectedObjectQuaternionRotationStart = selectedObject->transform.rotation;
+				dirSelectedObjectToMouseDragWorldPosStart = RML::Vector(selectedObjectHitWorldPosStart - selectedObject->transform.position).normalize();
+				selectedObjectGizmoAxisPlane = Math::Plane();
+				selectedObjectGizmoAxisPlaneTransform = _GetPlaneTransform(selectedObjectHitAxis, selectedObjectHit.ray.direction(), CurrentGizmoType);
+				selectedObjectGizmoAxisPlaneTransform.translate(selectedObjectHitWorldPosStart.x(), selectedObjectHitWorldPosStart.y(), selectedObjectHitWorldPosStart.z());
 			}
 			else
 			{
@@ -1316,12 +1355,14 @@ int main(void)
 			}
 		}
 
-		if (selectedAxis != Axis::NONE)
+		bool doRotationUpdateFromGizmo = false;
+
+		if (selectedObjectHitAxis != Axis::NONE)
 		{
-			RML::Transform t = mouseDragAxisPlaneTransform;
-			t.rotate(selectedObject->eulerRotation.x(), selectedObject->eulerRotation.y(), selectedObject->eulerRotation.z());
-			Math::Plane axisPlane = mouseDragAxisPlane;
-			axisPlane.transform(t.matrix());
+			RML::Transform planeTransform = selectedObjectGizmoAxisPlaneTransform;
+			planeTransform.rotate(selectedObjectAngleAxisRotationStart.x(), selectedObjectAngleAxisRotationStart.y(), selectedObjectAngleAxisRotationStart.z());
+			Math::Plane axisPlane = selectedObjectGizmoAxisPlane;
+			axisPlane.transform(planeTransform.matrix());
 
 			Math::Ray ray = MainCamera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, Fov);
 			auto intersections = axisPlane.intersect(ray);
@@ -1331,18 +1372,32 @@ int main(void)
 				auto hit = intersections.hit().value();
 				RML::Vector hitPosition = ray.origin() + ray.direction() * hit.t();
 				
-				RML::Vector mouseWorldPosDelta = hitPosition - mouseDragWorldPosStart;
+				RML::Vector mouseWorldPosDelta = hitPosition - selectedObjectHitWorldPosStart;
 				mouseWorldPosDelta = _VectorClearNearZero(mouseWorldPosDelta);
-				RML::Vector axisVector = _GetTransformDirectionByAxisAndObject(selectedAxis, *selectedObject);
+				RML::Vector axisVector = _GetTransformDirectionByAxisAndObject(selectedObjectHitAxis, *selectedObject);
 				RML::Vector deltaAlongAxis = _ProjectVector(mouseWorldPosDelta, axisVector);
 
 				if (CurrentGizmoType == GizmoType::POSITION)
 				{
-					selectedObject->transform.position = mouseDragObjectPosStart + deltaAlongAxis;
+					selectedObject->transform.position = selectedObjectPositionStart + deltaAlongAxis;
 				}
 				else if (CurrentGizmoType == GizmoType::ROTATION)
 				{
-					// TODO
+					RML::Vector currentDirOriginToHit = RML::Vector(hitPosition - selectedObject->transform.position).normalized();
+
+					RML::Vector normal = planeTransform.up();
+					double angle = RML::Vector::signed_angle(currentDirOriginToHit, dirSelectedObjectToMouseDragWorldPosStart, normal);
+					
+					if (!std::isnan(angle))
+					{
+						auto deltaRotation = RML::Quaternion::angle_axis(angle, normal);
+						RML::Quaternion newRotation = deltaRotation * selectedObjectQuaternionRotationStart;
+						DebugMeshInstance->transform.position = selectedObject->transform.position + normal * 2;
+						selectedObject->transform.rotation = newRotation;
+						//selectedObject->eulerRotation = selectedObject->transform.rotation.to_euler();
+
+						doRotationUpdateFromGizmo = true;
+					}
 				}
 				else if (CurrentGizmoType == GizmoType::SCALE)
 				{
@@ -1350,11 +1405,11 @@ int main(void)
 
 					RML::Vector scalingAxis;
 
-					if (selectedAxis == Axis::X)
+					if (selectedObjectHitAxis == Axis::X)
 					{
 						scalingAxis = RML::Vector(1, 0, 0);
 					}
-					else if (selectedAxis == Axis::Y)
+					else if (selectedObjectHitAxis == Axis::Y)
 					{
 						scalingAxis = RML::Vector(0, 1, 0);
 					}
@@ -1367,7 +1422,7 @@ int main(void)
 
 					RML::Vector deltaScaling = scalingAxis * deltaAlongAxis.magnitude();
 
-					selectedObject->transform.scaling = objectScaleStart + deltaScaling;
+					selectedObject->transform.scaling = selectedObjectScalingStart + deltaScaling;
 				}
 				else
 				{
@@ -1378,9 +1433,9 @@ int main(void)
 
 		if (MouseLeftButtonUp)
 		{
-			if (selectedAxis != Axis::NONE)
+			if (selectedObjectHitAxis != Axis::NONE)
 			{
-				selectedAxis = Axis::NONE;
+				selectedObjectHitAxis = Axis::NONE;
 			}
 		}
 
@@ -1391,7 +1446,7 @@ int main(void)
 
 		// Only update the camera if the user has not selected a handle axis
 		// This is to prevent the camera moving during drag and breaking the cursor delta calculation
-		if (selectedAxis == Axis::NONE)
+		if (selectedObjectHitAxis == Axis::NONE)
 		{
 			_UpdateCamera(cam);
 		}
@@ -1654,8 +1709,11 @@ int main(void)
 					ImGui::TableNextColumn(); ImGui::InputDouble("y##Rotation", &rotVec[1]);
 					ImGui::TableNextColumn(); ImGui::InputDouble("z##Rotation", &rotVec[2]);
 
-					selectedObject->eulerRotation = RML::Vector(rotVec[0], rotVec[1], rotVec[2]);
-					selectedObject->transform.rotation = RML::Quaternion::euler_angles(rotVec[0], rotVec[1], rotVec[2]);
+					if (!doRotationUpdateFromGizmo)
+					{
+						//selectedObject->eulerRotation = RML::Vector(rotVec[0], rotVec[1], rotVec[2]);
+						//selectedObject->transform.rotation = RML::Quaternion::euler_angles(rotVec[0], rotVec[1], rotVec[2]);
+					}
 
 					ImGui::EndTable();
 				}
