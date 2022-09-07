@@ -302,7 +302,7 @@ static RML::Transform _GetPlaneTransform(Axis axis, RML::Vector observerViewDirT
 	return t;
 }
 
-static RML::Vector _GetAxisVector(const Axis axis, const EditorObject& obj)
+static RML::Vector _GetTransformDirectionByAxisAndObject(const Axis axis, const EditorObject& obj)
 {
 	if (axis == Axis::X) return obj.transform.right();
 
@@ -1238,6 +1238,7 @@ int main(void)
 	EditorObject* selectedObject = nullptr;
 	Axis selectedAxis = Axis::NONE;
 
+	RML::Vector objectScaleStart;
 	RML::Vector mouseDragWorldPosStart;
 	RML::Vector mouseDragObjectPosStart;
 	Math::Plane mouseDragAxisPlane;
@@ -1304,6 +1305,7 @@ int main(void)
 				selectedAxis = hitResult.axis;
 				mouseDragWorldPosStart = hitResult.worldPositionHit;
 				mouseDragObjectPosStart = selectedObject->transform.position;
+				objectScaleStart = selectedObject->transform.scaling;
 				mouseDragAxisPlane = Math::Plane();
 				mouseDragAxisPlaneTransform = _GetPlaneTransform(selectedAxis, hitResult.ray.direction());
 				mouseDragAxisPlaneTransform.translate(mouseDragWorldPosStart.x(), mouseDragWorldPosStart.y(), mouseDragWorldPosStart.z());
@@ -1326,38 +1328,17 @@ int main(void)
 
 			if (intersections.hit().has_value())
 			{
+				auto hit = intersections.hit().value();
+				RML::Vector hitPosition = ray.origin() + ray.direction() * hit.t();
+				
+				RML::Vector mouseWorldPosDelta = hitPosition - mouseDragWorldPosStart;
+				mouseWorldPosDelta = _VectorClearNearZero(mouseWorldPosDelta);
+				RML::Vector axisVector = _GetTransformDirectionByAxisAndObject(selectedAxis, *selectedObject);
+				RML::Vector deltaAlongAxis = _ProjectVector(mouseWorldPosDelta, axisVector);
+
 				if (CurrentGizmoType == GizmoType::POSITION)
 				{
-					auto hit = intersections.hit().value();
-
-					RML::Vector hitPosition = ray.origin() + ray.direction() * hit.t();
-
-					RML::Vector mouseWorldPosDelta = hitPosition - mouseDragWorldPosStart;
-
-					mouseWorldPosDelta = _VectorClearNearZero(mouseWorldPosDelta);
-
-					RML::Vector axisVector = _GetAxisVector(selectedAxis, *selectedObject);
-
-					if (mouseWorldPosDelta.magnitude() > 0)
-					{
-						std::cout << "================" << std::endl;
-						std::cout << "Mouse Start is " << mouseDragWorldPosStart << std::endl;
-						std::cout << "Mouse End is " << hitPosition << std::endl;
-						std::cout << "Axis Vector is " << axisVector << std::endl;
-					
-						auto normal = _VectorClearNearZero(axisPlane.normal(RML::Point(0, 0, 0)));
-
-						std::cout << "Axis Plane normal is " << normal << std::endl;
-						std::cout << "Mouse World Pos Delta is " << mouseWorldPosDelta << std::endl;
-					}
-
-					mouseWorldPosDelta = _ProjectVector(mouseWorldPosDelta, axisVector);
-
-					//debugMeshInstance.transform.position = mouseDragWorldPosStart;
-					//debugMeshInstance.transform.position = mouseDragWorldPosStart + mouseWorldPosDelta;
-					debugMeshInstance.transform.position = hitPosition;
-
-					selectedObject->transform.position = mouseDragObjectPosStart + mouseWorldPosDelta;
+					selectedObject->transform.position = mouseDragObjectPosStart + deltaAlongAxis;
 				}
 				else if (CurrentGizmoType == GizmoType::ROTATION)
 				{
@@ -1365,7 +1346,28 @@ int main(void)
 				}
 				else if (CurrentGizmoType == GizmoType::SCALE)
 				{
-					// TODO
+					RML::Vector deltaAlongAxis = _ProjectVector(mouseWorldPosDelta, axisVector);
+
+					RML::Vector scalingAxis;
+
+					if (selectedAxis == Axis::X)
+					{
+						scalingAxis = RML::Vector(1, 0, 0);
+					}
+					else if (selectedAxis == Axis::Y)
+					{
+						scalingAxis = RML::Vector(0, 1, 0);
+					}
+					else
+					{
+						scalingAxis = RML::Vector(0, 0, 1);
+					}
+
+					scalingAxis = RML::Vector::dot(scalingAxis, deltaAlongAxis) > 0 ? scalingAxis : -scalingAxis;
+
+					RML::Vector deltaScaling = scalingAxis * deltaAlongAxis.magnitude();
+
+					selectedObject->transform.scaling = objectScaleStart + deltaScaling;
 				}
 				else
 				{
