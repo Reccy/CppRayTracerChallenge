@@ -124,12 +124,14 @@ struct EditorObject
 	unsigned int id;
 	std::string name;
 	RML::Transform transform;
+	RML::Vector eulerRotation;
 	EditorObjectType objectType;
 	ROGLL::MeshInstance* meshInstance;
 
 	EditorObject() :
 		id(0),
 		name(""),
+		eulerRotation(),
 		transform(),
 		objectType(),
 		meshInstance(nullptr)
@@ -138,6 +140,7 @@ struct EditorObject
 	EditorObject(const EditorObject& other) :
 		id(_GenerateEditorObjectId()),
 		name(other.name),
+		eulerRotation(other.eulerRotation),
 		transform(other.transform),
 		objectType(other.objectType)
 	{
@@ -1393,6 +1396,7 @@ int main(void)
 						auto deltaRotation = RML::Quaternion::angle_axis(angle, axisPlaneNormal);
 						RML::Quaternion newRotation = deltaRotation * selectedObjectQuaternionRotationStart;
 						selectedObject->transform.rotation = newRotation;
+						selectedObject->eulerRotation = newRotation.to_euler();
 					}
 				}
 				else if (CurrentGizmoType == GizmoType::SCALE)
@@ -1697,15 +1701,22 @@ int main(void)
 				ImGui::Text("Rotation");
 				if (ImGui::BeginTable("Rotation", 3))
 				{
-					RML::Quaternion q = selectedObject->transform.rotation;
-					const RML::Vector& rot = q.to_euler();
+					const RML::Vector& rot = selectedObject->eulerRotation;
 					double rotVec[3]{ rot.x(), rot.y(), rot.z() };
 
-					ImGui::TableNextColumn(); ImGui::InputDouble("x##Rotation", &rotVec[0]);
-					ImGui::TableNextColumn(); ImGui::InputDouble("y##Rotation", &rotVec[1]);
-					ImGui::TableNextColumn(); ImGui::InputDouble("z##Rotation", &rotVec[2]);
+					bool xChanged, yChanged, zChanged = false;
+					ImGui::TableNextColumn();
+					xChanged = ImGui::InputDouble("x##Rotation", &rotVec[0]);
+					ImGui::TableNextColumn();
+					yChanged = ImGui::InputDouble("y##Rotation", &rotVec[1]);
+					ImGui::TableNextColumn();
+					zChanged = ImGui::InputDouble("z##Rotation", &rotVec[2]);
 
-					//selectedObject->transform.rotation = RML::Quaternion::euler_angles(rotVec[0], rotVec[1], rotVec[2]);
+					if (xChanged || yChanged || zChanged)
+					{
+						selectedObject->transform.rotation = RML::Quaternion::euler_angles(rotVec[0], rotVec[1], rotVec[2]);
+						selectedObject->eulerRotation = RML::Vector(rotVec[0], rotVec[1], rotVec[2]);
+					}
 
 					ImGui::EndTable();
 				}
