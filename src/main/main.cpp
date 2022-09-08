@@ -124,7 +124,6 @@ struct EditorObject
 	unsigned int id;
 	std::string name;
 	RML::Transform transform;
-	RML::Vector eulerRotation; // store euler rotation for more stable behaviour
 	EditorObjectType objectType;
 	ROGLL::MeshInstance* meshInstance;
 
@@ -132,7 +131,6 @@ struct EditorObject
 		id(0),
 		name(""),
 		transform(),
-		eulerRotation(),
 		objectType(),
 		meshInstance(nullptr)
 	{}
@@ -141,7 +139,6 @@ struct EditorObject
 		id(_GenerateEditorObjectId()),
 		name(other.name),
 		transform(other.transform),
-		eulerRotation(other.eulerRotation),
 		objectType(other.objectType)
 	{
 		meshInstance = new ROGLL::MeshInstance(*other.meshInstance);
@@ -155,7 +152,6 @@ struct EditorObject
 
 static std::vector<EditorObject*> EditorObjects;
 
-static ROGLL::MeshInstance* DebugMeshInstance = nullptr;
 static std::stringstream DebugStringStream;
 
 static Math::Cube SharedCube;
@@ -1176,10 +1172,14 @@ int main(void)
 	ROGLL::RenderBatch planeBatch(&layout, &planeMaterial);
 
 	ROGLL::RenderBatch debugBatch(&layout, &debugMeshMaterial);
+
+	ROGLL::MeshInstance debugMeshInstance2(cubeMesh);
+	debugMeshInstance2.transform.scale(0.4, 0.4, 0.4);
+	debugBatch.AddInstance(&debugMeshInstance2);
+
 	ROGLL::MeshInstance debugMeshInstance(cubeMesh);
 	debugMeshInstance.transform.scale(0.2, 0.2, 0.2);
 	debugBatch.AddInstance(&debugMeshInstance);
-	DebugMeshInstance = &debugMeshInstance;
 
 	ROGLL::Camera cam(WINDOW_WIDTH, WINDOW_HEIGHT, 60);
 	cam.transform.translate(0, 0, -10); // Initial cam position
@@ -1342,7 +1342,6 @@ int main(void)
 				selectedObjectHitWorldPosStart = selectedObjectHit.worldPositionHit;
 				selectedObjectPositionStart = selectedObject->transform.position;
 				selectedObjectScalingStart = selectedObject->transform.scaling;
-				selectedObjectAngleAxisRotationStart = selectedObject->eulerRotation;
 				selectedObjectQuaternionRotationStart = selectedObject->transform.rotation;
 				dirSelectedObjectToMouseDragWorldPosStart = RML::Vector(selectedObjectHitWorldPosStart - selectedObject->transform.position).normalize();
 				selectedObjectGizmoAxisPlane = Math::Plane();
@@ -1355,14 +1354,16 @@ int main(void)
 			}
 		}
 
-		bool doRotationUpdateFromGizmo = false;
-
 		if (selectedObjectHitAxis != Axis::NONE)
 		{
-			RML::Transform planeTransform = selectedObjectGizmoAxisPlaneTransform;
-			planeTransform.rotate(selectedObjectAngleAxisRotationStart.x(), selectedObjectAngleAxisRotationStart.y(), selectedObjectAngleAxisRotationStart.z());
+			RML::Transform axisPlaneTransform = selectedObjectGizmoAxisPlaneTransform;
+			RML::Vector axisPlaneNormal = axisPlaneTransform.up();
+
+			axisPlaneTransform.rotation = axisPlaneTransform.rotation * selectedObject->transform.rotation;
 			Math::Plane axisPlane = selectedObjectGizmoAxisPlane;
-			axisPlane.transform(planeTransform.matrix());
+			RML::Vector axisPlaneInputNormal = axisPlaneTransform.down();
+
+			axisPlane.transform(axisPlaneTransform.matrix());
 
 			Math::Ray ray = MainCamera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, Fov);
 			auto intersections = axisPlane.intersect(ray);
@@ -1385,24 +1386,17 @@ int main(void)
 				{
 					RML::Vector currentDirOriginToHit = RML::Vector(hitPosition - selectedObject->transform.position).normalized();
 
-					RML::Vector normal = planeTransform.up();
-					double angle = RML::Vector::signed_angle(currentDirOriginToHit, dirSelectedObjectToMouseDragWorldPosStart, normal);
+					double angle = RML::Vector::signed_angle(currentDirOriginToHit, dirSelectedObjectToMouseDragWorldPosStart, axisPlaneInputNormal);
 					
 					if (!std::isnan(angle))
 					{
-						auto deltaRotation = RML::Quaternion::angle_axis(angle, normal);
+						auto deltaRotation = RML::Quaternion::angle_axis(angle, axisPlaneNormal);
 						RML::Quaternion newRotation = deltaRotation * selectedObjectQuaternionRotationStart;
-						DebugMeshInstance->transform.position = selectedObject->transform.position + normal * 2;
 						selectedObject->transform.rotation = newRotation;
-						//selectedObject->eulerRotation = selectedObject->transform.rotation.to_euler();
-
-						doRotationUpdateFromGizmo = true;
 					}
 				}
 				else if (CurrentGizmoType == GizmoType::SCALE)
 				{
-					RML::Vector deltaAlongAxis = _ProjectVector(mouseWorldPosDelta, axisVector);
-
 					RML::Vector scalingAxis;
 
 					if (selectedObjectHitAxis == Axis::X)
@@ -1418,7 +1412,8 @@ int main(void)
 						scalingAxis = RML::Vector(0, 0, 1);
 					}
 
-					scalingAxis = RML::Vector::dot(scalingAxis, deltaAlongAxis) > 0 ? scalingAxis : -scalingAxis;
+					// todo fix scaling
+					scalingAxis = RML::Vector::dot(scalingAxis, deltaAlongAxis.normalized()) > 0 ? scalingAxis : -scalingAxis;
 
 					RML::Vector deltaScaling = scalingAxis * deltaAlongAxis.magnitude();
 
@@ -1702,18 +1697,15 @@ int main(void)
 				ImGui::Text("Rotation");
 				if (ImGui::BeginTable("Rotation", 3))
 				{
-					const RML::Vector& rot = selectedObject->eulerRotation;
+					RML::Quaternion q = selectedObject->transform.rotation;
+					const RML::Vector& rot = q.to_euler();
 					double rotVec[3]{ rot.x(), rot.y(), rot.z() };
 
 					ImGui::TableNextColumn(); ImGui::InputDouble("x##Rotation", &rotVec[0]);
 					ImGui::TableNextColumn(); ImGui::InputDouble("y##Rotation", &rotVec[1]);
 					ImGui::TableNextColumn(); ImGui::InputDouble("z##Rotation", &rotVec[2]);
 
-					if (!doRotationUpdateFromGizmo)
-					{
-						//selectedObject->eulerRotation = RML::Vector(rotVec[0], rotVec[1], rotVec[2]);
-						//selectedObject->transform.rotation = RML::Quaternion::euler_angles(rotVec[0], rotVec[1], rotVec[2]);
-					}
+					//selectedObject->transform.rotation = RML::Quaternion::euler_angles(rotVec[0], rotVec[1], rotVec[2]);
 
 					ImGui::EndTable();
 				}
