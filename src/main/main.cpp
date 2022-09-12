@@ -1408,26 +1408,26 @@ int main(void)
 		if (selectedObjectHitAxis != Axis::NONE)
 		{
 			RML::Transform axisPlaneTransform = selectedObjectGizmoAxisPlaneTransform;
-			RML::Vector axisPlaneNormal = axisPlaneTransform.up();
+			const RML::Vector axisPlaneNormal = axisPlaneTransform.up();
 
 			axisPlaneTransform.rotation = axisPlaneTransform.rotation * selectedObject->transform.rotation;
 			Math::Plane axisPlane = selectedObjectGizmoAxisPlane;
-			RML::Vector axisPlaneInputNormal = axisPlaneTransform.down();
+			const RML::Vector axisPlaneInputNormal = axisPlaneTransform.down();
 
 			axisPlane.transform(axisPlaneTransform.matrix());
 
-			Math::Ray ray = MainCamera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, Fov);
-			auto intersections = axisPlane.intersect(ray);
+			const Math::Ray ray = MainCamera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, Fov);
+			const auto intersections = axisPlane.intersect(ray);
 
 			if (intersections.hit().has_value())
 			{
-				auto hit = intersections.hit().value();
-				RML::Vector hitPosition = ray.origin() + ray.direction() * hit.t();
+				const auto hit = intersections.hit().value();
+				const RML::Vector hitPosition = ray.origin() + ray.direction() * hit.t();
 				
 				RML::Vector mouseWorldPosDelta = hitPosition - selectedObjectHitWorldPosStart;
 				mouseWorldPosDelta = _VectorClearNearZero(mouseWorldPosDelta);
-				RML::Vector gizmoPositiveAxisVector = _GetTransformDirectionByAxisAndObject(selectedObjectHitAxis, *selectedObject);
-				RML::Vector deltaAlongAxis = _ProjectVector(mouseWorldPosDelta, gizmoPositiveAxisVector);
+				const RML::Vector gizmoPositiveAxisVector = _GetTransformDirectionByAxisAndObject(selectedObjectHitAxis, *selectedObject);
+				const RML::Vector deltaAlongAxis = _ProjectVector(mouseWorldPosDelta, gizmoPositiveAxisVector);
 
 				if (CurrentGizmoType == GizmoType::POSITION)
 				{
@@ -1437,7 +1437,7 @@ int main(void)
 				{
 					RML::Vector currentDirOriginToHit = RML::Vector(hitPosition - selectedObject->transform.position).normalized();
 
-					double angle = RML::Vector::signed_angle(currentDirOriginToHit, dirSelectedObjectToMouseDragWorldPosStart, axisPlaneInputNormal);
+					const double angle = RML::Vector::signed_angle(currentDirOriginToHit, dirSelectedObjectToMouseDragWorldPosStart, axisPlaneInputNormal);
 					
 					if (!std::isnan(angle))
 					{
@@ -1449,28 +1449,27 @@ int main(void)
 				}
 				else if (CurrentGizmoType == GizmoType::SCALE)
 				{
-					RML::Vector globalPositiveAxis;
-					RML::Vector localAxis;
+					const RML::Vector globalPositiveAxis = [&]() {
+						switch (selectedObjectHitAxis)
+						{
+						case Axis::X: return RML::Vector::right();
+						case Axis::Y: return RML::Vector::up();
+						case Axis::Z: return RML::Vector::forward();
+						}
+					}();
 
-					if (selectedObjectHitAxis == Axis::X)
-					{
-						globalPositiveAxis = RML::Vector::right();
-						localAxis = selectedObject->transform.right();
-					}
-					else if (selectedObjectHitAxis == Axis::Y)
-					{
-						globalPositiveAxis = RML::Vector::up();
-						localAxis = selectedObject->transform.up();
-					}
-					else
-					{
-						globalPositiveAxis = RML::Vector::forward();
-						localAxis = selectedObject->transform.forward();
-					}
+					const RML::Vector localAxis = [&]() {
+						switch (selectedObjectHitAxis)
+						{
+						case Axis::X: return selectedObject->transform.right();
+						case Axis::Y: return selectedObject->transform.up();
+						case Axis::Z: return selectedObject->transform.forward();
+						}
+					}();
 
 					RML::Vector scalingVector = _ProjectVector(mouseWorldPosDelta, localAxis);
 
-					double deltaScaling = RML::Vector::dot(scalingVector, localAxis);
+					const double deltaScaling = RML::Vector::dot(scalingVector, localAxis);
 
 					RML::Vector delta = globalPositiveAxis * deltaScaling;
 
