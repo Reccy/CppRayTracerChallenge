@@ -1188,7 +1188,6 @@ int main(void)
 
 	ROGLL::Shader defaultShader("res/shaders/Default.shader");
 	ROGLL::Shader gizmoShader("res/shaders/Gizmo.shader");
-	ROGLL::Shader outlineShader("res/shaders/OutlineShader.shader");
 
 	ROGLL::Material gizmoMaterial(gizmoShader);
 	gizmoMaterial.Set4("objectColor", White);
@@ -1207,15 +1206,10 @@ int main(void)
 	ROGLL::Material sphereMaterial(defaultShader);
 	sphereMaterial.Set4("objectColor", White);
 
-	ROGLL::Material outlineMaterial(outlineShader);
-	outlineMaterial.Set4("outlineColor", White);
-
 	ROGLL::Material debugMeshMaterial(defaultShader);
 	debugMeshMaterial.Set4("objectColor", Red + Green);
 
 	ROGLL::RenderBatch cubeBatch(&layout, &cubeMaterial);
-
-	ROGLL::RenderBatch outlineBatchUnlit(&layout, &outlineMaterial);
 
 	ROGLL::RenderBatch gizmoBatch(&gizmoLayout, &gizmoMaterial);
 	gizmoBatch.AddInstance(&gizmoMeshInstance);
@@ -1232,11 +1226,11 @@ int main(void)
 
 	ROGLL::MeshInstance debugMeshInstance2(cubeMesh);
 	debugMeshInstance2.transform.scale(0.4, 0.4, 0.4);
-	debugBatch.AddInstance(&debugMeshInstance2);
+	// debugBatch.AddInstance(&debugMeshInstance2);
 
 	ROGLL::MeshInstance debugMeshInstance(cubeMesh);
 	debugMeshInstance.transform.scale(0.2, 0.2, 0.2);
-	debugBatch.AddInstance(&debugMeshInstance);
+	// debugBatch.AddInstance(&debugMeshInstance);
 
 	ROGLL::Camera cam(WINDOW_WIDTH, WINDOW_HEIGHT, 60);
 	cam.transform.translate(0, 0, -10); // Initial cam position
@@ -1523,8 +1517,6 @@ int main(void)
 		glClearColor(ClearColor->x(), ClearColor->y(), ClearColor->z(), ClearColor->w());
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-		ROGLL::RenderBatch* outlinedObjectBatch = nullptr;
-
 		// Update the mesh instance transforms and set up render batches (since they are different to the editor object transform)
 		for (const auto& objPtr : EditorObjects)
 		{
@@ -1538,38 +1530,17 @@ int main(void)
 
 			obj.meshInstance->transform = obj.transform;
 
-			if (selectedObject == &obj)
+			if (obj.objectType == EditorObjectType::CUBE)
 			{
-				if (obj.objectType == EditorObjectType::CUBE)
-				{
-					outlinedObjectBatch = new ROGLL::RenderBatch(&layout, &cubeMaterial);
-				}
-				else if (obj.objectType == EditorObjectType::PLANE)
-				{
-					outlinedObjectBatch = new ROGLL::RenderBatch(&layout, &planeMaterial);
-				}
-				else if (obj.objectType == EditorObjectType::SPHERE)
-				{
-					outlinedObjectBatch = new ROGLL::RenderBatch(&layout, &sphereMaterial);
-				}
-
-				outlinedObjectBatch->AddInstance(obj.meshInstance);
-				outlineBatchUnlit.AddInstance(obj.meshInstance);
+				cubeBatch.AddInstance(obj.meshInstance);
 			}
-			else
+			else if (obj.objectType == EditorObjectType::PLANE)
 			{
-				if (obj.objectType == EditorObjectType::CUBE)
-				{
-					cubeBatch.AddInstance(obj.meshInstance);
-				}
-				else if (obj.objectType == EditorObjectType::PLANE)
-				{
-					planeBatch.AddInstance(obj.meshInstance);
-				}
-				else if (obj.objectType == EditorObjectType::SPHERE)
-				{
-					sphereBatch.AddInstance(obj.meshInstance);
-				}
+				planeBatch.AddInstance(obj.meshInstance);
+			}
+			else if (obj.objectType == EditorObjectType::SPHERE)
+			{
+				sphereBatch.AddInstance(obj.meshInstance);
 			}
 		}
 
@@ -1577,34 +1548,6 @@ int main(void)
 		planeBatch.Render(cam, lightPosition);
 		sphereBatch.Render(cam, lightPosition);
 		debugBatch.Render(cam, lightPosition);
-
-		if (outlinedObjectBatch != nullptr)
-		{
-			glEnable(GL_STENCIL_TEST);
-			glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-			glStencilFunc(GL_ALWAYS, 1, 0xFF);
-			glStencilMask(0xFF);
-			outlinedObjectBatch->Render(cam, lightPosition);
-
-			glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
-			glStencilMask(0x00);
-			glDisable(GL_DEPTH_TEST);
-
-			float dist = RML::Vector(selectedObject->transform.position - MainCamera->transform.position).magnitude();
-			float minFactor = 1.05;
-			float maxFactor = 1.1;
-			float d = std::max(std::min(maxFactor, dist), minFactor);
-
-			selectedObject->meshInstance->transform.scale(d, d, d);
-			//outlineBatchUnlit.Render(cam, lightPosition);
-
-			glStencilMask(0xFF);
-			glStencilFunc(GL_ALWAYS, 1, 0xFF);
-			glEnable(GL_DEPTH_TEST);
-			glDisable(GL_STENCIL_TEST);
-
-			delete outlinedObjectBatch;
-		}
 
 		// Finished World 3D Render
 		glClear(GL_DEPTH_BUFFER_BIT);
@@ -1630,7 +1573,6 @@ int main(void)
 		cubeBatch.Clear();
 		planeBatch.Clear();
 		sphereBatch.Clear();
-		outlineBatchUnlit.Clear();
 		handleBatch.Clear();
 
 		//IMGUI TEST BEGIN
