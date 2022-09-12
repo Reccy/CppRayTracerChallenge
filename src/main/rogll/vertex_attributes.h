@@ -49,6 +49,16 @@ namespace ROGLL
 			return false;
 		}
 
+		bool HasTaggedAttribute(VertexAttributeTag tag) const
+		{
+			for (const auto& attribute : m_attributes)
+			{
+				if (attribute.tag == tag) return true;
+			}
+
+			return false;
+		}
+
 		template<typename T>
 		void Add(VertexAttributeTag tag, GLsizei count, GLboolean normalized = false);
 

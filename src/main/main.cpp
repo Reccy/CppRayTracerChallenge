@@ -109,7 +109,8 @@ enum class EditorObjectType
 {
 	CUBE,
 	PLANE,
-	LIGHT
+	LIGHT,
+	SPHERE
 };
 
 static unsigned int _GenerateEditorObjectId()
@@ -159,6 +160,7 @@ static std::stringstream DebugStringStream;
 
 static Math::Cube SharedCube;
 static Math::Plane SharedPlane;
+static Math::Sphere SharedSphere;
 static Math::Torus SharedTorus(0.1, 1.25);
 
 static RML::Vector _VectorClearNearZero(const RML::Vector& v)
@@ -186,6 +188,7 @@ static std::string _GetTypeName(EditorObjectType objectType)
 	if (objectType == EditorObjectType::CUBE) return "Cube";
 	if (objectType == EditorObjectType::LIGHT) return "Light";
 	if (objectType == EditorObjectType::PLANE) return "Plane";
+	if (objectType == EditorObjectType::SPHERE) return "Sphere";
 
 	assert(false); // Should never return unknown
 
@@ -206,6 +209,13 @@ Math::IShape* _GetMathShapeForEditorObject(const EditorObject& editorObject)
 	{
 		SharedPlane.transform(editorObject.transform.matrix());
 		return &SharedPlane;
+	}
+
+	if (editorObject.objectType == EditorObjectType::SPHERE)
+	{
+		RML::Transform t = editorObject.transform;
+		SharedSphere.transform(t.matrix());
+		return &SharedSphere;
 	}
 
 	assert(false); // This line should never be hit
@@ -288,12 +298,10 @@ static RML::Transform _GetPlaneTransform(Axis axis, RML::Vector observerViewDirT
 	{
 		if (xyDot > xzDot)
 		{
-			std::cout << "Returning XY" << std::endl;
 			return xyTransform;
 		}
 		else
 		{
-			std::cout << "Returning XZ" << std::endl;
 			return xzTransform;
 		}
 	}
@@ -301,12 +309,10 @@ static RML::Transform _GetPlaneTransform(Axis axis, RML::Vector observerViewDirT
 	{
 		if (xyDot > yzDot)
 		{
-			std::cout << "Returning XY" << std::endl;
 			return xyTransform;
 		}
 		else
 		{
-			std::cout << "Returning YZ" << std::endl;
 			return yzTransform;
 		}
 	}
@@ -314,12 +320,10 @@ static RML::Transform _GetPlaneTransform(Axis axis, RML::Vector observerViewDirT
 	{
 		if (xzDot > yzDot)
 		{
-			std::cout << "Returning XZ" << std::endl;
 			return xzTransform;
 		}
 		else
 		{
-			std::cout << "Returning YZ" << std::endl;
 			return yzTransform;
 		}
 	}
@@ -618,6 +622,20 @@ Renderer::World _CreateWorld()
 			shape.transform(editorObject.transform.matrix());
 			world.addObject(shape);
 		}
+		else if (editorObject.objectType == EditorObjectType::SPHERE)
+		{
+			auto sphere = std::make_shared<Math::Sphere>();
+			Renderer::Shape shape(sphere);
+
+			RML::Transform t = editorObject.transform;
+
+			shape.transform(t.matrix());
+			world.addObject(shape);
+		}
+		else
+		{
+			assert(false);
+		}
 	}
 
 	return world;
@@ -807,13 +825,30 @@ ROGLL::Mesh _LoadPlyFile(std::string filepath, const ROGLL::VertexAttributes& la
 	for (long i = 0; i < nvertices; i++)
 	{
 		float offset = i * 3;
-		vertices.push_back(vertexPositions.at(offset));
-		vertices.push_back(vertexPositions.at(offset + 1));
-		vertices.push_back(vertexPositions.at(offset + 2));
 
-		vertices.push_back(vertexColors.at(offset) / 255);
-		vertices.push_back(vertexColors.at(offset + 1) / 255);
-		vertices.push_back(vertexColors.at(offset + 2) / 255);
+		for (const auto& attrib : layout.GetAttributes())
+		{
+			if (attrib.tag == ROGLL::VertexAttributes::VertexAttributeTag::POSITION3)
+			{
+				vertices.push_back(vertexPositions.at(offset));
+				vertices.push_back(vertexPositions.at(offset + 1));
+				vertices.push_back(vertexPositions.at(offset + 2));
+			}
+
+			if (attrib.tag == ROGLL::VertexAttributes::VertexAttributeTag::COLOR3)
+			{
+				vertices.push_back(vertexColors.at(offset) / 255);
+				vertices.push_back(vertexColors.at(offset + 1) / 255);
+				vertices.push_back(vertexColors.at(offset + 2) / 255);
+			}
+
+			if (attrib.tag == ROGLL::VertexAttributes::VertexAttributeTag::NORMAL3)
+			{
+				vertices.push_back(vertexNormals.at(offset));
+				vertices.push_back(vertexNormals.at(offset + 1));
+				vertices.push_back(vertexNormals.at(offset + 2));
+			}
+		}
 	}
 
 	return ROGLL::Mesh(vertices, indices, layout);
@@ -951,6 +986,18 @@ static EditorObject* _CreatePlane(RML::Vector position, ROGLL::Mesh* mesh)
 	return EditorObjects[EditorObjects.size() - 1];
 }
 
+static EditorObject* _CreateSphere(RML::Vector position, ROGLL::Mesh* mesh)
+{
+	EditorObject* sphere = new EditorObject();
+	sphere->id = _GenerateEditorObjectId();
+	sphere->name = "Sphere";
+	sphere->transform.position = position;
+	sphere->objectType = EditorObjectType::SPHERE;
+	sphere->meshInstance = new ROGLL::MeshInstance(*mesh);
+	EditorObjects.push_back(sphere);
+	return EditorObjects[EditorObjects.size() - 1];
+}
+
 int main(void)
 {
 	ROGLL::Window window("Reccy's Ray Tracer", WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -1072,6 +1119,8 @@ int main(void)
 		layout
 		);
 
+	ROGLL::Mesh sphereMesh = _LoadPlyFile("res/models/sphere.ply", layout);
+
 	ROGLL::Mesh gizmoPositionMesh = _LoadPlyFile("res/models/gizmo3d_position.ply", gizmoLayout);
 	ROGLL::Mesh gizmoRotationMesh = _LoadPlyFile("res/models/gizmo3D_rotation.ply", gizmoLayout);
 	ROGLL::Mesh gizmoScaleMesh = _LoadPlyFile("res/models/gizmo3d_scale.ply", gizmoLayout);
@@ -1155,6 +1204,9 @@ int main(void)
 	ROGLL::Material planeMaterial(defaultShader);
 	planeMaterial.Set4("objectColor", Green);
 
+	ROGLL::Material sphereMaterial(defaultShader);
+	sphereMaterial.Set4("objectColor", White);
+
 	ROGLL::Material outlineMaterial(outlineShader);
 	outlineMaterial.Set4("outlineColor", White);
 
@@ -1173,6 +1225,8 @@ int main(void)
 	ROGLL::RenderBatch handleBatch(&gizmoLayout, &handleMaterial);
 
 	ROGLL::RenderBatch planeBatch(&layout, &planeMaterial);
+
+	ROGLL::RenderBatch sphereBatch(&layout, &sphereMaterial);
 
 	ROGLL::RenderBatch debugBatch(&layout, &debugMeshMaterial);
 
@@ -1494,6 +1548,10 @@ int main(void)
 				{
 					outlinedObjectBatch = new ROGLL::RenderBatch(&layout, &planeMaterial);
 				}
+				else if (obj.objectType == EditorObjectType::SPHERE)
+				{
+					outlinedObjectBatch = new ROGLL::RenderBatch(&layout, &sphereMaterial);
+				}
 
 				outlinedObjectBatch->AddInstance(obj.meshInstance);
 				outlineBatchUnlit.AddInstance(obj.meshInstance);
@@ -1508,11 +1566,16 @@ int main(void)
 				{
 					planeBatch.AddInstance(obj.meshInstance);
 				}
+				else if (obj.objectType == EditorObjectType::SPHERE)
+				{
+					sphereBatch.AddInstance(obj.meshInstance);
+				}
 			}
 		}
 
 		cubeBatch.Render(cam, lightPosition);
 		planeBatch.Render(cam, lightPosition);
+		sphereBatch.Render(cam, lightPosition);
 		debugBatch.Render(cam, lightPosition);
 
 		if (outlinedObjectBatch != nullptr)
@@ -1566,6 +1629,7 @@ int main(void)
 
 		cubeBatch.Clear();
 		planeBatch.Clear();
+		sphereBatch.Clear();
 		outlineBatchUnlit.Clear();
 		handleBatch.Clear();
 
@@ -1599,6 +1663,12 @@ int main(void)
 					if (ImGui::MenuItem("Plane")) {
 						auto obj = _CreatePlane({ 0, 0, 0 }, &planeMesh);
 						obj->name = "New Plane";
+						selectedObject = obj;
+					}
+
+					if (ImGui::MenuItem("Sphere")) {
+						auto obj = _CreateSphere({ 0, 0, 0 }, &sphereMesh);
+						obj->name = "New Sphere";
 						selectedObject = obj;
 					}
 
