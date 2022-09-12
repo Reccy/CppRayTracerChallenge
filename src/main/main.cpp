@@ -1426,8 +1426,8 @@ int main(void)
 				
 				RML::Vector mouseWorldPosDelta = hitPosition - selectedObjectHitWorldPosStart;
 				mouseWorldPosDelta = _VectorClearNearZero(mouseWorldPosDelta);
-				RML::Vector axisVector = _GetTransformDirectionByAxisAndObject(selectedObjectHitAxis, *selectedObject);
-				RML::Vector deltaAlongAxis = _ProjectVector(mouseWorldPosDelta, axisVector);
+				RML::Vector gizmoPositiveAxisVector = _GetTransformDirectionByAxisAndObject(selectedObjectHitAxis, *selectedObject);
+				RML::Vector deltaAlongAxis = _ProjectVector(mouseWorldPosDelta, gizmoPositiveAxisVector);
 
 				if (CurrentGizmoType == GizmoType::POSITION)
 				{
@@ -1449,27 +1449,32 @@ int main(void)
 				}
 				else if (CurrentGizmoType == GizmoType::SCALE)
 				{
-					RML::Vector scalingAxis;
+					RML::Vector globalPositiveAxis;
+					RML::Vector localAxis;
 
 					if (selectedObjectHitAxis == Axis::X)
 					{
-						scalingAxis = RML::Vector(1, 0, 0);
+						globalPositiveAxis = RML::Vector::right();
+						localAxis = selectedObject->transform.right();
 					}
 					else if (selectedObjectHitAxis == Axis::Y)
 					{
-						scalingAxis = RML::Vector(0, 1, 0);
+						globalPositiveAxis = RML::Vector::up();
+						localAxis = selectedObject->transform.up();
 					}
 					else
 					{
-						scalingAxis = RML::Vector(0, 0, 1);
+						globalPositiveAxis = RML::Vector::forward();
+						localAxis = selectedObject->transform.forward();
 					}
 
-					// todo fix scaling
-					scalingAxis = RML::Vector::dot(scalingAxis, deltaAlongAxis.normalized()) > 0 ? scalingAxis : -scalingAxis;
+					RML::Vector scalingVector = _ProjectVector(mouseWorldPosDelta, localAxis);
 
-					RML::Vector deltaScaling = scalingAxis * deltaAlongAxis.magnitude();
+					double deltaScaling = RML::Vector::dot(scalingVector, localAxis);
 
-					selectedObject->transform.scaling = selectedObjectScalingStart + deltaScaling;
+					RML::Vector delta = globalPositiveAxis * deltaScaling;
+
+					selectedObject->transform.scaling = selectedObjectScalingStart + delta;
 				}
 				else
 				{
