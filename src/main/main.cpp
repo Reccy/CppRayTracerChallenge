@@ -139,6 +139,7 @@ class EditorPatternBase
 {
 public:
 	virtual void DrawProperties() = 0;
+	virtual std::shared_ptr<Renderer::Pattern> BuildPattern() const = 0;
 	virtual EditorPatternBase* Clone() const = 0;
 	virtual ~EditorPatternBase() {};
 };
@@ -147,6 +148,12 @@ class EditorPatternSolidColor : public EditorPatternBase
 {
 public:
 	Graphics::Color a = Graphics::Color::white();
+
+	std::shared_ptr<Renderer::Pattern> BuildPattern() const
+	{
+		auto result = std::make_shared<Renderer::Patterns::SolidColor>(a);
+		return result;
+	}
 
 	EditorPatternBase* Clone() const override
 	{
@@ -215,6 +222,11 @@ struct EditorMaterial
 	~EditorMaterial()
 	{
 		delete editorPattern;
+	}
+
+	std::shared_ptr<Renderer::Pattern> BuildPattern() const
+	{
+		return editorPattern->BuildPattern();
 	}
 
 	void DrawPatternProperties()
@@ -711,8 +723,9 @@ Renderer::Material _CreateFromEditorMaterial(const EditorMaterial* const mat)
 	result.reflective = mat->reflective;
 	result.transparency = mat->transparency;
 	result.refractiveIndex = mat->refractiveIndex;
-
 	result.shadowcastMode = mat->shadowcastMode;
+
+	result.pattern = mat->BuildPattern();
 
 	return result;
 }
@@ -724,6 +737,7 @@ Renderer::World _CreateWorld()
 	for (const auto& editorObjectPtr : EditorObjects)
 	{
 		const auto& editorObject = *editorObjectPtr;
+		Renderer::Material material = _CreateFromEditorMaterial(editorObject.material);
 
 		RML::Point pos(editorObject.transform.position.x(), editorObject.transform.position.y(), editorObject.transform.position.z()); // TODO: Convert point to vector in RML
 
@@ -735,7 +749,7 @@ Renderer::World _CreateWorld()
 		else if (editorObject.objectType == EditorObjectType::CUBE)
 		{
 			auto cube = std::make_shared<Math::Cube>();
-			Renderer::Shape shape(cube);
+			Renderer::Shape shape(cube, material);
 
 			RML::Transform t = editorObject.transform;
 
@@ -746,14 +760,14 @@ Renderer::World _CreateWorld()
 		else if (editorObject.objectType == EditorObjectType::PLANE)
 		{
 			auto plane = std::make_shared<Math::Plane>();
-			Renderer::Shape shape(plane);
+			Renderer::Shape shape(plane, material);
 			shape.transform(editorObject.transform.matrix());
 			world.addObject(shape);
 		}
 		else if (editorObject.objectType == EditorObjectType::SPHERE)
 		{
 			auto sphere = std::make_shared<Math::Sphere>();
-			Renderer::Shape shape(sphere);
+			Renderer::Shape shape(sphere, material);
 
 			RML::Transform t = editorObject.transform;
 
