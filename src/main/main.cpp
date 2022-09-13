@@ -2,6 +2,7 @@
 #include <sstream>
 #include <thread>
 #include <algorithm>
+#include <random>
 
 #define NOMINMAX
 #include <windows.h>
@@ -115,10 +116,22 @@ enum class EditorObjectType
 	SPHERE
 };
 
-static unsigned int _GenerateEditorObjectId()
+static unsigned int _GenerateUniqueID()
 {
-	static unsigned int id = 0;
-	id += 1;
+	static std::set<unsigned int> occupiedInts;
+
+	static std::random_device dev;
+	static std::mt19937_64 rng(dev());
+	static std::uniform_int_distribution<std::mt19937_64::result_type> dist(0);
+
+	unsigned int id;
+	
+	do
+	{
+		id = dist(rng);
+	}
+	while (occupiedInts.find(id) != occupiedInts.end());
+
 	return id;
 }
 
@@ -234,7 +247,7 @@ struct EditorObject
 	{}
 
 	EditorObject(const EditorObject& other) :
-		id(_GenerateEditorObjectId()),
+		id(_GenerateUniqueID()),
 		name(other.name),
 		eulerRotation(other.eulerRotation),
 		transform(other.transform),
@@ -1065,7 +1078,7 @@ static void _WindowResized(GLFWwindow* window, int width, int height)
 static EditorMaterial* _CreateDefaultEditorMaterial()
 {
 	EditorMaterial* mat = new EditorMaterial();
-	mat->id = _GenerateEditorObjectId();
+	mat->id = _GenerateUniqueID();
 	mat->name = "Default Material";
 	mat->isProtected = true;
 
@@ -1078,7 +1091,7 @@ static EditorMaterial* _CreateDefaultEditorMaterial()
 static EditorMaterial* _CreateNewEditorMaterial()
 {
 	EditorMaterial* mat = new EditorMaterial();
-	mat->id = _GenerateEditorObjectId();
+	mat->id = _GenerateUniqueID();
 	mat->name = "New Material";
 	EditorMaterials.push_back(mat);
 	return EditorMaterials[EditorMaterials.size() - 1];
@@ -1087,7 +1100,7 @@ static EditorMaterial* _CreateNewEditorMaterial()
 static EditorObject* _CreateLight(RML::Vector position)
 {
 	EditorObject* light = new EditorObject();
-	light->id = _GenerateEditorObjectId();
+	light->id = _GenerateUniqueID();
 	light->name = "Light";
 	light->transform.position = position;
 	light->objectType = EditorObjectType::LIGHT;
@@ -1098,7 +1111,7 @@ static EditorObject* _CreateLight(RML::Vector position)
 static EditorObject* _CreateCube(RML::Vector position, ROGLL::Mesh* mesh)
 {
 	EditorObject* cube = new EditorObject();
-	cube->id = _GenerateEditorObjectId();
+	cube->id = _GenerateUniqueID();
 	cube->name = "Cube";
 	cube->transform.position = position;
 	cube->objectType = EditorObjectType::CUBE;
@@ -1110,7 +1123,7 @@ static EditorObject* _CreateCube(RML::Vector position, ROGLL::Mesh* mesh)
 static EditorObject* _CreatePlane(RML::Vector position, ROGLL::Mesh* mesh)
 {
 	EditorObject* plane = new EditorObject();
-	plane->id = _GenerateEditorObjectId();
+	plane->id = _GenerateUniqueID();
 	plane->name = "Ground Plane";
 	plane->transform.position = position;
 	plane->objectType = EditorObjectType::PLANE;
@@ -1122,7 +1135,7 @@ static EditorObject* _CreatePlane(RML::Vector position, ROGLL::Mesh* mesh)
 static EditorObject* _CreateSphere(RML::Vector position, ROGLL::Mesh* mesh)
 {
 	EditorObject* sphere = new EditorObject();
-	sphere->id = _GenerateEditorObjectId();
+	sphere->id = _GenerateUniqueID();
 	sphere->name = "Sphere";
 	sphere->transform.position = position;
 	sphere->objectType = EditorObjectType::SPHERE;
@@ -1979,10 +1992,18 @@ int main(void)
 				{
 					if (ImGui::BeginChild("Materials_Sidebar", ImVec2(150,0), true))
 					{
-						for (const EditorMaterial* mat : EditorMaterials)
+						for (size_t i = 0; i < EditorMaterials.size(); i++)
 						{
-							if (ImGui::Selectable(mat->name.c_str(), matIsSelected && mat->id == SelectedMaterial->id))
+							const EditorMaterial* mat = EditorMaterials[i];
+
+							std::stringstream ss;
+							ss << mat->name << "##" << i;
+
+							std::string label = ss.str();
+
+							if (ImGui::Selectable(label.c_str(), matIsSelected && mat->id == SelectedMaterial->id))
 								SelectedMaterial = const_cast<EditorMaterial*>(mat);
+
 						}
 
 						if (ImGui::Button("Create Material"))
@@ -2010,6 +2031,10 @@ int main(void)
 						ImGui::BeginDisabled(disableEditing);
 
 						ImGui::InputText("Name", &SelectedMaterial->name);
+
+						ImGui::BeginDisabled();
+						ImGui::InputText("ID", &std::to_string(SelectedMaterial->id));
+						ImGui::EndDisabled();
 
 						ImGui::Separator();
 
@@ -2080,7 +2105,7 @@ int main(void)
 					{
 						EditorMaterial* copiedMat = new EditorMaterial(*SelectedMaterial);
 						copiedMat->name = copiedMat->name + " (Clone)";
-						copiedMat->id = _GenerateEditorObjectId();
+						copiedMat->id = _GenerateUniqueID();
 						EditorMaterials.push_back(copiedMat);
 						SelectedMaterial = copiedMat;
 					}
