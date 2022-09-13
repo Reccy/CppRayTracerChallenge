@@ -227,6 +227,7 @@ private:
 };
 
 static EditorMaterial* SelectedMaterial = nullptr;
+static EditorMaterial* DefaultMaterial = nullptr;
 
 struct EditorObject
 {
@@ -236,6 +237,7 @@ struct EditorObject
 	RML::Vector eulerRotation;
 	EditorObjectType objectType;
 	ROGLL::MeshInstance* meshInstance;
+	EditorMaterial* material;
 
 	EditorObject() :
 		id(0),
@@ -243,7 +245,8 @@ struct EditorObject
 		eulerRotation(),
 		transform(),
 		objectType(),
-		meshInstance(nullptr)
+		meshInstance(nullptr),
+		material(DefaultMaterial)
 	{}
 
 	EditorObject(const EditorObject& other) :
@@ -251,7 +254,8 @@ struct EditorObject
 		name(other.name),
 		eulerRotation(other.eulerRotation),
 		transform(other.transform),
-		objectType(other.objectType)
+		objectType(other.objectType),
+		material(other.material)
 	{
 		meshInstance = new ROGLL::MeshInstance(*other.meshInstance);
 	}
@@ -1082,6 +1086,8 @@ static EditorMaterial* _CreateDefaultEditorMaterial()
 	mat->name = "Default Material";
 	mat->isProtected = true;
 
+	DefaultMaterial = mat;
+
 	assert(EditorMaterials.size() == 0); // This should be created before user defined materials
 
 	EditorMaterials.push_back(mat);
@@ -1146,6 +1152,8 @@ static EditorObject* _CreateSphere(RML::Vector position, ROGLL::Mesh* mesh)
 
 int main(void)
 {
+	_CreateDefaultEditorMaterial();
+
 	ROGLL::Window window("Reccy's Ray Tracer", WINDOW_WIDTH, WINDOW_HEIGHT);
 
 	glfwSetWindowSizeCallback(window.GetHandle(), _WindowResized);
@@ -1477,8 +1485,6 @@ int main(void)
 	RML::Vector selectedObjectPositionStart;
 	Math::Plane selectedObjectGizmoAxisPlane;
 	RML::Transform selectedObjectGizmoAxisPlaneTransform;
-
-	_CreateDefaultEditorMaterial();
 
 	while (!window.ShouldClose())
 	{
@@ -1902,6 +1908,29 @@ int main(void)
 					ImGui::EndTable();
 				}
 
+				ImGui::Separator();
+
+				std::vector<std::string> editorMaterialStrings;
+
+				if (ImGui::BeginListBox("Material"))
+				{
+					for (size_t i = 0; i < EditorMaterials.size(); i++)
+					{
+						const EditorMaterial* const mat = EditorMaterials[i];
+
+						std::stringstream ss;
+						ss << mat->name << "##" << i;
+
+						std::string label = ss.str();
+
+						if (ImGui::Selectable(label.c_str(), selectedObject->material == mat))
+						{
+							selectedObject->material = const_cast<EditorMaterial*>(mat);
+						}
+					}
+				}
+				ImGui::EndListBox();
+
 				ImGui::EndDisabled();
 			}
 
@@ -2094,7 +2123,18 @@ int main(void)
 
 					if (deleteMaterial)
 					{
+
 						auto it = std::find(EditorMaterials.begin(), EditorMaterials.end(), SelectedMaterial);
+
+						// Unassign Material from objects
+						for (EditorObject* obj : EditorObjects)
+						{
+							if (obj->material == *it)
+							{
+								obj->material = DefaultMaterial;
+							}
+						}
+
 						delete* it;
 						EditorMaterials.erase(it);
 
