@@ -43,6 +43,8 @@
 
 using namespace CppRayTracerChallenge::Core;
 
+static std::stringstream DebugStringStream;
+
 static Renderer::Camera* RaytraceCamera;
 
 static RML::Tuple4<float> Red{ 1.0f, 0.0f, 0.0f, 1.0f };
@@ -120,6 +122,36 @@ static unsigned int _GenerateEditorObjectId()
 	return id;
 }
 
+class EditorPatternBase
+{
+public:
+	virtual void DrawProperties() = 0;
+	virtual EditorPatternBase* Clone() const = 0;
+	virtual ~EditorPatternBase() {};
+};
+
+class EditorPatternSolidColor : public EditorPatternBase
+{
+public:
+	Graphics::Color a = Graphics::Color::white();
+
+	EditorPatternBase* Clone() const override
+	{
+		EditorPatternSolidColor* result = new EditorPatternSolidColor();
+
+		result->a = a;
+
+		return result;
+	}
+
+	void DrawProperties() override
+	{
+		float color[3] = { a.red(), a.green(), a.blue() };
+		ImGui::ColorPicker3("Color", color);
+		a = Graphics::Color(color[0], color[1], color[2]);
+	}
+};
+
 struct EditorMaterial
 {
 	bool isProtected = false;
@@ -132,7 +164,53 @@ struct EditorMaterial
 	float reflective = 0;
 	float transparency = 0;
 	float refractiveIndex = 0;
+
 	Renderer::ShadowcastMode shadowcastMode = Renderer::ShadowcastMode::WHEN_TRANSPARENT;
+
+	EditorMaterial() :
+		isProtected(false),
+		id(0),
+		name(""),
+		ambient(1),
+		diffuse(0),
+		specular(0),
+		shininess(0),
+		reflective(0),
+		transparency(0),
+		refractiveIndex(0),
+		shadowcastMode(Renderer::ShadowcastMode::WHEN_TRANSPARENT)
+	{
+		editorPattern = new EditorPatternSolidColor();
+	}
+
+	EditorMaterial(const EditorMaterial& other) :
+		isProtected(false),
+		id(0),
+		name(other.name),
+		ambient(other.ambient),
+		diffuse(other.diffuse),
+		specular(other.specular),
+		shininess(other.shininess),
+		reflective(other.reflective),
+		transparency(other.transparency),
+		refractiveIndex(other.refractiveIndex),
+		shadowcastMode(other.shadowcastMode)
+	{
+		editorPattern = other.editorPattern->Clone();
+	}
+
+	~EditorMaterial()
+	{
+		delete editorPattern;
+	}
+
+	void DrawPatternProperties()
+	{
+		editorPattern->DrawProperties();
+	}
+
+private:
+	EditorPatternBase* editorPattern;
 };
 
 static EditorMaterial* SelectedMaterial = nullptr;
@@ -173,8 +251,6 @@ struct EditorObject
 
 static std::vector<EditorObject*> EditorObjects;
 static std::vector<EditorMaterial*> EditorMaterials;
-
-static std::stringstream DebugStringStream;
 
 static Math::Cube SharedCube;
 static Math::Plane SharedPlane;
@@ -1937,6 +2013,8 @@ int main(void)
 
 						ImGui::Separator();
 
+						ImGui::Text("Surface Properties");
+
 						ImGui::SliderFloat("Ambient", &SelectedMaterial->ambient, 0, 1);
 						ImGui::SliderFloat("Diffuse", &SelectedMaterial->diffuse, 0, 1);
 						ImGui::SliderFloat("Specular", &SelectedMaterial->specular, 0, 1);
@@ -1960,7 +2038,27 @@ int main(void)
 
 						SelectedMaterial->shadowcastMode = static_cast<Renderer::ShadowcastMode>(selectedShadowcastMode);
 
+						// TODO: Support multiple pattern properties
+						ImGui::Separator();
+
+						ImGui::Text("Pattern Properties");
+
+						ImGui::BeginDisabled(true);
+						static const char* const patternTypeStrings[] = {
+							"Solid Color"
+						};
+
+						static int selectedPlaceholder = 0;
+
+						ImGui::ListBox("Pattern Type", &selectedPlaceholder, patternTypeStrings, 1);
+						ImGui::EndDisabled();
+
+						SelectedMaterial->DrawPatternProperties();
+
+						ImGui::Separator();
+
 						deleteMaterial = ImGui::Button("Delete");
+
 						duplicateMaterial = ImGui::Button("Duplicate");
 
 						ImGui::EndDisabled();
