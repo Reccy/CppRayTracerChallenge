@@ -120,6 +120,23 @@ static unsigned int _GenerateEditorObjectId()
 	return id;
 }
 
+struct EditorMaterial
+{
+	bool isProtected = false;
+	unsigned int id;
+	std::string name;
+	float ambient = 1;
+	float diffuse = 0;
+	float specular = 0;
+	float shininess = 0;
+	float reflective = 0;
+	float transparency = 0;
+	float refractiveIndex = 0;
+	Renderer::ShadowcastMode shadowcastMode = Renderer::ShadowcastMode::WHEN_TRANSPARENT;
+};
+
+static EditorMaterial* SelectedMaterial = nullptr;
+
 struct EditorObject
 {
 	unsigned int id;
@@ -155,6 +172,7 @@ struct EditorObject
 };
 
 static std::vector<EditorObject*> EditorObjects;
+static std::vector<EditorMaterial*> EditorMaterials;
 
 static std::stringstream DebugStringStream;
 
@@ -589,6 +607,23 @@ void _WriteImage(Graphics::Image image, Serializer::BaseImageSerializer& seriali
 	}
 }
 
+Renderer::Material _CreateFromEditorMaterial(const EditorMaterial* const mat)
+{
+	Renderer::Material result;
+
+	result.ambient = mat->ambient;
+	result.diffuse = mat->diffuse;
+	result.specular = mat->specular;
+	result.shininess = mat->shininess;
+	result.reflective = mat->reflective;
+	result.transparency = mat->transparency;
+	result.refractiveIndex = mat->refractiveIndex;
+
+	result.shadowcastMode = mat->shadowcastMode;
+
+	return result;
+}
+
 Renderer::World _CreateWorld()
 {
 	Renderer::World world;
@@ -949,6 +984,28 @@ static void _WindowResized(GLFWwindow* window, int width, int height)
 
 	WINDOW_WIDTH = width;
 	WINDOW_HEIGHT = height;
+}
+
+static EditorMaterial* _CreateDefaultEditorMaterial()
+{
+	EditorMaterial* mat = new EditorMaterial();
+	mat->id = _GenerateEditorObjectId();
+	mat->name = "Default Material";
+	mat->isProtected = true;
+
+	assert(EditorMaterials.size() == 0); // This should be created before user defined materials
+
+	EditorMaterials.push_back(mat);
+	return EditorMaterials[0];
+}
+
+static EditorMaterial* _CreateNewEditorMaterial()
+{
+	EditorMaterial* mat = new EditorMaterial();
+	mat->id = _GenerateEditorObjectId();
+	mat->name = "New Material";
+	EditorMaterials.push_back(mat);
+	return EditorMaterials[EditorMaterials.size() - 1];
 }
 
 static EditorObject* _CreateLight(RML::Vector position)
@@ -1313,6 +1370,7 @@ int main(void)
 
 	bool guiShowDearImGuiDemo = false;
 	bool guiShowGizmo = true;
+	bool guiShowMaterials = false;
 	bool guiIsRendering = false;
 	bool guiShowRenderSettings = false;
 	bool guiShowRenderPreview = false;
@@ -1330,6 +1388,8 @@ int main(void)
 	RML::Vector selectedObjectPositionStart;
 	Math::Plane selectedObjectGizmoAxisPlane;
 	RML::Transform selectedObjectGizmoAxisPlaneTransform;
+
+	_CreateDefaultEditorMaterial();
 
 	while (!window.ShouldClose())
 	{
@@ -1646,6 +1706,7 @@ int main(void)
 				if (ImGui::BeginMenu("View"))
 				{
 					ImGui::MenuItem("Gizmo", nullptr, &guiShowGizmo);
+					ImGui::MenuItem("Materials", nullptr, &guiShowMaterials);
 
 					ImGui::EndMenu();
 				}
@@ -1825,6 +1886,112 @@ int main(void)
 
 				ImGui::Text(Cached.c_str());
 				ImGui::End();
+			}
+		}
+
+		// Material Properties
+		{
+			if (guiShowMaterials)
+			{
+				bool deleteMaterial = false;
+				bool duplicateMaterial = false;
+				EditorMaterial* createdMaterial = nullptr;
+
+				bool matIsSelected = SelectedMaterial != nullptr;
+
+				if (ImGui::Begin("Materials"))
+				{
+					if (ImGui::BeginChild("Materials_Sidebar", ImVec2(150,0), true))
+					{
+						for (const EditorMaterial* mat : EditorMaterials)
+						{
+							if (ImGui::Selectable(mat->name.c_str(), matIsSelected && mat->id == SelectedMaterial->id))
+								SelectedMaterial = const_cast<EditorMaterial*>(mat);
+						}
+
+						if (ImGui::Button("Create Material"))
+						{
+							createdMaterial = _CreateNewEditorMaterial();
+						};
+					}
+					ImGui::EndChild();
+					ImGui::SameLine();
+
+					if (matIsSelected && ImGui::BeginChild("Materials_Main"))
+					{
+						bool renderThreadInProgress = RenderThreadInProgress.load();
+						bool disableEditing = renderThreadInProgress || SelectedMaterial->isProtected;
+
+						if (SelectedMaterial->isProtected)
+						{
+							ImGui::Text("This material is protected.\nCannot update settings.");
+						}
+						else if (renderThreadInProgress)
+						{
+							ImGui::Text("Render is in progress.\nCannot update settings.");
+						}
+
+						ImGui::BeginDisabled(disableEditing);
+
+						ImGui::InputText("Name", &SelectedMaterial->name);
+
+						ImGui::Separator();
+
+						ImGui::SliderFloat("Ambient", &SelectedMaterial->ambient, 0, 1);
+						ImGui::SliderFloat("Diffuse", &SelectedMaterial->diffuse, 0, 1);
+						ImGui::SliderFloat("Specular", &SelectedMaterial->specular, 0, 1);
+						ImGui::SliderFloat("Shininess", &SelectedMaterial->shininess, 0, 1);
+						ImGui::SliderFloat("Reflective", &SelectedMaterial->reflective, 0, 1);
+						ImGui::SliderFloat("Transparency", &SelectedMaterial->transparency, 0, 1);
+						ImGui::SliderFloat("Refractive Index", &SelectedMaterial->refractiveIndex, 0, 1);
+
+						static const char* const shadowcastModeStrings[] = {
+							"Always",
+							"Never",
+							"When Transparent"
+						};
+
+						int selectedShadowcastMode = static_cast<int>(SelectedMaterial->shadowcastMode);
+
+						ImGui::ListBox("Shadowcast Mode", &selectedShadowcastMode, shadowcastModeStrings, 3);
+
+						assert(selectedShadowcastMode >= 0);
+						assert(selectedShadowcastMode <= 2);
+
+						SelectedMaterial->shadowcastMode = static_cast<Renderer::ShadowcastMode>(selectedShadowcastMode);
+
+						deleteMaterial = ImGui::Button("Delete");
+						duplicateMaterial = ImGui::Button("Duplicate");
+
+						ImGui::EndDisabled();
+					}
+					ImGui::EndChild();
+
+					ImGui::End();
+
+					if (deleteMaterial)
+					{
+						auto it = std::find(EditorMaterials.begin(), EditorMaterials.end(), SelectedMaterial);
+						delete* it;
+						EditorMaterials.erase(it);
+
+						SelectedMaterial = nullptr;
+					}
+
+					if (duplicateMaterial)
+					{
+						EditorMaterial* copiedMat = new EditorMaterial(*SelectedMaterial);
+						copiedMat->name = copiedMat->name + " (Clone)";
+						copiedMat->id = _GenerateEditorObjectId();
+						EditorMaterials.push_back(copiedMat);
+						SelectedMaterial = copiedMat;
+					}
+
+					if (createdMaterial != nullptr)
+					{
+						SelectedMaterial = createdMaterial;
+					}
+				}
 			}
 		}
 
