@@ -57,6 +57,8 @@ static RML::Tuple4<float> Black{ 0.0f, 0.0f, 0.0f, 0.0f };
 
 static RML::Tuple4<float>* ClearColor = &Black;
 
+static Graphics::Color LightColor = Graphics::Color::white();
+
 static bool MoveDown = false;
 static bool MoveUp = false;
 static bool MoveLeft = false;
@@ -286,7 +288,7 @@ static std::vector<EditorMaterial*> EditorMaterials;
 static Math::Cube SharedCube;
 static Math::Plane SharedPlane;
 static Math::Sphere SharedSphere;
-static Math::Cylinder SharedCylinder;
+static Math::Cylinder SharedCylinder(-1, 1, true);
 static Math::Torus SharedTorus(0.1, 1.25);
 
 static RML::Vector _VectorClearNearZero(const RML::Vector& v)
@@ -343,6 +345,7 @@ Math::IShape* _GetMathShapeForEditorObject(const EditorObject& editorObject)
 	else if (editorObject.objectType == EditorObjectType::CYLINDER)
 	{
 		result = &SharedCylinder;
+		transform.scale(0.5, 0.5, 0.5); // Scale unit cylinder to match cylinder mesh
 	}
 
 	assert(result != nullptr);
@@ -749,7 +752,7 @@ Renderer::World _CreateWorld()
 
 		if (editorObject.objectType == EditorObjectType::LIGHT)
 		{
-			Renderer::PointLight light(pos, Graphics::Color::white());
+			Renderer::PointLight light(pos, LightColor);
 			world.addLight(light);
 		}
 		else if (editorObject.objectType == EditorObjectType::CUBE)
@@ -1976,24 +1979,35 @@ int main(void)
 
 				std::vector<std::string> editorMaterialStrings;
 
-				if (ImGui::BeginListBox("Material"))
+				if (selectedObject->objectType == EditorObjectType::LIGHT)
 				{
-					for (size_t i = 0; i < EditorMaterials.size(); i++)
+					ImGui::Text("Light Properties");
+
+					float color[3] = { LightColor.red(), LightColor.green(), LightColor.blue() };
+					ImGui::ColorPicker3("Color", color);
+					LightColor = Graphics::Color(color[0], color[1], color[2]);
+				}
+				else
+				{
+					if (ImGui::BeginListBox("Select Material"))
 					{
-						const EditorMaterial* const mat = EditorMaterials[i];
-
-						std::stringstream ss;
-						ss << mat->name << "##" << i;
-
-						std::string label = ss.str();
-
-						if (ImGui::Selectable(label.c_str(), selectedObject->material == mat))
+						for (size_t i = 0; i < EditorMaterials.size(); i++)
 						{
-							selectedObject->material = const_cast<EditorMaterial*>(mat);
+							const EditorMaterial* const mat = EditorMaterials[i];
+
+							std::stringstream ss;
+							ss << mat->name << "##" << i;
+
+							std::string label = ss.str();
+
+							if (ImGui::Selectable(label.c_str(), selectedObject->material == mat))
+							{
+								selectedObject->material = const_cast<EditorMaterial*>(mat);
+							}
 						}
 					}
+					ImGui::EndListBox();
 				}
-				ImGui::EndListBox();
 
 				ImGui::EndDisabled();
 			}
