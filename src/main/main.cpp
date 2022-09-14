@@ -34,6 +34,7 @@
 #include <math/cube.h>
 #include <math/plane.h>
 #include <math/torus.h>
+#include <math/cylinder.h>
 #include <helpers/material_helper.h>
 
 // === Learning Resources ===
@@ -113,7 +114,8 @@ enum class EditorObjectType
 	CUBE,
 	PLANE,
 	LIGHT,
-	SPHERE
+	SPHERE,
+	CYLINDER
 };
 
 static unsigned int _GenerateUniqueID()
@@ -284,6 +286,7 @@ static std::vector<EditorMaterial*> EditorMaterials;
 static Math::Cube SharedCube;
 static Math::Plane SharedPlane;
 static Math::Sphere SharedSphere;
+static Math::Cylinder SharedCylinder;
 static Math::Torus SharedTorus(0.1, 1.25);
 
 static RML::Vector _VectorClearNearZero(const RML::Vector& v)
@@ -312,6 +315,7 @@ static std::string _GetTypeName(EditorObjectType objectType)
 	if (objectType == EditorObjectType::LIGHT) return "Light";
 	if (objectType == EditorObjectType::PLANE) return "Plane";
 	if (objectType == EditorObjectType::SPHERE) return "Sphere";
+	if (objectType == EditorObjectType::CYLINDER) return "Cylinder";
 
 	assert(false); // Should never return unknown
 
@@ -320,30 +324,32 @@ static std::string _GetTypeName(EditorObjectType objectType)
 
 Math::IShape* _GetMathShapeForEditorObject(const EditorObject& editorObject)
 {
+	Math::IShape* result = nullptr;
+	RML::Transform transform = editorObject.transform;
+
 	if (editorObject.objectType == EditorObjectType::CUBE || editorObject.objectType == EditorObjectType::LIGHT)
 	{
-		RML::Transform t = editorObject.transform;
-		t.scale(0.5, 0.5, 0.5);
-		SharedCube.transform(t.matrix());
-		return &SharedCube;
+		result = &SharedCube;
+		transform.scale(0.5, 0.5, 0.5); // Scale unit cube to match cube mesh
 	}
-
-	if (editorObject.objectType == EditorObjectType::PLANE)
+	else if (editorObject.objectType == EditorObjectType::PLANE)
 	{
-		SharedPlane.transform(editorObject.transform.matrix());
-		return &SharedPlane;
+		result = &SharedPlane;
 	}
-
-	if (editorObject.objectType == EditorObjectType::SPHERE)
+	else if (editorObject.objectType == EditorObjectType::SPHERE)
 	{
-		RML::Transform t = editorObject.transform;
-		SharedSphere.transform(t.matrix());
-		return &SharedSphere;
+		result = &SharedSphere;
+	}
+	else if (editorObject.objectType == EditorObjectType::CYLINDER)
+	{
+		result = &SharedCylinder;
 	}
 
-	assert(false); // This line should never be hit
+	assert(result != nullptr);
 
-	return nullptr;
+	result->transform(transform.matrix());
+
+	return result;
 }
 
 double _IntersectRayWithEditorObject(Math::Ray ray, const EditorObject& editorObject)
@@ -774,6 +780,18 @@ Renderer::World _CreateWorld()
 			shape.transform(t.matrix());
 			world.addObject(shape);
 		}
+		else if (editorObject.objectType == EditorObjectType::CYLINDER)
+		{
+			auto cylinder = std::make_shared<Math::Cylinder>(-1, 1, true);
+			Renderer::Shape shape(cylinder, material);
+
+			RML::Transform t = editorObject.transform;
+
+			t.scaling = t.scaling * 0.5;
+
+			shape.transform(t.matrix());
+			world.addObject(shape);
+		}
 		else
 		{
 			assert(false);
@@ -1098,6 +1116,9 @@ static EditorMaterial* _CreateDefaultEditorMaterial()
 	EditorMaterial* mat = new EditorMaterial();
 	mat->id = _GenerateUniqueID();
 	mat->name = "Default Material";
+	mat->ambient = 0.1;
+	mat->diffuse = 0.8;
+	mat->specular = 0.1;
 	mat->isProtected = true;
 
 	DefaultMaterial = mat;
@@ -1161,6 +1182,18 @@ static EditorObject* _CreateSphere(RML::Vector position, ROGLL::Mesh* mesh)
 	sphere->objectType = EditorObjectType::SPHERE;
 	sphere->meshInstance = new ROGLL::MeshInstance(*mesh);
 	EditorObjects.push_back(sphere);
+	return EditorObjects[EditorObjects.size() - 1];
+}
+
+static EditorObject* _CreateCylinder(RML::Vector position, ROGLL::Mesh* mesh)
+{
+	EditorObject* cylinder = new EditorObject();
+	cylinder->id = _GenerateUniqueID();
+	cylinder->name = "Cylinder";
+	cylinder->transform.position = position;
+	cylinder->objectType = EditorObjectType::CYLINDER;
+	cylinder->meshInstance = new ROGLL::MeshInstance(*mesh);
+	EditorObjects.push_back(cylinder);
 	return EditorObjects[EditorObjects.size() - 1];
 }
 
@@ -1288,6 +1321,7 @@ int main(void)
 		);
 
 	ROGLL::Mesh sphereMesh = _LoadPlyFile("res/models/sphere.ply", layout);
+	ROGLL::Mesh cylinderMesh = _LoadPlyFile("res/models/cylinder.ply", layout);
 
 	ROGLL::Mesh gizmoPositionMesh = _LoadPlyFile("res/models/gizmo3d_position.ply", gizmoLayout);
 	ROGLL::Mesh gizmoRotationMesh = _LoadPlyFile("res/models/gizmo3D_rotation.ply", gizmoLayout);
@@ -1374,6 +1408,9 @@ int main(void)
 	ROGLL::Material sphereMaterial(defaultShader);
 	sphereMaterial.Set4("objectColor", White);
 
+	ROGLL::Material cylinderMaterial(defaultShader);
+	cylinderMaterial.Set4("objectColor", Blue + Red);
+
 	ROGLL::Material debugMeshMaterial(defaultShader);
 	debugMeshMaterial.Set4("objectColor", Red + Green);
 
@@ -1389,6 +1426,8 @@ int main(void)
 	ROGLL::RenderBatch planeBatch(&layout, &planeMaterial);
 
 	ROGLL::RenderBatch sphereBatch(&layout, &sphereMaterial);
+
+	ROGLL::RenderBatch cylinderBatch(&layout, &cylinderMaterial);
 
 	ROGLL::RenderBatch debugBatch(&layout, &debugMeshMaterial);
 
@@ -1715,11 +1754,16 @@ int main(void)
 			{
 				sphereBatch.AddInstance(obj.meshInstance);
 			}
+			else if (obj.objectType == EditorObjectType::CYLINDER)
+			{
+				cylinderBatch.AddInstance(obj.meshInstance);
+			}
 		}
 
 		cubeBatch.Render(cam, lightPosition);
 		planeBatch.Render(cam, lightPosition);
 		sphereBatch.Render(cam, lightPosition);
+		cylinderBatch.Render(cam, lightPosition);
 		debugBatch.Render(cam, lightPosition);
 
 		// Finished World 3D Render
@@ -1784,6 +1828,12 @@ int main(void)
 					if (ImGui::MenuItem("Sphere")) {
 						auto obj = _CreateSphere({ 0, 0, 0 }, &sphereMesh);
 						obj->name = "New Sphere";
+						selectedObject = obj;
+					}
+
+					if (ImGui::MenuItem("Cylinder")) {
+						auto obj = _CreateCylinder({ 0, 0, 0 }, &cylinderMesh);
+						obj->name = "New Cylinder";
 						selectedObject = obj;
 					}
 
