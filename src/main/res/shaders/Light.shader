@@ -13,7 +13,7 @@ out vec3 VertColor;
 void main()
 {
     gl_Position = uVP * vec4(aPos.x, aPos.y, aPos.z, 1.0);
-    VertColor = mix(lightColor, objectColor.xyz, aColor.x);
+    VertColor = mix(objectColor.xyz, lightColor, aColor.x);
 }
 #shader fragment
 #version 330 core

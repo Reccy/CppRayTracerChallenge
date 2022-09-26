@@ -1558,6 +1558,13 @@ int main(void)
 
 		auto lightColorTuple = ColorToTuple(LightColor);
 
+		// Light cannot be rotated or scaled - force user to use the POSITION Gizmo
+		if (selectedObject != nullptr && selectedObject->objectType == EditorObjectType::LIGHT)
+		{
+			CurrentGizmoType = GizmoType::POSITION;
+			CurrentGizmoPtr = &PositionGizmo;
+		}
+
 		if (CurrentGizmoType == GizmoType::POSITION)
 		{
 			currentHandleMeshInstance = &positionHandleMeshInstance;
@@ -1955,6 +1962,8 @@ int main(void)
 					ImGui::EndTable();
 				}
 
+				ImGui::BeginDisabled(selectedObject->objectType == EditorObjectType::LIGHT);
+
 				ImGui::Text("Rotation");
 				if (ImGui::BeginTable("Rotation", 3))
 				{
@@ -1992,6 +2001,8 @@ int main(void)
 
 					ImGui::EndTable();
 				}
+
+				ImGui::EndDisabled();
 
 				ImGui::Separator();
 
