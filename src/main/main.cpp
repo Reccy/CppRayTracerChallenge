@@ -9,9 +9,12 @@
 #include <ShlObj.h>
 #include <tchar.h>
 
+#include <nfd.h>
+
 #include "glad.h"
 #include "glfw3.h"
 
+#include <tinyxml2.h>
 #include <RPly.h>
 #include <imgui.h>
 #include <imgui_stdlib.h>
@@ -1211,6 +1214,21 @@ static EditorObject* _CreateCylinder(RML::Vector position, const ROGLL::Mesh& me
 	return EditorObjects[EditorObjects.size() - 1];
 }
 
+void _SaveWorld(const std::string& path)
+{
+	std::cout << "Saving file to " << path << std::endl;
+
+	FILE* pFile = fopen(path.c_str(), "w");
+
+	tinyxml2::XMLPrinter printer(pFile);
+	printer.OpenElement("render_settings");
+	printer.PushAttribute("width", 1920);
+	printer.PushAttribute("height", 1080);
+	printer.CloseElement();
+
+	fclose(pFile);
+}
+
 int main(void)
 {
 	_CreateDefaultEditorMaterial();
@@ -1832,6 +1850,27 @@ int main(void)
 			{
 				if (ImGui::BeginMenu("File"))
 				{
+					if (ImGui::MenuItem("Save as..."))
+					{
+						nfdchar_t* outPath = NULL;
+						nfdresult_t result = NFD_SaveDialog(NULL, NULL, &outPath);
+
+						if (result == NFD_OKAY)
+						{
+							std::string path(outPath);
+							_SaveWorld(path);
+							free(outPath);
+						}
+						else if (result == NFD_CANCEL)
+						{
+							std::cout << "Save Cancelled" << std::endl;
+						}
+						else
+						{
+							std::cout << "Error: " << NFD_GetError() << std::endl;
+						}
+					}
+
 					if (ImGui::MenuItem("Exit", "Alt + F4")) {
 						glfwSetWindowShouldClose(window.GetHandle(), 1);
 					}

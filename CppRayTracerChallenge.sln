@@ -28,6 +28,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RPly", "src\lib\RPly\RPly.v
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DearImGui", "src\lib\DearImGui\DearImGui.vcxproj", "{59058496-7B35-437F-B318-E300427BA8C6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tinyXML2", "src\lib\tinyxml2\tinyXML2.vcxproj", "{91274562-E494-46F2-BBE2-50A7C1FF2A30}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NativeFileDialog", "src\lib\NativeFileDialog\NativeFileDialog.vcxproj", "{DB66DE99-B312-472E-BFB3-D826B5B3A322}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -134,6 +138,30 @@ Global
 		{59058496-7B35-437F-B318-E300427BA8C6}.ReleaseWithAsserts|x64.Build.0 = ReleaseWithAsserts|x64
 		{59058496-7B35-437F-B318-E300427BA8C6}.ReleaseWithAsserts|x86.ActiveCfg = ReleaseWithAsserts|Win32
 		{59058496-7B35-437F-B318-E300427BA8C6}.ReleaseWithAsserts|x86.Build.0 = ReleaseWithAsserts|Win32
+		{91274562-E494-46F2-BBE2-50A7C1FF2A30}.Debug|x64.ActiveCfg = Debug|x64
+		{91274562-E494-46F2-BBE2-50A7C1FF2A30}.Debug|x64.Build.0 = Debug|x64
+		{91274562-E494-46F2-BBE2-50A7C1FF2A30}.Debug|x86.ActiveCfg = Debug|Win32
+		{91274562-E494-46F2-BBE2-50A7C1FF2A30}.Debug|x86.Build.0 = Debug|Win32
+		{91274562-E494-46F2-BBE2-50A7C1FF2A30}.Release|x64.ActiveCfg = Release|x64
+		{91274562-E494-46F2-BBE2-50A7C1FF2A30}.Release|x64.Build.0 = Release|x64
+		{91274562-E494-46F2-BBE2-50A7C1FF2A30}.Release|x86.ActiveCfg = Release|Win32
+		{91274562-E494-46F2-BBE2-50A7C1FF2A30}.Release|x86.Build.0 = Release|Win32
+		{91274562-E494-46F2-BBE2-50A7C1FF2A30}.ReleaseWithAsserts|x64.ActiveCfg = ReleaseWithAsserts|x64
+		{91274562-E494-46F2-BBE2-50A7C1FF2A30}.ReleaseWithAsserts|x64.Build.0 = ReleaseWithAsserts|x64
+		{91274562-E494-46F2-BBE2-50A7C1FF2A30}.ReleaseWithAsserts|x86.ActiveCfg = Release|Win32
+		{91274562-E494-46F2-BBE2-50A7C1FF2A30}.ReleaseWithAsserts|x86.Build.0 = Release|Win32
+		{DB66DE99-B312-472E-BFB3-D826B5B3A322}.Debug|x64.ActiveCfg = Debug|x64
+		{DB66DE99-B312-472E-BFB3-D826B5B3A322}.Debug|x64.Build.0 = Debug|x64
+		{DB66DE99-B312-472E-BFB3-D826B5B3A322}.Debug|x86.ActiveCfg = Debug|Win32
+		{DB66DE99-B312-472E-BFB3-D826B5B3A322}.Debug|x86.Build.0 = Debug|Win32
+		{DB66DE99-B312-472E-BFB3-D826B5B3A322}.Release|x64.ActiveCfg = Release|x64
+		{DB66DE99-B312-472E-BFB3-D826B5B3A322}.Release|x64.Build.0 = Release|x64
+		{DB66DE99-B312-472E-BFB3-D826B5B3A322}.Release|x86.ActiveCfg = Release|Win32
+		{DB66DE99-B312-472E-BFB3-D826B5B3A322}.Release|x86.Build.0 = Release|Win32
+		{DB66DE99-B312-472E-BFB3-D826B5B3A322}.ReleaseWithAsserts|x64.ActiveCfg = ReleaseWithAsserts|x64
+		{DB66DE99-B312-472E-BFB3-D826B5B3A322}.ReleaseWithAsserts|x64.Build.0 = ReleaseWithAsserts|x64
+		{DB66DE99-B312-472E-BFB3-D826B5B3A322}.ReleaseWithAsserts|x86.ActiveCfg = Release|Win32
+		{DB66DE99-B312-472E-BFB3-D826B5B3A322}.ReleaseWithAsserts|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
