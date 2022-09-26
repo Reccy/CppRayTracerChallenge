@@ -59,6 +59,16 @@ static RML::Tuple4<float>* ClearColor = &Black;
 
 static Graphics::Color LightColor = Graphics::Color::white();
 
+static RML::Tuple3<float> ColorToTuple(const Graphics::Color& c)
+{
+	return RML::Tuple3<float> { c.red(), c.green(), c.blue() };
+}
+
+static Graphics::Color TupleToColor(const RML::Tuple3<float>& tuple)
+{
+	return Graphics::Color(tuple.x(), tuple.y(), tuple.z());
+}
+
 static bool MoveDown = false;
 static bool MoveUp = false;
 static bool MoveLeft = false;
@@ -1141,61 +1151,62 @@ static EditorMaterial* _CreateNewEditorMaterial()
 	return EditorMaterials[EditorMaterials.size() - 1];
 }
 
-static EditorObject* _CreateLight(RML::Vector position)
+static EditorObject* _CreateLight(RML::Vector position, const ROGLL::Mesh& mesh)
 {
 	EditorObject* light = new EditorObject();
 	light->id = _GenerateUniqueID();
 	light->name = "Light";
 	light->transform.position = position;
 	light->objectType = EditorObjectType::LIGHT;
+	light->meshInstance = new ROGLL::MeshInstance(mesh);
 	EditorObjects.push_back(light);
 	return EditorObjects[EditorObjects.size() - 1];
 }
 
-static EditorObject* _CreateCube(RML::Vector position, ROGLL::Mesh* mesh)
+static EditorObject* _CreateCube(RML::Vector position, const ROGLL::Mesh& mesh)
 {
 	EditorObject* cube = new EditorObject();
 	cube->id = _GenerateUniqueID();
 	cube->name = "Cube";
 	cube->transform.position = position;
 	cube->objectType = EditorObjectType::CUBE;
-	cube->meshInstance = new ROGLL::MeshInstance(*mesh);
+	cube->meshInstance = new ROGLL::MeshInstance(mesh);
 	EditorObjects.push_back(cube);
 	return EditorObjects[EditorObjects.size() - 1];
 }
 
-static EditorObject* _CreatePlane(RML::Vector position, ROGLL::Mesh* mesh)
+static EditorObject* _CreatePlane(RML::Vector position, const ROGLL::Mesh& mesh)
 {
 	EditorObject* plane = new EditorObject();
 	plane->id = _GenerateUniqueID();
 	plane->name = "Ground Plane";
 	plane->transform.position = position;
 	plane->objectType = EditorObjectType::PLANE;
-	plane->meshInstance = new ROGLL::MeshInstance(*mesh);
+	plane->meshInstance = new ROGLL::MeshInstance(mesh);
 	EditorObjects.push_back(plane);
 	return EditorObjects[EditorObjects.size() - 1];
 }
 
-static EditorObject* _CreateSphere(RML::Vector position, ROGLL::Mesh* mesh)
+static EditorObject* _CreateSphere(RML::Vector position, const ROGLL::Mesh& mesh)
 {
 	EditorObject* sphere = new EditorObject();
 	sphere->id = _GenerateUniqueID();
 	sphere->name = "Sphere";
 	sphere->transform.position = position;
 	sphere->objectType = EditorObjectType::SPHERE;
-	sphere->meshInstance = new ROGLL::MeshInstance(*mesh);
+	sphere->meshInstance = new ROGLL::MeshInstance(mesh);
 	EditorObjects.push_back(sphere);
 	return EditorObjects[EditorObjects.size() - 1];
 }
 
-static EditorObject* _CreateCylinder(RML::Vector position, ROGLL::Mesh* mesh)
+static EditorObject* _CreateCylinder(RML::Vector position, const ROGLL::Mesh& mesh)
 {
 	EditorObject* cylinder = new EditorObject();
 	cylinder->id = _GenerateUniqueID();
 	cylinder->name = "Cylinder";
 	cylinder->transform.position = position;
 	cylinder->objectType = EditorObjectType::CYLINDER;
-	cylinder->meshInstance = new ROGLL::MeshInstance(*mesh);
+	cylinder->meshInstance = new ROGLL::MeshInstance(mesh);
 	EditorObjects.push_back(cylinder);
 	return EditorObjects[EditorObjects.size() - 1];
 }
@@ -1232,6 +1243,10 @@ int main(void)
 	ROGLL::VertexAttributes gizmoLayout;
 	gizmoLayout.Add<float>(ROGLL::VertexAttributes::POSITION3, 3);
 	gizmoLayout.Add<float>(ROGLL::VertexAttributes::COLOR3, 3);
+
+	ROGLL::VertexAttributes lightLayout;
+	lightLayout.Add<float>(ROGLL::VertexAttributes::POSITION3, 3);
+	lightLayout.Add<float>(ROGLL::VertexAttributes::COLOR3, 3);
 
 	VertexLayout cubeVertsLayout[]
 	{
@@ -1326,6 +1341,8 @@ int main(void)
 	ROGLL::Mesh sphereMesh = _LoadPlyFile("res/models/sphere.ply", layout);
 	ROGLL::Mesh cylinderMesh = _LoadPlyFile("res/models/cylinder.ply", layout);
 
+	ROGLL::Mesh lightMesh = _LoadPlyFile("res/models/light.ply", lightLayout);
+
 	ROGLL::Mesh gizmoPositionMesh = _LoadPlyFile("res/models/gizmo3d_position.ply", gizmoLayout);
 	ROGLL::Mesh gizmoRotationMesh = _LoadPlyFile("res/models/gizmo3D_rotation.ply", gizmoLayout);
 	ROGLL::Mesh gizmoScaleMesh = _LoadPlyFile("res/models/gizmo3d_scale.ply", gizmoLayout);
@@ -1378,21 +1395,9 @@ int main(void)
 		uiTextureFloats.push_back(vert.uv.y());
 	}
 
-	ROGLL::VertexAttributes uiTextureLayout;
-	uiTextureLayout.Add<float>(ROGLL::VertexAttributes::POSITION3, 3);
-	uiTextureLayout.Add<float>(ROGLL::VertexAttributes::UV2, 2);
-
-	ROGLL::Mesh uiTextureMesh(
-		uiTextureFloats,
-		{
-			0, 1, 2,
-			0, 2, 3
-		},
-		uiTextureLayout);
-	ROGLL::MeshInstance gizmoUiInstance(uiTextureMesh);
-
 	ROGLL::Shader defaultShader("res/shaders/Default.shader");
 	ROGLL::Shader gizmoShader("res/shaders/Gizmo.shader");
+	ROGLL::Shader lightShader("res/shaders/Light.shader");
 
 	ROGLL::Material gizmoMaterial(gizmoShader);
 	gizmoMaterial.Set4("objectColor", White);
@@ -1401,6 +1406,9 @@ int main(void)
 	ROGLL::Material handleMaterial(gizmoShader);
 	handleMaterial.Set4("objectColor", White);
 	handleMaterial.Set3("handleActive", RML::Tuple3<float>( 0, 0, 0 ));
+
+	ROGLL::Material lightMaterial(lightShader);
+	lightMaterial.Set4("objectColor", RML::Tuple4<float>(0.1f, 0.2f, 0.1f, 1.0f));
 
 	ROGLL::Material cubeMaterial(defaultShader);
 	cubeMaterial.Set4("objectColor", Blue);
@@ -1425,6 +1433,8 @@ int main(void)
 	ROGLL::MeshInstance* currentHandleMeshInstance = &positionHandleMeshInstance;
 
 	ROGLL::RenderBatch handleBatch(&gizmoLayout, &handleMaterial);
+
+	ROGLL::RenderBatch lightBatch(&lightLayout, &lightMaterial);
 
 	ROGLL::RenderBatch planeBatch(&layout, &planeMaterial);
 
@@ -1509,14 +1519,14 @@ int main(void)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	auto light = _CreateLight({ 0, 10, 0 });
-	auto cubeA = _CreateCube({0, 0.5, 0}, &cubeMesh);
+	auto light = _CreateLight({ 0, 10, 0 }, lightMesh);
+	auto cubeA = _CreateCube({0, 0.5, 0}, cubeMesh);
 	cubeA->name = "Cube A";
 
-	auto cubeB = _CreateCube({ 1, 1.5, 0 }, &cubeMesh);
+	auto cubeB = _CreateCube({ 1, 1.5, 0 }, cubeMesh);
 	cubeB->name = "Cube B";
 
-	auto ground = _CreatePlane({ 0,0,0 }, &planeMesh);
+	auto ground = _CreatePlane({ 0,0,0 }, planeMesh);
 	ground->name = "Ground Plane";
 
 	// New Render Target End
@@ -1545,6 +1555,8 @@ int main(void)
 	while (!window.ShouldClose())
 	{
 		_ProcessInput(window);
+
+		auto lightColorTuple = ColorToTuple(LightColor);
 
 		if (CurrentGizmoType == GizmoType::POSITION)
 		{
@@ -1718,7 +1730,7 @@ int main(void)
 		glViewport(0, 0, 512, 512);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		gizmoMeshInstance.transform.rotation = cam.transform.rotation.inverse();
-		gizmoBatch.Render(gizmoCam, lightPosition);
+		gizmoBatch.Render(gizmoCam, lightPosition, lightColorTuple);
 
 		if (RenderThreadInProgress.load())
 		{
@@ -1740,7 +1752,6 @@ int main(void)
 			if (obj.objectType == EditorObjectType::LIGHT)
 			{
 				lightPosition = RML::Tuple3<float>(obj.transform.position.x(), obj.transform.position.y(), obj.transform.position.z());
-				continue;
 			}
 
 			obj.meshInstance->transform = obj.transform;
@@ -1761,13 +1772,18 @@ int main(void)
 			{
 				cylinderBatch.AddInstance(obj.meshInstance);
 			}
+			else if (obj.objectType == EditorObjectType::LIGHT)
+			{
+				lightBatch.AddInstance(obj.meshInstance);
+			}
 		}
 
-		cubeBatch.Render(cam, lightPosition);
-		planeBatch.Render(cam, lightPosition);
-		sphereBatch.Render(cam, lightPosition);
-		cylinderBatch.Render(cam, lightPosition);
-		debugBatch.Render(cam, lightPosition);
+		cubeBatch.Render(cam, lightPosition, lightColorTuple);
+		planeBatch.Render(cam, lightPosition, lightColorTuple);
+		sphereBatch.Render(cam, lightPosition, lightColorTuple);
+		cylinderBatch.Render(cam, lightPosition, lightColorTuple);
+		lightBatch.Render(cam, lightPosition, lightColorTuple);
+		debugBatch.Render(cam, lightPosition, lightColorTuple);
 
 		// Finished World 3D Render
 		glClear(GL_DEPTH_BUFFER_BIT);
@@ -1787,12 +1803,14 @@ int main(void)
 			CurrentGizmo->transform = selectedObject->transform;
 			CurrentGizmo->transform.scaling = scalingVector;
 			
-			handleBatch.Render(cam, lightPosition);
+			handleBatch.Render(cam, lightPosition, lightColorTuple);
 		}
 
 		cubeBatch.Clear();
 		planeBatch.Clear();
 		sphereBatch.Clear();
+		cylinderBatch.Clear();
+		lightBatch.Clear();
 		handleBatch.Clear();
 
 		//IMGUI TEST BEGIN
@@ -1817,25 +1835,25 @@ int main(void)
 				if (ImGui::BeginMenu("Add"))
 				{
 					if (ImGui::MenuItem("Cube")) {
-						auto obj = _CreateCube({ 0,0,0 }, &cubeMesh);
+						auto obj = _CreateCube({ 0,0,0 }, cubeMesh);
 						obj->name = "New Cube";
 						selectedObject = obj;
 					}
 
 					if (ImGui::MenuItem("Plane")) {
-						auto obj = _CreatePlane({ 0, 0, 0 }, &planeMesh);
+						auto obj = _CreatePlane({ 0, 0, 0 }, planeMesh);
 						obj->name = "New Plane";
 						selectedObject = obj;
 					}
 
 					if (ImGui::MenuItem("Sphere")) {
-						auto obj = _CreateSphere({ 0, 0, 0 }, &sphereMesh);
+						auto obj = _CreateSphere({ 0, 0, 0 }, sphereMesh);
 						obj->name = "New Sphere";
 						selectedObject = obj;
 					}
 
 					if (ImGui::MenuItem("Cylinder")) {
-						auto obj = _CreateCylinder({ 0, 0, 0 }, &cylinderMesh);
+						auto obj = _CreateCylinder({ 0, 0, 0 }, cylinderMesh);
 						obj->name = "New Cylinder";
 						selectedObject = obj;
 					}

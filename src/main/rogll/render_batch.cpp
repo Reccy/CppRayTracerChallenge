@@ -25,7 +25,7 @@ namespace ROGLL
 		m_meshInstances.clear();
 	}
 
-	void RenderBatch::Render(const Camera& cam, const RML::Tuple3<float>& lightPosition) const
+	void RenderBatch::Render(const Camera& cam, const RML::Tuple3<float>& lightPosition, const RML::Tuple3<float>& lightColor) const
 	{
 		std::vector<unsigned int> indexBuffer;
 		std::vector<float> vertexBuffer;
@@ -60,7 +60,7 @@ namespace ROGLL
 
 		m_material->Set4x4("uVP", cam.GetProjectionMatrix() * cam.GetViewMatrix());
 		m_material->Set3("lightPos", lightPosition);
-		m_material->Set3("lightColor", RML::Tuple3<float>(1.0, 1.0, 1.0));
+		m_material->Set3("lightColor", lightColor);
 		m_material->Set3("viewPos", RML::Tuple3<float>(cam.transform.position.x(), cam.transform.position.y(), cam.transform.position.z()));
 		m_material->BindAndApplyUniforms();
 

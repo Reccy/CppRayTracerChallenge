@@ -20,8 +20,8 @@ void main()
     vec3 blue = vec3(0.0, 0.0, 1.0);
 
     gl_Position = uVP * vec4(aPos.x, aPos.y, aPos.z, 1.0);
-    VertColor = aColor;
 
+    VertColor = aColor;
     VertColor = round(VertColor);
     
     VertColor *= mix(halfMask, fullMask, 
@@ -34,8 +34,6 @@ void main()
 #version 330 core
 
 out vec4 FragColor;
-in vec3 FragPos;
-in vec3 Normal;
 in vec3 VertColor;
 
 uniform vec4 objectColor;
