@@ -3,6 +3,7 @@
 #include <thread>
 #include <algorithm>
 #include <random>
+#include <map>
 
 #define NOMINMAX
 #include <windows.h>
@@ -998,7 +999,7 @@ static int _PlyFaceCb(p_ply_argument argument)
 	return 1;
 }
 
-ROGLL::Mesh _LoadPlyFile(std::string filepath, const ROGLL::VertexAttributes& layout)
+ROGLL::Mesh* _LoadPlyFile(std::string filepath, const ROGLL::VertexAttributes& layout)
 {
 	// BEGIN GIZMO LOAD
 	std::cout << "Loading ply model at [" << filepath << "]...";
@@ -1076,7 +1077,7 @@ ROGLL::Mesh _LoadPlyFile(std::string filepath, const ROGLL::VertexAttributes& la
 		}
 	}
 
-	return ROGLL::Mesh(vertices, indices, layout);
+	return new ROGLL::Mesh(vertices, indices, layout);
 }
 
 static void _ProcessInput(const ROGLL::Window& windowRef)
@@ -1203,67 +1204,86 @@ static EditorMaterial* _CreateNewEditorMaterial()
 	return EditorMaterials[EditorMaterials.size() - 1];
 }
 
-static EditorObject* _CreateLight(RML::Vector position, const ROGLL::Mesh& mesh)
+static ROGLL::Mesh* CubeMesh;
+static ROGLL::Mesh* CylinderMesh;
+static ROGLL::Mesh* LightMesh;
+static ROGLL::Mesh* PlaneMesh;
+static ROGLL::Mesh* SphereMesh;
+
+static ROGLL::MeshInstance* _CreateMeshInstanceForType(EditorObjectType type)
+{
+	if (type == EditorObjectType::CUBE) return new ROGLL::MeshInstance(*CubeMesh);
+	if (type == EditorObjectType::CYLINDER) return new ROGLL::MeshInstance(*CylinderMesh);
+	if (type == EditorObjectType::LIGHT) return new ROGLL::MeshInstance(*LightMesh);
+	if (type == EditorObjectType::PLANE) return new ROGLL::MeshInstance(*PlaneMesh);
+	if (type == EditorObjectType::SPHERE) return new ROGLL::MeshInstance(*SphereMesh);
+
+	assert(false);
+
+	return nullptr;
+}
+
+static EditorObject* _CreateLight(RML::Vector position)
 {
 	EditorObject* light = new EditorObject();
 	light->id = _GenerateUniqueID();
 	light->name = "Light";
 	light->transform.position = position;
 	light->objectType = EditorObjectType::LIGHT;
-	light->meshInstance = new ROGLL::MeshInstance(mesh);
+	light->meshInstance = _CreateMeshInstanceForType(EditorObjectType::LIGHT);
 	EditorObjects.push_back(light);
 	return EditorObjects[EditorObjects.size() - 1];
 }
 
-static EditorObject* _CreateCube(RML::Vector position, const ROGLL::Mesh& mesh)
+static EditorObject* _CreateCube(RML::Vector position)
 {
 	EditorObject* cube = new EditorObject();
 	cube->id = _GenerateUniqueID();
 	cube->name = "Cube";
 	cube->transform.position = position;
 	cube->objectType = EditorObjectType::CUBE;
-	cube->meshInstance = new ROGLL::MeshInstance(mesh);
+	cube->meshInstance = _CreateMeshInstanceForType(EditorObjectType::CUBE);
 	EditorObjects.push_back(cube);
 	return EditorObjects[EditorObjects.size() - 1];
 }
 
-static EditorObject* _CreatePlane(RML::Vector position, const ROGLL::Mesh& mesh)
+static EditorObject* _CreatePlane(RML::Vector position)
 {
 	EditorObject* plane = new EditorObject();
 	plane->id = _GenerateUniqueID();
 	plane->name = "Ground Plane";
 	plane->transform.position = position;
 	plane->objectType = EditorObjectType::PLANE;
-	plane->meshInstance = new ROGLL::MeshInstance(mesh);
+	plane->meshInstance = _CreateMeshInstanceForType(EditorObjectType::PLANE);
 	EditorObjects.push_back(plane);
 	return EditorObjects[EditorObjects.size() - 1];
 }
 
-static EditorObject* _CreateSphere(RML::Vector position, const ROGLL::Mesh& mesh)
+static EditorObject* _CreateSphere(RML::Vector position)
 {
 	EditorObject* sphere = new EditorObject();
 	sphere->id = _GenerateUniqueID();
 	sphere->name = "Sphere";
 	sphere->transform.position = position;
 	sphere->objectType = EditorObjectType::SPHERE;
-	sphere->meshInstance = new ROGLL::MeshInstance(mesh);
+	sphere->meshInstance = _CreateMeshInstanceForType(EditorObjectType::SPHERE);
 	EditorObjects.push_back(sphere);
 	return EditorObjects[EditorObjects.size() - 1];
 }
 
-static EditorObject* _CreateCylinder(RML::Vector position, const ROGLL::Mesh& mesh)
+static EditorObject* _CreateCylinder(RML::Vector position)
 {
 	EditorObject* cylinder = new EditorObject();
 	cylinder->id = _GenerateUniqueID();
 	cylinder->name = "Cylinder";
 	cylinder->transform.position = position;
 	cylinder->objectType = EditorObjectType::CYLINDER;
-	cylinder->meshInstance = new ROGLL::MeshInstance(mesh);
+	cylinder->meshInstance = _CreateMeshInstanceForType(EditorObjectType::CYLINDER);
 	EditorObjects.push_back(cylinder);
 	return EditorObjects[EditorObjects.size() - 1];
 }
 
-void _SerializeSceneSettings(tinyxml2::XMLPrinter& printer)
+static void _SerializeSceneSettings(tinyxml2::XMLPrinter& printer)
 {
 	printer.OpenElement("scene");
 
@@ -1275,7 +1295,7 @@ void _SerializeSceneSettings(tinyxml2::XMLPrinter& printer)
 	printer.CloseElement();
 }
 
-void _SerializeCameraSettings(tinyxml2::XMLPrinter& printer)
+static void _SerializeCameraSettings(tinyxml2::XMLPrinter& printer)
 {
 	printer.OpenElement("camera");
 	printer.PushAttribute("fov", Fov);
@@ -1295,7 +1315,7 @@ void _SerializeCameraSettings(tinyxml2::XMLPrinter& printer)
 	printer.CloseElement();
 }
 
-void _SerializeEditorObjects(tinyxml2::XMLPrinter& printer)
+static void _SerializeEditorObjects(tinyxml2::XMLPrinter& printer)
 {
 	printer.OpenElement("editor_objects");
 
@@ -1325,13 +1345,22 @@ void _SerializeEditorObjects(tinyxml2::XMLPrinter& printer)
 		printer.PushAttribute("z", obj->transform.scaling.z());
 		printer.CloseElement();
 
+		if (obj->objectType == EditorObjectType::LIGHT)
+		{
+			printer.OpenElement("light_color");
+			printer.PushAttribute("r", LightColor.red());
+			printer.PushAttribute("g", LightColor.green());
+			printer.PushAttribute("b", LightColor.blue());
+			printer.CloseElement();
+		}
+
 		printer.CloseElement();
 	}
 
 	printer.CloseElement();
 }
 
-void _SerializeMaterial(tinyxml2::XMLPrinter& printer)
+static void _SerializeMaterial(tinyxml2::XMLPrinter& printer)
 {
 	printer.OpenElement("materials");
 
@@ -1356,7 +1385,7 @@ void _SerializeMaterial(tinyxml2::XMLPrinter& printer)
 	printer.CloseElement();
 }
 
-void _SaveWorld(const std::string& path)
+static void _SaveWorld(const std::string& path)
 {
 	std::cout << "Saving file to " << path << std::endl;
 
@@ -1374,6 +1403,339 @@ void _SaveWorld(const std::string& path)
 	_SerializeMaterial(printer);
 
 	fclose(pFile);
+}
+
+static void _OpenWorld(const std::string& path)
+{
+	auto _PrintAbortString = [](std::string variableName) -> void
+	{
+		std::cout << "Error retrieving " << variableName << "\n";
+		std::cout << "Aborted open operation" << std::endl;
+	};
+
+	std::cout << "Opening file " << path << std::endl;
+
+	tinyxml2::XMLDocument doc;
+	auto err = doc.LoadFile(path.c_str());
+	
+	if (err != tinyxml2::XML_SUCCESS)
+	{
+		std::cout << "Error parsing XML at " << path << std::endl;
+		return;
+	}
+
+	// Load Metadata
+	auto* pMetadataElement = doc.FirstChildElement("metadata");
+
+	auto formatVersionAttribute = pMetadataElement->FindAttribute("format_version");
+
+	int formatVersion;
+	if (formatVersionAttribute->QueryIntValue(&formatVersion) != tinyxml2::XML_SUCCESS)
+	{
+		_PrintAbortString("format_version");
+		return;
+	}
+	else
+	{
+		std::cout << "Format Version: " << formatVersion << std::endl;
+	}
+
+	// Load Render Settings
+	auto sceneElement = doc.FirstChildElement("scene");
+	auto renderDimensionsElement = sceneElement->FirstChildElement("render_dimensions");
+	
+	int renderWidth;
+	int renderHeight;
+
+	auto renderDimensionsWidthAttribute = renderDimensionsElement->FindAttribute("width");
+	auto renderDimensionsHeightAttribute = renderDimensionsElement->FindAttribute("height");
+
+	if (renderDimensionsWidthAttribute->QueryIntValue(&renderWidth) != tinyxml2::XML_SUCCESS)
+	{
+		_PrintAbortString("width");
+		return;
+	}
+
+	if (renderDimensionsHeightAttribute->QueryIntValue(&renderHeight) != tinyxml2::XML_SUCCESS)
+	{
+		_PrintAbortString("height");
+		return;
+	}
+
+	std::cout << "Render Width: " << renderWidth << ", Height: " << renderHeight << std::endl;
+	
+	// Load Camera Settings
+	auto cameraElement = doc.FirstChildElement("camera");
+
+	auto camFov = cameraElement->FindAttribute("fov")->FloatValue();
+
+	auto cameraRotationElement = cameraElement->FirstChildElement("rotation");
+
+	auto camXRot = cameraRotationElement->FindAttribute("pitch")->FloatValue();
+	auto camYRot = cameraRotationElement->FindAttribute("yaw")->FloatValue();
+
+	auto cameraPositionElement = cameraElement->FirstChildElement("position");
+
+	auto camXPos = cameraPositionElement->FindAttribute("x")->FloatValue();
+	auto camYPos = cameraPositionElement->FindAttribute("y")->FloatValue();
+	auto camZPos = cameraPositionElement->FindAttribute("z")->FloatValue();
+
+	RML::Vector camPosition(camXPos, camYPos, camZPos);
+
+	std::cout << "Camera Fov: " << camFov << "\n";
+	std::cout << "Camera Pitch: " << camXRot << "\n";
+	std::cout << "Camera Yaw: " << camYRot << "\n";
+	std::cout << "Camera Position: " << camPosition << "\n";
+
+	// Load Materials
+	std::map<unsigned int, EditorMaterial*> newEditorMaterials;
+
+	auto materialsElement = doc.FirstChildElement("materials");
+
+	for (tinyxml2::XMLElement* child = materialsElement->FirstChildElement(); child != NULL; child = child->NextSiblingElement())
+	{
+		bool isProtected;
+		unsigned int id;
+		std::string name;
+		float ambient;
+		float diffuse;
+		float specular;
+		float shininess;
+		float reflective;
+		float transparency;
+		float refractiveIndex;
+		Renderer::ShadowcastMode shadowcastMode;
+
+		if (child->FindAttribute("id")->QueryUnsignedValue(&id) != tinyxml2::XML_SUCCESS)
+		{
+			_PrintAbortString("id");
+			return;
+		}
+
+		if (child->FindAttribute("protected")->QueryBoolValue(&isProtected) != tinyxml2::XML_SUCCESS)
+		{
+			_PrintAbortString("protected");
+			return;
+		}
+
+		auto nameCStr = child->FindAttribute("name")->Value();
+		name = std::string(nameCStr);
+
+		if (child->FindAttribute("ambient")->QueryFloatValue(&ambient) != tinyxml2::XML_SUCCESS)
+		{
+			_PrintAbortString("ambient");
+			return;
+		}
+
+		if (child->FindAttribute("diffuse")->QueryFloatValue(&diffuse) != tinyxml2::XML_SUCCESS)
+		{
+			_PrintAbortString("diffuse");
+			return;
+		}
+
+		if (child->FindAttribute("specular")->QueryFloatValue(&specular) != tinyxml2::XML_SUCCESS)
+		{
+			_PrintAbortString("specular");
+			return;
+		}
+
+		if (child->FindAttribute("shininess")->QueryFloatValue(&shininess) != tinyxml2::XML_SUCCESS)
+		{
+			_PrintAbortString("shininess");
+			return;
+		}
+
+		if (child->FindAttribute("reflective")->QueryFloatValue(&reflective) != tinyxml2::XML_SUCCESS)
+		{
+			_PrintAbortString("reflective");
+			return;
+		}
+
+		if (child->FindAttribute("transparency")->QueryFloatValue(&transparency) != tinyxml2::XML_SUCCESS)
+		{
+			_PrintAbortString("transparency");
+			return;
+		}
+
+		if (child->FindAttribute("refractive_index")->QueryFloatValue(&refractiveIndex) != tinyxml2::XML_SUCCESS)
+		{
+			_PrintAbortString("refractive_index");
+			return;
+		}
+
+		auto shadowcastModeCStr = child->FindAttribute("shadowcast_mode")->Value();
+		auto shadowcastModeStr = std::string(shadowcastModeCStr);
+
+		shadowcastMode = _StringToShadowcastMode(shadowcastModeStr);
+
+		std::cout << "--- Material:\n";
+		std::cout << "id: " << id << "\n";
+		std::cout << "isProtected: " << isProtected << "\n";
+		std::cout << "name: " << name << "\n";
+		std::cout << "ambient: " << ambient << "\n";
+		std::cout << "diffuse: " << diffuse << "\n";
+		std::cout << "specular: " << specular << "\n";
+		std::cout << "shininess: " << shininess << "\n";
+		std::cout << "reflective: " << reflective << "\n";
+		std::cout << "transparency: " << transparency << "\n";
+		std::cout << "refractiveIndex: " << refractiveIndex << "\n";
+		std::cout << "shadowcastMode: " << shadowcastModeStr << "\n";
+
+		EditorMaterial* newMaterial = new EditorMaterial();
+		newMaterial->id = id;
+		newMaterial->isProtected = isProtected;
+		newMaterial->name = name;
+		newMaterial->ambient = ambient;
+		newMaterial->diffuse = diffuse;
+		newMaterial->specular = specular;
+		newMaterial->shininess = shininess;
+		newMaterial->reflective = reflective;
+		newMaterial->transparency = transparency;
+		newMaterial->refractiveIndex = refractiveIndex;
+		newMaterial->shadowcastMode = shadowcastMode;
+
+		newEditorMaterials[id] = newMaterial;
+	}
+
+	// Load Editor Objects
+	auto editorObjectsElement = doc.FirstChildElement("editor_objects");
+
+	std::vector<EditorObject*> newEditorObjects;
+
+	for (tinyxml2::XMLElement* child = editorObjectsElement->FirstChildElement(); child != NULL; child = child->NextSiblingElement())
+	{
+		unsigned int editorObjectId;
+		std::string editorObjectName;
+		std::string editorObjectTypeString;
+		EditorObjectType editorObjectType;
+		unsigned int editorMaterialId;
+
+		auto editorObjectIdAttribute = child->FindAttribute("id");
+		auto editorObjectNameAttribute = child->FindAttribute("name");
+		auto editorObjectTypeAttribute = child->FindAttribute("object_type");
+		auto editorObjectMaterialIdAttribute = child->FindAttribute("editor_material_id");
+
+		if (editorObjectIdAttribute->QueryUnsignedValue(&editorObjectId) != tinyxml2::XML_SUCCESS)
+		{
+			_PrintAbortString("id");
+			return;
+		}
+
+		auto editorObjectNameCStr = editorObjectNameAttribute->Value();
+		editorObjectName = std::string(editorObjectNameCStr);
+
+		auto editorObjectTypeCStr = editorObjectTypeAttribute->Value();
+		editorObjectTypeString = std::string(editorObjectTypeCStr);
+		editorObjectType = _StringToEditorObjectType(editorObjectTypeString);
+
+		if (editorObjectMaterialIdAttribute->QueryUnsignedValue(&editorMaterialId) != tinyxml2::XML_SUCCESS)
+		{
+			_PrintAbortString("editor_material_id");
+			return;
+		}
+
+		auto positionElement = child->FirstChildElement("position");
+		auto rotationElement = child->FirstChildElement("euler_rotation");
+		auto scalingElement = child->FirstChildElement("scaling");
+
+		RML::Vector position(
+			positionElement->FindAttribute("x")->FloatValue(),
+			positionElement->FindAttribute("y")->FloatValue(),
+			positionElement->FindAttribute("z")->FloatValue());
+
+		RML::Vector rotation(
+			rotationElement->FindAttribute("x")->FloatValue(),
+			rotationElement->FindAttribute("y")->FloatValue(),
+			rotationElement->FindAttribute("z")->FloatValue()
+		);
+
+		RML::Vector scaling(
+			scalingElement->FindAttribute("x")->FloatValue(),
+			scalingElement->FindAttribute("y")->FloatValue(),
+			scalingElement->FindAttribute("z")->FloatValue()
+		);
+
+		std::cout << "--- Editor Object:\n";
+		std::cout << "id: " << editorObjectId << "\n";
+		std::cout << "name: " << editorObjectName << "\n";
+		std::cout << "type: " << editorObjectTypeString << "\n";
+		std::cout << "type_id: " << static_cast<int>(editorObjectType) << "\n";
+		std::cout << "editor_material_id: " << editorMaterialId << "\n";
+		std::cout << "position: " << position << "\n";
+		std::cout << "rotation: " << rotation << "\n";
+		std::cout << "scaling: " << scaling << "\n";
+
+		if (editorObjectType == EditorObjectType::LIGHT)
+		{
+			auto colorElement = child->FirstChildElement("light_color");
+
+			float r = colorElement->FindAttribute("r")->FloatValue();
+			float g = colorElement->FindAttribute("g")->FloatValue();
+			float b = colorElement->FindAttribute("b")->FloatValue();
+
+			LightColor = Graphics::Color(r, g, b);
+
+			std::cout << "light_color: " << LightColor << "\n";
+		}
+
+		EditorObject* editorObject = new EditorObject();
+		editorObject->id = editorObjectId;
+		editorObject->name = editorObjectName;
+		editorObject->objectType = editorObjectType;
+		editorObject->material = newEditorMaterials[editorMaterialId];
+		editorObject->meshInstance = _CreateMeshInstanceForType(editorObjectType);
+		editorObject->transform.position = position;
+		editorObject->transform.rotation.euler_angles(rotation.x(), rotation.y(), rotation.z());
+		editorObject->transform.scaling = scaling;
+
+		newEditorObjects.emplace_back(editorObject);
+	}
+
+	//
+	// Actual state changes should only happen below here.
+	// If anything goes wrong above it's fine, since no state change will happen.
+	// Errors from here on should cause a crash, because it will invalidate the editor state.
+	//
+
+	std::cout << "File load successful. Updating scene state." << std::endl;
+
+	// Delete existing editor objects
+
+	for (EditorObject* obj : EditorObjects)
+	{
+		delete obj;
+	}
+
+	EditorObjects.clear();
+
+	// Delete existing editor materials
+
+	for (EditorMaterial* mat : EditorMaterials)
+	{
+		delete mat;
+	}
+
+	EditorMaterials.clear();
+
+	EditorObjects = newEditorObjects;
+
+	for (auto pair : newEditorMaterials)
+	{
+		EditorMaterial* mat = pair.second;
+		EditorMaterials.push_back(mat);
+	}
+
+	RENDER_WIDTH = renderWidth;
+	RENDER_HEIGHT = renderHeight;
+
+	CamXRot = camXRot;
+	CamYRot = camYRot;
+
+	Fov = camFov;
+
+	MainCamera->transform.position = camPosition;
+
+	std::cout << "Scene Loaded" << std::endl;
 }
 
 int main(void)
@@ -1459,7 +1821,7 @@ int main(void)
 		cubeVertsFloats.push_back(vertex.normal.z());
 	}
 
-	ROGLL::Mesh cubeMesh(
+	CubeMesh = new ROGLL::Mesh(
 		cubeVertsFloats,
 		{
 			// FRONT
@@ -1494,7 +1856,7 @@ int main(void)
 		-fM, 0,  fM, 0, 1, 0
 	};
 
-	ROGLL::Mesh planeMesh(
+	PlaneMesh = new ROGLL::Mesh(
 		planeVertFloats,
 		{
 			0, 1, 2,
@@ -1503,35 +1865,35 @@ int main(void)
 		layout
 		);
 
-	ROGLL::Mesh sphereMesh = _LoadPlyFile("res/models/sphere.ply", layout);
-	ROGLL::Mesh cylinderMesh = _LoadPlyFile("res/models/cylinder.ply", layout);
+	SphereMesh = _LoadPlyFile("res/models/sphere.ply", layout);
+	CylinderMesh = _LoadPlyFile("res/models/cylinder.ply", layout);
 
-	ROGLL::Mesh lightMesh = _LoadPlyFile("res/models/light.ply", lightLayout);
+	LightMesh = _LoadPlyFile("res/models/light.ply", lightLayout);
 
-	ROGLL::Mesh gizmoPositionMesh = _LoadPlyFile("res/models/gizmo3d_position.ply", gizmoLayout);
-	ROGLL::Mesh gizmoRotationMesh = _LoadPlyFile("res/models/gizmo3D_rotation.ply", gizmoLayout);
-	ROGLL::Mesh gizmoScaleMesh = _LoadPlyFile("res/models/gizmo3d_scale.ply", gizmoLayout);
+	ROGLL::Mesh* gizmoPositionMesh = _LoadPlyFile("res/models/gizmo3d_position.ply", gizmoLayout);
+	ROGLL::Mesh* gizmoRotationMesh = _LoadPlyFile("res/models/gizmo3D_rotation.ply", gizmoLayout);
+	ROGLL::Mesh* gizmoScaleMesh = _LoadPlyFile("res/models/gizmo3d_scale.ply", gizmoLayout);
 
-	ROGLL::MeshInstance gizmoMeshInstance(gizmoPositionMesh);
-	ROGLL::MeshInstance positionHandleMeshInstance(gizmoPositionMesh);
-	ROGLL::MeshInstance rotationHandleMeshInstance(gizmoRotationMesh);
-	ROGLL::MeshInstance scaleHandleMeshInstance(gizmoScaleMesh);
+	ROGLL::MeshInstance gizmoMeshInstance(*gizmoPositionMesh);
+	ROGLL::MeshInstance positionHandleMeshInstance(*gizmoPositionMesh);
+	ROGLL::MeshInstance rotationHandleMeshInstance(*gizmoRotationMesh);
+	ROGLL::MeshInstance scaleHandleMeshInstance(*gizmoScaleMesh);
 
 	double offsetFromOrigin = 0.73;
 	double width = 0.1;
 	double length = 0.73;
 
-	PositionGizmo = new Gizmo(gizmoPositionMesh,
+	PositionGizmo = new Gizmo(*gizmoPositionMesh,
 		{ RML::Transform().translate(offsetFromOrigin, 0, 0).scale(length, width, width), &SharedCube},
 		{ RML::Transform().translate(0, offsetFromOrigin, 0).scale(width, length, width), &SharedCube},
 		{ RML::Transform().translate(0, 0, offsetFromOrigin).scale(width, width, length), &SharedCube});
 	
-	RotationGizmo = new Gizmo(gizmoRotationMesh,
+	RotationGizmo = new Gizmo(*gizmoRotationMesh,
 		{ RML::Transform().rotate(90, 90, 0), &SharedTorus},
 		{ RML::Transform(), &SharedTorus},
 		{ RML::Transform().rotate(90, 0, 0), &SharedTorus});
 
-	ScaleGizmo = new Gizmo(gizmoScaleMesh,
+	ScaleGizmo = new Gizmo(*gizmoScaleMesh,
 		{ RML::Transform().translate(offsetFromOrigin, 0, 0).scale(length, width, width), &SharedCube},
 		{ RML::Transform().translate(0, offsetFromOrigin, 0).scale(width, length, width), &SharedCube},
 		{ RML::Transform().translate(0, 0, offsetFromOrigin).scale(width, width, length), &SharedCube});
@@ -1609,11 +1971,11 @@ int main(void)
 
 	ROGLL::RenderBatch debugBatch(&layout, &debugMeshMaterial);
 
-	ROGLL::MeshInstance debugMeshInstance2(cubeMesh);
+	ROGLL::MeshInstance debugMeshInstance2(*CubeMesh);
 	debugMeshInstance2.transform.scale(0.4, 0.4, 0.4);
 	// debugBatch.AddInstance(&debugMeshInstance2);
 
-	ROGLL::MeshInstance debugMeshInstance(cubeMesh);
+	ROGLL::MeshInstance debugMeshInstance(*CubeMesh);
 	debugMeshInstance.transform.scale(0.2, 0.2, 0.2);
 	// debugBatch.AddInstance(&debugMeshInstance);
 
@@ -1684,15 +2046,7 @@ int main(void)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	auto light = _CreateLight({ 0, 10, 0 }, lightMesh);
-	auto cubeA = _CreateCube({0, 0.5, 0}, cubeMesh);
-	cubeA->name = "Cube A";
-
-	auto cubeB = _CreateCube({ 1, 1.5, 0 }, cubeMesh);
-	cubeB->name = "Cube B";
-
-	auto ground = _CreatePlane({ 0,0,0 }, planeMesh);
-	ground->name = "Ground Plane";
+	auto light = _CreateLight({ 0, 0, 0 });
 
 	// New Render Target End
 
@@ -1999,8 +2353,10 @@ int main(void)
 				{
 					if (ImGui::MenuItem("Save as..."))
 					{
+						std::cout << "Begin Save..." << std::endl;
+
 						nfdchar_t* outPath = NULL;
-						nfdresult_t result = NFD_SaveDialog(NULL, NULL, &outPath);
+						nfdresult_t result = NFD_SaveDialog("rrt", NULL, &outPath); // .rrt - Reccy's Ray Tracer
 
 						if (result == NFD_OKAY)
 						{
@@ -2018,35 +2374,59 @@ int main(void)
 						}
 					}
 
+					if (ImGui::MenuItem("Open"))
+					{
+						std::cout << "Begin Open..." << std::endl;
+
+						nfdchar_t* outPath = NULL;
+						nfdresult_t result = NFD_OpenDialog("rrt", NULL, &outPath); // .rrt - Reccy's Ray Tracer
+
+						if (result == NFD_OKAY)
+						{
+							std::string path(outPath);
+							selectedObject = nullptr;
+							_OpenWorld(path);
+							free(outPath);
+						}
+						else if (result == NFD_CANCEL)
+						{
+							std::cout << "Open Cancelled" << std::endl;
+						}
+						else
+						{
+							std::cout << "Error: " << NFD_GetError() << std::endl;
+						}
+					}
+
 					if (ImGui::MenuItem("Exit", "Alt + F4")) {
 						glfwSetWindowShouldClose(window.GetHandle(), 1);
 					}
-					
+
 					ImGui::EndMenu();
 				}
 
 				if (ImGui::BeginMenu("Add"))
 				{
 					if (ImGui::MenuItem("Cube")) {
-						auto obj = _CreateCube({ 0,0,0 }, cubeMesh);
+						auto obj = _CreateCube({ 0,0,0 });
 						obj->name = "New Cube";
 						selectedObject = obj;
 					}
 
 					if (ImGui::MenuItem("Plane")) {
-						auto obj = _CreatePlane({ 0, 0, 0 }, planeMesh);
+						auto obj = _CreatePlane({ 0, 0, 0 });
 						obj->name = "New Plane";
 						selectedObject = obj;
 					}
 
 					if (ImGui::MenuItem("Sphere")) {
-						auto obj = _CreateSphere({ 0, 0, 0 }, sphereMesh);
+						auto obj = _CreateSphere({ 0, 0, 0 });
 						obj->name = "New Sphere";
 						selectedObject = obj;
 					}
 
 					if (ImGui::MenuItem("Cylinder")) {
-						auto obj = _CreateCylinder({ 0, 0, 0 }, cylinderMesh);
+						auto obj = _CreateCylinder({ 0, 0, 0 });
 						obj->name = "New Cylinder";
 						selectedObject = obj;
 					}
@@ -2550,6 +2930,16 @@ int main(void)
 		window.SwapBuffers();
 		window.PollEvents();
 	}
+
+	delete gizmoPositionMesh;
+	delete gizmoRotationMesh;
+	delete gizmoScaleMesh;
+
+	delete CubeMesh;
+	delete CylinderMesh;
+	delete LightMesh;
+	delete PlaneMesh;
+	delete SphereMesh;
 
 	delete PositionGizmo;
 	delete RotationGizmo;
