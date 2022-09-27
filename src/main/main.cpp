@@ -133,6 +133,33 @@ enum class EditorObjectType
 	CYLINDER
 };
 
+std::string _EditorObjectTypeToString(EditorObjectType objectType)
+{
+	if (objectType == EditorObjectType::CUBE) return "CUBE";
+	if (objectType == EditorObjectType::PLANE) return "PLANE";
+	if (objectType == EditorObjectType::LIGHT) return "LIGHT";
+	if (objectType == EditorObjectType::SPHERE) return "SPHERE";
+	if (objectType == EditorObjectType::CYLINDER) return "CYLINDER";
+
+	assert(false); // This should not get called
+
+	return "";
+}
+
+EditorObjectType _StringToEditorObjectType(const std::string& str)
+{
+	if (str == "CUBE") return EditorObjectType::CUBE;
+	if (str == "PLANE") return EditorObjectType::PLANE;
+	if (str == "LIGHT") return EditorObjectType::LIGHT;
+	if (str == "SPHERE") return EditorObjectType::SPHERE;
+	if (str == "CYLINDER") return EditorObjectType::CYLINDER;
+
+	assert(false); // This should not get called
+
+	return EditorObjectType::CUBE;
+}
+
+
 static unsigned int _GenerateUniqueID()
 {
 	static std::set<unsigned int> occupiedInts;
@@ -188,6 +215,28 @@ public:
 		a = Graphics::Color(color[0], color[1], color[2]);
 	}
 };
+
+std::string _ShadowcastModeToString(Renderer::ShadowcastMode mode)
+{
+	if (mode == Renderer::ShadowcastMode::ALWAYS) return "ALWAYS";
+	if (mode == Renderer::ShadowcastMode::NEVER) return "NEVER";
+	if (mode == Renderer::ShadowcastMode::WHEN_TRANSPARENT) return "WHEN_TRANSPARENT";
+
+	assert(false); // Invalid state
+
+	return "";
+}
+
+Renderer::ShadowcastMode _StringToShadowcastMode(const std::string& str)
+{
+	if (str == "ALWAYS") return Renderer::ShadowcastMode::ALWAYS;
+	if (str == "NEVER") return Renderer::ShadowcastMode::NEVER;
+	if (str == "WHEN_TRANSPARENT") return Renderer::ShadowcastMode::WHEN_TRANSPARENT;
+
+	assert(false); // Invalid state
+
+	return Renderer::ShadowcastMode::ALWAYS;
+}
 
 struct EditorMaterial
 {
@@ -1214,6 +1263,99 @@ static EditorObject* _CreateCylinder(RML::Vector position, const ROGLL::Mesh& me
 	return EditorObjects[EditorObjects.size() - 1];
 }
 
+void _SerializeSceneSettings(tinyxml2::XMLPrinter& printer)
+{
+	printer.OpenElement("scene");
+
+	printer.OpenElement("render_dimensions");
+	printer.PushAttribute("width", RENDER_WIDTH);
+	printer.PushAttribute("height", RENDER_HEIGHT);
+	printer.CloseElement();
+
+	printer.CloseElement();
+}
+
+void _SerializeCameraSettings(tinyxml2::XMLPrinter& printer)
+{
+	printer.OpenElement("camera");
+	printer.PushAttribute("fov", Fov);
+
+	printer.OpenElement("position");
+	printer.PushAttribute("x", MainCamera->transform.position.x());
+	printer.PushAttribute("y", MainCamera->transform.position.y());
+	printer.PushAttribute("z", MainCamera->transform.position.z());
+	printer.CloseElement();
+
+	printer.OpenElement("rotation");
+	printer.PushAttribute("pitch", CamXRot);
+	printer.PushAttribute("yaw", CamYRot);
+	printer.PushAttribute("roll", 0); // Keep roll so that if roll is supported in the future, won't need to add a check to see if roll is in the XML element
+	printer.CloseElement();
+
+	printer.CloseElement();
+}
+
+void _SerializeEditorObjects(tinyxml2::XMLPrinter& printer)
+{
+	printer.OpenElement("editor_objects");
+
+	for (const auto& obj : EditorObjects)
+	{
+		printer.OpenElement("editor_object");
+		printer.PushAttribute("id", obj->id);
+		printer.PushAttribute("name", obj->name.c_str());
+		printer.PushAttribute("object_type", _EditorObjectTypeToString(obj->objectType).c_str());
+		printer.PushAttribute("editor_material_id", obj->material->id);
+
+		printer.OpenElement("position");
+		printer.PushAttribute("x", obj->transform.position.x());
+		printer.PushAttribute("y", obj->transform.position.y());
+		printer.PushAttribute("z", obj->transform.position.z());
+		printer.CloseElement();
+
+		printer.OpenElement("euler_rotation");
+		printer.PushAttribute("x", obj->eulerRotation.x());
+		printer.PushAttribute("y", obj->eulerRotation.y());
+		printer.PushAttribute("z", obj->eulerRotation.z());
+		printer.CloseElement();
+
+		printer.OpenElement("scaling");
+		printer.PushAttribute("x", obj->transform.scaling.x());
+		printer.PushAttribute("y", obj->transform.scaling.y());
+		printer.PushAttribute("z", obj->transform.scaling.z());
+		printer.CloseElement();
+
+		printer.CloseElement();
+	}
+
+	printer.CloseElement();
+}
+
+void _SerializeMaterial(tinyxml2::XMLPrinter& printer)
+{
+	printer.OpenElement("materials");
+
+	for (const auto& mat : EditorMaterials)
+	{
+		printer.OpenElement("material");
+		printer.PushAttribute("id", mat->id);
+		printer.PushAttribute("protected", mat->isProtected);
+		printer.PushAttribute("name", mat->name.c_str());
+		printer.PushAttribute("ambient", mat->ambient);
+		printer.PushAttribute("diffuse", mat->diffuse);
+		printer.PushAttribute("specular", mat->specular);
+		printer.PushAttribute("shininess", mat->shininess);
+		printer.PushAttribute("reflective", mat->reflective);
+		printer.PushAttribute("transparency", mat->transparency);
+		printer.PushAttribute("refractive_index", mat->refractiveIndex);
+		printer.PushAttribute("shadowcast_mode", _ShadowcastModeToString(mat->shadowcastMode).c_str());
+
+		printer.CloseElement();
+	}
+
+	printer.CloseElement();
+}
+
 void _SaveWorld(const std::string& path)
 {
 	std::cout << "Saving file to " << path << std::endl;
@@ -1221,10 +1363,15 @@ void _SaveWorld(const std::string& path)
 	FILE* pFile = fopen(path.c_str(), "w");
 
 	tinyxml2::XMLPrinter printer(pFile);
-	printer.OpenElement("render_settings");
-	printer.PushAttribute("width", 1920);
-	printer.PushAttribute("height", 1080);
+
+	printer.OpenElement("metadata");
+	printer.PushAttribute("format_version", "0");
 	printer.CloseElement();
+
+	_SerializeSceneSettings(printer);
+	_SerializeCameraSettings(printer);
+	_SerializeEditorObjects(printer);
+	_SerializeMaterial(printer);
 
 	fclose(pFile);
 }
