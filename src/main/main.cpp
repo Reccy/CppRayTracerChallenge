@@ -186,17 +186,18 @@ public:
 	virtual void DrawProperties() = 0;
 	virtual std::shared_ptr<Renderer::Pattern> BuildPattern() const = 0;
 	virtual EditorPatternBase* Clone() const = 0;
+	virtual void Serialize(tinyxml2::XMLPrinter& printer) const = 0;
 	virtual ~EditorPatternBase() {};
 };
 
 class EditorPatternSolidColor : public EditorPatternBase
 {
 public:
-	Graphics::Color a = Graphics::Color::white();
+	Graphics::Color color = Graphics::Color::white();
 
 	std::shared_ptr<Renderer::Pattern> BuildPattern() const
 	{
-		auto result = std::make_shared<Renderer::Patterns::SolidColor>(a);
+		auto result = std::make_shared<Renderer::Patterns::SolidColor>(color);
 		return result;
 	}
 
@@ -204,16 +205,26 @@ public:
 	{
 		EditorPatternSolidColor* result = new EditorPatternSolidColor();
 
-		result->a = a;
+		result->color = color;
 
 		return result;
 	}
 
+	void Serialize(tinyxml2::XMLPrinter& printer) const override
+	{
+		printer.PushAttribute("type", "SOLID_COLOR");
+		printer.OpenElement("color");
+		printer.PushAttribute("r", color.red());
+		printer.PushAttribute("g", color.green());
+		printer.PushAttribute("b", color.blue());
+		printer.CloseElement();
+	}
+
 	void DrawProperties() override
 	{
-		float color[3] = { a.red(), a.green(), a.blue() };
-		ImGui::ColorPicker3("Color", color);
-		a = Graphics::Color(color[0], color[1], color[2]);
+		float fColor[3] = { color.red(), color.green(), color.blue() };
+		ImGui::ColorPicker3("Color", fColor);
+		color = Graphics::Color(fColor[0], fColor[1], fColor[2]);
 	}
 };
 
@@ -254,6 +265,8 @@ struct EditorMaterial
 
 	Renderer::ShadowcastMode shadowcastMode = Renderer::ShadowcastMode::WHEN_TRANSPARENT;
 
+	EditorPatternBase* editorPattern;
+
 	EditorMaterial() :
 		isProtected(false),
 		id(0),
@@ -268,6 +281,22 @@ struct EditorMaterial
 		shadowcastMode(Renderer::ShadowcastMode::WHEN_TRANSPARENT)
 	{
 		editorPattern = new EditorPatternSolidColor();
+	}
+
+	EditorMaterial(EditorPatternBase* editorPattern) :
+		isProtected(false),
+		id(0),
+		name(""),
+		ambient(1),
+		diffuse(0),
+		specular(0),
+		shininess(0),
+		reflective(0),
+		transparency(0),
+		refractiveIndex(0),
+		shadowcastMode(Renderer::ShadowcastMode::WHEN_TRANSPARENT)
+	{
+		this->editorPattern = editorPattern;
 	}
 
 	EditorMaterial(const EditorMaterial& other) :
@@ -300,9 +329,6 @@ struct EditorMaterial
 	{
 		editorPattern->DrawProperties();
 	}
-
-private:
-	EditorPatternBase* editorPattern;
 };
 
 static EditorMaterial* SelectedMaterial = nullptr;
@@ -1379,6 +1405,10 @@ static void _SerializeMaterial(tinyxml2::XMLPrinter& printer)
 		printer.PushAttribute("refractive_index", mat->refractiveIndex);
 		printer.PushAttribute("shadowcast_mode", _ShadowcastModeToString(mat->shadowcastMode).c_str());
 
+		printer.OpenElement("pattern");
+		mat->editorPattern->Serialize(printer);
+		printer.CloseElement();
+
 		printer.CloseElement();
 	}
 
@@ -1581,7 +1611,39 @@ static void _OpenWorld(const std::string& path)
 		std::cout << "refractiveIndex: " << refractiveIndex << "\n";
 		std::cout << "shadowcastMode: " << shadowcastModeStr << "\n";
 
-		EditorMaterial* newMaterial = new EditorMaterial();
+		// TODO: Make this serialization generic and work for multiple pattern types
+		auto patternElement = child->FirstChildElement("pattern");
+		auto patternType = std::string(patternElement->FindAttribute("type")->Value());
+		float patternColorRed;
+		float patternColorGreen;
+		float patternColorBlue;
+		Graphics::Color patternColor(0,0,0);
+
+		if (patternType == "SOLID_COLOR")
+		{
+			auto colorElement = patternElement->FirstChildElement("color");
+
+			std::cout << colorElement->FindAttribute("r")->Value() << "\n";
+
+			patternColorRed = colorElement->FindAttribute("r")->FloatValue();
+			patternColorGreen = colorElement->FindAttribute("g")->FloatValue();
+			patternColorBlue = colorElement->FindAttribute("b")->FloatValue();
+			patternColor = Graphics::Color(patternColorRed, patternColorGreen, patternColorBlue);
+
+			std::cout << "----- Pattern:\n";
+			std::cout << "type: SOLID_COLOR\n";
+			std::cout << "color: " << patternColor << "\n";
+		}
+		else
+		{
+			_PrintAbortString("type");
+			return;
+		}
+
+		EditorPatternSolidColor* pattern = new EditorPatternSolidColor();
+		pattern->color = patternColor;
+
+		EditorMaterial* newMaterial = new EditorMaterial(pattern);
 		newMaterial->id = id;
 		newMaterial->isProtected = isProtected;
 		newMaterial->name = name;
@@ -2384,7 +2446,10 @@ int main(void)
 						if (result == NFD_OKAY)
 						{
 							std::string path(outPath);
+
+							// Unselect selected object and selected material since it might not exist in new world
 							selectedObject = nullptr;
+							SelectedMaterial = nullptr;
 							_OpenWorld(path);
 							free(outPath);
 						}
