@@ -111,12 +111,12 @@ static int WINDOW_HEIGHT = 768;
 
 static ROGLL::Camera* MainCamera;
 
-static struct PlyFaceStruct {
+struct PlyFaceStruct {
 	std::vector<unsigned int>* indices = nullptr;
 	unsigned int faceParseIdx = 0;
 };
 
-static enum class GizmoType
+enum class GizmoType
 {
 	POSITION,
 	ROTATION,
@@ -250,6 +250,9 @@ Renderer::ShadowcastMode _StringToShadowcastMode(const std::string& str)
 	return Renderer::ShadowcastMode::ALWAYS;
 }
 
+static ROGLL::Shader* DefaultShader;
+static ROGLL::VertexAttributes* DefaultLayout;
+
 struct EditorMaterial
 {
 	bool isProtected = false;
@@ -267,6 +270,9 @@ struct EditorMaterial
 
 	EditorPatternBase* editorPattern;
 
+	ROGLL::Material* previewMaterial;
+	ROGLL::RenderBatch* renderBatch;
+
 	EditorMaterial() :
 		isProtected(false),
 		id(0),
@@ -281,6 +287,8 @@ struct EditorMaterial
 		shadowcastMode(Renderer::ShadowcastMode::WHEN_TRANSPARENT)
 	{
 		editorPattern = new EditorPatternSolidColor();
+		previewMaterial = new ROGLL::Material(*DefaultShader); // TODO: Support multiple patterns
+		renderBatch = new ROGLL::RenderBatch(DefaultLayout, previewMaterial);
 	}
 
 	EditorMaterial(EditorPatternBase* editorPattern) :
@@ -297,6 +305,8 @@ struct EditorMaterial
 		shadowcastMode(Renderer::ShadowcastMode::WHEN_TRANSPARENT)
 	{
 		this->editorPattern = editorPattern;
+		previewMaterial = new ROGLL::Material(*DefaultShader); // TODO: Support multiple patterns
+		renderBatch = new ROGLL::RenderBatch(DefaultLayout, previewMaterial);
 	}
 
 	EditorMaterial(const EditorMaterial& other) :
@@ -313,11 +323,15 @@ struct EditorMaterial
 		shadowcastMode(other.shadowcastMode)
 	{
 		editorPattern = other.editorPattern->Clone();
+		previewMaterial = new ROGLL::Material(*other.previewMaterial);
+		renderBatch = new ROGLL::RenderBatch(DefaultLayout, previewMaterial);
 	}
 
 	~EditorMaterial()
 	{
 		delete editorPattern;
+		delete previewMaterial;
+		delete renderBatch;
 	}
 
 	std::shared_ptr<Renderer::Pattern> BuildPattern() const
@@ -1203,8 +1217,23 @@ static void _WindowResized(GLFWwindow* window, int width, int height)
 	WINDOW_HEIGHT = height;
 }
 
+static void _CreateDefaultShader()
+{
+	DefaultShader = new ROGLL::Shader("res/shaders/Default.shader");
+}
+
+static void _CreateDefaultLayout()
+{
+	DefaultLayout = new ROGLL::VertexAttributes();
+	DefaultLayout->Add<float>(ROGLL::VertexAttributes::POSITION3, 3);
+	DefaultLayout->Add<float>(ROGLL::VertexAttributes::NORMAL3, 3);
+}
+
 static EditorMaterial* _CreateDefaultEditorMaterial()
 {
+	assert(DefaultShader != nullptr);
+	assert(DefaultLayout != nullptr);
+
 	EditorMaterial* mat = new EditorMaterial();
 	mat->id = _GenerateUniqueID();
 	mat->name = "Default Material";
@@ -1785,6 +1814,8 @@ static void _OpenWorld(const std::string& path)
 	{
 		EditorMaterial* mat = pair.second;
 		EditorMaterials.push_back(mat);
+
+		if (mat->isProtected) DefaultMaterial = mat;
 	}
 
 	RENDER_WIDTH = renderWidth;
@@ -1802,11 +1833,13 @@ static void _OpenWorld(const std::string& path)
 
 int main(void)
 {
-	_CreateDefaultEditorMaterial();
-
 	ROGLL::Window window("Reccy's Ray Tracer", WINDOW_WIDTH, WINDOW_HEIGHT);
-
 	glfwSetWindowSizeCallback(window.GetHandle(), _WindowResized);
+	// Open GL Initialized from here
+
+	_CreateDefaultLayout();
+	_CreateDefaultShader();
+	_CreateDefaultEditorMaterial();
 
 	RML::Tuple3<float> xyz(-0.5, -0.5, -0.5);
 	RML::Tuple3<float> xYz(-0.5, 0.5, -0.5);
@@ -1824,10 +1857,6 @@ int main(void)
 	RML::Tuple3<float> Right(1, 0, 0);
 	RML::Tuple3<float> Forward(0, 0, 1);
 	RML::Tuple3<float> Backward(0, 0, -1);
-
-	ROGLL::VertexAttributes layout;
-	layout.Add<float>(ROGLL::VertexAttributes::POSITION3, 3);
-	layout.Add<float>(ROGLL::VertexAttributes::NORMAL3, 3);
 
 	ROGLL::VertexAttributes gizmoLayout;
 	gizmoLayout.Add<float>(ROGLL::VertexAttributes::POSITION3, 3);
@@ -1905,7 +1934,7 @@ int main(void)
 			20, 21, 22,
 			22, 23, 20,
 		},
-		layout
+		*DefaultLayout
 		);
 
 	auto fM = 1000.0f;
@@ -1924,11 +1953,11 @@ int main(void)
 			0, 1, 2,
 			2, 3, 0,
 		},
-		layout
+		*DefaultLayout
 		);
 
-	SphereMesh = _LoadPlyFile("res/models/sphere.ply", layout);
-	CylinderMesh = _LoadPlyFile("res/models/cylinder.ply", layout);
+	SphereMesh = _LoadPlyFile("res/models/sphere.ply", *DefaultLayout);
+	CylinderMesh = _LoadPlyFile("res/models/cylinder.ply", *DefaultLayout);
 
 	LightMesh = _LoadPlyFile("res/models/light.ply", lightLayout);
 
@@ -1984,7 +2013,6 @@ int main(void)
 		uiTextureFloats.push_back(vert.uv.y());
 	}
 
-	ROGLL::Shader defaultShader("res/shaders/Default.shader");
 	ROGLL::Shader gizmoShader("res/shaders/Gizmo.shader");
 	ROGLL::Shader lightShader("res/shaders/Light.shader");
 
@@ -1999,22 +2027,8 @@ int main(void)
 	ROGLL::Material lightMaterial(lightShader);
 	lightMaterial.Set4("objectColor", RML::Tuple4<float>(0.1f, 0.2f, 0.1f, 1.0f));
 
-	ROGLL::Material cubeMaterial(defaultShader);
-	cubeMaterial.Set4("objectColor", Blue);
-
-	ROGLL::Material planeMaterial(defaultShader);
-	planeMaterial.Set4("objectColor", Green);
-
-	ROGLL::Material sphereMaterial(defaultShader);
-	sphereMaterial.Set4("objectColor", White);
-
-	ROGLL::Material cylinderMaterial(defaultShader);
-	cylinderMaterial.Set4("objectColor", Blue + Red);
-
-	ROGLL::Material debugMeshMaterial(defaultShader);
+	ROGLL::Material debugMeshMaterial(*DefaultShader);
 	debugMeshMaterial.Set4("objectColor", Red + Green);
-
-	ROGLL::RenderBatch cubeBatch(&layout, &cubeMaterial);
 
 	ROGLL::RenderBatch gizmoBatch(&gizmoLayout, &gizmoMaterial);
 	gizmoBatch.AddInstance(&gizmoMeshInstance);
@@ -2025,13 +2039,7 @@ int main(void)
 
 	ROGLL::RenderBatch lightBatch(&lightLayout, &lightMaterial);
 
-	ROGLL::RenderBatch planeBatch(&layout, &planeMaterial);
-
-	ROGLL::RenderBatch sphereBatch(&layout, &sphereMaterial);
-
-	ROGLL::RenderBatch cylinderBatch(&layout, &cylinderMaterial);
-
-	ROGLL::RenderBatch debugBatch(&layout, &debugMeshMaterial);
+	ROGLL::RenderBatch debugBatch(DefaultLayout, &debugMeshMaterial);
 
 	ROGLL::MeshInstance debugMeshInstance2(*CubeMesh);
 	debugMeshInstance2.transform.scale(0.4, 0.4, 0.4);
@@ -2344,32 +2352,24 @@ int main(void)
 
 			obj.meshInstance->transform = obj.transform;
 
-			if (obj.objectType == EditorObjectType::CUBE)
-			{
-				cubeBatch.AddInstance(obj.meshInstance);
-			}
-			else if (obj.objectType == EditorObjectType::PLANE)
-			{
-				planeBatch.AddInstance(obj.meshInstance);
-			}
-			else if (obj.objectType == EditorObjectType::SPHERE)
-			{
-				sphereBatch.AddInstance(obj.meshInstance);
-			}
-			else if (obj.objectType == EditorObjectType::CYLINDER)
-			{
-				cylinderBatch.AddInstance(obj.meshInstance);
-			}
-			else if (obj.objectType == EditorObjectType::LIGHT)
+			if (obj.objectType == EditorObjectType::LIGHT)
 			{
 				lightBatch.AddInstance(obj.meshInstance);
 			}
+			else
+			{
+				obj.material->renderBatch->AddInstance(obj.meshInstance);
+			}
 		}
 
-		cubeBatch.Render(cam, lightPosition, lightColorTuple);
-		planeBatch.Render(cam, lightPosition, lightColorTuple);
-		sphereBatch.Render(cam, lightPosition, lightColorTuple);
-		cylinderBatch.Render(cam, lightPosition, lightColorTuple);
+		for (auto& material : EditorMaterials)
+		{
+			// TODO: Support multiple patterns
+			Graphics::Color c = static_cast<EditorPatternSolidColor*>(material->editorPattern)->color;
+			material->previewMaterial->Set4("objectColor", RML::Tuple4<float>(c.red(), c.green(), c.blue(), 1));
+			material->renderBatch->Render(cam, lightPosition, lightColorTuple);
+		}
+
 		lightBatch.Render(cam, lightPosition, lightColorTuple);
 		debugBatch.Render(cam, lightPosition, lightColorTuple);
 
@@ -2394,10 +2394,11 @@ int main(void)
 			handleBatch.Render(cam, lightPosition, lightColorTuple);
 		}
 
-		cubeBatch.Clear();
-		planeBatch.Clear();
-		sphereBatch.Clear();
-		cylinderBatch.Clear();
+		for (auto& material : EditorMaterials)
+		{
+			material->renderBatch->Clear();
+		}
+
 		lightBatch.Clear();
 		handleBatch.Clear();
 
@@ -2781,7 +2782,7 @@ int main(void)
 					ImGui::EndChild();
 					ImGui::SameLine();
 
-					if (matIsSelected && ImGui::BeginChild("Materials_Main"))
+					if (ImGui::BeginChild("Materials_Main") && matIsSelected)
 					{
 						bool renderThreadInProgress = RenderThreadInProgress.load();
 						bool disableEditing = renderThreadInProgress || SelectedMaterial->isProtected;
@@ -2861,8 +2862,9 @@ int main(void)
 
 					if (deleteMaterial)
 					{
-
 						auto it = std::find(EditorMaterials.begin(), EditorMaterials.end(), SelectedMaterial);
+
+						assert(*it != DefaultMaterial);
 
 						// Unassign Material from objects
 						for (EditorObject* obj : EditorObjects)
@@ -3009,6 +3011,9 @@ int main(void)
 	delete PositionGizmo;
 	delete RotationGizmo;
 	delete ScaleGizmo;
+
+	delete DefaultShader;
+	delete DefaultLayout;
 
 	return 0;
 }
