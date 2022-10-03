@@ -2042,16 +2042,6 @@ int main(void)
 
 	ROGLL::RenderBatch lightBatch(&lightLayout, &lightMaterial);
 
-	ROGLL::RenderBatch debugBatch(DefaultLayout, &debugMeshMaterial);
-
-	ROGLL::MeshInstance debugMeshInstance2(*CubeMesh);
-	debugMeshInstance2.transform.scale(0.4, 0.4, 0.4);
-	// debugBatch.AddInstance(&debugMeshInstance2);
-
-	ROGLL::MeshInstance debugMeshInstance(*CubeMesh);
-	debugMeshInstance.transform.scale(0.2, 0.2, 0.2);
-	// debugBatch.AddInstance(&debugMeshInstance);
-
 	ROGLL::Camera cam(WINDOW_WIDTH, WINDOW_HEIGHT, 60);
 	cam.transform.translate(0, 0, -10); // Initial cam position
 
@@ -2077,6 +2067,8 @@ int main(void)
 
 	ImGui_ImplGlfw_InitForOpenGL(window.GetHandle(), true);
 	ImGui_ImplOpenGL3_Init("#version 330 core");
+
+	const ImGuiViewport* const imguiViewport = ImGui::GetMainViewport();
 	// IMGUI END
 
 	// New Render Target Begin (For Gizmo)
@@ -2130,8 +2122,7 @@ int main(void)
 	bool guiShowRenderSettings = false;
 	bool guiShowRenderPreview = false;
 	bool guiShowDevDebugConsole = false;
-	bool guiPaulMode = false;
-
+	
 	EditorObject* selectedObject = nullptr;
 	Axis selectedObjectHitAxis = Axis::NONE;
 
@@ -2377,7 +2368,6 @@ int main(void)
 		}
 
 		lightBatch.Render(cam, lightPosition, lightColorTuple);
-		debugBatch.Render(cam, lightPosition, lightColorTuple);
 
 		// Finished World 3D Render
 		glClear(GL_DEPTH_BUFFER_BIT);
@@ -2523,7 +2513,6 @@ int main(void)
 				{
 					ImGui::MenuItem("Dev Debug Console", nullptr, &guiShowDevDebugConsole);
 					ImGui::MenuItem("Dear ImGui Demo", nullptr, &guiShowDearImGuiDemo);
-					ImGui::MenuItem("Enable Paul Mode", nullptr, &guiPaulMode);
 
 					ImGui::EndMenu();
 				}
@@ -2553,6 +2542,8 @@ int main(void)
 
 		// Object Properties
 		{
+			ImGui::SetNextWindowPos(ImVec2(imguiViewport->WorkPos.x, imguiViewport->WorkPos.y), ImGuiCond_FirstUseEver);
+			ImGui::SetNextWindowSize(ImVec2(200, 600), ImGuiCond_FirstUseEver);
 			ImGui::Begin("Object Properties");
 
 			bool deleteObject = false;
@@ -2950,20 +2941,7 @@ int main(void)
 			{
 				std::stringstream camPosSS;
 
-				if (guiPaulMode)
-				{
-					camPosSS << "Camera Position: X: " << cam.transform.position.x() << " Y: " << cam.transform.position.y() << " Z: " << cam.transform.position.z();
-				}
-				else
-				{
-					camPosSS << "Camera Position: " << cam.transform.position.x() << "x " << cam.transform.position.y() << "y " << cam.transform.position.z() << "z";
-				}
-
-				camPosSS << " | ";
 				camPosSS << "FOV: " << Fov << " degrees";
-				camPosSS << " | ";
-				camPosSS << "Mouse Pos: " << MousePosX << ", " << MousePosY;
-				camPosSS << " | ";
 
 				ImGui::MenuItem(camPosSS.str().c_str(), nullptr, nullptr, false);
 

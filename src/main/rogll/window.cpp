@@ -39,6 +39,25 @@ namespace ROGLL
 
 		glfwSetWindowTitle(m_windowPtr, titleNew.c_str());
 		glfwSetWindowSizeLimits(m_windowPtr, 640, 480, GLFW_DONT_CARE, GLFW_DONT_CARE);
+
+		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+
+		if (monitor == NULL)
+		{
+			std::cout << "[ROGLL::Window] WARNING: Could not find primary monitor. Failed to set window position." << std::endl;
+		}
+		else
+		{
+			const GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
+
+			int centerX = vidmode->width * 0.5;
+			int centerY = vidmode->height * 0.5;
+
+			int sizeXHalf = width * 0.5;
+			int sizeYHalf = height * 0.5;
+
+			glfwSetWindowPos(m_windowPtr, centerX - sizeXHalf, centerY - sizeYHalf);
+		}
 	}
 
 	Window::~Window()
