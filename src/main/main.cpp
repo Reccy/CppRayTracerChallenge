@@ -73,6 +73,9 @@ static Graphics::Color TupleToColor(const RML::Tuple3<float>& tuple)
 	return Graphics::Color(tuple.x(), tuple.y(), tuple.z());
 }
 
+static bool ViewportCanCaptureMouse = false;
+static bool ViewportCanCaptureKeyboard = false;
+
 static bool MoveDown = false;
 static bool MoveUp = false;
 static bool MoveLeft = false;
@@ -1124,6 +1127,9 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 {
 	GLFWwindow* window = windowRef.GetHandle();
 
+	ViewportCanCaptureKeyboard = !GImGui->IO.WantCaptureKeyboard;
+	ViewportCanCaptureMouse = !GImGui->IO.WantCaptureMouse;
+
 	MoveDown = glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS;
 	MoveUp = glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS;
 	MoveLeft = glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS;
@@ -1142,7 +1148,7 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 	UnselectObject = glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS;
 
 	bool prevMouseLeftButtonHeld = MouseLeftButtonHeld;
-	MouseLeftButtonHeld = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) && !GImGui->IO.WantCaptureMouse;
+	MouseLeftButtonHeld = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
 	MouseLeftButtonDown = MouseLeftButtonHeld && !prevMouseLeftButtonHeld;
 	MouseLeftButtonUp = !MouseLeftButtonHeld && prevMouseLeftButtonHeld;
 
@@ -1161,9 +1167,6 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 		CurrentGizmoType = GizmoType::SCALE;
 		CurrentGizmoPtr = &ScaleGizmo;
 	}
-
-	// IMGUI hack: We need to unfoces any fields if the user interacts with the 3D scene.
-	if (MouseLeftButtonHeld) ImGui::FocusWindow(nullptr);
 
 	glfwGetCursorPos(window, &MousePosX, &MousePosY);
 
@@ -1522,7 +1525,7 @@ static void _OpenWorld(const std::string& path)
 	}
 
 	std::cout << "Render Width: " << renderWidth << ", Height: " << renderHeight << std::endl;
-	
+
 	// Load Camera Settings
 	auto cameraElement = doc.FirstChildElement("camera");
 
@@ -2174,7 +2177,12 @@ int main(void)
 			_StartFullRender();
 		}
 
-		ObjectPickerHit selectedObjectHit = _SelectObjectUnderCursor(MainCamera, selectedObject != nullptr);
+		ObjectPickerHit selectedObjectHit;
+		
+		if (ViewportCanCaptureMouse)
+		{
+			selectedObjectHit = _SelectObjectUnderCursor(MainCamera, selectedObject != nullptr);
+		}
 
 		if (selectedObjectHit.type == ObjectPickerType::GIZMO_HANDLE)
 		{
@@ -2200,7 +2208,7 @@ int main(void)
 			handleMaterial.Set3("handleActive", RML::Tuple3<float>(0, 0, 0));
 		}
 
-		if (MouseLeftButtonDown)
+		if (ViewportCanCaptureMouse && MouseLeftButtonDown)
 		{
 			if (selectedObjectHit.type == ObjectPickerType::EDITOR_OBJECT)
 			{
@@ -2303,10 +2311,7 @@ int main(void)
 
 		if (MouseLeftButtonUp)
 		{
-			if (selectedObjectHitAxis != Axis::NONE)
-			{
-				selectedObjectHitAxis = Axis::NONE;
-			}
+			selectedObjectHitAxis = Axis::NONE;
 		}
 
 		if (UnselectObject)
@@ -2316,7 +2321,8 @@ int main(void)
 
 		// Only update the camera if the user has not selected a handle axis
 		// This is to prevent the camera moving during drag and breaking the cursor delta calculation
-		if (selectedObjectHitAxis == Axis::NONE)
+		// Also only update camera if user has focused on the viewport, not a UI element
+		if (selectedObjectHitAxis == Axis::NONE && ViewportCanCaptureKeyboard)
 		{
 			_UpdateCamera(cam);
 		}
