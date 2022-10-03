@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <random>
 #include <map>
+#include <filesystem>
 
 #define NOMINMAX
 #include <windows.h>
@@ -48,6 +49,8 @@
 // Open.GL: https://open.gl/
 
 using namespace CppRayTracerChallenge::Core;
+
+static char* IMGUI_ID_MAIN_DOCKSPACE = "IMGUI_ID_MAIN_DOCKSPACE";
 
 static std::stringstream DebugStringStream;
 
@@ -1087,7 +1090,7 @@ ROGLL::Mesh* _LoadPlyFile(std::string filepath, const ROGLL::VertexAttributes& l
 
 	ply_close(plyFile);
 
-	std::cout << "Successfully loaded ply model file" << std::endl;
+	std::cout << "Done" << std::endl;
 
 	std::vector<float> vertices;
 
@@ -2063,6 +2066,19 @@ int main(void)
 	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
+	std::filesystem::path file{ "imgui.ini" };
+	if (!std::filesystem::exists(file))
+	{
+		std::cout << "Loading default layout file" << std::endl;
+		ImGui::LoadIniSettingsFromDisk("imgui_default_layout.ini");
+	}
+	else
+	{
+		std::cout << "Loading saved layout file" << std::endl;
+	}
+
+	std::cout << io.IniFilename << std::endl;
+
 	ImGui::StyleColorsDark();
 
 	ImGui_ImplGlfw_InitForOpenGL(window.GetHandle(), true);
@@ -2404,6 +2420,8 @@ int main(void)
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
+		ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode);
+
 		// Render Main Menu Bar
 		{
 			if (ImGui::BeginMainMenuBar())
@@ -2542,8 +2560,8 @@ int main(void)
 
 		// Object Properties
 		{
-			ImGui::SetNextWindowPos(ImVec2(imguiViewport->WorkPos.x, imguiViewport->WorkPos.y), ImGuiCond_FirstUseEver);
-			ImGui::SetNextWindowSize(ImVec2(200, 600), ImGuiCond_FirstUseEver);
+			ImGui::SetNextWindowPos(ImVec2(imguiViewport->WorkPos.x + 10, imguiViewport->WorkPos.y + 50), ImGuiCond_FirstUseEver);
+			ImGui::SetNextWindowSize(ImVec2(300, 600), ImGuiCond_FirstUseEver);
 			ImGui::Begin("Object Properties");
 
 			bool deleteObject = false;
@@ -2937,16 +2955,16 @@ int main(void)
 
 		// Render Footer Bar
 		{
+			/*
 			if (_DearImGui_BeginStatusBar())
 			{
-				std::stringstream camPosSS;
+				// TODO: Find a good use for the status bar
 
-				camPosSS << "FOV: " << Fov << " degrees";
-
-				ImGui::MenuItem(camPosSS.str().c_str(), nullptr, nullptr, false);
+				ImGui::MenuItem("Welcome to Reccy's Ray Tracer!", nullptr, nullptr, false);
 
 				_DearImGui_EndStatusBar();
 			}
+			*/
 		}
 
 		// Render FPS Window
