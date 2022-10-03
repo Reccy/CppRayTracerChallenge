@@ -2538,9 +2538,12 @@ int main(void)
 
 				if (ImGui::BeginMenu("About"))
 				{
+					std::stringstream ss;
+					ss << "Build date: " << __DATE__;
+
 					ImGui::MenuItem("Reccy's Ray Tracer", nullptr, nullptr, false);
 					ImGui::MenuItem("By Aaron Meaney", nullptr, nullptr, false);
-					ImGui::MenuItem("Build date: 18/08/2022", nullptr, nullptr, false); // TODO: Replace with compile time variable
+					ImGui::MenuItem(ss.str().c_str(), nullptr, nullptr, false);
 					
 					ImGui::EndMenu();
 				}
