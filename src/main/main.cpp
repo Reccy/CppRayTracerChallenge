@@ -1186,6 +1186,8 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 
 	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
 		Fov -= 0.5;
+
+	Fov = std::clamp(Fov, 5.0f, 170.0f);
 }
 
 void _UpdateCamera(ROGLL::Camera& cam) {
@@ -1199,6 +1201,10 @@ void _UpdateCamera(ROGLL::Camera& cam) {
 
 	CamXRot += RotX;
 	CamYRot += RotY;
+
+	constexpr float camXRotLimit = 89;
+
+	CamXRot = std::clamp(CamXRot, -camXRotLimit, camXRotLimit);
 
 	cam.transform.rotation = RML::Quaternion::euler_angles(CamXRot, CamYRot, 0);
 }

@@ -137,12 +137,22 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Vector left = Vector::cross(forward, upNormalized);
 		Vector trueUp = Vector::cross(left, forward);
 
+		// If magnitudes are almost 0, then the camera is probably looking along the "up" Vector.
+		// This means that the rotation value is undefined.
+		assert(left.magnitude() > RML::EPSILON);
+		assert(trueUp.magnitude() > RML::EPSILON);
+
+		left.normalize();
+		trueUp.normalize();
+
 		Matrix<double, 4, 4> orientation = Matrix<double, 4, 4>({
 			left.x(), left.y(), left.z(), 0,
 			trueUp.x(), trueUp.y(), trueUp.z(), 0,
 			-forward.x(), -forward.y(), -forward.z(), 0,
 			0, 0, 0, 1
 			});
+
+		assert(orientation.invertible()); // Orientation needs to be invertible for later
 
 		return orientation * Math::Transform().translate(-from.x(), -from.y(), -from.z()).matrix();
 	}
