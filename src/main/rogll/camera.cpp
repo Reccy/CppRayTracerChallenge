@@ -71,20 +71,23 @@ namespace ROGLL
 		double xPixel = renderWidth - x; // OpenGL space positive X is opposite to world space positive X
 		double yPixel = y;
 
-		double halfWidth;
-		double halfHeight;
-		double pixelSize = _CalculatePixelSize(halfWidth, halfHeight, renderWidth, renderHeight, fov);
+		double outHalfWidth;
+		double outHalfHeight;
+		double pixelSize = _CalculatePixelSize(outHalfWidth, outHalfHeight, renderWidth, renderHeight, fov);
 
-		double xOffset = (xPixel) * pixelSize;
-		double yOffset = (yPixel) * pixelSize;
+		double xOffset = (xPixel + 0.5) * pixelSize;
+		double yOffset = (yPixel + 0.5) * pixelSize;
 
-		double xWorld = halfWidth - xOffset;
-		double yWorld = halfHeight - yOffset;
+		double xClip = outHalfWidth - xOffset;
+		double yClip = outHalfHeight - yOffset;
 
-		RML::Point worldPosition = transform.matrix() * RML::Point(xWorld, yWorld, 0.75);
+		double aspect = renderHeight / renderWidth;
+		
+		// Known issue: picking breaks when height is larger than width
+		RML::Point worldPosition = transform.matrix() * RML::Point(xClip, yClip, aspect);
 		RML::Point origin = transform.matrix() * RML::Point(0, 0, 0);
 
-		RML::Vector direction = RML::Vector(worldPosition - origin).normalized();
+		RML::Vector direction = (worldPosition - origin).normalized();
 
 		return CppRayTracerChallenge::Core::Math::Ray(origin, direction);
 	}

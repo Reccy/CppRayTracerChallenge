@@ -52,7 +52,7 @@ using namespace CppRayTracerChallenge::Core;
 
 static char* IMGUI_ID_MAIN_DOCKSPACE = "IMGUI_ID_MAIN_DOCKSPACE";
 
-static std::stringstream DebugStringStream;
+std::stringstream DebugStringStream;
 
 static Renderer::Camera* RaytraceCamera;
 
