@@ -42,12 +42,6 @@
 #include <math/cylinder.h>
 #include <helpers/material_helper.h>
 
-// === Learning Resources ===
-// Learn OpenGL: https://learnopengl.com/
-// The Cherno's OpenGL Playlist: https://youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2
-// Documentation: https://docs.gl/
-// Open.GL: https://open.gl/
-
 using namespace CppRayTracerChallenge::Core;
 
 static char* IMGUI_ID_MAIN_DOCKSPACE = "IMGUI_ID_MAIN_DOCKSPACE";
