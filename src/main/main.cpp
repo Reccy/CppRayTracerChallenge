@@ -24,7 +24,13 @@
 #include <imgui_impl_opengl3.h>
 #include <imgui_impl_glfw.h>
 
-#include "rogll/include.h"
+#include "src/rogll/include.h"
+#include "src/editor_core.h"
+#include "src/editor_io.h"
+#include "src/editor_material.h"
+#include "src/editor_object.h"
+#include "src/editor_db.h"
+#include "src/editor_pattern.h"
 
 #include <RML.h>
 
@@ -44,11 +50,7 @@
 
 using namespace CppRayTracerChallenge::Core;
 
-static char* IMGUI_ID_MAIN_DOCKSPACE = "IMGUI_ID_MAIN_DOCKSPACE";
-
 std::stringstream DebugStringStream;
-
-static Renderer::Camera* RaytraceCamera;
 
 static RML::Tuple4<float> Red{ 1.0f, 0.0f, 0.0f, 1.0f };
 static RML::Tuple4<float> Green{ 0.0f, 1.0f, 0.0f, 1.0f };
@@ -125,15 +127,6 @@ enum class GizmoType
 
 static GizmoType CurrentGizmoType = GizmoType::POSITION;
 
-enum class EditorObjectType
-{
-	CUBE,
-	PLANE,
-	LIGHT,
-	SPHERE,
-	CYLINDER
-};
-
 std::string _EditorObjectTypeToString(EditorObjectType objectType)
 {
 	if (objectType == EditorObjectType::CUBE) return "CUBE";
@@ -160,74 +153,6 @@ EditorObjectType _StringToEditorObjectType(const std::string& str)
 	return EditorObjectType::CUBE;
 }
 
-
-static unsigned int _GenerateUniqueID()
-{
-	static std::set<unsigned int> occupiedInts;
-
-	static std::random_device dev;
-	static std::mt19937_64 rng(dev());
-	static std::uniform_int_distribution<std::mt19937_64::result_type> dist(0);
-
-	unsigned int id;
-	
-	do
-	{
-		id = dist(rng);
-	}
-	while (occupiedInts.find(id) != occupiedInts.end());
-
-	return id;
-}
-
-class EditorPatternBase
-{
-public:
-	virtual void DrawProperties() = 0;
-	virtual std::shared_ptr<Renderer::Pattern> BuildPattern() const = 0;
-	virtual EditorPatternBase* Clone() const = 0;
-	virtual void Serialize(tinyxml2::XMLPrinter& printer) const = 0;
-	virtual ~EditorPatternBase() {};
-};
-
-class EditorPatternSolidColor : public EditorPatternBase
-{
-public:
-	Graphics::Color color = Graphics::Color::white();
-
-	std::shared_ptr<Renderer::Pattern> BuildPattern() const
-	{
-		auto result = std::make_shared<Renderer::Patterns::SolidColor>(color);
-		return result;
-	}
-
-	EditorPatternBase* Clone() const override
-	{
-		EditorPatternSolidColor* result = new EditorPatternSolidColor();
-
-		result->color = color;
-
-		return result;
-	}
-
-	void Serialize(tinyxml2::XMLPrinter& printer) const override
-	{
-		printer.PushAttribute("type", "SOLID_COLOR");
-		printer.OpenElement("color");
-		printer.PushAttribute("r", color.red());
-		printer.PushAttribute("g", color.green());
-		printer.PushAttribute("b", color.blue());
-		printer.CloseElement();
-	}
-
-	void DrawProperties() override
-	{
-		float fColor[3] = { color.red(), color.green(), color.blue() };
-		ImGui::ColorPicker3("Color", fColor);
-		color = Graphics::Color(fColor[0], fColor[1], fColor[2]);
-	}
-};
-
 std::string _ShadowcastModeToString(Renderer::ShadowcastMode mode)
 {
 	if (mode == Renderer::ShadowcastMode::ALWAYS) return "ALWAYS";
@@ -250,140 +175,7 @@ Renderer::ShadowcastMode _StringToShadowcastMode(const std::string& str)
 	return Renderer::ShadowcastMode::ALWAYS;
 }
 
-static ROGLL::Shader* DefaultShader;
-static ROGLL::VertexAttributes* DefaultLayout;
-
-struct EditorMaterial
-{
-	bool isProtected = false;
-	unsigned int id;
-	std::string name;
-	float ambient = 1;
-	float diffuse = 0;
-	float specular = 0;
-	float shininess = 0;
-	float reflective = 0;
-	float transparency = 0;
-	float refractiveIndex = 0;
-
-	Renderer::ShadowcastMode shadowcastMode = Renderer::ShadowcastMode::WHEN_TRANSPARENT;
-
-	EditorPatternBase* editorPattern;
-
-	ROGLL::Material* previewMaterial;
-	ROGLL::RenderBatch* renderBatch;
-
-	EditorMaterial() :
-		isProtected(false),
-		id(0),
-		name(""),
-		ambient(1),
-		diffuse(0),
-		specular(0),
-		shininess(0),
-		reflective(0),
-		transparency(0),
-		refractiveIndex(0),
-		shadowcastMode(Renderer::ShadowcastMode::WHEN_TRANSPARENT)
-	{
-		editorPattern = new EditorPatternSolidColor();
-		previewMaterial = new ROGLL::Material(*DefaultShader); // TODO: Support multiple patterns
-		renderBatch = new ROGLL::RenderBatch(DefaultLayout, previewMaterial);
-	}
-
-	EditorMaterial(EditorPatternBase* editorPattern) :
-		isProtected(false),
-		id(0),
-		name(""),
-		ambient(1),
-		diffuse(0),
-		specular(0),
-		shininess(0),
-		reflective(0),
-		transparency(0),
-		refractiveIndex(0),
-		shadowcastMode(Renderer::ShadowcastMode::WHEN_TRANSPARENT)
-	{
-		this->editorPattern = editorPattern;
-		previewMaterial = new ROGLL::Material(*DefaultShader); // TODO: Support multiple patterns
-		renderBatch = new ROGLL::RenderBatch(DefaultLayout, previewMaterial);
-	}
-
-	EditorMaterial(const EditorMaterial& other) :
-		isProtected(false),
-		id(0),
-		name(other.name),
-		ambient(other.ambient),
-		diffuse(other.diffuse),
-		specular(other.specular),
-		shininess(other.shininess),
-		reflective(other.reflective),
-		transparency(other.transparency),
-		refractiveIndex(other.refractiveIndex),
-		shadowcastMode(other.shadowcastMode)
-	{
-		editorPattern = other.editorPattern->Clone();
-		previewMaterial = new ROGLL::Material(*other.previewMaterial);
-		renderBatch = new ROGLL::RenderBatch(DefaultLayout, previewMaterial);
-	}
-
-	~EditorMaterial()
-	{
-		delete editorPattern;
-		delete previewMaterial;
-		delete renderBatch;
-	}
-
-	std::shared_ptr<Renderer::Pattern> BuildPattern() const
-	{
-		return editorPattern->BuildPattern();
-	}
-
-	void DrawPatternProperties()
-	{
-		editorPattern->DrawProperties();
-	}
-};
-
 static EditorMaterial* SelectedMaterial = nullptr;
-static EditorMaterial* DefaultMaterial = nullptr;
-
-struct EditorObject
-{
-	unsigned int id;
-	std::string name;
-	RML::Transform transform;
-	RML::Vector eulerRotation;
-	EditorObjectType objectType;
-	ROGLL::MeshInstance* meshInstance;
-	EditorMaterial* material;
-
-	EditorObject() :
-		id(0),
-		name(""),
-		eulerRotation(),
-		transform(),
-		objectType(),
-		meshInstance(nullptr),
-		material(DefaultMaterial)
-	{}
-
-	EditorObject(const EditorObject& other) :
-		id(_GenerateUniqueID()),
-		name(other.name),
-		eulerRotation(other.eulerRotation),
-		transform(other.transform),
-		objectType(other.objectType),
-		material(other.material)
-	{
-		meshInstance = new ROGLL::MeshInstance(*other.meshInstance);
-	}
-
-	~EditorObject()
-	{
-		delete meshInstance;
-	}
-};
 
 static std::vector<EditorObject*> EditorObjects;
 static std::vector<EditorMaterial*> EditorMaterials;
@@ -743,218 +535,6 @@ static ObjectPickerHit _SelectObjectUnderCursor(ROGLL::Camera* camera, bool anOb
 	return result;
 }
 
-static std::atomic<bool> RenderThreadInProgress(false);
-std::thread* RenderThread;
-
-std::vector<byte> renderData;
-byte* _GetRenderPixels()
-{
-	if (!RaytraceCamera)
-	{
-		return renderData.data();
-	}
-
-	auto buffer = RaytraceCamera->renderedImage().toBuffer();
-
-	renderData.clear();
-	renderData.reserve(buffer.size() * 4);
-
-	for (int colorIndex = 0; colorIndex < buffer.size(); ++colorIndex)
-	{
-		for (int componentIndex = 0; componentIndex < 4; ++componentIndex)
-		{
-			byte b = 0x0b;
-			Graphics::Color& color = buffer.at(colorIndex);
-
-			if (componentIndex == 0)
-			{
-				b = static_cast<byte>(std::clamp((int)std::ceil(color.red() * 255), 0, 255));
-			}
-			else if (componentIndex == 1)
-			{
-				b = static_cast<byte>(std::clamp((int)std::ceil(color.green() * 255), 0, 255));
-			}
-			else if (componentIndex == 2)
-			{
-				b = static_cast<byte>(std::clamp((int)std::ceil(color.blue() * 255), 0, 255));
-			}
-			else if (componentIndex == 3)
-			{
-				b = static_cast<byte>(0xFFb); // Alpha 1
-			}
-
-			renderData.push_back(b);
-		}
-	}
-
-	return renderData.data();
-}
-
-void _WriteImage(Graphics::Image image, Serializer::BaseImageSerializer& serializer)
-{
-	std::cout << "Writing Image to Desktop... ";
-
-	serializer.serialize(image);
-
-	const std::vector<unsigned char> ppmBuffer = serializer.buffer();
-
-	TCHAR appData[MAX_PATH];
-	if (SUCCEEDED(SHGetFolderPath(NULL,
-		CSIDL_DESKTOPDIRECTORY | CSIDL_FLAG_CREATE,
-		NULL,
-		SHGFP_TYPE_CURRENT,
-		appData))) {
-		std::basic_ostringstream<TCHAR> filePath;
-
-		std::string imageName = std::string("\\generated_image.") + std::string(serializer.fileExtension());
-
-		filePath << appData << _TEXT(imageName.c_str());
-
-		std::ofstream file;
-		file.open(filePath.str().c_str(), std::ios_base::binary);
-
-		file.write((const char*)&ppmBuffer[0], ppmBuffer.size());
-		file.close();
-
-		std::cout << "Success" << std::endl;
-	}
-	else
-	{
-		std::cout << "Failed!" << std::endl;
-	}
-}
-
-Renderer::Material _CreateFromEditorMaterial(const EditorMaterial* const mat)
-{
-	Renderer::Material result;
-
-	result.ambient = mat->ambient;
-	result.diffuse = mat->diffuse;
-	result.specular = mat->specular;
-	result.shininess = mat->shininess;
-	result.reflective = mat->reflective;
-	result.transparency = mat->transparency;
-	result.refractiveIndex = mat->refractiveIndex;
-	result.shadowcastMode = mat->shadowcastMode;
-
-	result.pattern = mat->BuildPattern();
-
-	return result;
-}
-
-Renderer::World _CreateWorld()
-{
-	Renderer::World world;
-
-	for (const auto& editorObjectPtr : EditorObjects)
-	{
-		const auto& editorObject = *editorObjectPtr;
-		Renderer::Material material = _CreateFromEditorMaterial(editorObject.material);
-
-		RML::Point pos(editorObject.transform.position.x(), editorObject.transform.position.y(), editorObject.transform.position.z()); // TODO: Convert point to vector in RML
-
-		if (editorObject.objectType == EditorObjectType::LIGHT)
-		{
-			Renderer::PointLight light(pos, LightColor);
-			world.addLight(light);
-		}
-		else if (editorObject.objectType == EditorObjectType::CUBE)
-		{
-			auto cube = std::make_shared<Math::Cube>();
-			Renderer::Shape shape(cube, material);
-
-			RML::Transform t = editorObject.transform;
-
-			t.scaling = RML::Vector(t.scaling.x() * 0.5, t.scaling.y() * 0.5, t.scaling.z() * 0.5);
-			shape.transform(t.matrix());
-			world.addObject(shape);
-		}
-		else if (editorObject.objectType == EditorObjectType::PLANE)
-		{
-			auto plane = std::make_shared<Math::Plane>();
-			Renderer::Shape shape(plane, material);
-			shape.transform(editorObject.transform.matrix());
-			world.addObject(shape);
-		}
-		else if (editorObject.objectType == EditorObjectType::SPHERE)
-		{
-			auto sphere = std::make_shared<Math::Sphere>();
-			Renderer::Shape shape(sphere, material);
-
-			RML::Transform t = editorObject.transform;
-
-			shape.transform(t.matrix());
-			world.addObject(shape);
-		}
-		else if (editorObject.objectType == EditorObjectType::CYLINDER)
-		{
-			auto cylinder = std::make_shared<Math::Cylinder>(-1, 1, true);
-			Renderer::Shape shape(cylinder, material);
-
-			RML::Transform t = editorObject.transform;
-
-			t.scaling = t.scaling * 0.5;
-
-			shape.transform(t.matrix());
-			world.addObject(shape);
-		}
-		else
-		{
-			assert(false);
-		}
-	}
-
-	return world;
-}
-
-Graphics::Image _RenderToImage()
-{
-	std::cout << "Initializing RayTracer... ";
-	Renderer::World world = _CreateWorld();
-
-	std::cout << "Configuring Camera... ";
-
-	auto raytraceCameraViewMatrix = Renderer::Camera::viewMatrix(
-		MainCamera->transform.position,
-		MainCamera->transform.position + MainCamera->transform.rotation.inverse() * RML::Vector::forward(),
-		RML::Vector::up()
-	);
-
-	RaytraceCamera->transform(raytraceCameraViewMatrix);
-
-	std::cout << "Done" << std::endl;
-
-	std::cout << "Starting Render... ";
-
-	RaytraceCamera->render(world);
-
-	std::cout << "Done" << std::endl;
-
-	return RaytraceCamera->renderedImage();
-}
-
-void _RenderWorkerThreadFn()
-{
-	Graphics::Image image = _RenderToImage();
-	Serializer::PortableNetworkGraphicsSerializer serializer;
-
-	_WriteImage(image, serializer);
-
-	RenderThreadInProgress.store(false);
-
-	std::cout << "Render Complete" << std::endl;
-}
-
-void _StartFullRender()
-{
-	std::cout << "Render Started" << std::endl;
-
-	RaytraceCamera = new Renderer::Camera(RENDER_WIDTH, RENDER_HEIGHT, Fov);
-
-	RenderThreadInProgress.store(true);
-	RenderThread = new std::thread(_RenderWorkerThreadFn);
-}
-
 IMGUI_API bool _DearImGui_BeginStatusBar()
 {
 	using namespace ImGui;
@@ -1223,43 +803,10 @@ static void _WindowResized(GLFWwindow* window, int width, int height)
 	WINDOW_HEIGHT = height;
 }
 
-static void _CreateDefaultShader()
-{
-	DefaultShader = new ROGLL::Shader("res/shaders/Default.shader");
-}
-
-static void _CreateDefaultLayout()
-{
-	DefaultLayout = new ROGLL::VertexAttributes();
-	DefaultLayout->Add<float>(ROGLL::VertexAttributes::POSITION3, 3);
-	DefaultLayout->Add<float>(ROGLL::VertexAttributes::NORMAL3, 3);
-}
-
-static EditorMaterial* _CreateDefaultEditorMaterial()
-{
-	assert(DefaultShader != nullptr);
-	assert(DefaultLayout != nullptr);
-
-	EditorMaterial* mat = new EditorMaterial();
-	mat->id = _GenerateUniqueID();
-	mat->name = "Default Material";
-	mat->ambient = 0.1;
-	mat->diffuse = 0.8;
-	mat->specular = 0.1;
-	mat->isProtected = true;
-
-	DefaultMaterial = mat;
-
-	assert(EditorMaterials.size() == 0); // This should be created before user defined materials
-
-	EditorMaterials.push_back(mat);
-	return EditorMaterials[0];
-}
-
 static EditorMaterial* _CreateNewEditorMaterial()
 {
 	EditorMaterial* mat = new EditorMaterial();
-	mat->id = _GenerateUniqueID();
+	mat->id = EditorDB::GenerateUniqueID();
 	mat->name = "New Material";
 	EditorMaterials.push_back(mat);
 	return EditorMaterials[EditorMaterials.size() - 1];
@@ -1287,7 +834,7 @@ static ROGLL::MeshInstance* _CreateMeshInstanceForType(EditorObjectType type)
 static EditorObject* _CreateLight(RML::Vector position)
 {
 	EditorObject* light = new EditorObject();
-	light->id = _GenerateUniqueID();
+	light->id = EditorDB::GenerateUniqueID();
 	light->name = "Light";
 	light->transform.position = position;
 	light->objectType = EditorObjectType::LIGHT;
@@ -1299,7 +846,7 @@ static EditorObject* _CreateLight(RML::Vector position)
 static EditorObject* _CreateCube(RML::Vector position)
 {
 	EditorObject* cube = new EditorObject();
-	cube->id = _GenerateUniqueID();
+	cube->id = EditorDB::GenerateUniqueID();
 	cube->name = "Cube";
 	cube->transform.position = position;
 	cube->objectType = EditorObjectType::CUBE;
@@ -1311,7 +858,7 @@ static EditorObject* _CreateCube(RML::Vector position)
 static EditorObject* _CreatePlane(RML::Vector position)
 {
 	EditorObject* plane = new EditorObject();
-	plane->id = _GenerateUniqueID();
+	plane->id = EditorDB::GenerateUniqueID();
 	plane->name = "Ground Plane";
 	plane->transform.position = position;
 	plane->objectType = EditorObjectType::PLANE;
@@ -1323,7 +870,7 @@ static EditorObject* _CreatePlane(RML::Vector position)
 static EditorObject* _CreateSphere(RML::Vector position)
 {
 	EditorObject* sphere = new EditorObject();
-	sphere->id = _GenerateUniqueID();
+	sphere->id = EditorDB::GenerateUniqueID();
 	sphere->name = "Sphere";
 	sphere->transform.position = position;
 	sphere->objectType = EditorObjectType::SPHERE;
@@ -1335,7 +882,7 @@ static EditorObject* _CreateSphere(RML::Vector position)
 static EditorObject* _CreateCylinder(RML::Vector position)
 {
 	EditorObject* cylinder = new EditorObject();
-	cylinder->id = _GenerateUniqueID();
+	cylinder->id = EditorDB::GenerateUniqueID();
 	cylinder->name = "Cylinder";
 	cylinder->transform.position = position;
 	cylinder->objectType = EditorObjectType::CYLINDER;
@@ -1816,12 +1363,15 @@ static void _OpenWorld(const std::string& path)
 
 	EditorObjects = newEditorObjects;
 
-	for (auto pair : newEditorMaterials)
+	for (auto& pair : newEditorMaterials)
 	{
 		EditorMaterial* mat = pair.second;
 		EditorMaterials.push_back(mat);
 
-		if (mat->isProtected) DefaultMaterial = mat;
+		if (mat->isProtected)
+		{
+			EditorCore::UpdateDefaultEditorMaterial(mat);
+		}
 	}
 
 	RENDER_WIDTH = renderWidth;
@@ -1842,10 +1392,6 @@ int main(void)
 	ROGLL::Window window("Reccy's Ray Tracer", WINDOW_WIDTH, WINDOW_HEIGHT);
 	glfwSetWindowSizeCallback(window.GetHandle(), _WindowResized);
 	// Open GL Initialized from here
-
-	_CreateDefaultLayout();
-	_CreateDefaultShader();
-	_CreateDefaultEditorMaterial();
 
 	RML::Tuple3<float> xyz(-0.5, -0.5, -0.5);
 	RML::Tuple3<float> xYz(-0.5, 0.5, -0.5);
@@ -1940,7 +1486,7 @@ int main(void)
 			20, 21, 22,
 			22, 23, 20,
 		},
-		*DefaultLayout
+		EditorCore::GetDefaultLayout()
 		);
 
 	auto fM = 1000.0f;
@@ -1959,11 +1505,11 @@ int main(void)
 			0, 1, 2,
 			2, 3, 0,
 		},
-		*DefaultLayout
-		);
+		EditorCore::GetDefaultLayout()
+	);
 
-	SphereMesh = _LoadPlyFile("res/models/sphere.ply", *DefaultLayout);
-	CylinderMesh = _LoadPlyFile("res/models/cylinder.ply", *DefaultLayout);
+	SphereMesh = _LoadPlyFile("res/models/sphere.ply", EditorCore::GetDefaultLayout());
+	CylinderMesh = _LoadPlyFile("res/models/cylinder.ply", EditorCore::GetDefaultLayout());
 
 	LightMesh = _LoadPlyFile("res/models/light.ply", lightLayout);
 
@@ -2033,7 +1579,7 @@ int main(void)
 	ROGLL::Material lightMaterial(lightShader);
 	lightMaterial.Set4("objectColor", RML::Tuple4<float>(0.1f, 0.2f, 0.1f, 1.0f));
 
-	ROGLL::Material debugMeshMaterial(*DefaultShader);
+	ROGLL::Material debugMeshMaterial(EditorCore::GetDefaultShader());
 	debugMeshMaterial.Set4("objectColor", Red + Green);
 
 	ROGLL::RenderBatch gizmoBatch(&gizmoLayout, &gizmoMaterial);
@@ -2045,10 +1591,10 @@ int main(void)
 
 	ROGLL::RenderBatch lightBatch(&lightLayout, &lightMaterial);
 
-	ROGLL::Camera cam(WINDOW_WIDTH, WINDOW_HEIGHT, 60);
-	cam.transform.translate(0, 0, -10); // Initial cam position
+	ROGLL::Camera editorCamera(WINDOW_WIDTH, WINDOW_HEIGHT, 60);
+	editorCamera.transform.translate(0, 0, -10); // Initial cam position
 
-	MainCamera = &cam;
+	MainCamera = &editorCamera;
 
 	ROGLL::Camera gizmoCam(32, 32, 1); // Psuedo orthograpic projection
 	gizmoCam.transform.translate(0, 0, -3.2);
@@ -2179,9 +1725,9 @@ int main(void)
 
 		handleBatch.AddInstance(currentHandleMeshInstance);
 
-		if (PerformRender && !RenderThreadInProgress.load())
+		if (PerformRender && !EditorCore::IsRenderInProgress())
 		{
-			_StartFullRender();
+			EditorCore::StartFullRender(RENDER_WIDTH, RENDER_HEIGHT, Fov, editorCamera, EditorObjects, LightColor);
 		}
 
 		ObjectPickerHit selectedObjectHit;
@@ -2331,19 +1877,19 @@ int main(void)
 		// Also only update camera if user has focused on the viewport, not a UI element
 		if (selectedObjectHitAxis == Axis::NONE && ViewportCanCaptureKeyboard)
 		{
-			_UpdateCamera(cam);
+			_UpdateCamera(editorCamera);
 		}
 
 		// UI - Pre Pass
 		glBindFramebuffer(GL_FRAMEBUFFER, gizmoFramebufferId);
 		glViewport(0, 0, 512, 512);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		gizmoMeshInstance.transform.rotation = cam.transform.rotation.inverse();
+		gizmoMeshInstance.transform.rotation = editorCamera.transform.rotation.inverse();
 		gizmoBatch.Render(gizmoCam, lightPosition, lightColorTuple);
 
-		if (RenderThreadInProgress.load())
+		if (EditorCore::IsRenderInProgress())
 		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, RENDER_WIDTH, RENDER_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, _GetRenderPixels());
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, RENDER_WIDTH, RENDER_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, EditorCore::GetRenderPixels());
 			glBindTexture(GL_TEXTURE_2D, raytracerRenderTextureId);
 		}
 
@@ -2380,10 +1926,10 @@ int main(void)
 			// TODO: Support multiple patterns
 			Graphics::Color c = static_cast<EditorPatternSolidColor*>(material->editorPattern)->color;
 			material->previewMaterial->Set4("objectColor", RML::Tuple4<float>(c.red(), c.green(), c.blue(), 1));
-			material->renderBatch->Render(cam, lightPosition, lightColorTuple);
+			material->renderBatch->Render(editorCamera, lightPosition, lightColorTuple);
 		}
 
-		lightBatch.Render(cam, lightPosition, lightColorTuple);
+		lightBatch.Render(editorCamera, lightPosition, lightColorTuple);
 
 		// Finished World 3D Render
 		glClear(GL_DEPTH_BUFFER_BIT);
@@ -2403,7 +1949,7 @@ int main(void)
 			CurrentGizmo->transform = selectedObject->transform;
 			CurrentGizmo->transform.scaling = scalingVector;
 			
-			handleBatch.Render(cam, lightPosition, lightColorTuple);
+			handleBatch.Render(editorCamera, lightPosition, lightColorTuple);
 		}
 
 		for (auto& material : EditorMaterials)
@@ -2519,9 +2065,9 @@ int main(void)
 					ImGui::MenuItem("Settings", nullptr, &guiShowRenderSettings);
 					ImGui::MenuItem("Preview", nullptr, &guiShowRenderPreview);
 					
-					if (ImGui::MenuItem("Start Render", "F5", nullptr, !RenderThreadInProgress.load()))
+					if (ImGui::MenuItem("Start Render", "F5", nullptr, !EditorCore::IsRenderInProgress()))
 					{
-						_StartFullRender();
+						EditorCore::StartFullRender(RENDER_WIDTH, RENDER_HEIGHT, Fov, editorCamera, EditorObjects, LightColor);
 					}
 
 					ImGui::EndMenu();
@@ -2567,7 +2113,7 @@ int main(void)
 			bool deleteObject = false;
 			bool duplicateObject = false;
 
-			bool renderThreadInProgress = RenderThreadInProgress.load();
+			bool renderThreadInProgress = EditorCore::IsRenderInProgress();
 
 			if (renderThreadInProgress)
 			{
@@ -2802,7 +2348,7 @@ int main(void)
 
 					if (ImGui::BeginChild("Materials_Main") && matIsSelected)
 					{
-						bool renderThreadInProgress = RenderThreadInProgress.load();
+						bool renderThreadInProgress = EditorCore::IsRenderInProgress();
 						bool disableEditing = renderThreadInProgress || SelectedMaterial->isProtected;
 
 						if (SelectedMaterial->isProtected)
@@ -2882,14 +2428,14 @@ int main(void)
 					{
 						auto it = std::find(EditorMaterials.begin(), EditorMaterials.end(), SelectedMaterial);
 
-						assert(*it != DefaultMaterial);
+						assert(*it != &EditorCore::GetDefaultEditorMaterial());
 
 						// Unassign Material from objects
 						for (EditorObject* obj : EditorObjects)
 						{
 							if (obj->material == *it)
 							{
-								obj->material = DefaultMaterial;
+								obj->material = &EditorCore::GetDefaultEditorMaterial();
 							}
 						}
 
@@ -2903,7 +2449,7 @@ int main(void)
 					{
 						EditorMaterial* copiedMat = new EditorMaterial(*SelectedMaterial);
 						copiedMat->name = copiedMat->name + " (Clone)";
-						copiedMat->id = _GenerateUniqueID();
+						copiedMat->id = EditorDB::GenerateUniqueID();
 						EditorMaterials.push_back(copiedMat);
 						SelectedMaterial = copiedMat;
 					}
@@ -2924,7 +2470,7 @@ int main(void)
 
 				ImGui::Begin("Render Settings", nullptr, windowFlags);
 
-				bool renderThreadInProgress = RenderThreadInProgress.load();
+				bool renderThreadInProgress = EditorCore::IsRenderInProgress();
 
 				if (renderThreadInProgress)
 				{
@@ -3016,9 +2562,6 @@ int main(void)
 	delete PositionGizmo;
 	delete RotationGizmo;
 	delete ScaleGizmo;
-
-	delete DefaultShader;
-	delete DefaultLayout;
 
 	return 0;
 }
