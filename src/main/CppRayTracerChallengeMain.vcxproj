@@ -221,6 +221,7 @@
     <ClCompile Include="src\editor_material.cpp" />
     <ClCompile Include="src\editor_object.cpp" />
     <ClCompile Include="src\editor_pattern.cpp" />
+    <ClCompile Include="src\ply.cpp" />
     <ClCompile Include="src\rogll\camera.cpp" />
     <ClCompile Include="src\rogll\index_buffer.cpp" />
     <ClCompile Include="src\rogll\material.cpp" />
@@ -242,6 +243,7 @@
     <ClInclude Include="src\editor_material.h" />
     <ClInclude Include="src\editor_object.h" />
     <ClInclude Include="src\editor_pattern.h" />
+    <ClInclude Include="src\ply.h" />
     <ClInclude Include="src\rogll\camera.h" />
     <ClInclude Include="src\rogll\index_buffer.h" />
     <ClInclude Include="src\rogll\material.h" />
