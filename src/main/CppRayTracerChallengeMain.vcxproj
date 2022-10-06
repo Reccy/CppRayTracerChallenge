@@ -214,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\editor_actions.cpp" />
     <ClCompile Include="src\editor_core.cpp" />
     <ClCompile Include="src\editor_db.cpp" />
     <ClCompile Include="src\editor_io.cpp" />
@@ -233,6 +234,7 @@
     <ClCompile Include="src\rogll\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\editor_actions.h" />
     <ClInclude Include="src\editor_camera_settings.h" />
     <ClInclude Include="src\editor_core.h" />
     <ClInclude Include="src\editor_db.h" />

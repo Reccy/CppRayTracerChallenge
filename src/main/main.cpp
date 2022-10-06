@@ -32,6 +32,7 @@
 #include "src/editor_db.h"
 #include "src/editor_pattern.h"
 #include "src/editor_camera_settings.h"
+#include "src/editor_actions.h"
 
 #include <RML.h>
 
@@ -73,34 +74,7 @@ static Graphics::Color TupleToColor(const RML::Tuple3<float>& tuple)
 	return Graphics::Color(tuple.x(), tuple.y(), tuple.z());
 }
 
-static bool ViewportCanCaptureMouse = false;
-static bool ViewportCanCaptureKeyboard = false;
-
-static bool MoveDown = false;
-static bool MoveUp = false;
-static bool MoveLeft = false;
-static bool MoveRight = false;
-static bool MoveForward = false;
-static bool MoveBackward = false;
-static bool RotateXClockwise = false;
-static bool RotateXCounterClockwise = false;
-static bool RotateYClockwise = false;
-static bool RotateYCounterClockwise = false;
-static bool RotateZClockwise = false;
-static bool RotateZCounterClockwise = false;
-static bool PerformRender = false;
-static bool UnselectObject = false;
-static double MousePosX = 0;
-static double MousePosY = 0;
-static bool MouseLeftButtonDown = false;
-static bool MouseLeftButtonHeld = false;
-static bool MouseLeftButtonUp = false;
-static float VMove = 0;
-static float HMove = 0;
-static float DMove = 0;
-static float RotX = 0;
-static float RotY = 0;
-static float RotZ = 0;
+static EditorActions Actions;
 
 static CameraSettings CAMERA_SETTINGS { 90, 0, 0, 1024, 768 };
 
@@ -441,12 +415,12 @@ static ObjectPickerHit _SelectObjectUnderCursor(ROGLL::Camera* camera, bool anOb
 {
 	ObjectPickerHit result;
 
-	if (MousePosX < 0 || MousePosX > WINDOW_WIDTH || MousePosY < 0 || MousePosY > WINDOW_HEIGHT)
+	if (Actions.MousePosX < 0 || Actions.MousePosX > WINDOW_WIDTH || Actions.MousePosY < 0 || Actions.MousePosY > WINDOW_HEIGHT)
 	{
 		return result;
 	}
 
-	Math::Ray ray = camera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_SETTINGS.fov);
+	Math::Ray ray = camera->RayForPixel(Actions.MousePosX, Actions.MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_SETTINGS.fov);
 	result.ray = ray;
 
 	if (anObjectIsCurrentlySelected)
@@ -648,81 +622,17 @@ ROGLL::Mesh* _LoadPlyFile(std::string filepath, const ROGLL::VertexAttributes& l
 	return new ROGLL::Mesh(vertices, indices, layout);
 }
 
-static void _ProcessInput(const ROGLL::Window& windowRef)
-{
-	GLFWwindow* window = windowRef.GetHandle();
-
-	ViewportCanCaptureKeyboard = !GImGui->IO.WantCaptureKeyboard;
-	ViewportCanCaptureMouse = !GImGui->IO.WantCaptureMouse;
-
-	MoveDown = glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS;
-	MoveUp = glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS;
-	MoveLeft = glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS;
-	MoveRight = glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS;
-	MoveForward = glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS;
-	MoveBackward = glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS;
-
-	RotateXClockwise = glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS;
-	RotateXCounterClockwise = glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS;
-	RotateYClockwise = glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS;
-	RotateYCounterClockwise = glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS;
-	RotateZClockwise = glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS;
-	RotateZCounterClockwise = glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS;
-
-	PerformRender = glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS;
-	UnselectObject = glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS;
-
-	bool prevMouseLeftButtonHeld = MouseLeftButtonHeld;
-	MouseLeftButtonHeld = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
-	MouseLeftButtonDown = MouseLeftButtonHeld && !prevMouseLeftButtonHeld;
-	MouseLeftButtonUp = !MouseLeftButtonHeld && prevMouseLeftButtonHeld;
-
-	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
-	{
-		CurrentGizmoType = GizmoType::POSITION;
-		CurrentGizmoPtr = &PositionGizmo;
-	}
-	else if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
-	{
-		CurrentGizmoType = GizmoType::ROTATION;
-		CurrentGizmoPtr = &RotationGizmo;
-	}
-	else if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
-	{
-		CurrentGizmoType = GizmoType::SCALE;
-		CurrentGizmoPtr = &ScaleGizmo;
-	}
-
-	glfwGetCursorPos(window, &MousePosX, &MousePosY);
-
-	VMove = (MoveUp * 1) - (MoveDown * 1);
-	HMove = (MoveRight * 1) - (MoveLeft * 1);
-	DMove = (MoveForward * 1) - (MoveBackward * 1);
-
-	RotX = (RotateXClockwise * 1) - (RotateXCounterClockwise * 1);
-	RotY = (RotateYClockwise * 1) - (RotateYCounterClockwise * 1);
-	RotZ = (RotateZClockwise * 1) - (RotateZCounterClockwise * 1);
-
-	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
-		CAMERA_SETTINGS.fov += 0.5;
-
-	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
-		CAMERA_SETTINGS.fov -= 0.5;
-
-	CAMERA_SETTINGS.fov = std::clamp(CAMERA_SETTINGS.fov, 5.0f, 170.0f);
-}
-
 void _UpdateCamera(ROGLL::Camera& cam) {
 	constexpr double speedFactor = 0.25;
 
 	cam.SetPerspective(WINDOW_WIDTH, WINDOW_HEIGHT, RML::Trig::degrees_to_radians(CAMERA_SETTINGS.fov));
 	cam.transform.position += cam.transform.rotation.inverse()
-		* RML::Vector(HMove * speedFactor,
-			VMove * speedFactor,
-			DMove * speedFactor);
+		* RML::Vector(Actions.HMove * speedFactor,
+			Actions.VMove * speedFactor,
+			Actions.DMove * speedFactor);
 
-	CAMERA_SETTINGS.xRot += RotX;
-	CAMERA_SETTINGS.yRot += RotY;
+	CAMERA_SETTINGS.xRot += Actions.RotX;
+	CAMERA_SETTINGS.yRot += Actions.RotY;
 
 	constexpr float camXRotLimit = 89;
 
@@ -1138,7 +1048,35 @@ int main(void)
 
 	while (!window.ShouldClose())
 	{
-		_ProcessInput(window);
+		Actions.ReadInput(window);
+
+		if (Actions.SelectPositionGizmo)
+		{
+			CurrentGizmoType = GizmoType::POSITION;
+			CurrentGizmoPtr = &PositionGizmo;
+		}
+		else if (Actions.SelectRotationGizmo)
+		{
+			CurrentGizmoType = GizmoType::ROTATION;
+			CurrentGizmoPtr = &RotationGizmo;
+		}
+		else if (Actions.SelectScaleGizmo)
+		{
+			CurrentGizmoType = GizmoType::SCALE;
+			CurrentGizmoPtr = &ScaleGizmo;
+		}
+
+		if (Actions.IncreaseFov)
+		{
+			CAMERA_SETTINGS.fov += 0.5;
+		}
+
+		if (Actions.DecreaseFov)
+		{
+			CAMERA_SETTINGS.fov -= 0.5;
+		}
+
+		CAMERA_SETTINGS.fov = std::clamp(CAMERA_SETTINGS.fov, 5.0f, 170.0f);
 
 		auto lightColorTuple = ColorToTuple(LightColor);
 
@@ -1164,14 +1102,14 @@ int main(void)
 
 		handleBatch.AddInstance(currentHandleMeshInstance);
 
-		if (PerformRender && !EditorCore::IsRenderInProgress())
+		if (Actions.PerformRender && !EditorCore::IsRenderInProgress())
 		{
 			EditorCore::StartFullRender(CAMERA_SETTINGS.renderWidth, CAMERA_SETTINGS.renderHeight, CAMERA_SETTINGS.fov, editorCamera, EditorObjects, LightColor);
 		}
 
 		ObjectPickerHit selectedObjectHit;
 		
-		if (ViewportCanCaptureMouse)
+		if (Actions.ViewportCanCaptureMouse)
 		{
 			selectedObjectHit = _SelectObjectUnderCursor(MainCamera, selectedObject != nullptr);
 		}
@@ -1200,7 +1138,7 @@ int main(void)
 			handleMaterial.Set3("handleActive", RML::Tuple3<float>(0, 0, 0));
 		}
 
-		if (ViewportCanCaptureMouse && MouseLeftButtonDown)
+		if (Actions.ViewportCanCaptureMouse && Actions.MouseLeftButtonDown)
 		{
 			if (selectedObjectHit.type == ObjectPickerType::EDITOR_OBJECT)
 			{
@@ -1235,7 +1173,7 @@ int main(void)
 
 			axisPlane.transform(axisPlaneTransform.matrix());
 
-			const Math::Ray ray = MainCamera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_SETTINGS.fov);
+			const Math::Ray ray = MainCamera->RayForPixel(Actions.MousePosX, Actions.MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_SETTINGS.fov);
 			const auto intersections = axisPlane.intersect(ray);
 
 			if (intersections.hit().has_value())
@@ -1301,12 +1239,12 @@ int main(void)
 			}
 		}
 
-		if (MouseLeftButtonUp)
+		if (Actions.MouseLeftButtonUp)
 		{
 			selectedObjectHitAxis = Axis::NONE;
 		}
 
-		if (UnselectObject)
+		if (Actions.UnselectObject)
 		{
 			selectedObject = nullptr;
 		}
@@ -1314,7 +1252,7 @@ int main(void)
 		// Only update the camera if the user has not selected a handle axis
 		// This is to prevent the camera moving during drag and breaking the cursor delta calculation
 		// Also only update camera if user has focused on the viewport, not a UI element
-		if (selectedObjectHitAxis == Axis::NONE && ViewportCanCaptureKeyboard)
+		if (selectedObjectHitAxis == Axis::NONE && Actions.ViewportCanCaptureKeyboard)
 		{
 			_UpdateCamera(editorCamera);
 		}
