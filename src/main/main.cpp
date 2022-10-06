@@ -31,6 +31,7 @@
 #include "src/editor_object.h"
 #include "src/editor_db.h"
 #include "src/editor_pattern.h"
+#include "src/editor_camera_settings.h"
 
 #include <RML.h>
 
@@ -100,13 +101,8 @@ static float DMove = 0;
 static float RotX = 0;
 static float RotY = 0;
 static float RotZ = 0;
-static float Fov = 90;
 
-static float CamXRot = 0;
-static float CamYRot = 0;
-
-static int RENDER_WIDTH = 1024;
-static int RENDER_HEIGHT = 768;
+static CameraSettings CAMERA_SETTINGS { 90, 0, 0, 1024, 768 };
 
 static int WINDOW_WIDTH = 1024;
 static int WINDOW_HEIGHT = 768;
@@ -126,54 +122,6 @@ enum class GizmoType
 };
 
 static GizmoType CurrentGizmoType = GizmoType::POSITION;
-
-std::string _EditorObjectTypeToString(EditorObjectType objectType)
-{
-	if (objectType == EditorObjectType::CUBE) return "CUBE";
-	if (objectType == EditorObjectType::PLANE) return "PLANE";
-	if (objectType == EditorObjectType::LIGHT) return "LIGHT";
-	if (objectType == EditorObjectType::SPHERE) return "SPHERE";
-	if (objectType == EditorObjectType::CYLINDER) return "CYLINDER";
-
-	assert(false); // This should not get called
-
-	return "";
-}
-
-EditorObjectType _StringToEditorObjectType(const std::string& str)
-{
-	if (str == "CUBE") return EditorObjectType::CUBE;
-	if (str == "PLANE") return EditorObjectType::PLANE;
-	if (str == "LIGHT") return EditorObjectType::LIGHT;
-	if (str == "SPHERE") return EditorObjectType::SPHERE;
-	if (str == "CYLINDER") return EditorObjectType::CYLINDER;
-
-	assert(false); // This should not get called
-
-	return EditorObjectType::CUBE;
-}
-
-std::string _ShadowcastModeToString(Renderer::ShadowcastMode mode)
-{
-	if (mode == Renderer::ShadowcastMode::ALWAYS) return "ALWAYS";
-	if (mode == Renderer::ShadowcastMode::NEVER) return "NEVER";
-	if (mode == Renderer::ShadowcastMode::WHEN_TRANSPARENT) return "WHEN_TRANSPARENT";
-
-	assert(false); // Invalid state
-
-	return "";
-}
-
-Renderer::ShadowcastMode _StringToShadowcastMode(const std::string& str)
-{
-	if (str == "ALWAYS") return Renderer::ShadowcastMode::ALWAYS;
-	if (str == "NEVER") return Renderer::ShadowcastMode::NEVER;
-	if (str == "WHEN_TRANSPARENT") return Renderer::ShadowcastMode::WHEN_TRANSPARENT;
-
-	assert(false); // Invalid state
-
-	return Renderer::ShadowcastMode::ALWAYS;
-}
 
 static EditorMaterial* SelectedMaterial = nullptr;
 
@@ -206,13 +154,13 @@ static RML::Vector _ProjectVector(RML::Vector p, RML::Vector dir)
 	return a + ab * (RML::Vector::dot(ap, ab) / RML::Vector::dot(ab, ab));
 }
 
-static std::string _GetTypeName(EditorObjectType objectType)
+static std::string _GetTypeName(EditorObject::Type objectType)
 {
-	if (objectType == EditorObjectType::CUBE) return "Cube";
-	if (objectType == EditorObjectType::LIGHT) return "Light";
-	if (objectType == EditorObjectType::PLANE) return "Plane";
-	if (objectType == EditorObjectType::SPHERE) return "Sphere";
-	if (objectType == EditorObjectType::CYLINDER) return "Cylinder";
+	if (objectType == EditorObject::Type::CUBE) return "Cube";
+	if (objectType == EditorObject::Type::LIGHT) return "Light";
+	if (objectType == EditorObject::Type::PLANE) return "Plane";
+	if (objectType == EditorObject::Type::SPHERE) return "Sphere";
+	if (objectType == EditorObject::Type::CYLINDER) return "Cylinder";
 
 	assert(false); // Should never return unknown
 
@@ -224,20 +172,20 @@ Math::IShape* _GetMathShapeForEditorObject(const EditorObject& editorObject)
 	Math::IShape* result = nullptr;
 	RML::Transform transform = editorObject.transform;
 
-	if (editorObject.objectType == EditorObjectType::CUBE || editorObject.objectType == EditorObjectType::LIGHT)
+	if (editorObject.objectType == EditorObject::Type::CUBE || editorObject.objectType == EditorObject::Type::LIGHT)
 	{
 		result = &SharedCube;
 		transform.scale(0.5, 0.5, 0.5); // Scale unit cube to match cube mesh
 	}
-	else if (editorObject.objectType == EditorObjectType::PLANE)
+	else if (editorObject.objectType == EditorObject::Type::PLANE)
 	{
 		result = &SharedPlane;
 	}
-	else if (editorObject.objectType == EditorObjectType::SPHERE)
+	else if (editorObject.objectType == EditorObject::Type::SPHERE)
 	{
 		result = &SharedSphere;
 	}
-	else if (editorObject.objectType == EditorObjectType::CYLINDER)
+	else if (editorObject.objectType == EditorObject::Type::CYLINDER)
 	{
 		result = &SharedCylinder;
 		transform.scale(0.5, 0.5, 0.5); // Scale unit cylinder to match cylinder mesh
@@ -498,7 +446,7 @@ static ObjectPickerHit _SelectObjectUnderCursor(ROGLL::Camera* camera, bool anOb
 		return result;
 	}
 
-	Math::Ray ray = camera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, Fov);
+	Math::Ray ray = camera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_SETTINGS.fov);
 	result.ray = ray;
 
 	if (anObjectIsCurrentlySelected)
@@ -756,31 +704,31 @@ static void _ProcessInput(const ROGLL::Window& windowRef)
 	RotZ = (RotateZClockwise * 1) - (RotateZCounterClockwise * 1);
 
 	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
-		Fov += 0.5;
+		CAMERA_SETTINGS.fov += 0.5;
 
 	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
-		Fov -= 0.5;
+		CAMERA_SETTINGS.fov -= 0.5;
 
-	Fov = std::clamp(Fov, 5.0f, 170.0f);
+	CAMERA_SETTINGS.fov = std::clamp(CAMERA_SETTINGS.fov, 5.0f, 170.0f);
 }
 
 void _UpdateCamera(ROGLL::Camera& cam) {
 	constexpr double speedFactor = 0.25;
 
-	cam.SetPerspective(WINDOW_WIDTH, WINDOW_HEIGHT, RML::Trig::degrees_to_radians(Fov));
+	cam.SetPerspective(WINDOW_WIDTH, WINDOW_HEIGHT, RML::Trig::degrees_to_radians(CAMERA_SETTINGS.fov));
 	cam.transform.position += cam.transform.rotation.inverse()
 		* RML::Vector(HMove * speedFactor,
 			VMove * speedFactor,
 			DMove * speedFactor);
 
-	CamXRot += RotX;
-	CamYRot += RotY;
+	CAMERA_SETTINGS.xRot += RotX;
+	CAMERA_SETTINGS.yRot += RotY;
 
 	constexpr float camXRotLimit = 89;
 
-	CamXRot = std::clamp(CamXRot, -camXRotLimit, camXRotLimit);
+	CAMERA_SETTINGS.xRot = std::clamp(CAMERA_SETTINGS.xRot, -camXRotLimit, camXRotLimit);
 
-	cam.transform.rotation = RML::Quaternion::euler_angles(CamXRot, CamYRot, 0);
+	cam.transform.rotation = RML::Quaternion::euler_angles(CAMERA_SETTINGS.xRot, CAMERA_SETTINGS.yRot, 0);
 }
 
 struct VertexLayout
@@ -812,24 +760,11 @@ static EditorMaterial* _CreateNewEditorMaterial()
 	return EditorMaterials[EditorMaterials.size() - 1];
 }
 
-static ROGLL::Mesh* CubeMesh;
-static ROGLL::Mesh* CylinderMesh;
-static ROGLL::Mesh* LightMesh;
-static ROGLL::Mesh* PlaneMesh;
-static ROGLL::Mesh* SphereMesh;
-
-static ROGLL::MeshInstance* _CreateMeshInstanceForType(EditorObjectType type)
-{
-	if (type == EditorObjectType::CUBE) return new ROGLL::MeshInstance(*CubeMesh);
-	if (type == EditorObjectType::CYLINDER) return new ROGLL::MeshInstance(*CylinderMesh);
-	if (type == EditorObjectType::LIGHT) return new ROGLL::MeshInstance(*LightMesh);
-	if (type == EditorObjectType::PLANE) return new ROGLL::MeshInstance(*PlaneMesh);
-	if (type == EditorObjectType::SPHERE) return new ROGLL::MeshInstance(*SphereMesh);
-
-	assert(false);
-
-	return nullptr;
-}
+ROGLL::Mesh* CubeMesh;
+ROGLL::Mesh* CylinderMesh;
+ROGLL::Mesh* LightMesh;
+ROGLL::Mesh* PlaneMesh;
+ROGLL::Mesh* SphereMesh;
 
 static EditorObject* _CreateLight(RML::Vector position)
 {
@@ -837,8 +772,8 @@ static EditorObject* _CreateLight(RML::Vector position)
 	light->id = EditorDB::GenerateUniqueID();
 	light->name = "Light";
 	light->transform.position = position;
-	light->objectType = EditorObjectType::LIGHT;
-	light->meshInstance = _CreateMeshInstanceForType(EditorObjectType::LIGHT);
+	light->objectType = EditorObject::Type::LIGHT;
+	light->meshInstance = EditorObject::CreateMeshInstanceForType(EditorObject::Type::LIGHT);
 	EditorObjects.push_back(light);
 	return EditorObjects[EditorObjects.size() - 1];
 }
@@ -849,8 +784,8 @@ static EditorObject* _CreateCube(RML::Vector position)
 	cube->id = EditorDB::GenerateUniqueID();
 	cube->name = "Cube";
 	cube->transform.position = position;
-	cube->objectType = EditorObjectType::CUBE;
-	cube->meshInstance = _CreateMeshInstanceForType(EditorObjectType::CUBE);
+	cube->objectType = EditorObject::Type::CUBE;
+	cube->meshInstance = EditorObject::CreateMeshInstanceForType(EditorObject::Type::CUBE);
 	EditorObjects.push_back(cube);
 	return EditorObjects[EditorObjects.size() - 1];
 }
@@ -861,8 +796,8 @@ static EditorObject* _CreatePlane(RML::Vector position)
 	plane->id = EditorDB::GenerateUniqueID();
 	plane->name = "Ground Plane";
 	plane->transform.position = position;
-	plane->objectType = EditorObjectType::PLANE;
-	plane->meshInstance = _CreateMeshInstanceForType(EditorObjectType::PLANE);
+	plane->objectType = EditorObject::Type::PLANE;
+	plane->meshInstance = EditorObject::CreateMeshInstanceForType(EditorObject::Type::PLANE);
 	EditorObjects.push_back(plane);
 	return EditorObjects[EditorObjects.size() - 1];
 }
@@ -873,8 +808,8 @@ static EditorObject* _CreateSphere(RML::Vector position)
 	sphere->id = EditorDB::GenerateUniqueID();
 	sphere->name = "Sphere";
 	sphere->transform.position = position;
-	sphere->objectType = EditorObjectType::SPHERE;
-	sphere->meshInstance = _CreateMeshInstanceForType(EditorObjectType::SPHERE);
+	sphere->objectType = EditorObject::Type::SPHERE;
+	sphere->meshInstance = EditorObject::CreateMeshInstanceForType(EditorObject::Type::SPHERE);
 	EditorObjects.push_back(sphere);
 	return EditorObjects[EditorObjects.size() - 1];
 }
@@ -885,506 +820,10 @@ static EditorObject* _CreateCylinder(RML::Vector position)
 	cylinder->id = EditorDB::GenerateUniqueID();
 	cylinder->name = "Cylinder";
 	cylinder->transform.position = position;
-	cylinder->objectType = EditorObjectType::CYLINDER;
-	cylinder->meshInstance = _CreateMeshInstanceForType(EditorObjectType::CYLINDER);
+	cylinder->objectType = EditorObject::Type::CYLINDER;
+	cylinder->meshInstance = EditorObject::CreateMeshInstanceForType(EditorObject::Type::CYLINDER);
 	EditorObjects.push_back(cylinder);
 	return EditorObjects[EditorObjects.size() - 1];
-}
-
-static void _SerializeSceneSettings(tinyxml2::XMLPrinter& printer)
-{
-	printer.OpenElement("scene");
-
-	printer.OpenElement("render_dimensions");
-	printer.PushAttribute("width", RENDER_WIDTH);
-	printer.PushAttribute("height", RENDER_HEIGHT);
-	printer.CloseElement();
-
-	printer.CloseElement();
-}
-
-static void _SerializeCameraSettings(tinyxml2::XMLPrinter& printer)
-{
-	printer.OpenElement("camera");
-	printer.PushAttribute("fov", Fov);
-
-	printer.OpenElement("position");
-	printer.PushAttribute("x", MainCamera->transform.position.x());
-	printer.PushAttribute("y", MainCamera->transform.position.y());
-	printer.PushAttribute("z", MainCamera->transform.position.z());
-	printer.CloseElement();
-
-	printer.OpenElement("rotation");
-	printer.PushAttribute("pitch", CamXRot);
-	printer.PushAttribute("yaw", CamYRot);
-	printer.PushAttribute("roll", 0); // Keep roll so that if roll is supported in the future, won't need to add a check to see if roll is in the XML element
-	printer.CloseElement();
-
-	printer.CloseElement();
-}
-
-static void _SerializeEditorObjects(tinyxml2::XMLPrinter& printer)
-{
-	printer.OpenElement("editor_objects");
-
-	for (const auto& obj : EditorObjects)
-	{
-		printer.OpenElement("editor_object");
-		printer.PushAttribute("id", obj->id);
-		printer.PushAttribute("name", obj->name.c_str());
-		printer.PushAttribute("object_type", _EditorObjectTypeToString(obj->objectType).c_str());
-		printer.PushAttribute("editor_material_id", obj->material->id);
-
-		printer.OpenElement("position");
-		printer.PushAttribute("x", obj->transform.position.x());
-		printer.PushAttribute("y", obj->transform.position.y());
-		printer.PushAttribute("z", obj->transform.position.z());
-		printer.CloseElement();
-
-		printer.OpenElement("euler_rotation");
-		printer.PushAttribute("x", obj->eulerRotation.x());
-		printer.PushAttribute("y", obj->eulerRotation.y());
-		printer.PushAttribute("z", obj->eulerRotation.z());
-		printer.CloseElement();
-
-		printer.OpenElement("scaling");
-		printer.PushAttribute("x", obj->transform.scaling.x());
-		printer.PushAttribute("y", obj->transform.scaling.y());
-		printer.PushAttribute("z", obj->transform.scaling.z());
-		printer.CloseElement();
-
-		if (obj->objectType == EditorObjectType::LIGHT)
-		{
-			printer.OpenElement("light_color");
-			printer.PushAttribute("r", LightColor.red());
-			printer.PushAttribute("g", LightColor.green());
-			printer.PushAttribute("b", LightColor.blue());
-			printer.CloseElement();
-		}
-
-		printer.CloseElement();
-	}
-
-	printer.CloseElement();
-}
-
-static void _SerializeMaterial(tinyxml2::XMLPrinter& printer)
-{
-	printer.OpenElement("materials");
-
-	for (const auto& mat : EditorMaterials)
-	{
-		printer.OpenElement("material");
-		printer.PushAttribute("id", mat->id);
-		printer.PushAttribute("protected", mat->isProtected);
-		printer.PushAttribute("name", mat->name.c_str());
-		printer.PushAttribute("ambient", mat->ambient);
-		printer.PushAttribute("diffuse", mat->diffuse);
-		printer.PushAttribute("specular", mat->specular);
-		printer.PushAttribute("shininess", mat->shininess);
-		printer.PushAttribute("reflective", mat->reflective);
-		printer.PushAttribute("transparency", mat->transparency);
-		printer.PushAttribute("refractive_index", mat->refractiveIndex);
-		printer.PushAttribute("shadowcast_mode", _ShadowcastModeToString(mat->shadowcastMode).c_str());
-
-		printer.OpenElement("pattern");
-		mat->editorPattern->Serialize(printer);
-		printer.CloseElement();
-
-		printer.CloseElement();
-	}
-
-	printer.CloseElement();
-}
-
-static void _SaveWorld(const std::string& path)
-{
-	std::cout << "Saving file to " << path << std::endl;
-
-	FILE* pFile = fopen(path.c_str(), "w");
-
-	tinyxml2::XMLPrinter printer(pFile);
-
-	printer.OpenElement("metadata");
-	printer.PushAttribute("format_version", "0");
-	printer.CloseElement();
-
-	_SerializeSceneSettings(printer);
-	_SerializeCameraSettings(printer);
-	_SerializeEditorObjects(printer);
-	_SerializeMaterial(printer);
-
-	fclose(pFile);
-}
-
-static void _OpenWorld(const std::string& path)
-{
-	auto _PrintAbortString = [](std::string variableName) -> void
-	{
-		std::cout << "Error retrieving " << variableName << "\n";
-		std::cout << "Aborted open operation" << std::endl;
-	};
-
-	std::cout << "Opening file " << path << std::endl;
-
-	tinyxml2::XMLDocument doc;
-	auto err = doc.LoadFile(path.c_str());
-	
-	if (err != tinyxml2::XML_SUCCESS)
-	{
-		std::cout << "Error parsing XML at " << path << std::endl;
-		return;
-	}
-
-	// Load Metadata
-	auto* pMetadataElement = doc.FirstChildElement("metadata");
-
-	auto formatVersionAttribute = pMetadataElement->FindAttribute("format_version");
-
-	int formatVersion;
-	if (formatVersionAttribute->QueryIntValue(&formatVersion) != tinyxml2::XML_SUCCESS)
-	{
-		_PrintAbortString("format_version");
-		return;
-	}
-	else
-	{
-		std::cout << "Format Version: " << formatVersion << std::endl;
-	}
-
-	// Load Render Settings
-	auto sceneElement = doc.FirstChildElement("scene");
-	auto renderDimensionsElement = sceneElement->FirstChildElement("render_dimensions");
-	
-	int renderWidth;
-	int renderHeight;
-
-	auto renderDimensionsWidthAttribute = renderDimensionsElement->FindAttribute("width");
-	auto renderDimensionsHeightAttribute = renderDimensionsElement->FindAttribute("height");
-
-	if (renderDimensionsWidthAttribute->QueryIntValue(&renderWidth) != tinyxml2::XML_SUCCESS)
-	{
-		_PrintAbortString("width");
-		return;
-	}
-
-	if (renderDimensionsHeightAttribute->QueryIntValue(&renderHeight) != tinyxml2::XML_SUCCESS)
-	{
-		_PrintAbortString("height");
-		return;
-	}
-
-	std::cout << "Render Width: " << renderWidth << ", Height: " << renderHeight << std::endl;
-
-	// Load Camera Settings
-	auto cameraElement = doc.FirstChildElement("camera");
-
-	auto camFov = cameraElement->FindAttribute("fov")->FloatValue();
-
-	auto cameraRotationElement = cameraElement->FirstChildElement("rotation");
-
-	auto camXRot = cameraRotationElement->FindAttribute("pitch")->FloatValue();
-	auto camYRot = cameraRotationElement->FindAttribute("yaw")->FloatValue();
-
-	auto cameraPositionElement = cameraElement->FirstChildElement("position");
-
-	auto camXPos = cameraPositionElement->FindAttribute("x")->FloatValue();
-	auto camYPos = cameraPositionElement->FindAttribute("y")->FloatValue();
-	auto camZPos = cameraPositionElement->FindAttribute("z")->FloatValue();
-
-	RML::Vector camPosition(camXPos, camYPos, camZPos);
-
-	std::cout << "Camera Fov: " << camFov << "\n";
-	std::cout << "Camera Pitch: " << camXRot << "\n";
-	std::cout << "Camera Yaw: " << camYRot << "\n";
-	std::cout << "Camera Position: " << camPosition << "\n";
-
-	// Load Materials
-	std::map<unsigned int, EditorMaterial*> newEditorMaterials;
-
-	auto materialsElement = doc.FirstChildElement("materials");
-
-	for (tinyxml2::XMLElement* child = materialsElement->FirstChildElement(); child != NULL; child = child->NextSiblingElement())
-	{
-		bool isProtected;
-		unsigned int id;
-		std::string name;
-		float ambient;
-		float diffuse;
-		float specular;
-		float shininess;
-		float reflective;
-		float transparency;
-		float refractiveIndex;
-		Renderer::ShadowcastMode shadowcastMode;
-
-		if (child->FindAttribute("id")->QueryUnsignedValue(&id) != tinyxml2::XML_SUCCESS)
-		{
-			_PrintAbortString("id");
-			return;
-		}
-
-		if (child->FindAttribute("protected")->QueryBoolValue(&isProtected) != tinyxml2::XML_SUCCESS)
-		{
-			_PrintAbortString("protected");
-			return;
-		}
-
-		auto nameCStr = child->FindAttribute("name")->Value();
-		name = std::string(nameCStr);
-
-		if (child->FindAttribute("ambient")->QueryFloatValue(&ambient) != tinyxml2::XML_SUCCESS)
-		{
-			_PrintAbortString("ambient");
-			return;
-		}
-
-		if (child->FindAttribute("diffuse")->QueryFloatValue(&diffuse) != tinyxml2::XML_SUCCESS)
-		{
-			_PrintAbortString("diffuse");
-			return;
-		}
-
-		if (child->FindAttribute("specular")->QueryFloatValue(&specular) != tinyxml2::XML_SUCCESS)
-		{
-			_PrintAbortString("specular");
-			return;
-		}
-
-		if (child->FindAttribute("shininess")->QueryFloatValue(&shininess) != tinyxml2::XML_SUCCESS)
-		{
-			_PrintAbortString("shininess");
-			return;
-		}
-
-		if (child->FindAttribute("reflective")->QueryFloatValue(&reflective) != tinyxml2::XML_SUCCESS)
-		{
-			_PrintAbortString("reflective");
-			return;
-		}
-
-		if (child->FindAttribute("transparency")->QueryFloatValue(&transparency) != tinyxml2::XML_SUCCESS)
-		{
-			_PrintAbortString("transparency");
-			return;
-		}
-
-		if (child->FindAttribute("refractive_index")->QueryFloatValue(&refractiveIndex) != tinyxml2::XML_SUCCESS)
-		{
-			_PrintAbortString("refractive_index");
-			return;
-		}
-
-		auto shadowcastModeCStr = child->FindAttribute("shadowcast_mode")->Value();
-		auto shadowcastModeStr = std::string(shadowcastModeCStr);
-
-		shadowcastMode = _StringToShadowcastMode(shadowcastModeStr);
-
-		std::cout << "--- Material:\n";
-		std::cout << "id: " << id << "\n";
-		std::cout << "isProtected: " << isProtected << "\n";
-		std::cout << "name: " << name << "\n";
-		std::cout << "ambient: " << ambient << "\n";
-		std::cout << "diffuse: " << diffuse << "\n";
-		std::cout << "specular: " << specular << "\n";
-		std::cout << "shininess: " << shininess << "\n";
-		std::cout << "reflective: " << reflective << "\n";
-		std::cout << "transparency: " << transparency << "\n";
-		std::cout << "refractiveIndex: " << refractiveIndex << "\n";
-		std::cout << "shadowcastMode: " << shadowcastModeStr << "\n";
-
-		// TODO: Make this serialization generic and work for multiple pattern types
-		auto patternElement = child->FirstChildElement("pattern");
-		auto patternType = std::string(patternElement->FindAttribute("type")->Value());
-		float patternColorRed;
-		float patternColorGreen;
-		float patternColorBlue;
-		Graphics::Color patternColor(0,0,0);
-
-		if (patternType == "SOLID_COLOR")
-		{
-			auto colorElement = patternElement->FirstChildElement("color");
-
-			std::cout << colorElement->FindAttribute("r")->Value() << "\n";
-
-			patternColorRed = colorElement->FindAttribute("r")->FloatValue();
-			patternColorGreen = colorElement->FindAttribute("g")->FloatValue();
-			patternColorBlue = colorElement->FindAttribute("b")->FloatValue();
-			patternColor = Graphics::Color(patternColorRed, patternColorGreen, patternColorBlue);
-
-			std::cout << "----- Pattern:\n";
-			std::cout << "type: SOLID_COLOR\n";
-			std::cout << "color: " << patternColor << "\n";
-		}
-		else
-		{
-			_PrintAbortString("type");
-			return;
-		}
-
-		EditorPatternSolidColor* pattern = new EditorPatternSolidColor();
-		pattern->color = patternColor;
-
-		EditorMaterial* newMaterial = new EditorMaterial(pattern);
-		newMaterial->id = id;
-		newMaterial->isProtected = isProtected;
-		newMaterial->name = name;
-		newMaterial->ambient = ambient;
-		newMaterial->diffuse = diffuse;
-		newMaterial->specular = specular;
-		newMaterial->shininess = shininess;
-		newMaterial->reflective = reflective;
-		newMaterial->transparency = transparency;
-		newMaterial->refractiveIndex = refractiveIndex;
-		newMaterial->shadowcastMode = shadowcastMode;
-
-		newEditorMaterials[id] = newMaterial;
-	}
-
-	// Load Editor Objects
-	auto editorObjectsElement = doc.FirstChildElement("editor_objects");
-
-	std::vector<EditorObject*> newEditorObjects;
-
-	for (tinyxml2::XMLElement* child = editorObjectsElement->FirstChildElement(); child != NULL; child = child->NextSiblingElement())
-	{
-		unsigned int editorObjectId;
-		std::string editorObjectName;
-		std::string editorObjectTypeString;
-		EditorObjectType editorObjectType;
-		unsigned int editorMaterialId;
-
-		auto editorObjectIdAttribute = child->FindAttribute("id");
-		auto editorObjectNameAttribute = child->FindAttribute("name");
-		auto editorObjectTypeAttribute = child->FindAttribute("object_type");
-		auto editorObjectMaterialIdAttribute = child->FindAttribute("editor_material_id");
-
-		if (editorObjectIdAttribute->QueryUnsignedValue(&editorObjectId) != tinyxml2::XML_SUCCESS)
-		{
-			_PrintAbortString("id");
-			return;
-		}
-
-		auto editorObjectNameCStr = editorObjectNameAttribute->Value();
-		editorObjectName = std::string(editorObjectNameCStr);
-
-		auto editorObjectTypeCStr = editorObjectTypeAttribute->Value();
-		editorObjectTypeString = std::string(editorObjectTypeCStr);
-		editorObjectType = _StringToEditorObjectType(editorObjectTypeString);
-
-		if (editorObjectMaterialIdAttribute->QueryUnsignedValue(&editorMaterialId) != tinyxml2::XML_SUCCESS)
-		{
-			_PrintAbortString("editor_material_id");
-			return;
-		}
-
-		auto positionElement = child->FirstChildElement("position");
-		auto rotationElement = child->FirstChildElement("euler_rotation");
-		auto scalingElement = child->FirstChildElement("scaling");
-
-		RML::Vector position(
-			positionElement->FindAttribute("x")->FloatValue(),
-			positionElement->FindAttribute("y")->FloatValue(),
-			positionElement->FindAttribute("z")->FloatValue());
-
-		RML::Vector rotation(
-			rotationElement->FindAttribute("x")->FloatValue(),
-			rotationElement->FindAttribute("y")->FloatValue(),
-			rotationElement->FindAttribute("z")->FloatValue()
-		);
-
-		RML::Vector scaling(
-			scalingElement->FindAttribute("x")->FloatValue(),
-			scalingElement->FindAttribute("y")->FloatValue(),
-			scalingElement->FindAttribute("z")->FloatValue()
-		);
-
-		std::cout << "--- Editor Object:\n";
-		std::cout << "id: " << editorObjectId << "\n";
-		std::cout << "name: " << editorObjectName << "\n";
-		std::cout << "type: " << editorObjectTypeString << "\n";
-		std::cout << "type_id: " << static_cast<int>(editorObjectType) << "\n";
-		std::cout << "editor_material_id: " << editorMaterialId << "\n";
-		std::cout << "position: " << position << "\n";
-		std::cout << "rotation: " << rotation << "\n";
-		std::cout << "scaling: " << scaling << "\n";
-
-		if (editorObjectType == EditorObjectType::LIGHT)
-		{
-			auto colorElement = child->FirstChildElement("light_color");
-
-			float r = colorElement->FindAttribute("r")->FloatValue();
-			float g = colorElement->FindAttribute("g")->FloatValue();
-			float b = colorElement->FindAttribute("b")->FloatValue();
-
-			LightColor = Graphics::Color(r, g, b);
-
-			std::cout << "light_color: " << LightColor << "\n";
-		}
-
-		EditorObject* editorObject = new EditorObject();
-		editorObject->id = editorObjectId;
-		editorObject->name = editorObjectName;
-		editorObject->objectType = editorObjectType;
-		editorObject->material = newEditorMaterials[editorMaterialId];
-		editorObject->meshInstance = _CreateMeshInstanceForType(editorObjectType);
-		editorObject->transform.position = position;
-		editorObject->transform.rotation.euler_angles(rotation.x(), rotation.y(), rotation.z());
-		editorObject->transform.scaling = scaling;
-
-		newEditorObjects.emplace_back(editorObject);
-	}
-
-	//
-	// Actual state changes should only happen below here.
-	// If anything goes wrong above it's fine, since no state change will happen.
-	// Errors from here on should cause a crash, because it will invalidate the editor state.
-	//
-
-	std::cout << "File load successful. Updating scene state." << std::endl;
-
-	// Delete existing editor objects
-
-	for (EditorObject* obj : EditorObjects)
-	{
-		delete obj;
-	}
-
-	EditorObjects.clear();
-
-	// Delete existing editor materials
-
-	for (EditorMaterial* mat : EditorMaterials)
-	{
-		delete mat;
-	}
-
-	EditorMaterials.clear();
-
-	EditorObjects = newEditorObjects;
-
-	for (auto& pair : newEditorMaterials)
-	{
-		EditorMaterial* mat = pair.second;
-		EditorMaterials.push_back(mat);
-
-		if (mat->isProtected)
-		{
-			EditorCore::UpdateDefaultEditorMaterial(mat);
-		}
-	}
-
-	RENDER_WIDTH = renderWidth;
-	RENDER_HEIGHT = renderHeight;
-
-	CamXRot = camXRot;
-	CamYRot = camYRot;
-
-	Fov = camFov;
-
-	MainCamera->transform.position = camPosition;
-
-	std::cout << "Scene Loaded" << std::endl;
 }
 
 int main(void)
@@ -1704,7 +1143,7 @@ int main(void)
 		auto lightColorTuple = ColorToTuple(LightColor);
 
 		// Light cannot be rotated or scaled - force user to use the POSITION Gizmo
-		if (selectedObject != nullptr && selectedObject->objectType == EditorObjectType::LIGHT)
+		if (selectedObject != nullptr && selectedObject->objectType == EditorObject::Type::LIGHT)
 		{
 			CurrentGizmoType = GizmoType::POSITION;
 			CurrentGizmoPtr = &PositionGizmo;
@@ -1727,7 +1166,7 @@ int main(void)
 
 		if (PerformRender && !EditorCore::IsRenderInProgress())
 		{
-			EditorCore::StartFullRender(RENDER_WIDTH, RENDER_HEIGHT, Fov, editorCamera, EditorObjects, LightColor);
+			EditorCore::StartFullRender(CAMERA_SETTINGS.renderWidth, CAMERA_SETTINGS.renderHeight, CAMERA_SETTINGS.fov, editorCamera, EditorObjects, LightColor);
 		}
 
 		ObjectPickerHit selectedObjectHit;
@@ -1796,7 +1235,7 @@ int main(void)
 
 			axisPlane.transform(axisPlaneTransform.matrix());
 
-			const Math::Ray ray = MainCamera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, Fov);
+			const Math::Ray ray = MainCamera->RayForPixel(MousePosX, MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_SETTINGS.fov);
 			const auto intersections = axisPlane.intersect(ray);
 
 			if (intersections.hit().has_value())
@@ -1889,7 +1328,7 @@ int main(void)
 
 		if (EditorCore::IsRenderInProgress())
 		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, RENDER_WIDTH, RENDER_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, EditorCore::GetRenderPixels());
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, CAMERA_SETTINGS.renderWidth, CAMERA_SETTINGS.renderHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, EditorCore::GetRenderPixels());
 			glBindTexture(GL_TEXTURE_2D, raytracerRenderTextureId);
 		}
 
@@ -1904,14 +1343,14 @@ int main(void)
 		{
 			const auto& obj = *objPtr;
 
-			if (obj.objectType == EditorObjectType::LIGHT)
+			if (obj.objectType == EditorObject::Type::LIGHT)
 			{
 				lightPosition = RML::Tuple3<float>(obj.transform.position.x(), obj.transform.position.y(), obj.transform.position.z());
 			}
 
 			obj.meshInstance->transform = obj.transform;
 
-			if (obj.objectType == EditorObjectType::LIGHT)
+			if (obj.objectType == EditorObject::Type::LIGHT)
 			{
 				lightBatch.AddInstance(obj.meshInstance);
 			}
@@ -1984,7 +1423,7 @@ int main(void)
 						if (result == NFD_OKAY)
 						{
 							std::string path(outPath);
-							_SaveWorld(path);
+							EditorIO::SaveWorld(path, CAMERA_SETTINGS, editorCamera, EditorObjects, EditorMaterials, LightColor);
 							free(outPath);
 						}
 						else if (result == NFD_CANCEL)
@@ -2011,7 +1450,7 @@ int main(void)
 							// Unselect selected object and selected material since it might not exist in new world
 							selectedObject = nullptr;
 							SelectedMaterial = nullptr;
-							_OpenWorld(path);
+							EditorIO::OpenWorld(path, CAMERA_SETTINGS, editorCamera, EditorObjects, EditorMaterials, LightColor);
 							free(outPath);
 						}
 						else if (result == NFD_CANCEL)
@@ -2067,7 +1506,7 @@ int main(void)
 					
 					if (ImGui::MenuItem("Start Render", "F5", nullptr, !EditorCore::IsRenderInProgress()))
 					{
-						EditorCore::StartFullRender(RENDER_WIDTH, RENDER_HEIGHT, Fov, editorCamera, EditorObjects, LightColor);
+						EditorCore::StartFullRender(CAMERA_SETTINGS.renderWidth, CAMERA_SETTINGS.renderHeight, CAMERA_SETTINGS.fov, editorCamera, EditorObjects, LightColor);
 					}
 
 					ImGui::EndMenu();
@@ -2129,7 +1568,7 @@ int main(void)
 				ImGui::BeginDisabled(renderThreadInProgress);
 				ImGui::Text(("ID: " + std::to_string(selectedObject->id)).c_str()); // Inefficient string but eh it's a prototype
 
-				if (selectedObject->objectType != EditorObjectType::LIGHT)
+				if (selectedObject->objectType != EditorObject::Type::LIGHT)
 				{
 					deleteObject = ImGui::Button("Delete");
 					duplicateObject = ImGui::Button("Duplicate");
@@ -2158,7 +1597,7 @@ int main(void)
 					ImGui::EndTable();
 				}
 
-				ImGui::BeginDisabled(selectedObject->objectType == EditorObjectType::LIGHT);
+				ImGui::BeginDisabled(selectedObject->objectType == EditorObject::Type::LIGHT);
 
 				ImGui::Text("Rotation");
 				if (ImGui::BeginTable("Rotation", 3))
@@ -2204,7 +1643,7 @@ int main(void)
 
 				std::vector<std::string> editorMaterialStrings;
 
-				if (selectedObject->objectType == EditorObjectType::LIGHT)
+				if (selectedObject->objectType == EditorObject::Type::LIGHT)
 				{
 					ImGui::Text("Light Properties");
 
@@ -2478,10 +1917,10 @@ int main(void)
 				}
 
 				ImGui::BeginDisabled(renderThreadInProgress);
-				int renderDimensions[2] { RENDER_WIDTH, RENDER_HEIGHT };
+				int renderDimensions[2] { CAMERA_SETTINGS.renderWidth, CAMERA_SETTINGS.renderHeight };
 				ImGui::InputInt2("Render Dimensions", renderDimensions);
-				RENDER_WIDTH = renderDimensions[0];
-				RENDER_HEIGHT = renderDimensions[1];
+				CAMERA_SETTINGS.renderWidth = renderDimensions[0];
+				CAMERA_SETTINGS.renderHeight = renderDimensions[1];
 				ImGui::EndDisabled();
 				ImGui::End();
 			}

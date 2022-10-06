@@ -40,12 +40,12 @@ namespace EditorCore
 
 			RML::Point pos(editorObject.transform.position.x(), editorObject.transform.position.y(), editorObject.transform.position.z()); // TODO: Convert point to vector in RML
 
-			if (editorObject.objectType == EditorObjectType::LIGHT)
+			if (editorObject.objectType == EditorObject::Type::LIGHT)
 			{
 				Renderer::PointLight light(pos, lightColor);
 				world.addLight(light);
 			}
-			else if (editorObject.objectType == EditorObjectType::CUBE)
+			else if (editorObject.objectType == EditorObject::Type::CUBE)
 			{
 				auto cube = std::make_shared<Math::Cube>();
 				Renderer::Shape shape(cube, material);
@@ -56,14 +56,14 @@ namespace EditorCore
 				shape.transform(t.matrix());
 				world.addObject(shape);
 			}
-			else if (editorObject.objectType == EditorObjectType::PLANE)
+			else if (editorObject.objectType == EditorObject::Type::PLANE)
 			{
 				auto plane = std::make_shared<Math::Plane>();
 				Renderer::Shape shape(plane, material);
 				shape.transform(editorObject.transform.matrix());
 				world.addObject(shape);
 			}
-			else if (editorObject.objectType == EditorObjectType::SPHERE)
+			else if (editorObject.objectType == EditorObject::Type::SPHERE)
 			{
 				auto sphere = std::make_shared<Math::Sphere>();
 				Renderer::Shape shape(sphere, material);
@@ -73,7 +73,7 @@ namespace EditorCore
 				shape.transform(t.matrix());
 				world.addObject(shape);
 			}
-			else if (editorObject.objectType == EditorObjectType::CYLINDER)
+			else if (editorObject.objectType == EditorObject::Type::CYLINDER)
 			{
 				auto cylinder = std::make_shared<Math::Cylinder>(-1, 1, true);
 				Renderer::Shape shape(cylinder, material);

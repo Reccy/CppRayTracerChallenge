@@ -128,5 +128,8 @@
     <ClInclude Include="src\editor_pattern.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\editor_camera_settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

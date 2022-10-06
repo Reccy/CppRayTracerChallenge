@@ -233,6 +233,7 @@
     <ClCompile Include="src\rogll\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\editor_camera_settings.h" />
     <ClInclude Include="src\editor_core.h" />
     <ClInclude Include="src\editor_db.h" />
     <ClInclude Include="src\editor_io.h" />
