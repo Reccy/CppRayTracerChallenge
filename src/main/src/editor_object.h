@@ -2,6 +2,7 @@
 
 #include "rogll/include.h"
 #include "editor_material.h"
+#include "editor_axis.h"
 #include "editor_db.h"
 
 struct EditorObject
@@ -28,4 +29,5 @@ struct EditorObject
 	~EditorObject();
 	
 	static ROGLL::MeshInstance* CreateMeshInstanceForType(EditorObject::Type type);
+	static RML::Vector AxisToLocalDirection(const EditorObject& object, Axis axis);
 };

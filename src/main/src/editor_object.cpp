@@ -47,3 +47,13 @@ ROGLL::MeshInstance* EditorObject::CreateMeshInstanceForType(EditorObject::Type 
 
 	return nullptr;
 }
+
+RML::Vector EditorObject::AxisToLocalDirection(const EditorObject& object, Axis axis)
+{
+	switch (axis)
+	{
+	case Axis::X: return object.transform.right();
+	case Axis::Y: return object.transform.up();
+	case Axis::Z: return object.transform.forward();
+	}
+}

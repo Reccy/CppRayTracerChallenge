@@ -32,6 +32,8 @@
 #include "src/editor_pattern.h"
 #include "src/editor_camera_settings.h"
 #include "src/editor_actions.h"
+#include "src/editor_gizmo.h"
+#include "src/editor_axis.h"
 #include "src/ply.h"
 
 #include <RML.h>
@@ -82,13 +84,6 @@ static int WINDOW_WIDTH = 1024;
 static int WINDOW_HEIGHT = 768;
 
 static ROGLL::Camera* MainCamera;
-
-enum class GizmoType
-{
-	POSITION,
-	ROTATION,
-	SCALE
-};
 
 static GizmoType CurrentGizmoType = GizmoType::POSITION;
 
@@ -183,20 +178,6 @@ double _IntersectRayWithEditorObject(Math::Ray ray, const EditorObject& editorOb
 
 	return hit.value().t();
 }
-
-struct Collider
-{
-	RML::Transform localTransform;
-	Math::IShape* sharedShapePtr;
-};
-
-enum class Axis
-{
-	NONE,
-	X,
-	Y,
-	Z
-};
 
 static RML::Transform _GetPlaneTransform(Axis axis, RML::Vector observerViewDirToPlane, GizmoType currentGizmoType)
 {
@@ -301,89 +282,6 @@ std::string _GetAxisString(Axis axis)
 
 	return "NONE";
 }
-
-class Gizmo
-{
-public:
-	RML::Transform transform;
-public:
-	Gizmo(
-		const ROGLL::Mesh& mesh,
-		Collider colliderA,
-		Collider colliderB,
-		Collider colliderC
-	)
-		:
-		m_meshInstance(new ROGLL::MeshInstance(mesh)),
-		m_colliderX(colliderA),
-		m_colliderY(colliderB),
-		m_colliderZ(colliderC)
-	{}
-
-	~Gizmo()
-	{
-		delete m_meshInstance;
-	}
-
-	Axis GetAxisForIntersectedRay(const Math::Ray& ray, RML::Vector& outHitPoint) const
-	{
-		Axis result = Axis::NONE;
-
-		double closestHit = RML::INF;
-
-		m_colliderX.sharedShapePtr->transform(transform.matrix() * m_colliderX.localTransform.matrix());
-		auto xIntersect = m_colliderX.sharedShapePtr->intersect(ray);
-		if (xIntersect.hit())
-		{
-			outHitPoint = ray.origin() + ray.direction() * xIntersect.hit().value().t();
-			double hitDistance = RML::Vector(outHitPoint - ray.origin()).magnitude();
-			if (hitDistance < closestHit)
-			{
-				closestHit = hitDistance;
-				result = Axis::X;
-			}
-		}
-
-		m_colliderY.sharedShapePtr->transform(transform.matrix() * m_colliderY.localTransform.matrix());
-		auto yIntersect = m_colliderY.sharedShapePtr->intersect(ray);
-		if (m_colliderY.sharedShapePtr->intersect(ray).hit())
-		{
-			outHitPoint = ray.origin() + ray.direction() * yIntersect.hit().value().t();
-			double hitDistance = RML::Vector(outHitPoint - ray.origin()).magnitude();
-			if (hitDistance < closestHit)
-			{
-				closestHit = hitDistance;
-				result = Axis::Y;
-			}
-		}
-
-		m_colliderZ.sharedShapePtr->transform(transform.matrix() * m_colliderZ.localTransform.matrix());
-		auto zIntersect = m_colliderZ.sharedShapePtr->intersect(ray);
-		if (m_colliderZ.sharedShapePtr->intersect(ray).hit())
-		{
-			outHitPoint = ray.origin() + ray.direction() * zIntersect.hit().value().t();
-			double hitDistance = RML::Vector(outHitPoint - ray.origin()).magnitude();
-			if (hitDistance < closestHit)
-			{
-				closestHit = hitDistance;
-				result = Axis::Z;
-			}
-		}
-
-		return result;
-	}
-
-	const Collider GetColliderX() const { return m_colliderX; }
-	const Collider GetColliderY() const { return m_colliderY; }
-	const Collider GetColliderZ() const { return m_colliderZ; }
-
-	Gizmo(const Gizmo& other) = delete;
-private:
-	ROGLL::MeshInstance* m_meshInstance;
-	Collider m_colliderX;
-	Collider m_colliderY;
-	Collider m_colliderZ;
-};
 
 static Gizmo* PositionGizmo;
 static Gizmo* RotationGizmo;
@@ -1082,23 +980,8 @@ int main(void)
 				}
 				else if (CurrentGizmoType == GizmoType::SCALE)
 				{
-					const RML::Vector globalPositiveAxis = [&]() {
-						switch (selectedObjectHitAxis)
-						{
-						case Axis::X: return RML::Vector::right();
-						case Axis::Y: return RML::Vector::up();
-						case Axis::Z: return RML::Vector::forward();
-						}
-					}();
-
-					const RML::Vector localAxis = [&]() {
-						switch (selectedObjectHitAxis)
-						{
-						case Axis::X: return selectedObject->transform.right();
-						case Axis::Y: return selectedObject->transform.up();
-						case Axis::Z: return selectedObject->transform.forward();
-						}
-					}();
+					const RML::Vector globalPositiveAxis = AxisToDirection(selectedObjectHitAxis);
+					const RML::Vector localAxis = EditorObject::AxisToLocalDirection(*selectedObject, selectedObjectHitAxis);
 
 					RML::Vector scalingVector = _ProjectVector(mouseWorldPosDelta, localAxis);
 
