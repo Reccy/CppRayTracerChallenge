@@ -94,3 +94,12 @@ Renderer::Material EditorMaterial::CreateRendererMaterial() const
 
 	return result;
 }
+
+EditorMaterial* EditorMaterial::CreateInContainer(std::vector<EditorMaterial*>& container)
+{
+	EditorMaterial* mat = new EditorMaterial();
+	mat->id = EditorDB::GenerateUniqueID();
+	mat->name = "New Material";
+	container.push_back(mat);
+	return container[container.size() - 1];
+}

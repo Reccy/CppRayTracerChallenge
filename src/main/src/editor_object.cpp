@@ -57,3 +57,16 @@ RML::Vector EditorObject::AxisToLocalDirection(const EditorObject& object, Axis 
 	case Axis::Z: return object.transform.forward();
 	}
 }
+
+std::string EditorObject::GetTypeName(EditorObject::Type objectType)
+{
+	if (objectType == EditorObject::Type::CUBE) return "Cube";
+	if (objectType == EditorObject::Type::LIGHT) return "Light";
+	if (objectType == EditorObject::Type::PLANE) return "Plane";
+	if (objectType == EditorObject::Type::SPHERE) return "Sphere";
+	if (objectType == EditorObject::Type::CYLINDER) return "Cylinder";
+
+	assert(false); // Should never return unknown
+
+	return "Unknown";
+}

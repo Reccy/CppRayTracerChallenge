@@ -219,10 +219,12 @@
     <ClCompile Include="src\editor_core.cpp" />
     <ClCompile Include="src\editor_db.cpp" />
     <ClCompile Include="src\editor_gizmo.cpp" />
+    <ClCompile Include="src\editor_gui.cpp" />
     <ClCompile Include="src\editor_io.cpp" />
     <ClCompile Include="src\editor_material.cpp" />
     <ClCompile Include="src\editor_object.cpp" />
     <ClCompile Include="src\editor_pattern.cpp" />
+    <ClCompile Include="src\editor_state.cpp" />
     <ClCompile Include="src\ply.cpp" />
     <ClCompile Include="src\rogll\camera.cpp" />
     <ClCompile Include="src\rogll\index_buffer.cpp" />
@@ -243,10 +245,12 @@
     <ClInclude Include="src\editor_core.h" />
     <ClInclude Include="src\editor_db.h" />
     <ClInclude Include="src\editor_gizmo.h" />
+    <ClInclude Include="src\editor_gui.h" />
     <ClInclude Include="src\editor_io.h" />
     <ClInclude Include="src\editor_material.h" />
     <ClInclude Include="src\editor_object.h" />
     <ClInclude Include="src\editor_pattern.h" />
+    <ClInclude Include="src\editor_state.h" />
     <ClInclude Include="src\ply.h" />
     <ClInclude Include="src\rogll\camera.h" />
     <ClInclude Include="src\rogll\index_buffer.h" />

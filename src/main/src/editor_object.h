@@ -30,4 +30,5 @@ struct EditorObject
 	
 	static ROGLL::MeshInstance* CreateMeshInstanceForType(EditorObject::Type type);
 	static RML::Vector AxisToLocalDirection(const EditorObject& object, Axis axis);
+	static std::string GetTypeName(EditorObject::Type objectType);
 };

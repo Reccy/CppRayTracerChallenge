@@ -34,4 +34,6 @@ struct EditorMaterial
 	std::shared_ptr<Renderer::Pattern> BuildPattern() const;
 	void DrawPatternProperties();
 	Renderer::Material CreateRendererMaterial() const;
+
+	static EditorMaterial* CreateInContainer(std::vector<EditorMaterial*>& container);
 };

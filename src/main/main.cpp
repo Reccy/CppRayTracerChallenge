@@ -5,23 +5,17 @@
 #include <random>
 #include <map>
 #include <filesystem>
+#include <assert.h>
 
 #define NOMINMAX
 #include <windows.h>
 #include <ShlObj.h>
 #include <tchar.h>
 
-#include <nfd.h>
-
 #include "glad.h"
 #include "glfw3.h"
 
 #include <tinyxml2.h>
-#include <imgui.h>
-#include <imgui_stdlib.h>
-#include <imgui_internal.h>
-#include <imgui_impl_opengl3.h>
-#include <imgui_impl_glfw.h>
 
 #include "src/rogll/include.h"
 #include "src/editor_core.h"
@@ -34,6 +28,8 @@
 #include "src/editor_actions.h"
 #include "src/editor_gizmo.h"
 #include "src/editor_axis.h"
+#include "src/editor_gui.h"
+#include "src/editor_state.h"
 #include "src/ply.h"
 
 #include <RML.h>
@@ -54,6 +50,8 @@
 
 using namespace CppRayTracerChallenge::Core;
 
+EditorState State;
+
 std::stringstream DebugStringStream;
 
 static RML::Tuple4<float> Red{ 1.0f, 0.0f, 0.0f, 1.0f };
@@ -64,21 +62,7 @@ static RML::Tuple4<float> Black{ 0.0f, 0.0f, 0.0f, 0.0f };
 
 static RML::Tuple4<float>* ClearColor = &Black;
 
-static Graphics::Color LightColor = Graphics::Color::white();
-
-static RML::Tuple3<float> ColorToTuple(const Graphics::Color& c)
-{
-	return RML::Tuple3<float> { c.red(), c.green(), c.blue() };
-}
-
-static Graphics::Color TupleToColor(const RML::Tuple3<float>& tuple)
-{
-	return Graphics::Color(tuple.x(), tuple.y(), tuple.z());
-}
-
 static EditorActions Actions;
-
-static CameraSettings CAMERA_SETTINGS { 90, 0, 0, 1024, 768 };
 
 static int WINDOW_WIDTH = 1024;
 static int WINDOW_HEIGHT = 768;
@@ -86,11 +70,6 @@ static int WINDOW_HEIGHT = 768;
 static ROGLL::Camera* MainCamera;
 
 static GizmoType CurrentGizmoType = GizmoType::POSITION;
-
-static EditorMaterial* SelectedMaterial = nullptr;
-
-static std::vector<EditorObject*> EditorObjects;
-static std::vector<EditorMaterial*> EditorMaterials;
 
 static Math::Cube SharedCube;
 static Math::Plane SharedPlane;
@@ -116,19 +95,6 @@ static RML::Vector _ProjectVector(RML::Vector p, RML::Vector dir)
 	RML::Vector ab = b - a;
 
 	return a + ab * (RML::Vector::dot(ap, ab) / RML::Vector::dot(ab, ab));
-}
-
-static std::string _GetTypeName(EditorObject::Type objectType)
-{
-	if (objectType == EditorObject::Type::CUBE) return "Cube";
-	if (objectType == EditorObject::Type::LIGHT) return "Light";
-	if (objectType == EditorObject::Type::PLANE) return "Plane";
-	if (objectType == EditorObject::Type::SPHERE) return "Sphere";
-	if (objectType == EditorObject::Type::CYLINDER) return "Cylinder";
-
-	assert(false); // Should never return unknown
-
-	return "Unknown";
 }
 
 Math::IShape* _GetMathShapeForEditorObject(const EditorObject& editorObject)
@@ -313,7 +279,7 @@ static ObjectPickerHit _SelectObjectUnderCursor(ROGLL::Camera* camera, bool anOb
 		return result;
 	}
 
-	Math::Ray ray = camera->RayForPixel(Actions.MousePosX, Actions.MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_SETTINGS.fov);
+	Math::Ray ray = camera->RayForPixel(Actions.MousePosX, Actions.MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, State.cameraSettings.fov);
 	result.ray = ray;
 
 	if (anObjectIsCurrentlySelected)
@@ -335,7 +301,7 @@ static ObjectPickerHit _SelectObjectUnderCursor(ROGLL::Camera* camera, bool anOb
 	result.type = ObjectPickerType::EDITOR_OBJECT;
 	double closestEditorObject = RML::INF;
 
-	for (const auto& editorObject : EditorObjects)
+	for (const auto& editorObject : State.editorObjects)
 	{
 		double currentClosest = _IntersectRayWithEditorObject(ray, *editorObject);
 
@@ -350,69 +316,23 @@ static ObjectPickerHit _SelectObjectUnderCursor(ROGLL::Camera* camera, bool anOb
 	return result;
 }
 
-IMGUI_API bool _DearImGui_BeginStatusBar()
-{
-	using namespace ImGui;
-
-	ImGuiContext& g = *GImGui;
-	ImGuiViewportP* viewport = (ImGuiViewportP*)(void*)GetMainViewport();
-
-	// Notify of viewport change so GetFrameHeight() can be accurate in case of DPI change
-	SetCurrentViewport(NULL, viewport);
-
-	// For the main menu bar, which cannot be moved, we honor g.Style.DisplaySafeAreaPadding to ensure text can be visible on a TV set.
-	// FIXME: This could be generalized as an opt-in way to clamp window->DC.CursorStartPos to avoid SafeArea?
-	// FIXME: Consider removing support for safe area down the line... it's messy. Nowadays consoles have support for TV calibration in OS settings.
-	g.NextWindowData.MenuBarOffsetMinVal = ImVec2(g.Style.DisplaySafeAreaPadding.x, ImMax(g.Style.DisplaySafeAreaPadding.y - g.Style.FramePadding.y, 0.0f));
-	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_MenuBar;
-	float height = GetFrameHeight();
-	bool is_open = BeginViewportSideBar("##StatusMenuBar", viewport, ImGuiDir_Down, height, window_flags);
-	g.NextWindowData.MenuBarOffsetMinVal = ImVec2(0.0f, 0.0f);
-
-	if (is_open)
-		BeginMenuBar();
-	else
-		End();
-	return is_open;
-}
-
-void _DearImGui_EndStatusBar()
-{
-	using namespace ImGui;
-
-	EndMenuBar();
-
-	// When the user has left the menu layer (typically: closed menus through activation of an item), we restore focus to the previous window
-	// FIXME: With this strategy we won't be able to restore a NULL focus.
-	ImGuiContext& g = *GImGui;
-	if (g.CurrentWindow == g.NavWindow && g.NavLayer == ImGuiNavLayer_Main && !g.NavAnyRequest)
-		FocusTopMostWindowUnderOne(g.NavWindow, NULL);
-
-	End();
-}
-
-void _DearImGui_SetNextWindowPosRelative(const ImVec2& vec)
-{
-	ImGui::SetNextWindowPos(ImVec2(ImGui::GetMainViewport()->Pos.x + vec.x, ImGui::GetMainViewport()->Pos.y + vec.y));
-}
-
 void _UpdateCamera(ROGLL::Camera& cam) {
 	constexpr double speedFactor = 0.25;
 
-	cam.SetPerspective(WINDOW_WIDTH, WINDOW_HEIGHT, RML::Trig::degrees_to_radians(CAMERA_SETTINGS.fov));
+	cam.SetPerspective(WINDOW_WIDTH, WINDOW_HEIGHT, RML::Trig::degrees_to_radians(State.cameraSettings.fov));
 	cam.transform.position += cam.transform.rotation.inverse()
 		* RML::Vector(Actions.HMove * speedFactor,
 			Actions.VMove * speedFactor,
 			Actions.DMove * speedFactor);
 
-	CAMERA_SETTINGS.xRot += Actions.RotX;
-	CAMERA_SETTINGS.yRot += Actions.RotY;
+	State.cameraSettings.xRot += Actions.RotX;
+	State.cameraSettings.yRot += Actions.RotY;
 
 	constexpr float camXRotLimit = 89;
 
-	CAMERA_SETTINGS.xRot = std::clamp(CAMERA_SETTINGS.xRot, -camXRotLimit, camXRotLimit);
+	State.cameraSettings.xRot = std::clamp(State.cameraSettings.xRot, -camXRotLimit, camXRotLimit);
 
-	cam.transform.rotation = RML::Quaternion::euler_angles(CAMERA_SETTINGS.xRot, CAMERA_SETTINGS.yRot, 0);
+	cam.transform.rotation = RML::Quaternion::euler_angles(State.cameraSettings.xRot, State.cameraSettings.yRot, 0);
 }
 
 struct VertexLayout
@@ -435,21 +355,6 @@ static void _WindowResized(GLFWwindow* window, int width, int height)
 	WINDOW_HEIGHT = height;
 }
 
-static EditorMaterial* _CreateNewEditorMaterial()
-{
-	EditorMaterial* mat = new EditorMaterial();
-	mat->id = EditorDB::GenerateUniqueID();
-	mat->name = "New Material";
-	EditorMaterials.push_back(mat);
-	return EditorMaterials[EditorMaterials.size() - 1];
-}
-
-ROGLL::Mesh* CubeMesh;
-ROGLL::Mesh* CylinderMesh;
-ROGLL::Mesh* LightMesh;
-ROGLL::Mesh* PlaneMesh;
-ROGLL::Mesh* SphereMesh;
-
 static EditorObject* _CreateLight(RML::Vector position)
 {
 	EditorObject* light = new EditorObject();
@@ -458,57 +363,16 @@ static EditorObject* _CreateLight(RML::Vector position)
 	light->transform.position = position;
 	light->objectType = EditorObject::Type::LIGHT;
 	light->meshInstance = EditorObject::CreateMeshInstanceForType(EditorObject::Type::LIGHT);
-	EditorObjects.push_back(light);
-	return EditorObjects[EditorObjects.size() - 1];
+	State.editorObjects.push_back(light);
+	return State.editorObjects[State.editorObjects.size() - 1];
 }
 
-static EditorObject* _CreateCube(RML::Vector position)
-{
-	EditorObject* cube = new EditorObject();
-	cube->id = EditorDB::GenerateUniqueID();
-	cube->name = "Cube";
-	cube->transform.position = position;
-	cube->objectType = EditorObject::Type::CUBE;
-	cube->meshInstance = EditorObject::CreateMeshInstanceForType(EditorObject::Type::CUBE);
-	EditorObjects.push_back(cube);
-	return EditorObjects[EditorObjects.size() - 1];
-}
-
-static EditorObject* _CreatePlane(RML::Vector position)
-{
-	EditorObject* plane = new EditorObject();
-	plane->id = EditorDB::GenerateUniqueID();
-	plane->name = "Ground Plane";
-	plane->transform.position = position;
-	plane->objectType = EditorObject::Type::PLANE;
-	plane->meshInstance = EditorObject::CreateMeshInstanceForType(EditorObject::Type::PLANE);
-	EditorObjects.push_back(plane);
-	return EditorObjects[EditorObjects.size() - 1];
-}
-
-static EditorObject* _CreateSphere(RML::Vector position)
-{
-	EditorObject* sphere = new EditorObject();
-	sphere->id = EditorDB::GenerateUniqueID();
-	sphere->name = "Sphere";
-	sphere->transform.position = position;
-	sphere->objectType = EditorObject::Type::SPHERE;
-	sphere->meshInstance = EditorObject::CreateMeshInstanceForType(EditorObject::Type::SPHERE);
-	EditorObjects.push_back(sphere);
-	return EditorObjects[EditorObjects.size() - 1];
-}
-
-static EditorObject* _CreateCylinder(RML::Vector position)
-{
-	EditorObject* cylinder = new EditorObject();
-	cylinder->id = EditorDB::GenerateUniqueID();
-	cylinder->name = "Cylinder";
-	cylinder->transform.position = position;
-	cylinder->objectType = EditorObject::Type::CYLINDER;
-	cylinder->meshInstance = EditorObject::CreateMeshInstanceForType(EditorObject::Type::CYLINDER);
-	EditorObjects.push_back(cylinder);
-	return EditorObjects[EditorObjects.size() - 1];
-}
+// These are used globally in EditorObject.cpp
+ROGLL::Mesh* CubeMesh;
+ROGLL::Mesh* CylinderMesh;
+ROGLL::Mesh* LightMesh;
+ROGLL::Mesh* PlaneMesh;
+ROGLL::Mesh* SphereMesh;
 
 int main(void)
 {
@@ -688,12 +552,8 @@ int main(void)
 		uiTextureFloats.push_back(vert.uv.y());
 	}
 
-	ROGLL::Shader gizmoShader("res/shaders/Gizmo.shader");
+	ROGLL::Shader gizmoShader("res/shaders/Gizmo.shader"); // TODO: Allow Shader class to cache loaded shaders.
 	ROGLL::Shader lightShader("res/shaders/Light.shader");
-
-	ROGLL::Material gizmoMaterial(gizmoShader);
-	gizmoMaterial.Set4("objectColor", White);
-	gizmoMaterial.Set3("handleActive", RML::Tuple3<float>( 1, 1, 1 ));
 
 	ROGLL::Material handleMaterial(gizmoShader);
 	handleMaterial.Set4("objectColor", White);
@@ -705,109 +565,30 @@ int main(void)
 	ROGLL::Material debugMeshMaterial(EditorCore::GetDefaultShader());
 	debugMeshMaterial.Set4("objectColor", Red + Green);
 
-	ROGLL::RenderBatch gizmoBatch(&gizmoLayout, &gizmoMaterial);
-	gizmoBatch.AddInstance(&gizmoMeshInstance);
-
 	ROGLL::MeshInstance* currentHandleMeshInstance = &positionHandleMeshInstance;
 
 	ROGLL::RenderBatch handleBatch(&gizmoLayout, &handleMaterial);
 
 	ROGLL::RenderBatch lightBatch(&lightLayout, &lightMaterial);
 
-	ROGLL::Camera editorCamera(WINDOW_WIDTH, WINDOW_HEIGHT, 60);
-	editorCamera.transform.translate(0, 0, -10); // Initial cam position
+	State.editorCamera.SetPerspective(WINDOW_WIDTH, WINDOW_HEIGHT, 60);
 
-	MainCamera = &editorCamera;
+	State.editorCamera.transform.translate(0, 0, -10); // Initial cam position
 
-	ROGLL::Camera gizmoCam(32, 32, 1); // Psuedo orthograpic projection
-	gizmoCam.transform.translate(0, 0, -3.2);
+	MainCamera = &State.editorCamera;
 
-	RML::Tuple3<float> lightPosition{
+	State.lightPosition = {
 		1,
 		9,
 		0
 	};
 
-	// IMGUI BEGIN
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO();
-	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-
-	std::filesystem::path file{ "imgui.ini" };
-	if (!std::filesystem::exists(file))
-	{
-		std::cout << "Loading default layout file" << std::endl;
-		ImGui::LoadIniSettingsFromDisk("imgui_default_layout.ini");
-	}
-	else
-	{
-		std::cout << "Loading saved layout file" << std::endl;
-	}
-
-	std::cout << io.IniFilename << std::endl;
-
-	ImGui::StyleColorsDark();
-
-	ImGui_ImplGlfw_InitForOpenGL(window.GetHandle(), true);
-	ImGui_ImplOpenGL3_Init("#version 330 core");
-
-	const ImGuiViewport* const imguiViewport = ImGui::GetMainViewport();
-	// IMGUI END
-
-	// New Render Target Begin (For Gizmo)
-	GLuint gizmoFramebufferId;
-	glGenFramebuffers(1, &gizmoFramebufferId);
-	glBindFramebuffer(GL_FRAMEBUFFER, gizmoFramebufferId);
-
-	GLuint gizmoRenderTextureId;
-	glGenTextures(1, &gizmoRenderTextureId);
-	glBindTexture(GL_TEXTURE_2D, gizmoRenderTextureId);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 512, 512, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-	GLuint gizmoRenderBufferId;
-	glGenRenderbuffers(1, &gizmoRenderBufferId);
-	glBindRenderbuffer(GL_RENDERBUFFER, gizmoRenderBufferId);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 512, 512);
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, gizmoRenderBufferId);
-
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, gizmoRenderTextureId, 0);
-
-	GLenum gizmoDrawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
-	glDrawBuffers(1, gizmoDrawBuffers);
-
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-	{
-		std::cout << "ERROR: Could not create framebuffer" << std::endl;
-		glfwTerminate();
-		std::cin.get();
-		return -1;
-	}
-
-	// New Render Target End
-
-	// New Render Target Begin (For Render)
-	GLuint raytracerRenderTextureId;
-	glGenTextures(1, &raytracerRenderTextureId);
-	glBindTexture(GL_TEXTURE_2D, raytracerRenderTextureId);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	GUI::Initialize(&window);
 
 	auto light = _CreateLight({ 0, 0, 0 });
 
 	// New Render Target End
 
-	bool guiShowDearImGuiDemo = false;
-	bool guiShowGizmo = true;
-	bool guiShowMaterials = false;
-	bool guiIsRendering = false;
-	bool guiShowRenderSettings = false;
-	bool guiShowRenderPreview = false;
-	bool guiShowDevDebugConsole = false;
-	
 	EditorObject* selectedObject = nullptr;
 	Axis selectedObjectHitAxis = Axis::NONE;
 
@@ -842,17 +623,15 @@ int main(void)
 
 		if (Actions.IncreaseFov)
 		{
-			CAMERA_SETTINGS.fov += 0.5;
+			State.cameraSettings.fov += 0.5;
 		}
 
 		if (Actions.DecreaseFov)
 		{
-			CAMERA_SETTINGS.fov -= 0.5;
+			State.cameraSettings.fov -= 0.5;
 		}
 
-		CAMERA_SETTINGS.fov = std::clamp(CAMERA_SETTINGS.fov, 5.0f, 170.0f);
-
-		auto lightColorTuple = ColorToTuple(LightColor);
+		State.cameraSettings.fov = std::clamp(State.cameraSettings.fov, 5.0f, 170.0f);
 
 		// Light cannot be rotated or scaled - force user to use the POSITION Gizmo
 		if (selectedObject != nullptr && selectedObject->objectType == EditorObject::Type::LIGHT)
@@ -878,7 +657,7 @@ int main(void)
 
 		if (Actions.PerformRender && !EditorCore::IsRenderInProgress())
 		{
-			EditorCore::StartFullRender(CAMERA_SETTINGS.renderWidth, CAMERA_SETTINGS.renderHeight, CAMERA_SETTINGS.fov, editorCamera, EditorObjects, LightColor);
+			EditorCore::StartFullRender(State.cameraSettings.renderWidth, State.cameraSettings.renderHeight, State.cameraSettings.fov, State.editorCamera, State.editorObjects, State.lightColor);
 		}
 
 		ObjectPickerHit selectedObjectHit;
@@ -947,7 +726,7 @@ int main(void)
 
 			axisPlane.transform(axisPlaneTransform.matrix());
 
-			const Math::Ray ray = MainCamera->RayForPixel(Actions.MousePosX, Actions.MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_SETTINGS.fov);
+			const Math::Ray ray = MainCamera->RayForPixel(Actions.MousePosX, Actions.MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, State.cameraSettings.fov);
 			const auto intersections = axisPlane.intersect(ray);
 
 			if (intersections.hit().has_value())
@@ -1013,21 +792,10 @@ int main(void)
 		// Also only update camera if user has focused on the viewport, not a UI element
 		if (selectedObjectHitAxis == Axis::NONE && Actions.ViewportCanCaptureKeyboard)
 		{
-			_UpdateCamera(editorCamera);
+			_UpdateCamera(State.editorCamera);
 		}
 
-		// UI - Pre Pass
-		glBindFramebuffer(GL_FRAMEBUFFER, gizmoFramebufferId);
-		glViewport(0, 0, 512, 512);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		gizmoMeshInstance.transform.rotation = editorCamera.transform.rotation.inverse();
-		gizmoBatch.Render(gizmoCam, lightPosition, lightColorTuple);
-
-		if (EditorCore::IsRenderInProgress())
-		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, CAMERA_SETTINGS.renderWidth, CAMERA_SETTINGS.renderHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, EditorCore::GetRenderPixels());
-			glBindTexture(GL_TEXTURE_2D, raytracerRenderTextureId);
-		}
+		GUI::PrePass();
 
 		// Geometry Pass
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -1036,13 +804,13 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 		// Update the mesh instance transforms and set up render batches (since they are different to the editor object transform)
-		for (const auto& objPtr : EditorObjects)
+		for (const auto& objPtr : State.editorObjects)
 		{
 			const auto& obj = *objPtr;
 
 			if (obj.objectType == EditorObject::Type::LIGHT)
 			{
-				lightPosition = RML::Tuple3<float>(obj.transform.position.x(), obj.transform.position.y(), obj.transform.position.z());
+				State.lightPosition = RML::Tuple3<float>(obj.transform.position.x(), obj.transform.position.y(), obj.transform.position.z());
 			}
 
 			obj.meshInstance->transform = obj.transform;
@@ -1057,15 +825,15 @@ int main(void)
 			}
 		}
 
-		for (auto& material : EditorMaterials)
+		for (auto& material : State.editorMaterials)
 		{
 			// TODO: Support multiple patterns
 			Graphics::Color c = static_cast<EditorPatternSolidColor*>(material->editorPattern)->color;
 			material->previewMaterial->Set4("objectColor", RML::Tuple4<float>(c.red(), c.green(), c.blue(), 1));
-			material->renderBatch->Render(editorCamera, lightPosition, lightColorTuple);
+			material->renderBatch->Render(State.editorCamera, State.lightPosition, State.GetLightColorTuple());
 		}
 
-		lightBatch.Render(editorCamera, lightPosition, lightColorTuple);
+		lightBatch.Render(State.editorCamera, State.lightPosition, State.GetLightColorTuple());
 
 		// Finished World 3D Render
 		glClear(GL_DEPTH_BUFFER_BIT);
@@ -1085,10 +853,10 @@ int main(void)
 			CurrentGizmo->transform = selectedObject->transform;
 			CurrentGizmo->transform.scaling = scalingVector;
 			
-			handleBatch.Render(editorCamera, lightPosition, lightColorTuple);
+			handleBatch.Render(State.editorCamera, State.lightPosition, State.GetLightColorTuple());
 		}
 
-		for (auto& material : EditorMaterials)
+		for (auto& material : State.editorMaterials)
 		{
 			material->renderBatch->Clear();
 		}
@@ -1096,590 +864,7 @@ int main(void)
 		lightBatch.Clear();
 		handleBatch.Clear();
 
-		//IMGUI TEST BEGIN
-
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
-
-		ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode);
-
-		// Render Main Menu Bar
-		{
-			if (ImGui::BeginMainMenuBar())
-			{
-				if (ImGui::BeginMenu("File"))
-				{
-					if (ImGui::MenuItem("Save as..."))
-					{
-						std::cout << "Begin Save..." << std::endl;
-
-						nfdchar_t* outPath = NULL;
-						nfdresult_t result = NFD_SaveDialog("rrt", NULL, &outPath); // .rrt - Reccy's Ray Tracer
-
-						if (result == NFD_OKAY)
-						{
-							std::string path(outPath);
-							EditorIO::SaveWorld(path, CAMERA_SETTINGS, editorCamera, EditorObjects, EditorMaterials, LightColor);
-							free(outPath);
-						}
-						else if (result == NFD_CANCEL)
-						{
-							std::cout << "Save Cancelled" << std::endl;
-						}
-						else
-						{
-							std::cout << "Error: " << NFD_GetError() << std::endl;
-						}
-					}
-
-					if (ImGui::MenuItem("Open"))
-					{
-						std::cout << "Begin Open..." << std::endl;
-
-						nfdchar_t* outPath = NULL;
-						nfdresult_t result = NFD_OpenDialog("rrt", NULL, &outPath); // .rrt - Reccy's Ray Tracer
-
-						if (result == NFD_OKAY)
-						{
-							std::string path(outPath);
-
-							// Unselect selected object and selected material since it might not exist in new world
-							selectedObject = nullptr;
-							SelectedMaterial = nullptr;
-							EditorIO::OpenWorld(path, CAMERA_SETTINGS, editorCamera, EditorObjects, EditorMaterials, LightColor);
-							free(outPath);
-						}
-						else if (result == NFD_CANCEL)
-						{
-							std::cout << "Open Cancelled" << std::endl;
-						}
-						else
-						{
-							std::cout << "Error: " << NFD_GetError() << std::endl;
-						}
-					}
-
-					if (ImGui::MenuItem("Exit", "Alt + F4")) {
-						glfwSetWindowShouldClose(window.GetHandle(), 1);
-					}
-
-					ImGui::EndMenu();
-				}
-
-				if (ImGui::BeginMenu("Add"))
-				{
-					if (ImGui::MenuItem("Cube")) {
-						auto obj = _CreateCube({ 0,0,0 });
-						obj->name = "New Cube";
-						selectedObject = obj;
-					}
-
-					if (ImGui::MenuItem("Plane")) {
-						auto obj = _CreatePlane({ 0, 0, 0 });
-						obj->name = "New Plane";
-						selectedObject = obj;
-					}
-
-					if (ImGui::MenuItem("Sphere")) {
-						auto obj = _CreateSphere({ 0, 0, 0 });
-						obj->name = "New Sphere";
-						selectedObject = obj;
-					}
-
-					if (ImGui::MenuItem("Cylinder")) {
-						auto obj = _CreateCylinder({ 0, 0, 0 });
-						obj->name = "New Cylinder";
-						selectedObject = obj;
-					}
-
-					ImGui::EndMenu();
-				}
-
-				if (ImGui::BeginMenu("Render"))
-				{
-					ImGui::MenuItem("Settings", nullptr, &guiShowRenderSettings);
-					ImGui::MenuItem("Preview", nullptr, &guiShowRenderPreview);
-					
-					if (ImGui::MenuItem("Start Render", "F5", nullptr, !EditorCore::IsRenderInProgress()))
-					{
-						EditorCore::StartFullRender(CAMERA_SETTINGS.renderWidth, CAMERA_SETTINGS.renderHeight, CAMERA_SETTINGS.fov, editorCamera, EditorObjects, LightColor);
-					}
-
-					ImGui::EndMenu();
-				}
-
-				if (ImGui::BeginMenu("Debug"))
-				{
-					ImGui::MenuItem("Dev Debug Console", nullptr, &guiShowDevDebugConsole);
-					ImGui::MenuItem("Dear ImGui Demo", nullptr, &guiShowDearImGuiDemo);
-
-					ImGui::EndMenu();
-				}
-
-				if (ImGui::BeginMenu("View"))
-				{
-					ImGui::MenuItem("Gizmo", nullptr, &guiShowGizmo);
-					ImGui::MenuItem("Materials", nullptr, &guiShowMaterials);
-
-					ImGui::EndMenu();
-				}
-
-				if (ImGui::BeginMenu("About"))
-				{
-					std::stringstream ss;
-					ss << "Build date: " << __DATE__;
-
-					ImGui::MenuItem("Reccy's Ray Tracer", nullptr, nullptr, false);
-					ImGui::MenuItem("By Aaron Meaney", nullptr, nullptr, false);
-					ImGui::MenuItem(ss.str().c_str(), nullptr, nullptr, false);
-					
-					ImGui::EndMenu();
-				}
-				ImGui::EndMainMenuBar();
-			}
-		}
-
-		// Object Properties
-		{
-			ImGui::SetNextWindowPos(ImVec2(imguiViewport->WorkPos.x + 10, imguiViewport->WorkPos.y + 50), ImGuiCond_FirstUseEver);
-			ImGui::SetNextWindowSize(ImVec2(300, 600), ImGuiCond_FirstUseEver);
-			ImGui::Begin("Object Properties");
-
-			bool deleteObject = false;
-			bool duplicateObject = false;
-
-			bool renderThreadInProgress = EditorCore::IsRenderInProgress();
-
-			if (renderThreadInProgress)
-			{
-				ImGui::Text("Render is in progress.\nCannot update properties.");
-			}
-
-			if (selectedObject == nullptr)
-			{
-				ImGui::Text("No object selected");
-			}
-			else
-			{
-				ImGui::BeginDisabled(renderThreadInProgress);
-				ImGui::Text(("ID: " + std::to_string(selectedObject->id)).c_str()); // Inefficient string but eh it's a prototype
-
-				if (selectedObject->objectType != EditorObject::Type::LIGHT)
-				{
-					deleteObject = ImGui::Button("Delete");
-					duplicateObject = ImGui::Button("Duplicate");
-				}
-				
-				ImGui::Separator();
-
-				ImGui::InputText("Name", &selectedObject->name);
-
-				ImGui::Separator();
-
-				ImGui::Text("Transform");
-
-				ImGui::Text("Position");
-				if (ImGui::BeginTable("Position", 3))
-				{
-					const RML::Vector& pos = selectedObject->transform.position;
-					double posVec[3]{ pos.x(), pos.y(), pos.z() };
-
-					ImGui::TableNextColumn(); ImGui::InputDouble("x##Position", &posVec[0]);
-					ImGui::TableNextColumn(); ImGui::InputDouble("y##Position", &posVec[1]);
-					ImGui::TableNextColumn(); ImGui::InputDouble("z##Position", &posVec[2]);
-
-					selectedObject->transform.position = RML::Vector(posVec[0], posVec[1], posVec[2]);
-
-					ImGui::EndTable();
-				}
-
-				ImGui::BeginDisabled(selectedObject->objectType == EditorObject::Type::LIGHT);
-
-				ImGui::Text("Rotation");
-				if (ImGui::BeginTable("Rotation", 3))
-				{
-					const RML::Vector& rot = selectedObject->eulerRotation;
-					double rotVec[3]{ rot.x(), rot.y(), rot.z() };
-
-					bool xChanged, yChanged, zChanged = false;
-					ImGui::TableNextColumn();
-					xChanged = ImGui::InputDouble("x##Rotation", &rotVec[0]);
-					ImGui::TableNextColumn();
-					yChanged = ImGui::InputDouble("y##Rotation", &rotVec[1]);
-					ImGui::TableNextColumn();
-					zChanged = ImGui::InputDouble("z##Rotation", &rotVec[2]);
-
-					if (xChanged || yChanged || zChanged)
-					{
-						selectedObject->transform.rotation = RML::Quaternion::euler_angles(rotVec[0], rotVec[1], rotVec[2]);
-						selectedObject->eulerRotation = RML::Vector(rotVec[0], rotVec[1], rotVec[2]);
-					}
-
-					ImGui::EndTable();
-				}
-
-				ImGui::Text("Scale");
-				if (ImGui::BeginTable("Scale", 3))
-				{
-					const RML::Vector& scale = selectedObject->transform.scaling;
-					double scaleVec[3]{ scale.x(), scale.y(), scale.z() };
-
-					ImGui::TableNextColumn(); ImGui::InputDouble("x##Scale", &scaleVec[0]);
-					ImGui::TableNextColumn(); ImGui::InputDouble("y##Scale", &scaleVec[1]);
-					ImGui::TableNextColumn(); ImGui::InputDouble("z##Scale", &scaleVec[2]);
-
-					selectedObject->transform.scaling = RML::Vector(scaleVec[0], scaleVec[1], scaleVec[2]);
-
-					ImGui::EndTable();
-				}
-
-				ImGui::EndDisabled();
-
-				ImGui::Separator();
-
-				std::vector<std::string> editorMaterialStrings;
-
-				if (selectedObject->objectType == EditorObject::Type::LIGHT)
-				{
-					ImGui::Text("Light Properties");
-
-					float color[3] = { LightColor.red(), LightColor.green(), LightColor.blue() };
-					ImGui::ColorPicker3("Color", color);
-					LightColor = Graphics::Color(color[0], color[1], color[2]);
-				}
-				else
-				{
-					if (ImGui::BeginListBox("Select Material"))
-					{
-						for (size_t i = 0; i < EditorMaterials.size(); i++)
-						{
-							const EditorMaterial* const mat = EditorMaterials[i];
-
-							std::stringstream ss;
-							ss << mat->name << "##" << i;
-
-							std::string label = ss.str();
-
-							if (ImGui::Selectable(label.c_str(), selectedObject->material == mat))
-							{
-								selectedObject->material = const_cast<EditorMaterial*>(mat);
-							}
-						}
-					}
-					ImGui::EndListBox();
-				}
-
-				ImGui::EndDisabled();
-			}
-
-			ImGui::End();
-
-			if (deleteObject)
-			{
-				auto it = std::find(EditorObjects.begin(), EditorObjects.end(), selectedObject);
-				delete *it;
-				EditorObjects.erase(it);
-
-				selectedObject = nullptr;
-			}
-
-			if (duplicateObject)
-			{
-				EditorObject* copiedObj = new EditorObject(*selectedObject);
-				copiedObj->name = copiedObj->name + " (Clone)";
-				EditorObjects.push_back(copiedObj);
-				selectedObject = copiedObj;
-			}
-		}
-
-		// Scene Objects
-		{
-			ImGui::Begin("Scene Objects");
-
-			if (ImGui::BeginTable("Scene Objects", 3, ImGuiTableFlags_Borders | ImGuiTableFlags_Resizable))
-			{
-				ImGui::TableSetupColumn("Name");
-				ImGui::TableSetupColumn("Type");
-				ImGui::TableSetupColumn("ID");
-				ImGui::TableHeadersRow();
-
-				for (const auto& objPtr : EditorObjects)
-				{
-					const auto& obj = *objPtr;
-
-					bool selected = selectedObject != nullptr && obj.id == selectedObject->id;
-
-					ImGui::TableNextRow();
-					ImGui::TableNextColumn(); ImGui::Selectable(obj.name.c_str(), &selected, ImGuiSelectableFlags_SelectOnClick);
-					ImGui::TableNextColumn(); ImGui::Selectable(_GetTypeName(obj.objectType).c_str(), &selected, ImGuiSelectableFlags_SelectOnClick);
-					ImGui::TableNextColumn(); ImGui::Selectable(std::to_string(obj.id).c_str(), &selected, ImGuiSelectableFlags_SelectOnClick);
-
-					if (selected)
-					{
-						selectedObject = const_cast<EditorObject*>(&obj);
-					}
-				}
-
-				ImGui::EndTable();
-			}
-
-			ImGui::End();
-		}
-
-		// Render Dev Debug Settings
-		{
-			static std::string Cached = "";
-
-			if (DebugStringStream.str().length() > 1)
-			{
-				Cached = DebugStringStream.str();
-			}
-			DebugStringStream.str("");
-
-			if (guiShowDevDebugConsole)
-			{
-				ImGui::Begin("Dev Debug Console");
-
-				ImGui::Text(Cached.c_str());
-				ImGui::End();
-			}
-		}
-
-		// Material Properties
-		{
-			if (guiShowMaterials)
-			{
-				bool deleteMaterial = false;
-				bool duplicateMaterial = false;
-				EditorMaterial* createdMaterial = nullptr;
-
-				bool matIsSelected = SelectedMaterial != nullptr;
-
-				if (ImGui::Begin("Materials"))
-				{
-					if (ImGui::BeginChild("Materials_Sidebar", ImVec2(150,0), true))
-					{
-						for (size_t i = 0; i < EditorMaterials.size(); i++)
-						{
-							const EditorMaterial* mat = EditorMaterials[i];
-
-							std::stringstream ss;
-							ss << mat->name << "##" << i;
-
-							std::string label = ss.str();
-
-							if (ImGui::Selectable(label.c_str(), matIsSelected && mat->id == SelectedMaterial->id))
-								SelectedMaterial = const_cast<EditorMaterial*>(mat);
-
-						}
-
-						if (ImGui::Button("Create Material"))
-						{
-							createdMaterial = _CreateNewEditorMaterial();
-						};
-					}
-					ImGui::EndChild();
-					ImGui::SameLine();
-
-					if (ImGui::BeginChild("Materials_Main") && matIsSelected)
-					{
-						bool renderThreadInProgress = EditorCore::IsRenderInProgress();
-						bool disableEditing = renderThreadInProgress || SelectedMaterial->isProtected;
-
-						if (SelectedMaterial->isProtected)
-						{
-							ImGui::Text("This material is protected.\nCannot update settings.");
-						}
-						else if (renderThreadInProgress)
-						{
-							ImGui::Text("Render is in progress.\nCannot update settings.");
-						}
-
-						ImGui::BeginDisabled(disableEditing);
-
-						ImGui::InputText("Name", &SelectedMaterial->name);
-
-						ImGui::BeginDisabled();
-						ImGui::InputText("ID", &std::to_string(SelectedMaterial->id));
-						ImGui::EndDisabled();
-
-						ImGui::Separator();
-
-						ImGui::Text("Surface Properties");
-
-						ImGui::SliderFloat("Ambient", &SelectedMaterial->ambient, 0, 1);
-						ImGui::SliderFloat("Diffuse", &SelectedMaterial->diffuse, 0, 1);
-						ImGui::SliderFloat("Specular", &SelectedMaterial->specular, 0, 1);
-						ImGui::SliderFloat("Shininess", &SelectedMaterial->shininess, 0, 1);
-						ImGui::SliderFloat("Reflective", &SelectedMaterial->reflective, 0, 1);
-						ImGui::SliderFloat("Transparency", &SelectedMaterial->transparency, 0, 1);
-						ImGui::SliderFloat("Refractive Index", &SelectedMaterial->refractiveIndex, 0, 1);
-
-						static const char* const shadowcastModeStrings[] = {
-							"Always",
-							"Never",
-							"When Transparent"
-						};
-
-						int selectedShadowcastMode = static_cast<int>(SelectedMaterial->shadowcastMode);
-
-						ImGui::ListBox("Shadowcast Mode", &selectedShadowcastMode, shadowcastModeStrings, 3);
-
-						assert(selectedShadowcastMode >= 0);
-						assert(selectedShadowcastMode <= 2);
-
-						SelectedMaterial->shadowcastMode = static_cast<Renderer::ShadowcastMode>(selectedShadowcastMode);
-
-						// TODO: Support multiple pattern properties
-						ImGui::Separator();
-
-						ImGui::Text("Pattern Properties");
-
-						ImGui::BeginDisabled(true);
-						static const char* const patternTypeStrings[] = {
-							"Solid Color"
-						};
-
-						static int selectedPlaceholder = 0;
-
-						ImGui::ListBox("Pattern Type", &selectedPlaceholder, patternTypeStrings, 1);
-						ImGui::EndDisabled();
-
-						SelectedMaterial->DrawPatternProperties();
-
-						ImGui::Separator();
-
-						deleteMaterial = ImGui::Button("Delete");
-
-						duplicateMaterial = ImGui::Button("Duplicate");
-
-						ImGui::EndDisabled();
-					}
-					ImGui::EndChild();
-
-					ImGui::End();
-
-					if (deleteMaterial)
-					{
-						auto it = std::find(EditorMaterials.begin(), EditorMaterials.end(), SelectedMaterial);
-
-						assert(*it != &EditorCore::GetDefaultEditorMaterial());
-
-						// Unassign Material from objects
-						for (EditorObject* obj : EditorObjects)
-						{
-							if (obj->material == *it)
-							{
-								obj->material = &EditorCore::GetDefaultEditorMaterial();
-							}
-						}
-
-						delete* it;
-						EditorMaterials.erase(it);
-
-						SelectedMaterial = nullptr;
-					}
-
-					if (duplicateMaterial)
-					{
-						EditorMaterial* copiedMat = new EditorMaterial(*SelectedMaterial);
-						copiedMat->name = copiedMat->name + " (Clone)";
-						copiedMat->id = EditorDB::GenerateUniqueID();
-						EditorMaterials.push_back(copiedMat);
-						SelectedMaterial = copiedMat;
-					}
-
-					if (createdMaterial != nullptr)
-					{
-						SelectedMaterial = createdMaterial;
-					}
-				}
-			}
-		}
-
-		// Render Ray Tracer Settings
-		{
-			if (guiShowRenderSettings)
-			{
-				ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoDocking;
-
-				ImGui::Begin("Render Settings", nullptr, windowFlags);
-
-				bool renderThreadInProgress = EditorCore::IsRenderInProgress();
-
-				if (renderThreadInProgress)
-				{
-					ImGui::Text("Render is in progress.\nCannot update settings.");
-				}
-
-				ImGui::BeginDisabled(renderThreadInProgress);
-				int renderDimensions[2] { CAMERA_SETTINGS.renderWidth, CAMERA_SETTINGS.renderHeight };
-				ImGui::InputInt2("Render Dimensions", renderDimensions);
-				CAMERA_SETTINGS.renderWidth = renderDimensions[0];
-				CAMERA_SETTINGS.renderHeight = renderDimensions[1];
-				ImGui::EndDisabled();
-				ImGui::End();
-			}
-		}
-
-		// Render Ray Tracer Preview
-		{
-			if (guiShowRenderPreview)
-			{
-				ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoDocking;
-
-				ImGui::Begin("Render Preview", nullptr, windowFlags);
-				ImGui::Image((void*)raytracerRenderTextureId, ImVec2(1024, 767));
-				ImGui::End();
-			}
-		}
-
-		// Render Footer Bar
-		{
-			/*
-			if (_DearImGui_BeginStatusBar())
-			{
-				// TODO: Find a good use for the status bar
-
-				ImGui::MenuItem("Welcome to Reccy's Ray Tracer!", nullptr, nullptr, false);
-
-				_DearImGui_EndStatusBar();
-			}
-			*/
-		}
-
-		// Render FPS Window
-		{
-			if (guiShowDearImGuiDemo)
-				ImGui::ShowDemoWindow();
-		}
-
-		// Render Gizmo
-		{
-			if (guiShowGizmo)
-			{
-				ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoBringToFrontOnFocus;
-
-				_DearImGui_SetNextWindowPosRelative(ImVec2(0, 20));
-
-				ImGui::Begin("Gizmo3D", &guiShowGizmo, windowFlags);
-				ImGui::Image((void*)gizmoFramebufferId, ImVec2(128, 128), ImVec2(0,1), ImVec2(1,0));
-				ImGui::End();
-			}
-		}
-
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-		//IMGUI TEST END
-
-		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-		{
-			GLFWwindow* backupCurrentContext = glfwGetCurrentContext();
-			ImGui::UpdatePlatformWindows();
-			ImGui::RenderPlatformWindowsDefault();
-			glfwMakeContextCurrent(backupCurrentContext);
-		}
+		GUI::Draw();
 
 		window.SwapBuffers();
 		window.PollEvents();
