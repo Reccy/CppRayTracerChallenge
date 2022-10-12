@@ -1,5 +1,4 @@
-#ifndef _CPPRAYTRACERCHALLENGE_CORE_MATH_SHAPE
-#define _CPPRAYTRACERCHALLENGE_CORE_MATH_SHAPE
+#pragma once
 
 #include "RML.h"
 #include "i_shape.h"
@@ -44,5 +43,3 @@ namespace CppRayTracerChallenge::Core::Math
 		Transform m_transform;
 	};
 }
-
-#endif _CPPRAYTRACERCHALLENGE_CORE_MATH_SHAPE

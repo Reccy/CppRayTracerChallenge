@@ -28,8 +28,8 @@ namespace CppRayTracerChallenge::Core::Renderer
 	{
 		auto transform = Camera::viewMatrix({ 1,3,2 }, { 4, -2,8 }, { 1,1,0 });
 		auto expectedResult = RML::Matrix<double, 4, 4>({
-			-0.507093f, 0.507093f, 0.676123f, -2.36643f,
-			0.767716f, 0.606092f, 0.121218f, -2.82843f,
+			-0.514496f, 0.514496f, 0.685994f, -2.40098f,
+			0.778924f, 0.61494f, 0.122988f, -2.86972f,
 			-0.358569f, 0.597614f, -0.717137f, 0.0f,
 			0.0f, 0.0f, 0.0f, 1.0f
 			});

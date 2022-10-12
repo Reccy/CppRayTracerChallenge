@@ -217,12 +217,14 @@ namespace CppRayTracerChallenge::Core::Renderer
 		Math::Ray ray = Math::Ray(position, positionToLightDirection);
 		Math::Intersections intersections = intersectRay(ray);
 
-		if (!intersections.hit().has_value())
+		auto hitOptional = intersections.hit();
+
+		if (!hitOptional.has_value())
 		{
 			return false;
 		}
 
-		const Math::Intersection& hit = intersections.hit().value();
+		const Math::Intersection& hit = hitOptional.value();
 
 		if (hit.t() < distance)
 		{
@@ -254,12 +256,14 @@ namespace CppRayTracerChallenge::Core::Renderer
 	{
 		Math::Intersections intersections = intersectRay(ray);
 
-		if (!intersections.hit().has_value())
+		auto hitOptional = intersections.hit();
+
+		if (!hitOptional.has_value())
 		{
 			return Graphics::Color::black();
 		}
 
-		const Math::Intersection& hit = intersections.hit().value();
+		const Math::Intersection& hit = hitOptional.value();
 
 		ComputedValues cv = ComputedValues(hit, ray);
 

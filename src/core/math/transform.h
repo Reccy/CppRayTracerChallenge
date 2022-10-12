@@ -17,6 +17,12 @@ namespace CppRayTracerChallenge::Core::Math
 		Transform();
 
 		/// <summary>
+		/// Constructs a Transform with the specific matrix
+		/// </summary>
+		/// <param name="matrix">Matrix to set</param>
+		Transform(RML::Matrix<double, 4, 4> matrix);
+
+		/// <summary>
 		/// Translates the Transform along x, y, z co-ordinates
 		/// </summary>
 		/// <param name="x">X translation</param>
