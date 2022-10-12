@@ -19,7 +19,7 @@ namespace ROGLL
 		void Render(const Camera& cam, const RML::Tuple3<float>& lightPosition, const RML::Tuple3<float>& lightColor) const;
 	private:
 		std::set<const MeshInstance*> m_meshInstances;
-		const VertexAttributes* m_layout;
+		const VertexAttributes* const m_layout;
 		Material* const m_material;
 	};
 }

@@ -15,156 +15,81 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\rogll\camera.cpp">
+    <ClCompile Include="rogll\camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rogll\index_buffer.cpp">
+    <ClCompile Include="rogll\index_buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rogll\material.cpp">
+    <ClCompile Include="rogll\material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rogll\shader.cpp">
+    <ClCompile Include="rogll\shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rogll\vertex_array.cpp">
+    <ClCompile Include="rogll\vertex_array.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rogll\vertex_attributes.cpp">
+    <ClCompile Include="rogll\vertex_attributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rogll\vertex_buffer.cpp">
+    <ClCompile Include="rogll\vertex_buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rogll\window.cpp">
+    <ClCompile Include="rogll\window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rogll\mesh.cpp">
+    <ClCompile Include="rogll\mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rogll\mesh_instance.cpp">
+    <ClCompile Include="rogll\mesh_instance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rogll\render_batch.cpp">
+    <ClCompile Include="rogll\render_batch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\editor_core.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\editor_io.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\editor_object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\editor_material.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\editor_db.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\editor_pattern.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\editor_actions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ply.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\editor_gizmo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\editor_axis.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\editor_gui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\editor_state.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\rogll\camera.h">
+    <ClInclude Include="rogll\camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rogll\index_buffer.h">
+    <ClInclude Include="rogll\index_buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rogll\material.h">
+    <ClInclude Include="rogll\material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rogll\shader.h">
+    <ClInclude Include="rogll\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rogll\types.h">
+    <ClInclude Include="rogll\types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rogll\vertex_array.h">
+    <ClInclude Include="rogll\vertex_array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rogll\vertex_attributes.h">
+    <ClInclude Include="rogll\vertex_attributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rogll\vertex_buffer.h">
+    <ClInclude Include="rogll\vertex_buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rogll\window.h">
+    <ClInclude Include="rogll\window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rogll\include.h">
+    <ClInclude Include="rogll\include.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rogll\mesh.h">
+    <ClInclude Include="rogll\mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rogll\mesh_instance.h">
+    <ClInclude Include="rogll\mesh_instance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rogll\render_batch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\editor_core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\editor_io.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\editor_object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\editor_material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\editor_db.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\editor_pattern.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\editor_camera_settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\editor_actions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ply.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\editor_gizmo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\editor_axis.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\editor_gui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\editor_state.h">
+    <ClInclude Include="rogll\render_batch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
