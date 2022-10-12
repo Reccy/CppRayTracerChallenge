@@ -6,6 +6,9 @@ The ray tracer core was implemented by following the Ray Tracer Challenge from: 
 
 The scene editor uses GLFW and DearImGui.
 
+![An image of the editor](https://github.com/Reccy/CppRayTracerChallenge/blob/master/readme/editor.png)
+![An image of the render](https://github.com/Reccy/CppRayTracerChallenge/blob/master/readme/render.png)
+
 # Setup Repo
 
 1. Clone the repo
