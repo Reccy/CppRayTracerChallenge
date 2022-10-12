@@ -67,8 +67,6 @@ static EditorActions Actions;
 static int WINDOW_WIDTH = 1024;
 static int WINDOW_HEIGHT = 768;
 
-static ROGLL::Camera* MainCamera;
-
 static GizmoType CurrentGizmoType = GizmoType::POSITION;
 
 static Math::Cube SharedCube;
@@ -76,26 +74,6 @@ static Math::Plane SharedPlane;
 static Math::Sphere SharedSphere;
 static Math::Cylinder SharedCylinder(-1, 1, true);
 static Math::Torus SharedTorus(0.1, 1.25);
-
-static RML::Vector _VectorClearNearZero(const RML::Vector& v)
-{
-	return RML::Vector(
-		Math::Comparison::equal(v.x(), 0.0) ? 0.0 : v.x(),
-		Math::Comparison::equal(v.y(), 0.0) ? 0.0 : v.y(),
-		Math::Comparison::equal(v.z(), 0.0) ? 0.0 : v.z()
-	);
-}
-
-static RML::Vector _ProjectVector(RML::Vector p, RML::Vector dir)
-{
-	RML::Point a = -dir;
-	RML::Point b = dir;
-
-	RML::Vector ap = p - a;
-	RML::Vector ab = b - a;
-
-	return a + ab * (RML::Vector::dot(ap, ab) / RML::Vector::dot(ab, ab));
-}
 
 Math::IShape* _GetMathShapeForEditorObject(const EditorObject& editorObject)
 {
@@ -572,10 +550,7 @@ int main(void)
 	ROGLL::RenderBatch lightBatch(&lightLayout, &lightMaterial);
 
 	State.editorCamera.SetPerspective(WINDOW_WIDTH, WINDOW_HEIGHT, 60);
-
 	State.editorCamera.transform.translate(0, 0, -10); // Initial cam position
-
-	MainCamera = &State.editorCamera;
 
 	State.lightPosition = {
 		1,
@@ -588,9 +563,6 @@ int main(void)
 	auto light = _CreateLight({ 0, 0, 0 });
 
 	// New Render Target End
-
-	EditorObject* selectedObject = nullptr;
-	Axis selectedObjectHitAxis = Axis::NONE;
 
 	RML::Vector selectedObjectScalingStart;
 	RML::Vector selectedObjectAngleAxisRotationStart;
@@ -634,7 +606,7 @@ int main(void)
 		State.cameraSettings.fov = std::clamp(State.cameraSettings.fov, 5.0f, 170.0f);
 
 		// Light cannot be rotated or scaled - force user to use the POSITION Gizmo
-		if (selectedObject != nullptr && selectedObject->objectType == EditorObject::Type::LIGHT)
+		if (State.selectedObject != nullptr && State.selectedObject->objectType == EditorObject::Type::LIGHT)
 		{
 			CurrentGizmoType = GizmoType::POSITION;
 			CurrentGizmoPtr = &PositionGizmo;
@@ -664,7 +636,7 @@ int main(void)
 		
 		if (Actions.ViewportCanCaptureMouse)
 		{
-			selectedObjectHit = _SelectObjectUnderCursor(MainCamera, selectedObject != nullptr);
+			selectedObjectHit = _SelectObjectUnderCursor(&State.editorCamera, State.selectedObject != nullptr);
 		}
 
 		if (selectedObjectHit.type == ObjectPickerType::GIZMO_HANDLE)
@@ -695,38 +667,38 @@ int main(void)
 		{
 			if (selectedObjectHit.type == ObjectPickerType::EDITOR_OBJECT)
 			{
-				selectedObject = static_cast<EditorObject*>(selectedObjectHit.ptr);
+				State.selectedObject = static_cast<EditorObject*>(selectedObjectHit.ptr);
 			}
 			else if (selectedObjectHit.type == ObjectPickerType::GIZMO_HANDLE)
 			{
-				selectedObjectHitAxis = selectedObjectHit.axis;
+				State.selectedObjectHitAxis = selectedObjectHit.axis;
 				selectedObjectHitWorldPosStart = selectedObjectHit.worldPositionHit;
-				selectedObjectPositionStart = selectedObject->transform.position;
-				selectedObjectScalingStart = selectedObject->transform.scaling;
-				selectedObjectQuaternionRotationStart = selectedObject->transform.rotation;
-				dirSelectedObjectToMouseDragWorldPosStart = RML::Vector(selectedObjectHitWorldPosStart - selectedObject->transform.position).normalize();
+				selectedObjectPositionStart = State.selectedObject->transform.position;
+				selectedObjectScalingStart = State.selectedObject->transform.scaling;
+				selectedObjectQuaternionRotationStart = State.selectedObject->transform.rotation;
+				dirSelectedObjectToMouseDragWorldPosStart = RML::Vector(selectedObjectHitWorldPosStart - State.selectedObject->transform.position).normalize();
 				selectedObjectGizmoAxisPlane = Math::Plane();
-				selectedObjectGizmoAxisPlaneTransform = _GetPlaneTransform(selectedObjectHitAxis, selectedObjectHit.ray.direction(), CurrentGizmoType);
+				selectedObjectGizmoAxisPlaneTransform = _GetPlaneTransform(State.selectedObjectHitAxis, selectedObjectHit.ray.direction(), CurrentGizmoType);
 				selectedObjectGizmoAxisPlaneTransform.translate(selectedObjectHitWorldPosStart.x(), selectedObjectHitWorldPosStart.y(), selectedObjectHitWorldPosStart.z());
 			}
 			else
 			{
-				selectedObject = nullptr;
+				State.selectedObject = nullptr;
 			}
 		}
 
-		if (selectedObjectHitAxis != Axis::NONE)
+		if (State.selectedObjectHitAxis != Axis::NONE)
 		{
 			RML::Transform axisPlaneTransform = selectedObjectGizmoAxisPlaneTransform;
 			const RML::Vector axisPlaneNormal = axisPlaneTransform.up();
 
-			axisPlaneTransform.rotation = axisPlaneTransform.rotation * selectedObject->transform.rotation;
+			axisPlaneTransform.rotation = axisPlaneTransform.rotation * State.selectedObject->transform.rotation;
 			Math::Plane axisPlane = selectedObjectGizmoAxisPlane;
 			const RML::Vector axisPlaneInputNormal = axisPlaneTransform.down();
 
 			axisPlane.transform(axisPlaneTransform.matrix());
 
-			const Math::Ray ray = MainCamera->RayForPixel(Actions.MousePosX, Actions.MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, State.cameraSettings.fov);
+			const Math::Ray ray = State.editorCamera.RayForPixel(Actions.MousePosX, Actions.MousePosY, WINDOW_WIDTH, WINDOW_HEIGHT, State.cameraSettings.fov);
 			const auto intersections = axisPlane.intersect(ray);
 
 			if (intersections.hit().has_value())
@@ -735,17 +707,17 @@ int main(void)
 				const RML::Vector hitPosition = ray.origin() + ray.direction() * hit.t();
 				
 				RML::Vector mouseWorldPosDelta = hitPosition - selectedObjectHitWorldPosStart;
-				mouseWorldPosDelta = _VectorClearNearZero(mouseWorldPosDelta);
-				const RML::Vector gizmoPositiveAxisVector = _GetTransformDirectionByAxisAndObject(selectedObjectHitAxis, *selectedObject);
-				const RML::Vector deltaAlongAxis = _ProjectVector(mouseWorldPosDelta, gizmoPositiveAxisVector);
+				mouseWorldPosDelta = mouseWorldPosDelta.clear_near_zero();
+				const RML::Vector gizmoPositiveAxisVector = _GetTransformDirectionByAxisAndObject(State.selectedObjectHitAxis, *State.selectedObject);
+				const RML::Vector deltaAlongAxis = RML::Vector::project(mouseWorldPosDelta, gizmoPositiveAxisVector);
 
 				if (CurrentGizmoType == GizmoType::POSITION)
 				{
-					selectedObject->transform.position = selectedObjectPositionStart + deltaAlongAxis;
+					State.selectedObject->transform.position = selectedObjectPositionStart + deltaAlongAxis;
 				}
 				else if (CurrentGizmoType == GizmoType::ROTATION)
 				{
-					RML::Vector currentDirOriginToHit = RML::Vector(hitPosition - selectedObject->transform.position).normalized();
+					RML::Vector currentDirOriginToHit = RML::Vector(hitPosition - State.selectedObject->transform.position).normalized();
 
 					const double angle = RML::Vector::signed_angle(currentDirOriginToHit, dirSelectedObjectToMouseDragWorldPosStart, axisPlaneInputNormal);
 					
@@ -753,22 +725,22 @@ int main(void)
 					{
 						auto deltaRotation = RML::Quaternion::angle_axis(angle, axisPlaneNormal);
 						RML::Quaternion newRotation = deltaRotation * selectedObjectQuaternionRotationStart;
-						selectedObject->transform.rotation = newRotation;
-						selectedObject->eulerRotation = newRotation.to_euler();
+						State.selectedObject->transform.rotation = newRotation;
+						State.selectedObject->eulerRotation = newRotation.to_euler();
 					}
 				}
 				else if (CurrentGizmoType == GizmoType::SCALE)
 				{
-					const RML::Vector globalPositiveAxis = AxisToDirection(selectedObjectHitAxis);
-					const RML::Vector localAxis = EditorObject::AxisToLocalDirection(*selectedObject, selectedObjectHitAxis);
+					const RML::Vector globalPositiveAxis = AxisToDirection(State.selectedObjectHitAxis);
+					const RML::Vector localAxis = EditorObject::AxisToLocalDirection(*State.selectedObject, State.selectedObjectHitAxis);
 
-					RML::Vector scalingVector = _ProjectVector(mouseWorldPosDelta, localAxis);
+					RML::Vector scalingVector = RML::Vector::project(mouseWorldPosDelta, localAxis);
 
 					const double deltaScaling = RML::Vector::dot(scalingVector, localAxis);
 
 					RML::Vector delta = globalPositiveAxis * deltaScaling;
 
-					selectedObject->transform.scaling = selectedObjectScalingStart + delta;
+					State.selectedObject->transform.scaling = selectedObjectScalingStart + delta;
 				}
 				else
 				{
@@ -779,18 +751,18 @@ int main(void)
 
 		if (Actions.MouseLeftButtonUp)
 		{
-			selectedObjectHitAxis = Axis::NONE;
+			State.selectedObjectHitAxis = Axis::NONE;
 		}
 
 		if (Actions.UnselectObject)
 		{
-			selectedObject = nullptr;
+			State.selectedObject = nullptr;
 		}
 
 		// Only update the camera if the user has not selected a handle axis
 		// This is to prevent the camera moving during drag and breaking the cursor delta calculation
 		// Also only update camera if user has focused on the viewport, not a UI element
-		if (selectedObjectHitAxis == Axis::NONE && Actions.ViewportCanCaptureKeyboard)
+		if (State.selectedObjectHitAxis == Axis::NONE && Actions.ViewportCanCaptureKeyboard)
 		{
 			_UpdateCamera(State.editorCamera);
 		}
@@ -840,17 +812,17 @@ int main(void)
 
 		auto& CurrentGizmo = *CurrentGizmoPtr;
 
-		if (selectedObject != nullptr)
+		if (State.selectedObject != nullptr)
 		{
-			currentHandleMeshInstance->transform.position = selectedObject->transform.position;
-			currentHandleMeshInstance->transform.rotation = selectedObject->transform.rotation;
+			currentHandleMeshInstance->transform.position = State.selectedObject->transform.position;
+			currentHandleMeshInstance->transform.rotation = State.selectedObject->transform.rotation;
 			
-			float dist = RML::Vector(selectedObject->transform.position - MainCamera->transform.position).magnitude();
+			float dist = RML::Vector(State.selectedObject->transform.position - State.editorCamera.transform.position).magnitude();
 			float scaling = dist * 0.2f;
 			RML::Vector scalingVector(scaling, scaling, scaling);
 			
 			currentHandleMeshInstance->transform.scaling = scalingVector;
-			CurrentGizmo->transform = selectedObject->transform;
+			CurrentGizmo->transform = State.selectedObject->transform;
 			CurrentGizmo->transform.scaling = scalingVector;
 			
 			handleBatch.Render(State.editorCamera, State.lightPosition, State.GetLightColorTuple());
