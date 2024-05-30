@@ -11,7 +11,6 @@ out vec3 VertColor;
 
 void main()
 {
-    vec3 fullMask = vec3(1.0);
     vec3 halfMask = vec3(0.6);
 
     vec3 white = vec3(1.0, 1.0, 1.0);
@@ -24,11 +23,12 @@ void main()
     VertColor = aColor;
     VertColor = round(VertColor);
     
-    VertColor *= mix(halfMask, fullMask, 
-           (VertColor == white
-        || (VertColor * handleActive.x) == red
-        || (VertColor * handleActive.y) == green
-        || (VertColor * handleActive.z) == blue));
+    if (VertColor != white && 
+        (VertColor * handleActive.x) != red &&
+        (VertColor * handleActive.y) != green &&
+        (VertColor * handleActive.z) != blue) {
+        VertColor *= halfMask;
+    }
 }
 #shader fragment
 #version 330 core
